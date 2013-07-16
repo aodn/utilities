@@ -1,0 +1,13 @@
+source "https://rubygems.org"
+
+gem 'logging'
+gem 'rake', :group => [:development, :test]
+gem 'nokogiri'
+
+group :development do
+  gem 'guard'
+  gem 'guard-minitest'
+  gem 'minitest'
+  gem 'rb-readline'
+  gem 'webmock'
+end
