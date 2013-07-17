@@ -1,0 +1,10 @@
+.rake_test_cache
+.DS_Store
+.rbenv-version
+.idea
+.vagrant
+*.iml
+cache/
+**~
+# Hide rubinius files
+.rbx
