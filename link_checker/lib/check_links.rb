@@ -27,7 +27,7 @@ class LinkChecker
   @links_to_layers
 
   def initialize(argv)
-    @logger = Logging.logger(STDOUT)
+    @logger = Logging.logger(STDERR)
     @logger.level = :warn
     parse_options(argv)
     @statuses = {}
