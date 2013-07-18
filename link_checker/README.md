@@ -1,6 +1,6 @@
 ## cat_geoserver_links
 
-**cat_geoserver_links - concatenate links from a given geoserver.
+**cat_geoserver_links** - concatenate links from a given geoserver.
 
 	Usage: cat_geoserver_links <server URL> [options]
 	    -h, --help                       Display this screen
