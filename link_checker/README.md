@@ -1,4 +1,9 @@
-## cat_geoserver_links
+## Link Checker Scripts
+This folder contains scripts to check for broken and incorrect links.
+
+Ruby scripts expect Bundler (http://bundler.io/) to be installed.
+
+### cat_geoserver_links
 
 **cat_geoserver_links** - concatenate links from a given geoserver.
 
@@ -6,7 +11,7 @@
 	    -h, --help                       Display this screen
 	    -v, --verbose                    Verbose logging
 
-### Examples
+#### Examples
 
 	$ cd lib
 	$ ./cat_geoserver_links.rb http://geoserver.imos.org.au/geoserver
@@ -15,7 +20,7 @@
 	mailto:Claire.Davies@csiro.au
 	...
 
-## check_links
+### check_links
 
 **check_links** - gets the HTTP status code, or error message, for a given list of links
 
@@ -26,7 +31,7 @@
 
 	where [FILE]… is a file (or list of files) containing a list of links to be checked (one link per line).
 
-### Examples
+#### Examples
 
 Check three links given in a file:
 
