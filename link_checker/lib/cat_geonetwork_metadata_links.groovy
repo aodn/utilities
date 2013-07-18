@@ -62,7 +62,7 @@ void loadArguments() {
 	def safeArgs = args.toList() << "" // Ensure a 5th element for safe access
 
 	// Load args from command line
-	(host, database, username, password, loggingEnabled) = safeArgs
+	(host, database, username, password, debuggingEnabled) = safeArgs
 
 	connectionUrl = "jdbc:postgresql://$host:5432/$database?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory"
 }
@@ -85,7 +85,7 @@ void extractUrls(record, pattern) {
 
 	def matchedUrls = matcher.collect{it.first()} // First result is whole URL
 
-	log "Record ${record.id} had ${matchedUrls.size()} matched URLs"
+	debug "Record ${record.id} had ${matchedUrls.size()} matched URLs"
 
 	recordCount++
 	foundUrls.addAll matchedUrls
@@ -103,5 +103,10 @@ void writeErr(s) {
 
 void log(s) {
 
-	if (loggingEnabled) writeErr s
+	writeErr s
+}
+
+void debug(s) {
+
+	if (debuggingEnabled) writeErr s
 }
