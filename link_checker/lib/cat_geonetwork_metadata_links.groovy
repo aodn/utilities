@@ -5,24 +5,19 @@ import groovy.sql.Sql
 	@GrabConfig(systemClassLoader=true)
 ])
 
-// Variables
+// Exit codes
 FAILURE = -1
 SUCCESS = 0
 
-urlPattern = ~/https?:\\/\\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:\/~\+#]*[\w\-\@?^=%&\/~\+#])?/
-recordCount = 0
-foundUrls = [] as Set
-
 // Load script arguments
-if (argsValid()) {
-
-	loadArguments()
-}
-else {
+if (!argsValid()) {
 
 	printUsage()
 	System.exit(FAILURE)
 }
+
+loadArguments()
+initVariables()
 
 // Do the query
 try {
@@ -34,6 +29,8 @@ try {
 		password,
 		"org.postgresql.Driver"
 	)
+
+	debug "Connection successful. Executing query."
 
 	sql.eachRow("SELECT id, data FROM metadata") {
 
@@ -57,25 +54,31 @@ System.exit(SUCCESS)
 
 // Supporting logic
 
-void loadArguments() {
-
-	def safeArgs = args.toList() << "" // Ensure a 5th element for safe access
-
-	// Load args from command line
-	(host, database, username, password, debuggingEnabled) = safeArgs
-
-	connectionUrl = "jdbc:postgresql://$host:5432/$database?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory"
-}
-
 def argsValid() {
 
 	return args.length == 4 ||
            args.length == 5 && args.last() == "-v"
 }
 
+void loadArguments() {
+
+	def safeArgs = args.toList() << "" // Ensure a 5th element for safe access
+
+	// Load args from command line
+	(host, database, username, password, debuggingEnabled) = safeArgs	
+}
+
+void initVariables() {
+
+	urlPattern = ~/https?:\\/\\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:\/~\+#]*[\w\-\@?^=%&\/~\+#])?/
+	recordCount = 0
+	foundUrls = [] as Set
+	connectionUrl = "jdbc:postgresql://$host:5432/$database?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory"
+}
+
 void printUsage() {
 
-	writeErr "Please provide the database connection details. -v adds logging."
+	writeErr "Please provide the database connection details. -v adds debug logging."
 	writeErr "Usage: groovy .\\cat_geonetwork_metadata_links.groovy <host> <database_name> <username> <password> [-v]"
 }
 
