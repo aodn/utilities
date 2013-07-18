@@ -42,6 +42,7 @@ Check three links given in a file:
 	http://doesntexist.com.au
 	$ ./check_links.rb ../examples/links
 	"http://www.google.com","200"
+    "http://www.google.com.au/some_path_that_doesnt_exist","404"
 	"http://www.facebook.com","301"
 	"http://doesntexist.com.au","getaddrinfo: nodename nor servname provided, or not known"
 	"","undefined method `request_uri' for #<URI::Generic:0x007fdea9d99c18 URL:>"
@@ -65,4 +66,11 @@ Speed up the above by using 10 threads:
 	$ ./cat_geoserver_links.rb http://geoserver.imos.org.au/geoserver | \
 	egrep  -v "^mailto|http://www\.coastalwatch\.com" | \
 	./check_links.rb -t 10
+
+Find only broken links by grepping the output:
+
+    $ ./check_links.rb ../examples/links | grep -v '[123][0-9][0-9]"$'
+    "http://www.google.com.au/some_path_that_doesnt_exist","404"
+    "http://doesntexist.com.au","getaddrinfo: Name or service not known"
+    "","undefined method `request_uri' for #<URI::Generic:0x00000001f11ea8 URL:>"
 
