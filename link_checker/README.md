@@ -1,7 +1,7 @@
 ## Link Checker Scripts
 This folder contains scripts to check for broken and incorrect links.
 
-Ruby scripts expect Bundler (http://bundler.io/) to be installed.
+Ruby scripts expect [Bundler](http://bundler.io/) to be installed.
 
 ### cat_geoserver_links
 
@@ -19,6 +19,12 @@ Ruby scripts expect Bundler (http://bundler.io/) to be installed.
 	http://geoserver.imos.org.au/geoserver/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=imos:csiro_harvest_nrs_biomass&srs=EPSG:4326&outputFormat=csv&cql_filter=(station_name='Maria Island')
 	mailto:Claire.Davies@csiro.au
 	...
+
+### cat_geonetwork_metadata_links
+
+**cat_geonetwork_metadata_links** - writes out links found in metadata records from a [GeoNetwork](http://geonetwork-opensource.org/) database.
+
+    Usage: groovy .\cat_geonetwork_metadata_links.groovy <host> <database_name> <username> <password> [-v]
 
 ### check_links
 
