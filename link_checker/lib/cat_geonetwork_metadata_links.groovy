@@ -76,7 +76,7 @@ def argsValid() {
 void printUsage() {
 
 	writeErr "Please provide the database connection details. -v adds logging."
-	writeErr "Usage: groovy .\\get_links_from_metadata.groovy <host> <database_name> <username> <password> [-v]"
+	writeErr "Usage: groovy .\\cat_geonetwork_metadata_links.groovy <host> <database_name> <username> <password> [-v]"
 }
 
 void extractUrls(record, pattern) {
