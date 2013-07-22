@@ -24,7 +24,7 @@ Ruby scripts expect [Bundler](http://bundler.io/) to be installed.
 
 **cat_geonetwork_metadata_links** - writes out links found in metadata records from a [GeoNetwork](http://geonetwork-opensource.org/) database.
 
-    Usage: groovy .\cat_geonetwork_metadata_links.groovy <host> <database_name> <username> <password> [-v]
+    Usage: groovy .\cat_geonetwork_metadata_links.groovy <host> <port> <database_name> <username> <password> [-v]
 
 ### check_links
 
@@ -80,4 +80,3 @@ Find only broken links by grepping the output:
 	"http://www.google.com.au/some_path_that_doesnt_exist","404"
 	"http://doesntexist.com.au","getaddrinfo: Name or service not known"
 	"","undefined method `request_uri' for #<URI::Generic:0x00000001f11ea8 URL:>"
-
