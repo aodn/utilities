@@ -1,14 +1,16 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
+require 'trollop'
 require 'pg'
 require 'nokogiri'
 
 class MetadataDataParameterRenamer
 
-  def initialize(host, database, user, password)
+  def initialize(host, database, port, user, password)
     @host = host
     @database = database
+    @port = port
     @user = user
     @password = password
   end
@@ -27,7 +29,7 @@ class MetadataDataParameterRenamer
   private
 
   def connect
-    @connection = PG.connect(:host => @host, :dbname => @database, :user => @user, :password => @password)
+    @connection = PG.connect(:host => @host, :dbname => @database, :port => @port, :user => @user, :password => @password)
   end
 
   def disconnect
@@ -60,8 +62,24 @@ class MetadataDataParameterRenamer
 end
 
 def main
-  puts "Searching for data parameter #{ARGV[4]} and replacing with #{ARGV[5]}"
-  MetadataDataParameterRenamer.new(ARGV[0], ARGV[1], ARGV[2], ARGV[3]).update_metadata(ARGV[4], ARGV[5])
+  opts = Trollop::options do
+    opt :host,     "host",     :default => 'emii3-vm1.its.utas.edu.au'
+    opt :database, "database", :default => 'imosmest'
+    opt :port,     "port",     :default => 5432
+    opt :username, "username", :default => 'postgres'
+    opt :password, "password", :type    => :string, :short => 'w'
+    opt :search,   "search",   :type    => :string
+    opt :replace,  "replace",  :type    => :string
+    banner <<-EOS
+Bulk search and replace a data parameter name in GeoNetwork Metadata
+EOS
+  end
+
+  Trollop::die :password, "required" if opts[:password].nil?
+  Trollop::die :search, "required" if opts[:search].nil?
+
+  puts "Searching for data parameter '#{opts[:search]}' and replacing with '#{opts[:replace]}'"
+  MetadataDataParameterRenamer.new(opts[:host], opts[:database], opts[:port], opts[:username], opts[:password]).update_metadata(opts[:search], opts[:replace])
 end
 
 main

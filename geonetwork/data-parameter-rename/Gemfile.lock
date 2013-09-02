@@ -4,11 +4,16 @@ GEM
     mini_portile (0.5.1)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    nokogiri (1.6.0-java)
+      mini_portile (~> 0.5.0)
     pg (0.16.0)
+    trollop (2.0)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
   nokogiri
   pg
+  trollop
