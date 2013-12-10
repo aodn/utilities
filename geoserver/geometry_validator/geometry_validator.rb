@@ -79,11 +79,16 @@ def main
   end
 
   connection = PGconn.connect(hostname, port, '', '', database, username, password)
-  res  = connection.exec("SELECT f_table_schema, f_table_name, f_geometry_column FROM geometry_columns")
+
+  res = connection.exec("SELECT table_schema, table_name, column_name FROM information_schema.columns where data_type = 'USER-DEFINED' and udt_name = 'geometry'")
+  # Alternatively, on a clean database (dbprod.emii.org.au/harvest), you can run:
+  # res = connection.exec("SELECT f_table_schema as table_schema, f_table_name as table_name, f_geometry_column as column_name FROM geometry_columns")
+
   res.each do |row|
-    schema = row['f_table_schema']
-    table  = row['f_table_name']
-    column = row['f_geometry_column']
+    schema = row['table_schema']
+    table  = row['table_name']
+    column = row['column_name']
+    puts "Verifying #{schema}.#{table}.#{column}"
     verify_column connection, schema, table, column
   end
 end
