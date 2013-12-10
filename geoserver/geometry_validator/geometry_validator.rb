@@ -9,7 +9,7 @@ def verify_column(connection, schema, table, column)
   puts "---"
   puts "Verifying #{schema}.#{table}.#{column}"
   begin
-    res = connection.exec("SELECT ST_IsValidReason(#{column}) FROM #{schema}.#{table} WHERE NOT ST_IsValid(#{column})")
+    res = connection.exec("SELECT ST_IsValidReason(#{column}), * FROM #{schema}.#{table} WHERE NOT ST_IsValid(#{column})")
     res.each do |row|
       puts row
     end
