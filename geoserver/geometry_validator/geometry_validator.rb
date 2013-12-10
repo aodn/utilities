@@ -6,7 +6,7 @@ require 'getoptlong'
 def verify_column(connection, schema, table, column)
   puts "---"
   puts "Verifying #{schema}.#{table}.#{column}"
-  res = connection.exec("SELECT ST_IsValidReason(position) FROM argo.profile_general WHERE NOT ST_IsValid(position)")
+  res = connection.exec("SELECT ST_IsValidReason(#{column}) FROM #{schema}.#{table} WHERE NOT ST_IsValid(#{column})")
   res.each do |row|
     puts row
   end
