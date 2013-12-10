@@ -3,19 +3,25 @@
 require 'pg'
 require 'getoptlong'
 
+$stdout.sync = true
+
 def verify_column(connection, schema, table, column)
   puts "---"
   puts "Verifying #{schema}.#{table}.#{column}"
-  res = connection.exec("SELECT ST_IsValidReason(#{column}) FROM #{schema}.#{table} WHERE NOT ST_IsValid(#{column})")
-  res.each do |row|
-    puts row
+  begin
+    res = connection.exec("SELECT ST_IsValidReason(#{column}) FROM #{schema}.#{table} WHERE NOT ST_IsValid(#{column})")
+    res.each do |row|
+      puts row
+    end
+  rescue
+    puts "Exception while processing #{schema}.#{table}.#{column}"
   end
   puts "---"
 end
 
 def usage
   puts <<-EOF
-hello [OPTION] ...
+geometry_validator.rb [OPTION] ...
 
 -h, --help:
    show help
@@ -73,7 +79,6 @@ def main
   end
 
   connection = PGconn.connect(hostname, port, '', '', database, username, password)
-
   res  = connection.exec("SELECT f_table_schema, f_table_name, f_geometry_column FROM geometry_columns")
   res.each do |row|
     schema = row['f_table_schema']
