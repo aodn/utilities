@@ -3,19 +3,25 @@
 require 'pg'
 require 'getoptlong'
 
+$stdout.sync = true
+
 def verify_column(connection, schema, table, column)
   puts "---"
   puts "Verifying #{schema}.#{table}.#{column}"
-  res = connection.exec("SELECT ST_IsValidReason(#{column}) FROM #{schema}.#{table} WHERE NOT ST_IsValid(#{column})")
-  res.each do |row|
-    puts row
+  begin
+    res = connection.exec("SELECT ST_IsValidReason(#{column}), * FROM #{schema}.#{table} WHERE NOT ST_IsValid(#{column})")
+    res.each do |row|
+      puts row
+    end
+  rescue
+    puts "Exception while processing #{schema}.#{table}.#{column}"
   end
   puts "---"
 end
 
 def usage
   puts <<-EOF
-hello [OPTION] ...
+geometry_validator.rb [OPTION] ...
 
 -h, --help:
    show help
@@ -74,11 +80,15 @@ def main
 
   connection = PGconn.connect(hostname, port, '', '', database, username, password)
 
-  res  = connection.exec("SELECT f_table_schema, f_table_name, f_geometry_column FROM geometry_columns")
+  res = connection.exec("SELECT table_schema, table_name, column_name FROM information_schema.columns where data_type = 'USER-DEFINED' and udt_name = 'geometry'")
+  # Alternatively, on a clean database (dbprod.emii.org.au/harvest), you can run:
+  # res = connection.exec("SELECT f_table_schema as table_schema, f_table_name as table_name, f_geometry_column as column_name FROM geometry_columns")
+
   res.each do |row|
-    schema = row['f_table_schema']
-    table  = row['f_table_name']
-    column = row['f_geometry_column']
+    schema = row['table_schema']
+    table  = row['table_name']
+    column = row['column_name']
+    puts "Verifying #{schema}.#{table}.#{column}"
     verify_column connection, schema, table, column
   end
 end
