@@ -40,14 +40,19 @@ class GeoserverLinkCatter
 
       opts.banner = "Usage: #{opts.program_name} <server URL> [options]"
 
-      opts.on('-h', '--help', 'Display this screen' ) do
+      opts.on('-h', '--help', 'Display this screen') do
         puts opts
         exit 1
       end
 
-      opts.on('-v', '--verbose', 'Verbose logging' ) do |arg|
+      opts.on('-v', '--verbose', 'Verbose logging') do |arg|
         @logger.level = :debug
       end
+
+      opts.on('--layers', 'Layer names only') do
+        @layers_only = true
+      end
+
     end
 
     optparse.parse!(argv)
@@ -91,7 +96,7 @@ class GeoserverLinkCatter
     http
   end
 
-  def get_links_for_layer(layer_name)
+  def get_links_from_get_feature_info(layer_name)
     links = []
 
     begin
@@ -118,8 +123,14 @@ class GeoserverLinkCatter
   def get_links_for_all_layers
     links = []
 
-    get_layer_names.each do |layer_name|
-      links << get_links_for_layer(layer_name)
+    if @layers_only
+      get_layer_names.each do |layer_name|
+        links << layer_name
+      end
+    else
+      get_layer_names.each do |layer_name|
+        links << get_links_from_get_feature_info(layer_name)
+      end
     end
 
     return links.flatten.uniq
