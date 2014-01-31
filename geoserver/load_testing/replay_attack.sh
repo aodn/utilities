@@ -45,8 +45,12 @@ prepare_urls() {
 display_statistics() {
     local -i time_delta_scenario_real_life=$1; shift
     local -i time_delta_scenario_stressed=$1; shift
+    local -i times=`expr $time_delta_scenario_real_life / $time_delta_scenario_stressed`; shift
+    echo "-----------------------------------------------"
     echo "Real life: $time_delta_scenario_real_life seconds"
     echo "Stress test: $time_delta_scenario_stressed seconds"
+    echo "We can do x$times times better!"
+    echo "-----------------------------------------------"
 }
 
 # parses ugly date time string as '17/Jan/2014:23:13:17' and returns seconds
@@ -68,13 +72,13 @@ replay_attack() {
     local strip_term="$1"; shift
     local file="$1"; shift
 
-    local date_time_start_scenario=`head -1 $file | cut -d' ' -f4 | cut -d[ -f2`
+    # take second line as first line might be empty :(
+    local date_time_start_scenario=`head -2 $file | tail -1 | cut -d' ' -f4 | cut -d[ -f2`
     local date_time_end_scenario=`tail -1 $file | cut -d' ' -f4 | cut -d[ -f2`
     local -i date_time_start_scenario_s=`parse_date $date_time_start_scenario`
     local -i date_time_end_scenario_s=`parse_date $date_time_end_scenario`
     local -i time_delta_scenario_real_life=`expr $date_time_end_scenario_s - $date_time_start_scenario_s`
     echo "Replayed scenario took '$time_delta_scenario_real_life' to complete in real life, lets see if we can do better!"
-    echo
 
     # prepare scenario
     local tmp_replay_urls=`prepare_urls $file $url "$strip_term"`
