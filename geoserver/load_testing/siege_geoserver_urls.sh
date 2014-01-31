@@ -37,7 +37,7 @@ run_siege() {
 main() {
     write_get_feature_urls_to_file
     write_get_map_urls_to_file
-    run_siege $*
+    run_siege "$@"
 }
 
-main $*
+main "$@"

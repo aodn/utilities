@@ -49,10 +49,6 @@ class GeoserverLinkCatter
         @logger.level = :debug
       end
 
-      opts.on('--wms', 'WMS links only') do
-        @wms_only = true
-      end
-
       opts.on('--layers', 'Layer names only') do
         @layers_only = true
       end
@@ -78,12 +74,6 @@ class GeoserverLinkCatter
     "#{@url}/wms?LAYERS=#{CGI::escape(layer_name)}&VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&BBOX=-180,-90,180,90&QUERY_LAYERS=#{CGI::escape(layer_name)}&FEATURE_COUNT=1000&SRS=EPSG:4326&WIDTH=1&HEIGHT=1&X=0&Y=0&INFO_FORMAT=text/html"
   end
 
-  def construct_get_map_request_url(layer_name)
-
-    # Whack a time param on the end, just to stop caching.
-    "#{@url}/wms?LAYERS=#{CGI::escape(layer_name)}&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=-180,-90,180,90&WIDTH=296&HEIGHT=296&time=#{Time.now.to_i}"
-  end
-
   def get_layer_names
 
     layer_names = []
@@ -106,7 +96,7 @@ class GeoserverLinkCatter
     http
   end
 
-  def get_links_for_wfs_layer(layer_name)
+  def get_links_from_get_feature_info(layer_name)
     links = []
 
     begin
@@ -133,17 +123,13 @@ class GeoserverLinkCatter
   def get_links_for_all_layers
     links = []
 
-    if @wms_only
-      get_layer_names.each do |layer_name|
-        links << construct_get_map_request_url(layer_name)
-      end
-    elsif @layers_only
+    if @layers_only
       get_layer_names.each do |layer_name|
         links << layer_name
       end
     else
       get_layer_names.each do |layer_name|
-        links << get_links_for_wfs_layer(layer_name)
+        links << get_links_from_get_feature_info(layer_name)
       end
     end
 
