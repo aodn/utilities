@@ -106,7 +106,7 @@ describe 'cat geoserver links' do
     it 'timeout request' do
       stub_request(:get, /.*REQUEST=GetFeatureInfo.*/).to_timeout()
 
-      links = @catter.get_links_for_wfs_layer('my_layer')
+      links = @catter.get_links_from_get_feature_info('my_layer')
       assert_equal 1, @catter.timed_out_layers.length
       assert_equal 'my_layer', @catter.timed_out_layers[0]
     end
@@ -123,7 +123,7 @@ describe 'cat geoserver links' do
 
       stub_request(:get, /.*REQUEST=GetFeatureInfo.*/).to_return(:body => response_body, :status => 200)
 
-      links = @catter.get_links_for_wfs_layer('my_layer')
+      links = @catter.get_links_from_get_feature_info('my_layer')
     end
 
     it 'get links' do
@@ -156,7 +156,7 @@ describe 'cat geoserver links' do
 
       stub_request(:get, /.*REQUEST=GetFeatureInfo.*/).to_return(:body => response_body, :status => 200)
 
-      links = @catter.get_links_for_wfs_layer('my_layer')
+      links = @catter.get_links_from_get_feature_info('my_layer')
       assert_equal 4, links.length
       assert_equal 'http://imosmest.emii.org.au/geonetwork/srv/en/metadata.show?uuid=a46f1fe3-2a7c-4086-951e-7351192ec98b', links[0]
       assert_equal 'http://sofs.aodn.org.au/sofs/', links[2]
@@ -172,7 +172,7 @@ describe 'cat geoserver links' do
         ['first', 'second']
       end
 
-      def @catter.get_links_for_wfs_layer(layer_name)
+      def @catter.get_links_from_get_feature_info(layer_name)
         if (layer_name == 'first')
           return ['http://aaa', 'http://bbb']
         elsif (layer_name == 'second')
@@ -191,7 +191,6 @@ describe 'cat geoserver links' do
       usage = %{Usage: cat_geoserver_links <server URL> [options]
     -h, --help                       Display this screen
     -v, --verbose                    Verbose logging
-        --wms                        WMS links only
         --layers                     Layer names only
 }
 
