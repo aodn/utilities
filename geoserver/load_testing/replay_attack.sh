@@ -115,7 +115,6 @@ Options:
     exit 3
 }
 
-
 # "$@" - parameters, see usage
 main() {
     # parse options with getopt
