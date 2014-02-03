@@ -42,13 +42,21 @@ prepare_urls() {
 # display some statistics
 # $1 - time_delta_scenario_real_life
 # $2 - time_delta_scenario_stressed
+# $3 - number of clients in stressed simulation
 display_statistics() {
     local -i time_delta_scenario_real_life=$1; shift
     local -i time_delta_scenario_stressed=$1; shift
-    local -i times=`expr $time_delta_scenario_real_life / $time_delta_scenario_stressed`; shift
+    local -i num_clients=$1; shift
+
+    # multiply by number of clients - this is how much "harder" this scenario
+    # was
+    local -i times=`echo \
+        "$time_delta_scenario_real_life / $time_delta_scenario_stressed * $num_clients" \
+        | bc -l | cut -d. -f1`
+
     echo "-----------------------------------------------"
     echo "Real life: $time_delta_scenario_real_life seconds"
-    echo "Stress test: $time_delta_scenario_stressed seconds"
+    echo "Stress test: $time_delta_scenario_stressed seconds (x$num_clients harder!)"
     echo "We can do x$times times better!"
     echo "-----------------------------------------------"
 }
@@ -72,6 +80,8 @@ replay_attack() {
     local strip_term="$1"; shift
     local file="$1"; shift
 
+    local -i num_clients=64
+
     # take second line as first line might be empty :(
     local date_time_start_scenario=`head -2 $file | tail -1 | cut -d' ' -f4 | cut -d[ -f2`
     local date_time_end_scenario=`tail -1 $file | cut -d' ' -f4 | cut -d[ -f2`
@@ -83,11 +93,11 @@ replay_attack() {
     # prepare scenario
     local tmp_replay_urls=`prepare_urls $file $url "$strip_term"`
     local -i time_start_scenario=`date +%s`
-    siege -v -c1 --reps=once -b -f $tmp_replay_urls
+    siege -v -c$num_clients --reps=once -b -f $tmp_replay_urls
     local -i time_end_scenario=`date +%s`
     local -i time_delta_scenario_stressed=`expr $time_end_scenario - $time_start_scenario`
 
-    display_statistics $time_delta_scenario_real_life $time_delta_scenario_stressed
+    display_statistics $time_delta_scenario_real_life $time_delta_scenario_stressed $num_clients
 
     rm -f $tmp_replay_urls
 }
