@@ -1,48 +1,95 @@
 #!/bin/bash
-set -e
 
-GEOSERVER_URL=$1
-shift
+# Written by Jon Burgess <jonathan.burgess@utas.edu.au>
+# Refactored by Dan Fruehauf <dan.fruehauf@utas.edu.au>
 
+#
+# This script takes a Geoserver URL and loads it by running a siege against all
+# URLs it serves
+#
 
-TMP_WFS_URLS_FILE=${TMP_WFS_URLS_FILE:=`mktemp /tmp/wfs_urls.txt.XXXXX`}
-TMP_WMS_URLS_FILE=${TMP_WMS_URLS_FILE:=`mktemp /tmp/wms_urls.txt.XXXXX`}
-TMP_URLS_FILE=${TMP_URLS_FILE:=`mktemp /tmp/urls.txt.XXXXX`}
+declare -r CAT_GEOSERVER_LINKS_CMD=../../link_checker/lib/cat_geoserver_links.rb
 
-CAT_GEOSERVER_LINKS_CMD=../../link_checker/lib/cat_geoserver_links.rb
-
-write_get_feature_urls_to_file() {
-    echo "Writing WFS (GetFeature) request URLs to temporary file at ${TMP_WFS_URLS_FILE}..."
-
-    ${CAT_GEOSERVER_LINKS_CMD} ${GEOSERVER_URL} --layers \
+# returns a list of WFS urls
+# $1 - geoserver url
+get_wfs_urls() {
+    local geoserver_url=$1; shift
+    ${CAT_GEOSERVER_LINKS_CMD} ${geoserver_url} --layers \
         | grep data \
-        | sed "s@\(.*\)@${GEOSERVER_URL}/wfs?service=wfs\&version=2.0.0\&request=GetFeature\&typeNames=\1@g" \
-        > ${TMP_WFS_URLS_FILE}
-
-    echo "`wc -l ${TMP_WFS_URLS_FILE}` requests written to ${TMP_WFS_URLS_FILE}."
+        | sed "s@\(.*\)@${geoserver_url}/wfs?service=wfs\&version=2.0.0\&request=GetFeature\&typeNames=\1@g"
 }
 
-write_get_map_urls_to_file() {
-    echo "Writing WMS (GetMap) request URLs to temporary file at ${TMP_WMS_URLS_FILE:=/tmp/urls.txt}..."
-
-    ${CAT_GEOSERVER_LINKS_CMD} ${GEOSERVER_URL} --layers \
+# returns a list of WMS urls
+# $1 - geoserver url
+get_wms_urls() {
+    local geoserver_url=$1; shift
+    ${CAT_GEOSERVER_LINKS_CMD} ${geoserver_url} --layers \
         | grep map \
-        | sed "s@\(.*\)@${GEOSERVER_URL}/wms?LAYERS=\1\&TRANSPARENT=TRUE\&VERSION=1.1.1\&FORMAT=image%2Fpng\&QUERYABLE=true\&EXCEPTIONS=application%2Fvnd.ogc.se_xml\&SERVICE=WMS\&REQUEST=GetMap\&STYLES=\&SRS=EPSG%3A4326\&BBOX=-180,-90,180,90\&WIDTH=296\&HEIGHT=296@g" \
-        > ${TMP_WMS_URLS_FILE}
-
-    echo "`wc -l ${TMP_WMS_URLS_FILE}` requests written to ${TMP_WMS_URLS_FILE}."
+        | sed "s@\(.*\)@${geoserver_url}/wms?LAYERS=\1\&TRANSPARENT=TRUE\&VERSION=1.1.1\&FORMAT=image%2Fpng\&QUERYABLE=true\&EXCEPTIONS=application%2Fvnd.ogc.se_xml\&SERVICE=WMS\&REQUEST=GetMap\&STYLES=\&SRS=EPSG%3A4326\&BBOX=-180,-90,180,90\&WIDTH=296\&HEIGHT=296@g"
 }
 
-run_siege() {
-    echo "Running siege..."
-    cat ${TMP_WMS_URLS_FILE} ${TMP_WFS_URLS_FILE} > ${TMP_URLS_FILE}
-    siege $@ -f ${TMP_URLS_FILE}
+# prepare siege scenario with all geoserver URLs
+# $1 - geoserver url
+# $2 - scenario file
+prepare_scenario() {
+    local geoserver_url=$1; shift
+    local scenario_file=$1; shift
+    local wfs_scenario_file=`mktemp`
+    local wms_scenario_file=`mktemp`
+
+    echo -n "Preparing WFS URLs..."
+    get_wfs_urls $geoserver_url >> $wfs_scenario_file
+    echo "Done!"
+
+    echo -n "Preparing WMS URLs..."
+    get_wms_urls $geoserver_url >> $wms_scenario_file
+    echo "Done!"
+
+    echo `wc -l ${wfs_scenario_file}` " WFS layers"
+    echo `wc -l ${wms_scenario_file}` " WMS layers"
+
+    cat $wfs_scenario_file $wms_scenario_file > $scenario_file
+    rm -f $wfs_scenario_file $wms_scenario_file
 }
 
+# prints usage and exit
+usage() {
+    echo "Usage: $0 [OPTIONS] -- [SIEGE_PARAMETERS]"
+    echo "Uses siege to load test geoserver"
+    echo "
+Options:
+  -u, --url                  URL to siege"
+    exit 3
+}
+
+# "$@" - parameters, see usage
 main() {
-    write_get_feature_urls_to_file
-    write_get_map_urls_to_file
-    run_siege "$@"
+    # parse options with getopt
+    local tmp_getops=`getopt -o hu: --long help,url: -- "$@"`
+    [ $? != 0 ] && usage
+
+    eval set -- "$tmp_getops"
+    local url
+
+    # parse the options
+    while true ; do
+        case "$1" in
+            -h|--help) usage;;
+            -u|--url) url="$2"; shift 2;;
+            --) shift; break;;
+            *) usage;;
+        esac
+    done
+
+    # if url is empty, do not proceed
+    [ x"$url" = x ] && usage
+
+    # prepare siege scenario
+    local scenario_file=`mktemp`
+    prepare_scenario $url $scenario_file
+
+    echo "Running siege with '$@ -f $scenario_file'"
+    siege "$@" -f $scenario_file
 }
 
 main "$@"
