@@ -7,27 +7,20 @@ var lonMax = 180;
 var latMin = -90;
 var latMax = 90;
 
-// Static layers
+// Static layers (QUERYABLE=false)
 var openlayersQueryConstants = "&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=false&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&";
 var version = "1.1.1";
 
 // 1.1.1, using SRS=
-var openlayersQueryConstants = "&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=false&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&";
+var openlayersQueryConstants = "&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&";
 var version = "1.1.1";
 
-// 1.3.0, using CRS=
+// 1.3.0, using CRS=, also flipping lon,lat to be lat,lon
 var openlayersQueryConstants = "&TRANSPARENT=TRUE&VERSION=1.3.0&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&CRS=EPSG%3A4326&";
 var version = "1.3.0";
 
-//var layerBBox = [104.0, -46.0, 177.0, -15.0];
-//var layerBBox = [-256.0, 134.0, -183.0, 165.0];
-//var layerBBox = [-180.0, -90.0, 180.0, 90.0];
-//var layerBBox = [-360.0, -180.0, 360.0, 180.0];
-
 // Returns true if rightBBox intersects with leftBBox
 function intersects(leftBBox, rightBBox) {
-    //return true;
-    // TODO handle the wrap around!
     return !(
            rightBBox[0] > leftBBox[2]
         || rightBBox[2] < leftBBox[0]
@@ -36,6 +29,8 @@ function intersects(leftBBox, rightBBox) {
     );
 }
 
+// Calculates a bounding box with a gutter, given a left,bottom coordinate and
+// a gutter and tile dimension
 function toBoundingBoxWithGutter(left, bottom, tileDimension, gutterDimension) {
     //gutterSize = gutter * tileDimension / (tileSizePx);
 
@@ -58,8 +53,8 @@ function generateTiles(zoomLevelStart, zoomLevelEnd, layerBBox, tileSizePx, gutt
     for (var zoomLevel = zoomLevelStart; zoomLevel <= zoomLevelEnd; ++zoomLevel) {
         var tileDimension = 180.0 / Math.pow(2, zoomLevel);
 
-        for (var lon = lonMin; lon < lonMax; lon += tileDimension) {
-            for (var lat = latMin; lat < latMax; lat += tileDimension) {
+        for (var lon = lonMin; lon <= lonMax; lon += tileDimension) {
+            for (var lat = latMin; lat <= latMax; lat += tileDimension) {
                 var gutterDimension = gutterPx * tileDimension / tileSizePx;
                 var bbox = toBoundingBoxWithGutter(lon, lat, tileDimension, gutterDimension);
                 if (intersects(layerBBox, bbox)) {
@@ -109,8 +104,8 @@ function main(commandLineArguments) {
     var zoomLevels       = commandLineArguments[1];
     var geoserverAddress = commandLineArguments[2];
     var layerName        = encodeURIComponent(commandLineArguments[3]);
-    var tileSizePx       = commandLineArguments[4];
-    var gutterPx         = commandLineArguments[5];
+    var tileSizePx       = parseInt(commandLineArguments[4]);
+    var gutterPx         = parseInt(commandLineArguments[5]);
     var layerBBoxStr     = commandLineArguments[6];
 
     var zoomLevelStart = zoomLevels.split("-")[0];
@@ -138,18 +133,3 @@ function main(commandLineArguments) {
 
 main(arguments);
 
-/* Examples:
- * apt-get install rhino
- *
- * Cache zoom levels 0 to 3:
- * ./tile_seeder.js GET 0-3 http://localhost:8080/geoserver imos:argo_profile_layer_map 256 20
- *
- * Purge zoom levels 0 to 4:
- * ./tile_seeder.js PURGE 0-4 http://localhost:8080/geoserver imos:argo_profile_layer_map 256 20
- *
- * ./tile_seeder.js GET 0-2 http://localhost:8080/geoserver imos:argo_profile_layer_map 256 20
- * ./tile_seeder.js PURGE 0-2 http://localhost:8080/geoserver imos:argo_profile_layer_map 256 20
- *
- * ./tile_seeder.js GET 0-4 http://localhost:8080/geoserver imos:aatams_sattag_nrt_profile_map 256 20 104.0,-46.0,177.0,-15.0
- * ./tile_seeder.js PURGE 0-4 http://localhost:8080/geoserver imos:aatams_sattag_nrt_profile_map 256 20
-*/
