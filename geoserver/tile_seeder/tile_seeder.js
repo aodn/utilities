@@ -111,7 +111,7 @@ function main(commandLineArguments) {
     var zoomLevelStart = zoomLevels.split("-")[0];
     var zoomLevelEnd   = zoomLevels.split("-")[1] || zoomLevelStart;
 
-    layerBBox = [-180, -90, 180, 90];
+    layerBBox = [lonMin, latMin, lonMax, latMax];
     if (layerBBoxStr && layerBBoxStr != "") {
         layerBBox = layerBBoxStr.split(",");
     }
