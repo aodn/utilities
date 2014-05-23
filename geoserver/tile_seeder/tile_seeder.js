@@ -32,8 +32,6 @@ function intersects(leftBBox, rightBBox) {
 // Calculates a bounding box with a gutter, given a left,bottom coordinate and
 // a gutter and tile dimension
 function toBoundingBoxWithGutter(left, bottom, tileDimension, gutterDimension) {
-    //gutterSize = gutter * tileDimension / (tileSizePx);
-
     var _right = left + tileDimension + gutterDimension;
     var _top = bottom + tileDimension + gutterDimension;
     var _left = left - gutterDimension;
@@ -51,11 +49,13 @@ function generateTiles(zoomLevelStart, zoomLevelEnd, layerBBox, tileSizePx, gutt
     var boundingBoxes = [];
 
     for (var zoomLevel = zoomLevelStart; zoomLevel <= zoomLevelEnd; ++zoomLevel) {
+        // Tile dimension in degress
         var tileDimension = 180.0 / Math.pow(2, zoomLevel);
+        // Gutter dimension in degress
+        var gutterDimension = gutterPx * tileDimension / tileSizePx;
 
         for (var lon = lonMin; lon <= lonMax; lon += tileDimension) {
             for (var lat = latMin; lat <= latMax; lat += tileDimension) {
-                var gutterDimension = gutterPx * tileDimension / tileSizePx;
                 var bbox = toBoundingBoxWithGutter(lon, lat, tileDimension, gutterDimension);
                 if (intersects(layerBBox, bbox)) {
                     if (version == "1.3.0") {
@@ -100,13 +100,12 @@ function generateUrlsForBBoxes(
 }
 
 function main(commandLineArguments) {
-    var command          = commandLineArguments[0];
-    var zoomLevels       = commandLineArguments[1];
-    var geoserverAddress = commandLineArguments[2];
-    var layerName        = encodeURIComponent(commandLineArguments[3]);
-    var tileSizePx       = parseInt(commandLineArguments[4]);
-    var gutterPx         = parseInt(commandLineArguments[5]);
-    var layerBBoxStr     = commandLineArguments[6];
+    var zoomLevels       = commandLineArguments[0];
+    var geoserverAddress = commandLineArguments[1];
+    var layerName        = encodeURIComponent(commandLineArguments[2]);
+    var tileSizePx       = parseInt(commandLineArguments[3]);
+    var gutterPx         = parseInt(commandLineArguments[4]);
+    var layerBBoxStr     = commandLineArguments[5];
 
     var zoomLevelStart = zoomLevels.split("-")[0];
     var zoomLevelEnd   = zoomLevels.split("-")[1] || zoomLevelStart;
@@ -127,7 +126,7 @@ function main(commandLineArguments) {
     );
 
     for (var i in urls) {
-        print("squidclient -v -s -m " + command + " '" + urls[i] + "'");
+        print(urls[i]);
     }
 }
 
