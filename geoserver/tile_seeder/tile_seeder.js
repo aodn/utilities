@@ -8,16 +8,16 @@ var latMin = -90;
 var latMax = 90;
 
 // Static layers (QUERYABLE=false)
-var openlayersQueryConstants = "&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=false&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&";
-var version = "1.1.1";
+//var openlayersQueryConstants = "&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=false&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&";
+//var version = "1.1.1";
 
 // 1.1.1, using SRS=
 var openlayersQueryConstants = "&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&";
 var version = "1.1.1";
 
 // 1.3.0, using CRS=, also flipping lon,lat to be lat,lon
-var openlayersQueryConstants = "&TRANSPARENT=TRUE&VERSION=1.3.0&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&CRS=EPSG%3A4326&";
-var version = "1.3.0";
+//var openlayersQueryConstants = "&TRANSPARENT=TRUE&VERSION=1.3.0&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&CRS=EPSG%3A4326&";
+//var version = "1.3.0";
 
 // Returns true if rightBBox intersects with leftBBox
 function intersects(leftBBox, rightBBox) {
@@ -45,24 +45,23 @@ function flipLonLat(bbox) {
     return [bbox[1], bbox[0], bbox[3], bbox[2]];
 }
 
-function generateTiles(zoomLevelStart, zoomLevelEnd, layerBBox, tileSizePx, gutterPx) {
+// layerBBOX can be null!
+function generateTiles(zoomLevel, layerBBox, tileSizePx, gutterPx) {
     var boundingBoxes = [];
 
-    for (var zoomLevel = zoomLevelStart; zoomLevel <= zoomLevelEnd; ++zoomLevel) {
-        // Tile dimension in degress
-        var tileDimension = 180.0 / Math.pow(2, zoomLevel);
-        // Gutter dimension in degress
-        var gutterDimension = gutterPx * tileDimension / tileSizePx;
+    // Tile dimension in degress
+    var tileDimension = 180.0 / Math.pow(2, zoomLevel);
+    // Gutter dimension in degress
+    var gutterDimension = gutterPx * tileDimension / tileSizePx;
 
-        for (var lon = lonMin; lon <= lonMax; lon += tileDimension) {
-            for (var lat = latMin; lat <= latMax; lat += tileDimension) {
-                var bbox = toBoundingBoxWithGutter(lon, lat, tileDimension, gutterDimension);
-                if (intersects(layerBBox, bbox)) {
-                    if (version == "1.3.0") {
-                        boundingBoxes.push(flipLonLat(bbox));
-                    } else {
-                        boundingBoxes.push(bbox);
-                    }
+    for (var lon = lonMin; lon <= lonMax; lon += tileDimension) {
+        for (var lat = latMin; lat <= latMax; lat += tileDimension) {
+            var bbox = toBoundingBoxWithGutter(lon, lat, tileDimension, gutterDimension);
+            if (layerBBox == null || intersects(layerBBox, bbox)) {
+                if (version == "1.3.0") {
+                    boundingBoxes.push(flipLonLat(bbox));
+                } else {
+                    boundingBoxes.push(bbox);
                 }
             }
         }
@@ -73,7 +72,6 @@ function generateTiles(zoomLevelStart, zoomLevelEnd, layerBBox, tileSizePx, gutt
 
 function generateUrlsForBBoxes(
     boundingBoxes,
-    geoserverAddress,
     layerName,
     tileSizePx,
     gutterPx
@@ -81,8 +79,7 @@ function generateUrlsForBBoxes(
     var url = "";
     var urls = [];
     for (var i in boundingBoxes) {
-        url = geoserverAddress + "/" +
-            "wms?LAYERS=" + layerName +
+        url = "wms?LAYERS=" + layerName +
             openlayersQueryConstants;
 
         var width  = tileSizePx + (2 * gutterPx);
@@ -100,26 +97,21 @@ function generateUrlsForBBoxes(
 }
 
 function main(commandLineArguments) {
-    var zoomLevels       = commandLineArguments[0];
-    var geoserverAddress = commandLineArguments[1];
-    var layerName        = encodeURIComponent(commandLineArguments[2]);
-    var tileSizePx       = parseInt(commandLineArguments[3]);
-    var gutterPx         = parseInt(commandLineArguments[4]);
-    var layerBBoxStr     = commandLineArguments[5];
+    var zoomLevel        = commandLineArguments[0];
+    var layerName        = encodeURIComponent(commandLineArguments[1]);
+    var tileSizePx       = parseInt(commandLineArguments[2]);
+    var gutterPx         = parseInt(commandLineArguments[3]);
+    var layerBBoxStr     = commandLineArguments[4];
 
-    var zoomLevelStart = zoomLevels.split("-")[0];
-    var zoomLevelEnd   = zoomLevels.split("-")[1] || zoomLevelStart;
-
-    layerBBox = [lonMin, latMin, lonMax, latMax];
+    var layerBBox = null;
     if (layerBBoxStr && layerBBoxStr != "") {
         layerBBox = layerBBoxStr.split(",");
     }
 
-    var boundingBoxes = generateTiles(zoomLevelStart, zoomLevelEnd, layerBBox, tileSizePx, gutterPx);
+    var boundingBoxes = generateTiles(zoomLevel, layerBBox, tileSizePx, gutterPx);
 
     var urls = generateUrlsForBBoxes(
         boundingBoxes,
-        geoserverAddress,
         layerName,
         tileSizePx,
         gutterPx
