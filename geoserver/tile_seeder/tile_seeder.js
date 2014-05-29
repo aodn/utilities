@@ -79,7 +79,7 @@ function generateUrlsForBBoxes(
     var url = "";
     var urls = [];
     for (var i in boundingBoxes) {
-        url = "wms?LAYERS=" + layerName +
+        url = "LAYERS=" + layerName +
             openlayersQueryConstants;
 
         var width  = tileSizePx + (2 * gutterPx);

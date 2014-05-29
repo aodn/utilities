@@ -3,7 +3,7 @@
 declare -r -i TILE_SIZE=256
 declare -r -i GUTTER_SIZE=20
 declare -r -i THREADS=1
-declare -r DEFAULT_GEOSERVER_ADDRESS=geoserver/
+declare -r DEFAULT_GEOSERVER_ADDRESS=geoserver
 
 # returns all urls for given layer and zoom level
 # $1 - layer name
@@ -42,7 +42,7 @@ seed_layer() {
 
         # implant the http prefix and run with xargs, so we can run things in
         # parallel
-        sed -e "s#^#http://localhost:$geoserver_port/$geoserver_url#" $tmp_url_list | \
+        sed -e "s#^#http://localhost:$geoserver_port/$geoserver_url/wms?#" $tmp_url_list | \
             xargs -L1 --max-proc=$threads -- squidclient -s -m GET
         echo "Done!"
     done
@@ -54,12 +54,12 @@ usage() {
     echo "Usage: $0 [OPTIONS]"
     echo "Seeds a Geoserver layer."
     echo
-    echo "Example: $0 -g geoserver/ -p 8080 -l imos:argo_profile_layer_map -s 2 -e 5"
+    echo "Example: $0 -g geoserver -p 8080 -l imos:argo_profile_layer_map -s 2 -e 5"
     echo
     echo "
 Options:
   -t, --threads              Number of concurrent threads.
-  -g, --geoserver            Geoserver URL, default is 'geoserver/'.
+  -g, --geoserver            Geoserver URL, default is '$DEFAULT_GEOSERVER_ADDRESS'.
   -p, --port                 Tomcat port on which Geoserver is running.
   -l, --layer                Layer to seed (including workspace name).
   -s, --start-zoom           Zoom level to start.
@@ -72,7 +72,8 @@ Options:
 # "$@" - parameters, see usage
 main() {
     # parse options with getopt
-    local tmp_getops=`getopt -o ht:g:p:l:s:e:b: --long help,threads:,geoserver:,port:,layer:,start-zoom:,end-zoom:,bounding-box: -- "$@"`
+    local tmp_getops
+    tmp_getops=`getopt -o ht:g:p:l:s:e:b: --long help,threads:,geoserver:,port:,layer:,start-zoom:,end-zoom:,bounding-box: -- "$@"`
     [ $? != 0 ] && usage
 
     eval set -- "$tmp_getops"
