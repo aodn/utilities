@@ -12,12 +12,13 @@ TILE_GUTTER = 20
 GEONETWORK_SEARCH_REQUEST = "srv/eng/xml.search.summary?sortBy=popularity&from=1&to=999&fast=index"
 
 class SquidLayerSeeder
-  def initialize(layer, zoom_level, geoserver_address, thread_count, bbox)
+  def initialize(layer, zoom_level, geoserver_address, thread_count, bbox, dry_run)
      @layer             = layer
      @zoom_level        = zoom_level
      @geoserver_address = geoserver_address
      @thread_count      = thread_count
      @bbox              = bbox || ""
+     @dry_run           = dry_run
   end
 
   # Method for generating a list of URLs for seeding the given layer in the given
@@ -42,8 +43,12 @@ class SquidLayerSeeder
   def squidclient(urls)
     urls.each do |url|
       full_url = "#{@geoserver_address}?#{url}"
-      `squidclient -m GET '#{full_url}'`
-      #puts "squidclient -s -m GET '#{full_url}'"
+      cmd      = "squidclient -s -m GET '#{full_url}'"
+      if @dry_run
+        puts cmd
+      else
+        system(cmd)
+      end
     end
   end
 
@@ -147,12 +152,13 @@ def seed_layers(layers, opts)
   end_zoom          = opts[:end_zoom]
   thread_count      = opts[:threads]
   bbox              = opts[:bbox]
+  dry_run           = opts[:dry_run]
   geoserver_wms_url = local_geoserver_address(opts)
 
   for zoom_level in start_zoom..end_zoom
     layers.each do |layer|
       layer_seeder = SquidLayerSeeder.new(
-        layer, zoom_level, geoserver_wms_url, thread_count, bbox
+        layer, zoom_level, geoserver_wms_url, thread_count, bbox, dry_run
       )
       layer_seeder.seed()
     end
@@ -263,6 +269,9 @@ EOS
   opt :bbox, "Bounding box to seed",
     :type => :int,
     :short   => '-b'
+  opt :dry_run, "Dry run, only print commands",
+    :type => :boolean,
+    :short   => '-d'
 end
 
 Trollop::die :geonetwork, "Must specify Geonetwork url or layers" if ! opts[:geonetwork] && ! opts[:layers]
