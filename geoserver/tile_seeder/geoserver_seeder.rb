@@ -68,12 +68,21 @@ class SquidLayerSeeder
 
   # Seeds the given layer
   #
+  # Params:
+  # * *Returns* :
+  #   - Total number of tiles seeded
+  #
   def seed()
-    puts "Seeding geoserver: '#{@geoserver_address}', zoom_level: '#{@zoom_level}', layer: '#{@layer}'"
+    urls = url_list()
+
+    puts "Seeding geoserver: '#{@geoserver_address}', \
+zoom_level: '#{@zoom_level}', \
+tiles: '#{urls.length}', \
+layer: '#{@layer}'"
     threads = []
 
     # Get URL list and divide to the same number of slices as we have threads
-    divide_to_slices(url_list(), @thread_count).each do |url_work_slice|
+    divide_to_slices(urls, @thread_count).each do |url_work_slice|
       thr = Thread.new do
         squidclient(url_work_slice)
       end
@@ -84,6 +93,8 @@ class SquidLayerSeeder
     threads.each do |thread|
       thread.join(1)
     end
+
+    return urls.length
   end
 
 end
@@ -154,15 +165,18 @@ def seed_layers(layers, opts)
   bbox              = opts[:bbox]
   dry_run           = opts[:dry_run]
   geoserver_wms_url = local_geoserver_address(opts)
+  tiles_seed_count  = 0
 
   for zoom_level in start_zoom..end_zoom
     layers.each do |layer|
       layer_seeder = SquidLayerSeeder.new(
         layer, zoom_level, geoserver_wms_url, thread_count, bbox, dry_run
       )
-      layer_seeder.seed()
+      tiles_seed_count += layer_seeder.seed()
     end
   end
+
+  puts "Total tiles seeded in operation: '#{tiles_seed_count}'"
 
   return true
 end
@@ -219,7 +233,6 @@ def geoserver_seeder(opts)
   else
     # Get layers from command line
     layers = opts[:layers]
-    puts layers
   end
 
   return seed_layers(layers, opts)
