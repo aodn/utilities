@@ -41,8 +41,9 @@ class SquidLayerSeeder
   #
   def squidclient(urls)
     urls.each do |url|
-      #`squidclient -m GET '#{url}'`
-      #puts "squidclient -s -m GET '#{url}'"
+      full_url = "#{@geoserver_address}?#{url}"
+      `squidclient -m GET '#{full_url}'`
+      #puts "squidclient -s -m GET '#{full_url}'"
     end
   end
 
@@ -63,6 +64,7 @@ class SquidLayerSeeder
   # Seeds the given layer
   #
   def seed()
+    puts "Seeding geoserver: '#{@geoserver_address}', zoom_level: '#{@zoom_level}', layer: '#{@layer}'"
     threads = []
 
     # Get URL list and divide to the same number of slices as we have threads
