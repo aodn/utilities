@@ -43,7 +43,7 @@ class SquidLayerSeeder
   def squidclient(urls)
     urls.each do |url|
       full_url = "#{@geoserver_address}?#{url}"
-      cmd      = "squidclient -s -m GET '#{full_url}'"
+      cmd      = "squidclient -s -m PURGE '#{full_url}'; squidclient -s -m GET '#{full_url}'"
       if @dry_run
         puts cmd
       else
