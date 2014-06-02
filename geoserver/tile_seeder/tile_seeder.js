@@ -54,8 +54,8 @@ function generateTiles(zoomLevel, layerBBox, tileSizePx, gutterPx) {
     // Gutter dimension in degress
     var gutterDimension = gutterPx * tileDimension / tileSizePx;
 
-    for (var lon = lonMin; lon <= lonMax; lon += tileDimension) {
-        for (var lat = latMin; lat <= latMax; lat += tileDimension) {
+    for (var lon = lonMin; lon < lonMax; lon += tileDimension) {
+        for (var lat = latMin; lat < latMax; lat += tileDimension) {
             var bbox = toBoundingBoxWithGutter(lon, lat, tileDimension, gutterDimension);
             if (layerBBox == null || intersects(layerBBox, bbox)) {
                 if (version == "1.3.0") {
@@ -79,7 +79,7 @@ function generateUrlsForBBoxes(
     var url = "";
     var urls = [];
     for (var i in boundingBoxes) {
-        url = "wms?LAYERS=" + layerName +
+        url = "LAYERS=" + layerName +
             openlayersQueryConstants;
 
         var width  = tileSizePx + (2 * gutterPx);
