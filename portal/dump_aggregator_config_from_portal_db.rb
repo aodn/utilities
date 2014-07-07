@@ -54,7 +54,7 @@ def dump_aggregator_config_from_portal_db(conn)
   mappings.keys.each { |layer| 
     puts "#{layer}"
     mappings[layer].each { |service|
-      puts "IMOS:AGGREGATOR-#{service[:type]}"
+      puts "IMOS:AGGREGATOR--#{service[:type]}"
       puts service[:field]
     } 
     puts ""
