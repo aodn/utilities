@@ -36,7 +36,7 @@ def dump_aggregator_config_from_portal_db(conn)
     union all
 
     -- bodaac
-    select 'bodaac' as type, l.name as layer, l2.name||'|'||l.url_download_field_name as field
+    select 'bodaac' as type, l.name as layer, l2.name||'#'||l.url_download_field_name as field
     from layer l
     left join layer l2 on l.wfs_layer_id = l2.id
     where l.url_download_field_name is not null
@@ -54,7 +54,7 @@ def dump_aggregator_config_from_portal_db(conn)
   mappings.keys.each { |layer| 
     puts "#{layer}"
     mappings[layer].each { |service|
-      puts "IMOS:AGGREGATOR--#{service[:type]}"
+      puts "IMOS:AGGREGATION--#{service[:type]}"
       puts service[:field]
     } 
     puts ""
