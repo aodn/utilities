@@ -36,11 +36,16 @@ def dump_aggregator_config_from_portal_db(conn)
     union all
 
     -- bodaac
-    select 'bodaac' as type, l.name as layer, l2.name||'#'||l.url_download_field_name as field
+    select 'bodaac' as type, l.name as layer,
+        case when s.type ~ 'NCWMS'
+            then l2.name
+            else l.name
+        end
+        ||'#'||l.url_download_field_name as field
     from layer l
+    left join server s on l.server_id = s.id
     left join layer l2 on l.wfs_layer_id = l2.id
     where l.url_download_field_name is not null
-    and l2.name is not null
     EOS
   )
 
