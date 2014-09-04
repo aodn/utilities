@@ -28,18 +28,3 @@ globe):
 ```
 $ ./tile_seeder.js 3 imos:aatams_sattag_nrt_profile_map 256 20 104.0,-46.0,177.0,-15.0
 ```
-
-## layer_seeder.sh
-
-By using tile_seeder.js, layer_seeder.sh takes a layer and zoom levels,
-generates URLs and run them with squidclient to either PURGE or GET them.
-
-layer_seeder.sh introduces concurrency running commands with `xargs`.
-
-### Simple Usage
-
-Example for caching imos:aatams_sattag_nrt_profile_map:
-```
-$ ./layer_seeder.sh -g geoserver/ -p 8081 -l imos:aatams_sattag_nrt_profile_map -s 2 -e 5
-```
-
