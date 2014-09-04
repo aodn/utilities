@@ -29,17 +29,24 @@ globe):
 $ ./tile_seeder.js 3 imos:aatams_sattag_nrt_profile_map 256 20 104.0,-46.0,177.0,-15.0
 ```
 
-## layer_seeder.sh
+## geoserver_seeder.rb
 
-By using tile_seeder.js, layer_seeder.sh takes a layer and zoom levels,
-generates URLs and run them with squidclient to either PURGE or GET them.
+A script which can seed a cache by requesting tiles from a specified Geoserver
+for specific layers and at a specified range of zoom levels. Utilises tile_seeder.js
+to generate the URLs.
 
-layer_seeder.sh introduces concurrency running commands with `xargs`.
+### Example usage
 
-### Simple Usage
+Seed Geoserver with all layers in catalogue-123.aodn.org.au, zoom level 2 to 5, 4 threads:
 
-Example for caching imos:aatams_sattag_nrt_profile_map:
-```
-$ ./layer_seeder.sh -g geoserver/ -p 8081 -l imos:aatams_sattag_nrt_profile_map -s 2 -e 5
-```
+`$ ./geoserver_seeder.rb -u http://catalogue-123.aodn.org.au/geonetwork -g http://geoserver-123.aodn.org.au/geoserver/wms -s 2 -e 2 -t 2`
 
+Seed the argo and aatams layers, zoom level 4 to 6, 8 threads:
+
+`$ ./geoserver_seeder.rb -l imos:argo_profile_layer_map imos:aatams_sattag_nrt_profile_map -g http://geoserver-123.aodn.org.au/geoserver/wms -s 4 -e 6 -t 8`
+
+## Improvements (to do)
+*These noted improvments would be particularly useful for seeding base layers*
+* Allow gutter to be specified as an argument to geoserver_seeder.rb 
+* Allow chosing between openlayersQueryConstants in tile_seeder.js
+* Refactoring to bring more logic into Ruby script and leave only floating-point maths to JS
