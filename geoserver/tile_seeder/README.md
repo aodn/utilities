@@ -1,52 +1,26 @@
 # About
 
-## tile_seeder.js
-
-A simple utility which mimicks the behaviour of OpenLayers and outputs exactly
-the same URLs OpenLayers does. Can be used to seed/purge layers in a squid
-cache.
-
-
 ### Dependencies
 
-Something which can run Javascript from the command line. On Ubuntu you can
-run:
-```
-# apt-get install rhino
-```
-
-### Simple Usage
-
-Generate URLs for imos:argo_profile_layer_map zoom levels 0 with tile size 256px
-and gutter 20px:
-```
-$ ./tile_seeder.js 3 imos:argo_profile_layer_map 256 20
-```
-
-Generate URLs for a layer with a BBox defined (faster than seeding the whole
-globe):
-```
-$ ./tile_seeder.js 3 imos:aatams_sattag_nrt_profile_map 256 20 104.0,-46.0,177.0,-15.0
-```
+Ruby.
 
 ## geoserver_seeder.rb
 
 A script which can seed a cache by requesting tiles from a specified Geoserver
-for specific layers and at a specified range of zoom levels. Utilises tile_seeder.js
-to generate the URLs.
+for specific layers and at a specified range of zoom levels. Utilises the same
+logic of OpenLayers (but in Ruby) to generate the URLs to hit.
 
 ### Example usage
 
 Seed Geoserver with all layers in catalogue-123.aodn.org.au, zoom level 2 to 5, 4 threads:
 
-`$ ./geoserver_seeder.rb -u http://catalogue-123.aodn.org.au/geonetwork -g http://geoserver-123.aodn.org.au/geoserver/wms -s 2 -e 2 -t 2`
+`$ ./geoserver_seeder.rb -u https://catalogue-123.aodn.org.au/geonetwork -g http://geoserver-123.aodn.org.au/geoserver/wms -s 2 -e 2 -t 2 -T 256 -G 20 -U "LAYERS=imos%3Aargo_profile_layer_map&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=88.2421875,-46.7578125,114.2578125,-20.7421875&WIDTH=296&HEIGHT=296"`
 
 Seed the argo and aatams layers, zoom level 4 to 6, 8 threads:
+`$ ./geoserver_seeder.rb -l imos:argo_profile_layer_map imos:aatams_sattag_nrt_profile_map -g http://geoserver-123.aodn.org.au/geoserver/wms -s 4 -e 6 -t 8 -T 256 -G 20 -U "LAYERS=imos%3Aargo_profile_layer_map&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=88.2421875,-46.7578125,114.2578125,-20.7421875&WIDTH=296&HEIGHT=296"`
 
-`$ ./geoserver_seeder.rb -l imos:argo_profile_layer_map imos:aatams_sattag_nrt_profile_map -g http://geoserver-123.aodn.org.au/geoserver/wms -s 4 -e 6 -t 8`
+Seed just argo, zoom levels 2 to 4, 1 thread:
+`./geoserver_seeder.rb -l imos:argo_profile_layer_map imos:aatams_sattag_nrt_profile_map -g http://localhost:8080/geoserver/wms -s 2 -e 4 -t 1 -T 256 -G 20 -U "LAYERS=imos%3Aargo_profile_layer_map&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=88.2421875,-46.7578125,114.2578125,-20.7421875&WIDTH=296&HEIGHT=296"`
 
-## Improvements (to do)
-*These noted improvments would be particularly useful for seeding base layers*
-* Allow gutter to be specified as an argument to geoserver_seeder.rb 
-* Allow chosing between openlayersQueryConstants in tile_seeder.js
-* Refactoring to bring more logic into Ruby script and leave only floating-point maths to JS
+Seeding a static layer:
+`$ ./geoserver_seeder.rb -l default_bathy -g http://geoserver-static.aodn.org.au/geoserver/wms -s 4 -e 6 -t 8 -T 256 -G 0 -U "LAYERS=imos%3Adefault_bathy&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=false&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=90,-90,180,0&WIDTH=256&HEIGHT=256"
