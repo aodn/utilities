@@ -69,6 +69,27 @@ describe SquidLayerSeeder do
         :dry_run           => true
       }
     end
+
+    it "optimal number of threads" do
+      # 10 tasks, 8 max threads, optimum will be 2
+      SquidLayerSeeder::optimal_number_of_threads(8, 10).must_equal 2
+
+      # 6000 tasks, 1 max threads, optimum is 1
+      SquidLayerSeeder::optimal_number_of_threads(1, 6000).must_equal 1
+
+      # 800 tasks, 10 max threads, optimum is 10
+      SquidLayerSeeder::optimal_number_of_threads(10, 800).must_equal 10
+
+      # 800 tasks, 10 max threads, optimum is 10
+      SquidLayerSeeder::optimal_number_of_threads(10, 800).must_equal 10
+
+      # 32 tasks, 8 max threads, optimum is 8
+      SquidLayerSeeder::optimal_number_of_threads(8, 32).must_equal 8
+
+      # 63 tasks, 16 max threads, optimum is 15
+      SquidLayerSeeder::optimal_number_of_threads(16, 62).must_equal 15
+    end
+
     it "zoom level 2 contains valid urls" do
       @opts_for_squid_layer_seeder[:zoom_level] = 2
       squid_layer_seeder = SquidLayerSeeder.new(@opts_for_squid_layer_seeder)

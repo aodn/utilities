@@ -137,6 +137,20 @@ class SquidLayerSeeder
     return array.each_slice(slice_size)
   end
 
+  # Returns the optimal number of threads for the given workload
+  #
+  # Params:
+  # * *Args*    :
+  #   - +max_threads+ -> Maximum amount of threads we can use
+  #   - +workload_size+ -> Number of tasks need to be ran
+  # * *Returns* :
+  #   - Recommended number of threads to use
+  #
+  def self.optimal_number_of_threads(max_threads, workload_size)
+    # Assume we should have at least 4 tasks per thread to justify its creation
+    return [(workload_size / 4.0).floor, max_threads].min
+  end
+
   # Seeds the given layer
   #
   # Params:
@@ -153,7 +167,7 @@ layer: '#{@layer}'"
     threads = []
 
     # Get URL list and divide to the same number of slices as we have threads
-    divide_to_slices(urls, @threads).each do |url_work_slice|
+    divide_to_slices(urls, SquidLayerSeeder::optimal_number_of_threads(@threads, urls.size)).each do |url_work_slice|
       thr = Thread.new do
         if @purge
           SquidLayerSeeder::squidclient("#{@geoserver_wms_url}?", url_work_slice, @dry_run, true)
