@@ -31,13 +31,20 @@ class TileGenerator
     )
   end
 
+  # js-like behaviour of openlayers, round floats, so 90.0 becomes 90, however 
+  # 90.1 stays 90.1
+  def round_float(f)
+    retval = f == f.to_i ? f.to_i : f
+    return retval
+  end
+
   def to_bbox_with_gutter(left, bottom, tile_dimension, gutter_dimension)
     _right = left + tile_dimension + gutter_dimension
     _top = bottom + tile_dimension + gutter_dimension
     _left = left - gutter_dimension
     _bottom = bottom - gutter_dimension
 
-    return [_left, _bottom, _right, _top]
+    return [round_float(_left), round_float(_bottom), round_float(_right), round_float(_top)]
   end
 
   def generate_tiles(zoom_level, layer_bbox, tile_size_px, gutter_px, version)

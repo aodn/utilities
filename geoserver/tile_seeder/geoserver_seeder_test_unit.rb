@@ -18,7 +18,7 @@ describe TileGenerator do
       tile_size_px = 256
       tile_dimension = 180.0 / (2 ** 1)
       gutter_dimension = gutter_px * tile_dimension / tile_size_px;
-      @tile_generator.to_bbox_with_gutter(-180, -90, tile_dimension, gutter_dimension).must_equal [-180.0, -90.0, -90.0, 0.0]
+      @tile_generator.to_bbox_with_gutter(-180, -90, tile_dimension, gutter_dimension).must_equal [-180, -90, -90, 0]
     end
 
     it "bbox generation with gutter, zoom level 1, tile 256px, gutter 20px" do
@@ -30,7 +30,7 @@ describe TileGenerator do
     end
 
     it "zoom level 0, gutter 0" do
-      tiles = [[-180.0, -90.0, 0.0, 90.0], [0.0, -90.0, 180.0, 90.0]]
+      tiles = [[-180, -90, 0, 90], [0, -90, 180, 90]]
       @tile_generator.generate_tiles(0, nil, 256, 0, "1.1.1").must_equal tiles
     end
 
@@ -125,6 +125,22 @@ describe SquidLayerSeeder do
       url_list_for_layer.include?("LAYERS=imos%3Aargo_profile_layer_map&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=106.76513671875,-14.17236328125,108.39111328125,-12.54638671875&WIDTH=296&HEIGHT=296").must_equal true
 
       url_list_for_layer.include?("LAYERS=imos%3Aargo_profile_layer_map&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=95.51513671875,-15.57861328125,97.14111328125,-13.95263671875&WIDTH=296&HEIGHT=296").must_equal true
+    end
+
+    it "zoom level 2 contains valid urls (gutter 0)" do
+      @opts_for_squid_layer_seeder[:zoom_level] = 2
+      @opts_for_squid_layer_seeder[:gutter_size] = 0
+      @opts_for_squid_layer_seeder[:layer] = "default_bathy"
+      @opts_for_squid_layer_seeder[:url_format] = Utils::get_url_format_from_url("LAYERS=default_bathy&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=false&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=-45,45,0,90&WIDTH=256&HEIGHT=256")
+      squid_layer_seeder = SquidLayerSeeder.new(@opts_for_squid_layer_seeder)
+
+      url_list_for_layer = squid_layer_seeder.url_list()
+
+      url_list_for_layer.size.must_equal (2 * 4 ** 2)
+
+      #url_list_for_layer.include?("LAYERS=imos%3Aargo_profile_layer_map&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=true&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=106.76513671875,-14.17236328125,108.39111328125,-12.54638671875&WIDTH=296&HEIGHT=296").must_equal true
+
+      url_list_for_layer.include?("LAYERS=default_bathy&TRANSPARENT=TRUE&VERSION=1.1.1&FORMAT=image%2Fpng&QUERYABLE=false&EXCEPTIONS=application%2Fvnd.ogc.se_xml&SERVICE=WMS&REQUEST=GetMap&STYLES=&SRS=EPSG%3A4326&BBOX=-45,45,0,90&WIDTH=256&HEIGHT=256").must_equal true
     end
 
   end
