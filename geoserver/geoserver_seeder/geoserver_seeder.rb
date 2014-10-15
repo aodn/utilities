@@ -155,7 +155,12 @@ class SquidLayerSeeder
   #
   def self.optimal_number_of_threads(max_threads, workload_size)
     # Assume we should have at least 4 tasks per thread to justify its creation
-    return [(workload_size / 4.0).floor, max_threads].min
+    retval = [(workload_size / 4.0).floor, max_threads].min
+
+    # Avoid returning 0 here
+    retval = [ retval, 1 ].max
+
+    return retval
   end
 
   # Seeds the given layer
@@ -320,7 +325,7 @@ end
 #
 def seed_layers(layers, opts)
   start_zoom        = opts[:start_zoom]
-  end_zoom          = opts[:end_zoom]
+  end_zoom          = opts[:end_zoom] || start_zoom
   geoserver_wms_url = Utils::local_geoserver_address(opts)
   url_format        = Utils::get_url_format_from_url(opts[:url])
   tiles_seed_count  = 0
@@ -376,13 +381,13 @@ opts = Trollop::options do
         2 to 5, 4 threads:
            geoserver_seeder.rb -u https://catalogue-123.aodn.org.au/geonetwork
              -g http://geoserver-123.aodn.org.au/geoserver/wms
-             -s 2 -e 2 -t 2 -T 256 -G 20
+             -s 2 -t 2 -T 256 -G 20 -U 'URL_FORMAT'
 
         Seed the argo and aatams layers, zoom level 4 to 6, 8 threads:
            geoserver_seeder.rb
              -l imos:argo_profile_layer_map imos:aatams_sattag_nrt_profile_map
              -g http://geoserver-123.aodn.org.au/geoserver/wms
-             -s 4 -e 6 -t 8 -T 256 -G 20
+             -s 4 -e 6 -t 8 -T 256 -G 20 -U 'URL_FORMAT'
 
     Options:
 EOS
@@ -404,9 +409,9 @@ EOS
   opt :start_zoom, "Zoom level to start with",
     :type  => :int,
     :short => '-s', :default => 2
-  opt :end_zoom, "Zoom level to end with",
+  opt :end_zoom, "Zoom level to end with (if not specified just seeds one level)",
     :type  => :int,
-    :short => '-e', :default => 6
+    :short => '-e', :default => nil
   opt :tile_size, "Tile size in pixels",
     :type  => :int,
     :short => '-T', :default => 256

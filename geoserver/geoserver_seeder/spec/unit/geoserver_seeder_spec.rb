@@ -71,6 +71,12 @@ describe SquidLayerSeeder do
     end
 
     it "optimal number of threads" do
+      # 2 tasks, 1 max threads, optimum is 1 (not zero!!)
+      SquidLayerSeeder::optimal_number_of_threads(1, 2).should eq(1)
+
+      # 2 tasks, 0 max threads, optimum is 1 (not zero!!)
+      SquidLayerSeeder::optimal_number_of_threads(0, 2).should eq(1)
+
       # 10 tasks, 8 max threads, optimum will be 2
       SquidLayerSeeder::optimal_number_of_threads(8, 10).should eq(2)
 
