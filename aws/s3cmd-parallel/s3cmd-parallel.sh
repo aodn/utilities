@@ -30,7 +30,7 @@ main() {
             -h) usage;;
             -b) bucket_base=$2; shift 2;;
             -d) dir="$2"; shift 2;;
-            -p) max="$2"; shift 2;;
+            -p) max_procs="$2"; shift 2;;
             -f) per_file=1; shift 1;;
             --) shift; break;;
             *) usage;;
@@ -42,22 +42,30 @@ main() {
 
     if [ $per_file -eq 1 ]; then
         (cd $dir && find . -type f | cut -c3- | \
-            xargs -P $max_procs -L1 -I ___FILE___ /bin/sh -c "s3cmd put '___FILE___' '$bucket_base/___FILE___'")
-
+            xargs -P $max_procs -L1 -I ___FILE___ /bin/sh -c "s3cmd --no-preserve sync '___FILE___' '$bucket_base/___FILE___'")
     else
-
         local tmp_commands=`mktemp`
-        local dir
-        for dir in $dir_to_upload/*; do
-            dir_basename=`basename $dir`
-            echo "s3cmd put --recursive $dir $bucket_base > $dir_basename.log" > $tmp_commands
+        local dir_to_upload
+        for dir_to_upload in $dir/*; do
+            local dir_basename=`basename $dir_to_upload`
+            echo "s3cmd --no-preserve sync $dir_to_upload $bucket_base > $dir_basename.log 2>&1" >> $tmp_commands
         done
+        echo "Going to run the following commands:"
+        echo "------------------------------------"
+        cat $tmp_commands
+        echo "------------------------------------"
+        echo -n "Proceed with that? (yes/no) "
 
-        xargs -a $tmp_commands -P $max_procs -I COMMAND sh -c COMMAND
-        local -i retval=$?
-
-        rm -f $tmp_commands
-        return $retval
+        local ans; read ans
+        if [ x"$ans" != x ] && [ "$ans" = "yes" ]; then
+            echo "Spwaning '$max_procs' parallel processes"
+            xargs -a $tmp_commands -P $max_procs -I COMMAND sh -c COMMAND
+            local -i retval=$?
+            rm -f $tmp_commands
+            return $retval
+        else
+            echo "Aborting..."
+        fi
     fi
 }
 
