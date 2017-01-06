@@ -1,0 +1,136 @@
+#!/bin/bash
+
+#
+# Copyright (C) 2013 Dan Fruehauf <malkodan@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+
+# initiate logging modules
+# you may specify multiple logging destinations, it's all good :)
+log() {
+	# log to a log file at /var/log/backups/backups.log
+	logfile /var/log/backups/backups.log
+
+	# log to another log file at /var/log/backups/backups2.log
+	logfile /var/log/backups/backups2.log
+
+	# log to syslog facility local0
+	syslog local0
+}
+
+# actual objects for backup
+# this will dump everything to a temporary directory
+backup() {
+	# copy contents of /etc/backup-dir-1 to backup context (sub directory)
+	# backup-dir-1
+	rsync backup-dir-1 /etc/backup-dir-1
+
+	# copy root@piglet:/etc to piglet backup
+	rsync piglet root@piglet:/etc
+	# and add piglet:/var to piglet backup
+	rsync piglet root@piglet:/var
+
+	# make an archive out of a bunch of files
+	tar cow /etc/passwd /etc/sysconfig/kernel
+
+	# make an archive using sudo
+	tar cow --sudo /etc/passwd /etc/sysconfig/kernel
+
+	# make an archive using sudo with some excludes
+	tar cow /etc --exclude=/etc/passwd
+
+	# backup a pgsql database
+	# the tuple below is:
+	# HOSTNAME:PORT:DB:USERNAME:PASSWORD
+	pgsql zebra africa:5432:lions_domain:lion:hyena
+
+	# backup a mysql database, pretty simple to the pgsql one
+	mysql zebra africa:3306:lions_domain:lion:hyena
+
+	# it is possible to also just run commands in this section
+	execute mount -o remount,ro /var
+}
+
+# post processing of backup
+# add here compressoin, encryption, what not...
+process() {
+	# gzip all files in this backup
+	# quote the regular expression, especially if it contains a * :)
+	gzip '.*'
+
+	# use bz2 to compress all jpg files
+	bzip2 '.*\.jpg$'
+
+	# use xz to compress all cpp files
+	xz '.*\.cpp$'
+
+	# encrypt all files ending with .sh with a gpg key located at
+	# /home/john/john-gpg-key.asc
+	gpg '.*\.sh$' /home/john/john-gpg-key.asc
+
+	# split files into smaller chunks
+	# split all files ('.*') into 5mb chunks, size is given in bytes
+	split '.*' 5000000
+}
+
+# store the backup
+# this will copy the temporary directory we backed into to other locations
+store() {
+	# copy backup locally to /var/backups
+	cp /var/backups
+
+	# alternatively, one could use mv, however this must be the last store
+	# operation as it will remove the backup from its place
+	mv /var/backups
+
+	# cycle local backups, leaving only the 2 latest backups
+	cycle /var/backups 2
+
+	# store with scp crapper:/var/backups, with context name backy
+	# using key at ~/.ssh/id_rsa
+	# password authentication is not support, use key exchange if you need
+	# scp backups
+	scp backy root@crapper:/var/backups -i ~/.ssh/id_rsa
+
+	# store backup on Amazon S3 in bucket 'cake'
+	s3 cake --access_key=AWS_ACCESS_KEY --secret_key=AWS_SECRET_KEY
+
+	# leave the last 3 backups in the 'cake' S3 bucket
+	s3 cake 3 --access_key=AWS_ACCESS_KEY --secret_key=AWS_SECRET_KEY
+}
+
+# notifications of backup status
+notify() {
+	# notify via email
+	# send to dan@somedomain.com
+	email dan@somedomain.com
+	# send to dan@somedomain.com, using smtp server mail.mail.com,port 25
+	email dan@somedomain.com mail.mail.com 25
+
+	# notify via nagios NSCA
+	# first parameter is the nagios monitor name, the rest of the parameters
+	# will just be passed to the send_nsca binary
+	nagios_nsca "backup monitor" -H nagios.emii.org.au
+
+	# write status to file using nagios format
+	# will write status to /var/log/backup/status/BACKUP_MODEL_NAME
+	nagios_status /var/log/backup/status/
+
+	# notify via pushover, implemented with curl
+	# you'll just have to specify the user token and app token
+	pushover USER_TOKEN APP_TOKEN
+}
+
