@@ -105,7 +105,7 @@ opts = Trollop::options do
     opt :geoserver, "Geoserver URL",
         :type => :string,
         :short => '-g'
-    opt :type, 'truncate, reseed or seed',
+    opt :type, 'truncate or seed',
         :type => :string,
         :short => '-T', :default => 'seed'
     opt :start_zoom, 'Zoom level to start with',
