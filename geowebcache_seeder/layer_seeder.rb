@@ -33,6 +33,7 @@ class LayerSeeder
               "<zoomStop>20</zoomStop>"\
               "<format>image/png</format>"\
               "<type>truncate</type>"\
+              "<threadCount>1</threadCount>"\
            "</seedRequest>"
 
         # kill all previous threads for layer
@@ -41,8 +42,8 @@ class LayerSeeder
         cmd = "curl -v -u #{@geowebcache.username}:#{@geowebcache.password} -XPOST -H \"Content-type: text/xml\" -d \"#{options}\" \"#{geowebcacheUrl}.xml\""
 
         if @dry_run
-            $logger.info("(Dry run kill) #{cmd}")
-            $logger.info("(Dry run truncate) #{killcmd}")
+            $logger.info("(Dry run truncate) #{cmd}")
+            $logger.info("(Dry run kill) #{killcmd}")
         else
             system(killcmd)
             system(cmd)
