@@ -37,17 +37,18 @@ class LayerSeeder
            "</seedRequest>"
 
         # kill all previous threads for layer
-        killcmd = "curl -v -u #{@geowebcache.username}:#{@geowebcache.password}  -d \"kill_all=all\"  \"#{geowebcacheUrl}\""
+        killcmd = "-i -u #{@geowebcache.username}:#{@geowebcache.password}  -d \"kill_all=all\"  \"#{geowebcacheUrl}\""
         # clear all tiles for layer
-        cmd = "curl -v -u #{@geowebcache.username}:#{@geowebcache.password} -XPOST -H \"Content-type: text/xml\" -d \"#{options}\" \"#{geowebcacheUrl}.xml\""
+        cmd = "-i -u #{@geowebcache.username}:#{@geowebcache.password} -XPOST -H \"Content-type: text/xml\" -d \"#{options}\" \"#{geowebcacheUrl}.xml\""
 
         if @dry_run
-            $logger.info("(Dry run truncate) #{cmd}")
-            $logger.info("(Dry run kill) #{killcmd}")
+            $logger.info("(Dry run kill) curl #{killcmd}")
+            $logger.info("(Dry run truncate) curl #{cmd}")
         else
-            system(killcmd)
-            system(cmd)
-            $logger.info("(Excecuting kill->truncate) #{geowebcacheUrl}")
+            killCmdResponse = `curl #{killcmd} | grep "HTTP"`
+            $logger.info("(Excecuted kill #{killCmdResponse}) #{geowebcacheUrl}")
+            truncateResponse = `curl #{cmd} | grep "HTTP"`
+            $logger.info("(Excecuted truncate #{truncateResponse}) #{geowebcacheUrl}")
         end
     end
 
@@ -66,13 +67,13 @@ class LayerSeeder
               "<threadCount>2</threadCount>"\
            "</seedRequest>"
 
-        cmd = "curl -v -u #{@geowebcache.username}:#{@geowebcache.password} -XPOST -H \"Content-type: text/xml\" -d \"#{options}\" \"#{geowebcacheUrl}.xml\""
+        cmd = "-i -v -u #{@geowebcache.username}:#{@geowebcache.password} -XPOST -H \"Content-type: text/xml\" -d \"#{options}\" \"#{geowebcacheUrl}.xml\""
 
         if @dry_run
-            $logger.info("(Dry run seed) #{cmd}")
+            $logger.info("(Dry run seed) curl #{cmd}")
         else
-            system(cmd)
-            $logger.info("(Excecuting seed) #{geowebcacheUrl}")
+            seedResponse = `curl #{cmd} | grep "HTTP"`
+            $logger.info("(Excecuting seed #{seedResponse}) #{geowebcacheUrl}")
         end
     end
 
