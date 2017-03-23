@@ -5,7 +5,6 @@ require 'open-uri'
 require 'trollop'
 require 'net/http'
 require 'net/https'
-require 'open-uri'
 require 'logger'
 
 class GeonetworkConnector
