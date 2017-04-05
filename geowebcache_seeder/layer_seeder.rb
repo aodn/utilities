@@ -22,32 +22,21 @@ class LayerSeeder
 
     def purgeCache
 
-        geowebcacheUrl = "#{@geowebcache.url}/rest/seed/#{@layer[1]}"
+      truncateUrl = "#{@geowebcache.url}/rest/masstruncate"
 
-        options = "<seedRequest>"\
-            "<name>#{@layer[1]}</name>"\
-              "<srs>"\
-                "<number>4326</number>"\
-                    "</srs>"\
-              "<zoomStart>1</zoomStart>"\
-              "<zoomStop>20</zoomStop>"\
-              "<format>image/png</format>"\
-              "<type>truncate</type>"\
-              "<threadCount>1</threadCount>"\
-           "</seedRequest>"
+      options =
+          "<truncateLayer>"\
+              "<layerName>#{@layer[1]}</layerName>"\
+          "</truncateLayer>"
 
-        # kill all previous threads for layer
-        killcmd = "curl -v -u #{@geowebcache.username}:#{@geowebcache.password}  -d \"kill_all=all\"  \"#{geowebcacheUrl}\""
         # clear all tiles for layer
-        cmd = "curl -v -u #{@geowebcache.username}:#{@geowebcache.password} -XPOST -H \"Content-type: text/xml\" -d \"#{options}\" \"#{geowebcacheUrl}.xml\""
+        cmd = "curl -v -u #{@geowebcache.username}:#{@geowebcache.password} -XPOST -H \"Content-type: text/xml\" -d \"#{options}\" \"#{truncateUrl}\""
 
         if @dry_run
             $logger.info("(Dry run truncate) #{cmd}")
-            $logger.info("(Dry run kill) #{killcmd}")
         else
-            system(killcmd)
             system(cmd)
-            $logger.info("(Excecuting kill->truncate) #{geowebcacheUrl}")
+            $logger.info("(Excecuting truncate on #{@layer[1]}) #{@geowebcache.url}")
         end
     end
 
@@ -81,7 +70,6 @@ class LayerSeeder
         if @type == "truncate"
             purgeCache
         else
-            purgeCache
             # no seeding if no WMS server url information
             if @layer[0] == nil
                 server = (@geoserver.nil?) ? 'UNKNOWN WMS server' : @geoserver
