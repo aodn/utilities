@@ -114,4 +114,3 @@ class Seeder(SeederBaseObject):
             urllib2.urlopen(url=geowebcache_url, data=data).read()
         except urllib2.HTTPError as e:
             self.log_exception(e)
-            return e

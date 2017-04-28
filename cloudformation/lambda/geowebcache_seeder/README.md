@@ -82,14 +82,14 @@ Options:
 
   ```
   cd geowebcache_seeder
-  aws cloudformation create-stack --stack-name geowebcache-seeder --template-body file://geowebcache_seeder.yaml --parameters  ParameterKey=geonetwork,ParameterValue=https://catalogue-imos.aodn.org.au/geonetwork ParameterKey=geowebcacheUser,ParameterValue=geowebcache ParameterKey=geowebcachePassword,ParameterValue=password ParameterKey=geowebcache,ParameterValue=http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache ParameterKey=startZoom,ParameterValue=0 ParameterKey=endZoom,ParameterValue=5 ParameterKey=threadCount,ParameterValue=2 ParameterKey=geoserver,ParameterValue=http://geoserver-123.aodn.org.au/geoserver/wms --capabilities CAPABILITY_IAM
+  aws cloudformation create-stack --stack-name geowebcache-seeder --template-body file://geowebcache_seeder.yaml --parameters  ParameterKey=geonetwork,ParameterValue=https://catalogue-imos.aodn.org.au/geonetwork ParameterKey=geowebcacheUser,ParameterValue=geowebcache ParameterKey=geowebcachePassword,ParameterValue=password ParameterKey=geowebcache,ParameterValue=http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache ParameterKey=geoserver,ParameterValue=http://geoserver-123.aodn.org.au/geoserver/wms --capabilities CAPABILITY_IAM
   ```    
 
 ### Update Stack Example
 
   ```
   cd geowebcache_seeder
-  aws cloudformation update-stack --stack-name geowebcache-seeder --template-body file://geowebcache_seeder.yaml --parameters  ParameterKey=geonetwork,ParameterValue=https://catalogue-imos.aodn.org.au/geonetwork ParameterKey=geowebcacheUser,ParameterValue=geowebcache ParameterKey=geowebcachePassword,ParameterValue=password ParameterKey=geowebcache,ParameterValue=http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache ParameterKey=startZoom,ParameterValue=0 ParameterKey=endZoom,ParameterValue=5 ParameterKey=threadCount,ParameterValue=2 ParameterKey=geoserver,ParameterValue=http://geoserver-123.aodn.org.au/geoserver/wms --capabilities CAPABILITY_IAM
+  aws cloudformation update-stack --stack-name geowebcache-seeder --template-body file://geowebcache_seeder.yaml --parameters  ParameterKey=geonetwork,ParameterValue=https://catalogue-imos.aodn.org.au/geonetwork ParameterKey=geowebcacheUser,ParameterValue=geowebcache ParameterKey=geowebcachePassword,ParameterValue=password ParameterKey=geowebcache,ParameterValue=http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache ParameterKey=geoserver,ParameterValue=http://geoserver-123.aodn.org.au/geoserver/wms --capabilities CAPABILITY_IAM
   ```    
 
 ### Delete Stack Example

@@ -13,22 +13,22 @@ Parameters:
     Type: String
   startZoom:
     Type: String
-    Default: ''
+    Default: '0'
   endZoom:
     Type: String
-    Default: ''
+    Default: '5'
   layers:
     Type: String
     Default: ''
   gridSetId:
     Type: String
-    Default: ''
+    Default: 'EPSG:4326'
   reqFormat:
     Type: String
-    Default: ''
+    Default: 'image/png'
   threadCount:
     Type: String
-    Default: ''
+    Default: '2'
   S3Bucket:
     Type: String
     Default: imos-binary
