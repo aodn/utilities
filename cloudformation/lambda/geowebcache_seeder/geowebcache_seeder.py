@@ -80,7 +80,10 @@ def exit_error(msg, err=1):
 
 # AWS Lambda Handler
 def handler(event, context):
-    main()
+    try:
+        main()
+    finally:
+        return
 
 
 if __name__ == '__main__':
