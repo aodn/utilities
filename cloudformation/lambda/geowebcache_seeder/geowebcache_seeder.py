@@ -1,5 +1,3 @@
-import logging
-
 import click
 
 from seeder import Seeder, GeoWebCache, GeoNetworkConnector
@@ -41,25 +39,7 @@ def main(geonetwork, geoserver, geowebcache, geowebcache_user, geowebcache_passw
     geonetwork_connector = GeoNetworkConnector(geonetwork)
     wms_layers = geonetwork_connector.get_wms_layers()
 
-    geoserver_layers = []
-    final_layers = []
-
-    # Calculating geoserver layers
-    if geoserver:
-        for wms_layer in wms_layers:
-            if wms_layer['server'] == geoserver:
-                geoserver_layers.append(wms_layer['layer'])
-
-    if geoserver and layers:
-        for layer in layers:
-            if layer in geoserver_layers:
-                final_layers.append(layer)
-    elif geoserver:
-        final_layers = geoserver_layers
-    elif layers:
-        final_layers = layers
-    else:
-        final_layers = wms_layers
+    final_layers = get_final_layers(geoserver, layers, wms_layers)
 
     if req_type == TRUNCATE:
         for layer in final_layers:
@@ -72,14 +52,26 @@ def main(geonetwork, geoserver, geowebcache, geowebcache_user, geowebcache_passw
             seeder.seed_layer(layer, grid_set_id, start_zoom, end_zoom, req_format, req_type, thread_count)
 
 
-def exit_error(msg, err=1):
-    logger = logging.getLogger(__name__)
-    logger.error(msg)
-    click.get_current_context().exit(err)
+def get_final_layers(geoserver, layers, wms_layers):
+    geoserver_layers = []
+
+    # Calculating geoserver layers
+    if geoserver:
+        geoserver_layers = [wms_layer['layer'] for wms_layer in wms_layers if wms_layer['server'] == geoserver]
+
+    if geoserver and layers:
+        return [layer for layer in geoserver if layer in geoserver_layers]
+    elif geoserver:
+        return geoserver_layers
+    elif layers:
+        return layers
+    else:
+        return [wms_layer['layer'] for wms_layer in wms_layers]
 
 
 # AWS Lambda Handler
 def handler(event, context):
+    # AWS Lambda hack to make it run successfully (returns null)
     try:
         main()
     finally:

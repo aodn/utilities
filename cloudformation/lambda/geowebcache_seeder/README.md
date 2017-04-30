@@ -35,31 +35,31 @@ Options:
 ### Example usage
 
 ####        Seed Geowebcache with all layers:
-            geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t seed
+            python geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t seed
 
 ####        Seed Geowebcache with geoserver all layers:
-            geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t seed -g http://geoserver-123.aodn.org.au/geoserver/wms
+            python geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t seed -g http://geoserver-123.aodn.org.au/geoserver/wms
 
 ####        Seed Geowebcache with geoserver layers:
-            geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t seed -g http://geoserver-123.aodn.org.au/geoserver/wms -l imos:argo_profile_map -l imos:aatams_sattag_nrt_profile_map
+            python geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t seed -g http://geoserver-123.aodn.org.au/geoserver/wms -l imos:argo_profile_map -l imos:aatams_sattag_nrt_profile_map
 
 ####        Purge Geowebcache with all layers:
-            geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t purge
+            python geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t purge
 
 ####        Purge Geowebcache with geoserver all layers:
-            geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t purge -g http://geoserver-123.aodn.org.au/geoserver/wms
+            python geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t purge -g http://geoserver-123.aodn.org.au/geoserver/wms
 
 ####        Purge Geowebcache with geoserver layers:
-            geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t purge -g http://geoserver-123.aodn.org.au/geoserver/wms -l imos:argo_profile_map -l imos:aatams_sattag_nrt_profile_map
+            python geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t purge -g http://geoserver-123.aodn.org.au/geoserver/wms -l imos:argo_profile_map -l imos:aatams_sattag_nrt_profile_map
 
 ####        Truncate Geowebcache with all layers:
-            geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t truncate
+            python geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t truncate
 
 ####        Truncate Geowebcache with geoserver all layers:
-            geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t truncate -g http://geoserver-123.aodn.org.au/geoserver/wms
+            python geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t truncate -g http://geoserver-123.aodn.org.au/geoserver/wms
 
 ####        Truncate Geowebcache with geoserver layers:
-            geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t truncate -g http://geoserver-123.aodn.org.au/geoserver/wms -l imos:argo_profile_map -l imos:aatams_sattag_nrt_profile_map
+            python geowebcache_seeder.py -n https://catalogue-imos.aodn.org.au/geonetwork -w http://geowebcache-dev-geowebcache.ap-southeast-2.elasticbeanstalk.com/geowebcache -u geowebcache -p  password -t truncate -g http://geoserver-123.aodn.org.au/geoserver/wms -l imos:argo_profile_map -l imos:aatams_sattag_nrt_profile_map
 
 
 ## Lambda execution
