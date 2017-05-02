@@ -71,11 +71,10 @@ def get_final_layers(geoserver, layers, wms_layers):
 
 # AWS Lambda Handler
 def handler(event, context):
-    # AWS Lambda hack to make it run successfully (returns null)
     try:
         main()
-    finally:
-        return
+    except SystemExit:
+        pass
 
 
 if __name__ == '__main__':
