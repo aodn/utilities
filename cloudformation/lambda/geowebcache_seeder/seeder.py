@@ -1,8 +1,11 @@
-import urllib
-import urllib2
 from xml.etree.cElementTree import ElementTree
 
 from log import SeederBaseObject
+
+from six.moves.urllib.error import HTTPError
+from six.moves.urllib.parse import urlencode
+from six.moves.urllib.request import (build_opener, install_opener, urlopen, HTTPBasicAuthHandler,
+                                      HTTPPasswordMgrWithDefaultRealm)
 
 
 class GeoWebCache:
@@ -33,7 +36,7 @@ class GeoNetworkConnector(SeederBaseObject):
 
     def get_wms_layers(self):
         layers = []
-        tree = ElementTree(file=urllib2.urlopen(self.geonetwork_url))
+        tree = ElementTree(file=urlopen(self.geonetwork_url))
 
         for metadata in tree.iter('metadata'):
             geonetwork_metadata_links = GeonetworkMetadataLinks(metadata)
@@ -81,7 +84,7 @@ class Seeder(SeederBaseObject):
 
     def purge_layer(self, layer):
         self.log("Purging layer {layer}".format(layer=layer))
-        data = urllib.urlencode({'kill_all': 'all'})
+        data = urlencode({'kill_all': 'all'})
         self.geowebcache_request(self.geowebcache.get_seed_layer_url(layer), data)
 
     def seed_layer(self, layer, grid_set_id, start_zoom, end_zoom, req_format, req_type, thread_count):
@@ -103,14 +106,14 @@ class Seeder(SeederBaseObject):
 
     def geowebcache_request(self, geowebcache_url, data, headers=()):
         try:
-            pass_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
+            pass_mgr = HTTPPasswordMgrWithDefaultRealm()
             pass_mgr.add_password(None, geowebcache_url, self.geowebcache.username, self.geowebcache.password)
-            auth_handler = urllib2.HTTPBasicAuthHandler(pass_mgr)
+            auth_handler = HTTPBasicAuthHandler(pass_mgr)
             # Enable to debug http requests and pass the http_handler to build_opener
-            # http_handler = urllib2.HTTPHandler(debuglevel=1)
-            opener = urllib2.build_opener(auth_handler)
+            # http_handler = HTTPHandler(debuglevel=1)
+            opener = build_opener(auth_handler)
             opener.addheaders = headers
-            urllib2.install_opener(opener)
-            urllib2.urlopen(url=geowebcache_url, data=data).read()
-        except urllib2.HTTPError as e:
+            install_opener(opener)
+            urlopen(url=geowebcache_url, data=data).read()
+        except HTTPError as e:
             self.log_exception(e)
