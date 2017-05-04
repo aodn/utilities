@@ -1,0 +1,78 @@
+From e332cc302f715839aaa0fbfe737c0a7a4bf9e2b3 Mon Sep 17 00:00:00 2001
+From: julian1 <julian.atkinson71@gmail.com>
+Date: Thu, 27 Apr 2017 14:15:53 +1000
+Subject: [PATCH 2/3] add cql_filter
+
+---
+ .../config/GetCapabilitiesConfiguration.java       | 26 ++++++++++++++++++++++
+ .../org/geowebcache/service/wms/WMSService.java    |  2 +-
+ 2 files changed, 27 insertions(+), 1 deletion(-)
+
+diff --git a/geowebcache/wms/src/main/java/org/geowebcache/config/GetCapabilitiesConfiguration.java b/geowebcache/wms/src/main/java/org/geowebcache/config/GetCapabilitiesConfiguration.java
+index e3d2111a..6f5f7968 100644
+--- a/geowebcache/wms/src/main/java/org/geowebcache/config/GetCapabilitiesConfiguration.java
++++ b/geowebcache/wms/src/main/java/org/geowebcache/config/GetCapabilitiesConfiguration.java
+@@ -46,7 +46,9 @@ import org.geotools.xml.PreventLocalEntityResolver;
+ import org.geotools.xml.XMLHandlerHints;
+ import org.geowebcache.GeoWebCacheException;
+ import org.geowebcache.config.meta.ServiceInformation;
++import org.geowebcache.filter.parameters.CaseNormalizingParameterFilter;
+ import org.geowebcache.filter.parameters.NaiveWMSDimensionFilter;
++import org.geowebcache.filter.parameters.ParameterException;
+ import org.geowebcache.filter.parameters.ParameterFilter;
+ import org.geowebcache.grid.BoundingBox;
+ import org.geowebcache.grid.GridSet;
+@@ -61,6 +63,8 @@ import org.geowebcache.layer.meta.MetadataURL;
+ import org.geowebcache.layer.wms.WMSHttpHelper;
+ import org.geowebcache.layer.wms.WMSLayer;
+ 
++import javax.annotation.Nullable;
++
+ public class GetCapabilitiesConfiguration implements Configuration {
+     private static Log log = LogFactory
+             .getLog(org.geowebcache.config.GetCapabilitiesConfiguration.class);
+@@ -252,6 +256,28 @@ public class GetCapabilitiesConfiguration implements Configuration {
+                     paramFilters.add(new NaiveWMSDimensionFilter(dimension, dimExtent));
+                 }
+ 
++                paramFilters.add(
++                    new CaseNormalizingParameterFilter("CQL_FILTER", "1=1") {
++
++                        @Override
++                        public List<String> getValues() {
++                            List<String> values = new ArrayList<String>();
++                            values.add(this.getDefaultValue());
++                            return values;
++                        }
++
++                        @Override
++                        public ParameterFilter clone() {
++                            return null;
++                        }
++
++                        @Override
++                        public String apply(@Nullable String str) throws ParameterException {
++                            return str;
++                        }
++                    }
++                );
++
+                 WMSLayer wmsLayer = null;
+                 try {
+                     wmsLayer = getLayer(name, wmsUrls, bounds4326, bounds3785, stylesStr,
+diff --git a/geowebcache/wms/src/main/java/org/geowebcache/service/wms/WMSService.java b/geowebcache/wms/src/main/java/org/geowebcache/service/wms/WMSService.java
+index e9ffbe01..9d3f75a2 100644
+--- a/geowebcache/wms/src/main/java/org/geowebcache/service/wms/WMSService.java
++++ b/geowebcache/wms/src/main/java/org/geowebcache/service/wms/WMSService.java
+@@ -124,7 +124,7 @@ public class WMSService extends Service{
+         final String encoding = request.getCharacterEncoding();
+         final Map requestParameterMap = request.getParameterMap();
+ 
+-        String[] keys = { "layers", "request", "tiled", "cached", "metatiled", "width", "height" };
++        String[] keys = { "layers", "request", "tiled", "cached", "metatiled", "width", "height", "cql_filter" };
+         Map<String, String> values = ServletUtils.selectedStringsFromMap(requestParameterMap,
+                 encoding, keys);
+ 
+-- 
+2.11.0
+

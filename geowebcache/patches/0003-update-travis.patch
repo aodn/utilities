@@ -1,0 +1,44 @@
+From a75863e5fbd465a6c9bacfdad66fecfeea54e4cb Mon Sep 17 00:00:00 2001
+From: julian1 <julian.atkinson71@gmail.com>
+Date: Tue, 2 May 2017 10:29:00 +1000
+Subject: [PATCH 3/3] update travis
+
+---
+ .travis.yml | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
+
+diff --git a/.travis.yml b/.travis.yml
+index c5119dcd..2b84f4a6 100644
+--- a/.travis.yml
++++ b/.travis.yml
+@@ -1,14 +1,24 @@
+ sudo: false
+ cache:
+   directories:
+-    - "$HOME/.m2"
++  - "$HOME/.m2"
+ language: java
+ before_script:
+-  - cd geowebcache
++- cd geowebcache
+ script:
+-  - mvn -B -U -T2 -fae -Prelease clean install -Dtest.maxHeapSize=512M -Djava.awt.headless=true
++- mvn -B -U -T2 -fae -Prelease clean install -Dtest.maxHeapSize=512M -Djava.awt.headless=true
+ notifications:
+   email:
+     on_success: never
+     on_failure: never
+ jdk: oraclejdk8
++deploy:
++  provider: releases
++  api_key:
++    secure: Z+E7s9MgKrhHGb7G2l8tui8Uif0AGCU/cRb2M8HDxiHGz8evRtJO3ALU/LwWGZJpYlmY+8Ho/Hy1lYkdfMd3iOzldtvJbmhbYRuDfqkXovkayCSOerdX/yMRWgmAOX2TD8C3vg5FMIXSAbsFzAqAIr2NrmMfHHSADfp9hCDknxef7WHrbywzplvZSO6sH7vR0wgkJ/W+rb0zI9nUDefNTapkhHhCJhqZLsDmdNcIpybjSeBuvXJYcFCT2t1rzUnwICI46JqTS3qPUnGP1ZCZbCQvkRglQ0RJqC10hKtnP7dPieL47vCLEHEQYs7UjnahAzXTH7Z5ThU4UXknaCu0vC2/5ui51vUUKryiRhC1oFC4fpHoBUa7++rtVg7X8GKP0+cqPbiERDO5DsNc7ehLi7UR6PsBiBtMK5kURyJ3rLLUpoC7Ub+Rx/wm2Yf6LEc0MNVDccPJZSyZLez7sW67JHPVPQXPoErCcCscCdfzQUxAunC0lozv8MrWDPOTFNriCYe7yi7L6tJNw1le4LPwT9+SZVVmKILjDTcdH+CXvXW7iKhPrKIV4CacHkuJoxcPKZ9zJRKl1f0ruOcRZPkvY1OVFFwsA9PDxNqoJxtrF6qh3P3x4Mkqr1pz1MFl9b/x7ePOS/EA3gkj7SVPGr8MaGywVs2vPAQz2OyUaFQ4bac=
++  file: web/target/geowebcache.war
++  skip_cleanup: true
++  on:
++    tags: true
++
++
+-- 
+2.11.0
+
