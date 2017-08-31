@@ -33,6 +33,13 @@ PURGE = 'purge'
               help='Thread count (default: 2)')
 def main(geonetwork, geoserver, geowebcache, geowebcache_user, geowebcache_password,
          req_type, start_zoom, end_zoom, layers, grid_set_id, req_format, thread_count):
+    execute(geonetwork, geoserver, geowebcache, geowebcache_user, geowebcache_password,
+         req_type, start_zoom, end_zoom, layers, grid_set_id, req_format, thread_count)
+
+
+def execute(geonetwork, geoserver, geowebcache, geowebcache_user, geowebcache_password,
+         req_type, start_zoom, end_zoom, layers, grid_set_id, req_format, thread_count):
+
     geowebcache = GeoWebCache(geowebcache, geowebcache_user, geowebcache_password)
     seeder = Seeder(geowebcache)
 
@@ -72,7 +79,7 @@ def get_final_layers(geoserver, layers, wms_layers):
 # AWS Lambda Handler
 def handler(event, context):
     try:
-        main()
+        execute(event['geonetwork'], event['geoserver'], event['geowebcache'], event['geowebcache_user'], event['geowebcache_password'], event['req_type'], event['start_zoom'], event['end_zoom'], event['layers'], event['grid_set_id'], event['req_format'], event['thread_count'])
     except SystemExit:
         pass
 
