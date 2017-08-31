@@ -78,8 +78,13 @@ def get_final_layers(geoserver, layers, wms_layers):
 
 # AWS Lambda Handler
 def handler(event, context):
+    assert event['req_type'] in [TRUNCATE, SEED, PURGE], "Request type {type} not recognised".format(type=event['req_type'])
+    start_zoom = int(event['start_zoom'])
+    end_zoom = int(event['end_zoom'])
+    thread_count = int(event['thread_count'])
+
     try:
-        execute(event['geonetwork'], event['geoserver'], event['geowebcache'], event['geowebcache_user'], event['geowebcache_password'], event['req_type'], event['start_zoom'], event['end_zoom'], event['layers'], event['grid_set_id'], event['req_format'], event['thread_count'])
+        execute(event['geonetwork'], event['geoserver'], event['geowebcache'], event['geowebcache_user'], event['geowebcache_password'], event['req_type'], start_zoom, end_zoom, event['layers'], event['grid_set_id'], event['req_format'], thread_count)
     except SystemExit:
         pass
 
