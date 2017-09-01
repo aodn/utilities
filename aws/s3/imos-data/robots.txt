@@ -1,0 +1,5 @@
+User-Agent: LinkChecker
+Allow: /
+
+User-agent: *
+Disallow: /
