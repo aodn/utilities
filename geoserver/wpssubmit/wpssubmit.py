@@ -1,6 +1,9 @@
+#!/usr/bin/env python
+
 import argparse
 import datetime
 import httplib
+import logging.config
 import os
 import re
 import ssl
@@ -8,6 +11,10 @@ import sys
 import time
 import urlparse
 import xml.etree.ElementTree as ElementTree
+
+LOG_FORMAT = '%(asctime)s - %(levelname)s - %(message)s'
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+LOGGER = logging.getLogger(__name__)
 
 
 class WpsJob(object):
@@ -28,10 +35,10 @@ class WpsJob(object):
             conn_class = httplib.HTTPSConnection
             if self.noverifycerts:
                 conn_kwargs['context'] = ssl._create_unverified_context()
-            conn_kwargs['port'] = self.port and self.port or '443'
+            conn_kwargs['port'] = self.port if self.port else '443'
         else:
             conn_class = httplib.HTTPConnection
-            conn_kwargs['port'] = self.port and self.port or '80'
+            conn_kwargs['port'] = self.port if self.port else '80'
         connection = conn_class(**conn_kwargs)
 
         request_kwargs = dict()
@@ -47,6 +54,7 @@ class WpsJob(object):
     def submit(self):
         headers = {'Content-Type': 'application/xml', 'Connection': 'keep-alive'}
         root = self._make_request(self.path, method='POST', body=self.submit_data, headers=headers)
+        LOGGER.info('Response:{nl}{root}'.format(nl=os.linesep, root=ElementTree.tostring(root)))
         self.status_url = urlparse.urlparse(root.attrib['statusLocation'])
 
     def get_status(self):
@@ -54,7 +62,7 @@ class WpsJob(object):
         root = self._make_request(url)
         match_status = self._status_re.match(root[1][0].tag)
         status = match_status.group(1)
-        print("{now} Status poll: {status}".format(now=datetime.datetime.now(), status=status))
+        LOGGER.info("Status poll: {status}".format(status=status))
         return status
 
 
@@ -77,18 +85,19 @@ def main():
         submit_data = f.read()
     job = WpsJob(submit_data, host=args.host, path=args.path, port=args.port, https=args.https,
                  noverifycerts=args.noverifycerts)
-    print("Submitting WPS job XML {infile} to {host}{path}".format(infile=args.infile, host=args.host, path=args.path))
+    LOGGER.info(
+        "Submitting WPS job XML {infile} to {host}{path}".format(infile=args.infile, host=args.host, path=args.path))
     job.submit()
-    print("Status URL: {url}".format(url=urlparse.urlunparse(job.status_url)))
+    LOGGER.info("Status URL: {url}".format(url=urlparse.urlunparse(job.status_url)))
 
-    status = 'Initial'
-    while status in ('Initial', 'ProcessAccepted', 'ProcessStarted'):
+    status = None
+    while status in (None, 'ProcessAccepted', 'ProcessStarted'):
         status = job.get_status()
         if status == 'ProcessFailed':
-            print('Job failed')
+            LOGGER.error('Job failed')
             sys.exit(2)
         elif status == 'ProcessSucceeded':
-            print('Job completed successfully!')
+            LOGGER.info('Job completed successfully!')
         else:
             time.sleep(args.interval)
 
