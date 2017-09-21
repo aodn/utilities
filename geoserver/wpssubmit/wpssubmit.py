@@ -9,6 +9,7 @@ import re
 import ssl
 import sys
 import time
+import urllib
 import urlparse
 import xml.etree.ElementTree as ElementTree
 
@@ -77,12 +78,16 @@ def main():
     parser.add_argument('-c', '--noverifycerts', action='store_true', help='Accept invalid certificates (HTTPS)')
     args = parser.parse_args()
 
-    if not os.path.exists(args.infile):
-        parser.print_help()
+    reader = urllib.urlopen if re.match(r'^https?://.*$', args.infile) else open
+    try:
+        submit_data = reader(args.infile).read()
+    except Exception as e:
+        LOGGER.exception('failed to read input file')
         sys.exit(1)
+    finally:
+        if hasattr(reader, 'close'):
+            reader.close()
 
-    with open(args.infile, 'r') as f:
-        submit_data = f.read()
     job = WpsJob(submit_data, host=args.host, path=args.path, port=args.port, https=args.https,
                  noverifycerts=args.noverifycerts)
     LOGGER.info(
