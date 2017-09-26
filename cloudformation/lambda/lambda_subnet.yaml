@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  lambdaSubnet2aCidr:
+    Type: String
+    Default: '172.31.32.0/24'
+  lambdaSubnet2aAvailabilityZone:
+    Type: String
+    Default: 'ap-southeast-2a'
+  lambdaSubnet2bCidr:
+    Type: String
+    Default: '172.31.48.0/24'
+  lambdaSubnet2bAvailabilityZone:
+    Type: String
+    Default: 'ap-southeast-2b'
+  lambdaSubnet2cCidr:
+    Type: String
+    Default: '172.31.64.0/24'
+  lambdaSubnet2cAvailabilityZone:
+    Type: String
+    Default: 'ap-southeast-2c'
+  existingSubnetWithIG:
+    Type: String
+    Default: 'subnet-54b3aa20'
+  vpc:
+    Type: String
+    Default: 'vpc-7302ee16'
+Resources:
+  LambdaSubnet2a:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: !Ref lambdaSubnet2aAvailabilityZone
+      CidrBlock: !Ref lambdaSubnet2aCidr
+      Tags:
+      - Key: Name
+        Value: LambdaSubnet2a
+      VpcId: !Ref vpc
+  LambdaSubnet2b:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: !Ref lambdaSubnet2bAvailabilityZone
+      CidrBlock: !Ref lambdaSubnet2bCidr
+      Tags:
+      - Key: Name
+        Value: LambdaSubnet2b
+      VpcId: !Ref vpc
+  LambdaSubnet2c:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: !Ref lambdaSubnet2cAvailabilityZone
+      CidrBlock: !Ref lambdaSubnet2cCidr
+      Tags:
+      - Key: Name
+        Value: LambdaSubnet2c
+      VpcId: !Ref vpc
+  NatGateway:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt EIP.AllocationId
+      SubnetId: !Ref existingSubnetWithIG
+  EIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: "vpc"
+  Route:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGateway
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref vpc
+      Tags:
+      - Key: Name
+        Value: LambdaToNat
+  Subnet2aRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref LambdaSubnet2a
+      RouteTableId: !Ref RouteTable
+  Subnet2bRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref LambdaSubnet2b
+      RouteTableId: !Ref RouteTable
+  Subnet2cRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref LambdaSubnet2c
+      RouteTableId: !Ref RouteTable
