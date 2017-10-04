@@ -2,19 +2,19 @@ AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   lambdaSubnet2aCidr:
     Type: String
-    Default: '172.31.32.0/24'
+    Default: '172.31.128.0/24'
   lambdaSubnet2aAvailabilityZone:
     Type: String
     Default: 'ap-southeast-2a'
   lambdaSubnet2bCidr:
     Type: String
-    Default: '172.31.48.0/24'
+    Default: '172.31.144.0/24'
   lambdaSubnet2bAvailabilityZone:
     Type: String
     Default: 'ap-southeast-2b'
   lambdaSubnet2cCidr:
     Type: String
-    Default: '172.31.64.0/24'
+    Default: '172.31.160.0/24'
   lambdaSubnet2cAvailabilityZone:
     Type: String
     Default: 'ap-southeast-2c'
