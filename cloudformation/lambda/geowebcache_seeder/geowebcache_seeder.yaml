@@ -52,6 +52,13 @@ Resources:
       Environment:
          Variables:
            PYTHONPATH: /var/task/lib
+      VpcConfig:
+        SecurityGroupIds:
+          - !Ref LambdaSecurityGroup
+        SubnetIds:
+          - !ImportValue "lambda-subnets-subnetA"
+          - !ImportValue "lambda-subnets-subnetB"
+          - !ImportValue "lambda-subnets-subnetC"
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -64,6 +71,7 @@ Resources:
       Path: /
       ManagedPolicyArns:
       - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
       Policies:
       - PolicyName: PublishVersion
         PolicyDocument:
@@ -213,3 +221,18 @@ Resources:
       Action: lambda:InvokeFunction
       Principal: events.amazonaws.com
       SourceArn: !GetAtt GeowebcacheSeedFunctionScheduledRule.Arn
+  LambdaSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow http to client host
+      VpcId: !ImportValue "lambda-subnets-vpc"
+      SecurityGroupIngress:
+      - IpProtocol: '-1'
+        FromPort: '-1'
+        ToPort: '-1'
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        FromPort: '-1'
+        ToPort: '-1'
+        CidrIp: 0.0.0.0/0

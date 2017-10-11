@@ -89,3 +89,25 @@ Resources:
     Properties:
       SubnetId: !Ref LambdaSubnet2c
       RouteTableId: !Ref RouteTable
+Outputs:
+  StackVPC:
+    Description: The ID of the VPC
+    Value: !Ref vpc
+    Export:
+      Name: !Sub "${AWS::StackName}-vpc"
+  SubnetA:
+     Description: First subnet
+     Value: !Ref LambdaSubnet2a
+     Export:
+        Name: !Sub "${AWS::StackName}-subnetA"
+  SubnetB:
+     Description: Second subnet
+     Value: !Ref LambdaSubnet2b
+     Export:
+        Name: !Sub "${AWS::StackName}-subnetB"
+  SubnetC:
+     Description: Third subnet
+     Value: !Ref LambdaSubnet2c
+     Export:
+        Name: !Sub "${AWS::StackName}-subnetC"
+
