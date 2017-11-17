@@ -15,9 +15,10 @@ Resources:
     CheckAccessKeys:
       Type: 'AWS::Lambda::Function'
       Properties:
-          Handler: 'index.handler'
+          Handler: 'check_access_keys.lambda_handler'
           Role: !GetAtt LambdaExecutionRole.Arn
           Runtime: python3.6
+          Timeout: 10
           Code:
             S3Bucket: !Ref S3Bucket
             S3Key: !Ref S3Key
