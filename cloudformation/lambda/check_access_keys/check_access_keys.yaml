@@ -5,12 +5,6 @@ Parameters:
         Type: String
         Description: "Max age for keys before alerting"
         Default: "90"
-    S3Bucket:
-        Type: String
-        Default: imos-binary
-    S3Key:
-        Type: String
-        Default: lambda/check_access_keys.zip
 Resources:
     CheckAccessKeys:
       Type: 'AWS::Lambda::Function'
@@ -19,9 +13,7 @@ Resources:
           Role: !GetAtt LambdaExecutionRole.Arn
           Runtime: python3.6
           Timeout: 10
-          Code:
-            S3Bucket: !Ref S3Bucket
-            S3Key: !Ref S3Key
+          Code: ./check_access_keys.py
 
     LambdaExecutionRole:
         Type: AWS::IAM::Role
