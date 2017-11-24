@@ -13,7 +13,7 @@ Resources:
           Role: !GetAtt LambdaExecutionRole.Arn
           Runtime: python3.6
           Timeout: 10
-          Code: ./check_access_keys.py
+          Code: .
 
     LambdaExecutionRole:
         Type: AWS::IAM::Role
