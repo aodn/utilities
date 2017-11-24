@@ -7,14 +7,13 @@ Parameters:
         Default: "90"
 Resources:
     CheckAccessKeys:
-      Type: 'AWS::Lambda::Function'
-      Properties:
-          Handler: 'check_access_keys.lambda_handler'
-          Role: !GetAtt LambdaExecutionRole.Arn
-          Runtime: python3.6
-          Timeout: 10
-          Code: .
-
+        Type: 'AWS::Lambda::Function'
+        Properties:
+            Handler: 'check_access_keys.lambda_handler'
+            Role: !GetAtt LambdaExecutionRole.Arn
+            Runtime: python3.6
+            Timeout: 10
+            Code: .
     LambdaExecutionRole:
         Type: AWS::IAM::Role
         Properties:
@@ -33,9 +32,6 @@ Resources:
                         Version: 2012-10-17
                         Statement:
                             -   Effect: Allow
-                                Action: ['lambda:PublishVersion']
-                                Resource: '*' #!Join ["", ["arn:aws:lambda:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId", ":function:", !Ref CheckAccessKeys]]
-                            -   Effect: Allow
                                 Action: ['logs:CreateLogGroup','logs:CreateLogStream', 'logs:PutLogEvents']
                                 Resource: 'arn:aws:logs:*:*:*'
                             -   Effect: Allow
@@ -44,15 +40,12 @@ Resources:
                             -   Effect: Allow
                                 Action: ['sns:Publish']
                                 Resource: !Ref SnsTopic
-
     SnsTopic:
         Type: AWS::SNS::Topic
         Properties:
             Subscription:
             - Endpoint: sys.admin <sys.admin@emii.org.au>
               Protocol: email
-
-
     CloudWatchEvent:
         Type: "AWS::Events::Rule"
         Properties:
@@ -63,3 +56,10 @@ Resources:
             - Arn: !GetAtt CheckAccessKeys.Arn
               Id: "CheckAccessKeys"
               Input: !Join [ "", [ "{   \"excluded_users\": [\"anonymous\", \"ses-smtp-user.metadataentry\"],   \"topic\": \"", !Ref SnsTopic, "\",   \"age_threshold\": \"", !Ref ageThreshold, "\" }" ]]
+    LambdaInvokePermission:
+        Type: "AWS::Lambda::Permission"
+        Properties:
+            Action: "lambda:InvokeFunction"
+            FunctionName: !GetAtt CheckAccessKeys.Arn
+            Principal: "events.amazonaws.com"
+            SourceArn: !GetAtt CloudWatchEvent.Arn
