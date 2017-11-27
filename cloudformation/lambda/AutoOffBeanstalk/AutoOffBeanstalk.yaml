@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: 'CloudFormation template - Shuts down all non-prod Beanstalk instances'
+Resources:
+  AutoOffBeanstalk:
+      Type: 'AWS::Lambda::Function'
+      Properties:
+          Handler: 'index.handler'
+          Description: 'Shuts down all non-prod Beanstalk instances unless protected by defined tags'
+          Role: !GetAtt LambdaExecutionRole.Arn
+          Runtime: python2.7
+          Code: .
+
+  LambdaExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+          AssumeRolePolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+              - Effect: Allow
+                Principal: {Service: [lambda.amazonaws.com]}
+                Action: ['sts:AssumeRole']
+          Path: /
+          ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+          Policies:
+                - PolicyName: PublishAndExecute
+                  PolicyDocument:
+                    Version: 2012-10-17
+                    Statement:
+                    - Effect: Allow
+                      Action: [
+                        'elasticbeanstalk:TerminateEnvironment',
+                        'elasticbeanstalk:DescribeEnvironments',
+                        'lambda:PublishVersion'
+                        ]
+                      Resource: '*'
+  CloudWatchEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Description: Triggers application cron
+      ScheduleExpression: "cron(0 8 * * ? *)"
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt AutoOffBeanstalk.Arn
+          Id: "AutoOffBeanstalk"
