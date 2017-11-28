@@ -150,3 +150,10 @@ Resources:
       Targets:
         - Arn: !GetAtt AutoOffEC2.Arn
           Id: "AutoOffEC2"
+  PermissionForCloudWatchScheduleRuleToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref AutoOffEC2
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt CloudWatchEvent.Arn
