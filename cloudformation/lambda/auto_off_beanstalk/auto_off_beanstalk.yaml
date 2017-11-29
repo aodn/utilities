@@ -22,18 +22,7 @@ Resources:
           Path: /
           ManagedPolicyArns:
           - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-          Policies:
-                - PolicyName: PublishAndExecute
-                  PolicyDocument:
-                    Version: 2012-10-17
-                    Statement:
-                    - Effect: Allow
-                      Action: [
-                        'elasticbeanstalk:TerminateEnvironment',
-                        'elasticbeanstalk:DescribeEnvironments',
-                        'lambda:PublishVersion'
-                        ]
-                      Resource: '*'
+          - arn:aws:iam::aws:policy/AWSElasticBeanstalkFullAccess
   CloudWatchEvent:
     Type: "AWS::Events::Rule"
     Properties:
