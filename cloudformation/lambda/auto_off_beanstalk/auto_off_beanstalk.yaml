@@ -23,6 +23,30 @@ Resources:
           ManagedPolicyArns:
           - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
           - arn:aws:iam::aws:policy/AWSElasticBeanstalkFullAccess
+          Policies:
+          - PolicyName: NoCreate
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+              - Effect: Deny
+                Action: [
+                "elasticbeanstalk:Create*",
+                "ec2:Create*",
+                "ecs:Create*",
+                "ecr:Create*",
+                "elasticloadbalancing:Create*",
+                "autoscaling:Create*",
+                "cloudwatch:Create*",
+                "s3:Create*",
+                "sns:Create*",
+                "cloudformation:Create*",
+                "dynamodb:Create*",
+                "rds:Create*",
+                "sqs:Create*",
+                "logs:Create*",
+                "codebuild:Create*"
+                  ]
+                Resource: '*'
   CloudWatchEvent:
     Type: "AWS::Events::Rule"
     Properties:
