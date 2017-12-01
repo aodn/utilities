@@ -47,6 +47,15 @@ Resources:
                 "codebuild:Create*"
                   ]
                 Resource: '*'
+          - PolicyName: NoProdTerminate
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+              - Effect: Deny
+                Action: [
+                "elasticbeanstalk:TerminateEnvironment"
+                  ]
+                Resource: "arn:aws:elasticbeanstalk:*:*:environment/*/*-prod"
   CloudWatchEvent:
     Type: "AWS::Events::Rule"
     Properties:
