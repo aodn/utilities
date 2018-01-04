@@ -1,0 +1,27 @@
+database_connection:
+  login_user: imosadmin
+  login_password: imosadmin
+  login_host: localhost
+
+database:
+  name: harvest
+
+database_profiles:
+  - harvest
+
+postgresql_extensions:
+  - postgis
+
+postgresql_roles:
+  - name: lwgordon
+    password: qwerty12345
+  - name: lwgordon1
+    password: qwerty123456
+  - name: angus
+    password: qwerty123456543534534534
+
+postgresql_schemas:
+  - schema: qwertyschema
+    owner: lwgordon
+  - schema: qwertyschema_angus
+    owner: angus

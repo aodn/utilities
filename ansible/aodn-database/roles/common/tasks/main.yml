@@ -1,0 +1,7 @@
+- import_tasks: database.yml
+- import_tasks: roles.yml
+- import_tasks: extensions.yml
+- import_tasks: schemas.yml
+
+- include_tasks: "roles/common/profiles/{{ item }}.yml"
+  with_items: "{{ database_profiles }}"

@@ -1,0 +1,114 @@
+#
+# custom IMOS functions
+#
+
+- name: manage custom IMOS functions
+  postgresql_exec:
+    src: roles/common/files/imos--1.0.sql
+    remote_src: yes
+    database: "{{ database.name }}"
+    host: "{{ database_connection.login_host }}"
+    user: "{{ database_connection.login_user }}"
+    password: "{{ database_connection.login_password }}"
+
+#
+# harvest_read_group / harvest_write_group
+#
+
+- name: manage harvest_read_group/harvest_write_group roles
+  postgresql_user:
+    name: "{{ roleitem }}"
+    db: "{{ database.name }}"
+    state: "{{ roleitem.state | default('present') }}"
+    login_host: "{{ database_connection.login_host }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items:
+    - harvest_read_group
+    - harvest_write_group
+  loop_control:
+    loop_var: roleitem
+
+- name: manage schema permissions for harvest_read_group
+  postgresql_privs:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.schema }}"
+    privs: USAGE
+    objs: ALL_IN_SCHEMA
+    role: harvest_read_group
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_connection.login_host }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_schemas }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage schema default permissions for harvest_read_group tables and sequences
+  postgresql_privs2:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.schema }}"
+    objs: TABLES,SEQUENCES
+    privs: SELECT
+    type: default_privs
+    role: harvest_read_group
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_connection.login_host }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_schemas }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage schema default permissions for harvest_read_group functions
+  postgresql_privs2:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.schema }}"
+    objs: FUNCTIONS
+    privs: EXECUTE
+    type: default_privs
+    role: harvest_read_group
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_connection.login_host }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_schemas }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage schema permissions for harvest_write_group
+  postgresql_privs:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.schema }}"
+    objs: ALL_IN_SCHEMA
+    privs: ALL
+    role: harvest_write_group
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_connection.login_host }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_schemas }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage schema default permissions for harvest_write_group
+  postgresql_privs2:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.schema }}"
+    objs: SEQUENCES,TABLES,FUNCTIONS
+    privs: ALL
+    type: default_privs
+    role: harvest_write_group
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_connection.login_host }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_schemas }}"
+  loop_control:
+    loop_var: schemaitem

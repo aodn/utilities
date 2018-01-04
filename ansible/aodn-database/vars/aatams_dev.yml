@@ -1,0 +1,20 @@
+database_connection:
+  login_user: imosadmin
+  login_password: imosadmin
+  login_host: localhost
+
+database:
+  name: aatams
+
+postgresql_extensions:
+  - postgis
+
+postgresql_roles:
+  - name: lwgordon
+    password: qwerty12345
+  - name: lwgordon1
+    password: qwerty123456
+
+postgresql_schemas:
+  - schema: foobarschema
+    owner: lwgordon

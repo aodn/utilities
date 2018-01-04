@@ -1,0 +1,10 @@
+- name: AODN database
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - "vars/{{ instance }}.yml"
+
+  roles:
+    - common

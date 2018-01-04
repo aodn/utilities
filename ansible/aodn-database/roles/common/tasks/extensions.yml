@@ -1,0 +1,10 @@
+- name: manage extensions
+  postgresql_ext:
+    name: "{{ item }}"
+    db: "{{ database.name }}"
+    state: "{{ item.state | default('present') }}"
+    login_host: "{{ database_connection.login_host }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_extensions }}"
