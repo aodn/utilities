@@ -1,4 +1,14 @@
+- set_fact:
+    rds_mode: "{{ database_connection.rds is defined and database_connection.rds == True}}"
+
+- name: output rds_mode
+  debug: msg="rds_mode={{ rds_mode }}"
+
 - import_tasks: database.yml
+  when: not rds_mode
+- import_tasks: rds.yml
+  when: rds_mode
+
 - import_tasks: roles.yml
 - import_tasks: extensions.yml
 - import_tasks: schemas.yml

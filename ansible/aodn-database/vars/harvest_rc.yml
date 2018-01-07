@@ -1,7 +1,17 @@
 database_connection:
   login_user: imosadmin
   login_password: imosadmin
-  login_host: localhost
+
+  # UNCOMMENT ONE SECTION ONLY, RDS/non-RDS
+
+  ## start non-RDS
+  #login_host: localhost
+  ## end non-RDS
+
+  ## start RDS
+  rds: true
+  stack_name: harvest-rc-ansible-test
+  ## end RDS
 
 database:
   name: harvest
@@ -21,6 +31,8 @@ postgresql_roles:
     password: qwerty123456543534534534
 
 postgresql_schemas:
+  - schema: public
+    owner: imosadmin
   - schema: qwertyschema
     owner: lwgordon
   - schema: qwertyschema_angus

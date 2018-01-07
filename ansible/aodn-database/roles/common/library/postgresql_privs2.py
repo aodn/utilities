@@ -390,6 +390,16 @@ class Connection(object):
         self.cursor.execute(query, (schema,))
         return [t[0] for t in self.cursor.fetchall()]
 
+    def get_all_functions_in_schema(self, schema):
+        if not self.schema_exists(schema):
+            raise Error('Schema "%s" does not exist.' % schema)
+        query = """SELECT format('%%I(%%s)', p.proname, replace(oidvectortypes(p.proargtypes), ', ', ':')) as funcsig
+                   FROM pg_catalog.pg_proc p
+                   JOIN pg_catalog.pg_namespace n ON p.pronamespace = n.oid
+                   WHERE n.nspname = %s"""
+        self.cursor.execute(query, (schema,))
+        return [t[0] for t in self.cursor.fetchall()]
+
     # Methods for getting access control lists and group membership info
 
     # To determine whether anything has changed after granting/revoking
@@ -746,6 +756,8 @@ def main():
             objs = conn.get_all_tables_in_schema(p.schema)
         elif p.type == 'sequence' and p.objs == 'ALL_IN_SCHEMA':
             objs = conn.get_all_sequences_in_schema(p.schema)
+        elif p.type == 'function' and p.objs == 'ALL_IN_SCHEMA':
+            objs = conn.get_all_functions_in_schema(p.schema)
         elif p.type == 'default_privs':
             if p.objs == 'ALL_DEFAULT':
                 objs = frozenset(VALID_DEFAULT_OBJS.keys())

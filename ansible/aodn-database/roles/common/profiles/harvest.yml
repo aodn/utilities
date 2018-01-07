@@ -7,12 +7,43 @@
     src: roles/common/files/imos--1.0.sql
     remote_src: yes
     database: "{{ database.name }}"
-    host: "{{ database_connection.login_host }}"
+    host: "{{ database_endpoint }}"
     user: "{{ database_connection.login_user }}"
     password: "{{ database_connection.login_password }}"
 
+- name: manage custom IMOS functions owner
+  postgresql_exec:
+    database: "{{ database.name }}"
+    host: "{{ database_endpoint }}"
+    user: "{{ database_connection.login_user }}"
+    password: "{{ database_connection.login_password }}"
+    content: |
+      DO
+      $BODY$
+      DECLARE
+          _sql   text;
+
+      BEGIN
+
+        SELECT INTO _sql
+          string_agg('ALTER FUNCTION '
+            || n.nspname || '.'
+            || p.proname || '('
+            || pg_get_function_identity_arguments(p.oid)
+            || ') OWNER TO {{ database_connection.login_user }};', E'\n'
+          )
+        FROM pg_catalog.pg_proc p
+        JOIN pg_catalog.pg_namespace n ON p.pronamespace = n.oid
+        WHERE n.nspname = 'public';
+
+        EXECUTE _sql;
+
+      END
+      $BODY$;
+  when: rds_mode
+
 #
-# harvest_read_group / harvest_write_group
+# harvest_read_group / harvest_write_group roles
 #
 
 - name: manage harvest_read_group/harvest_write_group roles
@@ -20,7 +51,7 @@
     name: "{{ roleitem }}"
     db: "{{ database.name }}"
     state: "{{ roleitem.state | default('present') }}"
-    login_host: "{{ database_connection.login_host }}"
+    login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
     login_user: "{{ database_connection.login_user }}"
     port: "{{ database_connection.port | default(omit) }}"
@@ -30,15 +61,17 @@
   loop_control:
     loop_var: roleitem
 
+# harvest_read_group privileges
+
 - name: manage schema permissions for harvest_read_group
   postgresql_privs:
     db: "{{ database.name }}"
-    schema: "{{ schemaitem.schema }}"
     privs: USAGE
-    objs: ALL_IN_SCHEMA
+    type: schema
+    objs: "{{ schemaitem.schema }}"
     role: harvest_read_group
     state: "{{ schemaitem.state | default('present') }}"
-    login_host: "{{ database_connection.login_host }}"
+    login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
     login_user: "{{ database_connection.login_user }}"
     port: "{{ database_connection.port | default(omit) }}"
@@ -46,16 +79,67 @@
   loop_control:
     loop_var: schemaitem
 
-- name: manage schema default permissions for harvest_read_group tables and sequences
+- name: manage permissions for harvest_read_group tables
+  postgresql_privs:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.schema }}"
+    objs: ALL_IN_SCHEMA
+    type: table
+    privs: SELECT
+    role: harvest_read_group
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_schemas }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage permissions for harvest_read_group sequences
+  postgresql_privs:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.schema }}"
+    objs: ALL_IN_SCHEMA
+    type: sequence
+    privs: SELECT
+    role: harvest_read_group
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_schemas }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage permissions for harvest_read_group functions
+  postgresql_privs2:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.schema }}"
+    objs: ALL_IN_SCHEMA
+    type: function
+    privs: EXECUTE
+    role: harvest_read_group
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_schemas }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage default permissions for harvest_read_group tables and sequences
   postgresql_privs2:
     db: "{{ database.name }}"
     schema: "{{ schemaitem.schema }}"
     objs: TABLES,SEQUENCES
     privs: SELECT
-    type: default_privs
     role: harvest_read_group
+    type: default_privs
     state: "{{ schemaitem.state | default('present') }}"
-    login_host: "{{ database_connection.login_host }}"
+    login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
     login_user: "{{ database_connection.login_user }}"
     port: "{{ database_connection.port | default(omit) }}"
@@ -63,32 +147,34 @@
   loop_control:
     loop_var: schemaitem
 
-- name: manage schema default permissions for harvest_read_group functions
+- name: manage default permissions for harvest_read_group functions
   postgresql_privs2:
     db: "{{ database.name }}"
     schema: "{{ schemaitem.schema }}"
     objs: FUNCTIONS
-    privs: EXECUTE
     type: default_privs
+    privs: EXECUTE
     role: harvest_read_group
     state: "{{ schemaitem.state | default('present') }}"
-    login_host: "{{ database_connection.login_host }}"
+    login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
     login_user: "{{ database_connection.login_user }}"
     port: "{{ database_connection.port | default(omit) }}"
   with_items: "{{ postgresql_schemas }}"
   loop_control:
     loop_var: schemaitem
+
+# harvest_write_group privileges
 
 - name: manage schema permissions for harvest_write_group
   postgresql_privs:
     db: "{{ database.name }}"
-    schema: "{{ schemaitem.schema }}"
-    objs: ALL_IN_SCHEMA
+    objs: "{{ schemaitem.schema }}"
     privs: ALL
+    type: schema
     role: harvest_write_group
     state: "{{ schemaitem.state | default('present') }}"
-    login_host: "{{ database_connection.login_host }}"
+    login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
     login_user: "{{ database_connection.login_user }}"
     port: "{{ database_connection.port | default(omit) }}"
@@ -96,7 +182,7 @@
   loop_control:
     loop_var: schemaitem
 
-- name: manage schema default permissions for harvest_write_group
+- name: manage default permissions for harvest_write_group sequences, tables and functions
   postgresql_privs2:
     db: "{{ database.name }}"
     schema: "{{ schemaitem.schema }}"
@@ -105,7 +191,7 @@
     type: default_privs
     role: harvest_write_group
     state: "{{ schemaitem.state | default('present') }}"
-    login_host: "{{ database_connection.login_host }}"
+    login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
     login_user: "{{ database_connection.login_user }}"
     port: "{{ database_connection.port | default(omit) }}"

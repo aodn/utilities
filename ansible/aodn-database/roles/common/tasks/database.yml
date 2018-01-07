@@ -10,3 +10,7 @@
     login_password: "{{ database_connection.login_password }}"
     login_user: "{{ database_connection.login_user }}"
     port: "{{ database_connection.port | default(omit) }}"
+
+- name: register non-RDS database_endpoint
+  set_fact:
+    database_endpoint: "{{ database_connection.login_host }}"

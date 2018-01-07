@@ -6,8 +6,20 @@
     role_attr_flags: "{{ item.role_attr_flags | default(omit) }}"
     db: "{{ database.name }}"
     state: "{{ item.state | default('present') }}"
-    login_host: "{{ database_connection.login_host }}"
+    login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
     login_user: "{{ database_connection.login_user }}"
     port: "{{ database_connection.port | default(omit) }}"
   with_items: "{{ postgresql_roles }}"
+
+- name: grant all roles to RDS admin role
+  postgresql_privs:
+    db: "{{ database.name }}"
+    type: group
+    objs: "{{ postgresql_roles | map(attribute='name') | list | join(',') }}"
+    role: "{{ database_connection.login_user }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  when: rds_mode
