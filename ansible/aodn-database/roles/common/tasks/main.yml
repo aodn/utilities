@@ -9,9 +9,28 @@
 - import_tasks: rds.yml
   when: rds_mode
 
+- import_tasks: rds.yml
+  when: rds_mode
+
 - import_tasks: roles.yml
 - import_tasks: extensions.yml
 - import_tasks: schemas.yml
+
+- name: load Chef postgresql_roles databag item (roles)
+  set_fact:
+    chef_roles_databag: "{{ lookup('file', chef_databags.roles) | default({}) | from_json }}"
+  when: chef_databags.roles is defined
+
+- import_tasks: chef_roles.yml
+  when: chef_roles_databag
+
+- name: load Chef postgresql_database databag item (schemas)
+  set_fact:
+    chef_database_databag: "{{ lookup('file', chef_databags.database) | default({}) | from_json }}"
+  when: chef_databags.database is defined
+
+- import_tasks: chef_schemas.yml
+  when: chef_database_databag
 
 - include_tasks: "roles/common/profiles/{{ item }}.yml"
   with_items: "{{ database_profiles }}"

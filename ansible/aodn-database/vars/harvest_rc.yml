@@ -5,11 +5,11 @@ database_connection:
   # UNCOMMENT ONE SECTION ONLY, RDS/non-RDS
 
   ## start non-RDS
-  #login_host: localhost
+  login_host: localhost
   ## end non-RDS
 
   ## start RDS
-  rds: true
+  #rds: true
   stack_name: harvest-rc-ansible-test
   ## end RDS
 
@@ -21,19 +21,8 @@ database_profiles:
 
 postgresql_extensions:
   - postgis
+  - uuid-ossp
 
-postgresql_roles:
-  - name: lwgordon
-    password: qwerty12345
-  - name: lwgordon1
-    password: qwerty123456
-  - name: angus
-    password: qwerty123456543534534534
-
-postgresql_schemas:
-  - schema: public
-    owner: imosadmin
-  - schema: qwertyschema
-    owner: lwgordon
-  - schema: qwertyschema_angus
-    owner: angus
+chef_databags:
+  roles: /home/lwgordon/git/aodn/chef/private-sample/data_bags/postgresql_roles/db_po_main.json
+  database: /home/lwgordon/git/aodn/chef/private-sample/data_bags/postgresql_databases/harvest.json

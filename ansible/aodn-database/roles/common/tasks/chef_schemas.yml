@@ -1,0 +1,11 @@
+- name: manage schemas from Chef 'postgresql_database' databag item
+  postgresql_schema:
+    schema: "{{ item.name }}"
+    owner: "{{ item.owner | default(omit) }}"
+    database: "{{ database.name }}"
+    state: "present"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
