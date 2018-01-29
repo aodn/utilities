@@ -10,19 +10,16 @@ database_connection:
 
   ## start RDS
   #rds: true
-  stack_name: harvest-rc-ansible-test
+  #stack_name: harvest-rc-ansible-test
   ## end RDS
 
 database:
   name: harvest
-
-database_profiles:
-  - harvest
 
 postgresql_extensions:
   - postgis
   - uuid-ossp
 
 chef_databags:
-  roles: /home/lwgordon/git/aodn/chef/private-sample/data_bags/postgresql_roles/db_po_main.json
-  database: /home/lwgordon/git/aodn/chef/private-sample/data_bags/postgresql_databases/harvest.json
+  roles: data_bags/postgresql_roles/db_po_main.json
+  database: data_bags/postgresql_databases/harvest.json

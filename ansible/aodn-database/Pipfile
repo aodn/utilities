@@ -13,4 +13,3 @@ name = "pypi"
 
 ansible = "*"
 psycopg2 = "*"
-pychef = "*"

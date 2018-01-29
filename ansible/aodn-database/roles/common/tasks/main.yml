@@ -1,3 +1,7 @@
+#
+# RDS DETECTION
+#
+
 - set_fact:
     rds_mode: "{{ database_connection.rds is defined and database_connection.rds == True}}"
 
@@ -12,25 +16,46 @@
 - import_tasks: rds.yml
   when: rds_mode
 
-- import_tasks: roles.yml
-- import_tasks: extensions.yml
-- import_tasks: schemas.yml
+
+#
+# CONFIG MODE DETECTION
+#
 
 - name: load Chef postgresql_roles databag item (roles)
   set_fact:
     chef_roles_databag: "{{ lookup('file', chef_databags.roles) | default({}) | from_json }}"
   when: chef_databags.roles is defined
 
-- import_tasks: chef_roles.yml
-  when: chef_roles_databag
-
 - name: load Chef postgresql_database databag item (schemas)
   set_fact:
     chef_database_databag: "{{ lookup('file', chef_databags.database) | default({}) | from_json }}"
   when: chef_databags.database is defined
 
+#
+# ANSIBLE VARS CONFIG
+#
+# Retrieve roles and schemas from postgresql_roles and postgresql_schemas variables
+#
+
+- import_tasks: roles.yml
+  when: not chef_roles_databag
+- import_tasks: schemas.yml
+  when: not chef_database_databag
+
+#
+# CHEF DATABAG CONFIG
+#
+# Retrieve roles and schemas from Chef databags
+#
+
+- import_tasks: chef_roles.yml
+  when: chef_roles_databag
 - import_tasks: chef_schemas.yml
   when: chef_database_databag
 
-- include_tasks: "roles/common/profiles/{{ item }}.yml"
-  with_items: "{{ database_profiles }}"
+
+#
+# COMMON CONFIG
+#
+- import_tasks: extensions.yml
+- import_tasks: functions.yml
