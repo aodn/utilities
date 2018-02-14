@@ -5,9 +5,9 @@
 #
 # Find the first backup file for the current month in the provided s3 path & copy it to the monthly
 # backup location.
-# $1 - s3 config file
-# $2 - s3 backup path
-# $3 - monthly backup s3 path
+# $@ - s3 config file location
+# $1 - s3 backup path
+# $2 - monthly backup s3 path
 backup() {
     s3cfg=$@
     backup_s3_path=$1
