@@ -18,7 +18,7 @@
     privs: USAGE
     type: schema
     objs: "{{ schemaitem.name }}"
-    role: "{{ schemaitem['permissions'] | selectattr('type', 'eq', 'read') | map(attribute='role') | join(',') }}"
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
     state: "{{ schemaitem.state | default('present') }}"
     login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
@@ -35,7 +35,7 @@
     objs: ALL_IN_SCHEMA
     type: table
     privs: SELECT
-    role: "{{ schemaitem['permissions'] | selectattr('type', 'eq', 'read') | map(attribute='role') | join(',') }}"
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
     state: "{{ schemaitem.state | default('present') }}"
     login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
@@ -52,7 +52,7 @@
     objs: ALL_IN_SCHEMA
     type: sequence
     privs: SELECT
-    role: "{{ schemaitem['permissions'] | selectattr('type', 'eq', 'read') | map(attribute='role') | join(',') }}"
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
     state: "{{ schemaitem.state | default('present') }}"
     login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
@@ -69,7 +69,7 @@
     objs: ALL_IN_SCHEMA
     type: function
     privs: EXECUTE
-    role: "{{ schemaitem['permissions'] | selectattr('type', 'eq', 'read') | map(attribute='role') | join(',') }}"
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
     state: "{{ schemaitem.state | default('present') }}"
     login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
@@ -85,7 +85,7 @@
     schema: "{{ schemaitem.name }}"
     objs: TABLES,SEQUENCES
     privs: SELECT
-    role: "{{ schemaitem['permissions'] | selectattr('type', 'eq', 'read') | map(attribute='role') | join(',') }}"
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
     type: default_privs
     state: "{{ schemaitem.state | default('present') }}"
     login_host: "{{ database_endpoint }}"
@@ -103,7 +103,7 @@
     objs: FUNCTIONS
     type: default_privs
     privs: EXECUTE
-    role: "{{ schemaitem['permissions'] | selectattr('type', 'eq', 'read') | map(attribute='role') | join(',') }}"
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
     state: "{{ schemaitem.state | default('present') }}"
     login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
@@ -121,7 +121,7 @@
     objs: "{{ schemaitem.name }}"
     privs: ALL
     type: schema
-    role: "{{ schemaitem['permissions'] | selectattr('type', 'eq', 'write') | map(attribute='role') | join(',') }}"
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'write') | map(attribute='role') | join(',') }}"
     state: "{{ schemaitem.state | default('present') }}"
     login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
@@ -138,7 +138,7 @@
     objs: SEQUENCES,TABLES,FUNCTIONS
     privs: ALL
     type: default_privs
-    role: "{{ schemaitem['permissions'] | selectattr('type', 'eq', 'write') | map(attribute='role') | join(',') }}"
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'write') | map(attribute='role') | join(',') }}"
     state: "{{ schemaitem.state | default('present') }}"
     login_host: "{{ database_endpoint }}"
     login_password: "{{ database_connection.login_password }}"
