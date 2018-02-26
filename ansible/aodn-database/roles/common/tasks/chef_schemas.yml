@@ -1,0 +1,149 @@
+- name: manage Chef databag schemas
+  postgresql_schema:
+    schema: "{{ item.name }}"
+    owner: "{{ item.owner | default(omit) | replace('postgres', database_connection.login_user) or omit }}"
+    database: "{{ database.name }}"
+    state: "present"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
+
+# read type privileges
+
+- name: manage schema permissions for read type roles
+  postgresql_privs:
+    db: "{{ database.name }}"
+    privs: USAGE
+    type: schema
+    objs: "{{ schemaitem.name }}"
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage table permissions for read type roles
+  postgresql_privs:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.name }}"
+    objs: ALL_IN_SCHEMA
+    type: table
+    privs: SELECT
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage sequence permissions for read type roles
+  postgresql_privs:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.name }}"
+    objs: ALL_IN_SCHEMA
+    type: sequence
+    privs: SELECT
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage function permissions for read type roles
+  postgresql_privs2:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.name }}"
+    objs: ALL_IN_SCHEMA
+    type: function
+    privs: EXECUTE
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage default table and sequence permissions for read type roles
+  postgresql_privs2:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.name }}"
+    objs: TABLES,SEQUENCES
+    privs: SELECT
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
+    type: default_privs
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage default function permissions for read type roles
+  postgresql_privs2:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.name }}"
+    objs: FUNCTIONS
+    type: default_privs
+    privs: EXECUTE
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'read') | map(attribute='role') | join(',') }}"
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
+  loop_control:
+    loop_var: schemaitem
+
+# write type privileges
+
+- name: manage schema permissions for write type roles
+  postgresql_privs:
+    db: "{{ database.name }}"
+    objs: "{{ schemaitem.name }}"
+    privs: ALL
+    type: schema
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'write') | map(attribute='role') | join(',') }}"
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
+  loop_control:
+    loop_var: schemaitem
+
+- name: manage default sequence, table and function permissions for write type roles
+  postgresql_privs2:
+    db: "{{ database.name }}"
+    schema: "{{ schemaitem.name }}"
+    objs: SEQUENCES,TABLES,FUNCTIONS
+    privs: ALL
+    type: default_privs
+    role: "{{ schemaitem['permissions'] | selectattr('type', 'equalto', 'write') | map(attribute='role') | join(',') }}"
+    state: "{{ schemaitem.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ chef_database_databag['schemas'] }}"
+  loop_control:
+    loop_var: schemaitem

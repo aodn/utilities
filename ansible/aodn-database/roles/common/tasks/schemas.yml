@@ -1,0 +1,11 @@
+- name: manage schemas
+  postgresql_schema:
+    schema: "{{ item.schema }}"
+    owner: "{{ item.owner | default(omit) }}"
+    database: "{{ database.name }}"
+    state: "{{ item.state | default('present') }}"
+    login_host: "{{ database_endpoint }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+  with_items: "{{ postgresql_schemas }}"

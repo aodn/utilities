@@ -1,0 +1,16 @@
+- name: manage database
+  postgresql_db:
+    name: "{{ database.name }}"
+    encoding: "{{ database.encoding | default('UTF8') }}"
+    lc_collate: "{{ database.lc_collate | default('en_AU.UTF-8') }}"
+    lc_ctype: "{{ database.lc_ctype  | default('en_AU.UTF-8') }}"
+    template: "{{ database.template | default('template0') }}"
+    state: "{{ database.state | default('present') }}"
+    login_host: "{{ database_connection.login_host }}"
+    login_password: "{{ database_connection.login_password }}"
+    login_user: "{{ database_connection.login_user }}"
+    port: "{{ database_connection.port | default(omit) }}"
+
+- name: register non-RDS database_endpoint
+  set_fact:
+    database_endpoint: "{{ database_connection.login_host }}"

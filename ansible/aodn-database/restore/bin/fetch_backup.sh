@@ -1,0 +1,215 @@
+#!/bin/bash
+
+# some constants which will help us decide where and how to retrieve the backups
+declare -r BACKUPS_USER=restore
+declare -r BACKUPS_HOST=s3://imos-backups
+
+# ssh or s3 options
+declare -r OPTIONS="--config $HOME/.s3cfg"
+
+# set PATH, because we might be running from cron
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+# list backup on s3
+# $1 - dir to put the backup in
+# $2 - model of backup to retrieve
+# $3 - backup location on server
+_list_backups_s3() {
+    local host=$1; shift
+    local model=$1; shift
+    local backup_location=$1; shift
+
+    echo "Getting list of backups from '$BACKUPS_HOST/$backup_location'" 1>&2
+    s3cmd $OPTIONS ls $BACKUPS_HOST/$backup_location/ | tr -s " " \
+        | grep ' DIR ' | cut -d' ' -f3 | sort -r | xargs -L1 basename
+}
+
+# downloads backup from server (via ssh)
+# $1 - backup location on server
+# $2 - selected backup (usually a date/time string)
+# $3 - directory to download backups to
+# $4 - base directory for operation
+# $5 - backup file to download
+_download_backup_s3() {
+    local backup_location=$1; shift
+    local selected_backup=$1; shift
+    local dir=$1; shift
+    local base_dir=$1; shift
+    local backup_file=$1; shift
+
+    echo "Downloading '$BACKUPS_HOST/$backup_location/$selected_backup/$backup_file' -> '$dir/restore_operation/$backup_file'"
+    (mkdir -p $base_dir && cd $base_dir && \
+        s3cmd $OPTIONS --force get $BACKUPS_HOST/$backup_location/$selected_backup/$backup_file)
+}
+
+# list backup on remote server via ssh
+# $1 - host to list backups for (the host we want to restore from)
+# $2 - model of backup to retrieve
+# $3 - backup location on server
+_list_backups_ssh() {
+    local host=$1; shift
+    local model=$1; shift
+    local backup_location=$1; shift
+
+    echo "Getting list of backups from '$BACKUPS_USER@$BACKUPS_HOST:$backup_location'" 1>2
+
+    local tmp_batch_sftp=`mktemp`
+    echo "cd $backup_location" > $tmp_batch_sftp
+    echo "ls -1t" >> $tmp_batch_sftp
+
+    sftp -b $tmp_batch_sftp $OPTIONS $BACKUPS_USER@$BACKUPS_HOST | grep -v '^sftp>'
+    rm -f $tmp_batch_sftp
+}
+
+# downloads backup from server (via ssh)
+# $1 - backup location on server
+# $2 - selected backup (usually a date/time string)
+# $3 - directory to download backups to
+# $4 - base directory for operation
+# $5 - backup file to download
+_download_backup_ssh() {
+    local backup_location=$1; shift
+    local selected_backup=$1; shift
+    local dir=$1; shift
+    local base_dir=$1; shift
+    local backup_file=$1; shift
+
+    echo "Downloading '$BACKUPS_USER@$BACKUPS_HOST:$backup_location/$selected_backup/$backup_file' -> '$dir/restore_operation/$backup_file'"
+    (mkdir -p $base_dir && cd $base_dir && echo "get -r $backup_location/$selected_backup/$backup_file" | sftp $OPTIONS $BACKUPS_USER@$BACKUPS_HOST)
+}
+
+# fetches the latest remote backup from the given destination
+# $1 - how to fetch backup (ssh/s3)
+# $2 - dir to put the backup in
+# $3 - host to get backup for
+# $4 - model of backup to retrieve
+# "$@" - files to download, must be specified
+fetch_backup() {
+    local type=$1; shift
+    local dir=$1; shift
+    local host=$1; shift
+    local model=$1; shift
+
+    [ x"$1" = x ] && echo "Did not specify any files to download" && return 1
+
+    local backup_location="backups/$host/$model"
+    local backup_list=`_list_backups_${type} $host $model $backup_location`
+
+    if [ x"$backup_list" = x ]; then
+        echo "Could not find backups at '$backup_location'"
+        return 1
+    fi
+
+    local tmp_choice=`mktemp`
+    local dialog_items=`echo $backup_list | sed -e 's/ / - /g' -e 's/$/ -/'`
+
+    # interactive shell?
+    if tty -s; then
+        dialog --menu "Choose the desired backup for the restore operation ($host/$model):" 0 40 10 \
+            $dialog_items 2> $tmp_choice
+    else
+        # if the shell is not interactive, just take the latest backup
+        echo $backup_list | cut -d' ' -f1 > $tmp_choice
+        echo "Auto selecting latest backup for operation"
+    fi
+
+    local selected_backup=`cat $tmp_choice`
+    rm -f $tmp_choice
+
+    if [ x"$selected_backup" = x ]; then
+        echo "Could not determine latest backup for host '$host' and model '$model', aborting..."
+        return 1
+    fi
+
+    echo "Selected backup is '$selected_backup'"
+
+    local backup_file
+    for backup_file in "$@"; do
+        local base_dir=`dirname $dir/restore_operation/$backup_file`
+        _download_backup_${type} $backup_location $selected_backup $dir $base_dir "$backup_file"
+
+        # when importing from one backup model to another - handle the required
+        # file renames
+        dst_backup_model=`basename $dir`
+        src_backup_model=`basename $backup_location`
+        rename_files $base_dir $src_backup_model $dst_backup_model
+    done
+}
+
+# rename files in directory based on given patterns
+# $1 - directory to perform operations in
+# $2 - src pattern
+# $3 - dst pattern
+rename_files() {
+    local dir=$1; shift
+    local src_pattern=$1; shift
+    local dst_pattern=$1; shift
+
+    # do not operate if src_pattern and dst_pattern are the same
+    [ x"$src_pattern" = x"$dst_pattern" ] && return
+
+    echo "Renaming files in '$dir', src_pattern '$src_pattern', dst_pattern '$dst_pattern'"
+
+    for file in $dir/*; do
+        file_src=`basename $file`
+        file_dst=`basename $file | sed -e "s/$src_pattern/$dst_pattern/g"`
+        echo "Renaming '$dir/$file_src' -> '$dir/$file_dst'"
+        mv $dir/$file_src $dir/$file_dst
+    done
+}
+
+# prints usage and exit
+usage() {
+    echo "Usage: $0 [OPTIONS] -- [FILES]"
+    echo "Fetches a backup of a host to the given directory"
+    echo
+    echo "Example: $0 -h 3-nec-mel.emii.org.au -m pgsql -d /tmp/restore-dir -- geonetwork/public.dump"
+    echo
+    echo "
+Options:
+  -H, --host                 Host to fetch backup for.
+  -m, --model                Model of backup to fetch.
+  -d, --dir                  Where to put all of those things.
+"
+    exit 3
+}
+
+# main
+# "$@" - parameters, see usage() for more info
+main() {
+    # parse options with getopt
+    local tmp_getops
+    tmp_getops=`getopt -o h3H:m:d: \
+--long help,s3,host:,model:,dir: -- "$@"`
+    [ $? != 0 ] && usage
+
+    eval set -- "$tmp_getops"
+
+    local host model dir
+
+    # parse the options
+    while true ; do
+        case "$1" in
+            -h|--help) usage;;
+            -H|--host) host="$2"; shift 2;;
+            -m|--model) model="$2"; shift 2;;
+            -d|--dir) dir="$2"; shift 2;;
+            --) shift; break;;
+            *) usage;;
+        esac
+    done
+
+    # quit if any of these if unset
+    [ x"$host"  = x ] && usage
+    [ x"$model" = x ] && usage
+    [ x"$dir"   = x ] && usage
+
+    local type=ssh
+    if [ "${BACKUPS_HOST:0:5}" == "s3://" ]; then
+        type=s3
+    fi
+
+    fetch_backup $type $dir $host $model "$@"
+}
+
+main "$@"

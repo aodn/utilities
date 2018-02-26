@@ -1,0 +1,7 @@
+- name: AODN database
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - common

@@ -1,0 +1,25 @@
+database_connection:
+  login_user: imosadmin
+  login_password: imosadmin
+
+  # UNCOMMENT ONE SECTION ONLY, RDS/non-RDS
+
+  ## start non-RDS
+  login_host: localhost
+  ## end non-RDS
+
+  ## start RDS
+  #rds: true
+  #stack_name: harvest-rc-ansible-test
+  ## end RDS
+
+database:
+  name: harvest
+
+postgresql_extensions:
+  - postgis
+  - uuid-ossp
+
+chef_databags:
+  roles: data_bags/postgresql_roles/db_po_main.json
+  database: data_bags/postgresql_databases/harvest.json

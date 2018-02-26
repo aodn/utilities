@@ -1,0 +1,18 @@
+- name: launch Cloudformation RDS stack
+  cloudformation:
+    stack_name: "{{ database_connection.stack_name }}"
+    state: present
+    region: ap-southeast-2
+    disable_rollback: true
+    template: roles/common/files/rds-cloudformation.yml
+    template_parameters:
+      DBName: "{{ database.name }}"
+      DBPassword: "{{ database_connection.login_user }}"
+      DBUsername: "{{ database_connection.login_password }}"
+  register: rds_stack
+- name: show stack outputs
+  debug: msg="Outputs for stack {{ database_connection.stack_name }} are {{rds_stack.stack_outputs}}"
+
+- name: register RDS database_endpoint
+  set_fact:
+    database_endpoint: "{{ rds_stack.stack_outputs.DatabaseEndpoint }}"

@@ -1,0 +1,8 @@
+database_connection: {}
+database: {}
+database_profiles: []
+postgresql_extensions: []
+postgresql_roles: []
+postgresql_schemas: []
+
+chef_databags: {}

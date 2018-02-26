@@ -1,0 +1,43 @@
+#
+# custom IMOS functions
+#
+
+- name: manage custom IMOS functions
+  postgresql_exec:
+    src: roles/common/files/imos--1.0.sql
+    remote_src: yes
+    database: "{{ database.name }}"
+    host: "{{ database_endpoint }}"
+    user: "{{ database_connection.login_user }}"
+    password: "{{ database_connection.login_password }}"
+
+- name: manage custom IMOS functions owner
+  postgresql_exec:
+    database: "{{ database.name }}"
+    host: "{{ database_endpoint }}"
+    user: "{{ database_connection.login_user }}"
+    password: "{{ database_connection.login_password }}"
+    content: |
+      DO
+      $BODY$
+      DECLARE
+          _sql   text;
+
+      BEGIN
+
+        SELECT INTO _sql
+          string_agg('ALTER FUNCTION '
+            || n.nspname || '.'
+            || p.proname || '('
+            || pg_get_function_identity_arguments(p.oid)
+            || ') OWNER TO {{ database_connection.login_user }};', E'\n'
+          )
+        FROM pg_catalog.pg_proc p
+        JOIN pg_catalog.pg_namespace n ON p.pronamespace = n.oid
+        WHERE n.nspname = 'public';
+
+        EXECUTE _sql;
+
+      END
+      $BODY$;
+  when: rds_mode
