@@ -1,0 +1,125 @@
+
+
+Resources:
+
+  CSWTransformBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::StackName}     
+      WebsiteConfiguration:
+        IndexDocument: index.html
+    DeletionPolicy: Delete
+
+
+  PublicWebsitePolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref CSWTransformBucket
+      PolicyDocument:
+        Statement:
+          -
+            Action:
+              - s3:GetObject
+            Effect: "Allow"
+            Resource:
+              !Join [ "", [ "arn:aws:s3:::", !Ref CSWTransformBucket, "/*"  ] ]
+            Principal: "*"
+
+
+  LambdaCSWTransform:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Code:
+        ZipFile: |
+          import boto3
+          import urllib2
+          import json
+
+          s3_client = boto3.client('s3')
+
+          def handler(event, context):
+              for config_item in event['configs']:
+                  print(json.dumps(config_item))
+                  response = urllib2.urlopen(config_item['url'])
+                  xml = response.read()
+                  transformed_xml = xml.replace(config_item['find'], config_item['replace'])
+                  s3_client.put_object(Body=transformed_xml, Bucket=event['bucket'], Key=config_item['output_key'], ContentType='application/xml')
+
+      Description: transforms csw responses and puts result in s3 bucket
+      FunctionName:
+        !Sub ${AWS::StackName}_CSW_Transform
+      Handler: index.handler
+      MemorySize: 128
+      Role:
+        !GetAtt LambdaRole.Arn
+      Runtime: python2.7
+      Timeout: 120
+    
+
+  CWEvents:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Description: triggers lambda to transform csw 
+      ScheduleExpression: rate(1 hour)
+      State: ENABLED
+      Targets:
+        -
+          Arn: !GetAtt LambdaCSWTransform.Arn
+          Id: LambdaCSWTransform
+          Input: !Sub |
+            {
+              "bucket": "${CSWTransformBucket}",
+              "configs": [
+                {
+                    "url": "https://nzodn.nz/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&acceptVersions=2.0.2",
+                    "output_key": "niwa_csw.xml",
+                    "find": "http://nzodn.nz/geonetwork",
+                    "replace": "https://nzodn.nz/geonetwork"
+                }
+              ]
+            }
+
+
+  LambdaPermissionCWEvents:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName:
+        !GetAtt LambdaCSWTransform.Arn
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+
+
+  LambdaRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        -
+          PolicyName: "inline-policy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: arn:aws:logs:*:*:*
+              -
+                Effect: "Allow"
+                Action:
+                  - s3:PutObject
+                Resource:
+                  - !Sub arn:aws:s3:::${CSWTransformBucket}/*
+            
