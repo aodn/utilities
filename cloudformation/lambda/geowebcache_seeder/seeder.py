@@ -5,7 +5,7 @@ from log import SeederBaseObject
 from six.moves.urllib.error import HTTPError
 from six.moves.urllib.parse import urlencode
 from six.moves.urllib.request import (build_opener, install_opener, urlopen, HTTPBasicAuthHandler,
-                                      HTTPPasswordMgrWithDefaultRealm)
+                                      HTTPPasswordMgrWithDefaultRealm, Request)
 
 
 class GeoWebCache:
@@ -101,10 +101,10 @@ class Seeder(SeederBaseObject):
                                             start_zoom=start_zoom, end_zoom=end_zoom,
                                             req_format=req_format, req_type=req_type,
                                             thread_count=str(thread_count))
-        headers = [('Content-type', 'application/xml')]
+        headers = {'Content-Type': 'application/xml'}
         self.geowebcache_request(self.geowebcache.get_seed_layer_xml_url(layer), options, headers)
 
-    def geowebcache_request(self, geowebcache_url, data, headers=()):
+    def geowebcache_request(self, geowebcache_url, data, headers={}):
         try:
             pass_mgr = HTTPPasswordMgrWithDefaultRealm()
             pass_mgr.add_password(None, geowebcache_url, self.geowebcache.username, self.geowebcache.password)
@@ -112,8 +112,8 @@ class Seeder(SeederBaseObject):
             # Enable to debug http requests and pass the http_handler to build_opener
             # http_handler = HTTPHandler(debuglevel=1)
             opener = build_opener(auth_handler)
-            opener.addheaders = headers
             install_opener(opener)
-            urlopen(url=geowebcache_url, data=data).read()
+            req = Request(url=geowebcache_url, data=data, headers=headers)
+            urlopen(req).read()
         except HTTPError as e:
             self.log_exception(e)
