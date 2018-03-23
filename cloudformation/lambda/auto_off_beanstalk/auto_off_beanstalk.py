@@ -17,16 +17,31 @@ def handler(event, context):
 
     for env in response_de['Environments']:
 
-        if not env['EnvironmentName'].endswith('-prod') \
-                and env['EnvironmentName'] not in skip_envs \
-                and env['Status'] in ('Updating', 'Ready'):
-
+        if not is_excluded(env):
             logger.info("TERMINATING {0} ({1})".format(env['EnvironmentName'], env['Status']))
             ###############
             terminate(env)
             ###############
         else:
             logger.info("EXCLUDING {0} ({1})".format(env['EnvironmentName'], env['Status']))
+
+
+def is_excluded(env):
+    tags = client.list_tags_for_resource(ResourceArn=env['EnvironmentArn'])
+    for tag in tags['ResourceTags']:
+        if "AutoOff" in tag['Key'] and "False" in tag['Value']:
+            return True
+
+    if env['EnvironmentName'].endswith('-prod'):
+        return True
+
+    if env['EnvironmentName'] in skip_envs:
+        return True
+
+    if env['Status'] not in ('Updating', 'Ready'):
+        return True
+
+    return False
 
 
 def terminate(env):
