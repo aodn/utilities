@@ -7,8 +7,6 @@ logger.setLevel(logging.INFO)
 
 # define the connection
 client = boto3.client('elasticbeanstalk')
-skip_envs = ["geoserver-systest", "geowebcache-systest", 'aodn-portal-sandbox', 'geoserver-sandbox',
-             'geowebcache-sandbox', 'thredds-sandbox']
 
 
 def handler(event, context):
@@ -33,9 +31,6 @@ def is_excluded(env):
             return True
 
     if env['EnvironmentName'].endswith('-prod'):
-        return True
-
-    if env['EnvironmentName'] in skip_envs:
         return True
 
     if env['Status'] not in ('Updating', 'Ready'):
