@@ -79,7 +79,7 @@ class Seeder(SeederBaseObject):
                    "<layerName>{layer}</layerName>"
                    "</truncateLayer>").format(layer=layer)
 
-        headers = {'Content-Type': 'application/xml'}
+        headers = {'Content-Type': 'text/xml'}
         self.geowebcache_request(self.geowebcache.get_truncate_url(), options, headers)
 
     def purge_layer(self, layer):
