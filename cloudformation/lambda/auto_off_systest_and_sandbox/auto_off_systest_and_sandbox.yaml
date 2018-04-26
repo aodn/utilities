@@ -84,4 +84,19 @@ Resources:
             "iam:Create*"
               ]
             Resource: '*'
-
+  CloudWatchEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Description: Triggers application cron
+      ScheduleExpression: "cron(0 8 * * ? *)"
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt AutoDelete.Arn
+          Id: "DeleteSystestAndSandboxDaily"
+  PermissionForCloudWatchScheduleRuleToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref AutoDelete
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt CloudWatchEvent.Arn
