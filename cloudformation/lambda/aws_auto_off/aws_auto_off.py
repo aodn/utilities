@@ -1,4 +1,5 @@
 import boto3
+import botocore
 import os
 
 # CONSTANTS
@@ -33,16 +34,23 @@ def is_beanstalk_protected(tags):
 
 
 def terminate_beanstalk_environment(env, client):
-    terminating_env = client.terminate_environment(
-        EnvironmentId=env['EnvironmentId'],
-        EnvironmentName=env['EnvironmentName'],
-        TerminateResources=True,
-        ForceTerminate=True
-    )
-    print('TERMINATING BEANSTALK ENVIRONMENT : EnvironmentName: ' + terminating_env['EnvironmentName'] +
-          ', ApplicationName: ' + terminating_env + ['ApplicationName'] +
-          ', EnvironmentId: ' + terminating_env['EnvironmentId'] +
-          ',Status: ' + terminating_env['Status'])
+
+    try:
+        terminating_env = client.terminate_environment(
+            EnvironmentId=env['EnvironmentId'],
+            EnvironmentName=env['EnvironmentName'],
+            TerminateResources=True,
+            ForceTerminate=True
+        )
+        print('    TERMINATE BEANSTALK ENVIRONMENT : EnvironmentName: ' + terminating_env['EnvironmentName'] +
+              ', ApplicationName: ' + terminating_env + ['ApplicationName'] +
+              ', EnvironmentId: ' + terminating_env['EnvironmentId'] +
+              ',Status: ' + terminating_env['Status'])
+    except botocore.exceptions.ClientError as e:
+        error = e.response['Error']
+        error_code = error['Code']
+        message = error['Message']
+        print('    *!  Exception while trying to terminate beanstalk environment: ErrorCode=' + error_code + ', Message=' + message)
 
 
 def is_ec2_instance_protected(tags):
@@ -71,16 +79,15 @@ def is_ec2_instance_protected(tags):
 
 
 def terminate_ec2_instance(instance, ec2_client):
-    #  TODO: stop or terminate instance?
-    do_terminate = False
-
-    if not do_terminate:
-        print('STOPPING EC2 INSTANCE : ' + instance['InstanceId'])
+    #  Stop EC2 instance
+    try:
+        print('    STOPPING EC2 INSTANCE : ' + instance['InstanceId'])
         ec2_client.instances.filter(InstanceIds=instance['InstanceId']).stop()
-    else:
-        print('TERMINATING EC2 INSTANCE : ' + instance['InstanceId'])
-        ec2_client.instances.filter(InstanceIds=instance['InstanceId']).terminate()
-
+    except botocore.exceptions.ClientError as e:
+        error = e.response['Error']
+        error_code = error['Code']
+        message = error['Message']
+        print('    *!  Exception while trying to terminate/stop EC2 instance: ErrorCode=' + error_code + ', Message=' + message)
 
 def is_cloudformation_stack_protected(stack):
     stack_tags = stack['Tags']
@@ -105,13 +112,26 @@ def is_cloudformation_stack_protected(stack):
     except KeyError:
         pass
 
+    try:
+        if stack['EnableTerminationProtection']:
+            if stack['EnableTerminationProtection'] == 'true':
+                print('    * EnableTerminationProtection=true.  Will not delete.')
+                return True
+    except KeyError:
+        pass
+
     return False
 
 
 def terminate_cloudformation_stack(stack, cloudformation_client):
-    print('DELETING STACK : StackName=' + stack['StackName'] + ', StackId=' + stack['StackId'])
-    delete_stack_response = cloudformation_client.delete_stack(StackId=stack['StackId'])
-
+    print('    DELETE STACK : StackName=' + stack['StackName'] + ', StackId=' + stack['StackId'])
+    try:
+        delete_stack_response = cloudformation_client.delete_stack(StackName=stack['StackName'])
+    except botocore.exceptions.ClientError as e:
+        error = e.response['Error']
+        error_code = error['Code']
+        message = error['Message']
+        print('    *!  Exception while trying to delete stack: ErrorCode=' + error_code + ', Message=' + message)
 
 def handler(event, context):
 
@@ -131,7 +151,7 @@ def handler(event, context):
     session = boto3.session.Session()
 
     stacks_to_delete = []
-    stalks_to_delete = []
+    beanstalks_to_delete = []
     ec2_instances_to_delete = []
 
     print('***  CLOUDFORMATION STACKS')
@@ -178,7 +198,7 @@ def handler(event, context):
     if len(environments) > 0:
         for env in environments:
             if env['Status'] not in ('Updating', 'Ready'):
-                print('    * Status not ready or Updating.  Will not delete.')
+                print('    * Status not Ready or Updating.  Will not delete.')
             else:
                 print('  - Beanstalk environment: EnvironmentName=' + env['EnvironmentName'] +
                       ', Status=' + env['Status'])
@@ -186,9 +206,9 @@ def handler(event, context):
 
                 if not is_beanstalk_protected(tags['ResourceTags']):
                     print('    * Marked for deletion.')
-                    stalks_to_delete.append(env)
+                    beanstalks_to_delete.append(env)
 
-        print('# Elastic beanstalks marked for deletion: ' + str(len(stalks_to_delete)))
+        print('# Elastic beanstalks marked for deletion: ' + str(len(beanstalks_to_delete)))
 
     else:
         print('No elastic beanstalk environments found.')
@@ -236,21 +256,31 @@ def handler(event, context):
             print('No EC2 instances found.')
 
 
-    #  If PERFORM_DELETE_ACTIONS environment variable is set to 'true' - do the shutdown/terminate actions
+    #  If report_only_mode not set to 'true' - do the shutdown/terminate actions
     if perform_delete_actions == 'True':
+
+        print()
+        print('*** PERFORMING DELETE/TERMINATE ACTIONS')
         ###  PERFORM DELETIONS
-        for stack in stacks_to_delete:
-            print('Stack: ' + stack['StackName'])
-            if stack['StackName'] == 'dev-cam':
+        if len(stacks_to_delete) > 0:
+            for stack in stacks_to_delete:
                 terminate_cloudformation_stack(stack, cloudformation_client)
+        else:
+            print('  No cloudformation stacks to delete.')
 
-        for beanstalk in stalks_to_delete:
-            print('Beanstalk: ' + beanstalk['EnvironmentName'])
-            terminate_beanstalk_environment(beanstalk, beanstalk_client)
+        if len(beanstalks_to_delete) > 0:
+            for beanstalk in beanstalks_to_delete:
+                print('Beanstalk: ' + beanstalk['EnvironmentName'])
+                terminate_beanstalk_environment(beanstalk, beanstalk_client)
+        else:
+            print('  No beanstalk environments to delete.')
 
-        for instance in ec2_instances_to_delete:
-            print('Instance: ' + instance['InstanceId'])
-            terminate_ec2_instance(instance, ec2_client)
+        if len(ec2_instances_to_delete) > 0:
+            for instance in ec2_instances_to_delete:
+                print('Instance: ' + instance['InstanceId'])
+                terminate_ec2_instance(instance, ec2_client)
+        else:
+            print('  No EC2 instances to delete.')
 
 
 # MAIN
