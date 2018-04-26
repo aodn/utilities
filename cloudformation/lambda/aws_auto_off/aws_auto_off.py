@@ -1,9 +1,7 @@
 import boto3
-import logging
+import os
 
 # CONSTANTS
-report_only_mode = True
-
 active_stack_statuses = ['CREATE_IN_PROGRESS', 'CREATE_COMPLETE', 'DELETE_FAILED',
                          'UPDATE_IN_PROGRESS', 'UPDATE_COMPLETE_CLEANUP_IN_PROGRESS', 'UPDATE_COMPLETE',
                          'UPDATE_ROLLBACK_IN_PROGRESS', 'UPDATE_ROLLBACK_COMPLETE']
@@ -98,6 +96,15 @@ def is_cloudformation_stack_protected(stack):
     if stack['StackName'] in protected_stack_names:
         print('    * Stack named in protected stack list.  Will not delete.')
         return True
+
+    #  If the stack has a parent - we'll assume that the cleanup will be done from the parent level
+    try:
+        if stack['ParentId']:
+            print('    * Child stack (Parent=' + stack['ParentId'] + '.  Will not delete.')
+            return True
+    except KeyError:
+        pass
+
     return False
 
 
@@ -107,9 +114,18 @@ def terminate_cloudformation_stack(stack, cloudformation_client):
 
 
 def handler(event, context):
-    # setup simple logging for INFO
-    logger = logging.getLogger()
-    logger.setLevel(logging.INFO)
+
+    #  Is the function running in report only mode (no deletions to be performed?)
+    #  Default to running in report only mode
+    try:
+        perform_delete_actions = os.environ['PERFORM_DELETE_ACTIONS']
+        print('Environment variable PERFORM_DELETE_ACTIONS set to ' + perform_delete_actions +
+              '. Set to \'True\' to remove resources marked for deletion.')
+    except KeyError:
+        perform_delete_actions = 'False'
+        print('Environment variable PERFORM_DELETE_ACTIONS not set.' +
+              ' Set to \'True\' to remove resources marked for deletion.')
+
 
     #  Get AWS session
     session = boto3.session.Session()
@@ -136,14 +152,15 @@ def handler(event, context):
             # deleted.
             if stack['StackStatus'] in active_stack_statuses:
                 print('  - Active stack. Name=' + stack['StackName'] + ', Id =' + stack['StackId'] + ', Status=' + stack['StackStatus'])
+
                 if not is_cloudformation_stack_protected(stack):
                     print('    * Marked for deletion.')
                     stacks_to_delete.append(stack)
 
         if len(stacks_to_delete) > 0:
-            print('# Stacks identified for deletion: ' + str(len(stacks_to_delete)))
+            print('# Stacks marked for deletion: ' + str(len(stacks_to_delete)))
         else:
-            print('# No stacks identified for deletion.')
+            print('# No stacks marked for deletion.')
 
 
     ### CLEAN UP ELASTIC BEANSTALKS
@@ -219,8 +236,8 @@ def handler(event, context):
             print('No EC2 instances found.')
 
 
-    #  If report_only_mode not set to 'true' - do the shutdown/terminate actions
-    if not report_only_mode:
+    #  If PERFORM_DELETE_ACTIONS environment variable is set to 'true' - do the shutdown/terminate actions
+    if perform_delete_actions == 'True':
         ###  PERFORM DELETIONS
         for stack in stacks_to_delete:
             print('Stack: ' + stack['StackName'])

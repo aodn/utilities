@@ -15,6 +15,10 @@ Resources:
           Description: 'Shuts down all non-prod cloudformation stacks, elastic beanstalk instances and EC2 instances unless protected by defined tags'
           Role: !GetAtt LambdaExecutionRole.Arn
           Runtime: python2.7
+          Environment:
+            Variables:
+              PERFORM_DELETE_ACTIONS: 'False'
+          Timeout: 60
           Code: .
   LambdaExecutionRole:
       Type: AWS::IAM::Role
@@ -36,10 +40,7 @@ Resources:
               Statement:
               - Effect: Deny
                 Action: [
-                "lambda:PublishVersion",
                 "ec2:Create*",
-                "ec2:DescribeInstances",
-                "ec2:StopInstances",
                 "ecs:Create*",
                 "ecr:Create*",
                 "elasticbeanstalk:Create*",
@@ -65,11 +66,21 @@ Resources:
                 "elasticbeanstalk:TerminateEnvironment"
                   ]
                 Resource: "arn:aws:elasticbeanstalk:*:*:environment/*/*-prod"
+          - PolicyName: PublishAndExecute
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+              - Effect: Allow
+                Action: ['ec2:DescribeInstances',
+                         'ec2:StopInstances',
+                         'lambda:PublishVersion']
+                Resource: '*'
   CloudWatchEvent:
     Type: "AWS::Events::Rule"
+    Condition: IsNonProdAccount
     Properties:
       Description: Triggers application cron
-      ScheduleExpression: "cron(0 8 * * ? *)"
+      ScheduleExpression: "cron(0 7 * * ? *)"
       State: ENABLED
       Targets:
         - Arn: !GetAtt AWSAutoOff.Arn
