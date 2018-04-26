@@ -78,7 +78,6 @@ Resources:
             "dynamodb:Create*",
             "rds:Create*",
             "sqs:Create*",
-            "logs:Create*",
             "codebuild:Create*",
             "route53:Create*",
             "iam:Create*"
