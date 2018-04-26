@@ -1,0 +1,87 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources:
+  AutoDelete:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+        Handler: 'index.lambda_handler'
+        Description: "Delete all the sandbox and systest cloudformation stacks"
+        Role: !GetAtt LambdaExecutionRole.Arn
+        Runtime: python3.6
+        Code:
+          ZipFile: |
+              import boto3
+              client = boto3.client('cloudformation')
+              def lambda_handler(event, context):
+                  stacks_to_bring_down = [
+                      'ci-eb-geowebcache-systest',
+                      'ci-eb-aodn-portal-systest',
+                      'ci-eb-thredds-systest',
+                      'ci-eb-geoserver-systest',
+                      'ci-eb-geowebcache-sandbox',
+                      'ci-eb-aodn-portal-sandbox',
+                      'ci-eb-thredds-sandbox',
+                      'ci-eb-geoserver-sandbox'
+                  ]
+                  for stack in stacks_to_bring_down: client.delete_stack(StackName=stack)
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal: {Service: [lambda.amazonaws.com]}
+          Action: ['sts:AssumeRole']
+      Path: /
+      ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      - arn:aws:iam::aws:policy/AWSElasticBeanstalkFullAccess
+      Policies:
+      - PolicyName: OnlyEbAndCiCloudformation
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+          - Effect: Deny
+            Action: "cloudformation:*"
+            NotResource: [
+              'arn:aws:cloudformation:*:*:stack/ci-eb-*',
+              'arn:aws:cloudformation:*:*:stack/awseb-e-*'
+              ]
+      - PolicyName: ExtraStuff
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+          - Effect: Allow
+            Action: [
+              "route53:*",
+              "iam:*"
+            ]
+            Resource: "*"
+      - PolicyName: NoCreate
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+          - Effect: Deny
+            Action: [
+            "elasticbeanstalk:Create*",
+            "ec2:Create*",
+            "ecs:Create*",
+            "ecr:Create*",
+            "elasticloadbalancing:Create*",
+            "autoscaling:Create*",
+            "cloudwatch:Create*",
+            "s3:Create*",
+            "sns:Create*",
+            "cloudformation:Create*",
+            "dynamodb:Create*",
+            "rds:Create*",
+            "sqs:Create*",
+            "logs:Create*",
+            "codebuild:Create*",
+            "route53:Create*",
+            "iam:Create*"
+              ]
+            Resource: '*'
+
