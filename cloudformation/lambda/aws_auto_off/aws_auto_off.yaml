@@ -1,0 +1,93 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: 'CloudFormation template - Shuts down all non-prod cloudformation stacks, elastic beanstalk instances and EC2 instances'
+Mappings:
+  EnvironmentMap:
+    production:
+      AccountId: 104044260116
+Conditions:
+  IsNonProdAccount: !Not [!Equals [!Ref 'AWS::AccountId', !FindInMap [EnvironmentMap, production, AccountId]]]
+Resources:
+  AWSAutoOff:
+      Type: 'AWS::Lambda::Function'
+      Condition: IsNonProdAccount
+      Properties:
+          Handler: 'aws_auto_off.handler'
+          Description: 'Shuts down all non-prod cloudformation stacks, elastic beanstalk instances and EC2 instances unless protected by defined tags'
+          Role: !GetAtt LambdaExecutionRole.Arn
+          Runtime: python2.7
+          Environment:
+            Variables:
+              PERFORM_DELETE_ACTIONS: 'False'
+          Timeout: 60
+          Code: .
+  LambdaExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+          AssumeRolePolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+              - Effect: Allow
+                Principal: {Service: [lambda.amazonaws.com]}
+                Action: ['sts:AssumeRole']
+          Path: /
+          ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+          - arn:aws:iam::aws:policy/AWSElasticBeanstalkFullAccess
+          Policies:
+          - PolicyName: NoCreate
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+              - Effect: Deny
+                Action: [
+                "ec2:Create*",
+                "ecs:Create*",
+                "ecr:Create*",
+                "elasticbeanstalk:Create*",
+                "elasticloadbalancing:Create*",
+                "autoscaling:Create*",
+                "cloudwatch:Create*",
+                "s3:Create*",
+                "sns:Create*",
+                "cloudformation:Create*",
+                "dynamodb:Create*",
+                "rds:Create*",
+                "sqs:Create*",
+                "codebuild:Create*"
+                  ]
+                Resource: '*'
+          - PolicyName: NoProdTerminate
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+              - Effect: Deny
+                Action: [
+                "elasticbeanstalk:TerminateEnvironment"
+                  ]
+                Resource: "arn:aws:elasticbeanstalk:*:*:environment/*/*-prod"
+          - PolicyName: PublishAndExecute
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+              - Effect: Allow
+                Action: ['ec2:DescribeInstances',
+                         'ec2:StopInstances',
+                         'lambda:PublishVersion']
+                Resource: '*'
+  CloudWatchEvent:
+    Type: "AWS::Events::Rule"
+    Condition: IsNonProdAccount
+    Properties:
+      Description: Triggers application cron
+      ScheduleExpression: "cron(0 7 * * ? *)"
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt AWSAutoOff.Arn
+          Id: "AWSAutoOff"
+  PermissionForCloudWatchScheduleRuleToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref AWSAutoOff
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt CloudWatchEvent.Arn
