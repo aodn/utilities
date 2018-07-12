@@ -7,7 +7,7 @@ You need to migrate collections from one geonetwork instance to another using th
 
 Harvest the collections from the source cataloue into a staging geonetwork instance where you can safely edit metadata (in the database) and verify it is correct before harvesting into the target catalogue.
 
-Editing the `Point of truth` is possible by executing sql statements on a database. For this reason, the staging geoserver instance needs to be configured using `postgresql` instead of the default `h2`
+Editing the `Point of truth` is possible by executing sql statements on a database. For this reason, the staging geonetwork instance needs to be configured using `postgresql` instead of the default `h2`
 
 
 ### NOTES
@@ -21,8 +21,8 @@ Editing the `Point of truth` is possible by executing sql statements on a databa
 3. System Configuration
     - go to 'Adminstration'
     - click 'System configuration'
-    - preferred protocol: *<desired point of truth schema>*
-    - host: *<set to the desired point of truth>*
+    - preferred protocol: <schema for this geonetwork instance>
+    - host: <host for this geonetwork instance>
     - port: 80
     - secure port: 443
     - save
@@ -93,10 +93,9 @@ cat $METADATA_DOWNLOAD_DIR/update_points_of_truth.sql
 
 Once the sql script has been run, use these steps to verify what the updated points of truth are
 
+```
 VERIFY_DIR=/tmp/metadata_verify
 mkdir $VERIFY_DIR
-
-```
 python saver.py $GEONETWORK $VERIFY_DIR
 ```
 
