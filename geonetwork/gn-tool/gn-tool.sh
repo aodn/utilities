@@ -38,15 +38,10 @@ get_deleted_records() {
 
 # return all available record uuids in geonetwork
 # $1 - geonetwork address
-# $2 - geonetwork user
-# $3 - geonetwork password
 get_all_records() {
     local gn_addr=$1; shift
-    local gn_user=$1; shift
-    local gn_password=$1; shift
 
-    curl -s "$gn_addr/srv/eng/xml.search.imos?fast=index" | \
-        grep "<uuid>.*</uuid>" | tr -s " " | cut -c8-43
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index"
 }
 
 # delete a single record
