@@ -116,12 +116,14 @@ export_records() {
 # $3 - geonetwork user
 # $4 - geonetwork password
 # $5 - geonetwork group id
+# $6 - geonetwork uuid action
 import_record() {
     local record_dir_path=$1; shift
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
     local group=$1; shift
+    local uuid_action=$1; shift
 
     # prepare MEF file
     local tmp_mef=`mktemp`
@@ -138,7 +140,7 @@ import_record() {
         -F "category=_none_" \
         -F "group=$group" \
         -F "styleSheet=_none_" \
-        -F "uuidAction=overwrite" \
+        -F "uuidAction=$uuid_action" \
         -F "template=n" \
         -F mefFile=@$tmp_mef \
         $gn_addr/srv/eng/mef.import && \
@@ -158,18 +160,20 @@ import_record() {
 # $3 - geonetwork user
 # $4 - geonetwork password
 # $5 - geonetwork group id
+# $6 - geonetwork uuid action
 import_records() {
     local record_location=$1; shift
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
     local group=$1; shift
+    local uuid_action=$1; shift
 
     local record_file
     local -i retval=0
     if [ -d $record_location ]; then
         for record_file in $record_location/*; do
-            import_record $record_file $gn_addr $gn_user $gn_password $group
+            import_record $record_file $gn_addr $gn_user $gn_password $group $uuid_action
             let retval=$retval+$?
         done
     else
@@ -248,6 +252,7 @@ Options:
   -g                         Geonetwork address like http://a.b.c.d/geonetwork
   -u                         Username to login with.
   -p                         Password to login with.
+  -y                         Import action type must be one of 'overwrite', or 'nothing' or 'generateUUID'
   -z                         Genetwork group id."
     exit 3
 }
@@ -255,7 +260,7 @@ Options:
 main() {
     # parse options with getopt
     local tmp_getops
-    tmp_getops=`getopt hGo:l:g:u:p:z: $*`
+    tmp_getops=`getopt hGo:l:g:u:p:y:z: $*`
     [ $? != 0 ] && usage
 
     set -- $tmp_getops
@@ -264,6 +269,7 @@ main() {
     local record_uuid="ALL"
     local git=no
     local group=2
+    local uuid_action="nothing"
 
     # parse the options
     while true ; do
@@ -276,6 +282,7 @@ main() {
             -g) gn_addr="$2"; shift 2;;
             -u) gn_user="$2"; shift 2;;
             -p) gn_password="$2"; shift 2;;
+            -y) uuid_action="$2"; shift 2;;
             -z) group="$2"; shift 2;;
             --) shift; break;;
             *) usage;;
@@ -295,7 +302,7 @@ main() {
         if [ "$git" = "yes" ]; then
             import_records_git $location $gn_addr $gn_user $gn_password
         else
-            import_records $location $gn_addr $gn_user $gn_password $group
+            import_records $location $gn_addr $gn_user $gn_password $group $uuid_action
         fi
     elif [ "$operation" = "export" ]; then
         export_records $record_uuid $location $gn_addr $gn_user $gn_password
