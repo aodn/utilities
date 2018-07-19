@@ -133,7 +133,7 @@ import_record() {
 
     echo "Importing record '$uuid' from '$record_dir_path'"
 
-    curl -s -X POST \
+    body=$(curl -s -X POST \
         -u $gn_user:$gn_password \
         -F "insert_mode=1" \
         -F "file_type=mef" \
@@ -143,13 +143,17 @@ import_record() {
         -F "uuidAction=$uuid_action" \
         -F "template=n" \
         -F mefFile=@$tmp_mef \
-        $gn_addr/srv/eng/mef.import && \
+        $gn_addr/srv/eng/mef.import)
 
-    curl -s \
+    echo ${body}
+
+    if [[ ${body} != *"ERROR"* ]]; then
+        curl -s \
         -u $gn_user:$gn_password \
         -d "_1_0=on&_1_1=on&_1_5=on&_1_6=on&_${group}_0=on&_${group}_1=on&_${group}_5=on&_${group}_6=on" \
         -d "uuid=$uuid" \
-        $gn_addr/srv/eng/metadata.admin && \
+        $gn_addr/srv/eng/metadata.admin
+    fi
 
     rm -f $tmp_mef
 }
