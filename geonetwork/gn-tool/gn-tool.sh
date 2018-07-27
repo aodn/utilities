@@ -38,15 +38,10 @@ get_deleted_records() {
 
 # return all available record uuids in geonetwork
 # $1 - geonetwork address
-# $2 - geonetwork user
-# $3 - geonetwork password
 get_all_records() {
     local gn_addr=$1; shift
-    local gn_user=$1; shift
-    local gn_password=$1; shift
 
-    curl -s "$gn_addr/srv/eng/xml.search.imos?fast=index" | \
-        grep "<uuid>.*</uuid>" | tr -s " " | cut -c8-43
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index"
 }
 
 # delete a single record
@@ -120,11 +115,15 @@ export_records() {
 # $2 - geonetwork address
 # $3 - geonetwork user
 # $4 - geonetwork password
+# $5 - geonetwork group id
+# $6 - geonetwork uuid action
 import_record() {
     local record_dir_path=$1; shift
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
+    local group=$1; shift
+    local uuid_action=$1; shift
 
     # prepare MEF file
     local tmp_mef=`mktemp`
@@ -134,22 +133,28 @@ import_record() {
 
     echo "Importing record '$uuid' from '$record_dir_path'"
 
-    curl -s -X POST \
+    body=$(curl -s -X POST \
         -u $gn_user:$gn_password \
         -F "insert_mode=1" \
         -F "file_type=mef" \
         -F "category=_none_" \
-        -F "group=2" \
+        -F "group=$group" \
         -F "styleSheet=_none_" \
-        -F "uuidAction=overwrite" \
+        -F "uuidAction=$uuid_action" \
         -F "template=n" \
         -F mefFile=@$tmp_mef \
-        $gn_addr/srv/eng/mef.import && \
-    curl -s \
+        $gn_addr/srv/eng/mef.import)
+
+    echo ${body}
+
+    if [[ ${body} != *"ERROR"* ]]; then
+        curl -s \
         -u $gn_user:$gn_password \
-        -d "_1_0=on&_1_1=on&_1_5=on&_1_6=on" \
+        -d "_1_0=on&_1_1=on&_1_5=on&_1_6=on&_${group}_0=on&_${group}_1=on&_${group}_5=on&_${group}_6=on" \
         -d "uuid=$uuid" \
-        $gn_addr/srv/eng/metadata.admin && \
+        $gn_addr/srv/eng/metadata.admin
+    fi
+
     rm -f $tmp_mef
 }
 
@@ -158,21 +163,25 @@ import_record() {
 # $2 - geonetwork address
 # $3 - geonetwork user
 # $4 - geonetwork password
+# $5 - geonetwork group id
+# $6 - geonetwork uuid action
 import_records() {
     local record_location=$1; shift
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
+    local group=$1; shift
+    local uuid_action=$1; shift
 
     local record_file
     local -i retval=0
     if [ -d $record_location ]; then
         for record_file in $record_location/*; do
-            import_record $record_file $gn_addr $gn_user $gn_password
+            import_record $record_file $gn_addr $gn_user $gn_password $group $uuid_action
             let retval=$retval+$?
         done
     else
-        import_record $record_location $gn_addr $gn_user $gn_password
+        import_record $record_location $gn_addr $gn_user $gn_password $group
         let retval=$retval+$?
     fi
     return $retval
@@ -246,14 +255,16 @@ Options:
   -l                         Location to read/write records from/to.
   -g                         Geonetwork address like http://a.b.c.d/geonetwork
   -u                         Username to login with.
-  -p                         Password to login with."
+  -p                         Password to login with.
+  -y                         Import action type must be one of 'overwrite', or 'nothing' or 'generateUUID'
+  -z                         Genetwork group id."
     exit 3
 }
 
 main() {
     # parse options with getopt
     local tmp_getops
-    tmp_getops=`getopt hGo:l:g:u:p: $*`
+    tmp_getops=`getopt hGo:l:g:u:p:y:z: $*`
     [ $? != 0 ] && usage
 
     set -- $tmp_getops
@@ -261,6 +272,8 @@ main() {
     local location operation
     local record_uuid="ALL"
     local git=no
+    local group=2
+    local uuid_action="nothing"
 
     # parse the options
     while true ; do
@@ -273,6 +286,8 @@ main() {
             -g) gn_addr="$2"; shift 2;;
             -u) gn_user="$2"; shift 2;;
             -p) gn_password="$2"; shift 2;;
+            -y) uuid_action="$2"; shift 2;;
+            -z) group="$2"; shift 2;;
             --) shift; break;;
             *) usage;;
         esac
@@ -291,7 +306,7 @@ main() {
         if [ "$git" = "yes" ]; then
             import_records_git $location $gn_addr $gn_user $gn_password
         else
-            import_records $location $gn_addr $gn_user $gn_password
+            import_records $location $gn_addr $gn_user $gn_password $group $uuid_action
         fi
     elif [ "$operation" = "export" ]; then
         export_records $record_uuid $location $gn_addr $gn_user $gn_password
