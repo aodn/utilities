@@ -196,36 +196,37 @@ def mkdir_p(sftp, remote_directory):
 
 
 if __name__ == '__main__':
-    import optparse
+    import argparse
 
     default_config_file = u'ftp.conf'
 
     # Create parser, and configure command line options to parse
-    parser = optparse.OptionParser()
-    parser.add_option("-l", "--local_dir",
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-l", "--local_dir",
                       dest="local_dir",
                       help="[REQUIRED] Local Directory",
                       default=None)
-    parser.add_option("-u", "--username",
+    parser.add_argument("-u", "--username",
                       dest="username",
                       help="[REQUIRED] username",
                       default=None)
-    parser.add_option("-s","--server",
+    parser.add_argument("-s","--server",
                       dest="server",
                       help="[REQUIRED] Server Address",
                       default=None)
-    parser.add_option("-m",
+    parser.add_argument("-m",
                       action="store_true",
                       dest="monitor",
                       help="Monitor directory changes SLEEP_SECONDS: %s" % SLEEP_SECONDS,
                       default=None)
-    parser.add_option("-w",
+    parser.add_argument("-w",
                       action="store_true",
                       dest="walkdir",
                       help="Walk sub directories of the given directory to find files to send.",
                       default=None)
 
-    (options,args) = parser.parse_args()
+    options = parser.parse_args()
 
     if (options.username and options.server) or os.path.exists(default_config_file):
 
