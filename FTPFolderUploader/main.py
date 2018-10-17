@@ -240,8 +240,8 @@ if __name__ == '__main__':
                 server = config['ftp_conf']['server'] if options.server is None else options.server
                 username = config['ftp_conf']['username'] if options.username is None else options.username
                 local_dir = config['ftp_conf']['local_dir'] if options.local_dir is None else options.local_dir
-                monitor = eval(config['ftp_conf']['monitor']) if options.monitor is None else options.monitor
-                walkdir =  eval(config['ftp_conf']['walkdir']) if options.walkdir is None else options.walkdir
+                monitor = config.getboolean('ftp_conf', 'monitor') if options.monitor is None else options.monitor
+                walkdir = config.getboolean('ftp_conf', 'walkdir') if options.walkdir is None else options.walkdir
 
                 print('\n** Using local config file %s (and cmd overrides %s) **\n' % (default_config_file, options))
 
