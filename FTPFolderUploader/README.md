@@ -32,7 +32,7 @@ Uneccessary transfers will occur currently.
 
 - Add group 'sftp_users' then the user `tester`
 ```angular2html
- useradd -u tester -G sftp_users -p password 
+ useradd -u tester -G sftp_users -p password -s /usr/sbin/nologin
 ```
 - Create home directory and staging folder acceptable to chroot
 (note ownership and permissions)

@@ -13,6 +13,7 @@ import paramiko
 
 SLEEP_SECONDS = 10
 REMOTE_INCOMING_DIR = "staging"
+FILE_KEY = 'path'
 
 
 def _get_local_files(local_dir, walkdir=False):
@@ -44,7 +45,7 @@ def _get_local_files(local_dir, walkdir=False):
             if this_file not in ignore_files and os.path.splitext(this_file)[-1].lower() not in ignore_file_ext:
                 filepath = os.path.join(current_dir, this_file)
                 file_monitor_dict = {
-                                     'path': filepath,
+                                     FILE_KEY: filepath,
                                      'mtime': os.path.getmtime(filepath)
                                      }
                 result_list.append(file_monitor_dict)
@@ -60,7 +61,7 @@ def monitor_and_ftp(server,
     last_files_list = _get_local_files(local_dir, walkdir)
 
     '''Monitor local files and when an update is found connect and upload'''
-    print('\nMonitoring changes in (%s).' % (os.path.abspath(local_dir)))
+    print(f'\nMonitoring changes in ({os.path.abspath(local_dir)}).')
     print('(Use ctrl-c to exit)')
 
     while True:
@@ -72,14 +73,21 @@ def monitor_and_ftp(server,
 
             for idx in range(len(latest_files_list)):
 
-                if idx < len(last_files_list):
+                latest_file = latest_files_list[idx]
+                latest_filename = latest_file[FILE_KEY]
+
+                # get the matching entry from last_files_list
+                item = find_dict_in_list(last_files_list, latest_filename, FILE_KEY)
+
+                if item:
+
                     # compare last modified times
-                    if latest_files_list[idx]['mtime'] > last_files_list[idx]['mtime']:
-                        files_to_update.append(latest_files_list[idx])
+                    if latest_file['mtime'] > item['mtime']:
+                        files_to_update.append(latest_file)
 
                 else:
                     # add the file to the list (new file)
-                    files_to_update.append(latest_files_list[idx])
+                    files_to_update.append(latest_file)
 
             if files_to_update:
                 print()
@@ -106,6 +114,11 @@ def monitor_and_ftp(server,
             break
 
 
+def find_dict_in_list(list_of_dicts, key, key_match):
+    for p in list_of_dicts:
+        if p[key_match] == key:
+            return p
+
 def upload_all(server,
                username,
                password,
@@ -113,7 +126,7 @@ def upload_all(server,
                files_to_update=None,
                walkdir=False
                ):
-    print('\nUploading files in (%s)' % (os.path.abspath(local_dir)))
+    print(f'\nUploading files in ({os.path.abspath(local_dir)})')
     continue_on = False
     server_connect_ok = False
 
@@ -131,18 +144,23 @@ def upload_all(server,
             connection.connect(username=username, password=password)
             sftp = paramiko.SFTPClient.from_transport(connection)
 
-            print('Logged in successfully (%s) as (%s)' % (server, username))
+            print(f"Logged in successfully ({server}) as ({username})")
 
             server_connect_ok = True
 
         except paramiko.ssh_exception.SSHException as e:
             print(e)
         except paramiko.ssh_exception.NoValidConnectionsError as e:
-            print('SSH transport is not ready. %s' % (str(e.args)))
+            print(f"SSH transport is not ready. {str(e.args)}")
 
         if server_connect_ok:
 
-            sftp.chdir(REMOTE_INCOMING_DIR)
+            try:
+                sftp.chdir(REMOTE_INCOMING_DIR)
+            except:
+                print(f'ERROR: Cannot change CWD to "{REMOTE_INCOMING_DIR}" - so exiting...')
+                sys.exit()
+
             for file_info in local_files:
 
                 source = file_info['path']
@@ -158,19 +176,19 @@ def upload_all(server,
                         mkdir_p(sftp, remote_path.replace(filename, ''))
                         response = sftp.put(source, relative_remote_path, callback=None, confirm=True)
                         # todo response contains atime and mtime. Store this ?
-                        print("Uploaded/checked %s" % relative_remote_path)
+                        print(f"Uploaded or checked {relative_remote_path}")
                         continue_on = True
                     except Exception as e:
                         print('ERROR!')
                         print(str(e.args))
                         print()
                 else:
-                    print("WARNING -- File no longer exists, (%s)!" % source)
+                    print(f"WARNING -- File no longer exists, ({source})!")
 
             connection.close()
             print('Closing Connection')
     else:
-        print('ERROR -- No files found in (%s) walkdir=%s' % (local_dir, walkdir))
+        print(f'ERROR -- No files found in ({local_dir}) walkdir={walkdir}')
 
     return continue_on
 
@@ -192,13 +210,13 @@ def mkdir_p(sftp, remote_directory):
             new_dir = True
 
     if new_dir:
-            print("Created %s" % remote_directory)
+            print(f"Created {remote_directory}")
 
 
 if __name__ == '__main__':
     import argparse
 
-    default_config_file = u'ftp.conf'
+    default_config_file = 'ftp.conf'
 
     # Create parser, and configure command line options to parse
 
@@ -218,7 +236,7 @@ if __name__ == '__main__':
     parser.add_argument("-m",
                       action="store_true",
                       dest="monitor",
-                      help="Monitor directory changes SLEEP_SECONDS: %s" % SLEEP_SECONDS,
+                      help="Monitor directory changes",
                       default=None)
     parser.add_argument("-w",
                       action="store_true",
@@ -243,12 +261,12 @@ if __name__ == '__main__':
                 monitor = config.getboolean('ftp_conf', 'monitor') if options.monitor is None else options.monitor
                 walkdir = config.getboolean('ftp_conf', 'walkdir') if options.walkdir is None else options.walkdir
 
-                print('\n** Using local config file %s (and cmd overrides %s) **\n' % (default_config_file, options))
+                print(f'\n** Using local config file {default_config_file} (and cmd overrides {options}) **\n')
 
             except KeyError as e:
                 print("ERROR --", str(e.args))
                 print()
-                print('Value(s) missing in %s file!  The following values MUST be included:' % default_config_file)
+                print(f'Value(s) missing in %s file!  The following values MUST be included:{default_config_file}')
                 print('================================')
                 print('server = <server to ftp to>')
                 print('username = <Username for access to given server>')
@@ -264,10 +282,10 @@ if __name__ == '__main__':
             monitor = options.monitor
             walkdir = options.walkdir
 
-            print('\n** Using: %s **\n' % options)
+            print(f'\n** Using: {options} **\n')
 
         # get the user password
-        prompt = 'Password for (%s@%s) ?: ' % (username, server)
+        prompt = f'Password for ({username}@{server}) ?: '
 
         if os.isatty(sys.stdin.fileno()):
             p = getpass.getpass(prompt)
