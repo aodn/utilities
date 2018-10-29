@@ -8,7 +8,7 @@ Can poll (or run once) uploading local changed files in a directory to an SFTP s
 ### Requirements
 
 - Python 3.6
-- pip install paramiko
+- pip install paramiko humanize
 
 ### Usage
 

@@ -10,6 +10,7 @@ import getpass
 import sys
 import time
 import paramiko
+import humanize
 
 SLEEP_SECONDS = 10
 REMOTE_INCOMING_DIR = "staging"
@@ -174,9 +175,8 @@ def upload_all(server,
 
                         # todo compare mtimes with server
                         mkdir_p(sftp, remote_path.replace(filename, ''))
-                        response = sftp.put(source, relative_remote_path, callback=None, confirm=True)
-                        # todo response contains atime and mtime. Store this ?
-                        print(f"Uploaded or checked {relative_remote_path}")
+                        print(f"\nUploaded or checked {relative_remote_path}")
+                        sftp.put(source, relative_remote_path, callback=print_totals, confirm=True)
                         continue_on = True
                     except Exception as e:
                         print('ERROR!')
@@ -186,11 +186,18 @@ def upload_all(server,
                     print(f"WARNING -- File no longer exists, ({source})!")
 
             connection.close()
-            print('Closing Connection')
+            print('\nClosing Connection')
     else:
         print(f'ERROR -- No files found in ({local_dir}) walkdir={walkdir}')
 
     return continue_on
+
+
+def print_totals(transferred, toBeTransferred):
+
+    transferring = humanize.naturalsize(transferred)
+    total = humanize.naturalsize(toBeTransferred)
+    print(f"Transferred: {transferring} Out of: {total} ", end="\r")
 
 
 def mkdir_p(sftp, remote_directory):
