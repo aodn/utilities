@@ -241,6 +241,9 @@ def cli():
     valid_layers, invalid_layers = validate_layers(all_layers, all_styles)
     print(get_layer_summary(valid_layers, invalid_layers))
 
+    if invalid_layers:
+        parser.exit(1)
+
 
 if __name__ == '__main__':
     cli()
