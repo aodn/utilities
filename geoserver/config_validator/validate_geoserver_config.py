@@ -46,20 +46,23 @@ class Layer(object):
     """Represents a layer.xml file in a Geoserver config workspace
     """
 
-    def __init__(self, name, style, xml_file_path):
+    def __init__(self, name, style, datastore, workspace, xml_file_path):
         self.name = name
         self.style = style
+        self.datastore = datastore
+        self.workspace = workspace
         self.xml_file_path = xml_file_path
 
         self.status = 'UNKNOWN'
         self.status_message = ''
 
     def __repr__(self):
-        return ("{s.__class__.__name__}(name='{s.name}', style={s.style}, "
-                "invalid_message={s.invalid_message}, xml_file_path='{s.xml_file_path}')").format(s=self)
+        return ("{s.__class__.__name__}(name='{s.name}', style={s.style}, datastore={s.datastore}, "
+                "workspace={s.workspace},invalid_message={s.invalid_message}, "
+                "xml_file_path='{s.xml_file_path}')").format(s=self)
 
     def __str__(self):
-        return "{s.name}: status='{s.status}' reason='{s.status_message}'".format(s=self)
+        return "{s.workspace}:{s.name} - status='{s.status}' reason='{s.status_message}'".format(s=self)
 
     @classmethod
     def from_xml_file(cls, xml_file):
@@ -70,7 +73,8 @@ class Layer(object):
         """
         root = ElementTree.parse(xml_file)
         style = Style(root.findtext('./defaultStyle/id'), root.findtext('./defaultStyle/name'))
-        return cls(root.findtext('./name'), style, xml_file)
+        path_info = get_path_info_from_layer_xml_path(xml_file)
+        return cls(root.findtext('./name'), style, path_info['datastore'], path_info['workspace'], xml_file)
 
 
 class Style(object):
@@ -140,6 +144,21 @@ def find_style_xml_files(root_dir):
         if os.path.basename(root) == 'styles':
             style_xml_files.extend(os.path.join(root, name) for name in files if name.endswith('.xml'))
     return style_xml_files
+
+
+def get_path_info_from_layer_xml_path(layer_xml):
+    """Get the datastore and workspace of a layer.xml file by traversing back up the path
+
+    :param layer_xml: full path to a layer.xml file
+    :return: workspace in which the layer.xml resides
+    """
+    datastore_dir = os.path.dirname(os.path.dirname(layer_xml))
+    datastore = os.path.basename(datastore_dir)
+    workspace = os.path.basename(os.path.dirname(datastore_dir))
+    return {
+        'datastore': datastore,
+        'workspace': workspace
+    }
 
 
 def load_layers(workspace_dir):
