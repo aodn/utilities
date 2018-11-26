@@ -45,3 +45,6 @@ The simplest use case is to run with no parameters, which will cause the script 
 2018-11-26 15:40:12,977 INFO [rotatekey] updated credentials file '/home/joebloggs/.aws/credentials' with new key: MY_NEW_ACCESS_KEY
 2018-11-26 15:40:12,978 INFO [rotatekey] successfully validated new key, deleting old key: MY_OLD_ACCESS_KEY
 ```
+
+### Important note
+If you store your key in multiple places for some reason, you will need to manually retrieve your key pair from the credentials file for use elsewhere. Don't try to run this utility multiple times, because it will clobber your key each time!
