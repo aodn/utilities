@@ -134,7 +134,7 @@ if __name__ == '__main__':
     with open(args.zone_json) as f:
         all_records = json.load(f)
 
-    exclusions = [strip_trailing_dot(e) for e in args.exclude]
+    exclusions = [strip_trailing_dot(e) for e in args.exclude] if args.exclude else []
     all_unmanaged_records = [r for r in all_records['ResourceRecordSets'] if not exclude_record(r, exclusions=exclusions)]
     alias_records = [r for r in all_unmanaged_records if r.get('AliasTarget') and r['Type'] == 'A']
     simple_records = [r for r in all_unmanaged_records if
