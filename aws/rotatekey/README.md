@@ -11,7 +11,7 @@ This utility is used to rotate a user's default AWS key pair in a single command
 1. Ensure that you have boto3 installed
     ```bash
     pip install --upgrade boto3
-    ```
+    ```    
 
 ### Usage
 ```bash
@@ -27,12 +27,17 @@ optional arguments:
                         don't make any changes
 ```
 
-The simplest use case is to run with no parameters, which will cause the script to 
+The simplest use case is to run with no parameters, which will cause the script to:
 1. authenticate to AWS using your current "default" credentials
 1. create a second key
 1. validate the new key
 1. update your AWS credentials file (usually ~/.aws/credentials) with the new key pair
 1. remove your old key
+
+```bash
+$ cd aws/rotatekey/
+$ ./rotatekey.py
+```
 
 ```
 2018-11-26 15:39:58,680 INFO [rotatekey] loaded current credentials from: /home/joebloggs/.aws/credentials
