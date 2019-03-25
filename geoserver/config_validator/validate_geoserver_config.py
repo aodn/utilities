@@ -14,7 +14,7 @@ class ValidationError(Exception):
     pass
 
 
-def validate_layer_default_style(layer, styles):
+def validate_layer_default_style(layer, styles, raise_on_missing=False):
     """Validator to check for a valid defaultStyle tag
 
     :param layer: layer to validate
@@ -26,6 +26,8 @@ def validate_layer_default_style(layer, styles):
         return
 
     if layer.style.id is None:
+        if not raise_on_missing:
+            return
         status_message = "missing defaultStyle tag".format(layer=layer)
     else:
         status_message = "references nonexistent style: {layer.style.id}".format(layer=layer)
