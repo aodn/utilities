@@ -1,0 +1,20 @@
+
+
+name: soop_trv
+type: pipeline_version_2
+po: laurent
+input_files:
+ - IMOS_SOOP-TRV_S_20190328T191556Z_VMQ9273_FV01_END-20190407T215725Z.nc
+liqui: true
+incoming_dir: /mnt/ebs/incoming/SOOP/TRV
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_TRV.log
+talend_jobs:
+  - soop_trv-soop_trv
+database_schemas:
+  -
+    name: soop_trv
+    tables:
+      - name: index_job
+        exclude_columns: [id, name]
+      - name: indexed_file
+        exclude_columns: [id, job_id, url, size, deleted]

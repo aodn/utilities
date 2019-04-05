@@ -1,0 +1,21 @@
+
+
+# TODO
+
+name: argo
+type: pipeline_version_2
+po: laurent
+input_files:
+ -
+liqui: true
+incoming_dir: /mnt/ebs/incoming/Argo
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ARGO.log
+talend_jobs:
+  - anmn_ts_timeseries-anmn_ts_timeseries
+  - moorings_metadata-moorings_metadata
+database_schemas:
+  -
+    name:
+    tables:
+      - name:
+        exclude_columns: []

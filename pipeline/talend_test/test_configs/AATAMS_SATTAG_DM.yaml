@@ -1,0 +1,22 @@
+
+# TODO
+
+name: aatams_sattag_dm
+type: pipeline_version_1
+po: xavier
+input_files:
+  -
+liqui: true
+incoming_dir: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_DM
+talend_log_dir: /mnt/ebs/log/data-services/AATAMS_SATTAG_DM
+talend_jobs:
+  - aatams_sattag_dm-aatams_sattag_dm
+database_schemas:
+  -
+    name: aatams_sattag_dm
+    tables:
+      - name: index_job
+        exclude_columns: [id, name]
+      - name: indexed_file
+        exclude_columns: [id, job_id, url, size, deleted]
+

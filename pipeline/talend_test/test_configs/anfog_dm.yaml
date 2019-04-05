@@ -1,0 +1,24 @@
+
+
+name: anfog_dm
+type: pipeline_version_2
+po: bp
+input_files:
+ - TasEastCoast20190213.zip
+incoming_dir: /mnt/ebs/incoming/ANFOG/processed
+liqui: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANFOG_DM.log
+talend_jobs:
+  - anfog_dm-anfog_dm
+database_schemas:
+  -
+    name: anfog_dm
+    tables:
+      - name: anfog_dm_trajectory_map
+        exclude_columns: []
+      - name: anfog_dm_trajectory_data
+        exclude_columns: []
+      - name: anfog_uwa_glider_trajectory_data
+        exclude_columns: []
+      - name: anfog_uwa_glider_trajectory_map
+        exclude_columns: []
