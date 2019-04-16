@@ -1,0 +1,32 @@
+
+cd+++++++++ nmdis/
+cd+++++++++ nmdis/2901616/
+cd+++++++++ nmdis/2901616/profiles/
+.d..t...... ./
+>f+++++++++ nmdis/2901616/2901616_meta.nc
+>f+++++++++ nmdis/2901616/2901616_prof.nc
+>f+++++++++ nmdis/2901616/2901616_Rtraj.nc
+>f+++++++++ nmdis/2901616/2901616_tech.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_000D.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_000.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_001.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_002.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_004.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_005.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_006.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_007.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_008.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_009.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_010.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_011.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_012.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_013.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_014.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_015.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_016.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_017.nc
+>f+++++++++ nmdis/2901616/profiles/R2901616_018.nc
+
+receiving incremental file list
+sent 48,490 bytes  received 15,680,230 bytes  299,594.67 bytes/sec
+total size is 128,338,604  speedup is 8.16

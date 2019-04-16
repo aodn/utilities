@@ -1,0 +1,18 @@
+name: argo
+type: pipeline_version_2
+po: laurent
+input_files:
+ - argo_rsync.20190416-112046.rsync_manifest
+liqui: true
+incoming_dir: /mnt/ebs/incoming/Argo
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ARGO.log
+talend_jobs:
+  - argo-argo
+database_schemas:
+  -
+    name: argo
+    tables:
+      - name: argo_profile_map
+        exclude_columns: [created, modified, first_indexed, last_indexed]
+      - name: argo_primary_profile_core_low_res_good_qc_data
+        exclude_columns: [created, modified, first_indexed, last_indexed]
