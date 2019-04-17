@@ -3,10 +3,10 @@
 name: aodn_nsw_oeh
 type: pipeline_version_1
 po: marty
-input_files:
-  - NSWOEH_20150302_HawkesNestPortStephens_MB.zip
-liqui: true
-incoming_dir: /mnt/ebs/incoming/NSW-OEH/incoming
+files:
+  - dest: /mnt/ebs/incoming/NSW-OEH/incoming
+    file: NSWOEH_20150302_HawkesNestPortStephens_MB.zip
+create_schema: true
 talend_log_dir: /mnt/ebs/log/data-services/AODN_NSW_OEH
 talend_jobs:
   - aodn_nsw_oeh-aodn_nsw_oeh
@@ -14,7 +14,6 @@ database_schemas:
   -
     name: aodn_nsw_oeh
     tables:
-      - name: index_job
-        exclude_columns: [id, name]
-      - name: indexed_file
-        exclude_columns: [id, job_id, url, size, deleted]
+      - name: aodn_nsw_oeh_multibeam_map
+        exclude_columns: []
+

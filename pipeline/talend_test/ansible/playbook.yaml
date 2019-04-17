@@ -16,12 +16,13 @@
 
   ### setup
 
-    - name: truncate schema
+    - name: drop objects in schema
       become: yes
       become_user: postgres
       command: psql -d harvest -c "select drop_objects_in_schema('"{{ item.name }}"');"
       register: truncate_schema
       with_items: "{{ database_schemas }}"
+      when: create_schema == true
 
 
     - name: run talend liqui
@@ -32,18 +33,7 @@
         /usr/local/talend/bin/talend-trigger -c /usr/local/talend/etc/trigger.conf --delete -f $talend_regex,$talend_regex
       with_items: "{{ talend_jobs }}"
       register: talend_liqui
-      when: liqui == true
-
-
-    - name: upload pipeline inputs to /tmp dir
-      become: yes
-      become_user: projectofficer
-      copy:
-        src: "{{ input_files_dir }}/{{ name }}/{{ item }}"
-        dest: /tmp/
-        owner: projectofficer
-        group: projectofficer
-      with_items: "{{ input_files }}"
+      when: create_schema == true
 
 
     - name: remove logs for pipline v1 and harvester types
@@ -59,13 +49,19 @@
       shell: "> {{ talend_log_file }}"
       when: type == 'pipeline_version_2'
 
-  ### kick off pipeline
+  ### copy files to remote locations (last file itemised in config
+  ###  may be for the incoming dir which will kick off the process
 
-    - name: copy input files to incoming dir
-      shell: |
-        sudo -u projectofficer chmod a+w /tmp/{{ item }}
-        sudo -u projectofficer mv /tmp/{{ item }} {{ incoming_dir }}/
-      with_items: "{{ input_files }}"
+    - name: copy files to target directories
+      become: yes
+      become_user: root
+      copy:
+        src: "{{ input_files_dir }}/{{ name }}/{{ item.file }}"
+        dest: "{{ item.dest }}"
+        owner: projectofficer
+        group: projectofficer
+        mode: a+w
+      with_items: "{{ files }}"
       when: (type == 'pipeline_version_1') or (type == 'pipeline_version_2')
 
 
@@ -83,7 +79,7 @@
       command: "grep -r 'file(s)  OK'  {{ talend_log_dir }}"
       register: task_result
       delay: 5
-      retries: 100
+      retries: 500
       until: task_result.rc == 0
       with_items: "{{ talend_jobs }}"
       when: type == 'pipeline_version_1'
@@ -110,7 +106,7 @@
 ### Query database and download result
 
     - set_fact:
-       pgsql_output_dir: "/tmp/{{ ansible_ssh_host }}"
+       pgsql_output_dir: "/tmp/{{ ansible_ssh_host }}/{{ name }}"
 
 
     - name: remove pgsql_output_dir output dir
@@ -148,7 +144,7 @@
       become: yes
       become_user: root
       archive:
-        path: "{{ pgsql_output_dir }}"
+        path: "/tmp/{{ ansible_ssh_host }}"
         dest: /tmp/query_results.tgz
 
 

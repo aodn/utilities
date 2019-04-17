@@ -32,14 +32,14 @@ If for example the same test config has been run against both `6-nec-hob` and `9
 
 ```
 query_results/
-  6-nec-hob.emii.org.au/   #<-- host talend 5
-    anmn_metadata/         #<-- schema
-      index_job.csv        #<-- table
-      indexed_file.csv     #<-- table 
-  9-nec-hob.emii.org.au/   #<-- host talend 7
-    anmn_metadata/         #<-- schema
-      index_job.csv        #<-- table
-      indexed_file.csv     #<-- table
+  6-nec-hob.emii.org.au/   #<-- host test was run against
+    abos_asfs              #<-- the test config that was run
+      anmn_metadata/       #<-- schema listed in the test config
+        abos_all_map.csv   #<-- table listed in the schema        #<-- run diff
+  9-nec-hob.emii.org.au/   #<-- host test was run against
+    abos_asfs              #<-- the test config that was run
+      anmn_metadata/       #<-- schema listed in the test config
+        abos_all_map.csv   #<-- table listed in the schema        #<-- run diff
 ```
 
 To check the difference between the output of the pipelines across both nodes:
