@@ -3,6 +3,10 @@
 name: aatams_sattag_dm
 type: pipeline_version_1
 po: xavier
+dirs:
+  - path: /mnt/ebs/wip/AATAMS_SATTAG_DM/zipped
+    owner: projectofficer
+    group: projectofficer
 files:
   - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_DM
     file: ct100.zip
@@ -17,7 +21,3 @@ database_schemas:
       - name: aatams_sattag_dm_profile_data
         exclude_columns: []
 
-
-# issues
-# needed to manually create dir:
-# mkdir -p /mnt/ebs/wip/AATAMS_SATTAG_DM/zipped

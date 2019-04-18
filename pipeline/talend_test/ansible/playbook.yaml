@@ -47,6 +47,7 @@
       stat:
         path: "{{ talend_log_file }}"
       register: log_file
+      when: type == 'pipeline_version_2'
 
 
     - name: truncate pipeline 2 log
@@ -54,6 +55,17 @@
       become_user: root
       shell: "> {{ talend_log_file }}"
       when: (type == 'pipeline_version_2') and (log_file.stat.exists == true)
+
+    - name: create directories
+      become: yes
+      become_user: root
+      file:
+        path: "{{ item.path }}"
+        state: directory
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+      with_items: "{{ dirs }}"
+      when: dirs is defined
 
   ### copy files to remote locations (last file itemised in config
   ###  may be for the incoming dir which will kick off the process
