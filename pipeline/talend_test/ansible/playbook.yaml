@@ -43,11 +43,17 @@
       when: (type == 'pipeline_version_1') or (type == 'harvester')
 
 
+    - name: check that the talend log file exists
+      stat:
+        path: "{{ talend_log_file }}"
+      register: log_file
+
+
     - name: truncate pipeline 2 log
       become: yes
       become_user: root
       shell: "> {{ talend_log_file }}"
-      when: type == 'pipeline_version_2'
+      when: (type == 'pipeline_version_2') and (log_file.stat.exists == true)
 
   ### copy files to remote locations (last file itemised in config
   ###  may be for the incoming dir which will kick off the process
