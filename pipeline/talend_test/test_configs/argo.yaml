@@ -1,10 +1,29 @@
 name: argo
 type: pipeline_version_2
 po: laurent
-input_files:
- - argo_rsync.20190416-112046.rsync_manifest
+dirs:
+  - path: /mnt/ebs/wip/Argo/dac/nmdis/2901616/profiles
+    owner: projectofficer
+    group: projectofficer
+files:
+ - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901616
+   file: 2901616_meta.nc
+ - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901616
+   file: 2901616_prof.nc
+ - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901616
+   file: 2901616_Rtraj.nc
+ - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901616
+   file: 2901616_tech.nc
+ - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901616/profiles
+   file: R2901616_000D.nc
+ - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901616/profiles
+   file: R2901616_000.nc
+ - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901616/profiles
+   file: R2901616_001.nc
+ - dest: /mnt/ebs/incoming/Argo
+   file: argo_rsync.20190416-112046.rsync_manifest
+create_schema: true
 liqui: true
-incoming_dir: /mnt/ebs/incoming/Argo
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ARGO.log
 talend_jobs:
   - argo-argo
