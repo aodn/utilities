@@ -15,7 +15,7 @@ database_schemas:
     name: anfog_dm
     tables:
       - name: anfog_dm_trajectory_map
-        exclude_columns: []
+        exclude_columns: [colour]
       - name: anfog_dm_trajectory_data
         exclude_columns: []
       - name: anfog_uwa_glider_trajectory_data
