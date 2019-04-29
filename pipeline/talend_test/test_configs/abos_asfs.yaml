@@ -1,0 +1,27 @@
+
+
+name: abos_asfs
+type: pipeline_version_1
+po: marty
+files:
+  - dest: /mnt/ebs/incoming/ABOS/ASFS
+    file: IMOS_ABOS-ASFS_CMST_20190101T005900Z_SOFS_FV01_C-20190102T002503Z.nc
+create_schema: true
+talend_log_dir: /mnt/ebs/log/data-services/ABOS_ASFS
+talend_jobs:
+  - abos_sofs_sp-abos_sofs_sp
+  - moorings_metadata-moorings_metadata
+database_schemas:
+  -
+    name: abos_sofs_sp
+    tables:
+      - name: abos_sofs_surfaceprop_rt_data
+        exclude_columns: []
+      - name: abos_sofs_surfaceprop_rt_map
+        exclude_columns: []
+  -
+    name: anmn_metadata
+    tables:
+      - name: abos_all_map
+        exclude_columns: [date_published, date_updated]
+

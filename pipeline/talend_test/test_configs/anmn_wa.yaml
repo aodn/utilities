@@ -1,0 +1,29 @@
+
+
+name: anmn_wa
+type: pipeline_version_2
+po: marty
+files:
+  - dest: /mnt/ebs/incoming/ANMN/WA
+    file: IMOS_ANMN-NRS_TZ_20081120T080000Z_NRSROT_FV01_NRSROT-0811-SBE39-27_END-20090219T030000Z_C-20180810T044335Z.nc
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANMN_WA.log
+talend_jobs:
+  - anmn_ts_timeseries-anmn_ts_timeseries
+  - moorings_metadata-moorings_metadata
+database_schemas:
+  -
+    name: anmn_ts
+    tables:
+      - name: anmn_ts_timeseries_data
+        exclude_columns: []
+      - name: anmn_ts_timeseries_map
+        exclude_columns: []
+
+# 'size' column: could vary for filesystem types
+
+  -
+    name: anmn_metadata
+    tables:
+      - name: anmn_all_map
+        exclude_columns: [date_published, date_updated]
