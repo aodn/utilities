@@ -23,5 +23,5 @@ database_schemas:
     name: anmn_metadata
     tables:
       - name: abos_all_map
-        exclude_columns: []
+        exclude_columns: [date_published, date_updated]
 

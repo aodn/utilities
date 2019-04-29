@@ -25,7 +25,7 @@ database_schemas:
     name: aatams_sattag_nrt
     tables:
       - name: aatams_sattag_nrt_profile_map
-        exclude_columns: []
+        exclude_columns: [colour]
       - name: aatams_sattag_nrt_profile_data
-        exclude_columns: []
+        exclude_columns: [colour]
 
