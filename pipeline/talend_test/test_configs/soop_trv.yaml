@@ -14,7 +14,9 @@ database_schemas:
   -
     name: soop_trv
     tables:
-      - name: index_job
-        exclude_columns: [id, name]
-      - name: indexed_file
-        exclude_columns: [id, job_id, url, size, deleted]
+      - name: soop_trv_trajectory_data
+        exclude_columns: []
+      - name: soop_trv_trajectory_map
+        exclude_columns: [colour]
+
+
