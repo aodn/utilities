@@ -16,7 +16,6 @@ files:
     file: IMOS_AATAMS-SATTAG_TSP_20190417T022000Z_Q9901199_FV00.nc
 
 create_schema: true
-liqui: true
 talend_log_dir: /mnt/ebs/log/data-services/AATAMS_SATTAG_NRT
 talend_jobs:
   - aatams_sattag_nrt-aatams_sattag_nrt

@@ -6,7 +6,7 @@ po: bene
 files:
   - dest: /mnt/ebs/wip/AODN_WAVE_NRT
     file: Buoys_metadata.csv
-create_schema: true
+create_schema: false
 exec_shell_script: /usr/local/talend/jobs/aodn_wave_nrt-aodn_wave_nrt/bin/aodn_wave_nrt-aodn_wave_nrt.sh
 talend_log_dir: /usr/local/talend/jobs/aodn_wave_nrt-aodn_wave_nrt/log
 talend_jobs:

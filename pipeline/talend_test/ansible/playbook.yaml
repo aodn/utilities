@@ -32,7 +32,6 @@
         talend_regex="___"{{ item }}"___";
         /usr/local/talend/bin/talend-trigger -c /usr/local/talend/etc/trigger.conf --delete -f $talend_regex,$talend_regex
       with_items: "{{ talend_jobs }}"
-      register: talend_liqui
       when: create_schema == true
 
 
@@ -87,7 +86,6 @@
       become: yes
       become_user: talend
       command: "{{ exec_shell_script }}"
-      with_items: "{{ input_files }}"
       when: type == 'harvester'
 
 
