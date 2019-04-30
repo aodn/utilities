@@ -3,9 +3,11 @@
 name: anfog_dm
 type: pipeline_version_2
 po: bp
-files:
-  - dest: /mnt/ebs/incoming/ANFOG/processed
-    file: TasEastCoast20190213.zip
+actions:
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/ANFOG/processed
+      local_file: TasEastCoast20190213.zip
 create_schema: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANFOG_DM.log
 talend_jobs:

@@ -7,9 +7,11 @@ dirs:
   - path: /mnt/ebs/wip/AATAMS_SATTAG_DM/zipped
     owner: projectofficer
     group: projectofficer
-files:
-  - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_DM
-    file: ct100.zip
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_DM
+        local_file: ct100.zip
 create_schema: false
 talend_log_dir: /mnt/ebs/log/data-services/AATAMS_SATTAG_DM
 talend_jobs:
