@@ -5,15 +5,17 @@ dirs:
   - path: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
     owner: projectofficer
     group: projectofficer
-files:
-  - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_NRT
-    file: manifest
-  - dest: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
-    file: IMOS_AATAMS-SATTAG_TSP_20190416T174000Z_Q9901199_FV00.nc
-  - dest: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
-    file: IMOS_AATAMS-SATTAG_TSP_20190416T214000Z_Q9901199_FV00.nc
-  - dest: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
-    file: IMOS_AATAMS-SATTAG_TSP_20190417T022000Z_Q9901199_FV00.nc
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_NRT
+        local_file: manifest
+      - dest: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
+        local_file: IMOS_AATAMS-SATTAG_TSP_20190416T174000Z_Q9901199_FV00.nc
+      - dest: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
+        local_file: IMOS_AATAMS-SATTAG_TSP_20190416T214000Z_Q9901199_FV00.nc
+      - dest: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
+        local_file: IMOS_AATAMS-SATTAG_TSP_20190417T022000Z_Q9901199_FV00.nc
 
 create_schema: true
 talend_log_dir: /mnt/ebs/log/data-services/AATAMS_SATTAG_NRT

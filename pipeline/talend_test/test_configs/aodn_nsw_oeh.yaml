@@ -3,9 +3,11 @@
 name: aodn_nsw_oeh
 type: pipeline_version_1
 po: marty
-files:
-  - dest: /mnt/ebs/incoming/NSW-OEH/incoming
-    file: NSWOEH_20150302_HawkesNestPortStephens_MB.zip
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/NSW-OEH/incoming
+        local_file: NSWOEH_20150302_HawkesNestPortStephens_MB.zip
 create_schema: true
 talend_log_dir: /mnt/ebs/log/data-services/AODN_NSW_OEH
 talend_jobs:
