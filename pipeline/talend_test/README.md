@@ -11,7 +11,13 @@ pip install -r requirements.txt
 Allow setting of permissions on temporary files that ansible needs to create when becoming an unprivileged user
 
 - add `allow_world_readable_tmpfiles=true` to `/etc/ansible/ansible.cfg` 
-- edit `./global_vars.yaml` and update the path in `input_files_dir`
+- edit `./global_vars.yaml` and update any placeholders `<that_look_like_this>`
+
+Create .pgpass entries
+- refer to [this document](https://blog.sleeplessbeastie.eu/2014/03/23/how-to-non-interactively-provide-password-for-the-postgresql-interactive-terminal/) for how to create a .pgpass file
+- e.g. add an entry like this:
+  ```6-nec-hob.emii.org.au:5432:harvest:<your_db_username>:<your_db_password>```
+
 
 ## run tests
 
@@ -23,15 +29,15 @@ ansible-playbook ansible/playbook.yaml \
   --extra-vars "hosts=6-nec-hob.emii.org.au"
 ```
 
-After the playbook is finished, results will be available in the `query_results` dir.
+After the playbook is finished, results will be available in the `harvest_results` dir.
 
 
 ## Compare results
 
-If for example the same test config has been run against both `6-nec-hob` and `9-nec-hob`, then the `query_results` dir would looks something like this: 
+If for example the same test config has been run against both `6-nec-hob` and `9-nec-hob`, then the `harvest_results` dir would looks something like this: 
 
 ```
-query_results/
+harvest_results/
   6-nec-hob.emii.org.au/   #<-- host test was run against
     abos_asfs              #<-- the test config that was run
       anmn_metadata/       #<-- schema listed in the test config
@@ -44,7 +50,7 @@ query_results/
 
 To check the difference between the output of the pipelines across both nodes:
 ```
-diff -r query_results/6-nec-hob.emii.org.au query_results/9-nec-hob.emii.org.au
+diff -r harvest_results/6-nec-hob.emii.org.au harvest_results/9-nec-hob.emii.org.au
 ```
 
 ## Create a new test
@@ -54,9 +60,29 @@ diff -r query_results/6-nec-hob.emii.org.au query_results/9-nec-hob.emii.org.au
 - Copy config from an appropiate existing test and change the values.
 - database table columns that are not relevant for testing - e.g. timestamp of data insertion - can be excluded using `exclude_columns`.
 
+##Options
+
+### Run test with truncated schema
+
+The default behaviour is for tests to be run _without_ any associated schemas being truncated. To flag that you _do_ want a test to be run with a truncated schema, use the `destructive` tag e.g.
+```
+ansible-playbook ansible/playbook.yaml \
+  -e @test_configs/anfog_dm.yaml \
+  --ask-pass --user <your_ssh_user> \
+  --extra-vars "hosts=6-nec-hob.emii.org.au" \
+  --tags "destructive"
+```
+
+## Run only the fetching of database results 
+It is possible to run the tool without invoking the harvester so that only the content of the schemas/tables for a given test is fetched using the `harvest_results_only` e.g.
+```
+ansible-playbook ansible/playbook.yaml \
+  -e @test_configs/anfog_dm.yaml \
+  --ask-pass --user <your_ssh_user> \
+  --extra-vars "hosts=6-nec-hob.emii.org.au" \
+  --tags "harvest_results_only"
+```
+
 ## Notes
 
-- Running a test first truncates any database schemas that are relevant to the test so that the database result is easily comparable to results from other pipeline nodes
 - Running a test first removes pipeline/harvest logs. This is needed so that the playbook can perform a `wait` action and detect when processing has completed.
-- All connections are via ansible-ssh to remote nodes. Postgresql queries could have be made directly from the ansible host to postgresql but then this would not work in scenarios where the database is not publicly accessible.
-
