@@ -73,6 +73,10 @@
 
 ### wait for pipeline to finish
 
+- set_fact:
+    start_time: "{{ lookup('pipe','date \"+%Y-%m-%d %H:%M:%S\"') }}"
+
+
 - name: wait for pipeline 1 ADD and UPDATE processing to complete
   command: "grep -r 'file(s)  OK'  {{ talend_log_dir }}"
   register: task_result
@@ -101,3 +105,19 @@
   with_items: "{{ talend_jobs }}"
   when: type == 'harvester'
 
+
+- set_fact:
+    end_time: "{{ lookup('pipe','date \"+%Y-%m-%d %H:%M:%S\"') }}"
+
+
+- set_fact:
+    elapsed_time: "{{ (end_time|to_datetime - start_time|to_datetime).seconds|string }}"
+
+
+- name: append line to time_profile.csv
+  lineinfile:
+    create: true
+    path: ../time_profile.csv
+    line: "{{ name }},{{ action_item.type }}, {{ elapsed_time }}"
+    insertafter: EOF
+  delegate_to: localhost

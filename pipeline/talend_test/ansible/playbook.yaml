@@ -12,6 +12,16 @@
 
   tasks:
 
+    # setup: time profiling csv file
+
+    - name: create time_profile.csv if not already exists
+      copy:
+        content: "test,action_type,elapsed_seconds"
+        dest: ../time_profile.csv
+        force: no
+      delegate_to: localhost
+
+
     # setup: any directories that need to be present before any action (ADD, UPDATE, DELETE) can be done
 
     - name: create directories
