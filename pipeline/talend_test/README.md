@@ -62,15 +62,15 @@ diff -r harvest_results/6-nec-hob.emii.org.au harvest_results/9-nec-hob.emii.org
 
 ##Options
 
-### Run test with truncated schema
+### Run only the db initialisation step for schemas in the test
 
-The default behaviour is for tests to be run _without_ any associated schemas being truncated. To flag that you _do_ want a test to be run with a truncated schema, use the `destructive` tag e.g.
+
 ```
 ansible-playbook ansible/playbook.yaml \
   -e @test_configs/anfog_dm.yaml \
   --ask-pass --user <your_ssh_user> \
   --extra-vars "hosts=6-nec-hob.emii.org.au" \
-  --tags "destructive"
+  --tags "init_db_only"
 ```
 
 ## Run only the fetching of database results 
@@ -81,6 +81,17 @@ ansible-playbook ansible/playbook.yaml \
   --ask-pass --user <your_ssh_user> \
   --extra-vars "hosts=6-nec-hob.emii.org.au" \
   --tags "harvest_results_only"
+```
+
+## Run zero actions in a test
+
+For debugging it may be useful to run a test with no actions. Edit a `test_config` file:
+```
+...
+actions:
+  - type: NONE
+# comment-out other actions
+...
 ```
 
 ## Notes

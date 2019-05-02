@@ -34,8 +34,7 @@
       with_items: "{{ database_schemas }}"
       when: create_schema == true
       tags:
-        - never
-        - destructive
+        - init_db_only
 
 
     - name: run talend liqui
@@ -47,8 +46,7 @@
       with_items: "{{ talend_jobs }}"
       when: create_schema == true
       tags:
-        - never
-        - destructive
+        - init_db_only
 
 
     - include: process_action.yaml
