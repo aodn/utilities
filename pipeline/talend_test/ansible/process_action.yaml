@@ -118,6 +118,6 @@
   lineinfile:
     create: true
     path: ../time_profile.csv
-    line: "{{ name }},{{ action_item.type }}, {{ elapsed_time }}"
+    line: "{{ name }},{{ hosts }},{{ action_item.type }},{{ elapsed_time }}"
     insertafter: EOF
   delegate_to: localhost

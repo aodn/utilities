@@ -16,7 +16,7 @@
 
     - name: create time_profile.csv if not already exists
       copy:
-        content: "test,action_type,elapsed_seconds"
+        content: "test,host,action_type,elapsed_seconds"
         dest: ../time_profile.csv
         force: no
       delegate_to: localhost
