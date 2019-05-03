@@ -1,0 +1,34 @@
+
+
+name: abos_da
+type: pipeline_version_2
+po: marty???
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/ABOS_DA
+        local_file: EAC2000-2016.FV01.noADCP.zip
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ABOS_DA.log
+talend_jobs:
+  - abos_currents-abos_currents
+  - moorings_metadata-moorings_metadata
+  - abos_ts-abos_ts
+database_schemas:
+  -
+    name: abos_currents
+    tables:
+      - name: abos_currents_map
+        exclude_columns: []
+  -
+    name: anmn_metadata
+    tables:
+      - name: abos_all_map
+        exclude_columns: [date_published, date_updated]
+  -
+    name: abos_ts
+    tables:
+      - name: abos_ts_timeseries_data
+        exclude_columns: []
+      - name: abos_ts_timeseries_map
+        exclude_columns: []
