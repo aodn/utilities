@@ -1,0 +1,57 @@
+
+### process action sub-playbook. adds input files and waits for processing to complete
+
+- name: create temporary local directory
+  tempfile:
+    state: directory
+    suffix: build
+  register: new_tmp_dir
+
+
+- name: set tmp directory fact
+  set_fact:
+    tmp_dir: "{{ new_tmp_dir.path}}"
+
+
+- name: debug tmp_dir path
+  debug:
+    msg: "{{ tmp_dir }}"
+
+
+- name: create dirs for pgsql output
+  file: path={{ tmp_dir }}/{{ item.name }} state=directory mode="a+w"
+  with_items: "{{ database_schemas }}"
+
+
+- name: sql select queries
+  psql_harvest_queries:
+    schema_obj: "{{ item }}"
+    tmp_dir: "{{ tmp_dir }}/{{ item.name }}"
+    db_user: "{{ db_user }}"
+    db_host: "{{ hosts }}"
+  loop: "{{ database_schemas }}"
+
+
+- name: remove result dir
+  file:
+    state: absent
+    path: "../harvest_results/{{ hosts }}/{{ name }}/"
+
+
+- name: remove result dir
+  file:
+    state: absent
+    path: "../harvest_results/{{ hosts }}/{{ name }}/"
+
+
+- name: create result dir
+  file:
+    path: "../harvest_results/{{ hosts }}/{{ name }}/"
+    state: directory
+
+
+- name: copy results from temp to result dir
+  copy:
+    src: "{{ tmp_dir }}/{{ item.name }}"
+    dest: "../harvest_results/{{ hosts }}/{{ name }}/"
+  loop: "{{ database_schemas }}"

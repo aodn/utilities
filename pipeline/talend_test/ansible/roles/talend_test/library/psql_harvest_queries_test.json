@@ -8,10 +8,17 @@
             "exclude_columns": [
               "time_deployment_start", "time_deployment_end"
             ]
+          },
+          {
+            "name": "anmn_ts_timeseries_map",
+            "exclude_columns": [
+              "time_deployment_start", "time_deployment_end"
+            ]
           }
         ]
       },
-      "pgsql_output_dir": "/tmp/sql_output",
-      "pgsql_queries_shell_script": "/tmp/pgsql_queries.sh"
+      "tmp_dir": "/tmp/exists/anmn_ts",
+      "db_user": "<your_user>",
+      "db_host": "6-nec-hob.emii.org.au"
     }
 }

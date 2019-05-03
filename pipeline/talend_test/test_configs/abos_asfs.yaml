@@ -7,7 +7,15 @@ actions:
   - type: ADD
     files:
     - dest: /mnt/ebs/incoming/ABOS/ASFS
-      local_file: IMOS_ABOS-ASFS_CMST_20190101T005900Z_SOFS_FV01_C-20190102T002503Z.nc
+      local_file: IMOS_ABOS-ASFS_CMST_20190323T005900Z_SOFS_FV01_C-20190324T002503Z.nc
+  - type: UPDATE
+    files:
+    - dest: /mnt/ebs/incoming/ABOS/ASFS
+      local_file: IMOS_ABOS-ASFS_CMST_20190323T005900Z_SOFS_FV01_C-20190324T002503Z.updated.nc
+      remote_file: IMOS_ABOS-ASFS_CMST_20190323T005900Z_SOFS_FV01_C-20190324T002503Z.nc
+  - type: DELETE
+    file: IMOS/ABOS/ASFS/SOFS/Surface_properties/Real-time/2019_daily/IMOS_ABOS-ASFS_CMST_20190323T005900Z_SOFS_FV01_C-20190324T002503Z.nc
+
 create_schema: true
 talend_log_dir: /mnt/ebs/log/data-services/ABOS_ASFS
 talend_jobs:

@@ -1,7 +1,7 @@
 
 
 - name: test talend
-  hosts: "{{hosts}}"
+  hosts: "{{ hosts }}"
   gather_facts: no
 
   roles:
@@ -11,6 +11,18 @@
     - ../global_vars.yaml
 
   tasks:
+
+    # setup: time profiling csv file
+
+    - name: create time_profile.csv if not already exists
+      copy:
+        content: "test,action_type,elapsed_seconds"
+        dest: ../time_profile.csv
+        force: no
+      delegate_to: localhost
+
+
+    # setup: any directories that need to be present before any action (ADD, UPDATE, DELETE) can be done
 
     - name: create directories
       become: yes
@@ -31,6 +43,8 @@
       register: truncate_schema
       with_items: "{{ database_schemas }}"
       when: create_schema == true
+      tags:
+        - init_db_only
 
 
     - name: run talend liqui
@@ -41,6 +55,9 @@
         /usr/local/talend/bin/talend-trigger -c /usr/local/talend/etc/trigger.conf --delete -f $talend_regex,$talend_regex
       with_items: "{{ talend_jobs }}"
       when: create_schema == true
+      tags:
+        - init_db_only
+
 
     - include: process_action.yaml
       loop: "{{ actions }}"
@@ -48,65 +65,7 @@
         loop_var: action_item
 
 
-#### Query database and download result
-
-    - set_fact:
-       pgsql_output_dir: "/tmp/{{ ansible_ssh_host }}/{{ name }}"
-
-
-    - name: remove pgsql_output_dir output dir
-      become: yes
-      become_user: root
-      file: path={{ pgsql_output_dir }} state=absent
-
-
-    - name: create dirs for pgsql output
-      file: path={{ pgsql_output_dir }}/{{ item.name }} state=directory mode="a+w"
-      with_items: "{{ database_schemas }}"
-
-
-    - name: remove pgsql shell script file
-      become: yes
-      become_user: root
-      file: path={{ pgsql_queries_shell_script }} state=absent
-
-
-    - name: sql select queries
-      pgsql_statement_gen:
-        schema_obj: "{{ item }}"
-        pgsql_output_dir: "{{ pgsql_output_dir }}"
-        pgsql_queries_shell_script: "{{ pgsql_queries_shell_script }}"
-      with_items: "{{ database_schemas }}"
-
-
-    - name: run queries
-      become: yes
-      become_user: postgres
-      command: "psql -d harvest -f {{ pgsql_queries_shell_script }}"
-
-
-    - name: compress query result directory
-      become: yes
-      become_user: root
-      archive:
-        path: "/tmp/{{ ansible_ssh_host }}"
-        dest: /tmp/query_results.tgz
-
-
-    - set_fact:
-       local_tmp_path: "/tmp/{{ ansible_ssh_host }}/query_results.tgz"
-
-
-    - name: fetch query results to local
-      fetch:
-        src: /tmp/query_results.tgz
-        dest: "{{ local_tmp_path }}"
-        flat: true
-        mode: 0774
-
-
-    - name: unzip query results on localhost
-      unarchive:
-        src: "{{ local_tmp_path }}"
-        dest: ../query_results
+    - include: harvest_results.yaml
       delegate_to: localhost
+      tags:
+        - harvest_results_only
