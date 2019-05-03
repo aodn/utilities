@@ -1,0 +1,33 @@
+
+
+name: abos_sots
+type: pipeline_version_2
+po: marty
+actions:
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/processing/ABOS_SOTS
+      local_file: # need to check with marty for input file(s)
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ABOS_SOTS.log
+talend_jobs:
+  - abos_sots-abos_sots
+  #- anmn_delayed-anmn_delayed   #<-- harvester does not exist anymore?
+  - moorings_metadata-moorings_metadata
+  - abos_ts-abos_ts
+database_schemas:
+  -
+    name: abos_sots
+    tables:
+      - name: abos_sots_map
+        exclude_columns: []
+  -
+    name: anmn_metadata
+    tables:
+      - name: anmn_all_map
+        exclude_columns: [date_published, date_updated]
+  -
+    name: abos_ts
+    tables:
+      - name: abos_ts_timeseries_data
+        exclude_columns: abos_ts_timeseries_map
