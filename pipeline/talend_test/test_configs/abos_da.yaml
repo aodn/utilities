@@ -6,7 +6,7 @@ po: marty
 actions:
   - type: ADD
     files:
-      - dest: /mnt/ebs/incoming/ABOS_DA
+      - dest: /mnt/ebs/incoming/ABOS/DA
         local_file: EAC2000-2018.subset.zip
 create_schema: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ABOS_DA.log
