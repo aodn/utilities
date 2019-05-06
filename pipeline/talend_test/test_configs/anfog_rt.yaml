@@ -6,9 +6,9 @@ po: bene
 actions:
   - type: ADD
     files:
-    - dest: /mnt/ebs/incoming/ANFOG/processed
-      local_file: BENE TO ADVISE
-create_schema: true
+    - dest: /mnt/ebs/incoming/ANFOG/realtime
+      local_file: IMOS_ANFOG_BCEOSTUV_20190425T005939Z_SL210_FV00_timeseries_END-20190430T061605Z.zip
+create_schema: false
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANFOG_RT.log
 talend_jobs:
   - anfog_rt-anfog_rt
