@@ -6,14 +6,16 @@ po: marty
 actions:
   - type: ADD
     files:
-    - dest: /mnt/ebs/incoming/ANMN/WA
-      local_file: MARTY TO ADVISE
+    - dest: /mnt/ebs/incoming/ANMN/NSW
+      local_file: PH100.zip
 create_schema: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANMN_NSW.log
 talend_jobs:
   - anmn_ts_timeseries-anmn_ts_timeseries
   - anmn_burst_avg_timeseries-anmn_burst_avg_timeseries
   - anmn_nrs_ctd_profiles-anmn_nrs_ctd_profiles
+  - anmn_adcp_timeseries-anmn_adcp_timeseries
+  - moorings_metadata-moorings_metadata
 
 database_schemas:
   -
@@ -38,4 +40,12 @@ database_schemas:
       - name: anmn_nrs_ctd_profiles_map
         exclude_columns: []
 
+  - name: anmn_velocity
+    tables:
+      - name: anmn_velocity_timeseries_map
+        exclude_columns: []
 
+  - name: anmn_metadata
+    tables:
+      - name: anmn_all_map
+        exclude_columns: [date_published, date_updated]
