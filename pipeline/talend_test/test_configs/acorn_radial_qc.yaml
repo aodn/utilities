@@ -1,0 +1,41 @@
+
+
+name: acorn_radial_qc
+type: pipeline_version_2
+po: loz
+actions:
+# Cleanup any existing files on s3
+- type: DELETE
+  file: IMOS/ACORN/radial_quality_controlled/RRK/2017/12/19/IMOS_ACORN_RV_20171219T080000Z_RRK_FV01_radial.nc
+- type: DELETE
+  file: IMOS/ACORN/radial_quality_controlled/RRK/2017/12/19/IMOS_ACORN_RV_20171219T081000Z_RRK_FV01_radial.nc
+# Add IMOS_ACORN_RV_20171219T080000Z_RRK_FV01_radial.nc with IMOS_ACORN_RV_20171219T000000Z_RRK_FV01_radial.nc content
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/ACORN_DM/any
+    local_file: IMOS_ACORN_RV_20171219T000000Z_RRK_FV01_radial.nc
+    remote_file: IMOS_ACORN_RV_20171219T080000Z_RRK_FV01_radial.nc
+# Add real IMOS_ACORN_RV_20171219T080000Z_RRK_FV01_radial.nc to update data loaded above
+- type: UPDATE
+  files:
+  - dest: /mnt/ebs/incoming/ACORN_DM/any
+    local_file: IMOS_ACORN_RV_20171219T080000Z_RRK_FV01_radial.nc
+# Add IMOS_ACORN_RV_20171219T081000Z_RRK_FV01_radial.nc so it can be deleted in the next step
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/ACORN_DM/any
+    local_file: IMOS_ACORN_RV_20171219T081000Z_RRK_FV01_radial.nc
+# Delete IMOS_ACORN_RV_20171219T081000Z_RRK_FV01_radial.nc
+- type: DELETE
+  file: IMOS/ACORN/radial_quality_controlled/RRK/2017/12/19/IMOS_ACORN_RV_20171219T081000Z_RRK_FV01_radial.nc
+
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ACORN_DM.log
+talend_jobs:
+- acorn_radial_qc-acorn_radial_qc
+database_schemas:
+-
+  name: acorn_radial_qc
+  tables:
+  - name: acorn_radial_qc_timeseries_url
+    exclude_columns: []
