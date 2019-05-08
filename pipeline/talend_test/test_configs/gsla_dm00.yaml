@@ -1,0 +1,32 @@
+
+
+name: gsla_dm00
+type: pipeline_version_2
+po: loz
+actions:
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/OceanCurrent/GSLA
+      local_file: IMOS_OceanCurrent_HV_19930101T000000Z_GSLA_FV02_DM00_C-20130913T082343Z.nc.gz
+      remote_file: IMOS_OceanCurrent_HV_19930103T000000Z_GSLA_FV02_DM00_C-20130913T082442Z.nc.gz
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/OceanCurrent/GSLA
+        local_file: IMOS_OceanCurrent_HV_19930105T000000Z_GSLA_FV02_DM00_C-20130913T082541Z.nc.gz
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/OceanCurrent/GSLA
+        local_file: IMOS_OceanCurrent_HV_19930103T000000Z_GSLA_FV02_DM00_C-20130913T082442Z.nc.gz
+  - type: DELETE
+    file: IMOS/OceanCurrent/GSLA/DM00/1993/IMOS_OceanCurrent_HV_19930105T000000Z_GSLA_FV02_DM00_C-20130913T082541Z.nc.gz
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.GSLA.log
+talend_jobs:
+  - gsla_dm00-gsla_dm00
+database_schemas:
+  -
+    name: gsla_dm00
+    tables:
+      - name: gsla_dm00_timeseries_url
+        exclude_columns: []
+
