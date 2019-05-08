@@ -1,0 +1,31 @@
+name: soop_asf_mt
+type: pipeline_version_2
+po: loz
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/SOOP/ASF/MT
+        local_file: IMOS_SOOP-ASF_MT_20130117T215000Z_VLHJ_FV01_C-20130307T042609Z.nc
+        remote_file: IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/SOOP/ASF/MT
+        local_file: IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/SOOP/ASF/MT
+        local_file: IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
+  - type: DELETE
+    file: IMOS/SOOP/SOOP-ASF/VLHJ_Southern-Surveyor/meteorological_sst_observations/2013/IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_ASF_MT.log
+talend_jobs:
+  - soop_asf_mt-soop_asf_mt
+database_schemas:
+  -
+    name: soop_asf_mt
+    tables:
+      - name: soop_asf_mt_trajectory_data
+        exclude_columns: []
+      - name: soop_asf_mt_trajectory_map
+        exclude_columns: []
