@@ -1,0 +1,46 @@
+
+
+name: srs_oc_ljco_wws_dalec
+type: pipeline_version_2
+po: loz
+actions:
+### FV01 tests
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20181118T230002Z_LJCO_FV01_DALEC_END-20181119T005951Z.nc
+    remote_file: IMOS_SRS-OC-LJCO_F_20181121T230002Z_LJCO_FV01_DALEC_END-20181122T005958Z.nc
+- type: UPDATE
+  files:
+  - dest: /mnt/ebs/incoming/SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20181121T230002Z_LJCO_FV01_DALEC_END-20181122T005958Z.nc
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20181125T230002Z_LJCO_FV01_DALEC_END-20181126T005956Z.nc
+- type: DELETE
+  file: IMOS/SRS/OC/LJCO/DALEC/2018/11/IMOS_SRS-OC-LJCO_F_20181125T230002Z_LJCO_FV01_DALEC_END-20181126T005956Z.nc
+### FV02 tests
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20160914T230008Z_LJCO_FV02_DALEC_20160914T232852Z.nc
+    remote_file: IMOS_SRS-OC-LJCO_F_20160915T044155Z_LJCO_FV02_DALEC_20160915T050002Z.nc
+- type: UPDATE
+  files:
+  - dest: /mnt/ebs/incoming/SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20160915T044155Z_LJCO_FV02_DALEC_20160915T050002Z.nc
+
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_LJCO_DALEC.log
+talend_jobs:
+- srs_oc_ljco_wws-srs_oc_ljco_wws
+database_schemas:
+-
+  name: srs_oc_ljco_wws
+  tables:
+  - name: srs_oc_ljco_wws_dalec_fv01_timeseries_map
+    exclude_columns: []
+  - name: srs_oc_ljco_wws_dalec_fv02_timeseries_map
+    exclude_columns: []
+
