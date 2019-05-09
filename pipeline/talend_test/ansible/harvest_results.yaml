@@ -23,11 +23,15 @@
   with_items: "{{ database_schemas }}"
 
 
+- set_fact:
+    database_user: "{{ db_user | default(ansible_ssh_user) }}"
+
+
 - name: sql select queries
   psql_harvest_queries:
     schema_obj: "{{ item }}"
     tmp_dir: "{{ tmp_dir }}/{{ item.name }}"
-    db_user: "{{ db_user }}"
+    db_user: "{{ database_user }}"
     db_host: "{{ hosts }}"
   loop: "{{ database_schemas }}"
 
