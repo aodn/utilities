@@ -1,0 +1,30 @@
+name: soop_ba-add
+type: pipeline_version_2
+po: bene
+actions:
+#  - type: ADD
+#    files:
+#      - dest: /mnt/ebs/incoming/SOOP/BA
+#        local_file: IMOS_SOOP-BA_A_20140604T172830Z_E5WW_FV02_Will-Watch-ES60-38_END-20140607T014724Z_C-20150623T225733Z.nc
+#        remote_file: IMOS_SOOP-BA_A_20140617T134657Z_E5WW_FV02_Will-Watch-ES60-38_END-20140620T100455Z_C-20150625T053046Z.nc
+#  - type: UPDATE
+#    files:
+#      - dest: /mnt/ebs/incoming/SOOP/BA
+#        local_file: IMOS_SOOP-BA_A_20140617T134657Z_E5WW_FV02_Will-Watch-ES60-38_END-20140620T100455Z_C-20150625T053046Z.nc
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/SOOP/BA
+        local_file: IMOS_SOOP-BA_A_20140904T183144Z_E5WW_FV02_Will-Watch-ES60-38_END-20140905T113841Z_C-20150625T045323Z.nc
+#  - type: DELETE
+#    file: IMOS/SOOP/SOOP-BA/E5WW_Will-Watch/Will-Watch_20140904-20140905/IMOS_SOOP-BA_A_20140904T183144Z_E5WW_FV02_Will-Watch-ES60-38_END-20140905T113841Z_C-20150625T045323Z.nc
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_BA.log
+talend_jobs:
+  - soop_ba-soop_ba
+database_schemas:
+  -
+    name: soop_ba
+    tables:
+      - name: soop_ba_trajectory_map
+        exclude_columns: []
+
