@@ -1,0 +1,27 @@
+
+
+name: srs_oc_ljco_aeronet
+type: pipeline_version_2
+po: laurent
+actions:
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/SRS/OC/LJCO_AERONET
+    local_file: Lucinda.lev20
+- type: UPDATE
+  files:
+  - dest: /mnt/ebs/incoming/SRS/OC/LJCO_AERONET
+    local_file: Lucinda.lev20.updated
+    remote_file: Lucinda.lev20
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_LJCO_AERONET.log
+talend_jobs:
+- srs_oc_ljco_aeronet-srs_oc_ljco_aeronet
+database_schemas:
+-
+  name: srs_oc_ljco_aeronet
+  tables:
+  - name: indexed_file
+    exclude_columns: [modified, first_indexed, last_indexed]
+  - name: srs_oc_ljco_aeronet_map
+    exclude_columns: []
