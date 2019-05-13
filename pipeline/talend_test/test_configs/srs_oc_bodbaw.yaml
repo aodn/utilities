@@ -1,0 +1,33 @@
+
+
+name: srs_oc_bodbaw
+type: pipeline_version_2
+po: laurent
+actions:
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/SRS/OC/BODBAW
+      local_file: IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-CDOM_FV02_END-20161022T182900Z.nc
+      remote_file: IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-non-algal-detritus_FV02_END-20161022T182900Z.nc
+  - type: UPDATE
+    files:
+    - dest: /mnt/ebs/incoming/SRS/OC/BODBAW
+      local_file: IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-non-algal-detritus_FV02_END-20161022T182900Z.nc
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/SRS/OC/BODBAW
+      local_file: IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
+  - type: DELETE
+    file: IMOS/SRS/OC/BODBAW/2016_cruise-IN2016_v05/absorption/IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
+create_schema: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_BODBAW.log
+talend_jobs:
+  - srs_oc_bodbaw-srs_oc_bodbaw
+database_schemas:
+  -
+    name: srs_oc_bodbaw
+    tables:
+      - name: srs_oc_bodbaw_trajectory_profile_map
+        exclude_columns: [colour]
+
+
