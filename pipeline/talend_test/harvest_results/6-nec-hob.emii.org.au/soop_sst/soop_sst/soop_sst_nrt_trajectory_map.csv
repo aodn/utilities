@@ -1,0 +1,2 @@
+trajectory_id,url,platform_code,vessel_name,voyage_number,time_coverage_start,time_coverage_end,geom,AIRT_b,ATMP_b,CNDC_b,DEWT_b,GPS_HEIGHT_b,PL_CRS_b,PL_SPD_b,PL_WDIR_b,PL_WSPD_b,PSAL_b,RELH_b,TEMP_b,WDIR_b,WETT_b,WSPD_b,size
+2,IMOS/SOOP/SOOP-SST/C6FS9_Stadacona/2018/IMOS_SOOP-SST_MT_20180118T000000Z_C6FS9_FV01_C-20180118T233004Z.nc,C6FS9,Stadacona,undefined,2018-01-18 00:00:00+00,2018-01-18 23:00:00+00,0101000020E6100000000000C0CCDC624000000000004041C0,t,t,f,t,f,t,t,f,f,f,f,t,t,t,t,24692
