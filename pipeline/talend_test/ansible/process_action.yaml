@@ -43,7 +43,7 @@
   become: yes
   become_user: root
   copy:
-    src: "{{ input_files_dir }}/{{ name }}/{{ item.local_file }}"
+    src: "../input_files/{{ name }}/{{ item.local_file }}"
     dest: "{{ item.dest }}/{{ item.remote_file if item.remote_file is defined else item.local_file }}"
     owner: projectofficer
     group: projectofficer
