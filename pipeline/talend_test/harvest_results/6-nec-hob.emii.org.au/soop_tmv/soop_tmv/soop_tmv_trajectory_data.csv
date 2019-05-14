@@ -1,0 +1,1 @@
+file_id,vessel_name,measurement,TIME,TIME_quality_control,TRAJECTORY,LATITUDE,LATITUDE_quality_control,LONGITUDE,LONGITUDE_quality_control,NOMINAL_DEPTH,CNDC,CNDC_quality_control,CPHL,CPHL_quality_control,PSAL,PSAL_quality_control,TEMP_1,TEMP_1_quality_control,TEMP_2,TEMP_2_quality_control,TURB,TURB_quality_control,CNDC_b,CPHL_b,PSAL_b,TEMP_b,TURB_b,geom
