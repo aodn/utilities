@@ -4,3 +4,9 @@ pipeline_1_process_log: /mnt/ebs/log/data-services/process.log
 
 # database access
 db_user: <your_harvest_db_user_name>
+
+allowed_log_dirs:
+  - /mnt/ebs/log/data-services
+  - /mnt/ebs/log/pipeline/process
+  - /usr/local/talend/jobs/aodn_wave_nrt-aodn_wave_nrt
+

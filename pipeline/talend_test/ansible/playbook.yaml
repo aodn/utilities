@@ -12,6 +12,18 @@
 
   tasks:
 
+    # checks
+
+    - set_fact:
+        test_dir: "{{ talend_log_dir | default(talend_log_file) }}"
+
+
+    - name: test log dir in allowed dirs
+      allowed_dir:
+        allowed_dirs: "{{ allowed_log_dirs }}"
+        test: "{{ test_dir }}"
+
+
     # setup: time profiling csv file
 
     - name: create time_profile.csv if not already exists
