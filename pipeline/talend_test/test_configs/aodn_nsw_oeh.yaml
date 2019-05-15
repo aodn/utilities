@@ -54,7 +54,8 @@ actions:
   - type: DELETE
     file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_ScientificRigour.pdf
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_dir: /mnt/ebs/log/data-services/AODN_NSW_OEH
 talend_jobs:
   - aodn_nsw_oeh-aodn_nsw_oeh

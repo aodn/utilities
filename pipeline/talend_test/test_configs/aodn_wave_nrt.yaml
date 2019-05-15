@@ -8,7 +8,8 @@ actions:
     files:
       - dest: /mnt/ebs/wip/AODN_WAVE_NRT
         local_file: Buoys_metadata.csv
-create_schema: false
+drop_schema_objects: false
+run_talend_liqui: false
 exec_shell_script: /usr/local/talend/jobs/aodn_wave_nrt-aodn_wave_nrt/bin/aodn_wave_nrt-aodn_wave_nrt.sh
 talend_log_dir: /usr/local/talend/jobs/aodn_wave_nrt-aodn_wave_nrt/log
 talend_jobs:
