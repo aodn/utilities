@@ -31,7 +31,8 @@ actions:
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
 - type: DELETE
   file: IMOS/SOOP/SOOP-XBT/REALTIME/FASB_Astrolabe/2019/IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_XBT_NRT.log
 talend_jobs:
 - soop_xbt_nrt-soop_xbt_nrt
