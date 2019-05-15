@@ -8,7 +8,8 @@ actions:
     files:
     - dest: /mnt/ebs/incoming/ANFOG/processed
       local_file: TasEastCoast20190213.zip
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANFOG_DM.log
 talend_jobs:
   - anfog_dm-anfog_dm

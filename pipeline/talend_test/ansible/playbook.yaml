@@ -42,7 +42,7 @@
       command: psql -d harvest -c "select drop_objects_in_schema('"{{ item.name }}"');"
       register: truncate_schema
       with_items: "{{ database_schemas }}"
-      when: create_schema == true
+      when: (drop_schema_objects is defined) and drop_schema_objects == true
       tags:
         - init_db_only
 
@@ -54,7 +54,7 @@
         talend_regex="___"{{ item }}"___";
         /usr/local/talend/bin/talend-trigger -c /usr/local/talend/etc/trigger.conf --delete -f $talend_regex,$talend_regex
       with_items: "{{ talend_jobs }}"
-      when: create_schema == true
+      when: (run_talend_liqui is defined) and run_talend_liqui == true
       tags:
         - init_db_only
 

@@ -16,7 +16,8 @@ actions:
   - type: DELETE
     file: IMOS/ABOS/ASFS/SOFS/Surface_properties/Real-time/2019_daily/IMOS_ABOS-ASFS_CMST_20190323T005900Z_SOFS_FV01_C-20190324T002503Z.nc
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_dir: /mnt/ebs/log/data-services/ABOS_ASFS
 talend_jobs:
   - abos_sofs_sp-abos_sofs_sp

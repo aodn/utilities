@@ -24,7 +24,8 @@ actions:
        local_file: R2901616_001.nc
      - dest: /mnt/ebs/incoming/Argo
        local_file: argo_rsync.20190416-112046.rsync_manifest
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ARGO.log
 talend_jobs:
   - argo-argo

@@ -12,7 +12,8 @@ actions:
     files:
       - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_DM
         local_file: ct100.zip
-create_schema: false
+drop_schema_objects: false
+run_talend_liqui: false
 talend_log_dir: /mnt/ebs/log/data-services/AATAMS_SATTAG_DM
 talend_jobs:
   - aatams_sattag_dm-aatams_sattag_dm
