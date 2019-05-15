@@ -8,7 +8,7 @@ def prep_dir(dir_or_file):
     if '.' in os.path.basename(dir_or_file):
         return os.path.dirname(dir_or_file)
     else:
-        return os.path.dirname(dir_or_file)
+        return os.path.dirname(dir_or_file.rstrip('/'))
 
 
 def run_module():
