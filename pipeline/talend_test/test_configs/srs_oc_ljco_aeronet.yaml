@@ -13,7 +13,8 @@ actions:
   - dest: /mnt/ebs/incoming/SRS/OC/LJCO_AERONET
     local_file: Lucinda.lev20.updated
     remote_file: Lucinda.lev20
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_LJCO_AERONET.log
 talend_jobs:
 - srs_oc_ljco_aeronet-srs_oc_ljco_aeronet
