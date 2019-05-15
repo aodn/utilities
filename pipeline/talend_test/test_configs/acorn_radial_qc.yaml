@@ -29,7 +29,8 @@ actions:
 - type: DELETE
   file: IMOS/ACORN/radial_quality_controlled/RRK/2017/12/19/IMOS_ACORN_RV_20171219T081000Z_RRK_FV01_radial.nc
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ACORN_DM.log
 talend_jobs:
 - acorn_radial_qc-acorn_radial_qc
