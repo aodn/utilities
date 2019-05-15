@@ -1,0 +1,6 @@
+{
+  "ANSIBLE_MODULE_ARGS": {
+      "allowed_dirs": ["/test"],
+      "test": "/test/some.file"
+    }
+}
