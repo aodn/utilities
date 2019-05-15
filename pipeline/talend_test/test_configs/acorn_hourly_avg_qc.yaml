@@ -29,7 +29,8 @@ actions:
 - type: DELETE
   file: IMOS/ACORN/gridded_1h-avg-current-map_QC/ROT/2018/12/31/IMOS_ACORN_V_20181231T233000Z_ROT_FV01_1-hour-avg.nc
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ACORN_DM.log
 talend_jobs:
 - acorn_hourly_avg_qc-acorn_hourly_avg_qc
