@@ -16,11 +16,11 @@
   when: type == 'pipeline_version_1'
 
 
-- name: remove logs for pipline v1 and harvester types
+- name: remove logs for pipline v1
   become: yes
   become_user: root
   shell: "rm -rf {{ talend_log_dir }}/*"
-  when: (type == 'pipeline_version_1') or (type == 'harvester')
+  when: (type == 'pipeline_version_1')
 
 
 - name: check that the talend log file exists
@@ -95,16 +95,12 @@
   when: type == 'pipeline_version_2' and
         (action_item.type == 'ADD' or action_item.type == 'UPDATE')
 
-
 - name: wait for harvester-type processing to complete
-  command: "grep -r 'log4j:WARN Please initialize the log4j system properly'  {{ talend_log_dir }}"
-  register: task_result
-  delay: 5
-  retries: 100
-  until: task_result.rc == 0
-  with_items: "{{ talend_jobs }}"
+  wait_for:
+    path: "{{ talend_log_file }}"
+    search_regex: ^finish;
+    timeout: 800
   when: type == 'harvester'
-
 
 - set_fact:
     end_time: "{{ lookup('pipe','date \"+%Y-%m-%d %H:%M:%S\"') }}"
