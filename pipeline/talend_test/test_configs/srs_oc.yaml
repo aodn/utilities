@@ -19,7 +19,8 @@ actions:
     local_file: A.P1D.20180103T000000Z.aust.sst_quality.nc
 - type: DELETE
   file: IMOS/SRS/OC/gridded/aqua/P1D/2018/01/A.P1D.20180103T000000Z.aust.sst_quality.nc
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_GRIDDED.log
 talend_jobs:
 - srs_oc-srs_oc
