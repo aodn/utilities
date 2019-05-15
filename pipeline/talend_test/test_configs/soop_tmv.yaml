@@ -28,7 +28,8 @@ actions:
   - dest: /mnt/ebs/incoming/SOOP/TMV
     local_file: IMOS_SOOP-TMV_TSUB_20190313T085121Z_VLST_FV00_transect-M2D_END-20190313T184130Z.nc
     remote_file: IMOS_SOOP-TMV_TSB_20081207T085601Z_VLST_FV02_transect-M2D_END-20081207T194931Z.nc
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_TMV_NRT.log
 talend_jobs:
 - soop_tmv-soop_tmv
