@@ -18,7 +18,8 @@ actions:
     local_file: IMOS_SRSALT_TCS_20180405T220500Z_BASS3B_FV01_SBE37d28m.nc
 - type: DELETE
   file: IMOS/SRS/ALTIMETRY/calibration_validation/SRSBASS3B/CTD_timeseries/IMOS_SRSALT_TCS_20180405T220500Z_BASS3B_FV01_SBE37d28m.nc
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_ALTIMETRY.log
 talend_jobs:
 - srs_altimetry-srs_altimetry
