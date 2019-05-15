@@ -19,7 +19,8 @@ actions:
       local_file: IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
   - type: DELETE
     file: IMOS/SRS/OC/BODBAW/2016_cruise-IN2016_v05/absorption/IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_BODBAW.log
 talend_jobs:
   - srs_oc_bodbaw-srs_oc_bodbaw
