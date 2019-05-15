@@ -24,7 +24,8 @@ actions:
   - type: DELETE
     file: IMOS/SRS/Surface-Waves/Wave-Wind-Altimetry-DM00/CRYOSAT-2/020S_260E/IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-269E-DM00.nc
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_SURFACE_WAVES.log
 talend_jobs:
   - srs_surface_waves-srs_surface_waves
