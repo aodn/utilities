@@ -31,7 +31,8 @@ actions:
   - dest: /mnt/ebs/incoming/SRS/OC/LJCO_DALEC
     local_file: IMOS_SRS-OC-LJCO_F_20160915T044155Z_LJCO_FV02_DALEC_20160915T050002Z.nc
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_LJCO_DALEC.log
 talend_jobs:
 - srs_oc_ljco_wws-srs_oc_ljco_wws

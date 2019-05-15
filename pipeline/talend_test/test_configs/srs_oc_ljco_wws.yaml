@@ -65,7 +65,8 @@ actions:
 
 ### Couldn't find any examples of files for "%_FV01_Weather-monthly%" processing
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_LJCO.log
 talend_jobs:
 - srs_oc_ljco_wws-srs_oc_ljco_wws
