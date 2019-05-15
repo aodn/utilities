@@ -62,6 +62,17 @@ diff -r harvest_results/6-nec-hob.emii.org.au harvest_results/9-nec-hob.emii.org
 
 ##Options
 
+### Database user parameter
+In case your harvest database user differs from your remote ssh user, add `db_user=<your_harvest_username>` to the list of `--extra-vars` e.g.
+
+```
+ansible-playbook ansible/playbook.yaml \
+  -e @test_configs/anfog_dm.yaml \
+  --ask-pass --user <your_ssh_user> \
+  --extra-vars "hosts=6-nec-hob.emii.org.au db_user=<your_harvest_username>" \
+  --tags "init_db_only"
+```
+
 ### Run only the db initialisation step for schemas in the test
 
 

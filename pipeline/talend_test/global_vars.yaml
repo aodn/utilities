@@ -1,5 +1,4 @@
 
-input_files_dir: /<your_local_path_to>/utilities/pipeline/talend_test/input_files
 pipeline_1_process_log: /mnt/ebs/log/data-services/process.log
 
 # database access
@@ -9,4 +8,3 @@ allowed_log_dirs:
   - /mnt/ebs/log/data-services
   - /mnt/ebs/log/pipeline/process
   - /usr/local/talend/jobs/aodn_wave_nrt-aodn_wave_nrt
-
