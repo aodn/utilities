@@ -1,0 +1,23 @@
+name: soop_auscpr
+type: harvester
+po: marty
+drop_schema_objects: true
+exec_shell_script: /usr/local/talend/jobs/soop_auscpr-soop_auscpr/bin/soop_auscpr-soop_auscpr.sh
+talend_log_file: /usr/local/talend/jobs/soop_auscpr-soop_auscpr/log/console.log
+talend_jobs:
+- soop_auscpr-soop_auscpr
+actions:
+- type: NONE
+database_schemas:
+-
+  name: soop_auscpr
+  tables:
+  - name: soop_auscpr_biomass_index_map
+    exclude_columns: []
+  - name: soop_auscpr_pci_trajectory_map
+    exclude_columns: []
+  - name: soop_auscpr_phyto_trajectory_map
+    exclude_columns: []
+# Reinstate when https://github.com/aodn/content/issues/425 is resolved
+#  - name: soop_auscpr_zoop_trajectory_map
+#    exclude_columns: []
