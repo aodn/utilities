@@ -18,7 +18,8 @@ actions:
     local_file: IMOS_SOOP-CO2_GST_20190507T000515Z_VLMJ_FV00_END-20190508T000344Z.nc
 - type: DELETE
   file: IMOS/SOOP/SOOP-CO2/VLMJ_Investigator/REALTIME/2019/5/IMOS_SOOP-CO2_GST_20190507T000515Z_VLMJ_FV00_END-20190508T000344Z.nc
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_CO2.log
 talend_jobs:
 - soop_co2_rt-soop_co2_rt
