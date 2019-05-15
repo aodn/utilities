@@ -25,7 +25,8 @@ actions:
 - type: DELETE
   file: IMOS/SRS/OC/radiometer/VLHJ_Southern-Surveyor/2013/IMOS_SRS-OC_F_20130303T000000Z_VLHJ_FV01_DALEC_END-20130303T001757Z.nc
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_SOOP_RAD.log
 talend_jobs:
 - srs_oc_soop_rad-srs_oc_soop_rad
