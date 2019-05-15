@@ -24,7 +24,8 @@ actions:
   - type: DELETE
     file: CSIRO/Climatology/CARS/2009/AODN-product/CARS2009_World_monthly_02.nc
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.CARS.log
 talend_jobs:
   - cars_monthly-cars_monthly
