@@ -7,8 +7,8 @@ actions:
       - dest: /mnt/ebs/incoming/SOOP/CO2
         local_file: IMOS_SOOP-CO2_GST_20101031T113003Z_FHZI_FV01.nc.modified
         remote_file: IMOS_SOOP-CO2_GST_20101031T113003Z_FHZI_FV01.nc
-
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_CO2.log
 talend_jobs:
   - soop_co2-soop_co2

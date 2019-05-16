@@ -8,7 +8,8 @@ actions:
         local_file: IMOS_SOOP-CO2_GST_20110301T061948Z_FHZI_FV01.nc
   - type: DELETE
     file: IMOS/SOOP/SOOP-CO2/FHZI_Astrolabe/2011/AL1011_R4_northbound/IMOS_SOOP-CO2_GST_20110301T061948Z_FHZI_FV01.nc
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_CO2.log
 talend_jobs:
   - soop_co2-soop_co2
