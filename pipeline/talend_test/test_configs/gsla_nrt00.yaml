@@ -19,7 +19,8 @@ actions:
         local_file: IMOS_OceanCurrent_HV_20110902T000000Z_GSLA_FV02_NRT00_C-20111104T011708Z.nc.gz
   - type: DELETE
     file: IMOS/OceanCurrent/GSLA/NRT00/2011/IMOS_OceanCurrent_HV_20110903T000000Z_GSLA_FV02_NRT00_C-20111104T011719Z.nc.gz
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.GSLA.log
 talend_jobs:
   - gsla_nrt00-gsla_nrt00
