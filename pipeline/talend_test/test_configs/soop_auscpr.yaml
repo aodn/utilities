@@ -2,7 +2,9 @@ name: soop_auscpr
 type: harvester
 po: marty
 drop_schema_objects: true
-exec_shell_script: /usr/local/talend/jobs/soop_auscpr-soop_auscpr/bin/soop_auscpr-soop_auscpr.sh
+exec_shell_script:
+  script: /usr/local/talend/jobs/soop_auscpr-soop_auscpr/bin/soop_auscpr-soop_auscpr.sh
+  asynchronous: true
 talend_log_file: /usr/local/talend/jobs/soop_auscpr-soop_auscpr/log/console.log
 talend_jobs:
 - soop_auscpr-soop_auscpr
