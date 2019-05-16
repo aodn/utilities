@@ -73,6 +73,10 @@
         - init_db_only
 
 
+    - include: schema_restore.yaml
+      when: schema_restore is defined
+
+
     - include: process_action.yaml
       loop: "{{ actions }}"
       loop_control:

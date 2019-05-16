@@ -1,0 +1,32 @@
+- name: create schema download directory
+  delegate_to: localhost
+  file:
+    path: /tmp/talend_test_schemas
+    state: directory
+
+
+- name: download schema backup to local
+  delegate_to: localhost
+  aws_s3:
+    bucket: imos-backups
+    object: "{{ schema_restore.object.path }}/{{ item.name }}.dump"
+    dest: "/tmp/talend_test_schemas/{{ item.name }}.dump"
+    mode: get
+  loop: "{{ database_schemas }}"
+
+
+- name: upload schema backup to remote
+  copy:
+    src: "/tmp/talend_test_schemas/{{ item.name }}.dump"
+    dest: /tmp/
+  loop: "{{ database_schemas }}"
+
+
+- name: drop schema
+  command: "sudo -u postgres psql -d harvest -c 'DROP SCHEMA {{ item.name }} CASCADE;'"
+  loop: "{{ database_schemas }}"
+
+
+- name: run pg_restore on schema backup
+  command: "sudo -u postgres pg_restore -d harvest /tmp/{{ item.name }}.dump"
+  loop: "{{ database_schemas }}"
