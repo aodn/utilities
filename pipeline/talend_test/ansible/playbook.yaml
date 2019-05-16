@@ -16,12 +16,14 @@
 
     - set_fact:
         test_dir: "{{ talend_log_dir | default(talend_log_file) }}"
+      when: talend_log_dir is defined or talend_log_file is defined
 
 
     - name: test log dir in allowed dirs
       allowed_dir:
         allowed_dirs: "{{ allowed_log_dirs }}"
         test: "{{ test_dir }}"
+      when: test_dir is defined
 
 
     # setup: time profiling csv file
