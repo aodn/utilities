@@ -17,7 +17,8 @@ actions:
         local_file: IMOS_SOOP-ASF_FMT_20120411T063300Z_VLHJ_FV02.nc
   - type: DELETE
     file: IMOS/SOOP/SOOP-ASF/VLHJ_Southern-Surveyor/flux_product/2012/IMOS_SOOP-ASF_FMT_20120412T000900Z_VLHJ_FV02.nc
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_ASF_FMT.log
 talend_jobs:
   - soop_asf_fmt-soop_asf_fmt
