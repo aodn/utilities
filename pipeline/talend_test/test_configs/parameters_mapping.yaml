@@ -1,0 +1,102 @@
+
+
+name: parameters_mapping
+type: harvester
+po: all
+actions:
+- type: NONE
+drop_schema_objects: true
+run_talend_liqui: false
+exec_shell_script:
+  script: /usr/local/talend/jobs/parameters_mapping-parameters_mapping/bin/parameters_mapping-parameters_mapping.sh
+  asynchronous: true
+talend_log_file: /usr/local/talend/jobs/parameters_mapping-parameters_mapping/log/console.log
+talend_jobs:
+- parameters_mapping-parameters_mapping
+database_schemas:
+-
+  name: parameters_mapping
+  tables:
+  - name: anmn_nrs_dar_yon_metadata_summary
+    exclude_columns: []
+  - name: noaa_drifters_metadata_summary
+    exclude_columns: []
+  - name: soop_asf_fmt_metadata_summary
+    exclude_columns: []
+  - name: abos_sofs_fl_metadata_summary
+    exclude_columns: []
+  - name: abos_sofs_sp_metadata_summary
+    exclude_columns: []
+  - name: anmn_nrs_rt_wave_metadata_summary
+    exclude_columns: []
+  - name: anmn_acidification_nrt_metadata_summary
+    exclude_columns: []
+  - name: anmn_t_regridded_metadata_summary
+    exclude_columns: []
+  - name: aodn_nt_sattag_hawksbill_metadata_summary
+    exclude_columns: []
+  - name: soop_co2_metadata_summary
+    exclude_columns: []
+  - name: anmn_am_dm_metadata_summary
+    exclude_columns: []
+  - name: anmn_nrs_rt_bio_metadata_summary
+    exclude_columns: []
+  - name: anfog_dm_metadata_summary
+    exclude_columns: []
+  - name: anfog_rt_metadata_summary
+    exclude_columns: []
+  - name: soop_trv_metadata_summary
+    exclude_columns: []
+  - name: aodn_wave_nrt_metadata_summary
+    exclude_columns: []
+  - name: anmn_nrs_bgc_metadata_summary
+    exclude_columns: []
+  - name: anmn_nrs_rt_meteo_metadata_summary
+    exclude_columns: []
+  - name: aodn_nt_sattag_oliveridley_metadata_summary
+    exclude_columns: []
+  - name: aatams_biologging_penguin_metadata_summary
+    exclude_columns: []
+  - name: abos_ts_metadata_summary
+    exclude_columns: []
+  - name: soop_tmv_metadata_summary
+    exclude_columns: []
+  - name: anmn_ts_metadata_summary
+    exclude_columns: []
+  - name: soop_xbt_dm_metadata_summary
+    exclude_columns: []
+  - name: soop_xbt_nrt_metadata_summary
+    exclude_columns: []
+  - name: srs_altimetry_metadata_summary
+    exclude_columns: []
+  - name: aatams_sattag_dm_metadata_summary
+    exclude_columns: []
+  - name: soop_co2_rt_metadata_summary
+    exclude_columns: []
+  - name: aodn_wave_dm_metadata_summary
+    exclude_columns: []
+  - name: anmn_mhlwave_metadata_summary
+    exclude_columns: []
+  - name: argo_metadata_summary
+    exclude_columns: []
+  - name: anmn_burst_avg_metadata_summary
+    exclude_columns: []
+  - name: anmn_nrs_ctd_profiles_metadata_summary
+    exclude_columns: []
+  - name: auv_metadata_summary
+    exclude_columns: []
+  - name: soop_tmv_nrt_metadata_summary
+    exclude_columns: []
+  - name: faimms_metadata_summary
+    exclude_columns: []
+  - name: aatams_biologging_shearwater_metadata_summary
+    exclude_columns: []
+  - name: aatams_biologging_snowpetrel_metadata_summary
+    exclude_columns: []
+  - name: aatams_sattag_nrt_metadata_summary
+    exclude_columns: []
+  - name: soop_asf_mt_metadata_summary
+    exclude_columns: []
+  - name: soop_sst_metadata_summary
+    exclude_columns: []
+
