@@ -1,22 +1,31 @@
 
-
 name: anfog_rt
 type: pipeline_version_2
 po: bene
 actions:
   - type: ADD
     files:
-    - dest: /mnt/ebs/incoming/ANFOG/realtime
-      local_file: IMOS_ANFOG_BCEOSTUV_20190425T005939Z_SL210_FV00_timeseries_END-20190430T061605Z.zip
-create_schema: false
+      - dest: /mnt/ebs/incoming/ANFOG/realtime
+        local_file: RowleyShoals20190425.zip
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/ANFOG/realtime
+        local_file: RowleyShoals20190425.updated.zip
+        remote_file: RowleyShoals20190425.zip
+  - type: DELETE
+    path: IMOS/ANFOG/REALTIME/slocum_glider/RowleyShoals20190425
+
+drop_schema_objects: false
+run_talend_liqui: false
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANFOG_RT.log
 talend_jobs:
   - anfog_rt-anfog_rt
 database_schemas:
   -
-    name: anfog_rt-anfog_rt
+    name: anfog_rt
     tables:
-      - name: anfog_rt_trajectory_map
+      - name: anfog_rt_trajectory_data
         exclude_columns: []
       - name: anfog_rt_trajectory_map
         exclude_columns: []
+
