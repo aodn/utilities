@@ -37,7 +37,7 @@
   when: (type == 'pipeline_version_2') and (log_file.stat.exists == true)
 
 
-# copy files to destination (kicks off processing) for ADD/UPDATE actions
+# copy files to destination (kicks off processing for pipeline types) for ADD/UPDATE actions
 
 - name: copy files to target directories
   become: yes
@@ -49,8 +49,7 @@
     group: projectofficer
     mode: a+w
   loop: "{{ action_item.files }}"
-  when: (type == 'pipeline_version_1' or type == 'pipeline_version_2') and
-        (action_item.type == 'ADD' or action_item.type == 'UPDATE')
+  when: action_item.type == 'ADD' or action_item.type == 'UPDATE'
 
 
   # note: the po_s3_del command succeeds even when it tries to delete a key that doesn't exist
@@ -67,7 +66,7 @@
 - name: execute script
   become: yes
   become_user: talend
-  command: "{{ exec_shell_script }}"
+  shell: "{{ exec_shell_script.script }}"
   when: type == 'harvester'
 
 
@@ -100,7 +99,7 @@
     path: "{{ talend_log_file }}"
     search_regex: ^finish;
     timeout: 800
-  when: type == 'harvester'
+  when:  type == 'harvester' and exec_shell_script.asynchronous|default(false)
 
 - set_fact:
     end_time: "{{ lookup('pipe','date \"+%Y-%m-%d %H:%M:%S\"') }}"
