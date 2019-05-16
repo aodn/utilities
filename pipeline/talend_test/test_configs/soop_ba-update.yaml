@@ -17,7 +17,8 @@ actions:
 #      - dest: /mnt/ebs/incoming/SOOP/BA
 #        local_file: IMOS_SOOP-BA_A_20140617T134657Z_E5WW_FV02_Will-Watch-ES60-38_END-20140620T100455Z_C-20150625T053046Z.nc
 
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_BA.log
 talend_jobs:
   - soop_ba-soop_ba
