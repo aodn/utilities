@@ -17,7 +17,8 @@ actions:
         local_file: IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
   - type: DELETE
     file: IMOS/SOOP/SOOP-ASF/VLHJ_Southern-Surveyor/meteorological_sst_observations/2013/IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_ASF_MT.log
 talend_jobs:
   - soop_asf_mt-soop_asf_mt
