@@ -6,11 +6,14 @@ po: laurent
 drop_schema_objects: true
 run_talend_liqui: false
 exec_shell_script:
-  script: /usr/local/talend/jobs/aus_phyto_db_ongoing-aus_phyto_db_ongoing/bin/aus_phyto_db_ongoing-aus_phyto_db_ongoing.sh
-  asynchronous: true
-talend_log_file: /usr/local/talend/jobs/aus_phyto_db_ongoing-aus_phyto_db_ongoing/log/console.log
+  script: >
+    /usr/local/talend/jobs/aus_phyto_db_ongoing-aus_phyto_db_ongoing/java/AUS_PHYTO_DB_harvester/AUS_PHYTO_DB_harvester_run.sh
+    --context_param paramFile=/usr/local/talend/jobs/aus_phyto_db_ongoing-aus_phyto_db_ongoing/etc/aus_phyto_db_ongoing-aus_phyto_db_ongoing.conf
+    --context_param logDir=/usr/local/talend/jobs/aus_phyto_db_ongoing-aus_phyto_db_ongoing/log
 talend_jobs:
 - aus_phyto_db_ongoing-aus_phyto_db_ongoing
+actions:
+- type: NONE
 database_schemas:
 -
   name: aus_phyto_db_ongoing
