@@ -1,0 +1,42 @@
+
+
+name: acorn_hourly_avg_nonqc
+type: pipeline_version_2
+po: loz
+actions:
+  # Cleanup any existing files on s3 as they can interfere with testing
+  - type: DELETE
+    file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
+  - type: DELETE
+    file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+  # Add IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc with IMOS_ACORN_V_20181231T093000Z_ROT_FV00_1-hour-avg.nc content
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/ACORN/any
+      local_file: IMOS_ACORN_V_20181231T093000Z_ROT_FV00_1-hour-avg.nc
+      remote_file: IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
+  # Add real IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc to update data loaded above with real data
+  - type: UPDATE
+    files:
+    - dest: /mnt/ebs/incoming/ACORN/any
+      local_file: IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
+  # Add IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc so we can delete it in the next step
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/ACORN/any
+      local_file: IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+  # Delete IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+  - type: DELETE
+    file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ACORN.log
+talend_jobs:
+  - acorn_hourly_avg_nonqc-acorn_hourly_avg_nonqc
+database_schemas:
+  -
+    name: acorn_hourly_avg_nonqc
+    tables:
+      - name: acorn_hourly_avg_nonqc_timeseries_url
+        exclude_columns: []
