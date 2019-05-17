@@ -1,3 +1,5 @@
+# ncatted -h -a vessel_name,global,o,c,'Carnelian' input_files/soop_co2/IMOS_SOOP-CO2_GST_20101031T113003Z_FHZI_FV01.nc
+
 name: soop_co2
 type: pipeline_version_2
 po: bene
@@ -8,6 +10,15 @@ actions:
         local_file: IMOS_SOOP-CO2_GST_20110301T061948Z_FHZI_FV01.nc
   - type: DELETE
     file: IMOS/SOOP/SOOP-CO2/FHZI_Astrolabe/2011/AL1011_R4_northbound/IMOS_SOOP-CO2_GST_20110301T061948Z_FHZI_FV01.nc
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/SOOP/CO2
+        local_file: IMOS_SOOP-CO2_GST_20101031T113003Z_FHZI_FV01.nc.original
+        remote_file: IMOS_SOOP-CO2_GST_20101031T113003Z_FHZI_FV01.nc
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/SOOP/CO2
+        local_file: IMOS_SOOP-CO2_GST_20101031T113003Z_FHZI_FV01.nc
 drop_schema_objects: true
 run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_CO2.log
