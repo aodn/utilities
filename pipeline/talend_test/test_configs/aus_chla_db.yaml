@@ -1,0 +1,20 @@
+
+
+name: aus_chla_db
+type: harvester
+po: laurent
+drop_schema_objects: true
+run_talend_liqui: false
+exec_shell_script:
+  script: /usr/local/talend/jobs/aus_chla_db-aus_chla_db/bin/aus_chla_db-aus_chla_db.sh
+  asynchronous: true
+talend_log_file: /usr/local/talend/jobs/aus_chla_db-aus_chla_db/log/console.log
+talend_jobs:
+- aus_chla_db-aus_chla_db
+database_schemas:
+-
+  name: aus_chla_db
+  tables:
+  - name: aus_chla_db_data
+    exclude_columns: []
+
