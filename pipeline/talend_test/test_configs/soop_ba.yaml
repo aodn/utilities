@@ -1,4 +1,4 @@
-name: soop_ba-update
+name: soop_ba
 type: pipeline_version_2
 po: bene
 actions:
@@ -16,7 +16,7 @@ actions:
 
 # https://github.com/aodn/utilities/pull/101/files#r282351909
 # ncatted -h -a ship_callsign,global,o,c,'DUMY' input_files/soop_ba-update/IMOS_SOOP-BA_A_20140617T134657Z_E5WW_FV02_Will-Watch-ES60-38_END-20140620T100455Z_C-20150625T053046Z.nc
-# Platform code should change from 'E5WW' to 'DUMY' in resulting soop_ba_trajectory_map.csv
+# platform_code should change from 'E5WW' to 'DUMY' in resulting soop_ba_trajectory_map.csv after running update test
 
   - type: UPDATE
     files:
