@@ -1,0 +1,53 @@
+
+
+name: auv
+type: pipeline_version_2
+po: laurent
+actions:
+# B files
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/AUV
+    local_file: IMOS_AUV_B_20180823T215019Z_SIRIUS_FV00.nc
+- type: UPDATE
+  files:
+  - dest: /mnt/ebs/incoming/AUV
+    local_file: IMOS_AUV_B_20180823T215019Z_SIRIUS_FV00.nc.update
+    remote_file: IMOS_AUV_B_20180823T215019Z_SIRIUS_FV00.nc
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/AUV
+    local_file: IMOS_AUV_B_20180825T002236Z_SIRIUS_FV00.nc
+- type: DELETE
+  file: IMOS/AUV/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf/IMOS_AUV_B_20180825T002236Z_SIRIUS_FV00.nc
+# ST files
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/AUV
+    local_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc
+- type: UPDATE
+  files:
+  - dest: /mnt/ebs/incoming/AUV
+    local_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc.update
+    remote_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc
+- type: ADD
+  files:
+  - dest: /mnt/ebs/incoming/AUV
+    local_file: IMOS_AUV_ST_20180825T002236Z_SIRIUS_FV00.nc
+- type: DELETE
+  file: IMOS/AUV/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf/IMOS_AUV_ST_20180825T002236Z_SIRIUS_FV00.nc
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.AUV.log
+talend_jobs:
+- auv-auv
+database_schemas:
+-
+  name: auv
+  tables:
+  - name: auv_trajectory_map
+    exclude_columns: []
+  - name: auv_trajectory_b_data
+    exclude_columns: []
+  - name: auv_trajectory_st_data
+    exclude_columns: []
