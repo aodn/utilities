@@ -20,4 +20,4 @@ database_schemas:
       - name: soop_co2_trajectory_data
         exclude_columns: []
       - name: soop_co2_trajectory_map
-        exclude_columns: []
+        exclude_columns: [colour]
