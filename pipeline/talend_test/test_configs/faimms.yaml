@@ -32,7 +32,7 @@ database_schemas:
 -
   name: faimms
   tables:
-  - name: anmn_ts_timeseries_data
+  - name: faimms_timeseries_map
     exclude_columns: []
-  - name: anmn_ts_timeseries_map
+  - name: faimms_timeseries_data
     exclude_columns: []
