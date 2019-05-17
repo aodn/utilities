@@ -41,6 +41,6 @@ database_schemas:
   name: soop_xbt_nrt
   tables:
   - name: soop_xbt_nrt_profiles_map
-    exclude_columns: []
+    exclude_columns: [colour]
   - name: soop_xbt_nrt_profiles_data
     exclude_columns: []
