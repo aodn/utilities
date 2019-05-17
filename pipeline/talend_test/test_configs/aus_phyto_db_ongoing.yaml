@@ -1,0 +1,22 @@
+
+
+name: aus_phyto_db_ongoing
+type: harvester
+po: laurent
+drop_schema_objects: true
+run_talend_liqui: false
+exec_shell_script:
+  script: /usr/local/talend/jobs/aus_phyto_db_ongoing-aus_phyto_db_ongoing/bin/aus_phyto_db_ongoing-aus_phyto_db_ongoing.sh
+  asynchronous: true
+talend_log_file: /usr/local/talend/jobs/aus_phyto_db_ongoing-aus_phyto_db_ongoing/log/console.log
+talend_jobs:
+- aus_phyto_db_ongoing-aus_phyto_db_ongoing
+database_schemas:
+-
+  name: aus_phyto_db_ongoing
+  tables:
+  - name: aus_phyto_db_data
+    exclude_columns: []
+  - name: aus_phyto_db_map
+    exclude_columns: []
+
