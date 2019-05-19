@@ -1,0 +1,101 @@
+
+name: plankton_products_nrs
+type: harvester
+po: marty
+drop_schema_objects: true
+exec_shell_script:
+  script: >
+    /usr/local/talend/jobs/plankton_products-plankton_products/java/PLANKTON_PRODUCTS_harvester/PLANKTON_PRODUCTS_harvester_run.sh
+    --context_param paramFile=/usr/local/talend/jobs/plankton_products-plankton_products/etc/plankton_products-plankton_products.conf
+    --context_param logDir=/usr/local/talend/jobs/plankton_products-plankton_products/log
+    --context_param base=/mnt/ebs/wip/ANMN/NRS/plankton_products
+    --context_param fileList=/mnt/ebs/wip/ANMN/NRS/plankton_products/manifest
+talend_jobs:
+- plankton_products-plankton_products
+dirs:
+- path: /mnt/ebs/wip/ANMN/NRS/plankton_products
+  owner: projectofficer
+  group: projectofficer
+actions:
+- type: ADD
+  files:
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_phyto_genus_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_phyto_htg_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_phyto_raw_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_phyto_species_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_copes_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_genus_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_htg_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_noncopes_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_raw_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_taxon_changelog.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: manifest
+- type: UPDATE
+  files:
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_phyto_genus_mat.csv.update
+    remote_file: nrs_phyto_genus_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_phyto_htg_mat.csv.update
+    remote_file: nrs_phyto_htg_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_phyto_raw_mat.csv.update
+    remote_file: nrs_phyto_raw_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_phyto_species_mat.csv.update
+    remote_file: nrs_phyto_species_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_copes_mat.csv.update
+    remote_file: nrs_zoop_copes_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_genus_mat.csv.update
+    remote_file: nrs_zoop_genus_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_htg_mat.csv.update
+    remote_file: nrs_zoop_htg_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_noncopes_mat.csv.update
+    remote_file: nrs_zoop_noncopes_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_raw_mat.csv.update
+    remote_file: nrs_zoop_raw_mat.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: nrs_zoop_taxon_changelog.csv.update
+    remote_file: nrs_zoop_taxon_changelog.csv
+  - dest: /mnt/ebs/wip/ANMN/NRS/plankton_products
+    local_file: manifest
+
+database_schemas:
+-
+  name: plankton_products
+  tables:
+  - name: nrs_phyto_htg_map
+    exclude_columns: []
+  - name: nrs_phyto_genus_map
+    exclude_columns: []
+  - name: nrs_phyto_species_map
+    exclude_columns: []
+  - name: nrs_phyto_raw_map
+    exclude_columns: []
+  - name: nrs_zoop_htg_map
+    exclude_columns: []
+  - name: nrs_zoop_genus_map
+    exclude_columns: []
+  - name: nrs_zoop_copes_map
+    exclude_columns: []
+  - name: nrs_zoop_noncopes_map
+    exclude_columns: []
+  - name: nrs_zoop_raw_map
+    exclude_columns: []
+

@@ -1,0 +1,39 @@
+taxon_name,taxon_start_date,first_occurrence,parent_taxon_name,training,comments
+Gonyaulax polygramma,2008-09-29,2010-05-07,Gonyaulax spp.,Identified from photo by Gustaaf Hallegraeff,
+Tripos furca type,2011-05-17,2011-09-20,Tripos spp.,"Internal training Pru Bonhma, Gustaaf Hallegraeff",
+Tripos fusus type,2011-05-17,2011-06-22,Tripos spp.,"Internal training Pru Bonhma, Gustaaf Hallegraeff",
+Tripos mulleri type,2011-05-17,2011-06-22,Tripos spp.,"Internal training Pru Bonhma, Gustaaf Hallegraeff",
+Coscinodiscus spp. 100-150 µm,2008-09-29,2012-08-23,Coscinodiscus spp. > 80 µm,,New size classes added when group started to count NRS phyto
+Coscinodiscus spp. 300-400 µm,2008-09-29,2012-08-23,Coscinodiscus spp. > 80 µm,,New size classes added when group started to count NRS phyto
+Coscinodiscus spp. 150-200 µm,2008-09-29,2013-04-22,Coscinodiscus spp. > 80 µm,,New size classes added when group started to count NRS phyto
+Pseudo-nitzschia delicatisima complex <=3 µm,2011-05-17,2011-06-21,Pseudo-nitzschia spp.,"Internal training Pru Bonhma, Gustaaf Hallegraeff",
+Pseudo-nitzschia seriata complex >3 µm,2011-05-17,2011-09-15,Pseudo-nitzschia spp.,"Internal training Pru Bonhma, Gustaaf Hallegraeff",
+Silicoflagellate 4 points,2010-01-01,2010-03-02,Silicoflagellate,External training Tony John,
+Silicoflagellate 6 points,2010-01-01,2010-03-02,Silicoflagellate,External training Tony John,
+Octactis octonaria,2010-01-01,2010-09-06,Silicoflagellate,Internal training,Valid in SOCPR since 2008-10-01 and AusCPR since 2010-03-01
+Dictyocha speculum,2010-01-01,2010-02-08,Silicoflagellate,Internal training,Valid in SOCPR since 2008-10-01 and AusCPR since 2010-03-01
+Dictyocha fibula,2010-01-01,2010-03-17,Silicoflagellate,Internal training,Valid in SOCPR since 2008-10-01 and AusCPR since 2010-03-01
+Dictyocha antarctica,2010-01-01,2011-07-12,Silicoflagellate,Internal training,Valid in SOCPR since 2008-10-01 and AusCPR since 2010-03-01
+Octactis spp.,2010-01-01,2011-09-15,Silicoflagellate,Internal training,
+Thalassiosira spp. <10 µm,2008-09-29,2011-06-21,Thalassiosira spp.,"Internal training Pru Bonhma, Gustaaf Hallegraeff",Valid in SOCPR since 2008-10-01 and AusCPR since 2011-05-20
+Thalassiosira spp. 40-60 µm,2008-09-29,2010-02-16,Thalassiosira spp.,"Internal training Pru Bonhma, Gustaaf Hallegraeff",Valid in SOCPR since 2008-10-01 and AusCPR since 2011-05-19
+Thalassiosira spp. 10-20 µm,2008-09-29,2009-07-30,Thalassiosira spp.,"Internal training Pru Bonhma, Gustaaf Hallegraeff",Valid in SOCPR since 2008-10-01 and AusCPR since 2011-05-17
+Thalassiosira spp. 20-40 µm,2008-09-29,2010-02-11,Thalassiosira spp.,"Internal training Pru Bonhma, Gustaaf Hallegraeff",Valid in SOCPR since 2008-10-01 and AusCPR since 2011-05-18
+Codonellopsis orthoceras,2010-01-01,2010-04-07,Ciliate (Inc. tintinnid),External training Tony John,
+Codonellopsis pusilla,2010-01-01,2010-02-26,Ciliate (Inc. tintinnid),External training Tony John,
+Cyttarocylis spp.,2008-09-29,2010-04-07,Ciliate (Inc. tintinnid),External training Tony John,
+Epiplocylis spp.,2010-01-01,2010-11-23,Ciliate (Inc. tintinnid),External training Tony John,
+Eutintinnus spp.,2010-01-01,2010-05-31,Ciliate (Inc. tintinnid),External training Tony John,
+Parundella spp.,2010-01-01,2010-07-26,Ciliate (Inc. tintinnid),External training Tony John,
+Undella spp.,2008-09-29,2010-07-26,Ciliate (Inc. tintinnid),External training Tony John,
+Xystonella spp.,2010-01-01,2010-03-16,Ciliate (Inc. tintinnid),External training Tony John,
+Odontella spp.,2010-01-01,2010-07-27,Ciliate (Inc. tintinnid),External training Tony John,
+Codonellopsis spp.,2010-01-01,2010-07-15,Ciliate (Inc. tintinnid),External training Tony John,
+Rhizosolenia acuminata,2012-03-01,2012-03-27,Oxytoxum spp.,Pru Bonham internal training,
+Unid dinoflagellate > 10 µm,2008-09-29,2010-03-17,Oxytoxum spp.,Pru Bonham internal training,"New taxon groups made to replace armoured, not armoured as this is too hard to distinguish"
+Unid dinoflagellate < 10 µm,2008-09-29,2008-08-07,Oxytoxum spp.,Pru Bonham internal training,"New taxon groups made to replace armoured, not armoured as this is too hard to distinguish"
+Pyrophacus spp.,2012-03-01,2012-08-23,Oxytoxum spp.,Pru Bonham internal training,
+Oxytoxum scolopax,2012-03-01,2012-05-24,Oxytoxum spp.,Pru Bonham internal training,
+Protoperidinium grande,2012-03-01,2012-10-30,Oxytoxum spp.,Pru Bonham internal training,
+Pennate diatom > 10 µm,2011-05-17,2010-03-24,Pennate diatom,"Internal training Pru Bonhma, Gustaaf Hallegraeff",
+Ceratocorys horrida,2010-09-15,2010-07-27,Dinophysis spp.,Identified by Gustaaf Hallegraeff,
