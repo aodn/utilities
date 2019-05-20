@@ -6,3 +6,7 @@ allowed_log_dirs:
   - /mnt/ebs/log/pipeline/process
   - /usr/local/talend/jobs/aodn_wave_nrt-aodn_wave_nrt/log
   - /usr/local/talend/jobs/soop_auscpr-soop_auscpr/log
+
+host_buckets:
+  6-nec-hob.emii.org.au: imos-data-pipeline-2
+  9-nec-hob.emii.org.au: imos-data-pipeline-talend7
