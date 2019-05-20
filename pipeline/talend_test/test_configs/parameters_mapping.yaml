@@ -1,4 +1,9 @@
-
+# these schemas (which are _not_ queried ) need to be restored before running the test
+#
+# - aatams_biologging_shearwater
+# - aatams_biologging_snowpetrel
+# - aodn_nt_sattag_hawksbill
+# - aodn_nt_sattag_oliveridley
 
 name: parameters_mapping
 type: harvester
