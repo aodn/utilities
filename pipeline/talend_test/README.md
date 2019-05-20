@@ -18,7 +18,7 @@ Create .pgpass entries
 - e.g. add an entry like this:
   ```6-nec-hob.emii.org.au:5432:harvest:<your_db_username>:<your_db_password>```
 
-If performing a schema restore (from backup) as part of the test you will need aws access
+Configure your AWS profile e.g:
 ```
 export AWS_PROFILE=production-developer
 ```
