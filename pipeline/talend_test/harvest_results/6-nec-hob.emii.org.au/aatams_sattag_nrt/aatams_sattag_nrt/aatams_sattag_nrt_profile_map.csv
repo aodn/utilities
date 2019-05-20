@@ -1,0 +1,2 @@
+profile_id,sattag_program,device_id,device_wmo_ref,tag_type,common_name,release_site,state_country,age_class,sex,timestamp,min_pressure,max_pressure,nb_measurements,geom,url,size
+5,ct150,ct150-974-VERT-18,Q9901199,SMRU CTD tag,Weddell Seal,Scott Base,New Zealand Antarctic Territory,"","",2019-04-16 21:40:00+00,4,384,16,0101000020E61000007CF2B0506BA864409CA223B9FC6353C0,IMOS/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles/IMOS_AATAMS-SATTAG_TSP_20190416T214000Z_Q9901199_FV00.nc,53787
