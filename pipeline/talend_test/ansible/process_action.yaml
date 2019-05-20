@@ -68,7 +68,7 @@
 
 - set_fact:
     delete_list: "{{ objects_list.stdout_lines|list }}"
-  when: objects_list is defined
+  when: objects_list.stdout_lines is defined
 
 
   # note: the po_s3_del command succeeds even when it tries to delete a key that doesn't exist
