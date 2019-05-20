@@ -4,7 +4,7 @@ po: marty
 actions:
   - type: ADD
     files:
-      - dest: /mnt/ebs/incoming/ANMN/AM/real-time
+      - dest: /mnt/ebs/incoming/ANMN/AM
         local_file: IMOS_ANMN-AM_KST_20120206T060001Z_NRSKAI_FV00_NRSKAI-CO2-1202-realtime-raw_END-20121022T120000Z_C-20150722T080530Z.nc.original
         remote_file: IMOS_ANMN-AM_KST_20120206T060001Z_NRSKAI_FV00_NRSKAI-CO2-1202-realtime-raw_END-20121022T120000Z_C-20150722T080530Z.nc
 
@@ -13,11 +13,11 @@ actions:
 
   - type: UPDATE
     files:
-      - dest: /mnt/ebs/incoming/ANMN/AM/real-time
+      - dest: /mnt/ebs/incoming/ANMN/AM
         local_file: IMOS_ANMN-AM_KST_20120206T060001Z_NRSKAI_FV00_NRSKAI-CO2-1202-realtime-raw_END-20121022T120000Z_C-20150722T080530Z.nc
   - type: ADD
     files:
-      - dest: /mnt/ebs/incoming/ANMN/AM/real-time
+      - dest: /mnt/ebs/incoming/ANMN/AM
         local_file: IMOS_ANMN-AM_KST_20140508T000001Z_NRSKAI_FV00_NRSKAI-CO2-1405-realtime-raw_END-20141102T150000Z_C-20150722T080603Z.nc
   - type: DELETE
     file: /IMOS/ANMN/AM/NRSKAI/CO2/real-time/IMOS_ANMN-AM_KST_20140508T000001Z_NRSKAI_FV00_NRSKAI-CO2-1405-realtime-raw_END-20141102T150000Z_C-20150722T080603Z.nc
