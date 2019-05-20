@@ -26,7 +26,10 @@
       when: test_dir is defined
 
 
-    # setup: time profiling csv file
+    # setup
+
+    - set_fact:
+        host_bucket: "{{ host_buckets[hosts] }}"
 
     - name: create time_profile.csv if not already exists
       copy:

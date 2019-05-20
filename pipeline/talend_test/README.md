@@ -109,6 +109,13 @@ actions:
 ...
 ```
 
+## Deleting files
+
+The DELETE action can take either a `file` or a `path` as a parameter.
+ 
+- `file` specifies a single file to delete. 
+- `path` specifies a directory in which _all files will be deleted_
+
 ## Notes
 
 - Running a test first removes pipeline/harvest logs. This is needed so that the playbook can perform a `wait` action and detect when processing has completed.
