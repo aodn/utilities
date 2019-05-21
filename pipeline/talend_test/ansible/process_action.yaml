@@ -134,3 +134,9 @@
     line: "{{ name }},{{ hosts }},{{ action_item.type }},{{ elapsed_time }}"
     insertafter: EOF
   delegate_to: localhost
+
+- include: harvest_results.yaml
+  vars:
+    label: "action_{{ action_item_index }}_{{ action_item.type }} "
+
+

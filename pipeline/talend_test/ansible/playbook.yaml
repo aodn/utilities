@@ -84,9 +84,12 @@
       loop: "{{ actions }}"
       loop_control:
         loop_var: action_item
+        index_var: action_item_index
 
 
     - include: harvest_results.yaml
-      delegate_to: localhost
+      vars:
+        label: "harvest_results_only"
       tags:
+        - never
         - harvest_results_only
