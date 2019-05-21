@@ -1,0 +1,37 @@
+
+name: aodn_wamsi_sediment
+type: harvester
+po: xavier
+dirs:
+- path: /mnt/imos-data/WAMSI/WAMSI1/Node3/3.4/3.4.2/Ningaloo_Inshore_Offshore_Sediment_Data
+  owner: projectofficer
+  group: projectofficer
+actions:
+- type: ADD
+  files:
+  - dest: /mnt/imos-data/WAMSI/WAMSI1/Node3/3.4/3.4.2/Ningaloo_Inshore_Offshore_Sediment_Data
+    local_file: Ningaloo_Inshore_and_Offshore_Sediment_Grain_Size.dbf
+  - dest: /mnt/imos-data/WAMSI/WAMSI1/Node3/3.4/3.4.2/Ningaloo_Inshore_Offshore_Sediment_Data
+    local_file: Ningaloo_Inshore_and_Offshore_Sediment_Grain_Size.prj
+  - dest: /mnt/imos-data/WAMSI/WAMSI1/Node3/3.4/3.4.2/Ningaloo_Inshore_Offshore_Sediment_Data
+    local_file: Ningaloo_Inshore_and_Offshore_Sediment_Grain_Size.sbn
+  - dest: /mnt/imos-data/WAMSI/WAMSI1/Node3/3.4/3.4.2/Ningaloo_Inshore_Offshore_Sediment_Data
+    local_file: Ningaloo_Inshore_and_Offshore_Sediment_Grain_Size.sbx
+  - dest: /mnt/imos-data/WAMSI/WAMSI1/Node3/3.4/3.4.2/Ningaloo_Inshore_Offshore_Sediment_Data
+    local_file: Ningaloo_Inshore_and_Offshore_Sediment_Grain_Size.shp
+  - dest: /mnt/imos-data/WAMSI/WAMSI1/Node3/3.4/3.4.2/Ningaloo_Inshore_Offshore_Sediment_Data
+    local_file: Ningaloo_Inshore_and_Offshore_Sediment_Grain_Size.shx
+drop_schema_objects: true
+run_talend_liqui: false
+exec_shell_script:
+  script: /usr/local/talend/jobs/aodn_wamsi_sediment-aodn_wamsi_sediment/bin/aodn_wamsi_sediment-aodn_wamsi_sediment.sh
+  asynchronous: true
+talend_log_file: /usr/local/talend/jobs/aodn_wamsi_sediment-aodn_wamsi_sediment/log/console.log
+talend_jobs:
+- aodn_wamsi_sediment-aodn_wamsi_sediment
+database_schemas:
+-
+  name: aodn_wamsi_sediment
+  tables:
+  - name: aodn_wamsi_sediment_data
+    exclude_columns: []
