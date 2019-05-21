@@ -2,6 +2,7 @@
 ### process action sub-playbook. adds input files and waits for processing to complete
 
 - name: create temporary local directory
+  delegate_to: localhost
   tempfile:
     state: directory
     suffix: build
@@ -19,6 +20,7 @@
 
 
 - name: create dirs for pgsql output
+  delegate_to: localhost
   file: path={{ tmp_dir }}/{{ item.name }} state=directory mode="a+w"
   with_items: "{{ database_schemas }}"
 
@@ -28,6 +30,7 @@
 
 
 - name: sql select queries
+  delegate_to: localhost
   psql_harvest_queries:
     schema_obj: "{{ item }}"
     tmp_dir: "{{ tmp_dir }}/{{ item.name }}"
@@ -37,25 +40,22 @@
 
 
 - name: remove result dir
+  delegate_to: localhost
   file:
     state: absent
-    path: "../harvest_results/{{ hosts }}/{{ name }}/"
-
-
-- name: remove result dir
-  file:
-    state: absent
-    path: "../harvest_results/{{ hosts }}/{{ name }}/"
+    path: "../harvest_results/{{ hosts }}/{{ name }}/{{ label }}/"
 
 
 - name: create result dir
+  delegate_to: localhost
   file:
-    path: "../harvest_results/{{ hosts }}/{{ name }}/"
+    path: "../harvest_results/{{ hosts }}/{{ name }}/{{ label }}/"
     state: directory
 
 
 - name: copy results from temp to result dir
+  delegate_to: localhost
   copy:
     src: "{{ tmp_dir }}/{{ item.name }}"
-    dest: "../harvest_results/{{ hosts }}/{{ name }}/"
+    dest: "../harvest_results/{{ hosts }}/{{ name }}/{{ label }}/"
   loop: "{{ database_schemas }}"
