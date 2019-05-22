@@ -25,7 +25,7 @@
 
 
 - name: upload schema backup to remote
-  copy:
+  synchronize:
     src: "/tmp/talend_test_schemas/{{ item.name }}.dump"
     dest: /mnt/talend_test_schemas
   loop: "{{ database_schemas }}"
@@ -40,17 +40,21 @@
   command: "sudo -u postgres pg_restore -d harvest /mnt/talend_test_schemas/{{ item.name }}.dump"
   loop: "{{ database_schemas }}"
 
+
 - name: remove schema dump from remote disk
   file:
     state: absent
     path: "/mnt/talend_test_schemas/{{ item.name }}.dump"
   loop: "{{ database_schemas }}"
 
+
 - name: remove schema dump from local disk
+  delegate_to: localhost
   file:
     state: absent
     path: "/tmp/talend_test_schemas/{{ item.name }}.dump"
   loop: "{{ database_schemas }}"
+
 
 
 
