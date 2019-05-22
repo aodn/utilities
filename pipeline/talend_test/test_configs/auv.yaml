@@ -51,7 +51,7 @@ database_schemas:
   name: auv
   tables:
   - name: auv_trajectory_map
-    exclude_columns: []
+    exclude_columns: [colour]
   - name: auv_trajectory_b_data
     exclude_columns: []
   - name: auv_trajectory_st_data
