@@ -15,18 +15,42 @@
   loop: "{{ database_schemas }}"
 
 
+- name: create remote schema upload directory
+  become: yes
+  become_user: root
+  file:
+    path: /mnt/talend_test_schemas
+    state: directory
+    mode: a+rw
+
+
 - name: upload schema backup to remote
   copy:
     src: "/tmp/talend_test_schemas/{{ item.name }}.dump"
-    dest: /tmp/
+    dest: /mnt/talend_test_schemas
   loop: "{{ database_schemas }}"
 
 
 - name: drop schema
-  command: "sudo -u postgres psql -d harvest -c 'DROP SCHEMA {{ item.name }} CASCADE;'"
+  command: "sudo -u postgres psql -d harvest -c 'DROP SCHEMA IF EXISTS {{ item.name }} CASCADE;'"
   loop: "{{ database_schemas }}"
 
 
 - name: run pg_restore on schema backup
-  command: "sudo -u postgres pg_restore -d harvest /tmp/{{ item.name }}.dump"
+  command: "sudo -u postgres pg_restore -d harvest /mnt/talend_test_schemas/{{ item.name }}.dump"
   loop: "{{ database_schemas }}"
+
+- name: remove schema dump from remote disk
+  file:
+    state: absent
+    path: "/mnt/talend_test_schemas/{{ item.name }}.dump"
+  loop: "{{ database_schemas }}"
+
+- name: remove schema dump from local disk
+  file:
+    state: absent
+    path: "/tmp/talend_test_schemas/{{ item.name }}.dump"
+  loop: "{{ database_schemas }}"
+
+
+
