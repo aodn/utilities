@@ -1,0 +1,27 @@
+
+
+name: aodn_imas_fluorometry
+type: harvester
+po: xavier
+actions:
+- type: NONE
+drop_schema_objects: true
+run_talend_liqui: false
+exec_shell_script:
+  script: /usr/local/talend/jobs/aodn_imas_fluorometry-aodn_imas_fluorometry/bin/aodn_imas_fluorometry-aodn_imas_fluorometry.sh
+  asynchronous: true
+talend_log_file: /usr/local/talend/jobs/aodn_imas_fluorometry-aodn_imas_fluorometry/log/console.log
+talend_jobs:
+- aodn_imas_fluorometry-aodn_imas_fluorometry
+schema_restore:
+  object:
+    path: backups/2-aws-syd.emii.org.au/pgsql/2019.05.21.05.14.20/harvest
+database_schemas:
+-
+  name: aodn_imas_fluorometry
+  tables:
+  - name: aodn_imas_fluorometry_map
+    exclude_columns: []
+  - name: aodn_imas_fluorometry_data
+    exclude_columns: []
+
