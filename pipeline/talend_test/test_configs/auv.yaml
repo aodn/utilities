@@ -3,37 +3,42 @@
 name: auv
 type: pipeline_version_2
 po: laurent
+dirs:
+  - path: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
+    owner: projectofficer
+    group: projectofficer
+  - path: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf
+    owner: projectofficer
+    group: projectofficer
 actions:
-# B files
 - type: ADD
   files:
-  - dest: /mnt/ebs/incoming/AUV
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
     local_file: IMOS_AUV_B_20180823T215019Z_SIRIUS_FV00.nc
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
+    local_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc
+  - dest: /mnt/ebs/incoming/AUV
+    local_file: Tasmania201808-r20180823_215013_SS08_Beagle_Shelf_13.netcdf.manifest
 - type: UPDATE
   files:
-  - dest: /mnt/ebs/incoming/AUV
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
     local_file: IMOS_AUV_B_20180823T215019Z_SIRIUS_FV00.nc.update
     remote_file: IMOS_AUV_B_20180823T215019Z_SIRIUS_FV00.nc
-- type: ADD
-  files:
-  - dest: /mnt/ebs/incoming/AUV
-    local_file: IMOS_AUV_B_20180825T002236Z_SIRIUS_FV00.nc
-- type: DELETE
-  file: IMOS/AUV/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf/IMOS_AUV_B_20180825T002236Z_SIRIUS_FV00.nc
-# ST files
-- type: ADD
-  files:
-  - dest: /mnt/ebs/incoming/AUV
-    local_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc
-- type: UPDATE
-  files:
-  - dest: /mnt/ebs/incoming/AUV
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
     local_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc.update
     remote_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc
+  - dest: /mnt/ebs/incoming/AUV
+    local_file: Tasmania201808-r20180823_215013_SS08_Beagle_Shelf_13.netcdf.manifest
 - type: ADD
   files:
-  - dest: /mnt/ebs/incoming/AUV
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf
+    local_file: IMOS_AUV_B_20180825T002236Z_SIRIUS_FV00.nc
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf
     local_file: IMOS_AUV_ST_20180825T002236Z_SIRIUS_FV00.nc
+  - dest: /mnt/ebs/incoming/AUV
+    local_file: Tasmania201808-r20180825_002229_SS13_Beagle_Shelf_12.netcdf.manifest
+- type: DELETE
+  file: IMOS/AUV/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf/IMOS_AUV_B_20180825T002236Z_SIRIUS_FV00.nc
 - type: DELETE
   file: IMOS/AUV/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf/IMOS_AUV_ST_20180825T002236Z_SIRIUS_FV00.nc
 drop_schema_objects: true
