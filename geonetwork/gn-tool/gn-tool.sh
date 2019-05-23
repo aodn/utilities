@@ -94,11 +94,12 @@ export_record() {
 }
 
 # export geonetwork records
-# $1 - record uuid
-# $2 - directory to export record(s) to
-# $3 - geonetwork address
-# $4 - geonetwork user
-# $5 - geonetwork password
+# $record_uuid - record uuid
+# $uuid_tag    - Tag name to find uuids in eg uuid
+# $record_dir  - directory to export record(s) to
+# $gn_addr     - geonetwork address
+# $gn_user     - geonetwork user
+# $gn_password - geonetwork password
 export_records() {
     local record_uuid=$1; shift
     local uuid_tag=$1; shift
@@ -270,7 +271,7 @@ usage() {
     echo "
 Options:
   -G                         Intelligent import using git.
-  -o                         Operation, must be one of 'import' or 'export'.
+  -o                         Operation, must be one of 'import' or 'export' or 'exportUUIDs'.
   -l                         Location to read/write records from/to.
   -r                         A single UUID to export or a local xml file containing tags with uuids
   -t                         Tag name to find uuids in eg uuid
