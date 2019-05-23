@@ -1,8 +1,16 @@
 # gn-tool.sh
 
-A simple utility to export/import records from Geonetwork. This tool allows updating defined list of records or the entire catalogue contents via the transform-mefs.sh script see: transform-local-mefs/README.md
+A simple utility to export/import records from Geonetwork. 
 
 There is an alternative set of tools that operates on the entire Geonetwork catalog with additional functionality including in-place updates https://github.com/aodn/metadata-utils
+
+
+####Problems with using this tool as a record updater:
+
+https://geonetwork-opensource.org/manuals/2.10.4/eng/developer/xml_services/services_mef.html#mef-import
+
+Version 1.0 of the MEF format does not capture the metadata owner (the creator) and the group owner. During import, the user that is performing this operation will become the metadata owner and the group owner will be set to null.
+
 
 ## Usage
 
@@ -12,17 +20,9 @@ There is an alternative set of tools that operates on the entire Geonetwork cata
 $ ./gn-tool.sh -o export -l /tmp/gn-dump -g https://catalogue-123.aodn.org.au/geonetwork
 ```
 
-#### Import (after transforms)
+#### Import (after any transforms)
 ```
 $ ./gn-tool.sh -o import -l /tmp/gn-dump -g http://10.11.12.13/geonetwork -u admin -p admin
 ```
 
 
-## Problems:
-
-Geonetwork will change the name of the record source catalogue, if the record was once imported. The fix is to create and run SQL on the Geonetwork DB 
-
-#####Example setting source name back to 'BlueNet'
-```$xslt
-# python get-uuids-from-file.py  ~/Desktop/geoserver.imos.org.au_geoserver_wms.xml identifier "update sources set name = 'BlueNet' where uuid = '{}'"
-```
