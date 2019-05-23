@@ -1,5 +1,5 @@
 name: anmn_acidification_nrt
-type: pipeline_version_2
+type: pipeline_version_1
 po: marty
 actions:
   - type: ADD
@@ -22,7 +22,7 @@ actions:
   - type: DELETE
     file: /IMOS/ANMN/AM/NRSKAI/CO2/real-time/IMOS_ANMN-AM_KST_20140508T000001Z_NRSKAI_FV00_NRSKAI-CO2-1405-realtime-raw_END-20141102T150000Z_C-20150722T080603Z.nc
 create_schema: true
-talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANMN_ACIDIFICATION_NRT.log
+talend_log_dir: /mnt/ebs/log/data-services/ANMN_AM
 talend_jobs:
   - anmn_acidification_nrt-anmn_acidification_nrt
 database_schemas:
