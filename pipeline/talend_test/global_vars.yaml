@@ -10,6 +10,8 @@ allowed_log_dirs:
   - /usr/local/talend/jobs/aodn_imas_fluorometry-aodn_imas_fluorometry/log
   - /usr/local/talend/jobs/aodn_bom_sea_level-aodn_bom_sea_level/log
 
+default_timeout: 800
+
 host_buckets:
   6-nec-hob.emii.org.au: imos-data-pipeline-2
   9-nec-hob.emii.org.au: imos-data-pipeline-talend7
