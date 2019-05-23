@@ -103,12 +103,11 @@
   when: type == 'pipeline_version_1' and
         (action_item.type == 'ADD' or action_item.type == 'UPDATE')
 
-
 - name: wait for pipeline 2 ADD and UPDATE processing to complete
   wait_for:
     path: "{{ talend_log_file }}"
     search_regex: FILE_SUCCESS
-    timeout: 800
+    timeout: "{{ harvester_timeout }}"
   when: type == 'pipeline_version_2' and
         (action_item.type == 'ADD' or action_item.type == 'UPDATE')
 
@@ -116,7 +115,7 @@
   wait_for:
     path: "{{ talend_log_file }}"
     search_regex: ^finish;
-    timeout: 800
+    timeout: "{{ harvester_timeout }}"
   when:  type == 'harvester' and exec_shell_script.asynchronous|default(false)
 
 - set_fact:
