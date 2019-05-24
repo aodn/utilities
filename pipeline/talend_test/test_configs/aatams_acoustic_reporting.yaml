@@ -1,0 +1,17 @@
+name: aatams_acoustic_reporting
+type: harvester
+po: xavier
+drop_schema_objects: true
+exec_shell_script:
+  script: /usr/local/talend/jobs/aatams_acoustic_reporting-aatams_acoustic_reporting/bin/aatams_acoustic_reporting-aatams_acoustic_reporting.sh
+  asynchronous: true
+talend_log_file: /usr/local/talend/jobs/aatams_acoustic_reporting-aatams_acoustic_reporting/log/console.log
+talend_jobs:
+- aatams_acoustic_reporting-aatams_acoustic_reporting
+actions:
+- type: NONE
+database_schemas:
+-
+  name: aatams_acoustic_reporting-aatams_acoustic_reporting
+  tables:    # Empty schema - just executing all components in harvester
+    -
