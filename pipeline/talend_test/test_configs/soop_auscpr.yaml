@@ -20,6 +20,3 @@ database_schemas:
     exclude_columns: []
   - name: soop_auscpr_phyto_trajectory_map
     exclude_columns: []
-# Reinstate when https://github.com/aodn/content/issues/425 is resolved
-#  - name: soop_auscpr_zoop_trajectory_map
-#    exclude_columns: []
