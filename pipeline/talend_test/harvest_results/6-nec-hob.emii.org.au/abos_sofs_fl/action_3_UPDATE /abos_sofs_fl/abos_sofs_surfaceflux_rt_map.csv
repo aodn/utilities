@@ -1,0 +1,2 @@
+file_id,deployment_number,delivery_mode,time_coverage_start,time_coverage_end,date_created,url,size,geom
+2,99,RT,2019-05-21 00:59:00,2019-05-21 23:59:00,2019-05-22 00:25:04,IMOS/ABOS/ASFS/SOFS/Surface_fluxes/Real-time/2019_daily/IMOS_ABOS-ASFS_FMT_20190521T005900Z_SOFS_FV02.nc,20492,0101000020E61000000CC3304CE4CB6140F43CCF338E6E47C0
