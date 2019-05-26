@@ -9,6 +9,7 @@ allowed_log_dirs:
   - /usr/local/talend/jobs/aodn_wamsi_sediment-aodn_wamsi_sediment/log
   - /usr/local/talend/jobs/aodn_imas_fluorometry-aodn_imas_fluorometry/log
   - /usr/local/talend/jobs/aodn_bom_sea_level-aodn_bom_sea_level/log
+  - /usr/local/talend/jobs/aatams_acoustic_reporting-aatams_acoustic_reporting/log
 
 default_timeout: 800
 
