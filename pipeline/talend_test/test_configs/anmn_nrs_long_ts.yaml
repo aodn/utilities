@@ -1,9 +1,8 @@
-# UPDATE test
 # cp IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc.original
 # ncatted -h -a time_coverage_start,global,o,c,'1944-10-15T12:12:12Z' IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc
-# run with compliance checking off
+# run with compliance checking off as there is only one available input file
 
-name: anmn_nrs_long_ts-update
+name: anmn_nrs_long_ts
 type: pipeline_version_2
 po: marty
 actions:
@@ -16,6 +15,8 @@ actions:
     files:
     - dest: /mnt/ebs/incoming/ANMN/NRS_MAI_NSI_MOORING
       local_file: IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc
+  - type: DELETE
+    file: IMOS/ANMN/NRS/NRSMAI/aggregated_products/IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc
 drop_schema_objects: true
 run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANMN_NRS_MOORING.log
