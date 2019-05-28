@@ -44,6 +44,17 @@ get_all_records() {
     python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index"
 }
 
+# return all available record uuids from <uuid> tags in file
+# $1 - local file
+# $2 - uuid tag to search for
+get_all_records_from_file() {
+    local local_file=$1; shift
+    local uuid_tag=$1; shift
+
+    python ./get-uuids-from-file.py "$local_file" "$uuid_tag"
+}
+
+
 # delete a single record
 # $1 - record uuid
 # $2 - geonetwork address
@@ -83,13 +94,15 @@ export_record() {
 }
 
 # export geonetwork records
-# $1 - record uuid
-# $2 - directory to export record(s) to
-# $3 - geonetwork address
-# $4 - geonetwork user
-# $5 - geonetwork password
+# $record_uuid - record uuid
+# $uuid_tag    - Tag name to find uuids in eg uuid
+# $record_dir  - directory to export record(s) to
+# $gn_addr     - geonetwork address
+# $gn_user     - geonetwork user
+# $gn_password - geonetwork password
 export_records() {
     local record_uuid=$1; shift
+    local uuid_tag=$1; shift
     local record_dir=$1; shift
     local gn_addr=$1; shift
     local gn_user=$1; shift
@@ -103,8 +116,15 @@ export_records() {
             let retval=$retval+$?
         done
     else
-        export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password
-        let retval=$retval+$?
+        if [ -f $record_uuid ]; then
+            for this_record_uuid in `get_all_records_from_file $record_uuid $uuid_tag`; do
+                export_record $this_record_uuid $record_dir $gn_addr $gn_user $gn_password
+                let retval=$retval+$?
+            done
+        else
+            export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password
+            let retval=$retval+$?
+        fi
     fi
 
     return $retval
@@ -251,8 +271,10 @@ usage() {
     echo "
 Options:
   -G                         Intelligent import using git.
-  -o                         Operation, must be one of 'import' or 'export'.
+  -o                         Operation, must be one of 'import' or 'export' or 'exportUUIDs'.
   -l                         Location to read/write records from/to.
+  -r                         A single UUID to export or a local xml file containing tags with uuids
+  -t                         Tag name to find uuids in eg uuid
   -g                         Geonetwork address like http://a.b.c.d/geonetwork
   -u                         Username to login with.
   -p                         Password to login with.
@@ -264,7 +286,7 @@ Options:
 main() {
     # parse options with getopt
     local tmp_getops
-    tmp_getops=`getopt hGo:l:g:u:p:y:z: $*`
+    tmp_getops=`getopt hGo:l:r:t:g:u:p:y:z: $*`
     [ $? != 0 ] && usage
 
     set -- $tmp_getops
@@ -274,6 +296,7 @@ main() {
     local git=no
     local group=2
     local uuid_action="nothing"
+    local uuid_tag="uuid"
 
     # parse the options
     while true ; do
@@ -283,6 +306,7 @@ main() {
             -o) operation=$2; shift 2;;
             -l) location="$2"; shift 2;;
             -r) record_uuid="$2"; shift 2;;
+            -t) uuid_tag="$2"; shift 2;;
             -g) gn_addr="$2"; shift 2;;
             -u) gn_user="$2"; shift 2;;
             -p) gn_password="$2"; shift 2;;
@@ -309,7 +333,7 @@ main() {
             import_records $location $gn_addr $gn_user $gn_password $group $uuid_action
         fi
     elif [ "$operation" = "export" ]; then
-        export_records $record_uuid $location $gn_addr $gn_user $gn_password
+        export_records $record_uuid $uuid_tag $location $gn_addr $gn_user $gn_password
     else
         usage
     fi
