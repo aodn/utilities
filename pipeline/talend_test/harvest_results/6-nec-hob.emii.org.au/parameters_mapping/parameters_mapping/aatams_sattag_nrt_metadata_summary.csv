@@ -1,0 +1,10 @@
+?column?
+#
+"# ct150-974-VERT-18,Q9901199,SMRU CTD tag,Weddell Seal,Scott Base,166.75,-77.85,New Zealand Antarctic Territory,,,,,,,,,,,Rob Harcourt,Macquarie University"
+"# data_column_name,cf_standard_name,imos_vocabulary_name,unit_name,unit_short_name,uv.definition"
+"# device_id,device_wmo_ref,tag_type,common_name,release_site,release_lon,release_lat,state_country,release_date,recovery_date,age_class,sex,length,girth,estimated_mass,actual_mass,sample,comment,principal investigator,institution"
+"# lat,latitude,Latitude north,Degrees,deg                                                                                                           ,"
+"# lon,longitude,Longitude east,Degrees,deg                                                                                                           ,"
+"# pressure,sea_water_pressure,Pressure (measured variable) in the water body exerted by overlying sea water and any medium above it,Decibars,dbar                                                                                                          ,"
+"# salinity,sea_water_salinity,Practical salinity of the water body,Practical Salinity Unit,PSU                                                                                                           ,"
+"# temperature,sea_water_temperature,Temperature of the water body,Degrees Celsius,degC                                                                                                          ,"

@@ -1,0 +1,6 @@
+?column?
+"# data_column_name,cf_standard_name,imos_vocabulary_name,unit_name,unit_short_name,uv.definition"
+"# DEPTH,depth,Depth below surface of the water body,Metres,m                                                                                                             ,"
+"# LATITUDE,latitude,Latitude north,Degrees,deg                                                                                                           ,"
+"# LONGITUDE,longitude,Longitude east,Degrees,deg                                                                                                           ,"
+"# TEMP,sea_water_temperature,Temperature of the water body,Degrees Celsius,degC                                                                                                          ,"
