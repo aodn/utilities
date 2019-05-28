@@ -1,0 +1,32 @@
+
+
+name: anmn_am
+type: pipeline_version_1
+po: marty
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/ANMN/AM/delayed-mode
+        local_file: IMOS_ANMN-AM_GST_20150602T100000Z_NRSKAI_FV01_NRSKAI-CO2-1506-delayed_END_20151116T220000Z_C-20161101T151217Z.nc
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/ANMN/AM/delayed-mode
+        local_file: IMOS_ANMN-AM_GST_20150602T100000Z_NRSKAI_FV01_NRSKAI-CO2-1506-delayed_END_20151116T220000Z_C-20161101T151217Z.updated.nc
+        remote_file: IMOS_ANMN-AM_GST_20150602T100000Z_NRSKAI_FV01_NRSKAI-CO2-1506-delayed_END_20151116T220000Z_C-20161101T151217Z.nc
+  - type: DELETE
+    file: IMOS/ANMN/AM/NRSKAI/CO2/delayed/IMOS_ANMN-AM_GST_20150602T100000Z_NRSKAI_FV01_NRSKAI-CO2-1506-delayed_END_20151116T220000Z_C-20161101T151217Z.nc
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_dir: /mnt/ebs/log/data-services/ANMN_AM
+talend_jobs:
+  - anmn_am_dm-anmn_am_dm
+database_schemas:
+  -
+    name: anmn_am_dm
+    tables:
+      - name: anmn_am_dm_data
+        exclude_columns: []
+      - name: anmn_am_dm_map
+        exclude_columns: []
+
+
