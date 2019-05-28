@@ -1,7 +1,7 @@
 
 name: soop_tmv
 type: pipeline_version_2
-po: bene
+po: laurent
 actions:
 - type: ADD
   files:
@@ -18,16 +18,6 @@ actions:
     local_file: IMOS_SOOP-TMV_TSUB_20190315T084741Z_VLST_FV00_transect-M2D_END-20190315T182040Z.nc
 - type: DELETE
   file: IMOS/SOOP/SOOP-TMV/VLST_Spirit-of-Tasmania-1/realtime/transect/1sec/2019/IMOS_SOOP-TMV_TSUB_20190315T084741Z_VLST_FV00_transect-M2D_END-20190315T182040Z.nc
-- type: ADD
-  files:
-  - dest: /mnt/ebs/incoming/SOOP/TMV
-    local_file: IMOS_SOOP-TMV_TSUB_20190311T100151Z_VLST_FV00_transect-M2D_END-20190311T192400Z.nc
-    remote_file: IMOS_SOOP-TMV_TSB_20081207T085601Z_VLST_FV02_transect-M2D_END-20081207T194931Z.nc
-- type: UPDATE
-  files:
-  - dest: /mnt/ebs/incoming/SOOP/TMV
-    local_file: IMOS_SOOP-TMV_TSUB_20190313T085121Z_VLST_FV00_transect-M2D_END-20190313T184130Z.nc
-    remote_file: IMOS_SOOP-TMV_TSB_20081207T085601Z_VLST_FV02_transect-M2D_END-20081207T194931Z.nc
 drop_schema_objects: true
 run_talend_liqui: true
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_TMV_NRT.log
@@ -40,8 +30,4 @@ database_schemas:
   - name: soop_tmv_nrt_trajectory_map
     exclude_columns: [colour]
   - name: soop_tmv_nrt_trajectory_data
-    exclude_columns: []
-  - name: soop_tmv_trajectory_map
-    exclude_columns: [colour]
-  - name: soop_tmv_trajectory_data
     exclude_columns: []
