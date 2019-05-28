@@ -46,6 +46,8 @@ actions:
   - dest: /mnt/ebs/wip/SOOP/CPR
     local_file: cpr_zoop_taxon_changelog.csv
   - dest: /mnt/ebs/wip/SOOP/CPR
+    local_file: cpr_ind.csv
+  - dest: /mnt/ebs/wip/SOOP/CPR
     local_file: manifest
 - type: UPDATE
   files:
@@ -89,6 +91,9 @@ actions:
     local_file: cpr_zoop_taxon_changelog.csv.update
     remote_file: cpr_zoop_taxon_changelog.csv
   - dest: /mnt/ebs/wip/SOOP/CPR
+    local_file: cpr_ind.csv.update
+    remote_file: cpr_ind.csv
+  - dest: /mnt/ebs/wip/SOOP/CPR
     local_file: manifest
 database_schemas:
 -
@@ -115,5 +120,7 @@ database_schemas:
   - name: cpr_zoop_copes_map
     exclude_columns: []
   - name: cpr_zoop_noncopes_map
+    exclude_columns: []
+  - name: cpr_ind_map
     exclude_columns: []
 
