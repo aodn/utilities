@@ -21,7 +21,8 @@ actions:
         local_file: IMOS_ANMN-AM_KST_20140508T000001Z_NRSKAI_FV00_NRSKAI-CO2-1405-realtime-raw_END-20141102T150000Z_C-20150722T080603Z.nc
   - type: DELETE
     file: /IMOS/ANMN/AM/NRSKAI/CO2/real-time/IMOS_ANMN-AM_KST_20140508T000001Z_NRSKAI_FV00_NRSKAI-CO2-1405-realtime-raw_END-20141102T150000Z_C-20150722T080603Z.nc
-create_schema: true
+drop_schema_objects: true
+run_talend_liqui: false
 talend_log_dir: /mnt/ebs/log/data-services/ANMN_AM
 talend_jobs:
   - anmn_acidification_nrt-anmn_acidification_nrt
