@@ -1,6 +1,0 @@
-?column?
-#
-"# animal_id,tag_type,tag_code,tag_id,release_longitude,release_latitude,mass_at_release_g,culman_length_cm,culman_height_cm"
-"# data_column_name,cf_standard_name,imos_vocabulary_name,unit_name,unit_short_name,uv.definition"
-"# latitude,latitude,Latitude north,Degrees,deg                                                                                                           ,"
-"# longitude,longitude,Longitude east,Degrees,deg                                                                                                           ,"

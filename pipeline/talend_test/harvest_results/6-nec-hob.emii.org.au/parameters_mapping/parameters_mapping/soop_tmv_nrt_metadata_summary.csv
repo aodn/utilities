@@ -1,8 +1,0 @@
-?column?
-"# CPHL,,mass_concentration_of_inferred_chlorophyll_from_relative_fluorescence_units_in_sea_water,Concentration of inferred chlorophyll from relative fluorescence per unit volume of the water body,conversion from fluorescence to chlorophyll-a using unknown coefficients,Milligrams per cubic metre,mg m-3                                                                                                        ,"
-"# data_column_name,cf_standard_name,long_name,imos_vocabulary_name,comment,unit_name,unit_short_name,uv.definition"
-"# LATITUDE,latitude,,Latitude north,,Degrees,deg                                                                                                           ,"
-"# LONGITUDE,longitude,,Longitude east,,Degrees,deg                                                                                                           ,"
-"# PSAL,sea_water_salinity,,Practical salinity of the water body,,Practical Salinity Unit,PSU                                                                                                           ,"
-"# TEMP,sea_water_temperature,,Temperature of the water body,,Degrees Celsius,degC                                                                                                          ,"
-"# TURB,,sea water turbidity,Turbidity of the water body,,Nephelometric Turbidity Units,NTU                                                                                                           ,"
