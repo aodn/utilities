@@ -26,7 +26,7 @@ database_schemas:
   -
     name: aodn_mhl_sst
     tables:
-#      - name: aodn_mhl_sst_data
-#        exclude_columns: []
+      - name: aodn_mhl_sst_data
+        exclude_columns: []
       - name: aodn_mhl_sst_map
         exclude_columns: []
