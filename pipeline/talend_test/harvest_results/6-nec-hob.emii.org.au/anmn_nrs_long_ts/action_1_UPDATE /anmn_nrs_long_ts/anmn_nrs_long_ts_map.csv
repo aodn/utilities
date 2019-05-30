@@ -1,2 +1,0 @@
-file_id,url,size,site_code,time_coverage_start,time_coverage_end,longitude,latitude,geospatial_vertical_min,geospatial_vertical_max,geom
-1,IMOS/ANMN/NRS/NRSMAI/aggregated_products/IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc,55024,NRSMAI,1944-10-15 12:12:12,2014-07-03 00:00:00,148.23,-42.6,0,50,0101000020E61000008FC2F5285C876240CDCCCCCCCC4C45C0
