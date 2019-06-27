@@ -65,8 +65,9 @@ def get_current_user_from_session(session, expected_access_key_count=1):
     user = iam.CurrentUser().user
     access_keys = tuple(user.access_keys.all())
     if len(access_keys) != expected_access_key_count:
-        raise RuntimeError('expected {} access keys in IAM, found {}'.format(expected_access_key_count,
-                                                                             len(access_keys)))
+        raise RuntimeError('rotate.key expects {} access key to exist (your user has {}).' \
+                           'Remove any additional keys and re-run rotate.key'
+                           .format(expected_access_key_count, len(access_keys)))
     LOGGER.info("retrieved current user from session: {}".format(user.user_name))
     return user
 

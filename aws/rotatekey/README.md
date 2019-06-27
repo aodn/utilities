@@ -51,5 +51,6 @@ $ ./rotatekey.py
 2018-11-26 15:40:12,978 INFO [rotatekey] successfully validated new key, deleting old key: MY_OLD_ACCESS_KEY
 ```
 
-### Important note
-If you store your key in multiple places for some reason, you will need to manually retrieve your key pair from the credentials file for use elsewhere. Don't try to run this utility multiple times, because it will clobber your key each time!
+### Important notes
+- If you store your key in multiple places for some reason, you will need to manually retrieve your key pair from the credentials file for use elsewhere. Don't try to run this utility multiple times, because it will clobber your key each time!
+- If your IAM user has multiple access keys - e.g. you have created an additional key yourself at some point - then a key will need to be removed by navigating to your user in IAM and deleting one of the keys listed in 'Security credentials'. Only remove the key that _is not_ going to be used to run `rotatekey.py`.
