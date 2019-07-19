@@ -1,0 +1,21 @@
+---
+- name: remove expect dir
+  delegate_to: localhost
+  file:
+    state: absent
+    path: "../test_configs/{{ name }}/expect/{{ label }}/"
+
+
+- name: create expect dir
+  delegate_to: localhost
+  file:
+    path: "../test_configs/{{ name }}/expect/{{ label }}/"
+    state: directory
+
+
+- name: copy results from temp to expect dir
+  delegate_to: localhost
+  copy:
+    src: "{{ tmp_dir }}/{{ item.name }}"
+    dest: "../test_configs/{{ name }}/expect/{{ label }}/"
+  loop: "{{ database_schemas }}"

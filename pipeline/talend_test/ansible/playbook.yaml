@@ -1,98 +1,14 @@
-
-
+---
 - name: test talend
   hosts: "{{ hosts }}"
   gather_facts: no
 
   roles:
-    - talend_test
+    - process_files
+    - check_results
 
   vars_files:
-    - ../global_vars.yaml
+    - global_vars.yaml
 
   vars:
     harvester_timeout: "{{ timeout|default(default_timeout) }}"
-
-  tasks:
-
-    # checks
-
-    - set_fact:
-        test_dir: "{{ talend_log_dir | default(talend_log_file) }}"
-      when: talend_log_dir is defined or talend_log_file is defined
-
-
-    - name: test log dir in allowed dirs
-      allowed_dir:
-        allowed_dirs: "{{ allowed_log_dirs }}"
-        test: "{{ test_dir }}"
-      when: test_dir is defined
-
-
-    # setup
-
-    - set_fact:
-        host_bucket: "{{ host_buckets[hosts] }}"
-
-    - name: create time_profile.csv if not already exists
-      copy:
-        content: "test,host,action_type,elapsed_seconds"
-        dest: ../time_profile.csv
-        force: no
-      delegate_to: localhost
-
-
-    # setup: any directories that need to be present before any action (ADD, UPDATE, DELETE) can be done
-
-    - name: create directories
-      become: yes
-      become_user: root
-      file:
-        path: "{{ item.path }}"
-        state: directory
-        owner: "{{ item.owner }}"
-        group: "{{ item.group }}"
-      with_items: "{{ dirs }}"
-      when: dirs is defined
-
-
-    - name: drop objects in schema
-      become: yes
-      become_user: postgres
-      command: psql -d harvest -c "select drop_objects_in_schema('"{{ item.name }}"');"
-      register: truncate_schema
-      with_items: "{{ database_schemas }}"
-      when: (drop_schema_objects is defined) and drop_schema_objects == true
-      tags:
-        - init_db_only
-
-
-    - name: run talend liqui
-      become: yes
-      become_user: talend
-      shell: |
-        talend_regex="___"{{ item }}"___";
-        /usr/local/talend/bin/talend-trigger -c /usr/local/talend/etc/trigger.conf --delete -f $talend_regex,$talend_regex
-      with_items: "{{ talend_jobs }}"
-      when: (run_talend_liqui is defined) and run_talend_liqui == true
-      tags:
-        - init_db_only
-
-
-    - include: schema_restore.yaml
-      when: schema_restore is defined
-
-
-    - include: process_action.yaml
-      loop: "{{ actions }}"
-      loop_control:
-        loop_var: action_item
-        index_var: action_item_index
-
-
-    - include: harvest_results.yaml
-      vars:
-        label: "harvest_results_only"
-      tags:
-        - never
-        - harvest_results_only
