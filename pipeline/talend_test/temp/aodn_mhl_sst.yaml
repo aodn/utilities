@@ -1,0 +1,32 @@
+name: aodn_mhl_sst
+type: pipeline_version_1
+po: bene
+actions:
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/NSW-OEH/MHL
+      local_file: IMOS_ANMN-NSW_T_19991026T070000Z_WAVEBYB_FV01_END-20001127T130000Z.nc
+      remote_file: IMOS_ANMN-NSW_T_20001128T230000Z_WAVEBYB_FV01_END-20010123T130000Z.nc
+  - type: UPDATE
+    files:
+    - dest: /mnt/ebs/incoming/NSW-OEH/MHL
+      local_file: IMOS_ANMN-NSW_T_20001128T230000Z_WAVEBYB_FV01_END-20010123T130000Z.nc
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/NSW-OEH/MHL
+      local_file: IMOS_ANMN-NSW_T_20010210T010000Z_WAVEBYB_FV01_END-20030712T160000Z.nc
+  - type: DELETE
+    file: NSW-OEH/Manly_Hydraulics_Laboratory/SST/Byron_Bay/IMOS_ANMN-NSW_T_20010210T010000Z_WAVEBYB_FV01_END-20030712T160000Z.nc
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_dir: /mnt/ebs/log/data-services/ANMN_MHLWAVE
+talend_jobs:
+  - aodn_mhl_sst-aodn_mhl_sst
+database_schemas:
+  -
+    name: aodn_mhl_sst
+    tables:
+      - name: aodn_mhl_sst_data
+        exclude_columns: []
+      - name: aodn_mhl_sst_map
+        exclude_columns: []

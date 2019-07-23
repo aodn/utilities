@@ -97,9 +97,7 @@ class LinkChecker
   end
 
   def make_request(link)
-    if @links_to_check
-      @logger.info "checking link #{link}, (#{@statuses.length}/#{@links_to_check.length}) approx"
-    end
+    if @links_to_check then @logger.info "checking link #{link}, (#{@statuses.length}/#{@links_to_check.length}) approx" end
 
     begin
       uri = URI(link)

@@ -16,5 +16,5 @@ allowed_log_dirs:
 default_timeout: 800
 
 host_buckets:
-  6-nec-hob.emii.org.au: imos-data-pipeline-2
-  9-nec-hob.emii.org.au: imos-data-pipeline-talend7
+  dev-9-nec-hob.emii.org.au: imos-data-pipeline-talend7
+

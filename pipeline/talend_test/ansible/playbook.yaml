@@ -4,8 +4,7 @@
   gather_facts: no
 
   roles:
-    - process_files
-    - check_results
+    - integration_tests
 
   vars_files:
     - global_vars.yaml

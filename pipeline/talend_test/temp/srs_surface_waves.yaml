@@ -1,0 +1,40 @@
+
+
+name: srs_surface_waves
+type: pipeline_version_2
+po: loz
+actions:
+  # Add IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-268E-DM00.nc with IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_001S-260E-DM00.nc content
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/SRS/SURFACE_WAVES/altimeter_trigger
+      local_file: IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_001S-260E-DM00.nc
+      remote_file: IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-268E-DM00.nc
+  # Add real IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-268E-DM00.nc to update data loaded above
+  - type: UPDATE
+    files:
+    - dest: /mnt/ebs/incoming/SRS/SURFACE_WAVES/altimeter_trigger
+      local_file: IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-268E-DM00.nc
+  # Add IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-269E-DM00.nc to delete in next step
+  - type: ADD
+    files:
+    - dest: /mnt/ebs/incoming/SRS/SURFACE_WAVES/altimeter_trigger
+      local_file: IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-269E-DM00.nc
+  # Delete IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-269E-DM00.nc
+  - type: DELETE
+    file: IMOS/SRS/Surface-Waves/Wave-Wind-Altimetry-DM00/CRYOSAT-2/020S_260E/IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-269E-DM00.nc
+
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_SURFACE_WAVES.log
+talend_jobs:
+  - srs_surface_waves-srs_surface_waves
+database_schemas:
+  -
+    name: srs_surface_waves
+    tables:
+      # have to dump timeseries and indexed_file as dumping the mv doesn't work
+      - name: timeseries
+        exclude_columns: []
+      - name: indexed_file
+        exclude_columns: [created, modified, first_indexed, last_indexed]

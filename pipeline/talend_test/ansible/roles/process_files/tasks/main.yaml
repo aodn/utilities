@@ -1,6 +1,9 @@
 ---
 # checks
 
+- include_vars:
+    file: "{{ test_config }}"
+
 - set_fact:
     test_dir: "{{ talend_log_dir | default(talend_log_file) }}"
   when: talend_log_dir is defined or talend_log_file is defined
@@ -27,6 +30,11 @@
 
 
 # setup: any directories that need to be present before any action (ADD, UPDATE, DELETE) can be done
+
+#- debug:
+#    msg: DIRS {{ dirs }}
+#    tags:
+#      - debug
 
 - name: create directories
   become: yes

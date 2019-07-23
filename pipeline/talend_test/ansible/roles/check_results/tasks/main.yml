@@ -1,20 +1,5 @@
 ---
-# tasks file for integration tests
-- name: "diff harvested results against expected results"
-  delegate_to: localhost
-  copy:
-    src: "../harvest_results/{{ hosts }}/{{ name }}/{{ item.path }}"
-    dest: "../test_configs/{{ name }}/expect/{{ item.path }}"
-  check_mode: yes  # don't copy just check results
-  diff: yes
-  register: diffresult
-  with_filetree: "../harvest_results/{{ hosts }}/{{ name }}/"  # diff all the files in the directory
-  when: item.state == 'file'
-  tags:
-    - diff_integration_test
-- name: "Fail integration test if the harvested data differs from expected"
-  debug:
-    msg: "See diff results above"
-  failed_when: diffresult.changed
-  tags:
-    - diff_integration_test
+- include: "{{ item }}"
+  with_fileglob:
+    - "assert_*.y*ml"
+  tags: gather_tests
