@@ -1,0 +1,40 @@
+name: aatams_sattag_nrt
+type: pipeline_version_1
+po: bene
+dirs:
+- path: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
+  owner: projectofficer
+  group: projectofficer
+actions:
+- type: ADD
+  files:
+  - dest: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
+    local_file: IMOS_AATAMS-SATTAG_TSP_20190416T174000Z_Q9901199_FV00.nc
+    remote_file: IMOS_AATAMS-SATTAG_TSP_20190416T214000Z_Q9901199_FV00.nc
+  - dest: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
+    local_file: IMOS_AATAMS-SATTAG_TSP_20190417T022000Z_Q9901199_FV00.nc
+  - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_NRT
+    local_file: manifest
+- type: UPDATE
+  files:
+  - dest: /mnt/ebs/wip/AATAMS/AATAMS_sattag_nrt/NETCDF/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles
+    local_file: IMOS_AATAMS-SATTAG_TSP_20190416T214000Z_Q9901199_FV00.nc
+  - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_NRT
+    local_file: manifest.update
+    remote_file: manifest
+- type: DELETE
+  file: IMOS/AATAMS/AATAMS_sattag_nrt/Q9901199/profiles/IMOS_AATAMS-SATTAG_TSP_20190417T022000Z_Q9901199_FV00.nc
+
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_dir: /mnt/ebs/log/data-services/AATAMS_SATTAG_NRT
+talend_jobs:
+- aatams_sattag_nrt-aatams_sattag_nrt
+database_schemas:
+-
+  name: aatams_sattag_nrt
+  tables:
+  - name: aatams_sattag_nrt_profile_map
+    exclude_columns: [colour]
+  - name: aatams_sattag_nrt_profile_data
+    exclude_columns: [colour]

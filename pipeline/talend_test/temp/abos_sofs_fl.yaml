@@ -1,0 +1,34 @@
+# ncatted -h -a deployment_number,global,o,c,'99' input_files/abos_sofs_fl/IMOS_ABOS-ASFS_FMT_20190521T005900Z_SOFS_FV02.nc
+
+name: abos_sofs_fl
+type: pipeline_version_1
+po: marty
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/ABOS/ASFS
+        local_file: IMOS_ABOS-ASFS_FMT_20190520T005900Z_SOFS_FV02.nc
+  - type: DELETE
+    file: IMOS/ABOS/ASFS/SOFS/Surface_fluxes/Real-time/2019_daily/IMOS_ABOS-ASFS_FMT_20190520T005900Z_SOFS_FV02.nc
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/ABOS/ASFS
+        local_file: IMOS_ABOS-ASFS_FMT_20190521T005900Z_SOFS_FV02.nc.original
+        remote_file: IMOS_ABOS-ASFS_FMT_20190521T005900Z_SOFS_FV02.nc
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/ABOS/ASFS
+        local_file: IMOS_ABOS-ASFS_FMT_20190521T005900Z_SOFS_FV02.nc
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_dir: /mnt/ebs/log/data-services/ABOS_ASFS
+talend_jobs:
+  - abos_sofs_fl-abos_sofs_fl
+database_schemas:
+  -
+    name: abos_sofs_fl
+    tables:
+      - name: abos_sofs_surfaceflux_rt_map
+        exclude_columns: []
+      - name: abos_sofs_surfaceflux_rt_data
+        exclude_columns: []
