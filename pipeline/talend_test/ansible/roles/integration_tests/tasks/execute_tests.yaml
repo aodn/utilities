@@ -1,6 +1,4 @@
 ---
-- debug:
-    var: test_config_file
 - include_vars:
     file: "{{ test_config_file }}"
 - name: "Execute tests on results of pipeline processing"
