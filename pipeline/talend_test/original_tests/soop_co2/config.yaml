@@ -32,5 +32,3 @@ database_schemas:
         exclude_columns: []
       - name: soop_co2_trajectory_map
         exclude_columns: [colour]
-assertions:
-  - name: query_result

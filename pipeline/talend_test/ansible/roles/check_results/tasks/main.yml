@@ -1,5 +1,0 @@
----
-- include: "{{ item }}"
-  with_fileglob:
-    - "assert_*.y*ml"
-  tags: gather_tests

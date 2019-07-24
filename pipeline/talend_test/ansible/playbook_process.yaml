@@ -1,0 +1,15 @@
+---
+# Example: ansible-playbook ansible/playbook_process.yaml -i ansible/hosts --extra-vars "test_config=../test_configs/soop_trv hosts=dev-9-nec-hob.emii.org.au db_user=craigr"
+# Example: ansible-playbook ansible/playbook_process.yaml -i ansible/hosts --extra-vars "test_config=../test_configs/soop_trv create_expect=true hosts=dev-9-nec-hob.emii.org.au db_user=craigr"
+- name: test talend
+  hosts: "{{ hosts }}"
+  gather_facts: no
+
+  roles:
+    - process_files
+
+  vars_files:
+    - global_vars.yaml
+
+  vars:
+    harvester_timeout: "{{ timeout|default(default_timeout) }}"
