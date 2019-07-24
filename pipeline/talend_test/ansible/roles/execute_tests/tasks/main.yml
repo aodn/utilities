@@ -1,0 +1,6 @@
+---
+- include_tasks:
+    file: "assert_{{ item.name }}.yaml"
+  vars:
+    assert_config: "{{ item }}"
+  loop: "{{ assertions }}"

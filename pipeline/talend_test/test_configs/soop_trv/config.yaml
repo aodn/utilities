@@ -20,3 +20,8 @@ database_schemas:
         exclude_columns: []
       - name: soop_trv_trajectory_map
         exclude_columns: [colour]
+assertions:
+  - name: database_content
+    expected: /home/cmrose/git/utilities/pipeline/talend_test/test_configs/soop_trv/expect
+    content: /home/cmrose/git/utilities/pipeline/talend_test/harvest_results/dev-9-nec-hob.emii.org.au/soop_trv
+  - name: query_result
