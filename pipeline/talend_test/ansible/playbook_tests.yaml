@@ -7,9 +7,3 @@
 
   roles:
     - integration_tests
-
-  vars_files:
-    - global_vars.yaml
-
-  vars:
-    harvester_timeout: "{{ timeout|default(default_timeout) }}"
