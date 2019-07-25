@@ -1,17 +1,10 @@
 ---
-# Example: ansible-playbook ansible/playbook_process.yaml -i ansible/hosts --extra-vars "test_config=../test_configs/soop_trv hosts=dev-9-nec-hob.emii.org.au"
-# EXAMPLE (all test configs, provide a directory): ansible-playbook ansible/playbook_process.yaml --extra-vars "test_config=../test_configs"
-# EXAMPLE (single test config, provide a file): ansible-playbook ansible/playbook_process.yaml -i ansible/hosts --extra-vars "test_config=../test_configs/soop_trv/config.yaml"
-# EXAMPLE (create expect data): ansible-playbook ansible/playbook_process.yaml -i ansible/hosts --extra-vars "test_config=../test_configs/soop_trv/config.yaml create_expect=true"
+# EXAMPLE (all test configs, provide a directory): ansible-playbook ansible/playbook_process.yaml -i test_configs/hosts --extra-vars "test_config=../test_configs"
+# EXAMPLE (single test config, provide a file): ansible-playbook ansible/playbook_process.yaml -i test_configs/hosts --extra-vars "test_config=../test_configs/soop_trv/config.yaml"
+# EXAMPLE (create expect data): ansible-playbook ansible/playbook_process.yaml -i test_configs/hosts --extra-vars "test_config=../test_configs/soop_trv/config.yaml create_expect=true"
 - name: Process files in pipeline
   hosts: "pipeline"
   gather_facts: no
 
   roles:
     - process_files
-
-  vars_files:
-    - global_vars.yaml
-
-  vars:
-    harvester_timeout: "{{ timeout|default(default_timeout) }}"

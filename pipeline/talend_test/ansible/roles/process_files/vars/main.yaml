@@ -1,7 +1,7 @@
 # TODO: move this to the process_files role or read values from server?
 pipeline_1_process_log: /mnt/ebs/log/data-services/process.log
 
-allowed_log_dirs:
+allowed_log_dirs:  # this is a whitelist of directories we are allowed to modify directly on the host
   - /mnt/ebs/log/data-services
   - /mnt/ebs/log/pipeline/process
   - /usr/local/talend/jobs/aodn_wave_nrt-aodn_wave_nrt/log
@@ -13,7 +13,8 @@ allowed_log_dirs:
   - /usr/local/talend/jobs/anmn_nrs_bgc-anmn_nrs_bgc/log
   - /usr/local/talend/jobs/parameters_mapping-parameters_mapping/log
 
-default_timeout: 800
+#default_timeout: 800   # harvester timeout. can override in extra vars
+harvester_timeout: "{{ timeout|default(800) }}"
 
 host_buckets:
   pipeline: imos-data-pipeline-talend7
