@@ -1,4 +1,5 @@
 # TODO: include the host to run the test on in the config - should be overriden if defined elsewhere
+# Configuration for processing files through pipeline and capturing results locally
 name: soop_trv
 type: pipeline_version_2
 po: laurent
@@ -20,8 +21,14 @@ database_schemas:
         exclude_columns: []
       - name: soop_trv_trajectory_map
         exclude_columns: [colour]
+
+# Configuration for running integration tests
 assertions:
-  - name: database_content
+  # Asserts harvested results are as expected
+  - name: diff
     expected: /home/cmrose/git/utilities/pipeline/talend_test/test_configs/soop_trv/expect
     content: /home/cmrose/git/utilities/pipeline/talend_test/harvest_results/dev-9-nec-hob.emii.org.au/soop_trv
-  - name: query_result
+  # Asserts a database query returns expected results
+#  - name: query_result
+#    query: "SELECT ....... "
+#    result: {}

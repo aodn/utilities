@@ -1,0 +1,23 @@
+---
+# if files to compare are large need to set ANSIBLE_MAX_DIFF_SIZE=10444800 environment variable
+- set_fact:
+    copy_src_root: "{{ assert_config.content }}"
+    copy_dest_root: "{{ assert_config.expected }}"
+- name: "diff contents of files against expected contents"
+  delegate_to: localhost
+  copy:
+    src: "{{ copy_src_root }}/{{ item.path }}"
+    dest: "{{ copy_dest_root }}/{{ item.path }}"
+  check_mode: yes  # don't copy just check results
+  diff: yes
+  register: diffresult
+  with_filetree: "{{ assert_config.content }}/"  # diff all the files in the directory
+  when: item.state == 'file'
+- block:
+  - name: "Assert {{ copy_src_root }} matches {{ copy_dest_root }}"
+    assert:
+      that:
+        - diffresult.changed == false
+      fail_msg: "{{ name }} does not match expected"
+      success_msg: "{{ name }} matches expected"
+  ignore_errors: yes  # Don't halt playbook but show the error in the ignored count in PLAY RECAP
