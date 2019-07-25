@@ -1,31 +1,6 @@
 ---
-# tasks file for integration_tests
-- stat:
-    path: "{{ test_config }}"
-  register: stat_test_config
-
-- name: "List pipeline test configurations from directories"
-  delegate_to: localhost
-  find:
-    path: "{{ test_config }}"
-    file_type: directory
-    recurse: no
-  register: test_config_directories
-  when: stat_test_config.stat.isdir is defined and stat_test_config.stat.isdir
-
-- name: "Execute integration tests for all configured pipelines"
-  include_tasks:
-    file: execute_tests.yaml
-  vars:
-    test_config_file: "{{ test_config_item.path }}/config.yaml"
-  loop: "{{ test_config_directories.files }}"
-  loop_control:
-    loop_var: test_config_item
-  when: stat_test_config.stat.isdir is defined and stat_test_config.stat.isdir
-
-- name: "Execute integration test for single configured pipeline"
-  include_tasks:
-    file: execute_tests.yaml
-  vars:
-    test_config_file: "{{ test_config }}"
-  when: stat_test_config.stat.isreg is defined and stat_test_config.stat.isreg
+- set_fact:
+    task_file: ../integration_tests/tasks/execute_tests.yaml
+- name: "Run integration tests"
+  include_role:
+    name: configure

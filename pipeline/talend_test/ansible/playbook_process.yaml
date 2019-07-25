@@ -1,6 +1,8 @@
 ---
 # Example: ansible-playbook ansible/playbook_process.yaml -i ansible/hosts --extra-vars "test_config=../test_configs/soop_trv hosts=dev-9-nec-hob.emii.org.au db_user=craigr"
-# Example: ansible-playbook ansible/playbook_process.yaml -i ansible/hosts --extra-vars "test_config=../test_configs/soop_trv create_expect=true hosts=dev-9-nec-hob.emii.org.au db_user=craigr"
+# EXAMPLE (all test configs, provide a directory): ansible-playbook ansible/playbook_process.yaml --extra-vars "test_config=../test_configs"
+# EXAMPLE (single test config, provide a file): ansible-playbook ansible/playbook_process.yaml -i ansible/hosts --extra-vars "test_config=../test_configs/soop_trv/config.yaml"
+# EXAMPLE (create expect data): ansible-playbook ansible/playbook_process.yaml -i ansible/hosts --extra-vars "test_config=../test_configs/soop_trv/config.yaml create_expect=true"
 - name: test talend
   hosts: "{{ hosts }}"
   gather_facts: no
