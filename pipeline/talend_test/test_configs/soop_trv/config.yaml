@@ -26,9 +26,5 @@ database_schemas:
 assertions:
   # Asserts harvested results are as expected
   - name: diff
-    expected: /home/cmrose/git/utilities/pipeline/talend_test/test_configs/soop_trv/expect
-    content: /home/cmrose/git/utilities/pipeline/talend_test/harvest_results/dev-9-nec-hob.emii.org.au/soop_trv
-  # Asserts a database query returns expected results
-#  - name: query_result
-#    query: "SELECT ....... "
-#    result: {}
+    expected: ../test_configs/soop_trv/expect
+    content: ../harvest_results/dev-9-nec-hob.emii.org.au/soop_trv
