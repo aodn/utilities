@@ -35,7 +35,7 @@
     schema_obj: "{{ item }}"
     tmp_dir: "{{ tmp_dir }}/{{ item.name }}"
     db_user: "{{ database_user }}"
-    db_host: "{{ hosts }}"
+    db_host: "{{ ansible_host }}"
   loop: "{{ database_schemas }}"
 
 
@@ -43,13 +43,13 @@
   delegate_to: localhost
   file:
     state: absent
-    path: "../harvest_results/{{ hosts }}/{{ name }}/{{ label }}/"
+    path: "../harvest_results/{{ ansible_host }}/{{ name }}/{{ label }}/"
 
 
 - name: create result dir
   delegate_to: localhost
   file:
-    path: "../harvest_results/{{ hosts }}/{{ name }}/{{ label }}/"
+    path: "../harvest_results/{{ ansible_host }}/{{ name }}/{{ label }}/"
     state: directory
 
 
@@ -57,5 +57,5 @@
   delegate_to: localhost
   copy:
     src: "{{ tmp_dir }}/{{ item.name }}"
-    dest: "../harvest_results/{{ hosts }}/{{ name }}/{{ label }}/"
+    dest: "../harvest_results/{{ ansible_host }}/{{ name }}/{{ label }}/"
   loop: "{{ database_schemas }}"

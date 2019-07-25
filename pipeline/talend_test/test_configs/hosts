@@ -1,0 +1,5 @@
+[pipeline-processing-servers]
+pipeline ansible_host=dev-9-nec-hob.emii.org.au ansible_ssh_user=cmrose db_user=craigr
+
+[integration-test-servers]
+testserver ansible_host=localhost

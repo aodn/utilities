@@ -1,8 +1,6 @@
 ---
 # checks
 
-# TODO: if test_config is dir then process all in the dir otherwise a single config.yaml is processed. Similar to integration_tests
-
 - include_vars:
     file: "{{ test_config_file }}"
 
@@ -21,7 +19,7 @@
 # setup
 
 - set_fact:
-    host_bucket: "{{ host_buckets[hosts] }}"
+    host_bucket: "{{ host_buckets.pipeline }}"
 
 - name: create time_profile.csv if not already exists
   copy:

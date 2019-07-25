@@ -2,7 +2,7 @@
 # EXAMPLE (all test configs, provide a directory): ansible-playbook ansible/playbook_tests.yaml --extra-vars "test_config=../test_configs"
 # EXAMPLE (single test config, provide a file): ansible-playbook ansible/playbook_tests.yaml --extra-vars "test_config=../test_configs/soop_trv/config.yaml"
 - name: integration tests
-  hosts: "localhost"
+  hosts: "testserver"
   gather_facts: no
 
   roles:
