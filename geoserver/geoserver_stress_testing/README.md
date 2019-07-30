@@ -28,7 +28,7 @@ This will open the JMeter GUI
 1. The current set of tests are a single WFS request with no BBOX or data limits and multiple WMS tile requests
 1. This command below can be run over and over and the corresponding log will be appended. After running there will be a log file in the CWD called `[layername]_log.csv` 
 
-######Note: Run this a few times
+###### Note: Run this a few times
 ```
 jmeter -n -t GeoserverStressTest.jmx
 ```
