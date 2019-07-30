@@ -18,7 +18,7 @@ jmeter -t GeoserverStressTest.jmx
 
 This will open the JMeter GUI
 1. Change the global server, layername, workspace, configuration
-    1. `server` is the domain name of Geoserver
+    1. `server` is the domain name of a Geoserver (assuming an non production AWS instance)
     1. `workspace` eg: aodn or imos
     1. `layername` the WMS map layername 
 
@@ -26,21 +26,33 @@ This will open the JMeter GUI
 
 1. Save and close. GeoserverStressTest.jmx is now tailored ready to test your layer in the non-GUI mode
 1. The current set of tests are a single WFS request with no BBOX or data limits and multiple WMS tile requests
-1. This command can be run over and over and the logs will be appended
+1. This command below can be run over and over and the corresponding log will be appended. After running there will be a log file in the CWD called `[layername]_log.csv` 
 
-```$xslt
+######Note: Run this a few times
+```
 jmeter -n -t GeoserverStressTest.jmx
 ```
 
-After running there will be a log file in the CWD called `[layername]_log.csv` The command below opens the log for the layer srs_oc_bodbaw_trajectory_profile_map for viewing graphs of how the stress test went. This example creates an output folder called `ouput` from the log file.
+#### Get the graphs
+The example command below uses the resulting log for a layer called `example_profile_map` graphing all the  stress test runs. This example creates an output folder called `ouput` from the log file. In that folder there is a HTML page index.html to open in a browser.
+
 ```
-jmeter -g srs_oc_bodbaw_trajectory_profile_log.csv -o output
+jmeter -g example_profile_map_log.csv -o output
 ```
-It might be desirable to remove the `output` folder (keeping only the log file long term)
-the command below cleans up the `output` folder and recreates from the log file and opens the html page containing the report graphs in one command (mac :) )
+To update the graphs after more stress tests
+```$xslt
+rm -rf output; 
+jmeter -g example_profile_map_log.csv -o output; 
+open output/index.html
+```
+
+
+###### Example all in one command (for Mac)
+
+The command below cleans up the `output` folder and recreates from the log file and opens the html page containing the report graphs in one command (mac :) )
 
 ```$xslt
-rm -rf output; jmeter -g srs_oc_bodbaw_trajectory_profile_log.csv -o output; open output/index.html
+rm -rf output; jmeter -g example_profile_map_log.csv -o output; open output/index.html
 ```
 
 # GeoserverStressTest.jmx further mods

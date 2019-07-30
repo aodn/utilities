@@ -9,7 +9,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="layername" elementType="Argument">
             <stringProp name="Argument.name">layername</stringProp>
-            <stringProp name="Argument.value">srs_oc_bodbaw_trajectory_profile_map</stringProp>
+            <stringProp name="Argument.value">example_profile_map</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="workspace" elementType="Argument">
@@ -19,7 +19,7 @@
           </elementProp>
           <elementProp name="server" elementType="Argument">
             <stringProp name="Argument.name">server</stringProp>
-            <stringProp name="Argument.value">geoserver-philip-fullstack.dev.aodn.org.au</stringProp>
+            <stringProp name="Argument.value">geoserver-yourname-fullstack.dev.aodn.org.au</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
