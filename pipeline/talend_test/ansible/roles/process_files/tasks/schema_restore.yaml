@@ -41,19 +41,19 @@
   loop: "{{ database_schemas }}"
 
 
-- name: remove schema dump from remote disk
-  file:
-    state: absent
-    path: "/mnt/talend_test_schemas/{{ item.name }}.dump"
-  loop: "{{ database_schemas }}"
+#- name: remove schema dump from remote disk
+#  file:
+#    state: absent
+#    path: "/mnt/talend_test_schemas/{{ item.name }}.dump"
+#  loop: "{{ database_schemas }}"
 
 
-- name: remove schema dump from local disk
-  delegate_to: localhost
-  file:
-    state: absent
-    path: "/tmp/talend_test_schemas/{{ item.name }}.dump"
-  loop: "{{ database_schemas }}"
+#- name: remove schema dump from local disk
+#  delegate_to: localhost
+#  file:
+#    state: absent
+#    path: "/tmp/talend_test_schemas/{{ item.name }}.dump"
+#  loop: "{{ database_schemas }}"
 
 
 

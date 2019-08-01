@@ -8,26 +8,21 @@
     suffix: build
   register: new_tmp_dir
 
-
 - name: set tmp directory fact
   set_fact:
     tmp_dir: "{{ new_tmp_dir.path}}"
 
-
 - name: debug tmp_dir path
   debug:
     msg: "{{ tmp_dir }}"
-
 
 - name: create dirs for pgsql output
   delegate_to: localhost
   file: path={{ tmp_dir }}/{{ item.name }} state=directory mode="a+w"
   with_items: "{{ database_schemas }}"
 
-
 - set_fact:
     database_user: "{{ db_user | default(ansible_ssh_user) }}"
-
 
 - name: sql select queries
   delegate_to: localhost
@@ -38,20 +33,17 @@
     db_host: "{{ ansible_host }}"
   loop: "{{ database_schemas }}"
 
-
 - name: remove result dir
   delegate_to: localhost
   file:
     state: absent
     path: "../harvest_results/{{ ansible_host }}/{{ name }}/{{ label }}/"
 
-
 - name: create result dir
   delegate_to: localhost
   file:
     path: "../harvest_results/{{ ansible_host }}/{{ name }}/{{ label }}/"
     state: directory
-
 
 - name: copy results from temp to result dir
   delegate_to: localhost

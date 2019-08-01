@@ -1,0 +1,5 @@
+---
+# TODO: assert an email was sent
+- name: "Assert an email was sent"
+  debug:
+    var: assert_config

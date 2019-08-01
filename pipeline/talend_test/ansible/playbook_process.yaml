@@ -1,10 +1,22 @@
 ---
+# NOTES:
+# po7
+#   the incoming directory for po7 is /var/incoming - configure this in the config.yaml file
+#   get the vagrant private ssh key location for use on the command line: vagrant ssh-config po7
+#   edit ~/.pgpass
+#      po7.aodn.org.au:5432:harvest:admin:admin
+
+# EXAMPLE:
+    # source ansible-virtualenv/bin/activate
+    # ansible-playbook ansible/playbook_process.yaml -i test_configs/hosts -u vagrant --key-file "/home/cmrose/git/chef/.vagrant/machines/po7/virtualbox/private_key" --extra-vars "test_config=../test_configs/soop_trv/config.yaml"
+
 # EXAMPLE (all test configs, provide a directory): ansible-playbook ansible/playbook_process.yaml -i test_configs/hosts --extra-vars "test_config=../test_configs"
 # EXAMPLE (single test config, provide a file): ansible-playbook ansible/playbook_process.yaml -i test_configs/hosts --extra-vars "test_config=../test_configs/soop_trv/config.yaml"
 # EXAMPLE (create expect data): ansible-playbook ansible/playbook_process.yaml -i test_configs/hosts --extra-vars "test_config=../test_configs/soop_trv/config.yaml create_expect=true"
+
 - name: Process files in pipeline
   hosts: "pipeline"
-  gather_facts: no
+  gather_facts: true
 
   roles:
     - process_files

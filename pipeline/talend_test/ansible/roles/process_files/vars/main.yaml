@@ -1,4 +1,6 @@
 pipeline_1_process_log: /mnt/ebs/log/data-services/process.log
+pipeline_2_watchservice_log: /mnt/ebs/log/pipeline/watchservice/pipeline_watchservice-stderr.log
+pipeline_2_uuid_list: /mnt/ebs/uuids/uuids
 
 allowed_log_dirs:
   - /mnt/ebs/log/data-services

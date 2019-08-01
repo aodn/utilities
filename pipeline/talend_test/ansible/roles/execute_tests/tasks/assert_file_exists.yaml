@@ -1,0 +1,5 @@
+---
+# TODO: assert a file exists on a host or s3
+- name: "Assert file exists"
+  debug:
+    var: assert_config
