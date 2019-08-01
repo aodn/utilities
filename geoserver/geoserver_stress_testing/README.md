@@ -25,13 +25,16 @@ This will open the JMeter GUI
 ![thingy](images/main.png) 
 
 1. Save and close. GeoserverStressTest.jmx is now tailored ready to test your layer in the non-GUI mode
-1. The current set of tests are a single WFS request with no BBOX or data limits and multiple WMS tile requests
-1. This command below can be run over and over and the corresponding log will be appended. After running there will be a log file in the CWD called `[layername]_log.csv` 
+1. The current set of tests are a single WFS request with no BBOX or data limits and multiple WMS tile requests 
 
-###### Note: Run this a few times
+###### Run the test and repeat at least a few times
 ```
 jmeter -n -t GeoserverStressTest.jmx
 ```
+After the first run there will be a log file in the CWD called `[layername]_log.csv` 
+
+###### Keep the log for long term comparisons!!
+1. This same stress test can be run over and over and the corresponding log for the layer will be appended.
 
 #### Get the graphs
 The example command below uses the resulting log for a layer called `example_profile_map` graphing all the  stress test runs. This example creates an output folder called `ouput` from the log file. In that folder there is a HTML page index.html to open in a browser.
