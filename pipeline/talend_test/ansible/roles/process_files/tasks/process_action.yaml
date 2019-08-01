@@ -1,44 +1,41 @@
 
 ### process action sub-playbook. adds input files and waits for processing to complete
 
-
 - name: process_action object
   debug:
     msg: "{{ action_item }}"
 
-
 # remove/truncate logs
-
+# Pipeline 1
 - name: remove pipeline 1 log
   become: yes
   become_user: root
   shell: "> {{ pipeline_1_process_log }}"
   when: type == 'pipeline_version_1'
-
-
 - name: remove logs for pipline v1
   become: yes
   become_user: root
   shell: "rm -rf {{ talend_log_dir }}/*"
   when: (type == 'pipeline_version_1')
 
-
+# Pipeline 2
 - name: check that the talend log file exists
   stat:
     path: "{{ talend_log_file }}"
   register: log_file
   when: type == 'pipeline_version_2'
 
+- set_fact:
+    uuids: {}
 
-- name: truncate pipeline 2 log
-  become: yes
-  become_user: root
-  shell: "> {{ talend_log_file }}"
-  when: (type == 'pipeline_version_2') and (log_file.stat.exists == true)
-
+- name: generate and store uuids
+  include_tasks: pipeline2_uuids.yaml
+  with_items: "{{ action_item.files }}"
+  loop_control:
+    loop_var: file
+  when: type == 'pipeline_version_2' and (action_item.type == 'ADD' or action_item.type == 'UPDATE')
 
 # copy files to destination (kicks off processing for pipeline types) for ADD/UPDATE actions
-
 - name: copy files to target directories
   become: yes
   become_user: root
@@ -51,7 +48,6 @@
   loop: "{{ action_item.files }}"
   when: action_item.type == 'ADD' or action_item.type == 'UPDATE'
 
-
 - name: list s3 objects to delete
   shell: "aws s3 ls --recursive s3://{{ host_bucket }}/{{ action_item.path }} | awk '{print $4}'"
   register: objects_list
@@ -59,17 +55,14 @@
         action_item.type == 'DELETE' and action_item.path is defined
   delegate_to: localhost
 
-
 - set_fact:
     delete_list: "{{ [ action_item.file ] }}"
   when: (type == 'pipeline_version_1' or type == 'pipeline_version_2') and
         action_item.type == 'DELETE' and action_item.file is defined
 
-
 - set_fact:
     delete_list: "{{ objects_list.stdout_lines|list }}"
   when: objects_list.stdout_lines is defined
-
 
   # note: the po_s3_del command succeeds even when it tries to delete a key that doesn't exist
   # (fails if given a 'folder' i.e. object ending with '/'
@@ -80,19 +73,37 @@
   with_items: "{{ delete_list }}"
   when: delete_list is defined
 
-
 - name: execute script
   become: yes
   become_user: talend
   shell: "{{ exec_shell_script.script }}"
   when: type == 'harvester'
 
+# wait for log entries in {{ pipeline_2_watchservice_log }} to get task_id
+# waits for all the files added/updated in the task
+
+- name: wait for pipeline 2 ADD and UPDATE processing to start
+  wait_for:
+    path: "{{ pipeline_2_watchservice_log }}"
+    search_regex: "^.+task_id='([0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})'.+event_id='{{ item.value }}$"
+    timeout: "{{ harvester_timeout }}"
+  register: log_entries
+  with_dict: "{{ uuids }}"
+  when: type == 'pipeline_version_2' and (action_item.type == 'ADD' or action_item.type == 'UPDATE')
 
 ### wait for pipeline to finish
 
+- name: wait for pipeline 2 ADD and UPDATE processing to complete
+  wait_for:
+    path: "{{ talend_log_file }}"
+    search_regex: "^.+\\[{{ item.match_groups[0] }}\\] IncomingFileStateManager.state -> '(FILE_IN_ERROR|FILE_SUCCESS)'$"
+    timeout: "{{ harvester_timeout }}"
+  register: state_messages
+  with_items: "{{ log_entries.results }}"
+  when: type == 'pipeline_version_2' and (action_item.type == 'ADD' or action_item.type == 'UPDATE')
+
 - set_fact:
     start_time: "{{ lookup('pipe','date \"+%Y-%m-%d %H:%M:%S\"') }}"
-
 
 - name: wait for pipeline 1 ADD and UPDATE processing to complete
   command: "grep -r 'file(s)  OK'  {{ talend_log_dir }}"
@@ -101,14 +112,6 @@
   retries: 500
   until: task_result.rc == 0
   when: type == 'pipeline_version_1' and
-        (action_item.type == 'ADD' or action_item.type == 'UPDATE')
-
-- name: wait for pipeline 2 ADD and UPDATE processing to complete
-  wait_for:
-    path: "{{ talend_log_file }}"
-    search_regex: FILE_SUCCESS
-    timeout: "{{ harvester_timeout }}"
-  when: type == 'pipeline_version_2' and
         (action_item.type == 'ADD' or action_item.type == 'UPDATE')
 
 - name: wait for harvester-type processing to complete
@@ -121,10 +124,8 @@
 - set_fact:
     end_time: "{{ lookup('pipe','date \"+%Y-%m-%d %H:%M:%S\"') }}"
 
-
 - set_fact:
     elapsed_time: "{{ (end_time|to_datetime - start_time|to_datetime).seconds|string }}"
-
 
 - name: append line to time_profile.csv
   lineinfile:
@@ -133,6 +134,24 @@
     line: "{{ name }},{{ ansible_host }},{{ action_item.type }},{{ elapsed_time }}"
     insertafter: EOF
   delegate_to: localhost
+
+# remove UUIDS
+- name: Remove UUIDs
+  become: yes
+  become_user: projectofficer
+  lineinfile:
+    path: "{{ pipeline_2_uuid_list }}"
+    state: absent
+    line: "{{ processed_uuid.item.item.key }}/{{ processed_uuid.item.item.value }}"
+  loop: "{{ state_messages.results }}"
+  loop_control:
+    loop_var: processed_uuid
+
+- name: Fail due to a FILE_IN_ERROR
+  fail:
+    msg: "A file is in error"
+  when: "'FILE_IN_ERROR' in item.match_groups"
+  loop: "{{ state_messages.results }}"
 
 - include: harvest_results.yaml
   vars:

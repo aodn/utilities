@@ -6,18 +6,18 @@ po: bene
 actions:
   - type: ADD
     files:
-      - dest: /mnt/ebs/incoming/SOOP/CO2
+      - dest: /var/incoming/SOOP/CO2
         local_file: IMOS_SOOP-CO2_GST_20110301T061948Z_FHZI_FV01.nc
   - type: DELETE
     file: IMOS/SOOP/SOOP-CO2/FHZI_Astrolabe/2011/AL1011_R4_northbound/IMOS_SOOP-CO2_GST_20110301T061948Z_FHZI_FV01.nc
   - type: ADD
     files:
-      - dest: /mnt/ebs/incoming/SOOP/CO2
+      - dest: /var/incoming/SOOP/CO2
         local_file: IMOS_SOOP-CO2_GST_20101031T113003Z_FHZI_FV01.nc.original
         remote_file: IMOS_SOOP-CO2_GST_20101031T113003Z_FHZI_FV01.nc
   - type: UPDATE
     files:
-      - dest: /mnt/ebs/incoming/SOOP/CO2
+      - dest: /var/incoming/SOOP/CO2
         local_file: IMOS_SOOP-CO2_GST_20101031T113003Z_FHZI_FV01.nc
 drop_schema_objects: true
 run_talend_liqui: true
@@ -32,5 +32,10 @@ database_schemas:
         exclude_columns: []
       - name: soop_co2_trajectory_map
         exclude_columns: [colour]
+
+# Configuration for running integration tests
 assertions:
-  - name: query_result
+  # Asserts harvested results are as expected
+  - name: diff
+    expected: ../test_configs/soop_co2/expect
+    content: ../harvest_results/po7.aodn.org.au/soop_co2

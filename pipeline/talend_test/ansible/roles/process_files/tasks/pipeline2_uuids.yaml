@@ -1,0 +1,17 @@
+---
+- set_fact:
+    uuid: "{{ 99999999 | random | to_uuid }}"
+
+- name: generate uuid
+  set_fact:
+    uuids: "{{ uuids | combine( new_item ) }}"
+  vars:
+    new_item: "{ '{{ file.local_file }}' : '{{ uuid }}' }"
+
+- name: store uuid
+  become: yes
+  become_user: projectofficer
+  lineinfile:
+    path: "{{ pipeline_2_uuid_list }}"
+    line: "{{ file.local_file }}/{{ uuid }}"
+    insertbefore: BOF
