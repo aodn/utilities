@@ -173,6 +173,8 @@ New harvest results are obtained simply by running the previous command without 
 --extra-vars "test_config=../test_configs/soop_xbt_nrt/config.yaml"
 ```
 
+Harvested results will be in the ```harvest_results``` directory.
+
 ## Executing the integration tests
 
 All integration tests in a `config.yaml` file will be executed with:
@@ -182,7 +184,7 @@ All integration tests in a `config.yaml` file will be executed with:
 -i test_configs/hosts --extra-vars "test_config=../test_configs/soop_xbt_nrt/config.yaml"
 ``` 
 
-An summary of the results will appear in the ansible PLAY RECAP.  Failed tests will be included in the `ignored` count.  
+A summary of the results will appear in the ansible PLAY RECAP.  Failed tests will be included in the `ignored` count.  
 If this is greater than 0 then check the prior output for details on the test that failed.  The `failed` count should be
 zero.  If it is not then something is wrong with the test configuration that should be fixed before proceeding.
 
@@ -201,7 +203,7 @@ assertions:
   # Asserts harvested results are as expected
   - name: diff
     expected: ../test_configs/soop_xbt_nrt/expect
-    content: ../harvest_results/po7.aodn.org.au/soop_xbt_nrt
+    content: soop_xbt_nrt
 ```
 
 ## Assertions
@@ -245,7 +247,7 @@ Note that there are several type of test: `pipeline_version_1`, `pipeline_versio
 
 ### pipeline_version_2
 
-- Running a test does not removes.
+- Running a test does not remove logs.
 
 ## Database
 
