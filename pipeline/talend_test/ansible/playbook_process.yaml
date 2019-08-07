@@ -1,13 +1,4 @@
 ---
-#   Until https://github.com/aodn/python-aodncore/tree/run-pipeline-integration-tests-against-po7 is in production:
-#      vagrant ssh po7
-#      source /mnt/ebs/aodn-pipeline/bin/activate
-#      cd /vagrant/src/python-aodncore
-#      sudo pip uninstall aodncore
-#      sudo pip install -e .
-#      sudo supervisorctl
-#      restart watcher and services not yet running
-
 - name: Process files in pipeline
   hosts: "pipeline"
   gather_facts: true
