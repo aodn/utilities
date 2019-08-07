@@ -27,11 +27,6 @@ Create .pgpass entries
 - add an entry like this:
   ```po7.aodn.org.au:5432:harvest:admin:admin```
 
-Configure your AWS profile e.g:
-```shell script
-export AWS_PROFILE=production-developer
-```
-
 Obtain the location of the vagrant private ssh key (do this in the chef directory from which you launched the po7 box):
 
 ```shell script
@@ -60,30 +55,33 @@ name: soop_xbt_nrt
 type: pipeline_version_2
 po: laurent
 dirs:
-- path: /mnt/ebs/wip/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
-  owner: vagrant
-  group: vagrant
+- path: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
+  owner: projectofficer
+  group: projectofficer
 actions:
 - type: ADD
   files:
-  - dest: /mnt/ebs/wip/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
+  - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv.updated
     remote_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
-  - dest: /var/incoming/SOOP/XBT/NRT
+  incoming:
+  - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
 - type: UPDATE
   files:
-  - dest: /mnt/ebs/wip/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
+  - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
-  - dest: /var/incoming/SOOP/XBT/NRT
+  incoming:
+  - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
 - type: ADD
   files:
-  - dest: /mnt/ebs/wip/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
+  - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
     local_file: IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv
-  - dest: /var/incoming/SOOP/XBT/NRT
+  incoming:
+  - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.manifest
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
 - type: DELETE
