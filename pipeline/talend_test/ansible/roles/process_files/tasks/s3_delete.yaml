@@ -1,0 +1,25 @@
+---
+- name: list s3 objects to delete
+  shell: "aws s3 ls --recursive s3://{{ host_bucket }}/{{ action_item.path }} | awk '{print $4}'"
+  register: objects_list
+  when: (type == 'pipeline_version_1' or type == 'pipeline_version_2') and
+        action_item.type == 'DELETE' and action_item.path is defined
+  delegate_to: localhost
+
+- set_fact:
+    delete_list: "{{ [ action_item.file ] }}"
+  when: (type == 'pipeline_version_1' or type == 'pipeline_version_2') and
+        action_item.type == 'DELETE' and action_item.file is defined
+
+- set_fact:
+    delete_list: "{{ objects_list.stdout_lines|list }}"
+  when: objects_list.stdout_lines is defined
+
+  # note: the po_s3_del command succeeds even when it tries to delete a key that doesn't exist
+  # (fails if given a 'folder' i.e. object ending with '/'
+- name: delete files using po_s3_del
+  become: yes
+  become_user: projectofficer
+  command: "po_s3_del {{ item }}"
+  with_items: "{{ delete_list }}"
+  when: delete_list is defined

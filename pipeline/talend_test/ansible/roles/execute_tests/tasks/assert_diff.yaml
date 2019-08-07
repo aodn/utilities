@@ -1,7 +1,7 @@
 ---
 # if files to compare are large need to set ANSIBLE_MAX_DIFF_SIZE=10444800 environment variable
 - set_fact:
-    copy_src_root: "{{ assert_config.content }}"
+    copy_src_root: "../harvest_results/{{ harvest_host }}/{{ assert_config.content }}"
     copy_dest_root: "{{ assert_config.expected }}"
 - name: "diff contents of files against expected contents"
   delegate_to: localhost
@@ -11,7 +11,7 @@
   check_mode: yes  # don't copy just check results
   diff: yes
   register: diffresult
-  with_filetree: "{{ assert_config.content }}/"  # diff all the files in the directory
+  with_filetree: "{{ copy_src_root }}/"  # diff all the files in the directory
   loop_control:
     loop_var: file_item
   when: file_item.state == 'file'

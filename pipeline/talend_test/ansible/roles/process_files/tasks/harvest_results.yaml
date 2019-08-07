@@ -12,10 +12,6 @@
   set_fact:
     tmp_dir: "{{ new_tmp_dir.path}}"
 
-- name: debug tmp_dir path
-  debug:
-    msg: "{{ tmp_dir }}"
-
 - name: create dirs for pgsql output
   delegate_to: localhost
   file: path={{ tmp_dir }}/{{ item.name }} state=directory mode="a+w"

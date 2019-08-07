@@ -107,7 +107,7 @@ assertions:
   # Asserts harvested results are as expected
   - name: diff
     expected: ../test_configs/soop_xbt_nrt/expect
-    content: ../harvest_results/po7.aodn.org.au/soop_xbt_nrt
+    content: soop_xbt_nrt
 ```
 
 ## Obtaining expected test results data

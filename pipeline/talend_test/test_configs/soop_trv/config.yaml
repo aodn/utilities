@@ -26,4 +26,4 @@ assertions:
   # Asserts harvested results are as expected
   - name: diff
     expected: ../test_configs/soop_trv/expect
-    content: ../harvest_results/po7.aodn.org.au/soop_trv
+    content: soop_trv

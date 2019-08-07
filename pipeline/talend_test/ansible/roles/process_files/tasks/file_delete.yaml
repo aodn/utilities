@@ -1,0 +1,26 @@
+---
+# Delete files in directory
+- set_fact:
+    file_pattern: "*"
+    file_path: "{{ action_item.path }}"
+  when: action_item.path is defined
+
+# Delete one file
+- set_fact:
+    file_pattern: "{{ action_item.file | regex_search('([^\\/]+$)') }}"
+    file_path: "{{ action_item.file | regex_search('(.*\\/)') }}"
+  when: action_item.path is not defined
+
+- name: List files
+  find:
+    paths: "{{ file_store }}/{{ file_path }}"
+    patterns: "{{ file_pattern }}"
+  register: files_to_delete
+
+- name: Remove files
+  become: yes
+  become_user: pipeline_worker
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ files_to_delete.files }}"

@@ -12,21 +12,24 @@ actions:
   - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv.updated
     remote_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
-  - dest: /var/incoming/SOOP/XBT/NRT
+  incoming:
+  - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
 - type: UPDATE
   files:
   - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
-  - dest: /var/incoming/SOOP/XBT/NRT
+  incoming:
+  - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
 - type: ADD
   files:
   - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
     local_file: IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv
-  - dest: /var/incoming/SOOP/XBT/NRT
+  incoming:
+  - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.manifest
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
 - type: DELETE
@@ -44,3 +47,10 @@ database_schemas:
     exclude_columns: [colour]
   - name: soop_xbt_nrt_profiles_data
     exclude_columns: []
+
+# Configuration for running integration tests
+assertions:
+  # Asserts harvested results are as expected
+  - name: diff
+    expected: ../test_configs/soop_xbt_nrt/expect
+    content: soop_xbt_nrt
