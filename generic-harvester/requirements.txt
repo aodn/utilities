@@ -1,2 +1,5 @@
 shapely
 simpleeval
+pytz
+petl
+netCDF4

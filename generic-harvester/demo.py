@@ -13,7 +13,7 @@ from simpleeval import simple_eval
 # - pipeline integration
 
 input_file = {
-    "src_path": "/home/craigj/temp/timeseries/IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
+    "src_path": "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
 }
 
 config = {
