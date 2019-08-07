@@ -8,3 +8,5 @@ cache/
 **~
 # Hide rubinius files
 .rbx
+venv
+*.pyc
