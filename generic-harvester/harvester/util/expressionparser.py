@@ -9,21 +9,20 @@ Hides implementation and provides a provision to switch to any parsing library.
 from simpleeval import SimpleEval
 
 
-def parse(expression, operators=None, functions=None, names=None):
-    """ parse(defn["value"], names=variables, functions={"re": re}) """
-    expr = ExpressionParser(operators=operators, functions=functions, names=names)
+def parse(expression, operators=None, functions=None, variables=None):
+    expr = ExpressionParser(operators=operators, functions=functions, variables=variables)
     return expr.parse(expression)
 
 
 class ExpressionParser(object):
     expression = ""
 
-    def __init__(self, operators=None, functions=None, names=None):
+    def __init__(self, operators=None, functions=None, variables=None):
         self.operators = operators
         self.functions = functions
-        self.names = names
+        self.variables = variables
 
     def parse(self, expression):
         self.expression = expression
-        s = SimpleEval(operators=self.operators, functions=self.functions, names=self.names)
+        s = SimpleEval(operators=self.operators, functions=self.functions, names=self.variables)
         return s.eval(expression)

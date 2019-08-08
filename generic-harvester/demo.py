@@ -2,7 +2,7 @@ import harvester.io.netcdf as netcdf
 import netCDF4 as nc
 import re
 from collections import OrderedDict
-import harvester.util.expressionparser as expr
+from harvester.util import expressionparser as expr
 
 
 #TODO:
@@ -76,7 +76,7 @@ config = {
             "mappings": {
                 "file_id": {"type": "int64", "value": "context['file_id']"},
                 "deployment_number": {"type": "str", "value": "dataset.deployment_number"},
-                "delivery_mode": {"type": "str", "value": "'RT' if re.match(r'Real-time', context.url) else 'DM'"},
+                "delivery_mode": {"type": "str", "value": "'RT' if re.match(r'.*Real-time.*', context.url) else 'DM'"},
                 "latitude": {"value": "dataset['LATITUDE'][(0)]"},
                 "time_coverage_start": {"type": "datetime", "value": "dataset.time_coverage_start"},
                 "time_coverage_end": {"type": "datetime", "value": "dataset.time_coverage_start"},
@@ -141,7 +141,7 @@ class NetcdfHarvester(object):
                     }
  
                     for column_name, defn in mappings.items():
-                        print(column_name, expr.parse(defn["value"], names=variables, functions={"re": re}))
+                        print(column_name, expr.parse(defn["value"], variables=variables, functions={"re": re}))
                                 
                     
                     
