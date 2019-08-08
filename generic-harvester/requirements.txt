@@ -3,3 +3,4 @@ simpleeval
 pytz
 petl
 netCDF4
+python-dateutil
