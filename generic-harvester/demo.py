@@ -1,9 +1,9 @@
 import harvester.io.netcdf as netcdf
-import petl
 import netCDF4 as nc
 import re
 from collections import OrderedDict
-from simpleeval import simple_eval
+import harvester.util.expressionparser as expr
+
 
 #TODO:
 # - review table/view creation/management alembic
@@ -141,7 +141,7 @@ class NetcdfHarvester(object):
                     }
  
                     for column_name, defn in mappings.items():
-                        print(column_name, simple_eval(defn["value"], names=variables, functions={"re": re}))
+                        print(column_name, expr.parse(defn["value"], names=variables, functions={"re": re}))
                                 
                     
                     
