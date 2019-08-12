@@ -2,13 +2,14 @@
 Netcdf record source and supporting code
 """
 
-import collections
-import re
+from dateutil.parser import parse
+import itertools
 import pytz
+import re
 
 import netCDF4
+
 from harvester.util import expressionparser as expr
-from dateutil.parser import parse
 
 
 class NetcdfVariableSource(object):
@@ -29,12 +30,24 @@ class NetcdfVariableSource(object):
         with netCDF4.Dataset(self.netcdf_file.src_path) as dataset:
             dataset.set_auto_mask(False)  # TODO: need to use masked arrays!
 
-            for indexes in self._index_combinations(dataset):
+            requested_dimensions = [
+                dimension
+                for dimension in dataset.dimensions.values()
+                if dimension.name in self.mapping["dimensions"]
+            ]
+
+            requested_dimension_index_values = [
+                range(dimension.size)
+                for dimension in requested_dimensions
+            ]
+
+            for index_tuple in itertools.product(*requested_dimension_index_values):
+                index_dict = self._indexes(index_tuple)
                 names = {
                     "dataset": dataset,
                     "file": self.netcdf_file,
-                    "indexes": indexes,
-                    "values": _Values(dataset, indexes)
+                    "indexes": index_dict,
+                    "values": _Values(dataset, index_dict)
                 }
                 yield tuple(
                     expr.parse(defn.get("value", "values['{}']".format(field_name)), variables=names)
@@ -42,36 +55,10 @@ class NetcdfVariableSource(object):
                 )
 
     def field_names(self):
-        # TODO: from parent class?
         return tuple(self.mapping["fields"].keys())
 
-    def _index_combinations(self, dataset):
-        # Iterate through all possible combinations of dimension index values
-        # Each possible index combination is returned as an ordered dict
-
-        dimensions = [dataset.dimensions[dimension_name] for dimension_name in self.mapping['dimensions']]
-        return self._iterate(collections.OrderedDict(), dimensions)
-
-    def _iterate(self, index_combination, dimensions):
-        # recursively iterate through all possible combinations of the passed index combination with the
-        # dimensions passed
-
-        if len(dimensions) == 0:
-            # no dimensions to iterate through, just return the passed index combination
-            yield index_combination
-        else:
-            # get first dimension to iterate through
-            dimension = dimensions[0]
-
-            # iterate through all possible index values for this dimension
-            for index in range(dimension.size):
-                #  add possible index_combination for this dimension
-                index_combination[dimension.name] = index
-                # recursively iterate through all possible combinations of this index combination with the remaining
-                # dimensions
-                for indexes in self._iterate(index_combination, dimensions[1:]):
-                    # return the index combinations returned for the remaining dimensions
-                    yield indexes
+    def _indexes(self, index_tuple):
+        return dict(zip(self.mapping["dimensions"], index_tuple))
 
 
 class _Values(object):
@@ -140,6 +127,5 @@ class NetcdfFileSource(object):
             )
 
     def field_names(self):
-        # TODO: from parent class?
         return tuple(self.mapping["fields"].keys())
 

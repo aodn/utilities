@@ -3,6 +3,7 @@ from collections import OrderedDict
 import json
 
 from harvester.source.netcdf import (NetcdfVariableSource, NetcdfFileSource)
+from harvester.stubs.aodncore import PipelineFile
 
 input_file = {
     "src_path": "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
@@ -108,18 +109,6 @@ json_config = """{
 """
 
 config = json.loads(json_config, object_pairs_hook=OrderedDict)
-
-
-class PipelineFile(object):
-    """
-    Mock real PipelineFile for prototyping
-    """
-
-    # TODO: revisit id handling - more likely to be set by this step than initialised with it
-    def __init__(self, id, src_path, dest_path):
-        self.id = id
-        self.src_path = src_path
-        self.dest_path = dest_path
 
 
 class NetcdfHarvester(object):
