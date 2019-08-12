@@ -5,9 +5,7 @@ import os
 import unittest
 from dateutil import parser
 
-import numpy as np
-
-from harvester.source.netcdf import (NetcdfVariableSource, NetcdfFileSource)
+from harvester.source.netcdf import (NetcdfMeasurementSource, NetcdfFileSource)
 from harvester.stubs.aodncore import PipelineFile
 
 TEST_FILE = os.path.join(os.path.dirname(__file__), 'IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc')
@@ -40,7 +38,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         mapping = json.loads(json_mapping, object_pairs_hook=OrderedDict)
 
-        source = NetcdfVariableSource(self.nc_file, mapping)
+        source = NetcdfMeasurementSource(self.nc_file, mapping)
 
         # check field_names
 
@@ -73,8 +71,8 @@ class TestNetcdfVariableSource(unittest.TestCase):
                     "file_id": {"value": "file.id"},
                     "deployment_number": {"value": "dataset.deployment_number"},
                     "delivery_mode": {"value": "'RT' if re.match(r'.*Real-time.*', file.dest_path) else 'DM'"},
-                    "latitude": {"value": "dataset['LATITUDE'][(0)]"},
-                    "longitude": {"value": "dataset['LONGITUDE'][(0)]"},
+                    "latitude": {"value": "mean(dataset['LATITUDE']).item()"},
+                    "longitude": {"value": "mean(dataset['LONGITUDE']).item()"},
                     "time_coverage_start": {"value": "parse_datetime(dataset.time_coverage_start)"},
                     "time_coverage_end": {"value": "parse_datetime(dataset.time_coverage_start)"},
                     "date_created": {"value": "parse_datetime(dataset.date_created)"}
@@ -96,7 +94,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
         # check records (1)
 
         self.assertEqual(
-            [(25, '', 'DM', np.float32(-46.9058), np.float32(142.388), parser.parse("2019-08-05T01:59Z"),
+            [(25, '', 'DM', -46.90268325805664, 142.38839721679688, parser.parse("2019-08-05T01:59Z"),
               parser.parse("2019-08-05T01:59Z"), parser.parse("2019-08-06T00:25:03Z"))],
             list(source.records())
         )

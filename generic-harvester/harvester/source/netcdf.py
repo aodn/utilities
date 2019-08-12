@@ -2,17 +2,37 @@
 Netcdf record source and supporting code
 """
 
-from dateutil.parser import parse
 import itertools
 import pytz
+from dateutil.parser import parse
 import re
+
+import numpy as np
 
 import netCDF4
 
 from harvester.util import expressionparser as expr
 
+ALLOWED_EXPR_FNS = {
+    "re": re,
+    "parse_datetime": parse,
+    "average": np.average,
+    "mean": np.mean,
+    "amin": np.amin,
+    "amax": np.amax
+}
 
-class NetcdfVariableSource(object):
+
+class Record(object):
+    """
+
+    """
+
+    def __init__(self, field_names):
+        1
+
+
+class NetcdfMeasurementSource(object):
     """
 
     """
@@ -28,8 +48,6 @@ class NetcdfVariableSource(object):
         """
 
         with netCDF4.Dataset(self.netcdf_file.src_path) as dataset:
-            dataset.set_auto_mask(False)  # TODO: need to use masked arrays!
-
             requested_dimensions = [
                 dimension
                 for dimension in dataset.dimensions.values()
@@ -42,6 +60,7 @@ class NetcdfVariableSource(object):
             ]
 
             for index_tuple in itertools.product(*requested_dimension_index_values):
+                # TODO: revisit _Values
                 index_dict = self._indexes(index_tuple)
                 names = {
                     "dataset": dataset,
@@ -74,6 +93,7 @@ class _Values(object):
         return self._get_value(key)
 
     def _get_value(self, variable_name):
+        # TODO: handle masked arrays
         # get requested variable
         variable = self.dataset[variable_name]
         # get the index of the value to return for this variable (the indexes of dimensions used by this variable)
@@ -81,6 +101,7 @@ class _Values(object):
         # return the value of the variable for this index
         value_array = variable[tuple(variable_index)]
         # return as scalar if one value only
+        # TODO: consider automatically 'unboxing scalars' in expression parsing instead of here
         value = value_array.item() if value_array.size == 1 else value_array
 
         if _is_datetime(variable):
@@ -113,16 +134,13 @@ class NetcdfFileSource(object):
         """
 
         with netCDF4.Dataset(self.netcdf_file.src_path) as dataset:
-            dataset.set_auto_mask(False)  # TODO: need to use masked arrays!
-
             names = {
                 "dataset": dataset,
                 "file": self.netcdf_file
             }
 
             yield tuple(
-                # TODO: look at using a type key on mapping
-                expr.parse(defn["value"], variables=names, functions={"re": re, "parse_datetime": parse})
+                expr.parse(defn["value"], variables=names, functions=ALLOWED_EXPR_FNS)
                 for field_name, defn in self.mapping["fields"].items()
             )
 
