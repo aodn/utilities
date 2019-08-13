@@ -13,18 +13,6 @@ class NetcdfTimeseriesHarvester(object):
     def harvest(self):
         self._delete_existing_data()
 
-        # global attributes
-        global_attribute_source = NetcdfGlobalAttributeSource(self.netcdf_file)
-        self.persistent_store.write("nc_global_attribute", global_attribute_source)
-
-        # variables
-        variable_source = NetcdfVariableSource(self.netcdf_file)
-        self.persistent_store.write("nc_variable", variable_source)
-
-        # variable_attributes
-        variable_attribute_source = NetcdfVariableAttributeSource(self.netcdf_file)
-        self.persistent_store.write("nc_variable_attribute", variable_attribute_source)
-
         # measurements
         measurement_source = NetcdfMeasurementSource(self.netcdf_file, self.config["measurement"])
         self.persistent_store.write("measurement", measurement_source)
@@ -34,9 +22,10 @@ class NetcdfTimeseriesHarvester(object):
         file_source = NetcdfFileSource(self.netcdf_file, file_mapping)
         self.persistent_store.write("timeseries_file", file_source)
 
-        # timeseries_key
-        timeseries_file_metadata = itertools.islice(file_mapping.records(), 1)
-        timeseries_key = {field_name: timeseries_file_metadata[field_name] for field_name in self.config["timeseries_key"]}
+        # determine timeseries_key
+        timeseries_record = next(file_source.records())
+        # TODO: timeseries_key = timeseries_record.values(self.config["timeseries_key"])
+        timeseries_key = self.config["timeseries_key"]
 
         # timeseries
         self._aggregate_timeseries(timeseries_key)
@@ -47,9 +36,8 @@ class NetcdfTimeseriesHarvester(object):
         self._aggregate_timeseries(timeseries_key)
 
     def _delete_existing_data(self):
-        for table_name in ("nc_global_attribute", "nc_variable", "nc_variable_attribute", "measurement",
-                           "timeseries_file"):
-            self.persistent_store.deleteFileData(table_name, self.netcdf_file.id)
+        for table_name in ("measurement", "timeseries_file"):
+            self.persistent_store.delete_records_for_file(table_name, self.netcdf_file.id)
 
     def _aggregate_timeseries(self, timeseries_key):
         self.persistent_store.aggregate("timeseries", self.config["timeseries"], timeseries_key)

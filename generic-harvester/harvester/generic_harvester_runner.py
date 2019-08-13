@@ -25,4 +25,5 @@ class GenericHarvesterRunner(object):
         #   call delete for deletions/harvest for additions
         #   update metadata spatial extent
         #   upload on success
+        pass
 

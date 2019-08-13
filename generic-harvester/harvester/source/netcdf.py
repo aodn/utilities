@@ -3,6 +3,8 @@ Netcdf record source and supporting code
 """
 
 import itertools
+from collections import OrderedDict
+
 import pytz
 from dateutil.parser import parse
 import re
@@ -23,13 +25,90 @@ ALLOWED_EXPR_FNS = {
 }
 
 
-class Record(object):
+class NetcdfGlobalAttributeSource(object):
     """
 
     """
 
-    def __init__(self, field_names):
-        1
+    def __init__(self, netcdf_file):
+        self.netcdf_file = netcdf_file
+
+    def records(self):
+        """
+
+        :return:
+        """
+
+        with netCDF4.Dataset(self.netcdf_file.src_path) as dataset:
+            for ncattr in dataset.ncattrs():
+                yield OrderedDict([
+                    ("file_id", self.netcdf_file.id),
+                    ("name",  ncattr),
+                    ("type", type(dataset.getncattr(ncattr)).__name__),
+                    ("value", str(dataset.getncattr(ncattr)))
+                ])
+
+    def field_names(self):
+        return "file_id", "name", "type", "value"
+
+
+class NetcdfVariableSource(object):
+    """
+
+    """
+
+    def __init__(self, netcdf_file):
+        self.netcdf_file = netcdf_file
+
+    def records(self):
+        """
+
+        :return:
+        """
+
+        with netCDF4.Dataset(self.netcdf_file.src_path) as dataset:
+            for variable_name in dataset.variables:
+                variable = dataset[variable_name]
+                yield OrderedDict([
+                    ("file_id", self.netcdf_file.id),
+                    ("name", variable_name),
+                    ("type", str(variable.dtype)),
+                    ("dimensions", ','.join(variable.dimensions)),
+                    ("shape", ' '.join(str(shape) for shape in variable.shape))
+                ])
+
+    def field_names(self):
+        return "file_id", "name", "type", "dimensions", "shape"
+
+
+class NetcdfVariableAttributeSource(object):
+    """
+
+    """
+
+    def __init__(self, netcdf_file):
+        self.netcdf_file = netcdf_file
+
+    def records(self):
+        """
+
+        :return:
+        """
+
+        with netCDF4.Dataset(self.netcdf_file.src_path) as dataset:
+            for variable_name in dataset.variables:
+                for attr_name in dataset[variable_name].ncattrs():
+                    attribute = dataset[variable_name].getncattr(attr_name)
+                    yield OrderedDict([
+                        ("file_id", self.netcdf_file.id),
+                        ("var_name", variable_name),
+                        ("attr_name", attr_name),
+                        ("type", type(attribute).__name__),
+                        ("value", str(attribute))
+                    ])
+
+    def field_names(self):
+        return "file_id", "var_name", "attr_name", "type", "value"
 
 
 class NetcdfMeasurementSource(object):
@@ -68,8 +147,8 @@ class NetcdfMeasurementSource(object):
                     "indexes": index_dict,
                     "values": _Values(dataset, index_dict)
                 }
-                yield tuple(
-                    expr.parse(defn.get("value", "values['{}']".format(field_name)), variables=names)
+                yield OrderedDict(
+                    (field_name, expr.parse(defn.get("value", "values['{}']".format(field_name)), variables=names))
                     for field_name, defn in self.mapping["fields"].items()
                 )
 
@@ -139,11 +218,14 @@ class NetcdfFileSource(object):
                 "file": self.netcdf_file
             }
 
-            yield tuple(
-                expr.parse(defn["value"], variables=names, functions=ALLOWED_EXPR_FNS)
+            yield OrderedDict(
+                (field_name, expr.parse(defn["value"], variables=names, functions=ALLOWED_EXPR_FNS))
                 for field_name, defn in self.mapping["fields"].items()
             )
 
     def field_names(self):
         return tuple(self.mapping["fields"].keys())
 
+
+def subset(dictionary, keys):
+    return OrderedDict((key,value) for key,value in dictionary.items() if key in keys)
