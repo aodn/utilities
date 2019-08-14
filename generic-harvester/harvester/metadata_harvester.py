@@ -13,7 +13,7 @@ class NetcdfMetadataHarvester(object):
         self.config = config
 
     def harvest(self):
-        self._delete_existing_data()
+        self.delete()
 
         # global attributes
         global_attribute_source = NetcdfGlobalAttributeSource(self.netcdf_file)

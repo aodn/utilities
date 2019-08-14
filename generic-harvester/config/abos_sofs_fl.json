@@ -5,8 +5,6 @@
     "measurement": {
         "dimensions": ["TIME"],
         "fields": {
-            "file_id": {"value": "file.id"},
-            "index": {"value": "indexes['TIME']"},
             "TIME": {},
             "LATITUDE": {},
             "LONGITUDE": {},
@@ -54,7 +52,6 @@
     },
     "timeseries_file": {
         "fields": {
-            "file_id": {"value": "file.id"},
             "deployment_number": {"value": "dataset.deployment_number"},
             "delivery_mode": {"value": "'RT' if re.match(r'.*Real-time.*', file.dest_path) else 'DM'"},
             "latitude": {"value": "dataset['LATITUDE'][(0)].item()"},

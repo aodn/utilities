@@ -2,6 +2,7 @@ from collections import OrderedDict
 
 import json
 
+from harvester.metadata_harvester import NetcdfMetadataHarvester
 from harvester.output.memory_store import MemoryStore
 from harvester.stubs.aodncore import PipelineFile
 from harvester.timeseries_harvester import NetcdfTimeseriesHarvester
@@ -16,6 +17,10 @@ netcdf_file = PipelineFile(
 )
 
 persistent_store = MemoryStore(OrderedDict())
+
+metadata_harvester = NetcdfMetadataHarvester(persistent_store, netcdf_file, config, None)
+metadata_harvester.harvest()
+metadata_harvester.delete()
 
 harvester = NetcdfTimeseriesHarvester(persistent_store, netcdf_file, config, None)
 harvester.harvest()

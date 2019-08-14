@@ -129,10 +129,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         json_mapping = """{
             "name": "measurement",
-            "dimensions": ["TIME"],
             "fields": {
-                "file_id": {"value": "file.id"},
-                "index": {"value": "indexes['TIME']"},
                 "TIME": {},
                 "LATITUDE": {},
                 "LONGITUDE": {},
@@ -148,7 +145,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         # check field_names
 
-        expected_field_names = ("file_id", "index", "TIME", "LATITUDE", "LONGITUDE", "PL_CMP", "WDIR", "WSPD")
+        expected_field_names = ("file_id", "TIME", "LATITUDE", "LONGITUDE", "PL_CMP", "WDIR", "WSPD")
         self.assertEqual(expected_field_names, source.field_names())
 
         # check records (first two and count)
@@ -157,9 +154,9 @@ class TestNetcdfVariableSource(unittest.TestCase):
         count = sum(1 for _ in source.records())
 
         expected_values = [
-            (25, 0, parser.parse("2019-08-05T01:59:00.000017Z"), -46.905799865722656, 142.38800048828125,
+            (25, parser.parse("2019-08-05T01:59:00.000017Z"), -46.905799865722656, 142.38800048828125,
              348.3999938964844, 143.3000030517578, 10.199999809265137),
-            (25, 1, parser.parse("2019-08-05T02:59:00.000004Z"), -46.905799865722656, 142.38800048828125,
+            (25, parser.parse("2019-08-05T02:59:00.000004Z"), -46.905799865722656, 142.38800048828125,
              27.399999618530273, 143.1999969482422, 11.0)
         ]
 
@@ -174,7 +171,6 @@ class TestNetcdfVariableSource(unittest.TestCase):
         json_mapping = """{
                 "name": "timeseries_file",
                 "fields": {
-                    "file_id": {"value": "file.id"},
                     "deployment_number": {"value": "dataset.deployment_number"},
                     "delivery_mode": {"value": "'RT' if re.match(r'.*Real-time.*', file.dest_path) else 'DM'"},
                     "latitude": {"value": "mean(dataset['LATITUDE']).item()"},

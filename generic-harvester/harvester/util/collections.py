@@ -18,6 +18,6 @@ def zip_list(iter1, iter2):
     :param iter2: iterable containing iterables to be zipped
     :return: A list of OrderedDicts
     """
-    return [OrderedDict(zip(iter1, )) for row in rows]
+    return [OrderedDict(zip(iter1, item)) for item in iter2]
 
 
