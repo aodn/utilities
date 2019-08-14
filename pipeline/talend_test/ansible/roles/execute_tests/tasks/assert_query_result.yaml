@@ -1,0 +1,5 @@
+---
+# TODO: run a query and compare result with expected.  assert equivalence
+- name: "Assert a query result"
+  debug:
+    var: assert_config

@@ -1,0 +1,139 @@
+
+### process action sub-playbook. adds input files and waits for processing to complete
+
+- name: process_action object
+  debug:
+    msg: "{{ action_item }}"
+
+# remove/truncate logs
+# Pipeline 1
+- name: remove pipeline 1 log
+  become: yes
+  become_user: root
+  shell: "> {{ pipeline_1_process_log }}"
+  when: type == 'pipeline_version_1'
+- name: remove logs for pipline v1
+  become: yes
+  become_user: root
+  shell: "rm -rf {{ talend_log_dir }}/*"
+  when: (type == 'pipeline_version_1')
+
+# Pipeline 2
+- name: check that the talend log file exists
+  stat:
+    path: "{{ talend_log_file }}"
+  register: log_file
+  when: type == 'pipeline_version_2'
+
+- name: truncate pipeline 2 log
+  become: yes
+  become_user: root
+  shell: "> {{ talend_log_file }}"
+  when: (type == 'pipeline_version_2') and (log_file.stat.exists == true)
+
+# copy files to destination
+- name: copy files to target directories
+  become: yes
+  become_user: root
+  copy:
+    src: "../test_configs/{{ name }}/input_files/{{ item.local_file }}"
+    dest: "{{ item.dest }}/{{ item.remote_file if item.remote_file is defined else item.local_file }}"
+    owner: projectofficer
+    group: projectofficer
+    mode: a+w
+  loop: "{{ action_item.files }}"
+  when: (action_item.type == 'ADD' or action_item.type == 'UPDATE')
+
+# copy files to incoming  (kicks off processing for pipeline types) for ADD/UPDATE actions
+- name: copy files to incoming
+  become: yes
+  become_user: root
+  copy:
+    src: "../test_configs/{{ name }}/input_files/{{ item.local_file }}"
+    dest: "{{ pipeline_incoming_dir_prefix }}/{{ item.dest }}/{{ item.remote_file if item.remote_file is defined else item.local_file }}"
+    owner: projectofficer
+    group: projectofficer
+    mode: a+w
+  loop: "{{ action_item.incoming }}"
+  when: (action_item.type == 'ADD' or action_item.type == 'UPDATE')
+
+# S3 delete
+- include: s3_delete.yaml
+  when: file_store_type == 's3' and action_item.type == 'DELETE'
+
+# file delete
+- include: file_delete.yaml
+  when: file_store_type == 'file' and action_item.type == 'DELETE'
+
+- name: execute script
+  become: yes
+  become_user: talend
+  shell: "{{ exec_shell_script.script }}"
+  when: type == 'harvester'
+
+# wait for log entries in {{ pipeline_2_watchservice_log }} to get task_id
+# waits for all the files added/updated in the task
+
+- name: wait for pipeline 2 ADD and UPDATE processing to start
+  wait_for:
+    path: "{{ talend_log_file }}"
+    search_regex: "^.+\\[(?P<taskid>[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})\\] IncomingFileStateManager.state -> 'FILE_IN_INCOMING'$"
+    timeout: "{{ harvester_timeout }}"
+  register: incoming_entry
+  when: type == 'pipeline_version_2' and (action_item.type == 'ADD' or action_item.type == 'UPDATE')
+
+- set_fact:
+    start_time: "{{ lookup('pipe','date \"+%Y-%m-%d %H:%M:%S\"') }}"
+
+### wait for pipeline to finish
+- name: wait for pipeline 2 ADD and UPDATE processing to complete
+  wait_for:
+    path: "{{ talend_log_file }}"
+    search_regex: "^.+\\[{{ incoming_entry.match_groupdict['taskid'] }}\\] IncomingFileStateManager.state -> '(FILE_IN_ERROR|FILE_SUCCESS)'$"
+    timeout: "{{ harvester_timeout }}"
+  register: state_message
+  when: type == 'pipeline_version_2' and (action_item.type == 'ADD' or action_item.type == 'UPDATE')
+
+- name: wait for pipeline 1 ADD and UPDATE processing to complete
+  command: "grep -r 'file(s)  OK'  {{ talend_log_dir }}"
+  register: task_result
+  delay: 5
+  retries: 500
+  until: task_result.rc == 0
+  when: type == 'pipeline_version_1' and
+        (action_item.type == 'ADD' or action_item.type == 'UPDATE')
+
+- name: wait for harvester-type processing to complete
+  wait_for:
+    path: "{{ talend_log_file }}"
+    search_regex: ^finish;
+    timeout: "{{ harvester_timeout }}"
+  when:  type == 'harvester' and exec_shell_script.asynchronous|default(false)
+
+- set_fact:
+    end_time: "{{ lookup('pipe','date \"+%Y-%m-%d %H:%M:%S\"') }}"
+
+- set_fact:
+    elapsed_time: "{{ (end_time|to_datetime - start_time|to_datetime).seconds|string }}"
+
+- name: append line to time_profile.csv
+  lineinfile:
+    create: true
+    path: ../time_profile.csv
+    line: "{{ name }},{{ ansible_host }},{{ action_item.type }},{{ elapsed_time }}"
+    insertafter: EOF
+  delegate_to: localhost
+
+- name: Fail due to a FILE_IN_ERROR
+  fail:
+    msg: "A file is in error"
+  when: "'FILE_IN_ERROR' in state_message"
+
+- include: harvest_results.yaml
+  vars:
+    label: "action_{{ action_item_index }}_{{ action_item.type }}"
+
+- include: create_expect.yaml
+  vars:
+    label: "action_{{ action_item_index }}_{{ action_item.type }}"
+  when: create_expect | default(false) | bool

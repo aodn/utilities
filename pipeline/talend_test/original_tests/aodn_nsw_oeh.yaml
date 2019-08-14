@@ -1,0 +1,68 @@
+
+
+name: aodn_nsw_oeh
+type: pipeline_version_1
+po: marty
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/NSW-OEH/incoming
+        local_file: NSWOEH_20150302_HawkesNestPortStephens_MB.zip
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/NSW-OEH/incoming
+        local_file: NSWOEH_20150302_HawkesNestPortStephens_MB.updated.zip
+        remote_file: NSWOEH_20150302_HawkesNestPortStephens_MB.zip
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BKS.kmz
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BKSGRD002GSS_W84Z56GRY_FLD744_20160510_FV02.sd
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BKSGRD002GSS_W84Z56GRY_FLD744_20160510_FV02.tiff
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BKSGRD002GSS_W84Z56GRY_FLD744_20160510_FV02.xya
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BTY.kmz
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BTYGRD002GSS_W84Z56AHD_FLD744_20150316_FV02.sd
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BTYGRD002GSS_W84Z56AHD_FLD744_20150316_FV02.tif
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BTYGRD002GSS_W84Z56AHD_FLD744_20150316_FV02.xyz
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BTYGRD002GSS_W84Z56AHD_FLD744_20150404_FV02.tif
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BTYGRD005GSS_W84Z56AHD_FLD744_20150316_FV02.xyz
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_BTYGRD005GSS_W84Z56AHD_FLD744_20150404_FV02.xyz
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_SHP.CPG
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_SHP.dbf
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_SHP.prj
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_SHP.sbn
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_SHP.sbx
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_SHP.shp
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_SHP.shp.xml
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_SHP.shx
+  - type: DELETE
+    file: NSW-OEH/Multi-beam/2015/20150302_HawkesNestPortStephens/NSWOEH_20150302_HawkesNestPortStephens_MB_ScientificRigour.pdf
+
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_dir: /mnt/ebs/log/data-services/AODN_NSW_OEH
+talend_jobs:
+  - aodn_nsw_oeh-aodn_nsw_oeh
+database_schemas:
+  -
+    name: aodn_nsw_oeh
+    tables:
+      - name: aodn_nsw_oeh_multibeam_map
+        exclude_columns: []
+

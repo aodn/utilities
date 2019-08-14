@@ -1,0 +1,56 @@
+
+name: soop_xbt_nrt
+type: pipeline_version_2
+po: laurent
+dirs:
+- path: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
+  owner: projectofficer
+  group: projectofficer
+actions:
+- type: ADD
+  files:
+  - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
+    local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv.updated
+    remote_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
+  incoming:
+  - dest: SOOP/XBT/NRT
+    local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
+    remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
+- type: UPDATE
+  files:
+  - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
+    local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
+  incoming:
+  - dest: SOOP/XBT/NRT
+    local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
+    remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
+- type: ADD
+  files:
+  - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
+    local_file: IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv
+  incoming:
+  - dest: SOOP/XBT/NRT
+    local_file: IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.manifest
+    remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
+- type: DELETE
+  file: IMOS/SOOP/SOOP-XBT/REALTIME/FASB_Astrolabe/2019/IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_XBT_NRT.log
+talend_jobs:
+- soop_xbt_nrt-soop_xbt_nrt
+database_schemas:
+-
+  name: soop_xbt_nrt
+  tables:
+  - name: soop_xbt_nrt_profiles_map
+    exclude_columns: [colour]
+  - name: soop_xbt_nrt_profiles_data
+    exclude_columns: []
+
+# Configuration for running integration tests
+assertions:
+  # Asserts harvested results are as expected
+  - name: diff
+    expected: ../test_configs/soop_xbt_nrt/expect
+    content: soop_xbt_nrt

@@ -1,0 +1,24 @@
+{
+  "ANSIBLE_MODULE_ARGS": {
+      "schema_obj": {
+        "name": "anmn_ts",
+        "tables": [
+          {
+            "name": "anmn_ts_timeseries_data",
+            "exclude_columns": [
+              "time_deployment_start", "time_deployment_end"
+            ]
+          },
+          {
+            "name": "anmn_ts_timeseries_map",
+            "exclude_columns": [
+              "time_deployment_start", "time_deployment_end"
+            ]
+          }
+        ]
+      },
+      "tmp_dir": "/tmp/exists/anmn_ts",
+      "db_user": "<your_user>",
+      "db_host": "6-nec-hob.emii.org.au"
+    }
+}

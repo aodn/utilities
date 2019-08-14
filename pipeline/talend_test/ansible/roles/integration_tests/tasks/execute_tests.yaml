@@ -1,0 +1,6 @@
+---
+- include_vars:
+    file: "{{ test_config_file }}"
+- name: "Execute tests on results of pipeline processing"
+  include_role:
+    name: execute_tests

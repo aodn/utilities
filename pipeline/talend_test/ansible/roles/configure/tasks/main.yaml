@@ -1,0 +1,29 @@
+---
+- delegate_to: localhost
+  stat:
+    path: "{{ test_config }}"
+  register: stat_test_config
+
+- name: "List configurations from directories"
+  delegate_to: localhost
+  find:
+    path: "{{ test_config }}"
+    file_type: directory
+    recurse: no
+  register: test_config_directories
+  when: stat_test_config.stat.isdir is defined and stat_test_config.stat.isdir
+
+- include_tasks:
+    file: "{{ task_file }}"
+  vars:
+    test_config_file: "{{ test_config_item.path }}/config.yaml"
+  loop: "{{ test_config_directories.files }}"
+  loop_control:
+    loop_var: test_config_item
+  when: stat_test_config.stat.isdir is defined and stat_test_config.stat.isdir
+
+- include_tasks:
+    file: "{{ task_file }}"
+  vars:
+    test_config_file: "{{ test_config }}"
+  when: stat_test_config.stat.isreg is defined and stat_test_config.stat.isreg

@@ -1,0 +1,6 @@
+---
+- set_fact:
+    task_file: ../process_files/tasks/process_files.yaml
+- name: "Process files in pipeline"
+  include_role:
+    name: configure

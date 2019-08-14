@@ -1,0 +1,42 @@
+name: aatams_sattag_qc_ctd
+type: pipeline_version_1
+po: bene
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_QC_CTD
+        local_file: awru1-A-06_prof.nc
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_QC_CTD
+        remote_file: awru1-A-06_prof.nc
+        local_file: awru1-A-06_prof-update.nc
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/AATAMS/AATAMS_SATTAG_QC_CTD
+        local_file: awru1-C-06_prof.nc
+
+drop_schema_objects: true
+run_talend_liqui: false
+talend_log_dir: /mnt/ebs/log/data-services/AATAMS_SATTAG_QC_CTD
+talend_jobs:
+  - aatams_sattag_qc_ctd-aatams_sattag_qc_ctd
+database_schemas:
+  -
+    name: aatams_sattag_qc_ctd
+    tables:
+      - name: aatams_sattag_qc_ctd_profile_map
+        exclude_columns: [modified, first_indexed, last_indexed]
+      - name: aatams_sattag_qc_ctd_profile_data
+        exclude_columns: []
+      - name: best_cycle_location
+        exclude_columns: [modified]
+      - name: platform_metadata_current
+        exclude_columns: [modified]
+      - name: profile_general_current
+        exclude_columns: [modified]
+      - name: profile_summary
+        exclude_columns: []
+      - name: srdl_float
+        exclude_columns: [metadata_mod_date, last_profile_mod_date, colour]
+

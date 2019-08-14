@@ -1,0 +1,7 @@
+---
+- name: Process files in pipeline
+  hosts: "pipeline"
+  gather_facts: true
+
+  roles:
+    - process_files

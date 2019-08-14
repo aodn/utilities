@@ -1,0 +1,33 @@
+name: anmn_t_regridded
+type: pipeline_version_2
+po: bene
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/ANMN/SA
+        local_file: IMOS_ANMN-NRS_T_20110320T010000Z_NRSKAI_FV02_NRSKAI-1103-gridded_END-20110718T230000Z.nc
+  - type: DELETE
+    file: IMOS/ANMN/NRS/NRSKAI/Temperature/gridded/IMOS_ANMN-NRS_T_20110320T010000Z_NRSKAI_FV02_NRSKAI-1103-gridded_END-20110718T230000Z.nc
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/ANMN/SA
+        local_file: IMOS_ANMN-NRS_T_20110719T010000Z_NRSKAI_FV02_NRSKAI-1107-gridded_END-20111219T230000Z.nc
+        remote_file: IMOS_ANMN-NRS_T_20111220T010000Z_NRSKAI_FV02_NRSKAI-1112-gridded_END-20120415T010000Z.nc
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/ANMN/SA
+        local_file: IMOS_ANMN-NRS_T_20111220T010000Z_NRSKAI_FV02_NRSKAI-1112-gridded_END-20120415T010000Z.nc
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANMN_SA.log
+talend_jobs:
+  - anmn_t_regridded-anmn_t_regridded
+database_schemas:
+  -
+    name: anmn_t_regridded
+    tables:
+      - name: anmn_regridded_temperature_data
+        exclude_columns: []
+      - name: anmn_regridded_temperature_map
+        exclude_columns: []
+

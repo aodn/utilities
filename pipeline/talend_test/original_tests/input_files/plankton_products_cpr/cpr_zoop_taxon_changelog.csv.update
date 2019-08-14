@@ -1,0 +1,100 @@
+TAXON_NAME,TAXON_START_DATE,FIRST_OCCURRENCE,PARENT_TAXON_NAME,TRAINING,COMMENTS
+Podon intermedius f gravid,2010-03-24,2010-10-23,Podon spp.,Test update,
+Podon intermedius m,2010-03-24,2010-04-21,Podon spp.,Internal training,
+Podon spp. f,2010-03-24,2011-02-03,Podon spp.,Internal training,
+Pseudevadne tergestina f,2010-03-24,2011-03-03,Pseudevadne tergestina,Internal training,
+Pseudevadne tergestina f gravid,2010-03-24,2010-08-10,Pseudevadne tergestina,Internal training,
+Pseudevadne tergestina m,2010-03-24,2011-09-05,Pseudevadne tergestina,Internal training,
+Salpidae sol,2013-07-24,2013-07-19,Salpidae,Internal training,
+Calycophoran,2010-09-14,2010-05-24,Siphonophore,Internal training,
+Eudoxoides spp.,2010-09-14,2015-02-24,Siphonophore,External training Mark Gibbons,Not routinely identified
+Siphonophore abylidae,2010-09-14,2012-04-04,Siphonophore,External training Mark Gibbons,Not routinely identified
+Siphonophore diphyidae,2010-09-14,2012-05-08,Siphonophore,External training Mark Gibbons,Not routinely identified
+Temora turbinata j,2008-09-29,2012-04-04,Temora spp. j,,Not counted routinely; normally counted as Temora j
+Thalia democratica agg,2010-01-11,2012-05-16,Thalia democratica,Internal training,
+Thalia democratica sol,2010-01-11,2010-04-30,Thalia democratica,Internal training,
+Acrocalanus spp. i,2010-09-16,2010-07-28,Acrocalanus spp. j,Internal training in intersexes by Felipe Gusmao,
+Calanus australis CIV,2008-09-29,2015-11-13,Calanid CIV,,Not routinely counted; normally counted as Calanid CIV
+Neocalanus tonsus CIV,2008-09-29,2015-01-15,Calanid CIV,,Not routinely counted; normally counted as Calanid CIV
+Undinula vulgaris CIV,2008-09-29,2014-06-04,Calanid CIV,,Not routinely counted; normally counted as Calanid CIV
+Calanoides spp. CV,2008-09-29,2013-05-09,Calanid CV,,Not routinely counted; normally counted as Calanid CV; Australian species currently being reviewed by Janet Bradford-Greive 
+Calanus australis CV,2008-09-29,2011-02-07,Calanid CV,,Not routinely counted; normally counted as Calanid CV
+Canthocalanus pauper CV,2008-09-29,2012-04-03,Calanid CV,,Not routinely counted; normally counted as Calanid CV
+Nannocalanus minor CV,2008-09-29,2012-05-21,Calanid CV,,Not routinely counted; normally counted as Calanid CV
+Neocalanus gracilis CV,2008-09-29,2012-07-17,Calanid CV,,Not routinely counted; normally counted as Calanid CV
+Neocalanus spp. CV,2008-09-29,2010-09-17,Calanid CV,,Not routinely counted; normally counted as Calanid CV
+Neocalanus tonsus CV,2008-09-29,2015-01-05,Calanid CV,,Not routinely counted; normally counted as Calanid CV
+Undinula vulgaris CV,2008-09-29,2011-02-03,Calanid CV,,Not routinely counted; normally counted as Calanid CV
+Acrocalanus spp. j,2008-09-29,2014-08-05,Calanoid j,,Not counted routinely; normally counted as calanoid j
+Calocalanus styliremis f,2008-09-29,2010-04-07,Calocalanus spp. f,,Not routinely counted; normally counted as Calocalanus spp.
+Calocalanus tenuis f,2008-09-29,2013-04-23,Calocalanus spp. f,,Not routinely counted; normally counted as Calocalanus spp.
+Eukrohnia hamata,2010-09-23,2008-07-24,Chaetognatha,External training Mark Gibbons,Not routinely identified
+Flaccisagitta enflata,2010-09-23,2011-08-25,Chaetognatha,External training Mark Gibbons,
+Flaccisagitta spp.,2010-09-30,2014-06-04,Chaetognatha,External training Mark Gibbons,
+Pseudosagitta gazellae,2010-09-23,2008-07-17,Chaetognatha,External training Mark Gibbons,Not routinely identified
+Serratosagitta tasmanica,2010-09-23,2014-03-21,Chaetognatha,External training Mark Gibbons,
+Cladoceran f,2010-03-24,2011-02-22,Cladoceran,Internal training,
+Cladoceran f gravid,2010-03-24,2011-02-24,Cladoceran,Internal training,
+Clausocalanus brevipes,2008-09-29,2008-07-03,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus brevipes f,2008-09-29,2009-09-23,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus farrani f (<1.00mm),2009-10-12,2010-11-26,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus farrani/jobei f (1.00mm>x<1.2mm),2009-10-12,2012-10-12,Clausocalanus spp. f,Internal training,Cant separate the two species routinely so this is used when sizes overlap
+Clausocalanus furcatus f,2008-09-29,2009-09-23,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus ingens f,2009-10-12,2010-06-04,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus jobei f (>1.2mm),2009-10-12,2010-05-10,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus laticeps f,2008-09-29,2011-08-25,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus lividus f,2009-10-12,2014-10-08,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus mastigophorus f,2009-10-12,2010-05-12,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus minor f,2009-10-12,2010-04-07,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus parapergens f,2009-10-12,2011-09-05,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus paululus f,2009-10-12,2011-04-11,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus pergens f,2009-10-12,2011-04-08,Clausocalanus spp. f,Internal training Frost & Fleminger,
+Clausocalanus spp. i,2010-09-16,2010-09-01,Clausocalanus spp. j,Internal training in intersexes by Felipe Gusmao,
+Clausocalanus furcatus m,2008-09-29,2009-09-23,Clausocalanus spp. m,Internal training Frost & Fleminger,Clausocalanus males not routinely speciated
+Clausocalanus ingens m,2009-10-12,2015-03-03,Clausocalanus spp. m,Internal training Frost & Fleminger,Clausocalanus males not routinely speciated
+Agetus flaccus f,2010-01-12,2010-06-07,Corycaeus spp.,Internal training Dahl & Tanaka,
+Agetus flaccus m,2010-01-12,2009-07-27,Corycaeus spp.,Internal training Dahl & Tanaka,
+Agetus limbatus f,2010-01-12,2010-05-10,Corycaeus spp.,Internal training Dahl & Tanaka,
+Agetus limbatus m,2010-01-12,2010-05-11,Corycaeus spp.,Internal training Dahl & Tanaka,
+Agetus spp. f,2010-01-12,2011-06-24,Corycaeus spp.,Internal training Dahl & Tanaka,
+Agetus spp. j,2010-01-12,2013-08-23,Corycaeus spp.,Internal training Dahl & Tanaka,
+Agetus spp. m,2010-01-12,2011-11-10,Corycaeus spp.,Internal training Dahl & Tanaka,
+Agetus typicus f,2010-01-12,2010-05-10,Corycaeus spp.,Internal training Dahl & Tanaka,
+Agetus typicus m,2010-01-12,2010-05-25,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeidae f,2008-09-29,2012-08-27,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeidae j,2008-09-29,2009-09-23,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeidae m,2008-09-29,2012-08-27,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus clausi f,2010-01-12,2010-05-05,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus clausi m,2010-01-12,2010-04-08,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus crassiusculus f,2010-01-12,2010-04-09,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus crassiusculus m,2010-01-12,2010-04-19,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus speciosus f,2010-01-12,2010-03-18,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus speciosus m,2010-01-12,2010-03-22,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus spp.,2010-01-12,2009-07-09,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus spp. f,2010-01-12,2009-09-29,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus spp. m,2010-01-12,2009-09-29,Corycaeus spp.,Internal training Dahl & Tanaka,
+Corycaeus vitreus m,2010-01-12,2012-05-03,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus andrewsi f,2010-01-12,2010-06-07,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus andrewsi m,2010-01-12,2010-03-17,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus anglicus f,2010-01-12,2014-07-28,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus asiaticus f,2010-01-12,2010-03-18,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus asiaticus m,2010-01-12,2010-03-18,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus aucklandicus f,2010-01-12,2010-06-23,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus aucklandicus m,2010-01-12,2010-07-08,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus dahli f,2010-01-12,2010-03-22,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus dahli m,2010-01-12,2010-03-17,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus erythraeus f,2010-01-12,2010-05-10,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus erythraeus m,2010-01-12,2010-06-09,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus lubbocki f,2010-01-12,2010-10-23,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus spp.,2010-01-12,2014-10-01,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus spp. f,2010-01-12,2010-09-17,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus spp. m,2010-01-12,2010-03-18,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus subtilis f,2010-01-12,2011-09-07,Corycaeus spp.,Internal training Dahl & Tanaka,
+Ditrichocorycaeus tenuis f,2010-01-12,2010-06-16,Corycaeus spp.,Internal training Dahl & Tanaka,
+Farranula carinata f,2010-01-12,2013-08-30,Corycaeus spp.,Internal training Dahl & Tanaka,
+Farranula concinna f,2010-01-12,2010-04-29,Corycaeus spp.,Internal training Dahl & Tanaka,
+Farranula curta f,2010-01-12,2010-06-30,Corycaeus spp.,Internal training Dahl & Tanaka,
+Farranula gibbula f,2010-01-12,2010-03-16,Corycaeus spp.,Internal training Dahl & Tanaka,
+Farranula gracilis f,2010-01-12,2012-04-03,Corycaeus spp.,Internal training Dahl & Tanaka,
+Farranula rostrata f,2010-01-12,2010-04-08,Corycaeus spp.,Internal training Dahl & Tanaka,
+Farranula spp.,2008-09-29,2010-01-11,Corycaeus spp.,Internal training Dahl & Tanaka,
