@@ -12,14 +12,14 @@ class NetcdfTimeseriesHarvester(object):
     def harvest(self):
         self._delete_existing_data()
 
-        # measurements
-        measurement_source = NetcdfMeasurementSource(self.netcdf_file, self.config["measurement"])
-        self.persistent_store.write("measurement", measurement_source)
-
         # timeseries file
         file_mapping = self.config["timeseries_file"]
         file_source = NetcdfFileSource(self.netcdf_file, file_mapping)
         self.persistent_store.write("timeseries_file", file_source)
+
+        # measurements
+        measurement_source = NetcdfMeasurementSource(self.netcdf_file, self.config["measurement"])
+        self.persistent_store.write("measurement", measurement_source)
 
         # determine timeseries_key
         timeseries_record = next(file_source.records())

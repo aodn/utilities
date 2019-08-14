@@ -4,3 +4,6 @@ pytz
 petl
 netCDF4
 python-dateutil
+alembic
+psycopg2
+GeoAlchemy2
