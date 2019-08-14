@@ -22,12 +22,13 @@ pip install -r requirements.txt
 Create a virtual environment on your machine:
 ```shell script
 cd pipeline/talend_test
-virtualenv my-ansible-virtualenv
+virtualenv ansible-virtualenv
 ```
 
-On your local machine, allow setting of permissions on temporary files that ansible needs to create when becoming an unprivileged user:
+On your local machine, allow setting of permissions on temporary files that ansible needs to create when becoming an unprivileged user. see `ansible.cfg`
 
-- add `allow_world_readable_tmpfiles=true` to `/etc/ansible/ansible.cfg`
+- copy ansible.cfg to `/etc/ansible/ansible.cfg` for permanent changes to ansible
+
 
 If you are not using the po-box7 as the host for running the pipelines (the pipeline host) do the following on your local machine:
  
@@ -46,14 +47,15 @@ vagrant ssh-config po7
 ```
 Note the value of the `IdentityFile` entry in the output.
 
-Activate the ansible environment on your local machine:
+
+## Configure a test
+
+##### First activate the ansible environment on your local machine:
 
 ```shell script
 cd pipeline/talend_test
 source ansible-virtualenv/bin/activate
 ```
-
-## Configure a test
 
 Configurations for tests are in `test_configs`. You need to create a directory for each test that contains a `config.yaml` 
 file and an `input_files` directory. The `input_files` directory contains sample data to run the tests with and should
