@@ -12,17 +12,23 @@ so get this launched first.
 They are written using Ansible.
 
 ## Setup
+
+Install requirements on your local machine:
 ```shell script
+cd pipeline/talend_test
 pip install -r requirements.txt
 ```
 
-Allow setting of permissions on temporary files that ansible needs to create when becoming an unprivileged user:
+On your local machine, allow setting of permissions on temporary files that ansible needs to create when becoming an unprivileged user:
 
-- add `allow_world_readable_tmpfiles=true` to `/etc/ansible/ansible.cfg` 
-- edit `./test_configs/hosts` and update ansible_host to point to the pipeline host.
-- edit `./test_configs/hosts` and update db_user to a user with database admin privileges on the pipeline host.
+- add `allow_world_readable_tmpfiles=true` to `/etc/ansible/ansible.cfg`
 
-Create .pgpass entries
+If you are not using the po-box7 as the host for running the pipelines (the pipeline host) do the following on your local machine:
+ 
+- edit `test_configs/hosts` and update ansible_host to point to the pipeline host.
+- edit `test_configs/hosts` and update db_user to a user with database admin privileges on the pipeline host.
+
+Create .pgpass entries on your local machine:
 - refer to [this document](https://blog.sleeplessbeastie.eu/2014/03/23/how-to-non-interactively-provide-password-for-the-postgresql-interactive-terminal/) for how to create a .pgpass file
 - add an entry like this:
   ```po7.aodn.org.au:5432:harvest:admin:admin```
@@ -34,9 +40,10 @@ vagrant ssh-config po7
 ```
 Note the value of the `IdentityFile` entry in the output.
 
-Activate the ansible environment:
+Activate the ansible environment on your local machine:
 
 ```shell script
+cd pipeline/talend_test
 source ansible-virtualenv/bin/activate
 ```
 
