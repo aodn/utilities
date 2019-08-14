@@ -1,0 +1,46 @@
+{
+    "schema": "abos_sofs_fl",
+    "user": "abos_sofs_fl",
+    "password": "abos_sofs_fl",
+    "measurement": {
+        "dimensions": ["TIME"],
+        "fields": {
+            "file_id": {"value": "file.id"},
+            "index": {"value": "indexes['TIME']"},
+            "TIME": {},
+            "TEMP": {},
+            "TEMP_quality_control": {},
+            "DEPTH": {},
+            "DEPTH_quality_control": {}
+        }
+    },
+    "timeseries_file": {
+        "fields": {
+            "file_id": {"value": "file.id"},
+            "timeseries_id": {"value": "dataset['TIMESERIES'][()].item()"},
+            "LATITUDE": {"value": "dataset['LATITUDE'][()].item()"},
+            "LONGITUDE": {"value": "dataset['LONGITUDE'][()].item()"},
+            "time_coverage_start": {"value": "parse_datetime(dataset.time_coverage_start)"},
+            "time_coverage_end": {"value": "parse_datetime(dataset.time_coverage_start)"}
+        }
+    },
+    "timeseries_key": ["timeseries_id"],
+    "timeseries": {
+        "fields": {
+            "file_id": {"value": "file_id"},
+            "timeseries_id": {"value": "timeseries_id"},
+            "LATITUDE": {"value": "LATITUDE"},
+            "LONGITUDE": {"value": "LONGITUDE"},
+            "time_coverage_start": {"value": "time_coverage_start"},
+            "time_coverage_end": {"value": "time_coverage_start"}
+        }
+    },
+    "metadata_updates": [
+        {
+          "uuid": "09319023093810983098",
+          "spatial_table": "timeseries",
+          "spatial_column": "geom",
+          "spatial_resolution": 3
+        }
+    ]
+}
