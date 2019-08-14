@@ -19,6 +19,12 @@ cd pipeline/talend_test
 pip install -r requirements.txt
 ```
 
+Create a virtual environment on your machine:
+```shell script
+cd pipeline/talend_test
+virtualenv my-ansible-virtualenv
+```
+
 On your local machine, allow setting of permissions on temporary files that ansible needs to create when becoming an unprivileged user:
 
 - add `allow_world_readable_tmpfiles=true` to `/etc/ansible/ansible.cfg`
