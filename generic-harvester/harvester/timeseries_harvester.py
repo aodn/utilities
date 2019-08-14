@@ -29,7 +29,7 @@ class NetcdfTimeseriesHarvester(object):
         self._aggregate_timeseries(timeseries_key)
 
     def delete(self):
-        timeseries_key = self.persistent_store.select_records_for_file("timeseries_file", self.config["timeseries_key"],
+        timeseries_key = self.persistent_store.select_first_record_for_file("timeseries_file", self.config["timeseries_key"],
                                                       self.netcdf_file.id)
         self._delete_existing_data()
         self._aggregate_timeseries(timeseries_key)

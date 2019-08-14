@@ -28,8 +28,9 @@ class MemoryStore(object):
         print("...")
         self.content[table_name] += list(source.records())
 
-    def select_records_for_file(self, table_name, field_names, file_id):
-        return [subset(row, field_names) for row in self.content.get(table_name, []) if row['file_id'] == file_id]
+    def select_first_record_for_file(self, table_name, field_names, file_id):
+        print("selecting {} from first record on {} for {}...".format(field_names, table_name, file_id))
+        return [subset(row, field_names) for row in self.content.get(table_name, []) if row['file_id'] == file_id][0]
 
     def aggregate(self, table_name, aggregation, key):
         print("Aggregating records for {} to {} using {}".format(table_name, aggregation, key))
