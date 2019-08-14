@@ -1,6 +1,5 @@
-import itertools
-
 from harvester.source.netcdf import (NetcdfMeasurementSource, NetcdfFileSource)
+from harvester.util.collections import subset
 
 
 class NetcdfTimeseriesHarvester(object):
@@ -24,14 +23,14 @@ class NetcdfTimeseriesHarvester(object):
 
         # determine timeseries_key
         timeseries_record = next(file_source.records())
-        # TODO: timeseries_key = timeseries_record.values(self.config["timeseries_key"])
-        timeseries_key = self.config["timeseries_key"]
+        timeseries_key = subset(timeseries_record, self.config["timeseries_key"])
 
         # timeseries
         self._aggregate_timeseries(timeseries_key)
 
     def delete(self):
-        timeseries_key = self.persistent_store.select("timeseries_file", self.netcdf_file.id, self.config["timeseries_key"])
+        timeseries_key = self.persistent_store.select_records_for_file("timeseries_file", self.config["timeseries_key"],
+                                                      self.netcdf_file.id)
         self._delete_existing_data()
         self._aggregate_timeseries(timeseries_key)
 

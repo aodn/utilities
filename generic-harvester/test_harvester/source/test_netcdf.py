@@ -8,12 +8,9 @@ from dateutil import parser
 from harvester.source.netcdf import (NetcdfGlobalAttributeSource, NetcdfVariableAttributeSource,
                                      NetcdfMeasurementSource, NetcdfFileSource, NetcdfVariableSource)
 from harvester.stubs.aodncore import PipelineFile
+from harvester.util.collections import zip_list
 
 TEST_FILE = os.path.join(os.path.dirname(__file__), 'IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc')
-
-
-def zip_list(field_names, rows):
-    return [OrderedDict(zip(field_names, row)) for row in rows]
 
 
 class TestNetcdfVariableSource(unittest.TestCase):
@@ -31,6 +28,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
         # check field_names
 
         expected_field_names = ("file_id", "name", "type", "value")
+
         self.assertEqual(expected_field_names, source.field_names())
 
         # check records
@@ -38,30 +36,20 @@ class TestNetcdfVariableSource(unittest.TestCase):
         first_eight = list(itertools.islice(source.records(), 8))
         count = sum(1 for _ in source.records())
 
-        expected_rows = zip_list(
-            expected_field_names,
-            [
-                (25, 'project', 'str', 'Integrated Marine Observing System'),
-                (25, 'conventions', 'str', 'IMOS version 1.3'),
-                (25,
-                 'title',
-                 'str',
-                 'Heat and radiative flux data from Southern Ocean Flux Station'),
-                (25, 'institution', 'str', 'Australian Bureau of Meteorology'),
-                (25, 'date_created', 'str', '2019-08-06T00:25:03Z'),
-                (25, 'abstract', 'str', ''),
-                (25,
-                 'comment',
-                 'str',
-                 'COARE Bulk Flux Algorithm version 3.0b (Fairall et \n'
-                 'al.,2003: J.Climate,16,571-591). Net heat flux does not include flux due to '
-                 'a rainfall (H_RAIN).'),
-                (25, 'source', 'str', 'Mooring observation')
-            ]
-        )
+        expected_values = [
+            (25, 'project', 'str', 'Integrated Marine Observing System'),
+            (25, 'conventions', 'str', 'IMOS version 1.3'),
+            (25, 'title', 'str', 'Heat and radiative flux data from Southern Ocean Flux Station'),
+            (25, 'institution', 'str', 'Australian Bureau of Meteorology'),
+            (25, 'date_created', 'str', '2019-08-06T00:25:03Z'), (25, 'abstract', 'str', ''),
+            (25, 'comment', 'str', 'COARE Bulk Flux Algorithm version 3.0b (Fairall et \n'
+                                   'al.,2003: J.Climate,16,571-591). Net heat flux does not include flux due to '
+                                   'a rainfall (H_RAIN).'), (25, 'source', 'str', 'Mooring observation')
+        ]
+
+        expected_rows = zip_list(expected_field_names, expected_values)
 
         self.assertEqual(expected_rows, first_eight)
-
         self.assertEqual(46, count)
 
     def test_variable_attribute_source(self):
@@ -75,33 +63,26 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         # check records
 
-        first_16 = itertools.islice(source.records(), 16)
-
-        expected_rows = zip_list(
-            expected_field_names,
-            [
-                (25, 'TIME', 'standard_name', 'str', 'time'),
-                (25, 'TIME', 'long_name', 'str', 'time'),
-                (25, 'TIME', 'units', 'str', 'days since 1950-01-01 00:00:00Z'),
-                (25, 'TIME', 'axis', 'str', 'T'),
-                (25, 'TIME', 'valid_min', 'int32', '0'),
-                (25, 'TIME', 'valid_max', 'float64', '90000.0'),
-                (25, 'TIME', '_FillValue', 'float64', '-9999.0'),
-                (25, 'TIME', 'comment', 'str', 'Relative julian days with decimal part as parts of the day'),
-                (25, 'LATITUDE', 'standard_name', 'str', 'latitude'),
-                (25, 'LATITUDE', 'long_name', 'str', 'latitude'),
-                (25, 'LATITUDE', 'units', 'str', 'degrees_north'),
-                (25, 'LATITUDE', 'axis', 'str', 'Y'),
-                (25, 'LATITUDE', 'valid_min', 'int32', '-90'),
-                (25, 'LATITUDE', 'valid_max', 'int32', '90'),
-                (25, 'LATITUDE', '_FillValue', 'float32', '-9999.0'),
-                (25, 'LATITUDE', 'reference_datum', 'str', 'geographical coordinates, WGS84')
-            ]
-        )
-
-        self.assertEqual(expected_rows, list(first_16))
-
+        first_16 = list(itertools.islice(source.records(), 16))
         count = sum(1 for _ in source.records())
+
+        expected_values = [
+            (25, 'TIME', 'standard_name', 'str', 'time'), (25, 'TIME', 'long_name', 'str', 'time'),
+            (25, 'TIME', 'units', 'str', 'days since 1950-01-01 00:00:00Z'), (25, 'TIME', 'axis', 'str', 'T'),
+            (25, 'TIME', 'valid_min', 'int32', '0'), (25, 'TIME', 'valid_max', 'float64', '90000.0'),
+            (25, 'TIME', '_FillValue', 'float64', '-9999.0'),
+            (25, 'TIME', 'comment', 'str', 'Relative julian days with decimal part as parts of the day'),
+            (25, 'LATITUDE', 'standard_name', 'str', 'latitude'), (25, 'LATITUDE', 'long_name', 'str', 'latitude'),
+            (25, 'LATITUDE', 'units', 'str', 'degrees_north'), (25, 'LATITUDE', 'axis', 'str', 'Y'),
+            (25, 'LATITUDE', 'valid_min', 'int32', '-90'), (25, 'LATITUDE', 'valid_max', 'int32', '90'),
+            (25, 'LATITUDE', '_FillValue', 'float32', '-9999.0'),
+            (25, 'LATITUDE', 'reference_datum', 'str', 'geographical coordinates, WGS84')
+        ]
+
+        expected_rows = zip_list(expected_field_names, expected_values)
+
+        self.assertEqual(expected_rows, first_16)
+
         self.assertEqual(179, count)
 
     def test_variable_source(self):
@@ -175,18 +156,16 @@ class TestNetcdfVariableSource(unittest.TestCase):
         first_two_recs = list(itertools.islice(source.records(), 2))
         count = sum(1 for _ in source.records())
 
-        expected_rows = zip_list(
-            expected_field_names,
-            [
-                (25, 0, parser.parse("2019-08-05T01:59:00.000017Z"), -46.905799865722656, 142.38800048828125,
-                 348.3999938964844, 143.3000030517578, 10.199999809265137),
-                (25, 1, parser.parse("2019-08-05T02:59:00.000004Z"), -46.905799865722656, 142.38800048828125,
-                 27.399999618530273, 143.1999969482422, 11.0)
-            ]
-        )
-        self.assertEqual(expected_rows, first_two_recs)
+        expected_values = [
+            (25, 0, parser.parse("2019-08-05T01:59:00.000017Z"), -46.905799865722656, 142.38800048828125,
+             348.3999938964844, 143.3000030517578, 10.199999809265137),
+            (25, 1, parser.parse("2019-08-05T02:59:00.000004Z"), -46.905799865722656, 142.38800048828125,
+             27.399999618530273, 143.1999969482422, 11.0)
+        ]
 
-        count = sum(1 for _ in source.records())
+        expected_rows = zip_list(expected_field_names, expected_values)
+
+        self.assertEqual(expected_rows, first_two_recs)
         self.assertEqual(22, count)
 
     def test_file_source(self):
@@ -216,14 +195,14 @@ class TestNetcdfVariableSource(unittest.TestCase):
             "file_id", "deployment_number", "delivery_mode", "latitude", "longitude", "time_coverage_start",
             "time_coverage_end", "date_created"
         )
+
         self.assertEqual(expected_field_names, source.field_names())
 
         # check records (1)
-        expected_rows = zip_list(
-            expected_field_names,
-            [
-                (25, "", "DM", -46.90268325805664, 142.38839721679688, parser.parse("2019-08-05T01:59Z"),
-                parser.parse("2019-08-05T01:59Z"), parser.parse("2019-08-06T00:25:03Z"))
-            ]
-        )
+
+        expected_values = [(25, "", "DM", -46.90268325805664, 142.38839721679688, parser.parse("2019-08-05T01:59Z"),
+               parser.parse("2019-08-05T01:59Z"), parser.parse("2019-08-06T00:25:03Z"))]
+
+        expected_rows = zip_list(expected_field_names, expected_values)
+
         self.assertEqual(expected_rows, list(source.records()))

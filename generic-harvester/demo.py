@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 import json
 
-from harvester.output.console import ConsoleStore
+from harvester.output.memory_store import MemoryStore
 from harvester.stubs.aodncore import PipelineFile
 from harvester.timeseries_harvester import NetcdfTimeseriesHarvester
 
@@ -105,7 +105,8 @@ netcdf_file = PipelineFile(24, "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc
                            "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
                            )
 
-persistent_store = ConsoleStore()
+persistent_store = MemoryStore(OrderedDict())
 
 harvester = NetcdfTimeseriesHarvester(persistent_store, netcdf_file, config, None)
 harvester.harvest()
+harvester.delete()

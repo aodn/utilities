@@ -29,4 +29,4 @@ class NetcdfMetadataHarvester(object):
 
     def delete(self):
         for table_name in ("nc_global_attribute", "nc_variable", "nc_variable_attribute"):
-            self.persistent_store.deleteFileData(table_name, self.netcdf_file.id)
+            self.persistent_store.delete_records_for_file(table_name, self.netcdf_file.id)

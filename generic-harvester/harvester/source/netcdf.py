@@ -227,5 +227,3 @@ class NetcdfFileSource(object):
         return tuple(self.mapping["fields"].keys())
 
 
-def subset(dictionary, keys):
-    return OrderedDict((key,value) for key,value in dictionary.items() if key in keys)
