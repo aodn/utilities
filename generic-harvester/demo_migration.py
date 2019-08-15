@@ -8,9 +8,7 @@ from harvester.stubs.aodncore import PipelineFile
 from harvester.timeseries_harvester import NetcdfTimeseriesHarvester
 
 run.do_downgrade("base")
-run.do_upgrade("dd40085d47ea")
-run.do_upgrade("1bf1628fe336")
-# run.do_downgrade("dd40085d47ea")
+run.do_upgrade("head")
 
 with open("config/abos_sofs_fl.json") as f:
     config = json.load(f, object_pairs_hook=OrderedDict)
