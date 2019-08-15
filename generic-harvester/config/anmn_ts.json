@@ -19,20 +19,20 @@
             "PRES_REL_quality_control": {}
          }
     },
-    "timeseries_file": {
+    "file_metadata": {
         "fields": {
-            "timeseries_id": {"value": "asarray(dataset['TIMESERIES'])"},
+            "feature_metadata_id": {"value": "asarray(dataset['feature_metadata'])"},
             "LATITUDE": {"value": "asarray(dataset['LATITUDE'])"},
             "LONGITUDE": {"value": "asarray(dataset['LONGITUDE'])"},
             "time_coverage_start": {"value": "parse_datetime(dataset.time_coverage_start)"},
             "time_coverage_end": {"value": "parse_datetime(dataset.time_coverage_start)"}
         }
     },
-    "timeseries_key": ["timeseries_id"],
-    "timeseries": {
+    "feature_key": ["feature_metadata_id"],
+    "feature_metadata": {
         "fields": {
             "file_id": {"value": "file_id"},
-            "timeseries_id": {"value": "timeseries_id"},
+            "feature_metadata_id": {"value": "feature_metadata_id"},
             "LATITUDE": {"value": "LATITUDE"},
             "LONGITUDE": {"value": "LONGITUDE"},
             "time_coverage_start": {"value": "time_coverage_start"},
@@ -42,7 +42,7 @@
     "metadata_updates": [
         {
           "uuid": "09319023093810983098",
-          "spatial_table": "timeseries",
+          "spatial_table": "feature_metadata",
           "spatial_column": "geom",
           "spatial_resolution": 3
         }

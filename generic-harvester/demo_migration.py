@@ -5,7 +5,7 @@ import json
 
 from harvester.output.database_store import DatabaseStore
 from harvester.stubs.aodncore import PipelineFile
-from harvester.timeseries_harvester import NetcdfTimeseriesHarvester
+from harvester.feature_harvester import NetcdfFeatureHarvester
 
 run.do_downgrade("base")
 run.do_upgrade("dd40085d47ea")
@@ -23,7 +23,7 @@ netcdf_file = PipelineFile(
 
 persistent_store = DatabaseStore(OrderedDict())
 
-harvester = NetcdfTimeseriesHarvester(persistent_store, netcdf_file, config, None)
+harvester = NetcdfFeatureHarvester(persistent_store, netcdf_file, config, None)
 harvester.harvest()
 #harvester.delete()
 

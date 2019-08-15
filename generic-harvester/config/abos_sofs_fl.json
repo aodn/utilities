@@ -3,7 +3,6 @@
     "user": "abos_sofs_fl",
     "password": "abos_sofs_fl",
     "measurement": {
-        "dimensions": ["TIME"],
         "fields": {
             "TIME": {},
             "LATITUDE": {},
@@ -50,7 +49,7 @@
             "RELH2_0M": {}
         }
     },
-    "timeseries_file": {
+    "file_metadata": {
         "fields": {
             "deployment_number": {"value": "dataset.deployment_number"},
             "delivery_mode": {"value": "'RT' if re.match(r'.*Real-time.*', file.dest_path) else 'DM'"},
@@ -60,8 +59,8 @@
             "date_created": {"value": "parse_datetime(dataset.date_created)"}
         }
     },
-    "timeseries_key": ["deployment_number"],
-    "timeseries": {
+    "feature_key": ["deployment_number"],
+    "feature_metadata": {
         "fields": {
             "deployment_number": {"value": "deployment_number"},
             "mean_latitude": {"value": "avg(\"LATITUDE\")"},
@@ -70,12 +69,13 @@
             "time_deployment_start": {"value": "min(\"TIME\")"},
             "time_deployment_end": {"value": "max(\"TIME\")"}
         },
+        "from": "measurement m JOIN file_metadata t ON (m.file_id = t.file_id)",
         "where": "\"LATITUDE\" > -60 AND \"LATITUDE\" < -30 AND \"LONGITUDE\" > 130 AND \"LONGITUDE\" < 160"
     },
     "metadata_updates": [
         {
           "uuid": "09319023093810983098",
-          "spatial_table": "timeseries",
+          "spatial_table": "feature_metadata",
           "spatial_column": "geom",
           "spatial_resolution": 3
         }

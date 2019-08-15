@@ -18,7 +18,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
     def setUp(self):
         """ Initialise common test data """
 
-        self.nc_file = PipelineFile(id=25, src_path=TEST_FILE, dest_path=TEST_FILE)
+        self.nc_file = PipelineFile(TEST_FILE, TEST_FILE, 25)
 
     def test_global_attribute_source(self):
         """ Test NetcdfGlobalAttributeSource """
@@ -169,7 +169,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
         """ Test NetcdfFileSource"""
 
         json_mapping = """{
-                "name": "timeseries_file",
+                "name": "file_metadata",
                 "fields": {
                     "deployment_number": {"value": "dataset.deployment_number"},
                     "delivery_mode": {"value": "'RT' if re.match(r'.*Real-time.*', file.dest_path) else 'DM'"},

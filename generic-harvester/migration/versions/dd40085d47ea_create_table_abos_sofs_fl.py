@@ -20,15 +20,15 @@ depends_on = None
 
 def upgrade():
     op.create_table(
-        'timeseries',
+        'feature_metadata',
         sa.Column('deployment_number', sa.VARCHAR(3), nullable=False),
         sa.Column('mean_latitude', sa.dialects.postgresql.DOUBLE_PRECISION),
         sa.Column('mean_longitude', sa.dialects.postgresql.DOUBLE_PRECISION),
         sa.Column('geom', geoal2.Geometry(geometry_type='Geometry', srid=4326)),
         sa.Column('time_deployment_start', sa.TIMESTAMP(timezone=True)),
         sa.Column('time_deployment_end', sa.TIMESTAMP(timezone=True)),
-        sa.PrimaryKeyConstraint('deployment_number', name='timeseries_pk'),
-        sa.CheckConstraint(geoal2.functions.ST_IsValid(sa.text('geom')), name='timeseries_geom_check')
+        sa.PrimaryKeyConstraint('deployment_number', name='feature_metadata_pk'),
+        sa.CheckConstraint(geoal2.functions.ST_IsValid(sa.text('geom')), name='feature_metadata_geom_check')
     )
 
     op.execute(CreateSequence(Sequence('indexed_file_id_seq')))
@@ -74,7 +74,7 @@ def upgrade():
     )
 
     op.create_table(
-        'timeseries_file',
+        'file_metadata',
         sa.Column('file_id', sa.BIGINT, nullable=False),
         sa.Column('deployment_number', sa.VARCHAR(3), nullable=False),
         sa.Column('delivery_mode', sa.VARCHAR(3), nullable=False),
@@ -82,10 +82,10 @@ def upgrade():
         sa.Column('time_coverage_start', sa.TIMESTAMP(timezone=True)),
         sa.Column('time_coverage_end', sa.TIMESTAMP(timezone=True)),
         sa.Column('date_created', sa.TIMESTAMP(timezone=True)),
-        sa.UniqueConstraint('file_id', name='timeseries_file_file_id_uc')
+        sa.UniqueConstraint('file_id', name='file_metadata_id_uc')
     )
     op.create_foreign_key(
-        'timeseries_file_indexed_file_fk', 'timeseries_file',
+        'file_metadata_indexed_file_fk', 'file_metadata',
         'indexed_file', ['file_id'], ['id'],
         onupdate='CASCADE', ondelete='CASCADE', match='SIMPLE'
     )
@@ -144,14 +144,14 @@ def upgrade():
         ['file_id', 'TIME']
     )
     op.create_foreign_key(
-        'measurement_timeseries_file_fk', 'measurement',
-        'timeseries_file', ['file_id'], ['file_id'],
+        'measurement_file_metadata_fk', 'measurement',
+        'file_metadata', ['file_id'], ['file_id'],
         onupdate='CASCADE', ondelete='CASCADE', match='SIMPLE'
     )
 
 
 def downgrade():
-    op.drop_constraint(u'measurement_timeseries_file_fk', 'measurement', type_='foreignkey')
+    op.drop_constraint(u'measurement_file_metadata_fk', 'measurement', type_='foreignkey')
     op.drop_constraint(u'measurement_pk', 'measurement', type_='primary')
     op.drop_table('measurement')
 
@@ -159,11 +159,11 @@ def downgrade():
     op.drop_table('nc_variable')
     op.drop_table('nc_variable_attribute')
 
-    op.drop_constraint(u'timeseries_file_indexed_file_fk', 'timeseries_file', type_='foreignkey')
-    op.drop_table('timeseries_file')
+    op.drop_constraint(u'file_metadata_indexed_file_fk', 'file_metadata', type_='foreignkey')
+    op.drop_table('file_metadata')
 
     op.drop_index('indexed_file_deleted_idx')
     op.drop_table('indexed_file')
     op.execute(DropSequence(Sequence('indexed_file_id_seq')))
 
-    op.drop_table('timeseries')
+    op.drop_table('feature_metadata')

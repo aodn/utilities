@@ -7,7 +7,7 @@ e = create_engine("postgresql+psycopg2://abos_sofs_fl:abos_sofs_fl@localhost/abo
 
 with e.connect() as conn:
     m = MetaData()
-    # timeseries_table = Table('timeseries', m, autoload_with=conn)
+    # feature_metadata_table = Table('feature_metadata', m, autoload_with=conn)
     # measurement_table = Table('measurement', m, autoload_with=conn)
     # file_metadata_table = Table('file_metadata', m, autoload_with=conn)
     indexed_file_table = Table('indexed_file', m, autoload_with=conn)

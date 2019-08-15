@@ -46,7 +46,7 @@ def upgrade():
 
     op.bulk_insert(indexed_file, [dict(zip(indexed_file_columns, indexed_file_data))])
 
-    # timeseries_file = table('timeseries_file',
+    # file_metadata = table('file_metadata',
     #     sa.Column('file_id', sa.BIGINT, nullable=False),
     #     sa.Column('deployment_number', sa.VARCHAR(3), nullable=False),
     #     sa.Column('delivery_mode', sa.VARCHAR(3), nullable=False),
@@ -56,7 +56,7 @@ def upgrade():
     #     sa.Column('date_created', sa.TIMESTAMP(timezone=True))
     # )
     #
-    # timeseries_file_columns = ['file_id',
+    # file_metadata_columns = ['file_id',
     #                          'deployment_number',
     #                          'delivery_mode',
     #                          'latitude',
@@ -64,7 +64,7 @@ def upgrade():
     #                          'time_coverage_end',
     #                          'date_created'
     # ]
-    # timeseries_file_data = [24,
+    # file_metadata_data = [24,
     #                       '',
     #                       'RT',
     #                       -46.905799865722656,
@@ -73,7 +73,7 @@ def upgrade():
     #                       datetime(2019, 8, 6, 0, 25, 3)
     # ]
     #
-    # op.bulk_insert(timeseries_file, [dict(zip(timeseries_file_columns, timeseries_file_data))])
+    # op.bulk_insert(file_metadata, [dict(zip(file_metadata_columns, file_metadata_data))])
     #
     # measurement_columns = ['deployment_number', 'delivery_mode',
     #                        'file_id', 'index', 'TIME', 'LATITUDE', 'LONGITUDE', 'PL_CMP', 'WDIR', 'WSPD', 'WIND_H',
@@ -161,5 +161,5 @@ def upgrade():
 
 def downgrade():
     # op.execute('truncate table measurement CASCADE')
-    # op.execute('truncate table timeseries_file CASCADE')
+    # op.execute('truncate table file_metadata CASCADE')
     op.execute('truncate table indexed_file CASCADE')

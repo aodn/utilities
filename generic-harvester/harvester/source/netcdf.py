@@ -153,6 +153,7 @@ class NetcdfMeasurementSource(object):
             variables = [dataset[name][:] for name, defn in self.mapping["fields"].items() if name in dataset.variables]
             file_id = self.netcdf_file.id
             # Loop through each row of measurements from file - can be millions so very performance sensitive
+            # Assumes variables are all of the same shape
             iterators = [np.nditer(variable) for variable in variables]
             while not iterators[0].finished:
                 row = [next(iterator) for iterator in iterators]
