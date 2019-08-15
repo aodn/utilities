@@ -35,11 +35,20 @@ class DatabaseStore(object):
             print(record)
 
         print("...")
-        self.content[table_name] += list(source.records())
 
     def select_first_record_for_file(self, table_name, field_names, file_id):
         print("selecting {} from first record on {} for {}...".format(field_names, table_name, file_id))
         return [subset(row, field_names) for row in self.content.get(table_name, []) if row['file_id'] == file_id][0]
+
+    def select_one(self, table_name, key):
+        print("selecting {} from {}".format(key, table_name))
+        dao = DatabaseStoreDao(table_name)
+        return dao.select_one(key)
+
+    def update(self, table_name, key, values):
+        print("updating {} in {} with {}".format(key, table_name, values))
+        dao = DatabaseStoreDao(table_name)
+        dao.update(key, values)
 
     def aggregate(self, table_name, aggregation, key):
         print("Aggregating records for {} to {} using {}".format(table_name, aggregation, key))

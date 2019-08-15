@@ -35,7 +35,6 @@ def upgrade():
     op.create_table(
         'indexed_file',
         sa.Column('id', sa.INTEGER, nullable=False, server_default=sa.text("nextval('indexed_file_id_seq'::regclass)")),
-        sa.Column('job_id', sa.BIGINT),
         sa.Column('url', sa.VARCHAR(512), nullable=False),
         sa.Column('created', sa.TIMESTAMP(timezone=True)),
         sa.Column('modified', sa.TIMESTAMP(timezone=True)),
@@ -44,10 +43,35 @@ def upgrade():
         sa.Column('last_indexed_run', sa.INTEGER),
         sa.Column('size', sa.dialects.postgresql.DOUBLE_PRECISION),
         sa.Column('deleted', sa.BOOLEAN, server_default=sa.schema.DefaultClause("0")),
-        sa.PrimaryKeyConstraint('id', name='indexed_file_pk'),
-        sa.UniqueConstraint('job_id', 'url', name='indexed_file_job_url_uc')
+        sa.PrimaryKeyConstraint('id', name='indexed_file_pk')
     )
     op.create_index('indexed_file_deleted_idx', 'indexed_file', ['deleted'])
+
+    op.create_table(
+        'nc_global_attribute',
+        sa.Column('file_id', sa.BIGINT, nullable=False),
+        sa.Column('name', sa.dialects.postgresql.TEXT, nullable=False),
+        sa.Column('type', sa.dialects.postgresql.TEXT, nullable=False),
+        sa.Column('value', sa.dialects.postgresql.TEXT, nullable=False)
+    )
+
+    op.create_table(
+        'nc_variable',
+        sa.Column('file_id', sa.BIGINT, nullable=False),
+        sa.Column('name', sa.dialects.postgresql.TEXT, nullable=False),
+        sa.Column('type', sa.dialects.postgresql.TEXT, nullable=False),
+        sa.Column('dimensions', sa.dialects.postgresql.TEXT, nullable=False),
+        sa.Column('shape', sa.dialects.postgresql.TEXT, nullable=False)
+    )
+
+    op.create_table(
+        'nc_variable_attribute',
+        sa.Column('file_id', sa.BIGINT, nullable=False),
+        sa.Column('var_name', sa.dialects.postgresql.TEXT, nullable=False),
+        sa.Column('attr_name', sa.dialects.postgresql.TEXT, nullable=False),
+        sa.Column('type', sa.dialects.postgresql.TEXT, nullable=False),
+        sa.Column('value', sa.dialects.postgresql.TEXT, nullable=False)
+    )
 
     op.create_table(
         'timeseries_file',
@@ -71,7 +95,6 @@ def upgrade():
         # sa.Column('deployment_number', sa.VARCHAR(3), nullable=False),
         # sa.Column('delivery_mode', sa.VARCHAR(3), nullable=False),
         sa.Column('file_id', sa.BIGINT, nullable=False),
-        sa.Column('index', sa.BIGINT, comment='index of measurement in netCDF file', nullable=False),
         sa.Column('TIME', sa.TIMESTAMP(timezone=True), nullable=False),
         sa.Column('LATITUDE', sa.REAL),
         sa.Column('LONGITUDE', sa.REAL),
@@ -118,7 +141,7 @@ def upgrade():
     )
     op.create_primary_key(
         'measurement_pk', 'measurement',
-        ['file_id', 'index']
+        ['file_id', 'TIME']
     )
     op.create_foreign_key(
         'measurement_timeseries_file_fk', 'measurement',
@@ -131,6 +154,10 @@ def downgrade():
     op.drop_constraint(u'measurement_timeseries_file_fk', 'measurement', type_='foreignkey')
     op.drop_constraint(u'measurement_pk', 'measurement', type_='primary')
     op.drop_table('measurement')
+
+    op.drop_table('nc_global_attribute')
+    op.drop_table('nc_variable')
+    op.drop_table('nc_variable_attribute')
 
     op.drop_constraint(u'timeseries_file_indexed_file_fk', 'timeseries_file', type_='foreignkey')
     op.drop_table('timeseries_file')

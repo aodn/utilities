@@ -16,9 +16,9 @@ with open("config/abos_sofs_fl.json") as f:
     config = json.load(f, object_pairs_hook=OrderedDict)
 
 netcdf_file = PipelineFile(
-    24,
     "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc",
-    "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
+    "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc",
+    24
 )
 
 persistent_store = DatabaseStore(OrderedDict())

@@ -1,17 +1,18 @@
 """
-Netcdf record source and supporting code
+Netcdf record sources and supporting code
+
+Supports reading global attributes, variable metadata and measurements
+as record streams
 """
 
-import itertools
 from collections import OrderedDict
-
-import pytz
 from dateutil.parser import parse
+import itertools
+import pytz
 import re
 
-import numpy as np
-
 import netCDF4
+import numpy as np
 
 from harvester.util import expressionparser as expr
 
@@ -26,17 +27,18 @@ ALLOWED_EXPR_FNS = {
 }
 
 
-def to_datetime(calendar, units):
+def _to_datetime(calendar, units):
     return lambda value: pytz.UTC.localize(netCDF4.num2date(value, units, calendar))
 
 
-def get_conversion(variable, defn):
+# Performance sensitive!!  Applied to each row of measurements
+def _get_conversion(variable, defn):
     if _is_datetime(variable):
         calendar = variable.calendar if hasattr(variable, 'calendar') else 'standard'
         units = variable.units
-        return to_datetime(calendar, units)
+        return _to_datetime(calendar, units)
     else:
-        return lambda value: value
+        return lambda value: value.item()
 
 
 class NetcdfGlobalAttributeSource(object):
@@ -144,14 +146,16 @@ class NetcdfMeasurementSource(object):
             variable_names = [field_name for field_name in self.mapping["fields"] if field_name in dataset.variables]
             field_names = ["file_id"] + variable_names
             conversions = [
-                get_conversion(dataset[name], defn)
+                _get_conversion(dataset[name], defn)
                 for name, defn in self.mapping["fields"].items()
                 if name in dataset.variables
             ]
             variables = [dataset[name][:] for name, defn in self.mapping["fields"].items() if name in dataset.variables]
             file_id = self.netcdf_file.id
-            # performance sensitive!!
-            for row in np.nditer(variables):
+            # Loop through each row of measurements from file - can be millions so very performance sensitive
+            iterators = [np.nditer(variable) for variable in variables]
+            while not iterators[0].finished:
+                row = [next(iterator) for iterator in iterators]
                 # TODO: handle masked data
                 converted_row = [convert(value) for convert, value in itertools.zip_longest(conversions, row)]
                 yield OrderedDict(zip(field_names, [file_id] + converted_row))

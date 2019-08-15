@@ -58,6 +58,34 @@ class DatabaseStoreDao:
         r = self.conn.execute(s)
         return r.fetchall()
 
+    def select_one(self, key):
+        """
+            Select one record from table using key...
+
+        :return:
+        """
+
+        table_name = self.table.name
+        where_clause = " ".join([field_name + " = :" + field_name for field_name in key])
+        s = sa.text("SELECT * FROM {} WHERE {}".format(table_name, where_clause))
+        str(s)
+        r = self.conn.execute(s, key)
+        return r.fetchone()
+
+    def update(self, key, values):
+        """
+            update record from table using key...
+
+        :return:
+        """
+
+        table_name = self.table.name
+        where_clause = " ".join([field_name + " = :" + field_name for field_name in key])
+        set_clause = " ".join([field_name + "= :" + field_name for field_name in values])
+        s = sa.text("UPDATE {} SET {} WHERE {}".format(table_name, set_clause, where_clause))
+        str(s)
+        self.conn.execute(s, {**key, **values})
+
     def delete(self):
         """
             Delete all records from table...
