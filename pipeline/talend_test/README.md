@@ -145,6 +145,8 @@ This command will also create a copy of the harvested data in the `harvest_resul
 the directories here and how they correlate with the configuration in `config.yaml`.  This same structure (excluding the
 host name) is used for the expected data. For example:
 
+Harvest results:
+
 ```
 harvest_results/
   po7.aodn.org.au/                          #<-- host harvest was run against
@@ -157,8 +159,11 @@ harvest_results/
       action_2_UPDATE
       action_3_DELETE
 ```
+
+Expected data:
+
 ```
-expect/
+test_configs/soop_xbt_nrt/expect/
   soop_asf_mt                             #<-- the harvest config that was run
     action_0_ADD                          #<-- action the harvester ran
       soop_asf_mt/                        #<-- schema listed in the test config
@@ -168,13 +173,6 @@ expect/
     action_2_UPDATE
     action_3_DELETE
 ```
-
-These harvested data results can be used to verify the validity of one or more integration tests by running the tests:
-
-```shell script
-(ansible-virtualenv) ansible-playbook ansible/playbook_tests.yaml -i test_configs/hosts \
---extra-vars "test_config=../test_configs/soop_xbt_nrt/config.yaml"
-``` 
 
 ## Obtaining new harvest results
 
