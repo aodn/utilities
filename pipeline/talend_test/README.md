@@ -77,8 +77,7 @@ actions:
 - type: ADD
   files:
   - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
-    local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv.updated
-    remote_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
+    local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
   incoming:
   - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
@@ -86,7 +85,8 @@ actions:
 - type: UPDATE
   files:
   - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
-    local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
+    local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv.updated
+    remote_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
   incoming:
   - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
