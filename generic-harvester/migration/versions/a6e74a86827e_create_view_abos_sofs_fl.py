@@ -11,7 +11,7 @@ from migration.replaceable_object import ReplaceableObject
 
 # revision identifiers, used by Alembic.
 revision = 'a6e74a86827e'
-down_revision = '1bf1628fe336'
+down_revision = 'dd40085d47ea'
 branch_labels = None
 depends_on = None
 
@@ -33,7 +33,9 @@ def downgrade():
 def get_abos_sofs_surfaceflux_dm_data():
     abos_sofs_surfaceflux_dm_data = ReplaceableObject(
         "abos_sofs_surfaceflux_dm_data",
-        "SELECT m.file_id, "
+        "SELECT fm.deployment_number, "
+        "fm.delivery_mode, "
+        "m.file_id, "
         "timezone('UTC'::text, m.\"TIME\") AS \"TIME\", "
         "m.\"LATITUDE\", "
         "m.\"LONGITUDE\", "
@@ -77,11 +79,11 @@ def get_abos_sofs_surfaceflux_dm_data():
         "m.\"AIRT2_0M\", "
         "m.\"RELH1_5M\", "
         "m.\"RELH2_0M\", "
-        "t.geom "
+        "f.geom "
         "FROM measurement m "
-        "JOIN timeseries_file tf USING (file_id) "
-        "JOIN timeseries t ON t.deployment_number = tf.deployment_number "
-        "WHERE tf.delivery_mode::text = 'DM'::text "
+        "JOIN file_metadata fm USING (file_id) "
+        "JOIN feature_metadata f ON f.deployment_number = fm.deployment_number "
+        "WHERE fm.delivery_mode::text = 'DM'::text "
         )
     return abos_sofs_surfaceflux_dm_data
 
@@ -97,9 +99,9 @@ def get_abos_sofs_surfaceflux_dm_map():
         "timezone('UTC'::text, m.date_created) AS date_created, "
         "i.url, "
         "i.size, "
-        "t.geom "
-        "FROM timeseries t "
-        "JOIN timeseries_file m USING (deployment_number) "
+        "f.geom "
+        "FROM feature_metadata f "
+        "JOIN file_metadata m USING (deployment_number) "
         "JOIN indexed_file i ON m.file_id = i.id "
         "WHERE m.delivery_mode::text = 'DM'::text "
         "ORDER BY (timezone('UTC'::text, m.time_coverage_start));"
@@ -110,7 +112,9 @@ def get_abos_sofs_surfaceflux_dm_map():
 def get_abos_sofs_surfaceflux_rt_data():
     abos_sofs_surfaceflux_rt_data = ReplaceableObject(
         "abos_sofs_surfaceflux_rt_data",
-        "SELECT m.file_id, "
+        "SELECT fm.deployment_number, "
+        "fm.delivery_mode, "
+        "m.file_id, "
         "timezone('UTC'::text, m.\"TIME\") AS \"TIME\", "
         "m.\"LATITUDE\", "
         "m.\"LONGITUDE\", "
@@ -154,11 +158,11 @@ def get_abos_sofs_surfaceflux_rt_data():
         "m.\"AIRT2_0M\", "
         "m.\"RELH1_5M\", "
         "m.\"RELH2_0M\", "
-        "t.geom "
+        "f.geom "
         "FROM measurement m "
-        "JOIN timeseries_file tf USING (file_id) "
-        "JOIN timeseries t ON t.deployment_number = tf.deployment_number "
-        "WHERE tf.delivery_mode::text = 'RT'::text "
+        "JOIN file_metadata fm USING (file_id) "
+        "JOIN feature_metadata f ON f.deployment_number = fm.deployment_number "
+        "WHERE fm.delivery_mode::text = 'RT'::text "
         )
     return abos_sofs_surfaceflux_rt_data
 
@@ -174,9 +178,9 @@ def get_abos_sofs_surfaceflux_rt_map():
         "timezone('UTC'::text, m.date_created) AS date_created, "
         "i.url, "
         "i.size, "
-        "t.geom "
-        "FROM timeseries t "
-        "JOIN timeseries_file m USING (deployment_number) "
+        "f.geom "
+        "FROM feature_metadata f "
+        "JOIN file_metadata m USING (deployment_number) "
         "JOIN indexed_file i ON m.file_id = i.id "
         "WHERE m.delivery_mode::text = 'RT'::text "
         "ORDER BY (timezone('UTC'::text, m.time_coverage_start));"
