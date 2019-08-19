@@ -3,7 +3,7 @@
 """
 
 
-class GenericHarvesterRunner(object):
+class FeatureHarvesterRunner(object):
 
     def __init__(self, storage_broker, harvest_params, tmp_base_dir, config, logger, deletion=False):
         # TODO: super(GenericHarvesterRunner, self).__init__(config, logger)
