@@ -1,7 +1,9 @@
 """
 
 """
-import itertools
+
+import datetime
+
 from harvester.util.collections import subset
 from harvester.database.database_store_dao import DatabaseStoreDao
 
@@ -19,21 +21,21 @@ class DatabaseStore(object):
         dao = DatabaseStoreDao(table_name)
         dao.delete({"file_id": file_id})
 
+    def write_dataframe(self, table_name, df):
+        dao = DatabaseStoreDao(table_name)
+        print(datetime.datetime.now())
+        dao.insert_dataframe(df)
+        print(datetime.datetime.now())
+
     def write(self, table_name, source):
         print("Writing records to {}...".format(table_name))
-        print(source.field_names())
 
         dao = DatabaseStoreDao(table_name)
-        dao.insert(list(source.records()))
-        rs = dao.select()
-        for row in rs:
-            print(row)
-        print("...")
-
-        for record in itertools.islice(source.records(), 10):
-            print(record)
-
-        print("...")
+        print(datetime.datetime.now())
+        records = list(source.records())
+        print(datetime.datetime.now())
+        dao.insert(records)
+        print(datetime.datetime.now())
 
     def select_first_record_for_file(self, table_name, field_names, file_id):
         print("selecting {} from first record on {} for {}...".format(field_names, table_name, file_id))
