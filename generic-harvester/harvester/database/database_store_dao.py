@@ -10,11 +10,12 @@ class DatabaseStoreDao:
 
     """
 
-    def __init__(self, table_name):
+    def __init__(self, table_name, url):
         """
             Constructor
         """
-        self.engine = sa.create_engine('postgresql+psycopg2://abos_sofs_fl:abos_sofs_fl@localhost/test_abos_sofs_fl')
+        self.url = url
+        self.engine = sa.create_engine(self.url, echo=True)
         self.conn = self.engine.connect()
         self.meta = sa.MetaData(self.conn)
         self.table = self.get_table(table_name)

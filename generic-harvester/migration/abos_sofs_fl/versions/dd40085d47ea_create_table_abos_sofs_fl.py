@@ -137,7 +137,7 @@ def upgrade():
         sa.Column('AIRT1_5M', sa.REAL),
         sa.Column('AIRT2_0M', sa.REAL),
         sa.Column('RELH1_5M', sa.REAL),
-        sa.Column('RELH2_0M', sa.REAL),
+        sa.Column('RELH2_0M', sa.REAL)
     )
     op.create_primary_key(
         'measurement_pk', 'measurement',

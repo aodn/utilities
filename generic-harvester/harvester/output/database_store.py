@@ -13,16 +13,17 @@ class DatabaseStore(object):
 
     """
 
-    def __init__(self, config=None):
+    def __init__(self, url=None, config=None):
+        self.url = url
         self.config = config
 
     def delete_records_for_file(self, table_name, file_id):
         print("Deleting records for file with id {} from {}...".format(file_id, table_name))
-        dao = DatabaseStoreDao(table_name)
+        dao = DatabaseStoreDao(table_name, self.url)
         dao.delete({"file_id": file_id})
 
     def write_dataframe(self, table_name, df):
-        dao = DatabaseStoreDao(table_name)
+        dao = DatabaseStoreDao(table_name, self.url)
         print(datetime.datetime.now())
         dao.insert_dataframe(df)
         print(datetime.datetime.now())
@@ -30,7 +31,7 @@ class DatabaseStore(object):
     def write(self, table_name, source):
         print("Writing records to {}...".format(table_name))
 
-        dao = DatabaseStoreDao(table_name)
+        dao = DatabaseStoreDao(table_name, self.url)
         print(datetime.datetime.now())
         records = list(source.records())
         print(datetime.datetime.now())
@@ -43,17 +44,17 @@ class DatabaseStore(object):
 
     def select_one(self, table_name, key):
         print("selecting {} from {}".format(key, table_name))
-        dao = DatabaseStoreDao(table_name)
+        dao = DatabaseStoreDao(table_name, self.url)
         return dao.select_one(key)
 
     def update(self, table_name, key, values):
         print("updating {} in {} with {}".format(key, table_name, values))
-        dao = DatabaseStoreDao(table_name)
+        dao = DatabaseStoreDao(table_name, self.url)
         dao.update(key, values)
 
     def aggregate(self, table_name, aggregation, key):
         print("Aggregating records for {} to {} using {}".format(table_name, aggregation, key))
-        dao = DatabaseStoreDao(table_name)
+        dao = DatabaseStoreDao(table_name, self.url)
         dao.delete(key)
 
         key_clause = " AND ".join("{} = :{}".format(field_name, field_name) for field_name in key)
