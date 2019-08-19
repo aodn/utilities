@@ -1,4 +1,8 @@
 import sqlalchemy as sa
+import logging
+
+logging.basicConfig()
+logging.getLogger('sqlalchemy').setLevel(logging.WARN)
 
 
 class DatabaseStoreDao:
@@ -10,8 +14,7 @@ class DatabaseStoreDao:
         """
             Constructor
         """
-        self.engine = sa.create_engine('postgresql+psycopg2://abos_sofs_fl:abos_sofs_fl@localhost/test_abos_sofs_fl',
-                                       echo=True)
+        self.engine = sa.create_engine('postgresql+psycopg2://abos_sofs_fl:abos_sofs_fl@localhost/test_abos_sofs_fl')
         self.conn = self.engine.connect()
         self.meta = sa.MetaData(self.conn)
         self.table = self.get_table(table_name)
@@ -131,3 +134,17 @@ class DatabaseStoreDao:
             r = None
             print("Transaction failed.")
         return r
+
+    def insert_dataframe(self, df):
+        table_name = self.table.name
+        # start transaction
+        t = self.conn.begin()
+        try:
+            df.to_sql(table_name, con=self.engine, if_exists='append')
+            t.commit()
+            print("Transaction completed.")
+
+        except sa.exc.SQLAlchemyError as e:
+            print(e)
+            t.rollback()
+            print("Transaction failed.")
