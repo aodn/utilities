@@ -1,7 +1,13 @@
 {
-    "schema": "abos_sofs_fl",
-    "user": "abos_sofs_fl",
-    "password": "abos_sofs_fl",
+    "db_params": {
+        "driver": "postgresql+psycopg2",
+        "database": "test_harvest",
+        "host": "localhost",
+        "port": "5432",
+        "schema": "abos_sofs_fl",
+        "user": "abos_sofs_fl",
+        "password": "abos_sofs_fl"
+    },
     "measurement": {
         "fields": {
             "TIME": {},

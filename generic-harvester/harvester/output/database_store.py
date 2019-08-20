@@ -10,12 +10,12 @@ from harvester.database.database_store_dao import DatabaseStoreDao
 
 class DatabaseStore(object):
     """
-
+    TODO: rethink DatabaseStore/DatabaseStoreDAO interactions
     """
 
-    def __init__(self, url=None, config=None):
-        self.url = url
-        self.config = config
+    def __init__(self, db_params):
+        self.url = db_params["driver"]+"://"+db_params["user"]+":"+db_params["password"]+"@"+db_params["host"]\
+            + ":"+db_params["port"]+"/"+db_params["database"]
 
     def delete_records_for_file(self, table_name, file_id):
         print("Deleting records for file with id {} from {}...".format(file_id, table_name))

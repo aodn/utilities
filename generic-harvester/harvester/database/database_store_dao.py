@@ -15,7 +15,7 @@ class DatabaseStoreDao:
             Constructor
         """
         self.url = url
-        self.engine = sa.create_engine(self.url, echo=True)
+        self.engine = sa.create_engine(self.url)
         self.conn = self.engine.connect()
         self.meta = sa.MetaData(self.conn)
         self.table = self.get_table(table_name)

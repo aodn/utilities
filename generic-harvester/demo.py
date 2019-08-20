@@ -5,7 +5,6 @@ import json
 from harvester import file_index
 from harvester.metadata_harvester import NetcdfMetadataHarvester
 from harvester.output.database_store import DatabaseStore
-from harvester.output.memory_store import MemoryStore
 from harvester.stubs.aodncore import PipelineFile
 from harvester.feature_harvester import NetcdfFeatureHarvester
 
@@ -17,15 +16,15 @@ netcdf_file = PipelineFile(
     "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
 )
 
-persistent_store = DatabaseStore()
+persistent_store = DatabaseStore(config["db_params"])
 
 netcdf_metadata_harvester = NetcdfMetadataHarvester(persistent_store, netcdf_file, config, None)
 netcdf_feature_harvester = NetcdfFeatureHarvester(persistent_store, netcdf_file, config, None)
 
-# file_index.add_or_update_file(persistent_store, netcdf_file)
-# netcdf_metadata_harvester.harvest()
-# netcdf_feature_harvester.harvest()
+file_index.add_or_update_file(persistent_store, netcdf_file)
+netcdf_metadata_harvester.harvest()
+netcdf_feature_harvester.harvest()
 
-file_index.delete_file(persistent_store, netcdf_file)
-netcdf_metadata_harvester.delete()
-netcdf_feature_harvester.delete()
+# file_index.delete_file(persistent_store, netcdf_file)
+# netcdf_metadata_harvester.delete()
+# netcdf_feature_harvester.delete()
