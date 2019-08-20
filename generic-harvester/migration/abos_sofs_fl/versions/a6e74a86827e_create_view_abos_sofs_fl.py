@@ -102,7 +102,7 @@ def get_abos_sofs_surfaceflux_dm_map():
         "f.geom "
         "FROM feature_metadata f "
         "JOIN file_metadata m USING (deployment_number) "
-        "JOIN indexed_file i ON m.file_id = i.id "
+        "JOIN file_index.indexed_file i ON m.file_id = i.id "
         "WHERE m.delivery_mode::text = 'DM'::text "
         "ORDER BY (timezone('UTC'::text, m.time_coverage_start));"
     )
@@ -181,7 +181,7 @@ def get_abos_sofs_surfaceflux_rt_map():
         "f.geom "
         "FROM feature_metadata f "
         "JOIN file_metadata m USING (deployment_number) "
-        "JOIN indexed_file i ON m.file_id = i.id "
+        "JOIN file_index.indexed_file i ON m.file_id = i.id "
         "WHERE m.delivery_mode::text = 'RT'::text "
         "ORDER BY (timezone('UTC'::text, m.time_coverage_start));"
     )

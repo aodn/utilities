@@ -31,48 +31,6 @@ def upgrade():
         sa.CheckConstraint(geoal2.functions.ST_IsValid(sa.text('geom')), name='feature_metadata_geom_check')
     )
 
-    op.execute(CreateSequence(Sequence('indexed_file_id_seq')))
-    op.create_table(
-        'indexed_file',
-        sa.Column('id', sa.INTEGER, nullable=False, server_default=sa.text("nextval('indexed_file_id_seq'::regclass)")),
-        sa.Column('url', sa.VARCHAR(512), nullable=False),
-        sa.Column('created', sa.TIMESTAMP(timezone=True)),
-        sa.Column('modified', sa.TIMESTAMP(timezone=True)),
-        sa.Column('first_indexed', sa.TIMESTAMP(timezone=True), server_default=sa.text('now()')),
-        sa.Column('last_indexed', sa.TIMESTAMP(timezone=True)),
-        sa.Column('last_indexed_run', sa.INTEGER),
-        sa.Column('size', sa.dialects.postgresql.DOUBLE_PRECISION),
-        sa.Column('deleted', sa.BOOLEAN, server_default=sa.schema.DefaultClause("0")),
-        sa.PrimaryKeyConstraint('id', name='indexed_file_pk')
-    )
-    op.create_index('indexed_file_deleted_idx', 'indexed_file', ['deleted'])
-
-    op.create_table(
-        'nc_global_attribute',
-        sa.Column('file_id', sa.BIGINT, nullable=False),
-        sa.Column('name', sa.dialects.postgresql.TEXT, nullable=False),
-        sa.Column('type', sa.dialects.postgresql.TEXT, nullable=False),
-        sa.Column('value', sa.dialects.postgresql.TEXT, nullable=False)
-    )
-
-    op.create_table(
-        'nc_variable',
-        sa.Column('file_id', sa.BIGINT, nullable=False),
-        sa.Column('name', sa.dialects.postgresql.TEXT, nullable=False),
-        sa.Column('type', sa.dialects.postgresql.TEXT, nullable=False),
-        sa.Column('dimensions', sa.dialects.postgresql.TEXT, nullable=False),
-        sa.Column('shape', sa.dialects.postgresql.TEXT, nullable=False)
-    )
-
-    op.create_table(
-        'nc_variable_attribute',
-        sa.Column('file_id', sa.BIGINT, nullable=False),
-        sa.Column('var_name', sa.dialects.postgresql.TEXT, nullable=False),
-        sa.Column('attr_name', sa.dialects.postgresql.TEXT, nullable=False),
-        sa.Column('type', sa.dialects.postgresql.TEXT, nullable=False),
-        sa.Column('value', sa.dialects.postgresql.TEXT, nullable=False)
-    )
-
     op.create_table(
         'file_metadata',
         sa.Column('file_id', sa.BIGINT, nullable=False),
@@ -87,6 +45,7 @@ def upgrade():
     op.create_foreign_key(
         'file_metadata_indexed_file_fk', 'file_metadata',
         'indexed_file', ['file_id'], ['id'],
+        referent_schema='file_index',
         onupdate='CASCADE', ondelete='CASCADE', match='SIMPLE'
     )
 
@@ -155,15 +114,7 @@ def downgrade():
     op.drop_constraint(u'measurement_pk', 'measurement', type_='primary')
     op.drop_table('measurement')
 
-    op.drop_table('nc_global_attribute')
-    op.drop_table('nc_variable')
-    op.drop_table('nc_variable_attribute')
-
     op.drop_constraint(u'file_metadata_indexed_file_fk', 'file_metadata', type_='foreignkey')
     op.drop_table('file_metadata')
-
-    op.drop_index('indexed_file_deleted_idx')
-    op.drop_table('indexed_file')
-    op.execute(DropSequence(Sequence('indexed_file_id_seq')))
 
     op.drop_table('feature_metadata')

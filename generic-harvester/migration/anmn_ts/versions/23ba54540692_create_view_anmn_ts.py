@@ -88,6 +88,6 @@ def get_anmn_ts_timeseries_map():
         "fm.sea_water_pressure_b, "
         "fm.sea_water_pressure_due_to_sea_water_b "
         "FROM feature_metadata fm "
-        "JOIN indexed_file f ON fm.file_id = f.id;"
+        "JOIN file_index.indexed_file f ON fm.file_id = f.id;"
     )
     return anmn_ts_timeseries_map
