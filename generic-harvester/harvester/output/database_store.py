@@ -53,20 +53,11 @@ class DatabaseStore(object):
         dao.update(key, values)
 
     def aggregate(self, table_name, aggregation, key):
-        print("Aggregating records for {} to {} using {}".format(table_name, aggregation, key))
+        aggregation_query = " ".join(aggregation["aggregation_query"])
+        print("Aggregating records for {} to {} using {}".format(table_name, aggregation_query, key))
         dao = DatabaseStoreDao(table_name, self.url)
         dao.delete(key)
-
-        key_clause = " AND ".join("{} = :{}".format(field_name, field_name) for field_name in key)
-        query = "INSERT INTO {} SELECT {} FROM {} WHERE {} GROUP BY {}".format(
-            table_name,
-            ",".join([defn["value"] for defn in aggregation["fields"].values()]),
-            aggregation["from"],
-            "({}) AND ({})".format(aggregation["where"], key_clause),
-            ", ".join(key)
-        )
-        print(query)
-        dao.insert_query(query, key)
+        dao.insert_query(aggregation_query, key)
 
 
 

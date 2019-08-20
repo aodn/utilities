@@ -1,8 +1,6 @@
 """
 Routines for managing the file index
 """
-from collections import OrderedDict
-
 from harvester.source.common import RecordSource
 
 
@@ -15,12 +13,12 @@ def add_or_update_file(persistent_store, pipeline_file):
     :param pipeline_file: pipeline file metadata
     """
 
-    result = persistent_store.select_one("indexed_file", OrderedDict([("url", pipeline_file.dest_path)]))
+    result = persistent_store.select_one("indexed_file", {"url": pipeline_file.dest_path})
 
     if result is None:
-        record = RecordSource([OrderedDict([("url", pipeline_file.dest_path)])], field_names=("url",))
+        record = RecordSource([{"url": pipeline_file.dest_path}], field_names=("url",))
         persistent_store.write("indexed_file", record)
-        result = persistent_store.select_one("indexed_file", OrderedDict([("url", pipeline_file.dest_path)]))
+        result = persistent_store.select_one("indexed_file", {"url": pipeline_file.dest_path})
 
     pipeline_file.id = result[0]
 
@@ -36,7 +34,7 @@ def delete_file(persistent_store, pipeline_file):
     :param pipeline_file: pipeline file metadata
     """
 
-    result = persistent_store.select_one("indexed_file", OrderedDict([("url", pipeline_file.dest_path)]))
+    result = persistent_store.select_one("indexed_file", {"url", pipeline_file.dest_path})
 
     if result is None:
         raise Exception("Should be raising a subclass of exception")  # TODO: fix

@@ -1,5 +1,4 @@
 from migration.run import RunAlembic
-from collections import OrderedDict
 
 import json
 import os
@@ -10,16 +9,16 @@ from harvester.output.database_store import DatabaseStore
 from harvester.stubs.aodncore import PipelineFile
 from harvester.feature_harvester import NetcdfFeatureHarvester
 
-config_file = "config/abos_sofs_fl.json"
-src_path = "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
-dest_path = "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
+# config_file = "config/abos_sofs_fl.json"
+# src_path = "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
+# dest_path = "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
 
-# config_file = "config/anmn_ts.json"
-# src_path = "IMOS_ANMN-QLD_TZ_20130204T000000Z_PIL100_FV01_PIL100-1301-SBE56-43_END-20130801T005134Z_C-20170621T070805Z.nc"
-# dest_path = "IMOS_ANMN-QLD_TZ_20130204T000000Z_PIL100_FV01_PIL100-1301-SBE56-43_END-20130801T005134Z_C-20170621T070805Z.nc"
+config_file = "config/anmn_ts.json"
+src_path = "IMOS_ANMN-QLD_TZ_20130204T000000Z_PIL100_FV01_PIL100-1301-SBE56-43_END-20130801T005134Z_C-20170621T070805Z.nc"
+dest_path = "IMOS_ANMN-QLD_TZ_20130204T000000Z_PIL100_FV01_PIL100-1301-SBE56-43_END-20130801T005134Z_C-20170621T070805Z.nc"
 
 with open(config_file) as f:
-    config = json.load(f, object_pairs_hook=OrderedDict)
+    config = json.load(f)
 
 db_params = config["db_params"]
 script_location = os.path.join("migration", db_params["schema"])

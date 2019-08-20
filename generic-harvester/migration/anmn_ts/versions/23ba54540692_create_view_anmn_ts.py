@@ -28,7 +28,7 @@ def downgrade():
 def get_anmn_ts_timeseries_data():
     anmn_ts_timeseries_data = ReplaceableObject(
         "anmn_ts_timeseries_data",
-        "SELECT m.ts_id AS timeseries_id, "
+        "SELECT m.file_id AS timeseries_id, "
         "fm.site_code, "
         "fm.platform_code, "
         "fm.deployment_code, "
@@ -59,7 +59,7 @@ def get_anmn_ts_timeseries_data():
         "fm.sea_water_pressure_b, "
         "fm.sea_water_pressure_due_to_sea_water_b "
         "FROM feature_metadata fm "
-        "JOIN measurement m ON fm.file_id = m.ts_id;"
+        "JOIN measurement m ON fm.file_id = m.file_id;"
         )
     return anmn_ts_timeseries_data
 

@@ -1,4 +1,3 @@
-from collections import OrderedDict
 import itertools
 import json
 import os
@@ -29,7 +28,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         expected_field_names = ("file_id", "name", "type", "value")
 
-        self.assertEqual(expected_field_names, source.field_names())
+        self.assertEqual(set(expected_field_names), source.field_names())
 
         # check records
 
@@ -59,7 +58,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         # check field_names
         expected_field_names = ('file_id', 'var_name', 'attr_name', 'type', 'value')
-        self.assertEqual(expected_field_names, source.field_names())
+        self.assertEqual(set(expected_field_names), source.field_names())
 
         # check records
 
@@ -92,7 +91,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         # check field_names
         expected_field_names = ('file_id', 'name', 'type', 'dimensions', 'shape')
-        self.assertEqual(expected_field_names, source.field_names())
+        self.assertEqual(set(expected_field_names), source.field_names())
 
         # check records
 
@@ -139,14 +138,14 @@ class TestNetcdfVariableSource(unittest.TestCase):
             }
         }"""
 
-        mapping = json.loads(json_mapping, object_pairs_hook=OrderedDict)
+        mapping = json.loads(json_mapping)
 
         source = NetcdfMeasurementSource(self.nc_file, mapping)
 
         # check field_names
 
         expected_field_names = ("file_id", "TIME", "LATITUDE", "LONGITUDE", "PL_CMP", "WDIR", "WSPD")
-        self.assertEqual(expected_field_names, source.field_names())
+        self.assertEqual(set(expected_field_names), source.field_names())
 
         # check records (first two and count)
 
@@ -181,7 +180,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
                 }
             }"""
 
-        mapping = json.loads(json_mapping, object_pairs_hook=OrderedDict)
+        mapping = json.loads(json_mapping)
 
         source = NetcdfFileSource(self.nc_file, mapping)
 
@@ -192,7 +191,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
             "time_coverage_end", "date_created"
         )
 
-        self.assertEqual(expected_field_names, source.field_names())
+        self.assertEqual(set(expected_field_names), source.field_names())
 
         # check records (1)
 

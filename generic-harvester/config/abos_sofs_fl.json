@@ -65,18 +65,20 @@
             "date_created": {"value": "parse_datetime(dataset.date_created)"}
         }
     },
-    "feature_key": ["deployment_number"],
     "feature_metadata": {
-        "fields": {
-            "deployment_number": {"value": "deployment_number"},
-            "mean_latitude": {"value": "avg(\"LATITUDE\")"},
-            "mean_longitude": {"value": "avg(\"LONGITUDE\")"},
-            "geom": {"value": "st_geomfromtext('POINT(' || avg(\"LONGITUDE\") || ' ' || avg(\"LATITUDE\") || ')', 4326)"},
-            "time_deployment_start": {"value": "min(\"TIME\")"},
-            "time_deployment_end": {"value": "max(\"TIME\")"}
-        },
-        "from": "measurement m JOIN file_metadata t ON (m.file_id = t.file_id)",
-        "where": "\"LATITUDE\" > -60 AND \"LATITUDE\" < -30 AND \"LONGITUDE\" > 130 AND \"LONGITUDE\" < 160"
+        "feature_key": ["deployment_number"],
+        "aggregation_query": [
+            "INSERT INTO feature_metadata",
+            "  (deployment_number, mean_latitude, mean_longitude, geom, time_deployment_start, time_deployment_end)",
+            "SELECT fm.deployment_number, avg(\"LATITUDE\"), avg(\"LONGITUDE\"),",
+            "    st_geomfromtext('POINT(' || avg(\"LONGITUDE\") || ' ' || avg(\"LATITUDE\") || ')', 4326),",
+            "    min(\"TIME\"), max(\"TIME\")",
+            "  FROM file_metadata fm",
+            "  JOIN measurement m ON (fm.file_id = m.file_id)",
+            " WHERE \"LATITUDE\" > -60 AND \"LATITUDE\" < -30 AND \"LONGITUDE\" > 130 AND \"LONGITUDE\" < 160",
+            "   AND deployment_number = :deployment_number",
+            " GROUP BY deployment_number"
+        ]
     },
     "metadata_updates": [
         {

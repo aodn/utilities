@@ -5,7 +5,6 @@ Supports reading global attributes, variable metadata and measurements
 as record streams
 """
 
-from collections import OrderedDict
 from dateutil.parser import parse
 import itertools
 import pytz
@@ -23,7 +22,8 @@ ALLOWED_EXPR_FNS = {
     "mean": np.mean,
     "amin": np.amin,
     "amax": np.amax,
-    "asarray": np.asarray
+    "asarray": np.asarray,
+    "getattr": getattr
 }
 
 
@@ -57,15 +57,15 @@ class NetcdfGlobalAttributeSource(object):
 
         with netCDF4.Dataset(self.netcdf_file.src_path) as dataset:
             for ncattr in dataset.ncattrs():
-                yield OrderedDict([
-                    ("file_id", self.netcdf_file.id),
-                    ("name",  ncattr),
-                    ("type", type(dataset.getncattr(ncattr)).__name__),
-                    ("value", str(dataset.getncattr(ncattr)))
-                ])
+                yield {
+                    "file_id": self.netcdf_file.id,
+                    "name":  ncattr,
+                    "type": type(dataset.getncattr(ncattr)).__name__,
+                    "value": str(dataset.getncattr(ncattr))
+                }
 
     def field_names(self):
-        return "file_id", "name", "type", "value"
+        return {"file_id", "name", "type", "value"}
 
 
 class NetcdfVariableSource(object):
@@ -85,16 +85,16 @@ class NetcdfVariableSource(object):
         with netCDF4.Dataset(self.netcdf_file.src_path) as dataset:
             for variable_name in dataset.variables:
                 variable = dataset[variable_name]
-                yield OrderedDict([
-                    ("file_id", self.netcdf_file.id),
-                    ("name", variable_name),
-                    ("type", str(variable.dtype)),
-                    ("dimensions", ','.join(variable.dimensions)),
-                    ("shape", ' '.join(str(shape) for shape in variable.shape))
-                ])
+                yield {
+                    "file_id": self.netcdf_file.id,
+                    "name": variable_name,
+                    "type": str(variable.dtype),
+                    "dimensions": ','.join(variable.dimensions),
+                    "shape": ' '.join(str(shape) for shape in variable.shape)
+                }
 
     def field_names(self):
-        return "file_id", "name", "type", "dimensions", "shape"
+        return {"file_id", "name", "type", "dimensions", "shape"}
 
 
 class NetcdfVariableAttributeSource(object):
@@ -115,16 +115,16 @@ class NetcdfVariableAttributeSource(object):
             for variable_name in dataset.variables:
                 for attr_name in dataset[variable_name].ncattrs():
                     attribute = dataset[variable_name].getncattr(attr_name)
-                    yield OrderedDict([
-                        ("file_id", self.netcdf_file.id),
-                        ("var_name", variable_name),
-                        ("attr_name", attr_name),
-                        ("type", type(attribute).__name__),
-                        ("value", str(attribute))
-                    ])
+                    yield {
+                        "file_id": self.netcdf_file.id,
+                        "var_name": variable_name,
+                        "attr_name": attr_name,
+                        "type": type(attribute).__name__,
+                        "value": str(attribute)
+                    }
 
     def field_names(self):
-        return "file_id", "var_name", "attr_name", "type", "value"
+        return {"file_id", "var_name", "attr_name", "type", "value"}
 
 
 class NetcdfMeasurementSource(object):
@@ -159,10 +159,10 @@ class NetcdfMeasurementSource(object):
                 row = [next(iterator) for iterator in iterators]
                 # TODO: handle masked data
                 converted_row = [convert(value) for convert, value in itertools.zip_longest(conversions, row)]
-                yield OrderedDict(zip(field_names, [file_id] + converted_row))
+                yield dict(zip(field_names, [file_id] + converted_row))
 
     def field_names(self):
-        return ("file_id",) + tuple(self.mapping["fields"].keys())
+        return {"file_id"} | set(self.mapping["fields"].keys())
 
 
 def _is_datetime(variable):
@@ -191,13 +191,15 @@ class NetcdfFileSource(object):
                 "file": self.netcdf_file
             }
 
-            yield OrderedDict(
-                [("file_id", self.netcdf_file.id)] +
-                [(field_name, expr.parse(defn["value"], variables=names, functions=ALLOWED_EXPR_FNS))
-                 for field_name, defn in self.mapping["fields"].items()]
-            )
+            core_fields = {"file_id": self.netcdf_file.id}
+            derived_fields = {
+                    field_name: expr.parse(defn["value"], variables=names, functions=ALLOWED_EXPR_FNS)
+                    for field_name, defn in self.mapping["fields"].items()
+                }
+
+            yield {**core_fields, **derived_fields}
 
     def field_names(self):
-        return ("file_id",) + tuple(self.mapping["fields"].keys())
+        return {"file_id"} | set(self.mapping["fields"].keys())
 
 

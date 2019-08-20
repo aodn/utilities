@@ -104,12 +104,26 @@ def upgrade():
     op.create_table(
         'file_metadata',
         sa.Column('file_id', sa.BIGINT, nullable=False),
-        sa.Column('deployment_number', sa.VARCHAR(3), nullable=False),
-        sa.Column('delivery_mode', sa.VARCHAR(3), nullable=False),
-        sa.Column('latitude', sa.REAL),
+        sa.Column('site_code', sa.TEXT, nullable=False),
+        sa.Column('platform_code', sa.TEXT, nullable=False),
+        sa.Column('deployment_code', sa.TEXT, nullable=False),
+        sa.Column('LATITUDE', sa.dialects.postgresql.DOUBLE_PRECISION),
+        sa.Column('LATITUDE_quality_control', sa.TEXT),
+        sa.Column('LONGITUDE', sa.dialects.postgresql.DOUBLE_PRECISION),
+        sa.Column('LONGITUDE_quality_control', sa.TEXT),
+        sa.Column('geom', geoal2.Geometry(geometry_type='Geometry', srid=4326)),
+        sa.Column('instrument_nominal_depth', sa.REAL),
+        sa.Column('site_nominal_depth', sa.REAL),
+        sa.Column('site_depth_at_deployment', sa.REAL),
+        sa.Column('instrument', sa.TEXT),
+        sa.Column('instrument_serial_number', sa.TEXT),
         sa.Column('time_coverage_start', sa.TIMESTAMP(timezone=True)),
         sa.Column('time_coverage_end', sa.TIMESTAMP(timezone=True)),
-        sa.Column('date_created', sa.TIMESTAMP(timezone=True)),
+        sa.Column('time_deployment_start', sa.TIMESTAMP(timezone=True)),
+        sa.Column('time_deployment_end', sa.TIMESTAMP(timezone=True)),
+        sa.Column('comment', sa.TEXT),
+        sa.Column('history', sa.TEXT),
+        sa.Column('toolbox_version', sa.TEXT),
         sa.UniqueConstraint('file_id', name='file_metadata_id_uc')
     )
     op.create_foreign_key(
@@ -120,7 +134,7 @@ def upgrade():
 
     op.create_table(
         'measurement',
-        sa.Column('ts_id', sa.BIGINT, nullable=False),
+        sa.Column('file_id', sa.BIGINT, nullable=False),
         sa.Column('TIME', sa.TIMESTAMP(timezone=True), nullable=False),
         sa.Column('TIME_quality_control', sa.TEXT),
         sa.Column('DEPTH', sa.REAL),
@@ -138,11 +152,11 @@ def upgrade():
     )
     op.create_primary_key(
         'measurement_pk', 'measurement',
-        ['ts_id', 'TIME']
+        ['file_id', 'TIME']
     )
     op.create_foreign_key(
         'measurement_ts_fk', 'measurement',
-        'file_metadata', ['ts_id'], ['file_id'],
+        'file_metadata', ['file_id'], ['file_id'],
         onupdate='CASCADE', ondelete='CASCADE', match='SIMPLE'
     )
 

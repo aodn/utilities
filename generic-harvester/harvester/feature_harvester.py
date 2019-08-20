@@ -23,7 +23,7 @@ class NetcdfFeatureHarvester(object):
 
         # determine feature_key
         feature_metadata_record = next(file_source.records())
-        feature_key = subset(feature_metadata_record, self.config["feature_key"])
+        feature_key = subset(feature_metadata_record, self.config["feature_metadata"]["feature_key"])
 
         # feature_metadata
         self._aggregate_feature_metadata(feature_key)
@@ -32,7 +32,7 @@ class NetcdfFeatureHarvester(object):
         feature_metadata_record = self.persistent_store.select_one("file_metadata", {"file_id": self.netcdf_file.id})
         if not feature_metadata_record:
             return
-        feature_key = subset(feature_metadata_record, self.config["feature_key"])
+        feature_key = subset(feature_metadata_record, self.config["feature_metadata"]["feature_key"])
         self._delete_existing_data()
         self._aggregate_feature_metadata(feature_key)
 
@@ -41,4 +41,8 @@ class NetcdfFeatureHarvester(object):
             self.persistent_store.delete_records_for_file(table_name, self.netcdf_file.id)
 
     def _aggregate_feature_metadata(self, feature_key):
-        self.persistent_store.aggregate("feature_metadata", self.config["feature_metadata"], feature_key)
+        self.persistent_store.aggregate(
+            "feature_metadata",
+            self.config["feature_metadata"],
+            feature_key
+        )

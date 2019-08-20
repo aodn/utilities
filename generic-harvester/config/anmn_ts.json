@@ -27,23 +27,58 @@
     },
     "file_metadata": {
         "fields": {
-            "feature_metadata_id": {"value": "asarray(dataset['feature_metadata'])"},
-            "LATITUDE": {"value": "asarray(dataset['LATITUDE'])"},
-            "LONGITUDE": {"value": "asarray(dataset['LONGITUDE'])"},
-            "time_coverage_start": {"value": "parse_datetime(dataset.time_coverage_start)"},
-            "time_coverage_end": {"value": "parse_datetime(dataset.time_coverage_start)"}
+            "site_code": {"value": "dataset.site_code"},
+            "platform_code": {"value": "dataset.platform_code"},
+            "deployment_code": {"value": "dataset.deployment_code"},
+            "\"LATITUDE\"": {"value": "dataset['LATITUDE']"},
+            "\"LATITUDE_quality_control\"": {"value": "dataset.variables.get('LATITUDE_quality_control', None)"},
+            "\"LONGITUDE\"": {"value": "dataset['LONGITUDE']"},
+            "\"LONGITUDE_quality_control\"": {"value": "dataset.variables.get('LONGITUDE_quality_control', None)"},
+            "instrument_nominal_depth": {"value": "dataset.instrument_nominal_depth"},
+            "site_nominal_depth": {"value": "dataset.site_nominal_depth"},
+            "site_depth_at_deployment": {"value": "getattr(dataset, 'site_depth_at_deployment', None)"},
+            "instrument": {"value": "dataset.instrument"},
+            "instrument_serial_number": {"value": "dataset.instrument_serial_number"},
+            "time_coverage_start": {"value": "dataset.time_coverage_start"},
+            "time_coverage_end": {"value": "dataset.time_coverage_end"},
+            "time_deployment_start": {"value": "dataset.time_deployment_start"},
+            "time_deployment_end": {"value": "dataset.time_deployment_end"},
+            "comment": {"value": "dataset.comment"},
+            "history": {"value": "dataset.history"},
+            "toolbox_version": {"value": "dataset.toolbox_version"}
         }
     },
-    "feature_key": ["feature_metadata_id"],
     "feature_metadata": {
-        "fields": {
-            "file_id": {"value": "file_id"},
-            "feature_metadata_id": {"value": "feature_metadata_id"},
-            "LATITUDE": {"value": "LATITUDE"},
-            "LONGITUDE": {"value": "LONGITUDE"},
-            "time_coverage_start": {"value": "time_coverage_start"},
-            "time_coverage_end": {"value": "time_coverage_start"}
-        }
+        "feature_key": ["file_id"],
+        "aggregation_query": [
+            "  WITH aggregates as (",
+            "     SELECT file_id,",
+            "            count(m.\"DEPTH\") > 0 as depth_b,",
+			"            count(m.\"TEMP\") > 0 as temp_b,",
+			"            count(m.\"CNDC\") > 0 as cndc_b,",
+			"            count(m.\"PSAL\") > 0 as psal_b,",
+			"            count(m.\"PRES\") > 0 as pres_b,",
+			"            count(m.\"PRES_REL\") > 0 as pres_rel_b",
+		    "       FROM measurement m",
+            "      WHERE file_id = :file_id",
+            "      GROUP BY file_id",
+            "  )",
+            "INSERT INTO feature_metadata",
+            "  (file_id, site_code, platform_code, deployment_code, \"LATITUDE\", \"LATITUDE_quality_control\",",
+            "   \"LONGITUDE\", \"LONGITUDE_quality_control\", geom, instrument_nominal_depth, site_nominal_depth,",
+            "   site_depth_at_deployment, instrument, instrument_serial_number, time_coverage_start, time_coverage_end,",
+            "   time_deployment_start, time_deployment_end, comment, history, toolbox_version, depth_b,",
+            "   sea_water_temperature_b, sea_water_electrical_conductivity_b, sea_water_salinity_b,",
+            "   sea_water_pressure_b, sea_water_pressure_due_to_sea_water_b)",
+            "SELECT fm.file_id, site_code, platform_code, deployment_code, \"LATITUDE\", \"LATITUDE_quality_control\",",
+            "   \"LONGITUDE\", \"LONGITUDE_quality_control\", geom, instrument_nominal_depth, site_nominal_depth,",
+            "   site_depth_at_deployment, instrument, instrument_serial_number, time_coverage_start, time_coverage_end,",
+            "   time_deployment_start, time_deployment_end, comment, history, toolbox_version, depth_b,",
+            "   temp_b, cndc_b, psal_b, pres_b, pres_rel_b",
+            "  FROM file_metadata fm",
+            "  JOIN aggregates ON fm.file_id = aggregates.file_id",
+            " WHERE fm.file_id = :file_id"
+        ]
     },
     "metadata_updates": [
         {

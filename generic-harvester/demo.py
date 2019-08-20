@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 import json
 
 from harvester import file_index
@@ -8,12 +6,20 @@ from harvester.output.database_store import DatabaseStore
 from harvester.stubs.aodncore import PipelineFile
 from harvester.feature_harvester import NetcdfFeatureHarvester
 
-with open("config/abos_sofs_fl.json") as f:
-    config = json.load(f, object_pairs_hook=OrderedDict)
+# with open("config/abos_sofs_fl.json") as f:
+#     config = json.load(f)
+#
+# netcdf_file = PipelineFile(
+#     "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc",
+#     "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
+# )
+
+with open("config/anmn_ts.json") as f:
+    config = json.load(f)
 
 netcdf_file = PipelineFile(
-    "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc",
-    "IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc"
+    "IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc",
+    "IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc"
 )
 
 persistent_store = DatabaseStore(config["db_params"])
