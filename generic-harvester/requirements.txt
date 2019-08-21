@@ -9,3 +9,4 @@ psycopg2
 GeoAlchemy2
 pandas
 xarray
+Click
