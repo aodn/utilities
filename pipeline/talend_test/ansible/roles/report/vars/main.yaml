@@ -1,0 +1,4 @@
+# common
+date_time: "{{ lookup('pipe','date') }}"   # local system time
+process_action_results: []
+processed_actions: []

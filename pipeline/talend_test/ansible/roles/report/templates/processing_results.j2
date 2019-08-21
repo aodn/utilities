@@ -1,0 +1,13 @@
+File Processing Results - {{ date_time }}
+-------------------------------------------------------
+Testing host:       {{ ansible_host }}
+Test configuration: {{ test_config_full_path }}
+Generate expected:  {{ create_expect }}
+Results full path:  {{ harvest_results_dir }}
+
+|----------------|------------
+| Pipeline Name  | Actions
+|----------------|------------
+{% for result in process_action_results %}
+| {{ result.pipeline_name }}   | {% for action in result.actions %}{{ action }}{% if not loop.last %}, {%  endif %}{% endfor %}
+{% endfor %}

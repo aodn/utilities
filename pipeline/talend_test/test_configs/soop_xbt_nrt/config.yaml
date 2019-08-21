@@ -2,6 +2,7 @@
 name: soop_xbt_nrt
 type: pipeline_version_2
 po: laurent
+process_report_template: processing_results
 dirs:
 - path: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
   owner: projectofficer
@@ -49,6 +50,7 @@ database_schemas:
     exclude_columns: []
 
 # Configuration for running integration tests
+test_report_template: test_results
 assertions:
   # Asserts harvested results are as expected
   - name: diff

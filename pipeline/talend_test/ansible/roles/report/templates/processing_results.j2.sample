@@ -1,0 +1,14 @@
+File Processing Results - Wed 21 Aug 10:47:13 AEST 2019
+-------------------------------------------------------
+Testing host:       po7.aodn.org.au
+Test configuration: test_configs/soop_xbt_nrt/config.yaml
+Generate expected:  yes
+Results path:       /home/cmrose/git/utilities/pipeline/talend_test/harvest_results/po7.aodn.org.au
+
+| Pipeline Name  | Actions
+|----------------|------------
+| soop_xbt_nrt   | action_0_ADD, action_1_UPDATE, action_2_ADD, action_3_DELETE
+| soop_ba        | action_0_ADD, action_1_UPDATE, action_2_ADD, action_3_DELETE
+| soop_co2       | action_0_ADD, action_1_UPDATE
+| soop_trv       | action_0_ADD, action_1_UPDATE, action_2_ADD, action_3_DELETE
+
