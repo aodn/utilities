@@ -1,36 +1,53 @@
+{% macro horiz_border() -%}
+    |-{{ '-' * [heading_column_width|int, 'Pipeline name'|length]|max }}-|{% for assertion in handled_assertions -%}
+        -{{ '-' * [[assertion_column_width|int, 'success'|length]|max, max_assertions_col_width]|min }}-|
+    {%- endfor %}
+{%- endmacro %}
+
+{% macro row(items) -%}
+    | {% for item in items -%}
+            {%  if loop.first -%}
+{{ item }}{{ ' ' * ((heading_column_width|int)-(item|length)) }} |
+            {%- else -%}
+{{ ' ' }}{{ item }}{{ ' ' * ((assertion_column_width|int)-(item|length)) }} |
+            {%- endif %}
+    {%- endfor %}
+{%- endmacro %}
+
 Pipeline Integration Test Report - {{ date_time }}
-----------------------------------------------------------------
+================================================================
 Testing host:       {{ ansible_host }}
 Test configuration: {{ test_config_full_path }}
 
-|----------------|---------|
-| Pipeline name  | diff    |
-|----------------|---------|
-| soop_xbt_nrt   | fail    |
-| soop_ba        | success |
-| soop_co2       | success |
-| soop_trv       | success |
+{{ horiz_border() }}
+{{ row(column_headings) }}
+{{ horiz_border() }}
+{% set ns = namespace(row = []) -%}
+{%- for pipeline in tested_pipelines -%}
+    {%- set ns.row = [all_assertion_results|selectattr('Pipeline','equalto',pipeline)|map(attribute='Pipeline')|first] -%}
+    {%- for column in column_headings -%}
+        {%- if not loop.first -%}
+            {%- set result = all_assertion_results|selectattr('Pipeline','equalto',pipeline)|selectattr('name','equalto',column)|map(attribute='result')|list -%}
+            {%-  if result -%}
+                {%- if result|first -%}{%- set result = 'fail' -%}{%- else -%}{%- set result = 'success' %}{%- endif -%}
+                {%- set ns.row = ns.row + [result] -%}
+            {%- else -%}
+                {%- set ns.row = ns.row + [''] -%}
+            {%-  endif -%}
+        {%-  endif -%}
+    {%- endfor  %}
+{{ row(ns.row) }}
+{% endfor %}
+{{ horiz_border() }}
 
-soop_xbt_nrt:diff
------------------
---- before: ../test_configs/soop_xbt_nrt/expect/action_0_ADD/soop_xbt_nrt/soop_xbt_nrt_profiles_data.csv
-+++ after: /home/cmrose/git/utilities/pipeline/talend_test/harvest_results/po7.aodn.org.au/soop_xbt_nrt/action_0_ADD/soop_xbt_nrt/soop_xbt_nrt_profiles_data.csv
-@@ -1 +1,2 @@
-profile_id,measurement_id,Callsign,vessel_name,TIME,LONGITUDE,LATITUDE,DEPTH,TEMP,geom
-+DIFFERENT
-\ No newline at end of file
+Test Result Details
+===================
 
-
-
-File Processing Results - {{ date_time }}
--------------------------------------------------------
-Testing host:       {{ ansible_host }}
-Test configuration: {{ test_config }}
-Generate expected:  {{ create_expect }}
-Results full path:  {{ harvest_results_dir }}
-
-| Pipeline Name  | Actions
-|----------------|------------
-{% for result in process_action_results %}
-    | {{ result.pipeline_name }}   | {% for action in result.actions %}{{ action }}{% if not loop.last %}, {%  endif %}{% endfor %}
+{% for result in all_assertion_results -%}
+    {%- if result.template is defined %}
+{{ result.Pipeline }}:{{ result.name }}
+----------------------------------------------
+        {% set template_vars = result.template_vars -%}
+        {%- include result.template %}
+    {%- endif -%}
 {% endfor %}

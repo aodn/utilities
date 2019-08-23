@@ -9,5 +9,5 @@ Results full path:  {{ harvest_results_dir }}
 | Pipeline Name  | Actions
 |----------------|------------
 {% for result in process_action_results %}
-| {{ result.pipeline_name }}   | {% for action in result.actions %}{{ action }}{% if not loop.last %}, {%  endif %}{% endfor %}
+| {{ result.pipeline_name }}   | {{ result.actions | join(', ') }}
 {% endfor %}

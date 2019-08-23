@@ -1,4 +1,10 @@
-# common
 date_time: "{{ lookup('pipe','date') }}"   # local system time
 process_action_results: []
 processed_actions: []
+handled_assertions: []
+tested_pipelines: []
+max_assertions_col_width: 20
+all_assertion_results: []
+heading_column_width: 0
+assertion_column_width: 0
+rows: []

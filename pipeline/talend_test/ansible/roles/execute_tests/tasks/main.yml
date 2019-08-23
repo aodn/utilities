@@ -1,6 +1,12 @@
 ---
+- set_fact:
+    assertion_results: []
+
 - include_tasks:
     file: "assert_{{ item.name }}.yaml"
   vars:
     assert_config: "{{ item }}"
   loop: "{{ assertions }}"
+
+- set_fact:
+    all_assertion_results: "{{ all_assertion_results + assertion_results }}"

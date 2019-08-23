@@ -1,5 +1,13 @@
 ---
 # TODO: run a query and compare result with expected.  assert equivalence
-- name: "Assert a query result"
-  debug:
-    var: assert_config
+- block:
+    - name: "Assert query result matches some other query result"
+      assert:
+        that:
+          - assert_config.first_result == assert_config.second_result
+        fail_msg: "Query results do not match"
+        success_msg: "Query results match"
+      register: assertion_result
+  ignore_errors: yes  # Don't halt playbook but show the error in the ignored count in PLAY RECAP
+- set_fact:
+    assertion_results: "{{ assertion_results + [ { 'Pipeline': name, 'name':item.name, 'result': assertion_result.failed } ] }}" # Add to results accumulator for report
