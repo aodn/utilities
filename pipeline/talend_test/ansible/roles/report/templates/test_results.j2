@@ -12,7 +12,7 @@
 {{ ' ' }}{{ item }}{{ ' ' * ((assertion_column_width|int)-(item|length)) }} |
             {%- endif %}
     {%- endfor %}
-{%- endmacro %}
+{%- endmacro -%}
 
 Pipeline Integration Test Report - {{ date_time }}
 ================================================================
@@ -44,10 +44,11 @@ Test Result Details
 ===================
 
 {% for result in all_assertion_results -%}
-    {%- if result.template is defined %}
-{{ result.Pipeline }}:{{ result.name }}
+{% if result.template is defined %}
+
+***** {{ result.Pipeline }}:{{ result.name }} *****
 ----------------------------------------------
-        {% set template_vars = result.template_vars -%}
-        {%- include result.template %}
-    {%- endif -%}
+{% set template_vars = result.template_vars -%}
+{% include result.template %}
+{%- endif %}
 {% endfor %}
