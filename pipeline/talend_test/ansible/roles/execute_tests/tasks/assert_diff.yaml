@@ -26,7 +26,8 @@
   ignore_errors: yes  # Don't halt playbook but show the error in the ignored count in PLAY RECAP
 
 # Gather output for report
-# Note https://github.com/ansible/ansible/issues/14992 re path for template (put assertion report templates in
+# Note https://github.com/ansible/ansible/issues/14992 re path for template
+# (put assertion report templates in report/templates/)
 - set_fact:
     diff: []
 - set_fact:
