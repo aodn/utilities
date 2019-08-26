@@ -80,12 +80,17 @@
             " GROUP BY deployment_number"
         ]
     },
+    "metadata_params": {
+        "url": "http://localhost:8885/geonetwork/",
+        "username": "admin",
+        "password": "admin"
+    },
     "metadata_updates": [
         {
-          "uuid": "09319023093810983098",
-          "spatial_table": "feature_metadata",
-          "spatial_column": "geom",
-          "spatial_resolution": 3
+            "uuid": "80ffbf9d-9547-41aa-8fa1-cf028c58556a",
+            "spatial_table": "feature_metadata",
+            "spatial_column": "geom",
+            "spatial_resolution": 3
         }
     ]
 }

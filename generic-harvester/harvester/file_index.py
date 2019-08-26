@@ -34,7 +34,7 @@ def delete_file(persistent_store, pipeline_file):
     :param pipeline_file: pipeline file metadata
     """
 
-    result = persistent_store.select_one("indexed_file", {"url", pipeline_file.dest_path})
+    result = persistent_store.select_one("indexed_file", {"url": pipeline_file.dest_path})
 
     if result is None:
         raise Exception("Should be raising a subclass of exception")  # TODO: fix

@@ -80,9 +80,14 @@
             " WHERE fm.file_id = :file_id"
         ]
     },
+    "metadata_params": {
+        "url": "http://localhost:8885/geonetwork/",
+        "username": "admin",
+        "password": "admin"
+    },
     "metadata_updates": [
         {
-          "uuid": "09319023093810983098",
+          "uuid": "ae6af5ff-9503-492b-b917-4e3c1a0c19ee",
           "spatial_table": "feature_metadata",
           "spatial_column": "geom",
           "spatial_resolution": 3

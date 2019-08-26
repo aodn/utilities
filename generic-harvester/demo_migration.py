@@ -1,4 +1,4 @@
-from migration.run import RunAlembic
+from migration.run_alembic import RunAlembic
 
 import json
 import os

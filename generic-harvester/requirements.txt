@@ -10,3 +10,5 @@ GeoAlchemy2
 pandas
 xarray
 Click
+requests
+

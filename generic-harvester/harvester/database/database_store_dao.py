@@ -83,6 +83,16 @@ class DatabaseStoreDao:
         r = self.conn.execute(s)
         return r.fetchall()
 
+    def select_query(self, query):
+        """
+
+        :param query: select query
+        :return: query resultset
+        """
+
+        r = self.conn.execute(query)
+        return r.fetchall()
+
     def select_one(self, key):
         """
             Select one record from table using key...
@@ -94,6 +104,7 @@ class DatabaseStoreDao:
         where_clause = " ".join([field_name + " = :" + field_name for field_name in key])
         s = sa.text("SELECT * FROM {} WHERE {}".format(table_name, where_clause))
         str(s)
+        print(s)
         r = self.conn.execute(s, key)
         return r.fetchone()
 

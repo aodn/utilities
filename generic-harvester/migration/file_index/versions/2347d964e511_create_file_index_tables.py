@@ -32,6 +32,7 @@ def upgrade():
         sa.PrimaryKeyConstraint('id', name='indexed_file_pk')
     )
     op.create_index('indexed_file_deleted_idx', 'indexed_file', ['deleted'])
+    op.execute("GRANT SELECT, REFERENCES ON TABLE indexed_file TO PUBLIC")
 
     op.create_table(
         'nc_global_attribute',
@@ -65,6 +66,7 @@ def downgrade():
     op.drop_table('nc_variable')
     op.drop_table('nc_variable_attribute')
 
+    op.execute("REVOKE SELECT, REFERENCES ON indexed_file FROM PUBLIC")
     op.drop_index('indexed_file_deleted_idx')
     op.drop_table('indexed_file')
     op.execute(DropSequence(Sequence('indexed_file_id_seq')))
