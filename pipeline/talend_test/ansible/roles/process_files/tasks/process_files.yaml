@@ -75,3 +75,6 @@
   loop_control:
     loop_var: action_item
     index_var: action_item_index
+
+- set_fact:
+    process_action_results: "{{ process_action_results + [{'pipeline_name':name, 'actions':processed_actions }] }}"
