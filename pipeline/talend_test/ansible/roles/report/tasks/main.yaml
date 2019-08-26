@@ -1,4 +1,10 @@
 ---
+- name: create reports dir
+  delegate_to: localhost
+  file:
+    path: "../reports/"
+    state: directory
+
 - set_fact:
     heading_column_width: "{{ [heading_column_width, item.Pipeline|length] | max }}"
     handled_assertions: "{{ handled_assertions + [item.name] }}"
