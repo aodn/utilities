@@ -7,9 +7,9 @@
 {% macro row(items) -%}
     | {% for item in items -%}
             {%  if loop.first -%}
-{{ item }}{{ ' ' * ((heading_column_width|int)-(item|length)) }} |
+{{ item }}{{ ' ' * (([heading_column_width|int, 'Pipeline name'|length]|max)-(item|length)) }} |
             {%- else -%}
-{{ ' ' }}{{ item }}{{ ' ' * ((assertion_column_width|int)-(item|length)) }} |
+{{ ' ' }}{{ item }}{{ ' ' * (([[assertion_column_width|int, 'success'|length]|max, max_assertions_col_width]|min)-(item|length)) }} |
             {%- endif %}
     {%- endfor %}
 {%- endmacro -%}
