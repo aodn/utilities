@@ -16,7 +16,7 @@ class Psycopg2Store(object):
     """
 
     def __init__(self, params):
-        self.params = params
+        self.params = subset(params, ("database", "host", "port", "user", "password"))
 
     def delete_records_for_file(self, table_name, file_id):
         print("Deleting records for file with id {} from {}...".format(file_id, table_name))
@@ -38,12 +38,6 @@ class Psycopg2Store(object):
 
         return rows_deleted
 
-    def write_dataframe(self, table_name, df):
-        dao = DatabaseStoreDao(table_name)
-        print(datetime.datetime.now())
-        dao.insert_dataframe(df)
-        print(datetime.datetime.now())
-
     def write(self, table_name, source):
         print("Writing records to {}...".format(table_name))
         print(datetime.datetime.now())
@@ -52,11 +46,15 @@ class Psycopg2Store(object):
         rows_inserted = 0
         try:
             conn = psycopg2.connect(**self.params)
-            cur = conn.cursor()
+            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            values_template = "(" + ", ".join(["%({})s".format(field_name) for field_name in source.field_names]) + ")"
+            insert_stmt = 'INSERT INTO "{}" ("{}") VALUES %s'.format(table_name, '","'.join(source.field_names))
+            print(insert_stmt)
             execute_values(
                 cur,
-                'INSERT INTO "{}" ("{}") VALUES %s'.format(table_name, '","'.join(source.field_names())),
-                source.records()
+                insert_stmt,
+                source.records(),
+                template=values_template
             )
             rows_inserted = cur.rowcount
             conn.commit()

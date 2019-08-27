@@ -9,6 +9,7 @@
         "password": "abos_sofs_fl"
     },
     "measurement": {
+        "dimensions": ["TIME"],
         "fields": {
             "TIME": {},
             "LATITUDE": {},

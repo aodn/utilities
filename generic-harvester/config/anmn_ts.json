@@ -9,6 +9,7 @@
         "password": "anmn_ts"
     },
     "measurement": {
+        "dimensions": ["TIME"],
         "fields": {
             "TIME": {},
             "TEMP": {},
@@ -30,12 +31,19 @@
             "site_code": {"value": "dataset.site_code"},
             "platform_code": {"value": "dataset.platform_code"},
             "deployment_code": {"value": "dataset.deployment_code"},
-            "\"LATITUDE\"": {"value": "dataset['LATITUDE']"},
-            "\"LATITUDE_quality_control\"": {"value": "dataset.variables.get('LATITUDE_quality_control', None)"},
-            "\"LONGITUDE\"": {"value": "dataset['LONGITUDE']"},
-            "\"LONGITUDE_quality_control\"": {"value": "dataset.variables.get('LONGITUDE_quality_control', None)"},
+            "LATITUDE": {"value": "dataset['LATITUDE'].getValue().item()"},
+            "LATITUDE_quality_control": {
+                "value": "dataset['LATITUDE_quality_control'].getValue().item() if 'LATITUDE_quality_control' in dataset.variables else None"
+            },
+            "LONGITUDE": {"value": "dataset['LONGITUDE'].getValue().item()"},
+            "LONGITUDE_quality_control": {
+                "value": "dataset['LONGITUDE_quality_control'].getValue().item() if 'LONGITUDE_quality_control' in dataset.variables else None"
+            },
+            "geom": {
+                "value": "point(dataset['LONGITUDE'].getValue().item(), dataset['LATITUDE'].getValue().item())"
+            },
             "instrument_nominal_depth": {"value": "dataset.instrument_nominal_depth"},
-            "site_nominal_depth": {"value": "dataset.site_nominal_depth"},
+            "site_nominal_depth": {"value": "getattr(dataset, 'site_nominal_depth', None)"},
             "site_depth_at_deployment": {"value": "getattr(dataset, 'site_depth_at_deployment', None)"},
             "instrument": {"value": "dataset.instrument"},
             "instrument_serial_number": {"value": "dataset.instrument_serial_number"},

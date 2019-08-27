@@ -1,7 +1,12 @@
+"""
+Tests for the harvester.source.netcdf module
+"""
 import itertools
 import json
 import os
 import unittest
+from collections import OrderedDict
+
 from dateutil import parser
 
 from harvester.source.netcdf import (NetcdfGlobalAttributeSource, NetcdfVariableAttributeSource,
@@ -28,7 +33,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         expected_field_names = ("file_id", "name", "type", "value")
 
-        self.assertEqual(set(expected_field_names), source.field_names())
+        self.assertEqual(expected_field_names, source.field_names)
 
         # check records
 
@@ -46,7 +51,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
                                    'a rainfall (H_RAIN).'), (25, 'source', 'str', 'Mooring observation')
         ]
 
-        expected_rows = zip_list(expected_field_names, expected_values)
+        expected_rows = list(zip_list(expected_field_names, expected_values))
 
         self.assertEqual(expected_rows, first_eight)
         self.assertEqual(46, count)
@@ -58,7 +63,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         # check field_names
         expected_field_names = ('file_id', 'var_name', 'attr_name', 'type', 'value')
-        self.assertEqual(set(expected_field_names), source.field_names())
+        self.assertEqual(expected_field_names, source.field_names)
 
         # check records
 
@@ -78,9 +83,9 @@ class TestNetcdfVariableSource(unittest.TestCase):
             (25, 'LATITUDE', 'reference_datum', 'str', 'geographical coordinates, WGS84')
         ]
 
-        expected_rows = zip_list(expected_field_names, expected_values)
+        expected_records = list(zip_list(expected_field_names, expected_values))
 
-        self.assertEqual(expected_rows, first_16)
+        self.assertEqual(expected_records, first_16)
 
         self.assertEqual(179, count)
 
@@ -91,34 +96,34 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         # check field_names
         expected_field_names = ('file_id', 'name', 'type', 'dimensions', 'shape')
-        self.assertEqual(set(expected_field_names), source.field_names())
+        self.assertEqual(expected_field_names, source.field_names)
 
         # check records
 
         first_16 = itertools.islice(source.records(), 16)
 
-        expected_rows = zip_list(
-            expected_field_names,
-            [
-                (25, 'TIME', 'float64', 'TIME', '22'),
-                (25, 'LATITUDE', 'float32', 'TIME', '22'),
-                (25, 'LONGITUDE', 'float32', 'TIME', '22'),
-                (25, 'PL_CMP', 'float32', 'TIME', '22'),
-                (25, 'WDIR', 'float32', 'TIME', '22'),
-                (25, 'WSPD', 'float32', 'TIME', '22'),
-                (25, 'WIND_H', 'float32', 'TIME', '22'),
-                (25, 'WIND_FLAG', 'int16', 'TIME', '22'),
-                (25, 'ATMP', 'float32', 'TIME', '22'),
-                (25, 'ATMP_H', 'float32', 'TIME', '22'),
-                (25, 'ATMP_FLAG', 'int16', 'TIME', '22'),
-                (25, 'AIRT', 'float32', 'TIME', '22'),
-                (25, 'AIRT_H', 'float32', 'TIME', '22'),
-                (25, 'AIRT_FLAG', 'int16', 'TIME', '22'),
-                (25, 'RELH', 'float32', 'TIME', '22'),
-                (25, 'RELH_H', 'float32', 'TIME', '22')
-            ]
-        )
-        self.assertEqual(expected_rows, list(first_16))
+        expected_values = [
+            (25, 'TIME', 'float64', 'TIME', '22'),
+            (25, 'LATITUDE', 'float32', 'TIME', '22'),
+            (25, 'LONGITUDE', 'float32', 'TIME', '22'),
+            (25, 'PL_CMP', 'float32', 'TIME', '22'),
+            (25, 'WDIR', 'float32', 'TIME', '22'),
+            (25, 'WSPD', 'float32', 'TIME', '22'),
+            (25, 'WIND_H', 'float32', 'TIME', '22'),
+            (25, 'WIND_FLAG', 'int16', 'TIME', '22'),
+            (25, 'ATMP', 'float32', 'TIME', '22'),
+            (25, 'ATMP_H', 'float32', 'TIME', '22'),
+            (25, 'ATMP_FLAG', 'int16', 'TIME', '22'),
+            (25, 'AIRT', 'float32', 'TIME', '22'),
+            (25, 'AIRT_H', 'float32', 'TIME', '22'),
+            (25, 'AIRT_FLAG', 'int16', 'TIME', '22'),
+            (25, 'RELH', 'float32', 'TIME', '22'),
+            (25, 'RELH_H', 'float32', 'TIME', '22')
+        ]
+
+        expected_records = list(zip_list(expected_field_names, expected_values))
+
+        self.assertEqual(expected_records, list(first_16))
 
         count = sum(1 for _ in source.records())
         self.assertEqual(44, count)
@@ -128,6 +133,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         json_mapping = """{
             "name": "measurement",
+            "dimensions": ["TIME"],
             "fields": {
                 "TIME": {},
                 "LATITUDE": {},
@@ -138,14 +144,14 @@ class TestNetcdfVariableSource(unittest.TestCase):
             }
         }"""
 
-        mapping = json.loads(json_mapping)
+        mapping = json.loads(json_mapping, object_pairs_hook=OrderedDict)
 
         source = NetcdfMeasurementSource(self.nc_file, mapping)
 
         # check field_names
 
         expected_field_names = ("file_id", "TIME", "LATITUDE", "LONGITUDE", "PL_CMP", "WDIR", "WSPD")
-        self.assertEqual(set(expected_field_names), source.field_names())
+        self.assertEqual(expected_field_names, source.field_names)
 
         # check records (first two and count)
 
@@ -159,9 +165,9 @@ class TestNetcdfVariableSource(unittest.TestCase):
              27.399999618530273, 143.1999969482422, 11.0)
         ]
 
-        expected_rows = zip_list(expected_field_names, expected_values)
+        expected_records = list(zip_list(expected_field_names, expected_values))
 
-        self.assertEqual(expected_rows, first_two_recs)
+        self.assertEqual(expected_records, first_two_recs)
         self.assertEqual(22, count)
 
     def test_file_source(self):
@@ -180,7 +186,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
                 }
             }"""
 
-        mapping = json.loads(json_mapping)
+        mapping = json.loads(json_mapping, object_pairs_hook=OrderedDict)
 
         source = NetcdfFileSource(self.nc_file, mapping)
 
@@ -191,13 +197,13 @@ class TestNetcdfVariableSource(unittest.TestCase):
             "time_coverage_end", "date_created"
         )
 
-        self.assertEqual(set(expected_field_names), source.field_names())
+        self.assertEqual(expected_field_names, source.field_names)
 
         # check records (1)
 
         expected_values = [(25, "", "DM", -46.90268325805664, 142.38839721679688, parser.parse("2019-08-05T01:59Z"),
-               parser.parse("2019-08-05T01:59Z"), parser.parse("2019-08-06T00:25:03Z"))]
+                            parser.parse("2019-08-05T01:59Z"), parser.parse("2019-08-06T00:25:03Z"))]
 
-        expected_rows = zip_list(expected_field_names, expected_values)
+        expected_records = list(zip_list(expected_field_names, expected_values))
 
-        self.assertEqual(expected_rows, list(source.records()))
+        self.assertEqual(expected_records, list(source.records()))
