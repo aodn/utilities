@@ -90,7 +90,18 @@
             "uuid": "80ffbf9d-9547-41aa-8fa1-cf028c58556a",
             "spatial_table": "feature_metadata",
             "spatial_column": "geom",
-            "spatial_resolution": 3
+            "spatial_resolution": 3,
+            "temporal_column": "TIME",
+            "temporal_table":  "measurement",
+            "vertical_column_value": "value",
+            "vertical_file_metadata_table":  "file_metadata",
+            "vertical_index_schema": "file_index",
+            "vertical_index_table": "nc_global_attribute",
+            "vertical_file_metadata_table_column": "file_id",
+            "vertical_index_table_column": "file_id",
+            "vertical_column_name": "name",
+            "vertical_column_name_min": "geospatial_vertical_min",
+            "vertical_column_name_max": "geospatial_vertical_max"
         }
     ]
 }

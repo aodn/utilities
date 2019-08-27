@@ -19,23 +19,23 @@ class DatabaseStore(object):
 
     def delete_records_for_file(self, table_name, file_id):
         print("Deleting records for file with id {} from {}...".format(file_id, table_name))
-        dao = DatabaseStoreDao(table_name, self.url)
+        dao = DatabaseStoreDao(self.url)
         dao.delete({"file_id": file_id})
 
     def write_dataframe(self, table_name, df):
-        dao = DatabaseStoreDao(table_name, self.url)
+        dao = DatabaseStoreDao(self.url)
         print(datetime.datetime.now())
-        dao.insert_dataframe(df)
+        dao.insert_dataframe(table_name, df)
         print(datetime.datetime.now())
 
     def write(self, table_name, source):
         print("Writing records to {}...".format(table_name))
 
-        dao = DatabaseStoreDao(table_name, self.url)
+        dao = DatabaseStoreDao(self.url)
         print(datetime.datetime.now())
         records = list(source.records())
         print(datetime.datetime.now())
-        dao.insert(records)
+        dao.insert(table_name, records)
         print(datetime.datetime.now())
 
     def select_first_record_for_file(self, table_name, field_names, file_id):
@@ -44,19 +44,19 @@ class DatabaseStore(object):
 
     def select_one(self, table_name, key):
         print("selecting {} from {}".format(key, table_name))
-        dao = DatabaseStoreDao(table_name, self.url)
-        return dao.select_one(key)
+        dao = DatabaseStoreDao(self.url)
+        return dao.select_one(table_name, key)
 
     def update(self, table_name, key, values):
         print("updating {} in {} with {}".format(key, table_name, values))
-        dao = DatabaseStoreDao(table_name, self.url)
-        dao.update(key, values)
+        dao = DatabaseStoreDao(self.url)
+        dao.update(table_name, key, values)
 
     def aggregate(self, table_name, aggregation, key):
         aggregation_query = " ".join(aggregation["aggregation_query"])
         print("Aggregating records for {} to {} using {}".format(table_name, aggregation_query, key))
-        dao = DatabaseStoreDao(table_name, self.url)
-        dao.delete(key)
+        dao = DatabaseStoreDao(self.url)
+        dao.delete(table_name, key)
         dao.insert_query(aggregation_query, key)
 
 

@@ -41,6 +41,7 @@ def upgrade():
         sa.Column('type', sa.dialects.postgresql.TEXT, nullable=False),
         sa.Column('value', sa.dialects.postgresql.TEXT, nullable=False)
     )
+    op.execute("GRANT SELECT ON TABLE nc_global_attribute TO PUBLIC")
 
     op.create_table(
         'nc_variable',
@@ -64,6 +65,7 @@ def upgrade():
 def downgrade():
     op.drop_table('nc_global_attribute')
     op.drop_table('nc_variable')
+    op.execute("REVOKE SELECT ON nc_variable_attribute FROM PUBLIC")
     op.drop_table('nc_variable_attribute')
 
     op.execute("REVOKE SELECT, REFERENCES ON indexed_file FROM PUBLIC")

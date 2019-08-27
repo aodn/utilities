@@ -7,7 +7,6 @@ Create Date: 2019-08-19 08:02:36.109635
 """
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy.schema import Sequence, CreateSequence, DropSequence
 import geoalchemy2 as geoal2
 
 

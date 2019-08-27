@@ -1,22 +1,27 @@
 """
 Run Harverster Commandline Stand alone application
 
-# python run_harvester.py db-drop -c config/file_index.json
-# python run_harvester.py db-create  -c config/file_index.json
+python run_harvester.py db-drop -c config/file_index.json
+python run_harvester.py db-create  -c config/file_index.json
 
-# python run_harvester.py db-drop -c config/abos_sofs_fl.json
-# python run_harvester.py db-create  -c config/abos_sofs_fl.json
+python run_harvester.py db-drop -c config/abos_sofs_fl.json
+python run_harvester.py db-create  -c config/abos_sofs_fl.json
 
-# python run_harvester.py harvest -c config/abos_sofs_fl.json -i config/file_index.json -s IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc -d IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc
-# python run_harvester.py delete -c config/abos_sofs_fl.json -i config/file_index.json -s IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc -d IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc
-# python run_harvester.py update-metadata -c config/abos_sofs_fl.json
+python run_harvester.py harvest -c config/abos_sofs_fl.json -i config/file_index.json -s IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc -d IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc
+python run_harvester.py delete -c config/abos_sofs_fl.json -i config/file_index.json -s IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc -d IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc
+python run_harvester.py update-metadata -c config/abos_sofs_fl.json
 
-# python run_harvester.py db-drop -c config/anmn_ts.json
-# python run_harvester.py db-create  -c config/anmn_ts.json
+python run_harvester.py db-drop -c config/anmn_ts.json
+python run_harvester.py db-create  -c config/anmn_ts.json
 
-# python run_harvester.py harvest -c config/anmn_ts.json -i config/file_index.json -s IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc -d IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc
-# python run_harvester.py delete -c config/anmn_ts.json -i config/file_index.json -s IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc -d IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc
-# python run_harvester.py update-metadata -c config/anmn_ts.json
+python run_harvester.py harvest -c config/anmn_ts.json -i config/file_index.json -s IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc -d IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc
+python run_harvester.py delete -c config/anmn_ts.json -i config/file_index.json -s IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc -d IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc
+python run_harvester.py update-metadata -c config/anmn_ts.json
+
+python run_harvester.py update-metadata -c config/anmn_ts.json -s -t -v
+python run_harvester.py update-metadata -c config/anmn_ts.json --spatial --temporal --vertical
+python run_harvester.py update-metadata -c config/anmn_ts.json --spatial --temporal --no-vertical
+
 """
 
 from migration.run_alembic import RunAlembic
@@ -157,12 +162,15 @@ def delete(config, config_index, source, destination):
 @harvester.command()
 @click.option('-c', '--config', prompt=True, type=click.Path(exists=True, file_okay=True, resolve_path=False),
               help='Configuration file of the harvester')
-def update_metadata(config):
+@click.option('-s', '--spatial/--no-spatial', default=False, help='Update spatial extent')
+@click.option('-t', '--temporal/--no-temporal', default=False, help='Update temporal extent')
+@click.option('-v', '--vertical/--no-vertical', default=False, help='Update vertical extent')
+def update_metadata(config, spatial, temporal, vertical):
     # Create MetadataUpdater instance
     updater = init_metadata_updater(config)
 
     # Update metadata information
-    updater.update_metadata()
+    updater.update_metadata(spatial, temporal, vertical)
 
 
 harvester.add_command(db_create)

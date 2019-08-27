@@ -7,10 +7,10 @@ logging.getLogger('sqlalchemy').setLevel(logging.WARN)
 
 class DatabaseStoreDao:
     """
-
+    Database Store - Data Access Object
     """
 
-    def __init__(self, table_name, url):
+    def __init__(self, url):
         """
             Constructor
         """
@@ -18,43 +18,45 @@ class DatabaseStoreDao:
         self.engine = sa.create_engine(self.url)
         self.conn = self.engine.connect()
         self.meta = sa.MetaData(self.conn)
-        self.table = self.get_table(table_name)
 
     def get_table(self, table_name):
         """
 
-        :return: table
+        :param table_name: name of the table
+        :return: SQLAlchemy table
         """
         return sa.Table(table_name, self.meta, autoload=True)
 
-    def insert(self, values_data):
+    def insert(self, table_name, values_data):
         """
-            Insert records into table...
-
-        :return:
+        Insert records into table...
+        :param table_name: name of the table
+        :param values_data: insert data
+        :return: insert execution result
         """
 
-        ins = self.table.insert()
+        ins = self.get_table(table_name).insert()
         # start transaction
         t = self.conn.begin()
 
         try:
             r = self.conn.execute(ins, values_data)
             t.commit()
-            print("Transaction completed.")
+            logging.info("Transaction completed.")
 
         except sa.exc.SQLAlchemyError as e:
-            print(e)
+            logging.error(e)
             t.rollback()
             r = None
-            print("Transaction failed.")
+            logging.info("Transaction failed.")
         return r
 
     def insert_query(self, query, parameters):
         """
-            Insert records into table using defined query...
-
-        :return:
+        Insert records into table using defined query...
+        :param query: insert query
+        :param parameters: insert query parameters
+        :return: insert execution result
         """
 
         s = sa.text(query)
@@ -64,28 +66,28 @@ class DatabaseStoreDao:
         try:
             self.conn.execute(s, parameters)
             t.commit()
-            print("Transaction completed.")
+            logging.info("Transaction completed.")
 
         except sa.exc.SQLAlchemyError as e:
-            print(e)
+            logging.error(e)
             t.rollback()
-            print("Transaction failed.")
+            logging.info("Transaction failed.")
 
-    def select(self):
+    def select(self, table_name):
         """
-            Select all records from table...
-
-        :return:
+        Select all records from table...
+        :param table_name: name of the table
+        :return: query resultset
         """
 
-        s = sa.select([self.table])
+        s = sa.select([self.get_table(table_name)])
         str(s)
         r = self.conn.execute(s)
         return r.fetchall()
 
     def select_query(self, query):
         """
-
+        Select records from defined query...
         :param query: select query
         :return: query resultset
         """
@@ -93,42 +95,43 @@ class DatabaseStoreDao:
         r = self.conn.execute(query)
         return r.fetchall()
 
-    def select_one(self, key):
+    def select_one(self, table_name, key):
         """
-            Select one record from table using key...
-
+        Select one record from table using key...
+        :param table_name: name of the table
+        :param key: key parameters
         :return:
         """
 
-        table_name = self.table.name
         where_clause = " ".join([field_name + " = :" + field_name for field_name in key])
         s = sa.text("SELECT * FROM {} WHERE {}".format(table_name, where_clause))
         str(s)
-        print(s)
         r = self.conn.execute(s, key)
         return r.fetchone()
 
-    def update(self, key, values):
+    def update(self, table_name, key, values):
         """
-            update record from table using key...
-
+        Update record from table using key...
+        :param table_name: name of the table
+        :param key: update key parameters
+        :param values: update values
         :return:
         """
 
-        table_name = self.table.name
         where_clause = " ".join([field_name + " = :" + field_name for field_name in key])
         set_clause = " ".join([field_name + "= :" + field_name for field_name in values])
         s = sa.text("UPDATE {} SET {} WHERE {}".format(table_name, set_clause, where_clause))
         str(s)
         self.conn.execute(s, {**key, **values})
 
-    def delete(self, key):
+    def delete(self, table_name, key):
         """
-            Delete all records for key...
-
+        Delete all records for key...
+        :param table_name: name of the table
+        :param key: delete key parameters
         :return:
         """
-        table_name = self.table.name
+
         where_clause = " ".join([field_name + " = :" + field_name for field_name in key])
         s = sa.text("DELETE FROM {} WHERE {}".format(table_name, where_clause))
         str(s)
@@ -138,25 +141,30 @@ class DatabaseStoreDao:
         try:
             r = self.conn.execute(s, key)
             t.commit()
-            print("Transaction completed.")
+            logging.info("Transaction completed.")
 
         except sa.exc.SQLAlchemyError as e:
-            print(e)
+            logging.error(e)
             t.rollback()
             r = None
-            print("Transaction failed.")
+            logging.info("Transaction failed.")
         return r
 
-    def insert_dataframe(self, df):
-        table_name = self.table.name
+    def insert_dataframe(self, table_name, df):
+        """
+
+        :param table_name: name of the table
+        :param df: dataframe
+        :return:
+        """
         # start transaction
         t = self.conn.begin()
         try:
             df.to_sql(table_name, con=self.engine, if_exists='append')
             t.commit()
-            print("Transaction completed.")
+            logging.info("Transaction completed.")
 
         except sa.exc.SQLAlchemyError as e:
-            print(e)
+            logging.error(e)
             t.rollback()
-            print("Transaction failed.")
+            logging.info("Transaction failed.")
