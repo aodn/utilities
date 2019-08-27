@@ -242,15 +242,13 @@ The report includes details of each difference in each file checked.
 ## Running multiple pipeline harvesters and their integration tests
 
 All configured harvesters in the test_config can be tested with the following two commands (`test_config` is set to the 
-directory containing the config files):
+directory containing the config files).  The second of these can be very long running depending on the files being processed and the harvesters being run.
 
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_process.yaml \
 -i test_configs/hosts -u vagrant --key-file "/path/to/ssh/private/key/file" \
 --extra-vars "test_config=test_configs"
 ```
-
-Depending on the files being processed and the harvesters being run this can be a very long running process.
 
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_tests.yaml \
