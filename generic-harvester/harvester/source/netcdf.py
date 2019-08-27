@@ -44,7 +44,6 @@ import re
 
 import netCDF4
 import numpy as np
-from functools import reduce
 
 from harvester.spatial.geometry import point
 from harvester.util import expressionparser as expr
@@ -147,23 +146,13 @@ class NetcdfVariableAttributeSource(object):
 # Performance sensitive!!  Applied to each row of measurements
 
 def _get_mapper(name, defn, variables):
-    # TODO: handle masked data
-
-    # TODO: allow lambda functions in expressions to allow mappings at this level (uncommon)
-
-    # if "value" in defn:
-    #     return expr.parse(defn["value"])
-
     if name not in variables:
         return lambda values: None
 
     variable = variables[name]
+    fill_value = variable[:].fill_value
 
-    if _is_datetime(variable):
-        # TODO: need to ensure this is always applied to date/time variables first
-        return lambda values: pytz.UTC.localize(values[name])
-    else:
-        return lambda values: values[name]
+    return lambda values: values[name].item() if values[name].item() != fill_value else None
 
 
 # function used to determine whether a variable contains date/time values
@@ -173,13 +162,15 @@ def _is_datetime(variable):
     return hasattr(variable, 'units') and re.match(r'.* since .*', variable.units)
 
 
-# returns numpy arrays containing variable values - date/time variables are converted to date/time arrays
+# returns numpy arrays containing variable values - date/time variables are converted to UTC date/time arrays
 
-def _values(variable):
+def _get_values(variable):
     if _is_datetime(variable):
         calendar = variable.calendar if hasattr(variable, 'calendar') else 'standard'
         units = variable.units
-        return netCDF4.num2date(variable[:], units, calendar)
+        dates = netCDF4.num2date(variable[:], units, calendar)
+        make_utc = np.vectorize(pytz.UTC.localize)
+        return make_utc(dates)
     else:
         return variable[:]
 
@@ -203,15 +194,16 @@ class NetcdfMeasurementSource(object):
         """
 
         with netCDF4.Dataset(self.netcdf_file.src_path) as dataset:
+            dataset.set_auto_scale(True)
             variables = dict((name, variable) for name, variable in dataset.variables.items()
                              if variable.dimensions == tuple(self.mapping["dimensions"]))
             field_mappers = [_get_mapper(name, defn, variables) for name, defn in self.mapping["fields"].items()]
             file_id = self.netcdf_file.id
             # iterate through each variables values - can be millions so performance sensitive!
-            iterators = {name: np.nditer(_values(variable), flags=["refs_ok"]) for name, variable in variables.items()}
+            iterators = {name: np.nditer(_get_values(variable), flags=["refs_ok"]) for name, variable in variables.items()}
             first_iterator = list(iterators.values())[0]
             for index in range(*first_iterator.iterrange):
-                variable_values = {name: next(iterator).item() for name, iterator in iterators.items()}
+                variable_values = {name: next(iterator) for name, iterator in iterators.items()}
                 record_values = [file_id] + [map(variable_values) for map in field_mappers]
                 yield dict(zip(self.field_names, record_values))
 
