@@ -5,9 +5,9 @@ Test configuration: {{ test_config_full_path }}
 Generate expected:  {{ create_expect|default('false',true) }}
 Results full path:  {{ harvest_results_dir }}
 
-|----------------|------------
-| Pipeline Name  | Actions
-|----------------|------------
+|------------------------|------------
+| Pipeline Name          | Actions
+|------------------------|------------
 {% for result in process_action_results %}
-| {{ result.pipeline_name }}   | {{ result.actions | join(', ') }}
+| {{ result.pipeline_name }}{{ ' ' * (20 -(result.pipeline_name|length)) }}   | {{ result.actions | join(', ') }}
 {% endfor %}
