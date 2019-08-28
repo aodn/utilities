@@ -126,7 +126,7 @@ def db_drop(config):
               help='Configuration file of the indexer')
 @click.option('-s', '--source', prompt=True, type=click.Path(exists=True, file_okay=True, resolve_path=False),
               help='Source path for the NetCDF file')
-@click.option('-d', '--destination', prompt=True, type=click.Path(exists=True, file_okay=True, resolve_path=False),
+@click.option('-d', '--destination', prompt=True, type=click.Path(exists=False, file_okay=True, resolve_path=False),
               help='Destination path for the NetCDF file')
 def harvest(config, config_index, source, destination):
     index_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester = init_harvester(config,
@@ -145,7 +145,7 @@ def harvest(config, config_index, source, destination):
               help='Configuration file of the indexer')
 @click.option('-s', '--source', prompt=True, type=click.Path(exists=True, file_okay=True, resolve_path=False),
               help='Source path for the NetCDF file')
-@click.option('-d', '--destination', prompt=True, type=click.Path(exists=True, file_okay=True, resolve_path=False),
+@click.option('-d', '--destination', prompt=True, type=click.Path(exists=False, file_okay=True, resolve_path=False),
               help='Destination path for the NetCDF file')
 def delete(config, config_index, source, destination):
     index_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester = init_harvester(config,
