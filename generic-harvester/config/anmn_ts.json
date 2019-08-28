@@ -8,7 +8,8 @@
         "user": "anmn_ts",
         "password": "anmn_ts"
     },
-    "measurement": {
+    "value_mappings": [{
+        "table": "measurement",
         "dimensions": ["TIME"],
         "fields": {
             "TIME": {},
@@ -24,8 +25,8 @@
             "PRES_quality_control": {},
             "PRES_REL": {},
             "PRES_REL_quality_control": {}
-         }
-    },
+        }
+    }],
     "file_metadata": {
         "fields": {
             "site_code": {"value": "dataset.site_code"},
@@ -56,18 +57,21 @@
             "toolbox_version": {"value": "dataset.toolbox_version"}
         }
     },
-    "feature_metadata": {
-        "feature_key": ["file_id"],
-        "aggregation_query": [
+    "aggregations": [{
+        "table": "feature_metadata",
+        "key": [
+            "file_id"
+        ],
+        "query": [
             "  WITH aggregates as (",
             "     SELECT file_id,",
             "            count(m.\"DEPTH\") > 0 as depth_b,",
-			"            count(m.\"TEMP\") > 0 as temp_b,",
-			"            count(m.\"CNDC\") > 0 as cndc_b,",
-			"            count(m.\"PSAL\") > 0 as psal_b,",
-			"            count(m.\"PRES\") > 0 as pres_b,",
-			"            count(m.\"PRES_REL\") > 0 as pres_rel_b",
-		    "       FROM measurement m",
+            "            count(m.\"TEMP\") > 0 as temp_b,",
+            "            count(m.\"CNDC\") > 0 as cndc_b,",
+            "            count(m.\"PSAL\") > 0 as psal_b,",
+            "            count(m.\"PRES\") > 0 as pres_b,",
+            "            count(m.\"PRES_REL\") > 0 as pres_rel_b",
+            "       FROM measurement m",
             "      WHERE file_id = :file_id",
             "      GROUP BY file_id",
             "  )",
@@ -87,7 +91,7 @@
             "  JOIN aggregates ON fm.file_id = aggregates.file_id",
             " WHERE fm.file_id = :file_id"
         ]
-    },
+    }],
     "metadata_params": {
         "url": "http://localhost:8885/geonetwork/",
         "username": "admin",

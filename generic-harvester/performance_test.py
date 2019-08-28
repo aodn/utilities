@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 from datetime import datetime
 
-from harvester.source.netcdf import NetcdfMeasurementSource
+from harvester.source.netcdf import NetcdfValueSource
 from harvester.stubs.aodncore import PipelineFile
 
 with open("config/anmn_ts.json") as f:
@@ -15,7 +15,16 @@ netcdf_file = PipelineFile(
     24
 )
 
-source = NetcdfMeasurementSource(netcdf_file, config["measurement"])
+# with open("config/srs.json") as f:
+#     config = json.load(f, object_pairs_hook=OrderedDict)
+#
+# netcdf_file = PipelineFile(
+#     "20100101032000-ABOM-L3C_GHRSST-SSTskin-AVHRR16_D-1d_day.nc",
+#     "20100101032000-ABOM-L3C_GHRSST-SSTskin-AVHRR16_D-1d_day.nc",
+#     24
+# )
+
+source = NetcdfValueSource(netcdf_file, config["measurement"])
 
 print(datetime.now())
 

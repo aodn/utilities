@@ -8,7 +8,8 @@
         "user": "abos_sofs_fl",
         "password": "abos_sofs_fl"
     },
-    "measurement": {
+    "value_mappings": [{
+        "table": "measurement",
         "dimensions": ["TIME"],
         "fields": {
             "TIME": {},
@@ -55,7 +56,7 @@
             "RELH1_5M": {},
             "RELH2_0M": {}
         }
-    },
+    }],
     "file_metadata": {
         "fields": {
             "deployment_number": {"value": "dataset.deployment_number"},
@@ -66,9 +67,10 @@
             "date_created": {"value": "parse_datetime(dataset.date_created)"}
         }
     },
-    "feature_metadata": {
-        "feature_key": ["deployment_number"],
-        "aggregation_query": [
+    "aggregations": [{
+        "table": "feature_metadata",
+        "key": ["deployment_number"],
+        "query": [
             "INSERT INTO feature_metadata",
             "  (deployment_number, mean_latitude, mean_longitude, geom, time_deployment_start, time_deployment_end)",
             "SELECT fm.deployment_number, avg(\"LATITUDE\"), avg(\"LONGITUDE\"),",
@@ -80,7 +82,7 @@
             "   AND deployment_number = :deployment_number",
             " GROUP BY deployment_number"
         ]
-    },
+    }],
     "metadata_params": {
         "url": "http://localhost:8885/geonetwork/",
         "username": "admin",

@@ -1,52 +1,88 @@
-from collections import OrderedDict
+"""
+This module contains the NetcdfFeatureHarvester and supporting code
+"""
 
 from harvester.source.netcdf import NetcdfFileSource
-from harvester.source.netcdf import NetcdfMeasurementSource
+from harvester.source.netcdf import NetcdfValueSource
 from harvester.util.collections import subset
 
 
 class NetcdfFeatureHarvester(object):
+    """
+    A netcdf feature harvester
 
-    def __init__(self, feature_store, netcdf_file, config, logger):
+    A NetcdfFeatureHarvester is used to harvest or delete requested file metadata and measurements from/for a
+    netCDF file and update aggregated feature metadata.
+
+    The measurements and feature related metadata to harvest or delete and the feature metadata to be aggregated/updated
+    is specified in a configuration file passed to the harvester
+
+    Measurements, feature related metadata and aggregated feature metadata are written to, updated or deleted from
+    the provided feature store
+    """
+
+    def __init__(self, feature_store, config, logger):
+        """
+        Create a new NetcdfFeatureHarvester
+
+        :param feature_store: feature_store to write harvested information to or delete from
+        :param config: feature harvesting config defining tables to update and mappings to use
+        :param logger: logger for messages
+        """
         self.feature_store = feature_store
-        self.netcdf_file = netcdf_file
         self.config = config
-        self.feature_key = self.config["feature_metadata"]["feature_key"]
+        self.logger = logger
 
-    def harvest(self):
-        self._delete_existing_data()
+    def harvest(self, netcdf_file):
+        """
+        Harvest required feature information from a netCDF file
 
-        # feature_metadata file
-        file_mapping = self.config["file_metadata"]
-        file_source = NetcdfFileSource(self.netcdf_file, file_mapping)
+        :param netcdf_file: netCDF file to harvest
+        """
+        # delete any existing data for file
+        self._delete_existing_data(netcdf_file)
+
+        # harvest requested file metadata
+        requested_metadata = self.config["file_metadata"]
+        file_source = NetcdfFileSource(netcdf_file, requested_metadata)
         self.feature_store.write("file_metadata", file_source)
 
-        # measurements
-        measurement_source = NetcdfMeasurementSource(self.netcdf_file, self.config["measurement"])
-        self.feature_store.write("measurement", measurement_source)
+        # loop through each table sourced from variable values,
+        # source requested values for them and write them to the feature store
+        for value_mapping in self.config["value_mappings"]:
+            value_source = NetcdfValueSource(netcdf_file, value_mapping)
+            self.feature_store.write(value_mapping["table"], value_source)
 
-        # determine feature_key
-        feature_metadata_record = next(file_source.records())
-        feature_key = subset(feature_metadata_record, self.feature_key)
+        # get file metadata for use in sourcing aggregation keys
+        # and perform aggregations using it
+        file_metadata = next(file_source.records())
+        self._aggregate(file_metadata)
 
-        # feature_metadata
-        self._aggregate_feature_metadata(feature_key)
+    def delete(self, netcdf_file):
+        """
+        Delete previously harvested information for file and update aggregated information
 
-    def delete(self):
-        feature_metadata_record = self.feature_store.select_one("file_metadata", {"file_id": self.netcdf_file.id})
-        if not feature_metadata_record:
-            return
-        feature_key = subset(feature_metadata_record, self.feature_key)
-        self._delete_existing_data()
-        self._aggregate_feature_metadata(feature_key)
+        :param netcdf_file: netCDF file for which harvested information should be deleted and aggregations updated
+        """
+        metadata_key = {"file_id": netcdf_file.id}
+        file_metadata = self.feature_store.select_one("file_metadata", metadata_key)
+        self._delete_existing_data(netcdf_file)
 
-    def _delete_existing_data(self):
-        for table_name in ("measurement", "file_metadata"):
-            self.feature_store.delete_records_for_file(table_name, self.netcdf_file.id)
+        # if there was any file_metadata found, update aggregations using it to source
+        # aggregation keys
+        if file_metadata:
+            self._aggregate(file_metadata)
 
-    def _aggregate_feature_metadata(self, feature_key):
-        self.feature_store.aggregate(
-            "feature_metadata",
-            self.config["feature_metadata"],
-            feature_key
-        )
+    def _delete_existing_data(self, netcdf_file):
+        # get all value tables from which previously harvested file values needs to be deleted
+        value_tables = [value_mapping["table"] for value_mapping in self.config["value_mappings"]]
+
+        # delete all file metadata and previously harvested values for file
+        for table_name in value_tables + ["file_metadata"]:
+            self.feature_store.delete_records_for_file(table_name, netcdf_file.id)
+
+    def _aggregate(self, file_metadata):
+        # update all aggregations associated with file_metadata
+        for aggregation in self.config["aggregations"]:
+            key = subset(file_metadata, aggregation["key"])
+            self.feature_store.aggregate(aggregation, key)

@@ -29,7 +29,7 @@ import click
 
 from harvester import file_index
 from harvester.metadata_harvester import NetcdfMetadataHarvester
-from harvester.output.database_store import DatabaseStore
+from harvester.store.database_store import DatabaseStore
 from harvester.stubs.aodncore import PipelineFile
 from harvester.feature_harvester import NetcdfFeatureHarvester
 from harvester.metadata.update_metadata import MetadataUpdater
@@ -80,8 +80,8 @@ def init_harvester(config_file, index_config_file, src_path, dest_path):
         dest_path
     )
 
-    netcdf_metadata_harvester = NetcdfMetadataHarvester(index_store, netcdf_file, index_config, None)
-    netcdf_feature_harvester = NetcdfFeatureHarvester(feature_store, netcdf_file, config, None)
+    netcdf_metadata_harvester = NetcdfMetadataHarvester(index_store, index_config, None)
+    netcdf_feature_harvester = NetcdfFeatureHarvester(feature_store, config, None)
     return index_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester
 
 
@@ -132,8 +132,8 @@ def harvest(config, config_index, source, destination):
                                                                                                    source,
                                                                                                    destination)
     file_index.add_or_update_file(index_store, netcdf_file)
-    netcdf_metadata_harvester.harvest()
-    netcdf_feature_harvester.harvest()
+    netcdf_metadata_harvester.harvest(netcdf_file)
+    netcdf_feature_harvester.harvest(netcdf_file)
 
 
 @harvester.command()
@@ -151,8 +151,8 @@ def delete(config, config_index, source, destination):
                                                                                                    source,
                                                                                                    destination)
     file_index.delete_file(index_store, netcdf_file)
-    netcdf_metadata_harvester.delete()
-    netcdf_feature_harvester.delete()
+    netcdf_metadata_harvester.delete(netcdf_file)
+    netcdf_feature_harvester.delete(netcdf_file)
 
 
 @harvester.command()

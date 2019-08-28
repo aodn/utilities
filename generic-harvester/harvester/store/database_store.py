@@ -22,12 +22,6 @@ class DatabaseStore(object):
         dao = DatabaseStoreDao(self.url)
         dao.delete(table_name, {"file_id": file_id})
 
-    def write_dataframe(self, table_name, df):
-        dao = DatabaseStoreDao(self.url)
-        print(datetime.datetime.now())
-        dao.insert_dataframe(table_name, df)
-        print(datetime.datetime.now())
-
     def write(self, table_name, source):
         print("Writing records to {}...".format(table_name))
 
@@ -52,12 +46,14 @@ class DatabaseStore(object):
         dao = DatabaseStoreDao(self.url)
         dao.update(table_name, key, values)
 
-    def aggregate(self, table_name, aggregation, key):
-        aggregation_query = " ".join(aggregation["aggregation_query"])
-        print("Aggregating records for {} to {} using {}".format(table_name, aggregation_query, key))
+    def aggregate(self, aggregation, key):
         dao = DatabaseStoreDao(self.url)
-        dao.delete(table_name, key)
-        dao.insert_query(aggregation_query, key)
+        query = " ".join(aggregation["query"])
+        if "table" in aggregation:
+            table = aggregation["table"]
+            print("Removing previously aggregated data for {} from {}".format(key, table))
+            dao.delete(table, key)
+        dao.execute_query(query, key)
 
 
 

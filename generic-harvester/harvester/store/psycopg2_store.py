@@ -90,8 +90,5 @@ class Psycopg2Store(object):
             if conn is not None:
                 conn.close()
 
-    def update(self, table_name, key, values):
-        print("updating {} in {} with {}".format(key, table_name, values))
-
-    def aggregate(self, table_name, aggregation, key):
-        print("Aggregating records for {} to {} using {}".format(table_name, aggregation, key))
+    def aggregate(self, aggregation, key):
+        print("Performing aggregation {} using {}".format(aggregation, key))

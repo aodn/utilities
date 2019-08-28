@@ -51,12 +51,12 @@ class DatabaseStoreDao:
             logging.info("Transaction failed.")
         return r
 
-    def insert_query(self, query, parameters):
+    def execute_query(self, query, parameters):
         """
-        Insert records into table using defined query...
-        :param query: insert query
-        :param parameters: insert query parameters
-        :return: insert execution result
+        Execute query
+        :param query: query to execute
+        :param parameters: query parameters
+        :return: execution result
         """
 
         s = sa.text(query)
@@ -149,22 +149,3 @@ class DatabaseStoreDao:
             r = None
             logging.info("Transaction failed.")
         return r
-
-    def insert_dataframe(self, table_name, df):
-        """
-
-        :param table_name: name of the table
-        :param df: dataframe
-        :return:
-        """
-        # start transaction
-        t = self.conn.begin()
-        try:
-            df.to_sql(table_name, con=self.engine, if_exists='append')
-            t.commit()
-            logging.info("Transaction completed.")
-
-        except sa.exc.SQLAlchemyError as e:
-            logging.error(e)
-            t.rollback()
-            logging.info("Transaction failed.")

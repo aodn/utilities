@@ -10,7 +10,7 @@ from collections import OrderedDict
 from dateutil import parser
 
 from harvester.source.netcdf import (NetcdfGlobalAttributeSource, NetcdfVariableAttributeSource,
-                                     NetcdfMeasurementSource, NetcdfFileSource, NetcdfVariableSource)
+                                     NetcdfValueSource, NetcdfFileSource, NetcdfVariableSource)
 from harvester.stubs.aodncore import PipelineFile
 from harvester.util.collections import zip_list
 
@@ -146,7 +146,7 @@ class TestNetcdfVariableSource(unittest.TestCase):
 
         mapping = json.loads(json_mapping, object_pairs_hook=OrderedDict)
 
-        source = NetcdfMeasurementSource(self.nc_file, mapping)
+        source = NetcdfValueSource(self.nc_file, mapping)
 
         # check field_names
 

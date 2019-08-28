@@ -175,7 +175,7 @@ def _get_values(variable):
         return variable[:]
 
 
-class NetcdfMeasurementSource(object):
+class NetcdfValueSource(object):
     """
     Class for iterating over variable values in a netcdf file
 
