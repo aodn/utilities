@@ -4,7 +4,6 @@
 
 import datetime
 
-from harvester.util.collections import subset
 from harvester.database.database_store_dao import DatabaseStoreDao
 
 
@@ -31,10 +30,6 @@ class DatabaseStore(object):
         print(datetime.datetime.now())
         dao.insert(table_name, records)
         print(datetime.datetime.now())
-
-    def select_first_record_for_file(self, table_name, field_names, file_id):
-        print("selecting {} from first record on {} for {}...".format(field_names, table_name, file_id))
-        return subset(self.select_one(table_name, {"file_id": file_id}), field_names)
 
     def select_one(self, table_name, key):
         print("selecting {} from {}".format(key, table_name))

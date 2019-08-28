@@ -11,7 +11,7 @@ class NetcdfFeatureHarvester(object):
     """
     A netcdf feature harvester
 
-    A NetcdfFeatureHarvester is used to harvest or delete requested file metadata and measurements from/for a
+    A NetcdfFeatureHarvester is used to harvest or delete requested file metadata and measurements for a
     netCDF file and update aggregated feature metadata.
 
     The measurements and feature related metadata to harvest or delete and the feature metadata to be aggregated/updated
