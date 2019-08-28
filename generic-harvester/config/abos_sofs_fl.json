@@ -83,7 +83,7 @@
             " GROUP BY deployment_number"
         ]
     }],
-    "metadata_params": {
+    "geonetwork_params": {
         "url": "http://localhost:8885/geonetwork/",
         "username": "admin",
         "password": "admin"
@@ -101,9 +101,15 @@
                 "column": "TIME"
             },
             "vertical": {
-                "relation": ["measurement"],
-                "vertical_min_column": "DEPTH",
-                "vertical_max_column": "DEPTH"
+                "relation": [
+                    "(SELECT vertical_mins.value::real as vertical_min, vertical_maxs.value::real as vertical_max",
+                    " FROM file_metadata fm" ,
+                    " JOIN file_index.nc_global_attribute vertical_mins ON (fm.file_id = vertical_mins.file_id AND vertical_mins.name = 'geospatial_vertical_min')",
+                    " JOIN file_index.nc_global_attribute vertical_maxs ON (fm.file_id = vertical_maxs.file_id AND vertical_maxs.name = 'geospatial_vertical_max')",
+                    ")"
+                ],
+                "min_column": "vertical_min",
+                "max_column": "vertical_max"
             }
         }
     ]

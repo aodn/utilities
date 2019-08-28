@@ -33,7 +33,7 @@ class MetadataUpdater(object):
 
         self.metadata_store = metadata_store
         self.db_params = config["db_params"]
-        self.metadata_params = config["metadata_params"]
+        self.geonetwork_params = config["geonetwork_params"]
         self.metadata_updates = config["metadata_updates"]
         self.logger = logger
         self.geonetwork = self.create_geonetwork()
@@ -44,9 +44,9 @@ class MetadataUpdater(object):
         :return: geonetwork instance
         """
 
-        return Geonetwork(self.metadata_params["url"],
-                          username=self.metadata_params["username"],
-                          password=self.metadata_params["password"])
+        return Geonetwork(self.geonetwork_params["url"],
+                          username=self.geonetwork_params["username"],
+                          password=self.geonetwork_params["password"])
 
     @staticmethod
     def generate_id():
@@ -195,31 +195,13 @@ class MetadataUpdater(object):
         :param metadata_update: metadata update parameter
         :return: vertical extent xml elements
         """
+
         query = "SELECT " \
-                "MIN(vertical_mins.{}::real) as \"min_value\", " \
-                "MAX(vertical_maxs.{}::real) as \"max_value\" " \
-                "FROM {}.{} fm " \
-                "JOIN {}.{} vertical_mins " \
-                "ON (fm.{} = vertical_mins.{} " \
-                "AND vertical_mins.{} = '{}')" \
-                "JOIN {}.{} vertical_maxs " \
-                "ON (fm.{} = vertical_maxs.{} " \
-                "AND vertical_maxs.{} = '{}')".format(metadata_update["index_table_column_value"],
-                                                      metadata_update["index_table_column_value"],
-                                                      self.db_params["schema"],
-                                                      metadata_update["file_metadata_table"],
-                                                      metadata_update["index_schema"],
-                                                      metadata_update["index_table"],
-                                                      metadata_update["file_metadata_table_join_column"],
-                                                      metadata_update["index_table_join_column"],
-                                                      metadata_update["index_table_column_name"],
-                                                      metadata_update["index_table_column_value_min"],
-                                                      metadata_update["index_schema"],
-                                                      metadata_update["index_table"],
-                                                      metadata_update["file_metadata_table_join_column"],
-                                                      metadata_update["index_table_join_column"],
-                                                      metadata_update["index_table_column_name"],
-                                                      metadata_update["index_table_column_value_max"])
+                "MIN(\"{}\") as \"min_value\"," \
+                "MAX(\"{}\") as \"max_value\" " \
+                "FROM {} as result".format(metadata_update["min_column"],
+                                           metadata_update["max_column"],
+                                           ''.join(metadata_update["relation"]))
 
         min_value = None
         max_value = None
@@ -232,16 +214,16 @@ class MetadataUpdater(object):
         query_result = "<verticalResult " \
                        "xmlns:gmd=\"{}\" " \
                        "xmlns:gco=\"{}\">".format(NS_GMD, NS_GCO)
-        if min_value and max_value:
+        if min_value is not None or max_value is not None:
             query_result += "<gmd:verticalElement>" \
                             "<gmd:EX_VerticalExtent>"
 
-            if min_value:
+            if min_value is not None:
                 query_result += "<gmd:minimumValue>"\
                                 "<gco:Real>{}</gco:Real>" \
                                 "</gmd:minimumValue>".format(min_value)
 
-            if max_value:
+            if max_value is not None:
                 query_result += "<gmd:maximumValue>" \
                       "<gco:Real>{}</gco:Real>" \
                       "</gmd:maximumValue>".format(max_value)
@@ -250,7 +232,6 @@ class MetadataUpdater(object):
                             "</gmd:EX_VerticalExtent>" \
                             "</gmd:verticalElement>"
         query_result += "</verticalResult>"
-
         return query_result
 
     def update_metadata(self):
@@ -264,22 +245,22 @@ class MetadataUpdater(object):
             temporal = metadata_update.get("temporal", None)
             vertical = metadata_update.get("vertical", None)
 
-            if spatial or temporal or vertical:
+            if spatial is not None or temporal is not None or vertical is not None:
 
                 _uuid = metadata_update["uuid"]
                 _id = self.geonetwork.get_id_from_uuid(_uuid)
                 version = 0
                 record = self.geonetwork.record(_uuid)
 
-                if spatial:
+                if spatial is not None:
                     record = self.set_extent(record,
                                              '{' + NS_GMD + '}geographicElement',
                                              self.load_spatial_extent(spatial))
-                if temporal:
+                if temporal is not None:
                     record = self.set_extent(record,
                                              '{' + NS_GMD + '}temporalElement',
                                              self.load_temporal_extent(temporal))
-                if vertical:
+                if vertical is not None:
                     record = self.set_extent(record,
                                              '{' + NS_GMD + '}verticalElement',
                                              self.load_vertical_extent(vertical))
