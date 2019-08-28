@@ -68,10 +68,6 @@ class Psycopg2Store(object):
         print(datetime.datetime.now())
         return rows_inserted
 
-    def select_first_record_for_file(self, table_name, field_names, file_id):
-        print("selecting {} from first record on {} for {}...".format(field_names, table_name, file_id))
-        return subset(self.select_one(table_name, {"file_id": file_id}), field_names)
-
     def select_one(self, table_name, key):
         print("selecting {} from {}".format(key, table_name))
         conn = None

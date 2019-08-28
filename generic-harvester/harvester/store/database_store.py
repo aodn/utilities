@@ -26,9 +26,7 @@ class DatabaseStore(object):
 
         dao = DatabaseStoreDao(self.url)
         print(datetime.datetime.now())
-        records = list(source.records())
-        print(datetime.datetime.now())
-        dao.insert(table_name, records)
+        dao.insert(table_name, source)
         print(datetime.datetime.now())
 
     def select_one(self, table_name, key):
@@ -48,6 +46,7 @@ class DatabaseStore(object):
             table = aggregation["table"]
             print("Removing previously aggregated data for {} from {}".format(key, table))
             dao.delete(table, key)
+        print("Performing aggregation {} for {}".format(query, key))
         dao.execute_query(query, key)
 
 

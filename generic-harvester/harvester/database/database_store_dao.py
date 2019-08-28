@@ -1,6 +1,8 @@
 import sqlalchemy as sa
 import logging
 
+import psycopg2
+
 logging.basicConfig()
 logging.getLogger('sqlalchemy').setLevel(logging.WARN)
 
@@ -27,7 +29,7 @@ class DatabaseStoreDao:
         """
         return sa.Table(table_name, self.meta, autoload=True)
 
-    def insert(self, table_name, values_data):
+    def insert(self, table_name, source):
         """
         Insert records into table...
         :param table_name: name of the table
@@ -35,21 +37,30 @@ class DatabaseStoreDao:
         :return: insert execution result
         """
 
-        ins = self.get_table(table_name).insert()
-        # start transaction
-        t = self.conn.begin()
+        conn = self.engine.raw_connection()
 
         try:
-            r = self.conn.execute(ins, values_data)
-            t.commit()
-            logging.info("Transaction completed.")
+            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            values_template = "(" + ", ".join(["%({})s".format(field_name) for field_name in source.field_names]) + ")"
+            insert_stmt = 'INSERT INTO "{}" ("{}") VALUES %s'.format(table_name, '","'.join(source.field_names))
 
+            psycopg2.extras.execute_values(
+                cur,
+                insert_stmt,
+                source.records(),
+                template=values_template
+            )
+
+            rows_inserted = cur.rowcount
+
+            conn.commit()
+            cur.close()
         except sa.exc.SQLAlchemyError as e:
             logging.error(e)
             t.rollback()
             r = None
             logging.info("Transaction failed.")
-        return r
+        return rows_inserted
 
     def execute_query(self, query, parameters):
         """
