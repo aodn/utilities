@@ -91,7 +91,10 @@
     "metadata_params": {
         "url": "http://localhost:8885/geonetwork/",
         "username": "admin",
-        "password": "admin"
+        "password": "admin",
+        "spatial_extent": true,
+        "temporal_extent": true,
+        "vertical_extent": true
     },
     "metadata_updates": [
         {

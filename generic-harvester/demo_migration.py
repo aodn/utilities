@@ -1,7 +1,8 @@
 from migration.run_alembic import RunAlembic
-
+from collections import OrderedDict
 import json
 import os
+
 
 schemas = ["file_index", "abos_sofs_fl", "anmn_ts"]
 
@@ -10,7 +11,7 @@ for schema in schemas:
     config_file = "config/{}.json".format(schema)
 
     with open(config_file) as f:
-        config = json.load(f)
+        config = json.load(f, object_pairs_hook=OrderedDict)
 
     db_params = config["db_params"]
 

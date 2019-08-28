@@ -20,7 +20,7 @@ class DatabaseStore(object):
     def delete_records_for_file(self, table_name, file_id):
         print("Deleting records for file with id {} from {}...".format(file_id, table_name))
         dao = DatabaseStoreDao(self.url)
-        dao.delete({"file_id": file_id})
+        dao.delete(table_name, {"file_id": file_id})
 
     def write_dataframe(self, table_name, df):
         dao = DatabaseStoreDao(self.url)
