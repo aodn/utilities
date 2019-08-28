@@ -29,9 +29,9 @@
     }],
     "file_metadata": {
         "fields": {
-            "site_code": {"value": "dataset.site_code"},
-            "platform_code": {"value": "dataset.platform_code"},
-            "deployment_code": {"value": "dataset.deployment_code"},
+            "site_code": {},
+            "platform_code": {},
+            "deployment_code": {},
             "LATITUDE": {"value": "dataset['LATITUDE'].getValue().item()"},
             "LATITUDE_quality_control": {
                 "value": "dataset['LATITUDE_quality_control'].getValue().item() if 'LATITUDE_quality_control' in dataset.variables else None"
@@ -43,18 +43,18 @@
             "geom": {
                 "value": "point(dataset['LONGITUDE'].getValue().item(), dataset['LATITUDE'].getValue().item())"
             },
-            "instrument_nominal_depth": {"value": "dataset.instrument_nominal_depth"},
-            "site_nominal_depth": {"value": "getattr(dataset, 'site_nominal_depth', None)"},
-            "site_depth_at_deployment": {"value": "getattr(dataset, 'site_depth_at_deployment', None)"},
-            "instrument": {"value": "dataset.instrument"},
-            "instrument_serial_number": {"value": "dataset.instrument_serial_number"},
-            "time_coverage_start": {"value": "dataset.time_coverage_start"},
-            "time_coverage_end": {"value": "dataset.time_coverage_end"},
-            "time_deployment_start": {"value": "dataset.time_deployment_start"},
-            "time_deployment_end": {"value": "dataset.time_deployment_end"},
-            "comment": {"value": "dataset.comment"},
-            "history": {"value": "dataset.history"},
-            "toolbox_version": {"value": "dataset.toolbox_version"}
+            "instrument_nominal_depth": {},
+            "site_nominal_depth": {},
+            "site_depth_at_deployment": {},
+            "instrument": {},
+            "instrument_serial_number": {},
+            "time_coverage_start": {"type": "datetime"},
+            "time_coverage_end": {"type": "datetime"},
+            "time_deployment_start": {"type": "datetime"},
+            "time_deployment_end": {"type": "datetime"},
+            "comment": {},
+            "history": {},
+            "toolbox_version": {}
         }
     },
     "aggregations": [{

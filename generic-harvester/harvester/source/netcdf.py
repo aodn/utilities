@@ -50,9 +50,18 @@ from harvester.util import expressionparser as expr
 
 # functions that can be when used in config expressions
 
+
+def parse_datetime(value):
+    parsed_datetime = parse(value)
+    if parsed_datetime.tzinfo:
+        return parsed_datetime
+    else:
+        return pytz.UTC.localize(parsed_datetime)
+
+
 ALLOWED_EXPR_FNS = {
     "re": re,
-    "parse_datetime": parse,
+    "parse_datetime": parse_datetime,
     "average": np.average,
     "mean": np.mean,
     "amin": np.amin,
@@ -237,10 +246,23 @@ class NetcdfFileSource(object):
             core_fields = (self.netcdf_file.id, )
 
             derived_fields = tuple([
-                expr.parse(mapping["value"], variables=names, functions=ALLOWED_EXPR_FNS)
-                for mapping in self.mappings["fields"].values()
+                expr.parse(self._mapping_expr(field_name, field_mapping), variables=names, functions=ALLOWED_EXPR_FNS)
+                for field_name, field_mapping in self.mappings["fields"].items()
             ])
 
             record_values = core_fields + derived_fields
 
             yield dict(zip(self.field_names, record_values))
+
+    @staticmethod
+    def _mapping_expr(field_name, field_mapping):
+        if not field_mapping:
+            # default is to return attribute with field_name
+            return "getattr(dataset, '{}', None)".format(field_name)
+        elif "type" in field_mapping and field_mapping["type"] == "datetime":
+            # parse as a datetime
+            return "parse_datetime(dataset.{})".format(field_name)
+        else:
+            return field_mapping["value"]
+
+        # TODO: raise an exception if no value

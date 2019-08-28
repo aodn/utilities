@@ -12,10 +12,7 @@ class RecordSource(object):
 
     def __init__(self, iter1, field_names=None):
         self.iter1 = iter1
-        self._field_names = field_names
+        self.field_names = field_names
 
     def records(self):
         return iter(self.iter1)
-
-    def field_names(self):
-        return self._field_names
