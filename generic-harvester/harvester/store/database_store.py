@@ -34,6 +34,11 @@ class DatabaseStore(object):
         dao = DatabaseStoreDao(self.url)
         return dao.select_one(table_name, key)
 
+    def select_query(self, query):
+        print("selecting query {}".format(query))
+        dao = DatabaseStoreDao(self.url)
+        return dao.select_query(query)
+
     def update(self, table_name, key, values):
         print("updating {} in {} with {}".format(key, table_name, values))
         dao = DatabaseStoreDao(self.url)

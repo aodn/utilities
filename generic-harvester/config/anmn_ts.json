@@ -95,28 +95,31 @@
     "metadata_params": {
         "url": "http://localhost:8885/geonetwork/",
         "username": "admin",
-        "password": "admin",
-        "spatial_extent": true,
-        "temporal_extent": true,
-        "vertical_extent": true
+        "password": "admin"
     },
     "metadata_updates": [
         {
             "uuid": "ae6af5ff-9503-492b-b917-4e3c1a0c19ee",
-            "spatial_table": "feature_metadata",
-            "spatial_column": "geom",
-            "spatial_resolution": 3,
-            "temporal_column": "TIME",
-            "temporal_table":  "measurement",
-            "vertical_column_value": "value",
-            "vertical_file_metadata_table":  "file_metadata",
-            "vertical_index_schema": "file_index",
-            "vertical_index_table": "nc_global_attribute",
-            "vertical_file_metadata_table_column": "file_id",
-            "vertical_index_table_column": "file_id",
-            "vertical_column_name": "name",
-            "vertical_column_name_min": "geospatial_vertical_min",
-            "vertical_column_name_max": "geospatial_vertical_max"
+            "spatial": {
+                "table": "feature_metadata",
+                "column": "geom",
+                "resolution": 3
+            },
+            "temporal": {
+                "table":  "measurement",
+                "column": "TIME"
+            },
+            "vertical": {
+                "file_metadata_table":  "file_metadata",
+                "file_metadata_table_join_column": "file_id",
+                "index_schema": "file_index",
+                "index_table": "nc_global_attribute",
+                "index_table_join_column": "file_id",
+                "index_table_column_name": "name",
+                "index_table_column_value": "value",
+                "index_table_column_value_min": "geospatial_vertical_min",
+                "index_table_column_value_max": "geospatial_vertical_max"
+            }
         }
     ]
 }

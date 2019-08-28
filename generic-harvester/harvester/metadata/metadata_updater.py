@@ -1,16 +1,19 @@
 """
+
 Extent Metadata Updater (Spatial, Temporal, Vertical)
+
 """
 
 import xml.etree.ElementTree as ElementTree
 from harvester.metadata.geonetworklib import Geonetwork, GeonetworkRecord
-from harvester.database.database_store_dao import DatabaseStoreDao
+from harvester.store.database_store import DatabaseStore
+from io import StringIO
 
 import uuid
 import random
 import string
 import json
-from io import StringIO
+
 
 NS_GML = 'http://www.opengis.net/gml'
 NS_GMD = 'http://www.isotc211.org/2005/gmd'
@@ -19,21 +22,23 @@ NS_GCO = 'http://www.isotc211.org/2005/gco'
 
 class MetadataUpdater(object):
 
-    def __init__(self, config):
+    def __init__(self, metadata_store, config, logger):
+        """
+        Create a new MetadataUpdater
 
+        :param metadata_store: metadata store to write harvested information to or delete from
+        :param config: metadata updater config
+        :param logger: logger for messages
+        """
+
+        self.metadata_store = metadata_store
         self.db_params = config["db_params"]
         self.metadata_params = config["metadata_params"]
         self.metadata_updates = config["metadata_updates"]
-        self.url = '{}://{}:{}@{}:{}/{}'.format(self.db_params["driver"],
-                                                self.db_params["user"],
-                                                self.db_params["password"],
-                                                self.db_params["host"],
-                                                self.db_params["port"],
-                                                self.db_params["database"]
-                                                )
-        self.geonetwork = self.get_geonetwork()
+        self.logger = logger
+        self.geonetwork = self.create_geonetwork()
 
-    def get_geonetwork(self):
+    def create_geonetwork(self):
         """
         Creates geonetwork instance
         :return: geonetwork instance
@@ -49,7 +54,7 @@ class MetadataUpdater(object):
         Generates 20 digits unique id starting with non-numeric character
         :return: unique 20 digits id
         """
-        return random.choice(string.ascii_lowercase) + str(uuid.uuid4().hex)[:19]
+        return random.choice(string.ascii_lowercase) + str(uuid.uuid4().hex)
 
     @staticmethod
     def register_namespace(xml_text):
@@ -106,21 +111,20 @@ class MetadataUpdater(object):
         :param metadata_update: metadata update parameter
         :return: spatial extent xml elements
         """
-        query = "select BoundingPolygonAsGml3('{}','{}','{}',{})".format(self.db_params["schema"],
-                                                                         metadata_update["spatial_table"],
-                                                                         metadata_update["spatial_column"],
-                                                                         metadata_update["spatial_resolution"]
+        query = "SELECT BoundingPolygonAsGml3('{}','{}','{}',{})".format(self.db_params["schema"],
+                                                                         metadata_update["table"],
+                                                                         metadata_update["column"],
+                                                                         metadata_update["resolution"]
                                                                          )
 
         polygons = None
-        dao = DatabaseStoreDao(self.url)
-        rs = list(dao.select_query(query))
+        rs = self.metadata_store.select_query(query)
 
         for results in rs:
             for result in list(results):
                 polygons = result
 
-        query_result = "<postgisResult " \
+        query_result = "<spatialResult " \
                        "xmlns:gmd=\"{}\" " \
                        "xmlns:gml=\"{}\">".format(NS_GMD, NS_GML)
         if polygons is not None:
@@ -129,7 +133,7 @@ class MetadataUpdater(object):
                             "<gmd:polygon>{}</gmd:polygon>" \
                             "</gmd:EX_BoundingPolygon>" \
                             "</gmd:geographicElement>".format(polygons)
-        query_result += "</postgisResult>"
+        query_result += "</spatialResult>"
 
         return query_result
 
@@ -140,26 +144,26 @@ class MetadataUpdater(object):
         :return: temporal extent xml elements
         """
 
-        query = "SELECT TO_CHAR(timezone('UTC'::text, MIN(\"{}\")), 'YYYY-MM-DDThh:mm:ss') as min_value, " \
-                "TO_CHAR(timezone('UTC'::text, MAX(\"{}\")), 'YYYY-MM-DDThh:mm:ss') as max_value " \
-                "FROM {}.{}".format(metadata_update["temporal_column"],
-                                    metadata_update["temporal_column"],
-                                    self.db_params["schema"],
-                                    metadata_update["temporal_table"])
-
         begin_time = None
         end_time = None
 
-        dao = DatabaseStoreDao(self.url)
-        rs = dao.select_query(query)
-        for results in rs:
-            begin_time = results["min_value"]
-            end_time = results["max_value"]
+        if metadata_update:
+            query = "SELECT TO_CHAR(timezone('UTC'::text, MIN(\"{}\")), 'YYYY-MM-DDThh:mm:ss') as min_value, " \
+                    "TO_CHAR(timezone('UTC'::text, MAX(\"{}\")), 'YYYY-MM-DDThh:mm:ss') as max_value " \
+                    "FROM {}.{}".format(metadata_update["column"],
+                                        metadata_update["column"],
+                                        self.db_params["schema"],
+                                        metadata_update["table"])
 
-        query_result = "<postgisResult " \
+            rs = self.metadata_store.select_query(query)
+            for results in rs:
+                begin_time = results["min_value"]
+                end_time = results["max_value"]
+
+        query_result = "<temporalResult " \
                        "xmlns:gml=\"{}\" " \
                        "xmlns:gmd=\"{}\" " \
-                       "xmlns:gco=\"{}\" >".format(NS_GML, NS_GMD, NS_GCO)
+                       "xmlns:gco=\"{}\">".format(NS_GML, NS_GMD, NS_GCO)
         if begin_time is not None and end_time is not None:
             query_result += "<gmd:temporalElement>" \
                             "<gmd:EX_TemporalExtent>" \
@@ -181,7 +185,7 @@ class MetadataUpdater(object):
                             "</gmd:extent>" \
                             "</gmd:EX_TemporalExtent>" \
                             "</gmd:temporalElement>"
-            query_result += "</postgisResult>"
+        query_result += "</temporalResult>"
 
         return query_result
 
@@ -191,7 +195,6 @@ class MetadataUpdater(object):
         :param metadata_update: metadata update parameter
         :return: vertical extent xml elements
         """
-
         query = "SELECT " \
                 "MIN(vertical_mins.{}::real) as \"min_value\", " \
                 "MAX(vertical_maxs.{}::real) as \"max_value\" " \
@@ -201,52 +204,52 @@ class MetadataUpdater(object):
                 "AND vertical_mins.{} = '{}')" \
                 "JOIN {}.{} vertical_maxs " \
                 "ON (fm.{} = vertical_maxs.{} " \
-                "AND vertical_maxs.{} = '{}')".format(metadata_update["vertical_column_value"],
-                                                      metadata_update["vertical_column_value"],
+                "AND vertical_maxs.{} = '{}')".format(metadata_update["index_table_column_value"],
+                                                      metadata_update["index_table_column_value"],
                                                       self.db_params["schema"],
-                                                      metadata_update["vertical_file_metadata_table"],
-                                                      metadata_update["vertical_index_schema"],
-                                                      metadata_update["vertical_index_table"],
-                                                      metadata_update["vertical_file_metadata_table_column"],
-                                                      metadata_update["vertical_index_table_column"],
-                                                      metadata_update["vertical_column_name"],
-                                                      metadata_update["vertical_column_name_min"],
-                                                      metadata_update["vertical_index_schema"],
-                                                      metadata_update["vertical_index_table"],
-                                                      metadata_update["vertical_file_metadata_table_column"],
-                                                      metadata_update["vertical_index_table_column"],
-                                                      metadata_update["vertical_column_name"],
-                                                      metadata_update["vertical_column_name_max"])
+                                                      metadata_update["file_metadata_table"],
+                                                      metadata_update["index_schema"],
+                                                      metadata_update["index_table"],
+                                                      metadata_update["file_metadata_table_join_column"],
+                                                      metadata_update["index_table_join_column"],
+                                                      metadata_update["index_table_column_name"],
+                                                      metadata_update["index_table_column_value_min"],
+                                                      metadata_update["index_schema"],
+                                                      metadata_update["index_table"],
+                                                      metadata_update["file_metadata_table_join_column"],
+                                                      metadata_update["index_table_join_column"],
+                                                      metadata_update["index_table_column_name"],
+                                                      metadata_update["index_table_column_value_max"])
 
         min_value = None
         max_value = None
 
-        dao = DatabaseStoreDao(self.url)
-        rs = dao.select_query(query)
+        rs = self.metadata_store.select_query(query)
         for results in rs:
             min_value = results["min_value"]
             max_value = results["max_value"]
 
-        query_result = "<postgisResult " \
+        query_result = "<verticalResult " \
                        "xmlns:gmd=\"{}\" " \
                        "xmlns:gco=\"{}\">".format(NS_GMD, NS_GCO)
-        if min_value is not None and max_value is not None:
+        if min_value and max_value:
             query_result += "<gmd:verticalElement>" \
                             "<gmd:EX_VerticalExtent>"
 
-            if min_value is not None:
+            if min_value:
                 query_result += "<gmd:minimumValue>"\
                                 "<gco:Real>{}</gco:Real>" \
                                 "</gmd:minimumValue>".format(min_value)
 
-            if max_value is not None:
+            if max_value:
                 query_result += "<gmd:maximumValue>" \
                       "<gco:Real>{}</gco:Real>" \
                       "</gmd:maximumValue>".format(max_value)
 
-            query_result += "</gmd:EX_VerticalExtent>" \
+            query_result += "<gmd:verticalCRS gco:nilReason=\"missing\"/>" \
+                            "</gmd:EX_VerticalExtent>" \
                             "</gmd:verticalElement>"
-        query_result += "</postgisResult>"
+        query_result += "</verticalResult>"
 
         return query_result
 
@@ -255,31 +258,31 @@ class MetadataUpdater(object):
         Updates metadata information (spatial extent, temporal extent, vertical extent)
         :return:
         """
+        for metadata_update in self.metadata_updates:
 
-        spatial_extent = self.metadata_params.get("spatial_extent", False)
-        temporal_extent = self.metadata_params.get("temporal_extent", False)
-        vertical_extent = self.metadata_params.get("vertical_extent", False)
+            spatial = metadata_update.get("spatial", None)
+            temporal = metadata_update.get("temporal", None)
+            vertical = metadata_update.get("vertical", None)
 
-        if spatial_extent or temporal_extent or vertical_extent:
+            if spatial or temporal or vertical:
 
-            for metadata_update in self.metadata_updates:
                 _uuid = metadata_update["uuid"]
                 _id = self.geonetwork.get_id_from_uuid(_uuid)
                 version = 0
                 record = self.geonetwork.record(_uuid)
 
-                if spatial_extent:
+                if spatial:
                     record = self.set_extent(record,
                                              '{' + NS_GMD + '}geographicElement',
-                                             self.load_spatial_extent(metadata_update))
-                if temporal_extent:
+                                             self.load_spatial_extent(spatial))
+                if temporal:
                     record = self.set_extent(record,
                                              '{' + NS_GMD + '}temporalElement',
-                                             self.load_temporal_extent(metadata_update))
-                if vertical_extent:
+                                             self.load_temporal_extent(temporal))
+                if vertical:
                     record = self.set_extent(record,
                                              '{' + NS_GMD + '}verticalElement',
-                                             self.load_vertical_extent(metadata_update))
+                                             self.load_vertical_extent(vertical))
 
                 self.geonetwork.update_record(_id, version, record)
 
@@ -289,8 +292,10 @@ if __name__ == '__main__':
     with open("../../config/abos_sofs_fl.json") as f:
         _config = json.load(f)
 
+    database_store = DatabaseStore(_config["db_params"])
+
     # Create MetadataUpdater instance
-    updater = MetadataUpdater(_config)
+    updater = MetadataUpdater(database_store, _config, None)
 
     # Update metadata information
     updater.update_metadata()

@@ -32,7 +32,7 @@ from harvester.metadata_harvester import NetcdfMetadataHarvester
 from harvester.store.database_store import DatabaseStore
 from harvester.stubs.aodncore import PipelineFile
 from harvester.feature_harvester import NetcdfFeatureHarvester
-from harvester.metadata.update_metadata import MetadataUpdater
+from harvester.metadata.metadata_updater import MetadataUpdater
 
 
 def init_config(config_file):
@@ -92,8 +92,10 @@ def init_metadata_updater(config_file):
     :return: returns (MetadataUpdater) instance
     """
     config = init_config(config_file)
+    database_store = DatabaseStore(config["db_params"])
+
     # Create MetadataUpdater instance
-    return MetadataUpdater(config)
+    return MetadataUpdater(database_store, config, None)
 
 
 @click.group()
