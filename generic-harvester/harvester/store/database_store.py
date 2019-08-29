@@ -5,6 +5,14 @@
 from harvester.database.database_store_dao import DatabaseStoreDao
 
 
+def _format(dictionary):
+    return ", ".join(["{}='{}'".format(key, value) for key, value in dictionary.items()])
+
+
+def _reduce_space(value):
+    return ' '.join(value.split())
+
+
 class DatabaseStore(object):
     """
     TODO: rethink DatabaseStore/DatabaseStoreDAO interactions
@@ -27,17 +35,17 @@ class DatabaseStore(object):
         dao.insert(table_name, source)
 
     def select_one(self, table_name, key):
-        self.logger.info("selecting {} from {}".format(key, table_name))
+        self.logger.info("Selecting from {} where {}".format(table_name, _format(key)))
         dao = DatabaseStoreDao(self.url, self.logger)
         return dao.select_one(table_name, key)
 
     def select_query(self, query):
-        self.logger.info("selecting query {}".format(query))
+        self.logger.info("Selecting query {}".format(query))
         dao = DatabaseStoreDao(self.url, self.logger)
         return dao.select_query(query)
 
     def update(self, table_name, key, values):
-        self.logger.info("updating {} in {} with {}".format(key, table_name, values))
+        self.logger.info("Updating {} setting {} where {}".format(table_name, _format(values), _format(key)))
         dao = DatabaseStoreDao(self.url, self.logger)
         dao.update(table_name, key, values)
 
@@ -46,9 +54,9 @@ class DatabaseStore(object):
         query = " ".join(aggregation["query"])
         if "table" in aggregation:
             table = aggregation["table"]
-            self.logger.info("Removing previously aggregated data for {} from {}".format(key, table))
+            self.logger.info("Deleting from {} where {}".format(table, _format(key)))
             dao.delete(table, key)
-        self.logger.info("Performing aggregation {} for {}".format(query, key))
+        self.logger.info("Performing aggregation '{}...' with {}".format(_reduce_space(query)[:70], _format(key)))
         dao.execute_query(query, key)
 
 
