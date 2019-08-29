@@ -22,4 +22,20 @@
         - diffresult.changed == false
       fail_msg: "{{ name }} does not match expected"
       success_msg: "{{ name }} matches expected"
+    register: assertion_result
   ignore_errors: yes  # Don't halt playbook but show the error in the ignored count in PLAY RECAP
+
+# Gather output for report
+# Note https://github.com/ansible/ansible/issues/14992 re path for template
+# (put assertion report templates in report/templates/)
+- set_fact:
+    diff: []
+- set_fact:
+    diff: "{{ diff + item }}"
+  loop: "{{ diffresult.results|selectattr('changed','equalto',true)|map(attribute='diff')|list }}"
+- set_fact:
+    assertion_results: "{{ assertion_results +
+    [ { 'Pipeline': name, 'name':item.name,
+    'result': assertion_result.failed,
+    'template': 'diff.j2',
+    'template_vars': diff } ] }}" # Add to results accumulator for report

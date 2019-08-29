@@ -129,11 +129,17 @@
     msg: "A file is in error"
   when: "'FILE_IN_ERROR' in state_message"
 
+- set_fact:
+    action_name: "action_{{ action_item_index }}_{{ action_item.type }}"
+
 - include: harvest_results.yaml
   vars:
-    label: "action_{{ action_item_index }}_{{ action_item.type }}"
+    label: "{{ action_name }}"
 
 - include: create_expect.yaml
   vars:
-    label: "action_{{ action_item_index }}_{{ action_item.type }}"
+    label: "{{ action_name }}"
   when: create_expect | default(false) | bool
+
+- set_fact:
+    processed_actions: "{{ processed_actions + [ action_name ] }}"

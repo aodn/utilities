@@ -1,13 +1,16 @@
 ---
+- set_fact:
+    test_config_full_path: "{{ inventory_dir | dirname }}/{{ test_config }}"
+
 - delegate_to: localhost
   stat:
-    path: "{{ test_config }}"
+    path: "{{ test_config_full_path }}"
   register: stat_test_config
 
 - name: "List configurations from directories"
   delegate_to: localhost
   find:
-    path: "{{ test_config }}"
+    path: "{{ test_config_full_path }}"
     file_type: directory
     recurse: no
   register: test_config_directories
@@ -25,5 +28,5 @@
 - include_tasks:
     file: "{{ task_file }}"
   vars:
-    test_config_file: "{{ test_config }}"
+    test_config_file: "{{ test_config_full_path }}"
   when: stat_test_config.stat.isreg is defined and stat_test_config.stat.isreg

@@ -1,0 +1,4 @@
+{% for line in (template_vars | unified_diff) %}
+{{ line }}
+----------------------------------------------
+{% endfor %}

@@ -1,0 +1,30 @@
+---
+- name: create reports dir
+  delegate_to: localhost
+  file:
+    path: "../reports/"
+    state: directory
+
+- set_fact:
+    heading_column_width: "{{ [heading_column_width, item.Pipeline|length] | max }}"
+    handled_assertions: "{{ handled_assertions + [item.name] }}"
+    tested_pipelines: "{{ tested_pipelines + [item.Pipeline] }}"
+  loop: "{{ all_assertion_results }}"
+
+- set_fact:
+    handled_assertions: "{{ handled_assertions | unique }}"
+    tested_pipelines: "{{ tested_pipelines | unique }}"
+
+- set_fact:
+    assertion_column_width: "{{ [assertion_column_width|int, item|length] | max }}"
+  loop: "{{ handled_assertions }}"
+
+- set_fact:
+    column_headings: "{{ ['Pipeline'] + handled_assertions }}"
+
+- name: "Generate {{ template }} report"
+  delegate_to: localhost
+  template:
+    src: "templates/{{ template }}.j2"
+    dest: "../reports/{{ template }}"
+    backup: yes

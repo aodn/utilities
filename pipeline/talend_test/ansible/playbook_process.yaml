@@ -4,4 +4,7 @@
   gather_facts: true
 
   roles:
-    - process_files
+    - role: process_files
+    - role: report
+      vars:
+         template: "{{ process_report_template }}"

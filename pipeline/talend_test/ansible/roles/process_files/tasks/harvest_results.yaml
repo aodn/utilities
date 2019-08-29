@@ -29,6 +29,9 @@
     db_host: "{{ ansible_host }}"
   loop: "{{ database_schemas }}"
 
+- set_fact:
+    harvest_results_dir: "{{ inventory_dir | dirname }}/harvest_results/{{ ansible_host }}/"
+
 - name: remove result dir
   delegate_to: localhost
   file:

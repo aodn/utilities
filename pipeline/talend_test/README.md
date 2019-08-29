@@ -69,6 +69,7 @@ these instructions.
 name: soop_xbt_nrt
 type: pipeline_version_2
 po: laurent
+process_report_template: processing_results
 dirs:
 - path: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
   owner: projectofficer
@@ -116,6 +117,7 @@ database_schemas:
     exclude_columns: []
 
 # Configuration for running integration tests
+test_report_template: test_results
 assertions:
   # Asserts harvested results are as expected
   - name: diff
@@ -135,7 +137,7 @@ To use the `playbook_process.yaml` ansible playbook for this:
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_process.yaml \
 -i test_configs/hosts -u vagrant --key-file "/path/to/ssh/private/key/file" \
---extra-vars "test_config=../test_configs/soop_xbt_nrt/config.yaml create_expect=true"
+--extra-vars "test_config=test_configs/soop_xbt_nrt/config.yaml create_expect=true"
 ```
 
 Note the key-file path is the the IdentityFile value obtained earlier.  The extra-vars contain a path to the `config.yaml`
@@ -173,7 +175,7 @@ These harvested data results can be used to verify the validity of one or more i
 
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_tests.yaml -i test_configs/hosts \
---extra-vars "test_config=../test_configs/soop_xbt_nrt/config.yaml"
+--extra-vars "test_config=test_configs/soop_xbt_nrt/config.yaml"
 ``` 
 
 ## Obtaining new harvest results
@@ -183,7 +185,7 @@ New harvest results are obtained simply by running the previous command without 
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_process.yaml \
 -i test_configs/hosts -u vagrant --key-file "/path/to/ssh/private/key/file" \
---extra-vars "test_config=../test_configs/soop_xbt_nrt/config.yaml"
+--extra-vars "test_config=test_configs/soop_xbt_nrt/config.yaml"
 ```
 
 Harvested results will be in the ```harvest_results``` directory.
@@ -194,7 +196,7 @@ All integration tests in a `config.yaml` file will be executed with:
 
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_tests.yaml \
--i test_configs/hosts --extra-vars "test_config=../test_configs/soop_xbt_nrt/config.yaml"
+-i test_configs/hosts --extra-vars "test_config=test_configs/soop_xbt_nrt/config.yaml"
 ``` 
 
 A summary of the results will appear in the ansible PLAY RECAP.  Failed tests will be included in the `ignored` count.  
@@ -204,8 +206,11 @@ zero.  If it is not then something is wrong with the test configuration that sho
 ## Create a new assertion
 
 Assertions are Ansible tasks stored in `roles/execute_tests/tasks/assert_<name>.yaml` files.  Replace `<name>` with the 
-name of the assertion.  Assertions consist of a `set_fact` task, a preamble set of tasks as required and a `block` section.
-The `block` with it's associated `ignore_errors: yes` is required for all assertions.     
+name of the assertion.  Assertions consist of a `set_fact` task, a preamble set of tasks as required, a `block` section 
+and a section for setting facts to be used in reports.
+The `block` with it's associated `ignore_errors: yes` is required for all assertions.  
+The report section is also required.  This will insert an entry into the test report and optionally include additional
+details in the report.   
 
 To use an assertion in a pipeline integration test specify it in the `assertions:` part of the `config.yaml` file providing
 the `<name>` used in the `roles/execute_tests/tasks/assert_<name>.yaml` file name and any values needed for the `set_fact`
@@ -232,23 +237,28 @@ use this assertion in the `config.yaml`:
     content: <path to directory containing harvested content to test>
 ```
 
+The report includes details of each difference in each file checked.
+
 ## Running multiple pipeline harvesters and their integration tests
 
 All configured harvesters in the test_config can be tested with the following two commands (`test_config` is set to the 
-directory containing the config files):
+directory containing the config files).  The second of these can be very long running depending on the files being processed and the harvesters being run.
 
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_process.yaml \
 -i test_configs/hosts -u vagrant --key-file "/path/to/ssh/private/key/file" \
---extra-vars "test_config=../test_configs"
+--extra-vars "test_config=test_configs"
 ```
-
-Depending on the files being processed and the harvesters being run this can be a very long running process.
 
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_tests.yaml \
--i test_configs/hosts --extra-vars "test_config=../test_configs"
+-i test_configs/hosts --extra-vars "test_config=test_configs"
 ``` 
+
+## Reports
+After processing files or running tests a report on results will be generated and stored in the ``reports`` directory. The 
+name of the templates to use for the reports are set in the ``config.yaml`` under `process_report_template` and `test_report_template`.
+Each run will create a backup of the previous run in the `reports` directory.
   
 ## Types of test
 
@@ -271,7 +281,7 @@ Note that there are several type of test: `pipeline_version_1`, `pipeline_versio
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_process.yaml \
 -i test_configs/hosts -u vagrant --key-file "/path/to/ssh/private/key/file" \
---extra-vars "test_config=../test_configs/soop_xbt_nrt/config.yaml" \
+--extra-vars "test_config=test_configs/soop_xbt_nrt/config.yaml" \
 --tags "init_db_only"
 ```
 
@@ -281,7 +291,7 @@ It is possible to run the tool without invoking the harvester so that only the c
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_process.yaml \
 -i test_configs/hosts -u vagrant --key-file "/path/to/ssh/private/key/file" \
---extra-vars "test_config=../test_configs/soop_xbt_nrt/config.yaml" \
+--extra-vars "test_config=test_configs/soop_xbt_nrt/config.yaml" \
 --tags "harvest_results_only"
 ```
 
