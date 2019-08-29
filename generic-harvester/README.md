@@ -75,9 +75,94 @@ python run_harvester.py harvest \
 
 ### Configuring the feature harvester
 
+Best read while looking at an example config file in the config directory
+
 #### db_params
 
-Specifies database connection details to use 
+Specifies database connection details to use.  All feature information is written/deleted using these connection 
+details/associated schema
+
+| key | value |
+| --- | --- |
+
+#### value_mappings
+
+An array of value mappings
+
+#### value_mapping
+
+A value mapping maps values from variables with the specified dimensions in the source netcdf file to 
+fields in the target output table.
+
+| key | value |
+| --- | --- |
+| table | table into which values should be inserted/deleted |
+| dimensions | values from variables with these dimensions will be available for inclusion in mapped values |
+| fields | dictionary of variable value to field mappings |
+
+#### field_mapping (value_mapping)
+
+Mapping of variable values to field in target output table
+
+Only one mapping (the default mapping {}) is supported at the moment which is, map the value of the variable 
+with the name of the field value of the field.  This could be expanded on in future to allow
+simple expressions to be used to map variable values to field values as described below for file_metadata
+if required.
+
+#### file_metadata
+
+Mapping of file level metadata in the source netCDF file to the target output table.
+
+| key | value |
+| --- | --- |
+| table | name of output table (defaults to "file_metadata" if not specified) |
+| fields | dictionary of file metadata to field mappimgs |
+
+#### field mapping (file_metadata)
+
+Mapping of file metadata to field in the output table
+
+Currently supports three types of mappings:
+
+* the default mapping {} - map the value of the global attribute with the name of the field to the field value
+* datetime mapping {"type": "datetime"} - parse the value of the global attribute with the name of the field
+  as a datetime.  If a time zone isn't specified set the time zone to UTC
+* simple expression {"value": "simple python expression"} - evaluate the "simple python expression" to 
+  calculate the field's value.   The netCDF4 dataset will be available for use ("dataset") as well as details 
+  about the file being processed ("file").   A restricted set of functions will also be available for use 
+  which are currently:
+  
+  * re - for performing regular expression matching
+  * parse_datetime - for performing your own datetime parsing
+  * average - numpy.average
+  * mean - numpy.mean
+  * amin - numpy.amin
+  * amax - numpy.amax
+  * getattr - for getting attribute values with a default
+  * point(x, y) - for creating a postgres EWKT point string for ingestion into postgres
+  
+  This list can be easily extended as required (requires minor code changes)
+  
+  See config files in the config directory for examples.
+  
+#### aggregations
+
+An array of aggregations/updates/db actions to be performed after harvesting variable values/file metadata
+
+#### aggregation
+
+An aggregation/update/db action to be performed after harvesting variable values/file metadata
+
+| key | value |
+| --- | --- |
+| table | if specified, previously aggregated details in this table for the key specified below are deleted before performing the aggregation |
+| key | fields from the file_metadata table that define the key of the aggregation details to be updated |
+| query | an array of strings joined together to form the templated query used to perform the aggregation/update/db action. |
+
+The templated query string can use key place holders to aggregate details for the specified key only.
+When used with the table key this allows only aggregated details associated with the source file 
+to be updated rather than updating all aggregated details for all files.  This is 
+far less resource intensive/time consuming and should be used wherever possible. 
 
 #### Issues:
 
@@ -86,7 +171,9 @@ Specifies database connection details to use
 
 #### TODO:
 
- - logging
+ - index_manager?
+ - revisit database classes - transaction around all file updates - connection pooling
+ - testing/tests
  - sensible exception handling
  - config validation
  - value_table expressions (add lambda support to expression parser)
