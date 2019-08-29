@@ -19,6 +19,7 @@ python run_harvester.py delete -c config/anmn_ts.json -i config/file_index.json 
 python run_harvester.py update-metadata -c config/anmn_ts.json
 
 """
+import logging
 
 from migration.run_alembic import RunAlembic
 from collections import OrderedDict
@@ -60,6 +61,28 @@ def init_alembic(config_file):
     return run_alembic
 
 
+def init_logger():
+    # create logger
+    logger = logging.getLogger(__name__)
+    logger.propagate = False
+    logger.setLevel(logging.DEBUG)
+
+    # create console handler and set level to debug
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG)
+
+    # create formatter
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    # add formatter to ch
+    ch.setFormatter(formatter)
+
+    # add ch to logger
+    logger.addHandler(ch)
+
+    return logger
+
+
 def init_harvester(config_file, index_config_file, src_path, dest_path):
     """
     Create Harvesters classes
@@ -71,17 +94,18 @@ def init_harvester(config_file, index_config_file, src_path, dest_path):
     """
     config = init_config(config_file)
     index_config = init_config(index_config_file)
+    logger = init_logger()
 
-    index_store = DatabaseStore(index_config["db_params"])
-    feature_store = DatabaseStore(config["db_params"])
+    index_store = DatabaseStore(index_config["db_params"], logger)
+    feature_store = DatabaseStore(config["db_params"], logger)
 
     netcdf_file = PipelineFile(
         src_path,
         dest_path
     )
 
-    netcdf_metadata_harvester = NetcdfMetadataHarvester(index_store, index_config, None)
-    netcdf_feature_harvester = NetcdfFeatureHarvester(feature_store, config, None)
+    netcdf_metadata_harvester = NetcdfMetadataHarvester(index_store, index_config, logger)
+    netcdf_feature_harvester = NetcdfFeatureHarvester(feature_store, config, logger)
     return index_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester
 
 

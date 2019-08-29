@@ -1,10 +1,6 @@
 import sqlalchemy as sa
-import logging
 
 import psycopg2
-
-logging.basicConfig()
-logging.getLogger('sqlalchemy').setLevel(logging.WARN)
 
 
 class DatabaseStoreDao:
@@ -12,11 +8,12 @@ class DatabaseStoreDao:
     Database Store - Data Access Object
     """
 
-    def __init__(self, url):
+    def __init__(self, url, logger):
         """
             Constructor
         """
         self.url = url
+        self.logger = logger
         self.engine = sa.create_engine(self.url)
         self.conn = self.engine.connect()
         self.meta = sa.MetaData(self.conn)
@@ -56,10 +53,8 @@ class DatabaseStoreDao:
             conn.commit()
             cur.close()
         except sa.exc.SQLAlchemyError as e:
-            logging.error(e)
-            t.rollback()
-            r = None
-            logging.info("Transaction failed.")
+            self.logger.exception(e)
+            self.logger.error("Transaction failed.")
         return rows_inserted
 
     def execute_query(self, query, parameters):
@@ -77,12 +72,12 @@ class DatabaseStoreDao:
         try:
             self.conn.execute(s, parameters)
             t.commit()
-            logging.info("Transaction completed.")
+            self.logger.info("Transaction completed.")
 
         except sa.exc.SQLAlchemyError as e:
-            logging.error(e)
+            self.logger.exception(e)
             t.rollback()
-            logging.info("Transaction failed.")
+            self.logger.error("Transaction failed.")
 
     def select(self, table_name):
         """
@@ -152,11 +147,11 @@ class DatabaseStoreDao:
         try:
             r = self.conn.execute(s, key)
             t.commit()
-            logging.info("Transaction completed.")
+            self.logger.info("Transaction completed.")
 
         except sa.exc.SQLAlchemyError as e:
-            logging.error(e)
+            self.logger.exception(e)
             t.rollback()
             r = None
-            logging.info("Transaction failed.")
+            self.logger.error("Transaction failed.")
         return r
