@@ -12,7 +12,6 @@ cd generic-harvester/
 virtualenv --python=/usr/bin/python3.5 venv
 source venv/bin/activate
 pip install -r requirements.txt
-
 ```
 
 #### Creating test database and example schemas
@@ -68,7 +67,8 @@ python run_harvester.py harvest \
   -d IMOS/ABOS/ASFS/SOFS/Surface_fluxes/Real-time/2019_daily/IMOS_ABOS-ASFS_FMT_20190805T015900Z_SOFS_FV02.nc
 
 python run_harvester.py harvest \
-  -c config/anmn_ts.json -i config/file_index.json \
+  -c config/anmn_ts.json \
+  -i config/file_index.json \
   -s 'IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc' \
   -d 'IMOS/ANMN/NSW/BMP070/Temperature/IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc'
 ```
@@ -79,8 +79,7 @@ Best read while looking at an example config file in the config directory
 
 #### db_params
 
-Specifies database connection details to use.  All feature information is written/deleted using these connection 
-details/associated schema
+Specifies database connection details to use. Authentication is required to update metadata records. 
 
 | key | value |
 | --- | --- |
@@ -163,6 +162,73 @@ The templated query string can use key place holders to aggregate details for th
 When used with the table key this allows only aggregated details associated with the source file 
 to be updated rather than updating all aggregated details for all files.  This is 
 far less resource intensive/time consuming and should be used wherever possible. 
+
+### Running metadata updater with example configs 
+
+To run the metadata updater for bundled anmn_ts and abos_sofs_fl files:
+
+```
+python run_harvester.py update-metadata -c config/abos_sofs_fl.json
+
+python run_harvester.py update-metadata -c config/anmn_ts.json
+```
+
+### Configuring the metadata updater
+
+#### geonetwork_params
+
+Specifies necessary geonetwork server connection details. 
+
+| key | value |
+| --- | --- |
+|url| url of the geonetwork server|
+|username| username to connect to the geonetwork server|
+|password|password to connect to the geonetwork server|
+
+#### metadata_updates
+
+Metadata updates includes updates of following extent elements (spatial, temporal and vertical) of the metadata records.
+
+| key | value |
+| --- | --- |
+| uuid | uuid of the metadata record |
+| spatial | spatial extent (bounding polygons) |
+| temporal | temporal extent (begin and end time) |
+| vertical | vertical extent (min and max depth) |
+
+#### spatial
+
+| key | value |
+| --- | --- |
+| table | feature metadata table |
+| column | geometry column of the feature metadata table |
+| resolution | spatial resolution |
+
+#### temporal
+
+| key | value |
+| --- | --- |
+| table | name of the measurement table |
+| column | name of temporal column of the measurement table |
+
+#### vertical
+
+| key | value |
+| --- | --- |
+| relation | name of the measurement table |
+| min_column | name of the depth column to calculate min value |
+| max_column | name of the depth column to calculate max value |
+
+For vertical extent, if DEPTH column does not exists in measurement table, then we retrieve it from 
+global attribute table as shown below:
+
+| key | value |
+| --- | --- |
+| relation | (SELECT vertical_mins.value::real as vertical_min, vertical_maxs.value::real as vertical_max FROM file_metadata fm  JOIN file_index.nc_global_attribute vertical_mins ON (fm.file_id = vertical_mins.file_id AND vertical_mins.name = 'geospatial_vertical_min') JOIN file_index.nc_global_attribute vertical_maxs ON (fm.file_id = vertical_maxs.file_id AND vertical_maxs.name = 'geospatial_vertical_max'))|
+| min_column | vertical_min |
+| max_column | vertical_max |
+
+Note: verticalCRS element mandatory for schema validation is set as missing.  `<gmd:verticalCRS gco:nilReason=\"missing\"/>` 
 
 #### Issues:
 

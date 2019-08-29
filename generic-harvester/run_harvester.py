@@ -115,11 +115,12 @@ def init_metadata_updater(config_file):
     :param config_file: path to configuration file
     :return: returns (MetadataUpdater) instance
     """
+    logger = init_logger()
     config = init_config(config_file)
-    database_store = DatabaseStore(config["db_params"])
+    database_store = DatabaseStore(config["db_params"], logger)
 
     # Create MetadataUpdater instance
-    return MetadataUpdater(database_store, config, None)
+    return MetadataUpdater(database_store, config, logger)
 
 
 @click.group()

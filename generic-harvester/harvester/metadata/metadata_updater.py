@@ -266,17 +266,3 @@ class MetadataUpdater(object):
                                              self.load_vertical_extent(vertical))
 
                 self.geonetwork.update_record(_id, version, record)
-
-
-if __name__ == '__main__':
-
-    with open("../../config/abos_sofs_fl.json") as f:
-        _config = json.load(f)
-
-    database_store = DatabaseStore(_config["db_params"])
-
-    # Create MetadataUpdater instance
-    updater = MetadataUpdater(database_store, _config, None)
-
-    # Update metadata information
-    updater.update_metadata()
