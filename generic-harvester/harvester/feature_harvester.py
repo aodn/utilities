@@ -45,7 +45,8 @@ class NetcdfFeatureHarvester(object):
         # harvest requested file metadata
         requested_metadata = self.config["file_metadata"]
         file_source = NetcdfFileSource(netcdf_file, requested_metadata)
-        self.feature_store.write("file_metadata", file_source)
+        table_name = requested_metadata.get("table", "file_metadata")
+        self.feature_store.write(table_name, file_source)
 
         # loop through each table sourced from variable values,
         # source requested values for them and write them to the feature store
