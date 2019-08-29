@@ -14,7 +14,7 @@ def unified_diff(diffs):
 
 class FilterModule(object):
     '''
-    custom jinja2 filters for working with collections
+    custom jinja2 filters for working with diffs
     '''
 
     def filters(self):
