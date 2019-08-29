@@ -24,13 +24,18 @@ Run the following sql statements as the postgres user or a user with the require
 
 ```
 CREATE DATABASE test_harvest;
-CREATE EXTENSION postgis;
 CREATE USER file_index WITH PASSWORD 'file_index';
+CREATE USER anmn_ts WITH PASSWORD 'anmn_ts';
+CREATE USER abos_sofs_fl WITH PASSWORD 'abos_sofs_fl';
+```
+
+Then connect to the test_harvest database and run
+
+```
+CREATE EXTENSION postgis;
 CREATE SCHEMA AUTHORIZATION file_index;
 GRANT USAGE ON SCHEMA file_index TO public;
-CREATE USER anmn_ts WITH PASSWORD 'anmn_ts';
 CREATE SCHEMA AUTHORIZATION anmn_ts;
-CREATE USER abos_sofs_fl WITH PASSWORD 'abos_sofs_fl';
 CREATE SCHEMA AUTHORIZATION abos_sofs_fl;
 ```
 
