@@ -23,14 +23,13 @@ class DatabaseStore(object):
             + ":"+db_params["port"]+"/"+db_params["database"]
         self.logger = logger
 
-    def delete_records_for_file(self, table_name, file_id):
-        self.logger.info("Deleting records for file with id {} from {}...".format(file_id, table_name))
+    def delete(self, table_name, key):
+        self.logger.info("Deleting records from {} where {}...".format(table_name, _format(key)))
         dao = DatabaseStoreDao(self.url, self.logger)
-        dao.delete(table_name, {"file_id": file_id})
+        dao.delete(table_name, key)
 
     def write(self, table_name, source):
         self.logger.info("Writing records to {}...".format(table_name))
-
         dao = DatabaseStoreDao(self.url, self.logger)
         dao.insert(table_name, source)
 
@@ -49,14 +48,9 @@ class DatabaseStore(object):
         dao = DatabaseStoreDao(self.url, self.logger)
         dao.update(table_name, key, values)
 
-    def aggregate(self, aggregation, key):
+    def execute_query(self, query, key):
+        self.logger.info("Executing query '{}...' with {}".format(_reduce_space(query)[:70], _format(key)))
         dao = DatabaseStoreDao(self.url, self.logger)
-        query = " ".join(aggregation["query"])
-        if "table" in aggregation:
-            table = aggregation["table"]
-            self.logger.info("Deleting from {} where {}".format(table, _format(key)))
-            dao.delete(table, key)
-        self.logger.info("Performing aggregation '{}...' with {}".format(_reduce_space(query)[:70], _format(key)))
         dao.execute_query(query, key)
 
 

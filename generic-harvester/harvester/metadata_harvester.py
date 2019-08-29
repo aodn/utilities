@@ -57,4 +57,5 @@ class NetcdfMetadataHarvester(object):
         """
 
         for table_name in ("nc_global_attribute", "nc_variable", "nc_variable_attribute"):
-            self.metadata_store.delete_records_for_file(table_name, netcdf_file.id)
+            delete_key = {"file_id": netcdf_file.id}
+            self.metadata_store.delete(table_name, delete_key)

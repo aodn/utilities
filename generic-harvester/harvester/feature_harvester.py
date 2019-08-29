@@ -79,10 +79,18 @@ class NetcdfFeatureHarvester(object):
 
         # delete all file metadata and previously harvested values for file
         for table_name in value_tables + ["file_metadata"]:
-            self.feature_store.delete_records_for_file(table_name, netcdf_file.id)
+            delete_key = {"file_id": netcdf_file.id}
+            self.feature_store.delete(table_name, delete_key)
 
     def _aggregate(self, file_metadata):
-        # update all aggregations associated with file_metadata
+        # perform all requested aggregations
         for aggregation in self.config["aggregations"]:
+            # get aggregation key
             key = subset(file_metadata, aggregation["key"])
-            self.feature_store.aggregate(aggregation, key)
+            # delete any existing aggregation details for key if table name is specified
+            if "table" in aggregation:
+                table = aggregation["table"]
+                self.feature_store.delete(table, key)
+            # perform the aggregation
+            query = " ".join(aggregation["query"])
+            self.feature_store.execute_query(query, key)
