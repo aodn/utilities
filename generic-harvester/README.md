@@ -20,24 +20,23 @@ pip install -r requirements.txt
 Schemas, roles and permissions are normally managed using chef/ansible.  Here we will create them 
 manually to simplify setup work we need to perform for the prototype. 
 
-```
-sudo su - postgres
-createdb test_harvest
-psql -d test_harvest -c "create extension postgis;"
-psql -c "CREATE USER file_index WITH PASSWORD 'file_index';"
-psql -d test_harvest -c "CREATE SCHEMA AUTHORIZATION file_index;"
-psql -d test_harvest -c "GRANT USAGE ON SCHEMA file_index TO public;"
-psql -c "CREATE USER anmn_ts WITH PASSWORD 'anmn_ts';"
-psql -d test_harvest -c "CREATE SCHEMA AUTHORIZATION anmn_ts;"
-psql -c "CREATE USER abos_sofs_fl WITH PASSWORD 'abos_sofs_fl';"
-psql -d test_harvest -c "CREATE SCHEMA AUTHORIZATION abos_sofs_fl;"
-exit
+Run the following sql statements as the postgres user or a user with the required access
 
+```
+CREATE DATABASE test_harvest;
+CREATE EXTENSION postgis;
+CREATE USER file_index WITH PASSWORD 'file_index';
+CREATE SCHEMA AUTHORIZATION file_index;
+GRANT USAGE ON SCHEMA file_index TO public;
+CREATE USER anmn_ts WITH PASSWORD 'anmn_ts';
+CREATE SCHEMA AUTHORIZATION anmn_ts;
+CREATE USER abos_sofs_fl WITH PASSWORD 'abos_sofs_fl';
+CREATE SCHEMA AUTHORIZATION abos_sofs_fl;
 ```
 
 #### Creating example tables/views using alembic
 
-Alembic is currently being used to create tables/views in the target schemas (see issues below - may change).
+Alembic is currently being used to create tables/views in the target schemas (see issues below).
 Alembic performs a similar function to liquibase which most PO's are currently familiar with.
 
 Database migrations (revisions in Alembic terms) for the file_index, anmn_ts and abos_sofs_fl 
@@ -68,6 +67,12 @@ python run_harvester.py harvest \
   -s 'IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc' \
   -d 'IMOS/ANMN/NSW/BMP070/Temperature/IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc'
 ```
+
+### Configuring the feature harvester
+
+#### db_params
+
+Specifies database connection details to use 
 
 #### Issues:
 
