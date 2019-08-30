@@ -32,7 +32,7 @@ def add_or_update_file(index_store, pipeline_file):
         index_store.update("indexed_file", key, record)
     else:
         # insert
-        index_store.write("indexed_file", RecordSource([record]))
+        index_store.write("indexed_file", RecordSource([record], record.keys()))
 
     # get file id
     new_record = index_store.select_one("indexed_file", key)

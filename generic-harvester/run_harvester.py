@@ -106,7 +106,7 @@ def init_harvester(config_file, index_config_file, src_path, dest_path):
 
     netcdf_metadata_harvester = NetcdfMetadataHarvester(index_store, index_config, logger)
     netcdf_feature_harvester = NetcdfFeatureHarvester(feature_store, config, logger)
-    return index_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester
+    return index_store, feature_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester
 
 
 def init_metadata_updater(config_file):
@@ -154,14 +154,21 @@ def db_drop(config):
 @click.option('-d', '--destination', prompt=True, type=click.Path(exists=False, file_okay=True, resolve_path=False),
               help='Destination path for the NetCDF file')
 def harvest(config, config_index, source, destination):
-    index_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester = init_harvester(config,
-                                                                                                   config_index,
-                                                                                                   source,
-                                                                                                   destination)
+    index_store, feature_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester =\
+        init_harvester(config, config_index, source, destination)
 
-    file_index.add_or_update_file(index_store, netcdf_file)
-    netcdf_metadata_harvester.harvest(netcdf_file)
-    netcdf_feature_harvester.harvest(netcdf_file)
+    try:
+        file_index.add_or_update_file(index_store, netcdf_file)
+        index_store.commit()
+    finally:
+        index_store.rollback()
+
+    try:
+        netcdf_metadata_harvester.harvest(netcdf_file)
+        netcdf_feature_harvester.harvest(netcdf_file)
+        feature_store.commit()
+    finally:
+        feature_store.rollback()
 
 
 @harvester.command()
@@ -174,13 +181,21 @@ def harvest(config, config_index, source, destination):
 @click.option('-d', '--destination', prompt=True, type=click.Path(exists=False, file_okay=True, resolve_path=False),
               help='Destination path for the NetCDF file')
 def delete(config, config_index, source, destination):
-    index_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester = init_harvester(config,
-                                                                                                   config_index,
-                                                                                                   source,
-                                                                                                   destination)
-    file_index.delete_file(index_store, netcdf_file)
-    netcdf_metadata_harvester.delete(netcdf_file)
-    netcdf_feature_harvester.delete(netcdf_file)
+    index_store, feature_store, netcdf_file, netcdf_metadata_harvester, netcdf_feature_harvester =\
+        init_harvester(config, config_index, source, destination)
+
+    try:
+        netcdf_metadata_harvester.delete(netcdf_file)
+        netcdf_feature_harvester.delete(netcdf_file)
+        feature_store.commit()
+    finally:
+        feature_store.rollback()
+
+    try:
+        file_index.delete_file(index_store, netcdf_file)
+        index_store.commit()
+    finally:
+        index_store.rollback()
 
 
 @harvester.command()
