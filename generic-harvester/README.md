@@ -93,7 +93,7 @@ Specifies database connection details to use. Authentication is required to upda
 
 #### value_mappings
 
-An array of value mappings
+An array of value mappings. Value mappings map netCDF variable values to fields in target tables.
 
 #### value_mapping
 
