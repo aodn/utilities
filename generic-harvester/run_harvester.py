@@ -30,7 +30,7 @@ import click
 
 from harvester import file_index
 from harvester.metadata_harvester import NetcdfMetadataHarvester
-from harvester.store.database_store import DatabaseStore
+from harvester.store.database_store import PostgresStore
 from harvester.stubs.aodncore import PipelineFile
 from harvester.feature_harvester import NetcdfFeatureHarvester
 from harvester.metadata.metadata_updater import MetadataUpdater
@@ -96,8 +96,8 @@ def init_harvester(config_file, index_config_file, src_path, dest_path):
     index_config = init_config(index_config_file)
     logger = init_logger()
 
-    index_store = DatabaseStore(index_config["db_params"], logger)
-    feature_store = DatabaseStore(config["db_params"], logger)
+    index_store = PostgresStore(index_config["db_params"], logger)
+    feature_store = PostgresStore(config["db_params"], logger)
 
     netcdf_file = PipelineFile(
         src_path,
@@ -117,7 +117,7 @@ def init_metadata_updater(config_file):
     """
     logger = init_logger()
     config = init_config(config_file)
-    database_store = DatabaseStore(config["db_params"], logger)
+    database_store = PostgresStore(config["db_params"], logger)
 
     # Create MetadataUpdater instance
     return MetadataUpdater(database_store, config, logger)
@@ -158,6 +158,7 @@ def harvest(config, config_index, source, destination):
                                                                                                    config_index,
                                                                                                    source,
                                                                                                    destination)
+
     file_index.add_or_update_file(index_store, netcdf_file)
     netcdf_metadata_harvester.harvest(netcdf_file)
     netcdf_feature_harvester.harvest(netcdf_file)

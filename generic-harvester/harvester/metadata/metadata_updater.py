@@ -6,7 +6,7 @@ Extent Metadata Updater (Spatial, Temporal, Vertical)
 
 import xml.etree.ElementTree as ElementTree
 from harvester.metadata.geonetworklib import Geonetwork, GeonetworkRecord
-from harvester.store.database_store import DatabaseStore
+from harvester.store.database_store import PostgresStore
 from io import StringIO
 
 import uuid

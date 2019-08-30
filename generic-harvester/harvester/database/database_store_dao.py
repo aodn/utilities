@@ -16,15 +16,6 @@ class DatabaseStoreDao:
         self.logger = logger
         self.engine = sa.create_engine(self.url)
         self.conn = self.engine.connect()
-        self.meta = sa.MetaData(self.conn)
-
-    def get_table(self, table_name):
-        """
-
-        :param table_name: name of the table
-        :return: SQLAlchemy table
-        """
-        return sa.Table(table_name, self.meta, autoload=True)
 
     def insert(self, table_name, source):
         """
@@ -36,8 +27,7 @@ class DatabaseStoreDao:
 
         conn = self.engine.raw_connection()
 
-        try:
-            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
             values_template = "(" + ", ".join(["%({})s".format(field_name) for field_name in source.field_names]) + ")"
             insert_stmt = 'INSERT INTO "{}" ("{}") VALUES %s'.format(table_name, '","'.join(source.field_names))
 
@@ -48,14 +38,7 @@ class DatabaseStoreDao:
                 template=values_template
             )
 
-            rows_inserted = cur.rowcount
-
-            conn.commit()
-            cur.close()
-        except sa.exc.SQLAlchemyError as e:
-            self.logger.exception(e)
-            self.logger.error("Transaction failed.")
-        return rows_inserted
+            return cur.rowcount
 
     def execute_query(self, query, parameters):
         """
@@ -66,29 +49,7 @@ class DatabaseStoreDao:
         """
 
         s = sa.text(query)
-        str(s)
-        # start transaction
-        t = self.conn.begin()
-        try:
-            self.conn.execute(s, parameters)
-            t.commit()
-
-        except sa.exc.SQLAlchemyError as e:
-            self.logger.exception(e)
-            t.rollback()
-            self.logger.error("Transaction failed.")
-
-    def select(self, table_name):
-        """
-        Select all records from table...
-        :param table_name: name of the table
-        :return: query resultset
-        """
-
-        s = sa.select([self.get_table(table_name)])
-        str(s)
-        r = self.conn.execute(s)
-        return r.fetchall()
+        self.conn.execute(s, parameters)
 
     def select_query(self, query):
         """
@@ -110,7 +71,6 @@ class DatabaseStoreDao:
 
         where_clause = " and ".join([field_name + " = :" + field_name for field_name in key])
         s = sa.text("SELECT * FROM {} WHERE {}".format(table_name, where_clause))
-        str(s)
         r = self.conn.execute(s, key)
         return r.fetchone()
 
@@ -126,7 +86,6 @@ class DatabaseStoreDao:
         where_clause = " and ".join([field_name + " = :" + field_name for field_name in key])
         set_clause = ", ".join([field_name + "= :" + field_name for field_name in values])
         s = sa.text("UPDATE {} SET {} WHERE {}".format(table_name, set_clause, where_clause))
-        str(s)
         self.conn.execute(s, {**key, **values})
 
     def delete(self, table_name, key):
@@ -139,17 +98,11 @@ class DatabaseStoreDao:
 
         where_clause = " and ".join([field_name + " = :" + field_name for field_name in key])
         s = sa.text("DELETE FROM {} WHERE {}".format(table_name, where_clause))
-        str(s)
 
-        # start transaction
-        t = self.conn.begin()
-        try:
-            r = self.conn.execute(s, key)
-            t.commit()
+        return self.conn.execute(s, key)
 
-        except sa.exc.SQLAlchemyError as e:
-            self.logger.exception(e)
-            t.rollback()
-            r = None
-            self.logger.error("Transaction failed.")
-        return r
+    def commit(self):
+        self.conn.commit()
+
+    def rollback(self):
+        self.rollback()

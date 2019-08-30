@@ -6,6 +6,7 @@ import datetime
 import psycopg2
 from psycopg2.extras import execute_values
 
+from harvester.store.common import format_dict
 from harvester.util.collections import subset
 
 
@@ -17,30 +18,17 @@ class Psycopg2Store(object):
     def __init__(self, params, logger):
         self.params = subset(params, ("database", "host", "port", "user", "password"))
         self.logger = logger
+        self.conn = psycopg2.connect(**self.params)
 
-    def delete_records_for_file(self, table_name, file_id):
-        self.logger.info("Deleting records for file with id {} from {}...".format(file_id, table_name))
+    def delete(self, conn, table_name, key):
+        self.logger.info("Deleting records from {} where {}...".format(table_name, format_dict(key)))
+        with self.conn.cursor() as cur:
+            condition = " ".join(["{} = %({})".format(field_name, field_name) for field_name in key])
+            cur.execute('DELETE FROM "{}" WHERE {}'.format(table_name, condition))
+            return cur.rowcount
 
-        conn = None
-        rows_deleted = 0
-        try:
-            conn = psycopg2.connect(**self.params)
-            cur = conn.cursor()
-            cur.execute('DELETE FROM "{}" WHERE file_id = %s'.format(table_name), (file_id,))
-            rows_deleted = cur.rowcount
-            conn.commit()
-            cur.close()
-        except (Exception, psycopg2.DatabaseError) as error:
-            self.logger.exception(error)
-        finally:
-            if conn is not None:
-                conn.close()
-
-        return rows_deleted
-
-    def write(self, table_name, source):
+    def write(self, conn, table_name, source):
         self.logger.info("Writing records to {}...".format(table_name))
-        self.logger.info(datetime.datetime.now())
 
         conn = None
         rows_inserted = 0
@@ -85,5 +73,3 @@ class Psycopg2Store(object):
             if conn is not None:
                 conn.close()
 
-    def aggregate(self, aggregation, key):
-        self.logger.info("Performing aggregation {} using {}".format(aggregation, key))
