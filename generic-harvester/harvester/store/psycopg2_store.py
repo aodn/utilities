@@ -7,7 +7,6 @@ import psycopg2
 from psycopg2.extras import execute_values
 
 from harvester.util.collections import subset
-from harvester.database.database_store_dao import DatabaseStoreDao
 
 
 class Psycopg2Store(object):

@@ -72,7 +72,6 @@ class DatabaseStoreDao:
         try:
             self.conn.execute(s, parameters)
             t.commit()
-            self.logger.info("Transaction completed.")
 
         except sa.exc.SQLAlchemyError as e:
             self.logger.exception(e)
@@ -147,7 +146,6 @@ class DatabaseStoreDao:
         try:
             r = self.conn.execute(s, key)
             t.commit()
-            self.logger.info("Transaction completed.")
 
         except sa.exc.SQLAlchemyError as e:
             self.logger.exception(e)

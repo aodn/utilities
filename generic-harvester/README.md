@@ -239,8 +239,8 @@ Note: verticalCRS element mandatory for schema validation is set as missing.  `<
 
  - index_manager?
  - revisit database classes - transaction around all file updates - connection pooling
- - testing/tests
+ - more testing/integration tests
  - sensible exception handling
- - config validation
+ - config validation (when config settles down)
  - value_table expressions (add lambda support to expression parser)
  
