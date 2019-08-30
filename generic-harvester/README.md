@@ -83,6 +83,13 @@ Specifies database connection details to use. Authentication is required to upda
 
 | key | value |
 | --- | --- |
+| driver | sql alchemy driver |
+| host | host to connect to |
+| port | port to connect to |
+| database | database to connect to |
+| user | user to connect as |
+| password | password to use |
+| schema | schema directory to use (alembic) |
 
 #### value_mappings
 

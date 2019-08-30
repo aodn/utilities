@@ -108,7 +108,7 @@ class DatabaseStoreDao:
         :return:
         """
 
-        where_clause = " ".join([field_name + " = :" + field_name for field_name in key])
+        where_clause = " and ".join([field_name + " = :" + field_name for field_name in key])
         s = sa.text("SELECT * FROM {} WHERE {}".format(table_name, where_clause))
         str(s)
         r = self.conn.execute(s, key)
@@ -123,8 +123,8 @@ class DatabaseStoreDao:
         :return:
         """
 
-        where_clause = " ".join([field_name + " = :" + field_name for field_name in key])
-        set_clause = " ".join([field_name + "= :" + field_name for field_name in values])
+        where_clause = " and ".join([field_name + " = :" + field_name for field_name in key])
+        set_clause = ", ".join([field_name + "= :" + field_name for field_name in values])
         s = sa.text("UPDATE {} SET {} WHERE {}".format(table_name, set_clause, where_clause))
         str(s)
         self.conn.execute(s, {**key, **values})
@@ -137,7 +137,7 @@ class DatabaseStoreDao:
         :return:
         """
 
-        where_clause = " ".join([field_name + " = :" + field_name for field_name in key])
+        where_clause = " and ".join([field_name + " = :" + field_name for field_name in key])
         s = sa.text("DELETE FROM {} WHERE {}".format(table_name, where_clause))
         str(s)
 
