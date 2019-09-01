@@ -73,6 +73,16 @@ python run_harvester.py harvest \
   -d 'IMOS/ANMN/NSW/BMP070/Temperature/IMOS_ANMN-NSW_TZ_20141118T130000Z_BMP070_FV01_BMP070-1411-Aqualogger-520PT-16_END-20150504T063500Z_C-20160901T044727Z.nc'
 ```
 
+### Running metadata updater with example configs 
+
+To run the metadata updater for bundled anmn_ts and abos_sofs_fl files:
+
+```
+python run_harvester.py update-metadata -c config/abos_sofs_fl.json
+
+python run_harvester.py update-metadata -c config/anmn_ts.json
+```
+
 ### Configuring the feature harvester
 
 Best read while looking at an example config file in the config directory
@@ -169,16 +179,6 @@ The templated query string can use key place holders to aggregate details for th
 When used with the table key this allows only aggregated details associated with the source file 
 to be updated rather than updating all aggregated details for all files.  This is 
 far less resource intensive/time consuming and should be used wherever possible. 
-
-### Running metadata updater with example configs 
-
-To run the metadata updater for bundled anmn_ts and abos_sofs_fl files:
-
-```
-python run_harvester.py update-metadata -c config/abos_sofs_fl.json
-
-python run_harvester.py update-metadata -c config/anmn_ts.json
-```
 
 ### Configuring the metadata updater
 
