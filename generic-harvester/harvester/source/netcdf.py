@@ -37,9 +37,8 @@ Returns:
     ...
 
 """
-
+import pendulum
 from dateutil.parser import parse
-import pytz
 import re
 
 import netCDF4
@@ -56,7 +55,7 @@ def parse_datetime(value):
     if parsed_datetime.tzinfo:
         return parsed_datetime
     else:
-        return pytz.UTC.localize(parsed_datetime)
+        return pendulum.timezone('UTC').convert(parsed_datetime)
 
 
 ALLOWED_EXPR_FNS = {
@@ -178,7 +177,7 @@ def _get_values(variable):
         calendar = variable.calendar if hasattr(variable, 'calendar') else 'standard'
         units = variable.units
         dates = netCDF4.num2date(variable[:], units, calendar)
-        make_utc = np.vectorize(pytz.UTC.localize)
+        make_utc = np.vectorize(pendulum.timezone('UTC').convert)
         return make_utc(dates)
     else:
         return variable[:]

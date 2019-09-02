@@ -1,14 +1,8 @@
-shapely
 simpleeval
-pytz
-petl
 netCDF4
 python-dateutil
 alembic
 psycopg2
-GeoAlchemy2
-pandas
-xarray
 Click
 requests
-
+pendulum
