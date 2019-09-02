@@ -237,15 +237,11 @@ global attribute table as shown below:
 
 Note: verticalCRS element mandatory for schema validation is set as missing.  `<gmd:verticalCRS gco:nilReason=\"missing\"/>` 
 
-#### Issues:
-
- - alembic doesn't work with default privileges (they are not applied) meaning we would 
-   have to rework all the current chef management of roles and groups - may have to find another solution
-
 #### TODO:
 
  - index_manager?
- - revisit database classes - transaction around all file updates - connection pooling
+ - look at how we can remove file_index schema references from queries/views
+ - revisit connection handling/use of sqlalchemy
  - more testing/integration tests
  - sensible exception handling
  - config validation (when config settles down)
