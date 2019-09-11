@@ -18,6 +18,13 @@ assertions:
 - content: srs_altimetry
   expected: srs_altimetry/expect
   name: diff
+- name: file_exists:1
+  remote_file: SRS/ALTIMETRY/IMOS_SRSALT_TCS_20170404T231500Z_BASS3B_FV01_SBE37d28m.nc
+- name: file_exists:2
+  remote_file: SRS/ALTIMETRY/IMOS_SRSALT_TCS_20180405T220500Z_BASS3B_FV01_SBE37d28m.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SRS/ALTIMETRY/calibration_validation/SRSBASS3B/CTD_timeseries/IMOS_SRSALT_TCS_20180405T220500Z_BASS3B_FV01_SBE37d28m.nc
 database_schemas:
 - name: srs_altimetry
   tables:

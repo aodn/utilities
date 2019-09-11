@@ -31,6 +31,8 @@ assertions:
 - content: argo
   expected: argo/expect
   name: diff
+- name: file_exists:1
+  remote_file: Argo/argo_rsync.20190416-112046.rsync_manifest
 database_schemas:
 - name: argo
   tables:

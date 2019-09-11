@@ -27,6 +27,15 @@ assertions:
 - content: srs_oc_ljco_wws_dalec
   expected: srs_oc_ljco_wws_dalec/expect
   name: diff
+- name: file_exists:1
+  remote_file: SRS/OC/LJCO_DALEC/IMOS_SRS-OC-LJCO_F_20181121T230002Z_LJCO_FV01_DALEC_END-20181122T005958Z.nc
+- name: file_exists:2
+  remote_file: SRS/OC/LJCO_DALEC/IMOS_SRS-OC-LJCO_F_20181125T230002Z_LJCO_FV01_DALEC_END-20181126T005956Z.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SRS/OC/LJCO/DALEC/2018/11/IMOS_SRS-OC-LJCO_F_20181125T230002Z_LJCO_FV01_DALEC_END-20181126T005956Z.nc
+- name: file_exists:3
+  remote_file: SRS/OC/LJCO_DALEC/IMOS_SRS-OC-LJCO_F_20160915T044155Z_LJCO_FV02_DALEC_20160915T050002Z.nc
 database_schemas:
 - name: srs_oc_ljco_wws
   tables:

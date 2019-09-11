@@ -18,6 +18,13 @@ assertions:
 - content: srs_oc
   expected: srs_oc/expect
   name: diff
+- name: file_exists:1
+  remote_file: SRS/OC/GRIDDED/A.P1D.20180103T000000Z.aust.picop_brewin2012in.nc
+- name: file_exists:2
+  remote_file: SRS/OC/GRIDDED/A.P1D.20180103T000000Z.aust.sst_quality.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SRS/OC/gridded/aqua/P1D/2018/01/A.P1D.20180103T000000Z.aust.sst_quality.nc
 database_schemas:
 - name: srs_oc
   tables:

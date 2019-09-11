@@ -22,6 +22,19 @@ assertions:
 - content: acorn_hourly_avg_qc
   expected: acorn_hourly_avg_qc/expect
   name: diff
+- invert: true
+  name: file_exists:not:0
+  remote_file: IMOS/ACORN/gridded_1h-avg-current-map_QC/ROT/2018/12/31/IMOS_ACORN_V_20181231T223000Z_ROT_FV01_1-hour-avg.nc
+- invert: true
+  name: file_exists:not:0
+  remote_file: IMOS/ACORN/gridded_1h-avg-current-map_QC/ROT/2018/12/31/IMOS_ACORN_V_20181231T233000Z_ROT_FV01_1-hour-avg.nc
+- name: file_exists:1
+  remote_file: ACORN_DM/any/IMOS_ACORN_V_20181231T223000Z_ROT_FV01_1-hour-avg.nc
+- name: file_exists:2
+  remote_file: ACORN_DM/any/IMOS_ACORN_V_20181231T233000Z_ROT_FV01_1-hour-avg.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/ACORN/gridded_1h-avg-current-map_QC/ROT/2018/12/31/IMOS_ACORN_V_20181231T233000Z_ROT_FV01_1-hour-avg.nc
 database_schemas:
 - name: acorn_hourly_avg_qc
   tables:

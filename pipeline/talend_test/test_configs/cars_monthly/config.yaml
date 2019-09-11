@@ -18,6 +18,13 @@ assertions:
 - content: cars_monthly
   expected: cars_monthly/expect
   name: diff
+- name: file_exists:1
+  remote_file: CSIRO/CARS/CARS2009_World_monthly_01.nc
+- name: file_exists:2
+  remote_file: CSIRO/CARS/CARS2009_World_monthly_02.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: CSIRO/Climatology/CARS/2009/AODN-product/CARS2009_World_monthly_02.nc
 database_schemas:
 - name: generic_timestep
   tables:

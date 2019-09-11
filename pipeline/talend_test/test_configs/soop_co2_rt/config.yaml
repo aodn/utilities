@@ -18,6 +18,13 @@ assertions:
 - content: soop_co2_rt
   expected: soop_co2_rt/expect
   name: diff
+- name: file_exists:1
+  remote_file: SOOP/CO2/IMOS_SOOP-CO2_GST_20190505T000348Z_VLMJ_FV00_END-20190506T000107Z.nc
+- name: file_exists:2
+  remote_file: SOOP/CO2/IMOS_SOOP-CO2_GST_20190507T000515Z_VLMJ_FV00_END-20190508T000344Z.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SOOP/SOOP-CO2/VLMJ_Investigator/REALTIME/2019/5/IMOS_SOOP-CO2_GST_20190507T000515Z_VLMJ_FV00_END-20190508T000344Z.nc
 database_schemas:
 - name: soop_co2_rt
   tables:

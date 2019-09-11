@@ -18,6 +18,13 @@ assertions:
 - content: soop_xbt_dm
   expected: soop_xbt_dm/expect
   name: diff
+- name: file_exists:1
+  remote_file: SOOP/XBT/DM/IMOS_SOOP-XBT_T_20190217T032800Z_Tasman-sea_FV01_ID-89011530.nc
+- name: file_exists:2
+  remote_file: SOOP/XBT/DM/IMOS_SOOP-XBT_T_20190218T031900Z_Tasman-sea_FV01_ID-89011531.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SOOP/SOOP-XBT/DELAYED/Tasman-sea/2019/IMOS_SOOP-XBT_T_20190218T031900Z_Tasman-sea_FV01_ID-89011531.nc
 database_schemas:
 - name: soop_xbt_dm
   tables:
