@@ -99,7 +99,7 @@
     },
     "metadata_updates": [
         {
-            "uuid": "ae6af5ff-9503-492b-b917-4e3c1a0c19ee",
+            "uuid": "7e13b5f3-4a70-4e31-9e95-335efa491c5c",
             "spatial": {
                 "table": "feature_metadata",
                 "column": "geom",

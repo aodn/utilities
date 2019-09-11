@@ -4,6 +4,15 @@ Prototype netCDF feature harvester for harvesting timeseries information from ne
 
 #### Installing
 
+#### Required packages
+
+* postgresql-client
+* postgresql-common
+* postgresql-server-dev-all
+* python3-dev
+
+##### Harvester
+
 ```
 git clone git@github.com:aodn/utilities.git
 cd utilities/
@@ -38,6 +47,9 @@ CREATE SCHEMA AUTHORIZATION anmn_ts;
 CREATE SCHEMA AUTHORIZATION abos_sofs_fl;
 ```
 
+And then run https://github.com/aodn/harvest_sql_library/blob/master/extension/imos--1.0.sql REMOVING LINE 4 to install
+required postgres functions used to calculate spatial extents when updating metadata.
+ 
 #### Creating example tables/views using alembic
 
 Alembic is currently being used to create tables/views in the target schemas (see issues below).
@@ -89,7 +101,7 @@ Best read while looking at an example config file in the config directory
 
 #### db_params
 
-Specifies database connection details to use. Authentication is required to update metadata records. 
+Specifies database connection details to use when creating tables/updating data.
 
 | key | value |
 | --- | --- |

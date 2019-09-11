@@ -159,12 +159,12 @@ def harvest(config, config_index, source, destination):
 
     try:
         file_index.add_or_update_file(index_store, netcdf_file)
+        netcdf_metadata_harvester.harvest(netcdf_file)
         index_store.commit()
     finally:
         index_store.rollback()
 
     try:
-        netcdf_metadata_harvester.harvest(netcdf_file)
         netcdf_feature_harvester.harvest(netcdf_file)
         feature_store.commit()
     finally:
@@ -185,13 +185,13 @@ def delete(config, config_index, source, destination):
         init_harvester(config, config_index, source, destination)
 
     try:
-        netcdf_metadata_harvester.delete(netcdf_file)
         netcdf_feature_harvester.delete(netcdf_file)
         feature_store.commit()
     finally:
         feature_store.rollback()
 
     try:
+        netcdf_metadata_harvester.delete(netcdf_file)
         file_index.delete_file(index_store, netcdf_file)
         index_store.commit()
     finally:

@@ -6,3 +6,4 @@ psycopg2
 Click
 requests
 pendulum
+geoalchemy2
