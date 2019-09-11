@@ -1,0 +1,43 @@
+
+
+name: abos_da
+type: pipeline_version_2
+po: marty
+actions:
+  - type: ADD
+    files:
+      - dest: /mnt/ebs/incoming/ABOS/DA
+        local_file: EAC2000-2018.subset.zip
+  - type: UPDATE
+    files:
+      - dest: /mnt/ebs/incoming/ABOS/DA
+        local_file: EAC2000-2018.subset.updated.zip
+        remote_file: EAC2000-2018.subset.zip
+  - type: DELETE
+    path: IMOS/ABOS/DA/EAC2000
+    
+drop_schema_objects: true
+run_talend_liqui: false
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ABOS_DA.log
+talend_jobs:
+  - abos_currents-abos_currents
+  - moorings_metadata-moorings_metadata
+  - abos_ts-abos_ts
+database_schemas:
+  -
+    name: abos_currents
+    tables:
+      - name: abos_currents_map
+        exclude_columns: []
+  -
+    name: anmn_metadata
+    tables:
+      - name: abos_all_map
+        exclude_columns: [date_published, date_updated]
+  -
+    name: abos_ts
+    tables:
+      - name: abos_ts_timeseries_data
+        exclude_columns: []
+      - name: abos_ts_timeseries_map
+        exclude_columns: []

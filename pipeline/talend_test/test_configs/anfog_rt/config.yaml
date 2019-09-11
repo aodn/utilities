@@ -1,0 +1,33 @@
+actions:
+- incoming:
+  - dest: ANFOG/realtime
+    local_file: RowleyShoals20190425.zip
+  type: ADD
+- incoming:
+  - dest: ANFOG/realtime
+    local_file: RowleyShoals20190425.updated.zip
+    remote_file: RowleyShoals20190425.zip
+  type: UPDATE
+- path: IMOS/ANFOG/REALTIME/slocum_glider/RowleyShoals20190425
+  type: DELETE
+assertions:
+- content: anfog_rt
+  expected: ../test_configs/anfog_rt/expect
+  name: diff
+database_schemas:
+- name: anfog_rt
+  tables:
+  - exclude_columns: []
+    name: anfog_rt_trajectory_data
+  - exclude_columns: []
+    name: anfog_rt_trajectory_map
+drop_schema_objects: false
+name: anfog_rt
+po: bene
+process_report_template: processing_results
+run_talend_liqui: false
+talend_jobs:
+- anfog_rt-anfog_rt
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANFOG_RT.log
+test_report_template: test_results
+type: pipeline_version_2

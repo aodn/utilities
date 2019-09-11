@@ -1,0 +1,52 @@
+actions:
+- incoming:
+  - dest: SOOP/SST
+    local_file: IMOS_SOOP-SST_T_20130215T000000Z_HSB3402_FV01_1-min-avg_C-20130530T005006Z.nc
+    remote_file: IMOS_SOOP-SST_T_20130216T000000Z_HSB3402_FV01_1-min-avg_C-20130530T005007Z.nc
+  type: ADD
+- incoming:
+  - dest: SOOP/SST
+    local_file: IMOS_SOOP-SST_T_20130216T000000Z_HSB3402_FV01_1-min-avg_C-20130530T005007Z.nc
+  type: UPDATE
+- incoming:
+  - dest: SOOP/SST
+    local_file: IMOS_SOOP-SST_MT_20180117T000000Z_C6FS9_FV01_C-20180117T233003Z.nc
+    remote_file: IMOS_SOOP-SST_MT_20180118T000000Z_C6FS9_FV01_C-20180118T233004Z.nc
+  type: ADD
+- incoming:
+  - dest: SOOP/SST
+    local_file: IMOS_SOOP-SST_MT_20180118T000000Z_C6FS9_FV01_C-20180118T233004Z.nc
+  type: UPDATE
+- incoming:
+  - dest: SOOP/SST
+    local_file: IMOS_SOOP-SST_MT_20180119T000000Z_C6FS9_FV01_C-20180119T233004Z.nc
+  type: ADD
+- file: IMOS/SOOP/SOOP-SST/C6FS9_Stadacona/2018/IMOS_SOOP-SST_MT_20180119T000000Z_C6FS9_FV01_C-20180119T233004Z.nc
+  type: DELETE
+assertions:
+- content: soop_sst
+  expected: ../test_configs/soop_sst/expect
+  name: diff
+database_schemas:
+- name: soop_sst
+  tables:
+  - exclude_columns:
+    - colour
+    name: soop_sst_dm_trajectory_map
+  - exclude_columns: []
+    name: soop_sst_dm_trajectory_data
+  - exclude_columns:
+    - colour
+    name: soop_sst_nrt_trajectory_map
+  - exclude_columns: []
+    name: soop_sst_nrt_trajectory_data
+drop_schema_objects: true
+name: soop_sst
+po: laurent
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- soop_sst-soop_sst
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_SST.log
+test_report_template: test_results
+type: pipeline_version_2

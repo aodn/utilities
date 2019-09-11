@@ -1,0 +1,47 @@
+name: argo
+type: pipeline_version_2
+po: laurent
+dirs:
+  - path: /mnt/ebs/wip/Argo/dac/nmdis/2901615/profiles
+    owner: projectofficer
+    group: projectofficer
+actions:
+  - type: ADD
+    files: # add 2901615 files with 2901616 content
+     - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615
+       local_file: 2901616_meta.nc
+       remote_file: 2901615_meta.nc
+     - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615/profiles
+       local_file: R2901616_000.nc
+       remote_file: R2901615_000.nc
+     - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615/profiles
+       local_file: R2901616_001.nc
+       remote_file: R2901615_001.nc
+     - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615/profiles
+       local_file: R2901616_002.nc
+       remote_file: R2901615_002.nc
+     - dest: /mnt/ebs/incoming/Argo
+       local_file: argo_rsync.20190416-112046.rsync_manifest  # Add above files
+  - type: UPDATE
+    files:  # replace 2901615 files added above with the correct content and delete R2901615_002.nc
+    - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615
+      local_file: 2901615_meta.nc
+    - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615/profiles
+      local_file: R2901615_000.nc
+    - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615/profiles
+      local_file: R2901615_001.nc
+    - dest: /mnt/ebs/incoming/Argo
+      local_file: argo_rsync.20190507-074346.rsync_manifest
+drop_schema_objects: true
+run_talend_liqui: true
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ARGO.log
+talend_jobs:
+  - argo-argo
+database_schemas:
+  -
+    name: argo
+    tables:
+      - name: argo_profile_map
+        exclude_columns: [created, modified, first_indexed, last_indexed]
+      - name: argo_primary_profile_core_low_res_good_qc_data
+        exclude_columns: [created, modified, first_indexed, last_indexed]

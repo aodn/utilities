@@ -1,0 +1,35 @@
+actions:
+- incoming:
+  - dest: OceanCurrent/GSLA
+    local_file: IMOS_OceanCurrent_HV_20110901T000000Z_GSLA_FV02_NRT00_C-20111104T011656Z.nc.gz
+    remote_file: IMOS_OceanCurrent_HV_20110902T000000Z_GSLA_FV02_NRT00_C-20111104T011708Z.nc.gz
+  type: ADD
+- incoming:
+  - dest: OceanCurrent/GSLA
+    local_file: IMOS_OceanCurrent_HV_20110903T000000Z_GSLA_FV02_NRT00_C-20111104T011719Z.nc.gz
+  type: ADD
+- incoming:
+  - dest: OceanCurrent/GSLA
+    local_file: IMOS_OceanCurrent_HV_20110902T000000Z_GSLA_FV02_NRT00_C-20111104T011708Z.nc.gz
+  type: UPDATE
+- file: IMOS/OceanCurrent/GSLA/NRT00/2011/IMOS_OceanCurrent_HV_20110903T000000Z_GSLA_FV02_NRT00_C-20111104T011719Z.nc.gz
+  type: DELETE
+assertions:
+- content: gsla_nrt00
+  expected: ../test_configs/gsla_nrt00/expect
+  name: diff
+database_schemas:
+- name: gsla_nrt00
+  tables:
+  - exclude_columns: []
+    name: gsla_nrt00_timeseries_url
+drop_schema_objects: true
+name: gsla_nrt00
+po: loz
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- gsla_nrt00-gsla_nrt00
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.GSLA.log
+test_report_template: test_results
+type: pipeline_version_2

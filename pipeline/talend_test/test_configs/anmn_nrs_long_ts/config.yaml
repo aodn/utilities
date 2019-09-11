@@ -1,0 +1,33 @@
+actions:
+- incoming:
+  - dest: ANMN/NRS_MAI_NSI_MOORING
+    local_file: IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc.original
+    remote_file: IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc
+  type: ADD
+- incoming:
+  - dest: ANMN/NRS_MAI_NSI_MOORING
+    local_file: IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc
+  type: UPDATE
+- file: IMOS/ANMN/NRS/NRSMAI/aggregated_products/IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc
+  type: DELETE
+assertions:
+- content: anmn_nrs_long_ts
+  expected: ../test_configs/anmn_nrs_long_ts/expect
+  name: diff
+database_schemas:
+- name: anmn_nrs_long_ts
+  tables:
+  - exclude_columns: []
+    name: anmn_nrs_long_ts_map
+  - exclude_columns: []
+    name: anmn_nrs_long_ts_original_data
+drop_schema_objects: true
+name: anmn_nrs_long_ts
+po: marty
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- anmn_nrs_long_ts-anmn_nrs_long_ts
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANMN_NRS_MOORING.log
+test_report_template: test_results
+type: pipeline_version_2

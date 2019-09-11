@@ -1,0 +1,39 @@
+actions:
+- file: IMOS/ACORN/gridded_1h-avg-current-map_QC/ROT/2018/12/31/IMOS_ACORN_V_20181231T223000Z_ROT_FV01_1-hour-avg.nc
+  type: DELETE
+- file: IMOS/ACORN/gridded_1h-avg-current-map_QC/ROT/2018/12/31/IMOS_ACORN_V_20181231T233000Z_ROT_FV01_1-hour-avg.nc
+  type: DELETE
+- incoming:
+  - dest: ACORN_DM/any
+    local_file: IMOS_ACORN_V_20181231T013000Z_ROT_FV01_1-hour-avg.nc
+    remote_file: IMOS_ACORN_V_20181231T223000Z_ROT_FV01_1-hour-avg.nc
+  type: ADD
+- incoming:
+  - dest: ACORN_DM/any
+    local_file: IMOS_ACORN_V_20181231T223000Z_ROT_FV01_1-hour-avg.nc
+  type: UPDATE
+- incoming:
+  - dest: ACORN_DM/any
+    local_file: IMOS_ACORN_V_20181231T233000Z_ROT_FV01_1-hour-avg.nc
+  type: ADD
+- file: IMOS/ACORN/gridded_1h-avg-current-map_QC/ROT/2018/12/31/IMOS_ACORN_V_20181231T233000Z_ROT_FV01_1-hour-avg.nc
+  type: DELETE
+assertions:
+- content: acorn_hourly_avg_qc
+  expected: ../test_configs/acorn_hourly_avg_qc/expect
+  name: diff
+database_schemas:
+- name: acorn_hourly_avg_qc
+  tables:
+  - exclude_columns: []
+    name: acorn_hourly_avg_qc_timeseries_url
+drop_schema_objects: true
+name: acorn_hourly_avg_qc
+po: loz
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- acorn_hourly_avg_qc-acorn_hourly_avg_qc
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ACORN_DM.log
+test_report_template: test_results
+type: pipeline_version_2

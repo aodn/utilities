@@ -42,7 +42,7 @@
     group: projectofficer
     mode: a+w
   loop: "{{ action_item.files }}"
-  when: (action_item.type == 'ADD' or action_item.type == 'UPDATE')
+  when: (action_item.files is defined) and (action_item.type == 'ADD' or action_item.type == 'UPDATE')
 
 # copy files to incoming  (kicks off processing for pipeline types) for ADD/UPDATE actions
 - name: copy files to incoming

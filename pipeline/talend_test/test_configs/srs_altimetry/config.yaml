@@ -1,0 +1,37 @@
+actions:
+- incoming:
+  - dest: SRS/ALTIMETRY
+    local_file: IMOS_SRSALT_TCS_20160918T220000Z_BASS3B_FV01_SBE37d25m.nc
+    remote_file: IMOS_SRSALT_TCS_20170404T231500Z_BASS3B_FV01_SBE37d28m.nc
+  type: ADD
+- incoming:
+  - dest: SRS/ALTIMETRY
+    local_file: IMOS_SRSALT_TCS_20170404T231500Z_BASS3B_FV01_SBE37d28m.nc
+  type: UPDATE
+- incoming:
+  - dest: SRS/ALTIMETRY
+    local_file: IMOS_SRSALT_TCS_20180405T220500Z_BASS3B_FV01_SBE37d28m.nc
+  type: ADD
+- file: IMOS/SRS/ALTIMETRY/calibration_validation/SRSBASS3B/CTD_timeseries/IMOS_SRSALT_TCS_20180405T220500Z_BASS3B_FV01_SBE37d28m.nc
+  type: DELETE
+assertions:
+- content: srs_altimetry
+  expected: ../test_configs/srs_altimetry/expect
+  name: diff
+database_schemas:
+- name: srs_altimetry
+  tables:
+  - exclude_columns: []
+    name: srs_altimetry_timeseries_map
+  - exclude_columns: []
+    name: srs_altimetry_timeseries_data
+drop_schema_objects: true
+name: srs_altimetry
+po: laurent
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- srs_altimetry-srs_altimetry
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_ALTIMETRY.log
+test_report_template: test_results
+type: pipeline_version_2
