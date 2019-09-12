@@ -16,7 +16,7 @@ actions:
   type: UPDATE
 assertions:
 - content: anmn_t_regridded
-  expected: ../test_configs/anmn_t_regridded/expect
+  expected: anmn_t_regridded/expect
   name: diff
 database_schemas:
 - name: anmn_t_regridded

@@ -10,7 +10,7 @@ actions:
   type: UPDATE
 assertions:
 - content: srs_oc_ljco_aeronet
-  expected: ../test_configs/srs_oc_ljco_aeronet/expect
+  expected: srs_oc_ljco_aeronet/expect
   name: diff
 database_schemas:
 - name: srs_oc_ljco_aeronet

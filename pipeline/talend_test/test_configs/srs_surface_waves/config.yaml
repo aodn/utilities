@@ -16,7 +16,7 @@ actions:
   type: DELETE
 assertions:
 - content: srs_surface_waves
-  expected: ../test_configs/srs_surface_waves/expect
+  expected: srs_surface_waves/expect
   name: diff
 database_schemas:
 - name: srs_surface_waves

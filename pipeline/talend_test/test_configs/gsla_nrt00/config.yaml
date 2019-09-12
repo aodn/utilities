@@ -16,7 +16,7 @@ actions:
   type: DELETE
 assertions:
 - content: gsla_nrt00
-  expected: ../test_configs/gsla_nrt00/expect
+  expected: gsla_nrt00/expect
   name: diff
 database_schemas:
 - name: gsla_nrt00

@@ -25,7 +25,7 @@ actions:
   type: DELETE
 assertions:
 - content: soop_sst
-  expected: ../test_configs/soop_sst/expect
+  expected: soop_sst/expect
   name: diff
 database_schemas:
 - name: soop_sst

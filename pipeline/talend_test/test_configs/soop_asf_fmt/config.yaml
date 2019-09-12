@@ -16,7 +16,7 @@ actions:
   type: DELETE
 assertions:
 - content: soop_asf_fmt
-  expected: ../test_configs/soop_asf_fmt/expect
+  expected: soop_asf_fmt/expect
   name: diff
 database_schemas:
 - name: soop_asf_fmt

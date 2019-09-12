@@ -20,7 +20,7 @@ actions:
   type: DELETE
 assertions:
 - content: acorn_radial_nonqc
-  expected: ../test_configs/acorn_radial_nonqc/expect
+  expected: acorn_radial_nonqc/expect
   name: diff
 database_schemas:
 - name: acorn_radial_nonqc

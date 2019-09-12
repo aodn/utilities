@@ -43,7 +43,7 @@ actions:
   type: UPDATE
 assertions:
 - content: aodn_wave_dm
-  expected: ../test_configs/aodn_wave_dm/expect
+  expected: aodn_wave_dm/expect
   name: diff
 database_schemas:
 - name: aodn_wave_dm

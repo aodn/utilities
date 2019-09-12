@@ -16,7 +16,7 @@ actions:
   type: DELETE
 assertions:
 - content: cars_monthly
-  expected: ../test_configs/cars_monthly/expect
+  expected: cars_monthly/expect
   name: diff
 database_schemas:
 - name: generic_timestep

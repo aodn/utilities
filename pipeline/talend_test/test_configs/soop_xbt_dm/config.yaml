@@ -16,7 +16,7 @@ actions:
   type: DELETE
 assertions:
 - content: soop_xbt_dm
-  expected: ../test_configs/soop_xbt_dm/expect
+  expected: soop_xbt_dm/expect
   name: diff
 database_schemas:
 - name: soop_xbt_dm

@@ -29,7 +29,7 @@ actions:
   type: UPDATE
 assertions:
 - content: argo
-  expected: ../test_configs/argo/expect
+  expected: argo/expect
   name: diff
 database_schemas:
 - name: argo

@@ -12,7 +12,7 @@ actions:
   type: DELETE
 assertions:
 - content: anfog_rt
-  expected: ../test_configs/anfog_rt/expect
+  expected: anfog_rt/expect
   name: diff
 database_schemas:
 - name: anfog_rt

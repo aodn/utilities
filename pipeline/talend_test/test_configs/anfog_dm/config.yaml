@@ -5,7 +5,7 @@ actions:
   type: ADD
 assertions:
 - content: anfog_dm
-  expected: ../test_configs/anfog_dm/expect
+  expected: anfog_dm/expect
   name: diff
 database_schemas:
 - name: anfog_dm

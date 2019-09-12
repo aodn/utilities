@@ -5,7 +5,7 @@ actions:
   type: ADD
 assertions:
 - content: soop_trv
-  expected: ../test_configs/soop_trv/expect
+  expected: soop_trv/expect
   name: diff
 database_schemas:
 - name: soop_trv

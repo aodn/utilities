@@ -34,7 +34,7 @@ actions:
   type: DELETE
 assertions:
 - content: auv
-  expected: ../test_configs/auv/expect
+  expected: auv/expect
   name: diff
 database_schemas:
 - name: auv

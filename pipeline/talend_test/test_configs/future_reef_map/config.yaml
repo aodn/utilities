@@ -16,7 +16,7 @@ actions:
   type: DELETE
 assertions:
 - content: future_reef_map
-  expected: ../test_configs/future_reef_map/expect
+  expected: future_reef_map/expect
   name: diff
 database_schemas:
 - name: future_reef_map

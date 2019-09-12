@@ -12,7 +12,7 @@ actions:
   type: DELETE
 assertions:
 - content: anmn_nrs_long_ts
-  expected: ../test_configs/anmn_nrs_long_ts/expect
+  expected: anmn_nrs_long_ts/expect
   name: diff
 database_schemas:
 - name: anmn_nrs_long_ts

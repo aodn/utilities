@@ -55,7 +55,7 @@ actions:
   type: UPDATE
 assertions:
 - content: srs_oc_ljco_wws
-  expected: ../test_configs/srs_oc_ljco_wws/expect
+  expected: srs_oc_ljco_wws/expect
   name: diff
 database_schemas:
 - name: srs_oc_ljco_wws

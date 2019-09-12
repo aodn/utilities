@@ -25,7 +25,7 @@ actions:
   type: UPDATE
 assertions:
 - content: auv_viewer_track
-  expected: ../test_configs/auv_viewer_track/expect
+  expected: auv_viewer_track/expect
   name: diff
 database_schemas:
 - name: auv_viewer_track

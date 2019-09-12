@@ -20,7 +20,7 @@ actions:
   type: DELETE
 assertions:
 - content: acorn_hourly_avg_qc
-  expected: ../test_configs/acorn_hourly_avg_qc/expect
+  expected: acorn_hourly_avg_qc/expect
   name: diff
 database_schemas:
 - name: acorn_hourly_avg_qc

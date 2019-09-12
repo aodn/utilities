@@ -12,7 +12,7 @@ actions:
   type: DELETE
 assertions:
 - content: abos_da
-  expected: ../test_configs/abos_da/expect
+  expected: abos_da/expect
   name: diff
 database_schemas:
 - name: abos_currents

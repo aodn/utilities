@@ -37,5 +37,5 @@ test_report_template: test_results
 assertions:
   # Asserts harvested results are as expected
   - name: diff
-    expected: ../test_configs/soop_asf_mt/expect
+    expected: soop_asf_mt/expect
     content: soop_asf_mt

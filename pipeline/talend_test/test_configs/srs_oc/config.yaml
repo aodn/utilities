@@ -16,7 +16,7 @@ actions:
   type: DELETE
 assertions:
 - content: srs_oc
-  expected: ../test_configs/srs_oc/expect
+  expected: srs_oc/expect
   name: diff
 database_schemas:
 - name: srs_oc

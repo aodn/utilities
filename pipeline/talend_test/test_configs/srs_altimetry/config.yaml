@@ -16,7 +16,7 @@ actions:
   type: DELETE
 assertions:
 - content: srs_altimetry
-  expected: ../test_configs/srs_altimetry/expect
+  expected: srs_altimetry/expect
   name: diff
 database_schemas:
 - name: srs_altimetry

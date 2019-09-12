@@ -23,7 +23,7 @@ actions:
   type: DELETE
 assertions:
 - content: faimms
-  expected: ../test_configs/faimms/expect
+  expected: faimms/expect
   name: diff
 database_schemas:
 - name: faimms

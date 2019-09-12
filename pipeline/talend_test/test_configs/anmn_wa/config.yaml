@@ -12,7 +12,7 @@ actions:
   type: DELETE
 assertions:
 - content: anmn_wa
-  expected: ../test_configs/anmn_wa/expect
+  expected: anmn_wa/expect
   name: diff
 database_schemas:
 - name: anmn_ts

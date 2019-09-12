@@ -31,7 +31,7 @@ actions:
   type: DELETE
 assertions:
 - content: anmn_wave
-  expected: ../test_configs/anmn_wave/expect
+  expected: anmn_wave/expect
   name: diff
 database_schemas:
 - name: anmn_wave

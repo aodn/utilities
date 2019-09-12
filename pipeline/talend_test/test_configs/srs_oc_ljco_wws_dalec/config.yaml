@@ -25,7 +25,7 @@ actions:
   type: UPDATE
 assertions:
 - content: srs_oc_ljco_wws_dalec
-  expected: ../test_configs/srs_oc_ljco_wws_dalec/expect
+  expected: srs_oc_ljco_wws_dalec/expect
   name: diff
 database_schemas:
 - name: srs_oc_ljco_wws

@@ -16,7 +16,7 @@ actions:
   type: UPDATE
 assertions:
 - content: soop_ba
-  expected: ../test_configs/soop_ba/expect
+  expected: soop_ba/expect
   name: diff
 database_schemas:
 - name: soop_ba
