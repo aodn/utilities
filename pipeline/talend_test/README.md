@@ -34,9 +34,9 @@ If you are **not using** the po-box7 as the host for running the pipelines (the 
  
 - edit `test_configs/hosts` and update ansible_host to point to the pipeline host.
 - edit `test_configs/hosts` and update db_user to a user with database admin privileges on the pipeline host.
-- edit `test_configs/hosts` and update file_store_type to 's3' if files to be processed are stored on s3 or 'file' if they are stored directly on the pipeline host.
-- edit `test_configs/hosts` and update file_store to an s3 bucket (eg 's3://imos-data-pipeline-talend7') if processed are uploaded to s3 or a directory on the pipeline host (eg '/s3/imos-data') 
-if they are uploaded directly to the pipeline host.
+- edit `test_configs/hosts` and update file_store_type to 's3' if processed files are stored on s3 or 'file' if they are stored directly on the pipeline host.
+- edit `test_configs/hosts` and update file_store to an s3 bucket (eg 's3://imos-data-pipeline-talend7') if processed files stored on s3 or a directory on the pipeline host (eg '/s3/imos-data') 
+if they are stored directly on the pipeline host.
 - edit `test_configs/hosts` and update pipeline_incoming_dir_prefix to the name of directory to which incoming files are uploaded for the pipeline host
 - edit `test_configs/hosts` and update harvest_host to the name of the pipeline host.
 
