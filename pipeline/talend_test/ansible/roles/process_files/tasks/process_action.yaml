@@ -36,7 +36,7 @@
   become: yes
   become_user: root
   copy:
-    src: "../test_configs/{{ name }}/input_files/{{ item.local_file }}"
+    src: "../{{ test_config.split('/')[0] }}/{{ name }}/input_files/{{ item.local_file }}"
     dest: "{{ item.dest }}/{{ item.remote_file if item.remote_file is defined else item.local_file }}"
     owner: projectofficer
     group: projectofficer
@@ -49,7 +49,7 @@
   become: yes
   become_user: root
   copy:
-    src: "../test_configs/{{ name }}/input_files/{{ item.local_file }}"
+    src: "../{{ test_config.split('/')[0] }}/{{ name }}/input_files/{{ item.local_file }}"
     dest: "{{ pipeline_incoming_dir_prefix }}/{{ item.dest }}/{{ item.remote_file if item.remote_file is defined else item.local_file }}"
     owner: projectofficer
     group: projectofficer
