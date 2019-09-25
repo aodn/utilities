@@ -30,10 +30,24 @@ On your local machine, allow setting of permissions on temporary files that ansi
 - copy ansible.cfg to `/etc/ansible/ansible.cfg` for permanent changes to ansible
 
 
-If you are not using the po-box7 as the host for running the pipelines (the pipeline host) do the following on your local machine:
+If you are **not using** the po-box7 as the host for running the pipelines (the pipeline host) do the following on your local machine:
  
 - edit `test_configs/hosts` and update ansible_host to point to the pipeline host.
 - edit `test_configs/hosts` and update db_user to a user with database admin privileges on the pipeline host.
+- edit `test_configs/hosts` and update file_store_type to 's3' if files to be processed are stored on s3 or 'file' if they are stored directly on the pipeline host.
+- edit `test_configs/hosts` and update file_store to an s3 bucket (eg 's3://imos-data-pipeline-talend7') if processed are uploaded to s3 or a directory on the pipeline host (eg '/s3/imos-data') 
+if they are uploaded directly to the pipeline host.
+- edit `test_configs/hosts` and update pipeline_incoming_dir_prefix to the name of directory to which incoming files are uploaded for the pipeline host
+- edit `test_configs/hosts` and update harvest_host to the name of the pipeline host.
+
+Example `test_configs/hosts` file for 9-nec-hob.emii.org.au:
+```
+[pipeline-processing-servers]
+pipeline ansible_host=9-nec-hob.emii.org.au db_user=admin file_store_type=s3 file_store=s3://imos-data-pipeline-talend7 pipeline_incoming_dir_prefix=/mnt/ebs/incoming
+
+[integration-test-servers]
+testserver ansible_host=localhost harvest_host=9-nec-hob.emii.org.au
+```
 
 Create .pgpass entries on your local machine:
 - refer to [this document](https://blog.sleeplessbeastie.eu/2014/03/23/how-to-non-interactively-provide-password-for-the-postgresql-interactive-terminal/) for how to create a .pgpass file
