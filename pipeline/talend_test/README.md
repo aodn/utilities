@@ -322,9 +322,7 @@ actions:
 ...
 ```
 
-- Deleting files
-
-The DELETE action can take either a `file` or a `path` as a parameter.
+- The DELETE action can take either a `file` or a `path` as a parameter.
  
-- `file` specifies a single file to delete. 
-- `path` specifies a directory in which _all files will be deleted_
+    - `file` specifies a single file to delete. 
+    - `path` specifies a directory in which _all files will be deleted_
