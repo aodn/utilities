@@ -3,7 +3,7 @@
     assertion_results: []
 
 - include_tasks:
-    file: "assert_{{ item.name }}.yaml"
+    file: "assert_{{ item.name.split(':')[0] }}.yaml"
   vars:
     assert_config: "{{ item }}"
   loop: "{{ assertions }}"

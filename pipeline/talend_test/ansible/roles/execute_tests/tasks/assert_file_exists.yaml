@@ -39,4 +39,4 @@
     [ { 'Pipeline': name, 'name':item.name,
     'result': assertion_result.failed,
     'template': 'file_exists.j2',
-    'template_vars': hostvars['pipeline']['file_store'] + '/' + assert_config.remote_file } ] }}" # Add to results accumulator for report
+    'template_vars': {'filename': hostvars['pipeline']['file_store'] + '/' + assert_config.remote_file} } ] }}" # Add to results accumulator for report
