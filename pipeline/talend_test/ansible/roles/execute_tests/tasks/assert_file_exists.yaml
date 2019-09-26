@@ -1,5 +1,42 @@
 ---
-# TODO: assert a file exists on a host or s3
-- name: "Assert file exists"
+# assert a file exists on a host filesystem or s3
+
+- name: Gather facts from pipeline-processing-servers
+  setup:
+    gather_subset:
+      - '!all'
+      - '!any'
+      - facter
+  delegate_to: "{{ server_item }}"
+  delegate_facts: True
+  loop: "{{ groups['pipeline-processing-servers'] }}"
+  loop_control:
+    loop_var: server_item
+
+- name: "list files in s3 bucket"
+  shell: "aws s3 ls --recursive {{ hostvars['pipeline']['file_store'] }}/{{ assert_config.remote_file }} | awk '{print $4}'"
+  register: objects_list
+  delegate_to: localhost
+  when: hostvars['pipeline']['file_store_type'] == 's3'
+
+- name: "list files in file system"
   debug:
-    var: assert_config
+    msg: "NOT IMPLEMENTED"
+  when: hostvars['pipeline']['file_store_type'] == 'file'
+
+- block:
+    - name: "Assert {{ assert_config.remote_file }} exists"
+      assert:
+        that:
+          - objects_list.stdout_lines is defined and (objects_list.stdout_lines | length > 0)
+        fail_msg: "{{ assert_config.remote_file }} does not exist"
+        success_msg: "{{ assert_config.remote_file }} exists"
+      register: assertion_result
+  ignore_errors: yes  # Don't halt playbook but show the error in the ignored count in PLAY RECAP
+
+- set_fact:
+    assertion_results: "{{ assertion_results +
+    [ { 'Pipeline': name, 'name':item.name,
+    'result': assertion_result.failed,
+    'template': 'file_exists.j2',
+    'template_vars': hostvars['pipeline']['file_store'] + '/' + assert_config.remote_file } ] }}" # Add to results accumulator for report
