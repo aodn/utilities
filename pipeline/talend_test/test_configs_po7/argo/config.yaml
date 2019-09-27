@@ -1,0 +1,62 @@
+actions:
+- files:
+  - dest: "{{ pipeline_incoming_dir_prefix }}/Argo/dac/nmdis/2901615"
+    local_file: 2901616_meta.nc
+    remote_file: 2901615_meta.nc
+  - dest: "{{ pipeline_incoming_dir_prefix }}/Argo/dac/nmdis/2901615/profiles"
+    local_file: R2901616_000.nc
+    remote_file: R2901615_000.nc
+  - dest: "{{ pipeline_incoming_dir_prefix }}/Argo/dac/nmdis/2901615/profiles"
+    local_file: R2901616_001.nc
+    remote_file: R2901615_001.nc
+  - dest: "{{ pipeline_incoming_dir_prefix }}/Argo/dac/nmdis/2901615/profiles"
+    local_file: R2901616_002.nc
+    remote_file: R2901615_002.nc
+  incoming:
+  - dest: Argo/dac
+    local_file: argo_rsync.20190416-112046.rsync_manifest
+  type: ADD
+- files:
+  - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615
+    local_file: 2901615_meta.nc
+  - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615/profiles
+    local_file: R2901615_000.nc
+  - dest: /mnt/ebs/wip/Argo/dac/nmdis/2901615/profiles
+    local_file: R2901615_001.nc
+  incoming:
+  - dest: Argo
+    local_file: argo_rsync.20190507-074346.rsync_manifest
+  type: UPDATE
+assertions:
+- content: argo
+  expected: argo/expect
+  name: diff
+database_schemas:
+- name: argo
+  tables:
+  - exclude_columns:
+    - created
+    - modified
+    - first_indexed
+    - last_indexed
+    name: argo_profile_map
+  - exclude_columns:
+    - created
+    - modified
+    - first_indexed
+    - last_indexed
+    name: argo_primary_profile_core_low_res_good_qc_data
+dirs:
+- group: projectofficer
+  owner: projectofficer
+  path: "{{ pipeline_incoming_dir_prefix }}/Argo/dac/nmdis/2901615/profiles"
+drop_schema_objects: true
+name: argo
+po: laurent
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- argo-argo
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ARGO.log
+test_report_template: test_results
+type: pipeline_version_2

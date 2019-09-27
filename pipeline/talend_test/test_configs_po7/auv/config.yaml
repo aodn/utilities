@@ -1,0 +1,65 @@
+actions:
+- files:
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
+    local_file: IMOS_AUV_B_20180823T215019Z_SIRIUS_FV00.nc
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
+    local_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc
+  incoming:
+  - dest: AUV
+    local_file: Tasmania201808-r20180823_215013_SS08_Beagle_Shelf_13.netcdf.manifest
+  type: ADD
+- files:
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
+    local_file: IMOS_AUV_B_20180823T215019Z_SIRIUS_FV00.nc.update
+    remote_file: IMOS_AUV_B_20180823T215019Z_SIRIUS_FV00.nc
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
+    local_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc.update
+    remote_file: IMOS_AUV_ST_20180823T215019Z_SIRIUS_FV00.nc
+  incoming:
+  - dest: AUV
+    local_file: Tasmania201808-r20180823_215013_SS08_Beagle_Shelf_13.netcdf.manifest
+  type: UPDATE
+- files:
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf
+    local_file: IMOS_AUV_B_20180825T002236Z_SIRIUS_FV00.nc
+  - dest: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf
+    local_file: IMOS_AUV_ST_20180825T002236Z_SIRIUS_FV00.nc
+  incoming:
+  - dest: AUV
+    local_file: Tasmania201808-r20180825_002229_SS13_Beagle_Shelf_12.netcdf.manifest
+  type: ADD
+- file: IMOS/AUV/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf/IMOS_AUV_B_20180825T002236Z_SIRIUS_FV00.nc
+  type: DELETE
+- file: IMOS/AUV/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf/IMOS_AUV_ST_20180825T002236Z_SIRIUS_FV00.nc
+  type: DELETE
+assertions:
+- content: auv
+  expected: auv/expect
+  name: diff
+database_schemas:
+- name: auv
+  tables:
+  - exclude_columns:
+    - colour
+    name: auv_trajectory_map
+  - exclude_columns: []
+    name: auv_trajectory_b_data
+  - exclude_columns: []
+    name: auv_trajectory_st_data
+dirs:
+- group: projectofficer
+  owner: projectofficer
+  path: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180823_215013_SS08_Beagle_Shelf_13/hydro_netcdf
+- group: projectofficer
+  owner: projectofficer
+  path: /mnt/ebs/wip/AUV/AUV_DOWNLOAD_CAMPAIGN/Tasmania201808/r20180825_002229_SS13_Beagle_Shelf_12/hydro_netcdf
+drop_schema_objects: true
+name: auv
+po: laurent
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- auv-auv
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.AUV.log
+test_report_template: test_results
+type: pipeline_version_2

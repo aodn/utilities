@@ -1,0 +1,38 @@
+actions:
+- incoming:
+  - dest: SOOP/ASF/FMT
+    local_file: IMOS_SOOP-ASF_FMT_20120410T014600Z_VLHJ_FV02.nc
+    remote_file: IMOS_SOOP-ASF_FMT_20120411T063300Z_VLHJ_FV02.nc
+  type: ADD
+- incoming:
+  - dest: SOOP/ASF/FMT
+    local_file: IMOS_SOOP-ASF_FMT_20120412T000900Z_VLHJ_FV02.nc
+  type: ADD
+- incoming:
+  - dest: SOOP/ASF/FMT
+    local_file: IMOS_SOOP-ASF_FMT_20120411T063300Z_VLHJ_FV02.nc
+  type: UPDATE
+- file: IMOS/SOOP/SOOP-ASF/VLHJ_Southern-Surveyor/flux_product/2012/IMOS_SOOP-ASF_FMT_20120412T000900Z_VLHJ_FV02.nc
+  type: DELETE
+assertions:
+- content: soop_asf_fmt
+  expected: soop_asf_fmt/expect
+  name: diff
+database_schemas:
+- name: soop_asf_fmt
+  tables:
+  - exclude_columns: []
+    name: soop_asf_fmt_trajectory_data
+  - exclude_columns:
+    - colour
+    name: soop_asf_fmt_trajectory_map
+drop_schema_objects: true
+name: soop_asf_fmt
+po: loz
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- soop_asf_fmt-soop_asf_fmt
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_ASF_FMT.log
+test_report_template: test_results
+type: pipeline_version_2
