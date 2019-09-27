@@ -284,6 +284,9 @@ The above describes how to use the integration tests on po-box7 using vagrant.
 
 ### Hosts on nectar
 
+Before running the pipeline processing on a remote host it is important to be aware that changes will be made to the 
+database, log files and files stored on s3 or on the host.  Therefore the processing should not be run on production hosts.   
+
 To use the integration with hosts on nectar first edit `test_configs/hosts`:
  
 - update ansible_host to point to the pipeline host.
@@ -302,6 +305,11 @@ pipeline ansible_host=9-nec-hob.emii.org.au db_user=admin file_store_type=s3 fil
 [integration-test-servers]
 testserver ansible_host=localhost harvest_host=9-nec-hob.emii.org.au
 ```
+
+Create .pgpass entries on your local machine for the database:
+- refer to [this document](https://blog.sleeplessbeastie.eu/2014/03/23/how-to-non-interactively-provide-password-for-the-postgresql-interactive-terminal/) for how to create a .pgpass file
+- add an entry like this:
+  ```9-nec-hob.emii.org.au:5432:harvest:admin:adminpassword```
 
 When running pipeline processing and testing playbooks the vagrant user and key-file is not required. For example:
 ```shell script
