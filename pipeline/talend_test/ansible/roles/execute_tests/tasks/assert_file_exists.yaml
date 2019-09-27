@@ -19,6 +19,9 @@
   delegate_to: localhost
   when: hostvars['pipeline']['file_store_type'] == 's3'
 
+- debug:
+    var: objects_list.stdout_lines
+
 - name: "list files in file system"
   debug:
     msg: "NOT IMPLEMENTED"
@@ -32,7 +35,21 @@
         fail_msg: "{{ assert_config.remote_file }} does not exist"
         success_msg: "{{ assert_config.remote_file }} exists"
       register: assertion_result
+      when: assert_config.invert is not defined or assert_config.invert == false
+    - name: "Assert {{ assert_config.remote_file }} does not exist"
+      assert:
+        that:
+          - objects_list.stdout_lines is defined and (objects_list.stdout_lines | length == 0)
+        fail_msg: "{{ assert_config.remote_file }} exists"
+        success_msg: "{{ assert_config.remote_file }} does not exist"
+      register: assertion_result_inverted
+      when: assert_config.invert is defined and assert_config.invert == true
   ignore_errors: yes  # Don't halt playbook but show the error in the ignored count in PLAY RECAP
+
+# Workaround for https://github.com/ansible/ansible/issues/4297
+- set_fact:
+    assertion_result: "{{ assertion_result_inverted }}"
+  when: assert_config.invert is defined and assert_config.invert == true
 
 - set_fact:
     assertion_results: "{{ assertion_results +
