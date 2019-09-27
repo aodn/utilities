@@ -51,9 +51,6 @@
     assertion_result: "{{ assertion_result_inverted }}"
   when: assert_config.invert is defined and assert_config.invert == true
 
-- debug:
-    var: assertion_result
-
 - set_fact:
     assertion_results: "{{ assertion_results +
     [ { 'Pipeline': name, 'name':item.name,
