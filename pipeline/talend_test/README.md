@@ -188,7 +188,8 @@ expect/
 These harvested data results can be used to verify the validity of one or more integration tests by running the tests:
 
 ```shell script
-(ansible-virtualenv) ansible-playbook ansible/playbook_tests.yaml -i test_configs/hosts \
+(ansible-virtualenv) ansible-playbook ansible/playbook_tests.yaml \
+-i test_configs/hosts -u vagrant --key-file "/path/to/ssh/private/key/file" \
 --extra-vars "test_config=test_configs/soop_xbt_nrt/config.yaml"
 ``` 
 
@@ -210,7 +211,8 @@ All integration tests in a `config.yaml` file will be executed with:
 
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_tests.yaml \
--i test_configs/hosts --extra-vars "test_config=test_configs/soop_xbt_nrt/config.yaml"
+-i test_configs/hosts -u vagrant --key-file "/path/to/ssh/private/key/file" \
+--extra-vars "test_config=test_configs/soop_xbt_nrt/config.yaml"
 ``` 
 
 A summary of the results will appear in the ansible PLAY RECAP.  Failed tests will be included in the `ignored` count.  
@@ -250,8 +252,27 @@ use this assertion in the `config.yaml`:
     expected: <path to validated harvest content directory>
     content: <path to directory containing harvested content to test>
 ```
-
 The report includes details of each difference in each file checked.
+
+### file_exists
+
+The file_exists assertion asserts that a file is present on the on the pipeline host.  To use this assertion in the `config.yaml`:
+
+```yaml
+    - name: file_exists:1
+      remote_file: IMOS/SOOP/SOOP-SST/C6FS9_Stadacona/2018/IMOS_SOOP-SST_MT_20180118T000000Z_C6FS9_FV01_C-20180118T233004Z.nc
+    - name: file_exists:2
+      remote_file: IMOS/SOOP/SOOP-SST/C6FS9_Stadacona/2018/IMOS_SOOP-SST_T_20130216T000000Z_HSB3402_FV01_1-min-avg_C-20130530T005007Z.nc
+    - name: file_exists:not:1
+      remote_file: IMOS/SOOP/SOOP-SST/C6FS9_Stadacona/2018/IMOS_SOOP-SST_MT_20180119T000000Z_C6FS9_FV01_C-20180119T233004Z.nc
+      invert: true
+```
+
+Note that multiple file_exists assertions can be used.  Differentiate each one in the report by appending a colon followed
+by a string after the `file_exists`.  The assertion can also be inverted to assert that file **does not** exist with
+the `invert: true` value.
+
+Any files that fail the assertions will be listed in the test report.
 
 ## Running multiple pipeline harvesters and their integration tests
 
@@ -266,7 +287,7 @@ directory containing the config files).  The second of these can be very long ru
 
 ```shell script
 (ansible-virtualenv) ansible-playbook ansible/playbook_tests.yaml \
--i test_configs/hosts --extra-vars "test_config=test_configs"
+-i test_configs/hosts -u vagrant --key-file "/path/to/ssh/private/key/file" --extra-vars "test_config=test_configs"
 ``` 
 
 ## Reports
