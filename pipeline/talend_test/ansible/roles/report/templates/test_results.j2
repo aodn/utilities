@@ -40,9 +40,8 @@ Test configuration: {{ test_config_full_path }}
 {% endfor %}
 {{ horiz_border() }}
 
-Test Result Details
-===================
-
+Failed Test Result Details
+==========================
 {% for result in all_assertion_results -%}
 {% if result.template is defined and result.result %}
 
