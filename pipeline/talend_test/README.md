@@ -25,29 +25,10 @@ cd pipeline/talend_test
 virtualenv ansible-virtualenv
 ```
 
-On your local machine, allow setting of permissions on temporary files that ansible needs to create when becoming an unprivileged user. see `ansible.cfg`
-
+On your local machine, allow setting of permissions on temporary files that ansible needs to create when becoming an unprivileged user. 
+See [ansible.cfg](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
 - copy ansible.cfg to `/etc/ansible/ansible.cfg` for permanent changes to ansible
-
-
-If you are **not using** the po-box7 as the host for running the pipelines (the pipeline host) do the following on your local machine:
- 
-- edit `test_configs/hosts` and update ansible_host to point to the pipeline host.
-- edit `test_configs/hosts` and update db_user to a user with database admin privileges on the pipeline host.
-- edit `test_configs/hosts` and update file_store_type to 's3' if processed files are stored on s3 or 'file' if they are stored directly on the pipeline host.
-- edit `test_configs/hosts` and update file_store to an s3 bucket (eg 's3://imos-data-pipeline-talend7') if processed files stored on s3 or a directory on the pipeline host (eg '/s3/imos-data') 
-if they are stored directly on the pipeline host.
-- edit `test_configs/hosts` and update pipeline_incoming_dir_prefix to the name of directory to which incoming files are uploaded for the pipeline host
-- edit `test_configs/hosts` and update harvest_host to the name of the pipeline host.
-
-Example `test_configs/hosts` file for 9-nec-hob.emii.org.au:
-```
-[pipeline-processing-servers]
-pipeline ansible_host=9-nec-hob.emii.org.au db_user=admin file_store_type=s3 file_store=s3://imos-data-pipeline-talend7 pipeline_incoming_dir_prefix=/mnt/ebs/incoming
-
-[integration-test-servers]
-testserver ansible_host=localhost harvest_host=9-nec-hob.emii.org.au
-```
+- add `allow_world_readable_tmpfiles=true` to `/etc/ansible/ansible.cfg`
 
 Create .pgpass entries on your local machine:
 - refer to [this document](https://blog.sleeplessbeastie.eu/2014/03/23/how-to-non-interactively-provide-password-for-the-postgresql-interactive-terminal/) for how to create a .pgpass file
@@ -256,7 +237,7 @@ The report includes details of each difference in each file checked.
 
 ### file_exists
 
-The file_exists assertion asserts that a file is present on the on the pipeline host.  To use this assertion in the `config.yaml`:
+The file_exists assertion asserts that a file is present on the pipeline host.  To use this assertion in the `config.yaml`:
 
 ```yaml
     - name: file_exists:1
@@ -294,6 +275,43 @@ directory containing the config files).  The second of these can be very long ru
 After processing files or running tests a report on results will be generated and stored in the ``reports`` directory. The 
 name of the templates to use for the reports are set in the ``config.yaml`` under `process_report_template` and `test_report_template`.
 Each run will create a backup of the previous run in the `reports` directory.
+
+## Pipeline processing and running tests on other hosts
+
+### Hosts using Vagrant
+
+The above describes how to use the integration tests on po-box7 using vagrant.
+
+### Hosts on nectar
+
+To use the integration with hosts on nectar first edit `test_configs/hosts`:
+ 
+- update ansible_host to point to the pipeline host.
+- update db_user to a user with database admin privileges on the pipeline host.
+- update file_store_type to 's3' if processed files are stored on s3 or 'file' if they are stored directly on the pipeline host.
+- update file_store to an s3 bucket (eg 's3://imos-data-pipeline-talend7') if processed files stored on s3 or a directory on the pipeline host (eg '/s3/imos-data') 
+if they are stored directly on the pipeline host.
+- update pipeline_incoming_dir_prefix to the name of directory to which incoming files are uploaded for the pipeline host
+- update harvest_host to the name of the pipeline host.
+
+Example `test_configs/hosts` file for 9-nec-hob.emii.org.au:
+```
+[pipeline-processing-servers]
+pipeline ansible_host=9-nec-hob.emii.org.au db_user=admin file_store_type=s3 file_store=s3://imos-data-pipeline-talend7 pipeline_incoming_dir_prefix=/mnt/ebs/incoming
+
+[integration-test-servers]
+testserver ansible_host=localhost harvest_host=9-nec-hob.emii.org.au
+```
+
+When running pipeline processing and testing playbooks the vagrant user and key-file is not required. For example:
+```shell script
+(ansible-virtualenv) ansible-playbook ansible/playbook_process.yaml 
+-i test_configs_9nechob/hosts --extra-vars "test_config=test_configs_9nechob create_expect=true"
+```
+
+### AWS Stacks
+
+The integration tests do not currently support pipelines deployed to AWS stacks.   
   
 ## Types of test
 
