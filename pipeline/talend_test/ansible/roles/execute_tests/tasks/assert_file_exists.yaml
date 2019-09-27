@@ -19,19 +19,30 @@
   delegate_to: localhost
   when: hostvars['pipeline']['file_store_type'] == 's3'
 
-- debug:
-    var: objects_list.stdout_lines
-
 - name: "list files in file system"
-  debug:
-    msg: "NOT IMPLEMENTED"
+  find:
+    paths: "{{ hostvars['pipeline']['file_store'] }}/{{ assert_config.remote_file | dirname }}"
+    patterns: "{{ assert_config.remote_file | basename }}"
+  delegate_to: pipeline
+  register: file_list
   when: hostvars['pipeline']['file_store_type'] == 'file'
+
+- set_fact:
+    file_list: "{{ objects_list.stdout_lines }}"
+  when: hostvars['pipeline']['file_store_type'] == 's3'
+
+- set_fact:
+    file_list: "{{ file_list.files }}"
+  when: hostvars['pipeline']['file_store_type'] == 'file'
+
+- debug:
+    var: file_list
 
 - block:
     - name: "Assert {{ assert_config.remote_file }} exists"
       assert:
         that:
-          - objects_list.stdout_lines is defined and (objects_list.stdout_lines | length > 0)
+          - file_list is defined and (file_list | length > 0)
         fail_msg: "{{ assert_config.remote_file }} does not exist"
         success_msg: "{{ assert_config.remote_file }} exists"
       register: assertion_result
@@ -39,7 +50,7 @@
     - name: "Assert {{ assert_config.remote_file }} does not exist"
       assert:
         that:
-          - objects_list.stdout_lines is defined and (objects_list.stdout_lines | length == 0)
+          - file_list is defined and (file_list | length == 0)
         fail_msg: "{{ assert_config.remote_file }} exists"
         success_msg: "{{ assert_config.remote_file }} does not exist"
       register: assertion_result_inverted
