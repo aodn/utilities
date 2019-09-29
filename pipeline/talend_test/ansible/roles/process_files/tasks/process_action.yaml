@@ -36,20 +36,20 @@
   become: yes
   become_user: root
   copy:
-    src: "../test_configs/{{ name }}/input_files/{{ item.local_file }}"
+    src: "../{{ test_config.split('/')[0] }}/{{ name }}/input_files/{{ item.local_file }}"
     dest: "{{ item.dest }}/{{ item.remote_file if item.remote_file is defined else item.local_file }}"
     owner: projectofficer
     group: projectofficer
     mode: a+w
   loop: "{{ action_item.files }}"
-  when: (action_item.type == 'ADD' or action_item.type == 'UPDATE')
+  when: (action_item.files is defined) and (action_item.type == 'ADD' or action_item.type == 'UPDATE')
 
 # copy files to incoming  (kicks off processing for pipeline types) for ADD/UPDATE actions
 - name: copy files to incoming
   become: yes
   become_user: root
   copy:
-    src: "../test_configs/{{ name }}/input_files/{{ item.local_file }}"
+    src: "../{{ test_config.split('/')[0] }}/{{ name }}/input_files/{{ item.local_file }}"
     dest: "{{ pipeline_incoming_dir_prefix }}/{{ item.dest }}/{{ item.remote_file if item.remote_file is defined else item.local_file }}"
     owner: projectofficer
     group: projectofficer

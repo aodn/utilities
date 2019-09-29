@@ -3,19 +3,17 @@
   delegate_to: localhost
   file:
     state: absent
-    path: "../test_configs/{{ name }}/expect/{{ label }}/"
-
+    path: "../{{ test_config.split('/')[0] }}/{{ name }}/expect/{{ label }}/"
 
 - name: create expect dir
   delegate_to: localhost
   file:
-    path: "../test_configs/{{ name }}/expect/{{ label }}/"
+    path: "../{{ test_config.split('/')[0] }}/{{ name }}/expect/{{ label }}/"
     state: directory
-
 
 - name: copy results from temp to expect dir
   delegate_to: localhost
   copy:
     src: "{{ tmp_dir }}/{{ item.name }}"
-    dest: "../test_configs/{{ name }}/expect/{{ label }}/"
+    dest: "../{{ test_config.split('/')[0] }}/{{ name }}/expect/{{ label }}/"
   loop: "{{ database_schemas }}"

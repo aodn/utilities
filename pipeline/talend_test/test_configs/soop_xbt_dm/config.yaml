@@ -1,0 +1,38 @@
+actions:
+- incoming:
+  - dest: SOOP/XBT/DM
+    local_file: IMOS_SOOP-XBT_T_20190216T022000Z_Tasman-sea_FV01_ID-89011529.nc
+    remote_file: IMOS_SOOP-XBT_T_20190217T032800Z_Tasman-sea_FV01_ID-89011530.nc
+  type: ADD
+- incoming:
+  - dest: SOOP/XBT/DM
+    local_file: IMOS_SOOP-XBT_T_20190217T032800Z_Tasman-sea_FV01_ID-89011530.nc
+  type: UPDATE
+- incoming:
+  - dest: SOOP/XBT/DM
+    local_file: IMOS_SOOP-XBT_T_20190218T031900Z_Tasman-sea_FV01_ID-89011531.nc
+  type: ADD
+- file: IMOS/SOOP/SOOP-XBT/DELAYED/Tasman-sea/2019/IMOS_SOOP-XBT_T_20190218T031900Z_Tasman-sea_FV01_ID-89011531.nc
+  type: DELETE
+assertions:
+- content: soop_xbt_dm
+  expected: soop_xbt_dm/expect
+  name: diff
+database_schemas:
+- name: soop_xbt_dm
+  tables:
+  - exclude_columns:
+    - colour
+    name: soop_xbt_dm_profile_map
+  - exclude_columns: []
+    name: soop_xbt_dm_profile_data
+drop_schema_objects: true
+name: soop_xbt_dm
+po: laurent
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- soop_xbt_dm-soop_xbt_dm
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_XBT_DM.log
+test_report_template: test_results
+type: pipeline_version_2

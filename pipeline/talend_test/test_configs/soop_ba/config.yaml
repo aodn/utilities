@@ -1,0 +1,36 @@
+actions:
+- incoming:
+  - dest: SOOP/BA
+    local_file: IMOS_SOOP-BA_A_20140904T183144Z_E5WW_FV02_Will-Watch-ES60-38_END-20140905T113841Z_C-20150625T045323Z.nc
+  type: ADD
+- file: IMOS/SOOP/SOOP-BA/E5WW_Will-Watch/Will-Watch_20140904-20140905/IMOS_SOOP-BA_A_20140904T183144Z_E5WW_FV02_Will-Watch-ES60-38_END-20140905T113841Z_C-20150625T045323Z.nc
+  type: DELETE
+- incoming:
+  - dest: SOOP/BA
+    local_file: IMOS_SOOP-BA_A_20140617T134657Z_E5WW_FV02_Will-Watch-ES60-38_END-20140620T100455Z_C-20150625T053046Z.nc.original
+    remote_file: IMOS_SOOP-BA_A_20140617T134657Z_E5WW_FV02_Will-Watch-ES60-38_END-20140620T100455Z_C-20150625T053046Z.nc
+  type: ADD
+- incoming:
+  - dest: SOOP/BA
+    local_file: IMOS_SOOP-BA_A_20140617T134657Z_E5WW_FV02_Will-Watch-ES60-38_END-20140620T100455Z_C-20150625T053046Z.nc
+  type: UPDATE
+assertions:
+- content: soop_ba
+  expected: soop_ba/expect
+  name: diff
+database_schemas:
+- name: soop_ba
+  tables:
+  - exclude_columns:
+    - colour
+    name: soop_ba_trajectory_map
+drop_schema_objects: true
+name: soop_ba
+po: bene
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- soop_ba-soop_ba
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_BA.log
+test_report_template: test_results
+type: pipeline_version_2

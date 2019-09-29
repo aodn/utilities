@@ -1,0 +1,34 @@
+actions:
+- incoming:
+  - dest: SRS/OC/LJCO_AERONET
+    local_file: Lucinda.lev20
+  type: ADD
+- incoming:
+  - dest: SRS/OC/LJCO_AERONET
+    local_file: Lucinda.lev20.updated
+    remote_file: Lucinda.lev20
+  type: UPDATE
+assertions:
+- content: srs_oc_ljco_aeronet
+  expected: srs_oc_ljco_aeronet/expect
+  name: diff
+database_schemas:
+- name: srs_oc_ljco_aeronet
+  tables:
+  - exclude_columns:
+    - modified
+    - first_indexed
+    - last_indexed
+    name: indexed_file
+  - exclude_columns: []
+    name: srs_oc_ljco_aeronet_map
+drop_schema_objects: true
+name: srs_oc_ljco_aeronet
+po: laurent
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- srs_oc_ljco_aeronet-srs_oc_ljco_aeronet
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_LJCO_AERONET.log
+test_report_template: test_results
+type: pipeline_version_2

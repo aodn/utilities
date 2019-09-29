@@ -1,0 +1,39 @@
+actions:
+- file: IMOS/ACORN/radial/FRE/2019/04/30/IMOS_ACORN_RV_20190430T080500Z_FRE_FV00_radial.nc
+  type: DELETE
+- file: IMOS/ACORN/radial/FRE/2019/04/30/IMOS_ACORN_RV_20190430T081500Z_FRE_FV00_radial.nc
+  type: DELETE
+- incoming:
+  - dest: ACORN/any
+    local_file: IMOS_ACORN_RV_20190430T000500Z_FRE_FV00_radial.nc
+    remote_file: IMOS_ACORN_RV_20190430T080500Z_FRE_FV00_radial.nc
+  type: ADD
+- incoming:
+  - dest: ACORN/any
+    local_file: IMOS_ACORN_RV_20190430T080500Z_FRE_FV00_radial.nc
+  type: UPDATE
+- incoming:
+  - dest: ACORN/any
+    local_file: IMOS_ACORN_RV_20190430T081500Z_FRE_FV00_radial.nc
+  type: ADD
+- file: IMOS/ACORN/radial/FRE/2019/04/30/IMOS_ACORN_RV_20190430T081500Z_FRE_FV00_radial.nc
+  type: DELETE
+assertions:
+- content: acorn_radial_nonqc
+  expected: acorn_radial_nonqc/expect
+  name: diff
+database_schemas:
+- name: acorn_radial_nonqc
+  tables:
+  - exclude_columns: []
+    name: acorn_radial_nonqc_timeseries_url
+drop_schema_objects: true
+name: acorn_radial_nonqc
+po: loz
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- acorn_radial_nonqc-acorn_radial_nonqc
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ACORN.log
+test_report_template: test_results
+type: pipeline_version_2

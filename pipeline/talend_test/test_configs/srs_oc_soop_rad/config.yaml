@@ -1,0 +1,35 @@
+actions:
+- incoming:
+  - dest: SRS/OC/SOOP_RAD
+    local_file: IMOS_SRS-OC_F_20130204T000000Z_VLHJ_FV01_DALEC_END-20130204T024236Z.nc
+    remote_file: IMOS_SRS-OC_F_20130221T213337Z_VLHJ_FV01_DALEC_END-20130221T235959Z.nc
+  type: ADD
+- incoming:
+  - dest: SRS/OC/SOOP_RAD
+    local_file: IMOS_SRS-OC_F_20130221T213337Z_VLHJ_FV01_DALEC_END-20130221T235959Z.nc
+  type: UPDATE
+- incoming:
+  - dest: SRS/OC/SOOP_RAD
+    local_file: IMOS_SRS-OC_F_20130303T000000Z_VLHJ_FV01_DALEC_END-20130303T001757Z.nc
+  type: ADD
+- file: IMOS/SRS/OC/radiometer/VLHJ_Southern-Surveyor/2013/IMOS_SRS-OC_F_20130303T000000Z_VLHJ_FV01_DALEC_END-20130303T001757Z.nc
+  type: DELETE
+assertions:
+- content: srs_oc_soop_rad
+  expected: srs_oc_soop_rad/expect
+  name: diff
+database_schemas:
+- name: srs_oc_soop_rad
+  tables:
+  - exclude_columns: []
+    name: srs_oc_soop_rad_trajectory_map
+drop_schema_objects: true
+name: srs_oc_soop_rad
+po: loz
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- srs_oc_soop_rad-srs_oc_soop_rad
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_SOOP_RAD.log
+test_report_template: test_results
+type: pipeline_version_2

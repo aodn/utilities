@@ -1,0 +1,53 @@
+actions:
+- incoming:
+  - dest: ANMN/AIMS_MOORING
+    local_file: IMOS_ANMN-NRS_WZ_20160924T074900Z_NRSYON_FV01_NRSYON-1609-SUB-Sentinel-or-Monitor-Workhorse-ADCP-27_END-20170325T234906Z_C-20170920T000641Z.nc
+    remote_file: IMOS_ANMN-NRS_WZ_20170310T003900Z_NRSYON_FV01_NRSYON-1703-SUB-Sentinel-or-Monitor-Workhorse-ADCP-28.8_END-20170928T025900Z_C-20171206T003231Z.nc
+  type: ADD
+- incoming:
+  - dest: ANMN/AIMS_MOORING
+    local_file: IMOS_ANMN-NRS_WZ_20170310T003900Z_NRSYON_FV01_NRSYON-1703-SUB-Sentinel-or-Monitor-Workhorse-ADCP-28.8_END-20170928T025900Z_C-20171206T003231Z.nc
+  type: UPDATE
+- incoming:
+  - dest: ANMN/AIMS_MOORING
+    local_file: IMOS_ANMN-NRS_WZ_20170926T073900Z_NRSYON_FV01_NRSYON-1709-SUB-Sentinel-or-Monitor-Workhorse-ADCP-28.4_END-20180418T093900Z_C-20190308T024604Z.nc
+  type: ADD
+- file: IMOS/ANMN/NRS/NRSYON/Wave/IMOS_ANMN-NRS_WZ_20170926T073900Z_NRSYON_FV01_NRSYON-1709-SUB-Sentinel-or-Monitor-Workhorse-ADCP-28.4_END-20180418T093900Z_C-20190308T024604Z.nc
+  type: DELETE
+- incoming:
+  - dest: ANMN/AIMS_MOORING
+    local_file: IMOS_ANMN-QLD_ETWZ_20141022T230031Z_GBROTE_FV01_GBROTE-1410-AWAC-15_END-20150327T030031Z_C-20170808T234320Z.nc
+    remote_file: IMOS_ANMN-QLD_ETWZ_20161005T020031Z_GBROTE_FV01_GBROTE-1609-AWAC-16.3_END-20170401T060031Z_C-20170816T020038Z.nc
+  type: ADD
+- incoming:
+  - dest: ANMN/AIMS_MOORING
+    local_file: IMOS_ANMN-QLD_ETWZ_20161005T020031Z_GBROTE_FV01_GBROTE-1609-AWAC-16.3_END-20170401T060031Z_C-20170816T020038Z.nc
+  type: UPDATE
+- incoming:
+  - dest: ANMN/AIMS_MOORING
+    local_file: IMOS_ANMN-QLD_ETWZ_20171006T051031Z_GBROTE_FV01_GBROTE-1709-AWAC-15.8_END-20180411T231031Z_C-20180902T230816Z.nc
+  type: ADD
+- file: IMOS/ANMN/QLD/GBROTE/Wave/IMOS_ANMN-QLD_ETWZ_20171006T051031Z_GBROTE_FV01_GBROTE-1709-AWAC-15.8_END-20180411T231031Z_C-20180902T230816Z.nc
+  type: DELETE
+assertions:
+- content: anmn_wave
+  expected: anmn_wave/expect
+  name: diff
+database_schemas:
+- name: anmn_wave
+  tables:
+  - exclude_columns: []
+    name: anmn_wave_map
+  - exclude_columns: []
+    name: anmn_wave_data
+drop_schema_objects: true
+name: anmn_wave
+po: marty/laurent
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- anmn_wave-anmn_wave
+- moorings_metadata-moorings_metadata
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANMN_AIMS_MOORING.log
+test_report_template: test_results
+type: pipeline_version_2
