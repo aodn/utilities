@@ -1,6 +1,6 @@
 actions:
 - incoming:
-  - dest: /var/incoming/SOOP/TRV
+  - dest: SOOP/TRV
     local_file: IMOS_SOOP-TRV_S_20190328T191556Z_VMQ9273_FV01_END-20190407T215725Z.nc
   type: ADD
 assertions:
@@ -8,7 +8,7 @@ assertions:
   expected: soop_trv/expect
   name: diff
 - name: file_exists:1
-  remote_file: /var/incoming/SOOP/TRV/IMOS_SOOP-TRV_S_20190328T191556Z_VMQ9273_FV01_END-20190407T215725Z.nc
+  remote_file: SOOP/TRV/IMOS_SOOP-TRV_S_20190328T191556Z_VMQ9273_FV01_END-20190407T215725Z.nc
 database_schemas:
 - name: soop_trv
   tables:
