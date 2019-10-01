@@ -25,6 +25,15 @@ assertions:
 - content: faimms
   expected: faimms/expect
   name: diff
+- name: file_exists:1
+  remote_file: FAIMMS/IMOS_FAIMMS_T_20160201T000000Z_DAVSF1_FV00.md5.nc
+- name: file_exists:2
+  remote_file: FAIMMS/IMOS_FAIMMS_T_20160101T000000Z_DAVSF1_FV01.md5.nc
+- name: file_exists:3
+  remote_file: FAIMMS/IMOS_FAIMMS_T_20160201T000000Z_DAVSF1_FV01.md5.nc
+- invert: true
+  name: file_exists:not:3
+  remote_file: IMOS/FAIMMS/Davies_Reef/Sensor_Float_1/sea_water_temperature@0.6m_channel_270/2016/QAQC/IMOS_FAIMMS_T_20160101T000000Z_DAVSF1_FV01.nc
 database_schemas:
 - name: faimms
   tables:

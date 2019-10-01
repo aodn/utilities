@@ -18,6 +18,13 @@ assertions:
 - content: gsla_nrt00
   expected: gsla_nrt00/expect
   name: diff
+- name: file_exists:1
+  remote_file: OceanCurrent/GSLA/IMOS_OceanCurrent_HV_20110902T000000Z_GSLA_FV02_NRT00_C-20111104T011708Z.nc.gz
+- name: file_exists:2
+  remote_file: OceanCurrent/GSLA/IMOS_OceanCurrent_HV_20110903T000000Z_GSLA_FV02_NRT00_C-20111104T011719Z.nc.gz
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/OceanCurrent/GSLA/NRT00/2011/IMOS_OceanCurrent_HV_20110903T000000Z_GSLA_FV02_NRT00_C-20111104T011719Z.nc.gz
 database_schemas:
 - name: gsla_nrt00
   tables:

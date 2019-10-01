@@ -18,6 +18,13 @@ assertions:
 - content: soop_asf_fmt
   expected: soop_asf_fmt/expect
   name: diff
+- name: file_exists:1
+  remote_file: SOOP/ASF/FMT/IMOS_SOOP-ASF_FMT_20120411T063300Z_VLHJ_FV02.nc
+- name: file_exists:2
+  remote_file: SOOP/ASF/FMT/IMOS_SOOP-ASF_FMT_20120412T000900Z_VLHJ_FV02.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SOOP/SOOP-ASF/VLHJ_Southern-Surveyor/flux_product/2012/IMOS_SOOP-ASF_FMT_20120412T000900Z_VLHJ_FV02.nc
 database_schemas:
 - name: soop_asf_fmt
   tables:

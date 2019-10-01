@@ -18,6 +18,13 @@ assertions:
 - content: srs_oc_bodbaw
   expected: srs_oc_bodbaw/expect
   name: diff
+- name: file_exists:1
+  remote_file: SRS/OC/BODBAW/IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-non-algal-detritus_FV02_END-20161022T182900Z.nc
+- name: file_exists:2
+  remote_file: SRS/OC/BODBAW/IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SRS/OC/BODBAW/2016_cruise-IN2016_v05/absorption/IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
 database_schemas:
 - name: srs_oc_bodbaw
   tables:
