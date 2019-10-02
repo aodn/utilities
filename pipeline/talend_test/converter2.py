@@ -6,7 +6,7 @@ import os
 import yaml
 import shutil
 
-original_tests = "test_configs"
+original_tests = "test_configs_9nechob"
 
 for pipeline_name in os.listdir(original_tests):
     if pipeline_name != 'hosts':
@@ -15,7 +15,16 @@ for pipeline_name in os.listdir(original_tests):
             try:
                 config = yaml.safe_load(stream)
                 if config.get('type') == 'pipeline_version_2':   # converts pipeline version 2 only
-                    updated_assertions = config.get('assertions')
+                    old_assertions = config.get('assertions')
+                    # Remove old file_exists assertions
+                    updated_assertions = old_assertions
+                    for assertion in old_assertions:
+                        if assertion.get('invert') is not None:
+                            for i in range(len(new_assertions)):
+                                if updated_assertions[i]['name'] != 'diff':
+                                    del updated_assertions[i]
+                                    break
+
                     # For each ADD and DELETE action create a file_exists assertion
                     actions = config.get('actions')
                     add_count = 0
@@ -26,9 +35,9 @@ for pipeline_name in os.listdir(original_tests):
                             for incoming_file in incoming:
                                 add_count += 1
                                 if incoming_file.get('remote_file') is not None:
-                                    remote_file = os.path.join(incoming_file.get('dest'), incoming_file.get('remote_file'))
+                                    remote_file = os.path.join('IMOS', incoming_file.get('dest'), incoming_file.get('remote_file'))
                                 else:
-                                    remote_file = os.path.join(incoming_file.get('dest'), incoming_file.get('local_file'))
+                                    remote_file = os.path.join('IMOS', incoming_file.get('dest'), incoming_file.get('local_file'))
                                 new_assertion = {
                                     'name': 'file_exists:' + str(add_count),
                                     'remote_file': remote_file
