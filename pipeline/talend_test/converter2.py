@@ -17,11 +17,13 @@ for pipeline_name in os.listdir(original_tests):
                 if config.get('type') == 'pipeline_version_2':   # converts pipeline version 2 only
                     old_assertions = config.get('assertions')
                     # Remove old file_exists assertions
-                    updated_assertions = []
+                    updated_assertions = old_assertions
                     for assertion in old_assertions:
-                        if 'file_exists' not in assertion.get('name'):
-                            updated_assertions.append(assertion)
-                            break
+                        if assertion.get('invert') is not None:
+                            for i in range(len(new_assertions)):
+                                if updated_assertions[i]['name'] != 'diff':
+                                    del updated_assertions[i]
+                                    break
 
                     # For each ADD and DELETE action create a file_exists assertion
                     actions = config.get('actions')
