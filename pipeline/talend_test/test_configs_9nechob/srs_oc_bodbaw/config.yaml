@@ -1,0 +1,43 @@
+actions:
+- incoming:
+  - dest: SRS/OC/BODBAW
+    local_file: IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-CDOM_FV02_END-20161022T182900Z.nc
+    remote_file: IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-non-algal-detritus_FV02_END-20161022T182900Z.nc
+  type: ADD
+- incoming:
+  - dest: SRS/OC/BODBAW
+    local_file: IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-non-algal-detritus_FV02_END-20161022T182900Z.nc
+  type: UPDATE
+- incoming:
+  - dest: SRS/OC/BODBAW
+    local_file: IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
+  type: ADD
+- file: IMOS/SRS/OC/BODBAW/2016_cruise-IN2016_v05/absorption/IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
+  type: DELETE
+assertions:
+- content: srs_oc_bodbaw
+  expected: srs_oc_bodbaw/expect
+  name: diff
+- name: file_exists:1
+  remote_file: SRS/OC/BODBAW/IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-non-algal-detritus_FV02_END-20161022T182900Z.nc
+- name: file_exists:2
+  remote_file: SRS/OC/BODBAW/IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SRS/OC/BODBAW/2016_cruise-IN2016_v05/absorption/IMOS_SRS-OC-BODBAW_X_20160929T025000Z_IN2016_v05-absorption-phytoplankton_FV02_END-20161022T182900Z.nc
+database_schemas:
+- name: srs_oc_bodbaw
+  tables:
+  - exclude_columns:
+    - colour
+    name: srs_oc_bodbaw_trajectory_profile_map
+drop_schema_objects: true
+name: srs_oc_bodbaw
+po: laurent
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- srs_oc_bodbaw-srs_oc_bodbaw
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_BODBAW.log
+test_report_template: test_results
+type: pipeline_version_2

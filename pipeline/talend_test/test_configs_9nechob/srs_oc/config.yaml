@@ -1,0 +1,47 @@
+actions:
+- incoming:
+  - dest: SRS/OC/GRIDDED
+    local_file: A.P1D.20180103T000000Z.aust.owtd.nc
+    remote_file: A.P1D.20180103T000000Z.aust.picop_brewin2012in.nc
+  type: ADD
+- incoming:
+  - dest: SRS/OC/GRIDDED
+    local_file: A.P1D.20180103T000000Z.aust.picop_brewin2012in.nc
+  type: UPDATE
+- incoming:
+  - dest: SRS/OC/GRIDDED
+    local_file: A.P1D.20180103T000000Z.aust.sst_quality.nc
+  type: ADD
+- file: IMOS/SRS/OC/gridded/aqua/P1D/2018/01/A.P1D.20180103T000000Z.aust.sst_quality.nc
+  type: DELETE
+assertions:
+- content: srs_oc
+  expected: srs_oc/expect
+  name: diff
+- name: file_exists:1
+  remote_file: SRS/OC/GRIDDED/A.P1D.20180103T000000Z.aust.picop_brewin2012in.nc
+- name: file_exists:2
+  remote_file: SRS/OC/GRIDDED/A.P1D.20180103T000000Z.aust.sst_quality.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SRS/OC/gridded/aqua/P1D/2018/01/A.P1D.20180103T000000Z.aust.sst_quality.nc
+database_schemas:
+- name: srs_oc
+  tables:
+  - exclude_columns:
+    - modified
+    - first_indexed
+    - last_indexed
+    name: indexed_file
+  - exclude_columns: []
+    name: timeseries
+drop_schema_objects: true
+name: srs_oc
+po: laurent
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- srs_oc-srs_oc
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_GRIDDED.log
+test_report_template: test_results
+type: pipeline_version_2

@@ -1,0 +1,77 @@
+actions:
+- incoming:
+  - dest: AODN/AODN_WAVE_DM
+    local_file: IMOS_ANMN-NSW_W_19930712T140000Z_WAVEBYB_WAVERIDER_FV01_END-19930720T220000Z.nc
+    remote_file: IMOS_ANMN-NSW_W_19930721T010000Z_WAVEBYB_WAVERIDER_FV01_END-19931110T210000Z.nc
+  type: ADD
+- incoming:
+  - dest: AODN/AODN_WAVE_DM
+    local_file: IMOS_ANMN-NSW_W_19930721T010000Z_WAVEBYB_WAVERIDER_FV01_END-19931110T210000Z.nc
+  type: UPDATE
+- incoming:
+  - dest: AODN/AODN_WAVE_DM
+    local_file: IMOS_ANMN-NSW_W_19931130T230000Z_WAVEBYB_WAVERIDER_FV01_END-19940720T010000Z.nc
+  type: ADD
+- file: NSW-OEH/Manly_Hydraulics_Laboratory/Wave/Byron_Bay/IMOS_ANMN-NSW_W_19931130T230000Z_WAVEBYB_WAVERIDER_FV01_END-19940720T010000Z.nc
+  type: DELETE
+- incoming:
+  - dest: AODN/AODN_WAVE_DM
+    local_file: DOT-WA_W_20100211T113900Z_NAT46_WAVERIDER_FV01_END-20101231T153900Z.nc
+    remote_file: DOT-WA_W_20111231T160000Z_NAT46_WAVERIDER_FV01_END-20121230T211700Z.nc
+  type: ADD
+- incoming:
+  - dest: AODN/AODN_WAVE_DM
+    local_file: DOT-WA_W_20111231T160000Z_NAT46_WAVERIDER_FV01_END-20121230T211700Z.nc
+  type: UPDATE
+- incoming:
+  - dest: AODN/AODN_WAVE_DM
+    local_file: BOM_W_20021231T140108Z_SORELL_WAVERIDER_FV01_END-20031231T133000Z.nc
+    remote_file: BOM_W_20041231T140000Z_SORELL_WAVERIDER_FV01_END-20051231T133000Z.nc
+  type: ADD
+- incoming:
+  - dest: AODN/AODN_WAVE_DM
+    local_file: BOM_W_20041231T140000Z_SORELL_WAVERIDER_FV01_END-20051231T133000Z.nc
+  type: UPDATE
+- incoming:
+  - dest: AODN/AODN_WAVE_DM
+    local_file: DES-QLD_W_20121231T140000Z_Gladstone_WAVERIDER_FV01_END-20131231T133000Z.nc
+    remote_file: DES-QLD_W_20141231T140000Z_Gladstone_WAVERIDER_FV01_END-20151231T123000Z.nc
+  type: ADD
+- incoming:
+  - dest: AODN/AODN_WAVE_DM
+    local_file: DES-QLD_W_20141231T140000Z_Gladstone_WAVERIDER_FV01_END-20151231T123000Z.nc
+  type: UPDATE
+assertions:
+- content: aodn_wave_dm
+  expected: aodn_wave_dm/expect
+  name: diff
+- name: file_exists:1
+  remote_file: AODN/AODN_WAVE_DM/IMOS_ANMN-NSW_W_19930721T010000Z_WAVEBYB_WAVERIDER_FV01_END-19931110T210000Z.nc
+- name: file_exists:2
+  remote_file: AODN/AODN_WAVE_DM/IMOS_ANMN-NSW_W_19931130T230000Z_WAVEBYB_WAVERIDER_FV01_END-19940720T010000Z.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: NSW-OEH/Manly_Hydraulics_Laboratory/Wave/Byron_Bay/IMOS_ANMN-NSW_W_19931130T230000Z_WAVEBYB_WAVERIDER_FV01_END-19940720T010000Z.nc
+- name: file_exists:3
+  remote_file: AODN/AODN_WAVE_DM/DOT-WA_W_20111231T160000Z_NAT46_WAVERIDER_FV01_END-20121230T211700Z.nc
+- name: file_exists:4
+  remote_file: AODN/AODN_WAVE_DM/BOM_W_20041231T140000Z_SORELL_WAVERIDER_FV01_END-20051231T133000Z.nc
+- name: file_exists:5
+  remote_file: AODN/AODN_WAVE_DM/DES-QLD_W_20141231T140000Z_Gladstone_WAVERIDER_FV01_END-20151231T123000Z.nc
+database_schemas:
+- name: aodn_wave_dm
+  tables:
+  - exclude_columns: []
+    name: aodn_wave_dm_timeseries_map
+  - exclude_columns: []
+    name: aodn_wave_dm_timeseries_data
+drop_schema_objects: true
+name: aodn_wave_dm
+po: bene
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- aodn_wave_dm-aodn_wave_dm
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.AODN_WAVE_DM.log
+test_report_template: test_results
+type: pipeline_version_2

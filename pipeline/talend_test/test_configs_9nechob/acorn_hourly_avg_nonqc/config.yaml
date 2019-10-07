@@ -1,0 +1,52 @@
+actions:
+- file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
+  type: DELETE
+- file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+  type: DELETE
+- incoming:
+  - dest: ACORN/any
+    local_file: IMOS_ACORN_V_20181231T093000Z_ROT_FV00_1-hour-avg.nc
+    remote_file: IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
+  type: ADD
+- incoming:
+  - dest: ACORN/any
+    local_file: IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
+  type: UPDATE
+- incoming:
+  - dest: ACORN/any
+    local_file: IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+  type: ADD
+- file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+  type: DELETE
+assertions:
+- content: acorn_hourly_avg_nonqc
+  expected: acorn_hourly_avg_nonqc/expect
+  name: diff
+- invert: true
+  name: file_exists:not:0
+  remote_file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
+- invert: true
+  name: file_exists:not:0
+  remote_file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+- name: file_exists:1
+  remote_file: ACORN/any/IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
+- name: file_exists:2
+  remote_file: ACORN/any/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+database_schemas:
+- name: acorn_hourly_avg_nonqc
+  tables:
+  - exclude_columns: []
+    name: acorn_hourly_avg_nonqc_timeseries_url
+drop_schema_objects: true
+name: acorn_hourly_avg_nonqc
+po: loz
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- acorn_hourly_avg_nonqc-acorn_hourly_avg_nonqc
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ACORN.log
+test_report_template: test_results
+type: pipeline_version_2

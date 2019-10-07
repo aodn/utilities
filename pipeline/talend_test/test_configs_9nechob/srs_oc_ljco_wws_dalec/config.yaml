@@ -1,0 +1,55 @@
+actions:
+- incoming:
+  - dest: SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20181118T230002Z_LJCO_FV01_DALEC_END-20181119T005951Z.nc
+    remote_file: IMOS_SRS-OC-LJCO_F_20181121T230002Z_LJCO_FV01_DALEC_END-20181122T005958Z.nc
+  type: ADD
+- incoming:
+  - dest: SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20181121T230002Z_LJCO_FV01_DALEC_END-20181122T005958Z.nc
+  type: UPDATE
+- incoming:
+  - dest: SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20181125T230002Z_LJCO_FV01_DALEC_END-20181126T005956Z.nc
+  type: ADD
+- file: IMOS/SRS/OC/LJCO/DALEC/2018/11/IMOS_SRS-OC-LJCO_F_20181125T230002Z_LJCO_FV01_DALEC_END-20181126T005956Z.nc
+  type: DELETE
+- incoming:
+  - dest: SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20160914T230008Z_LJCO_FV02_DALEC_20160914T232852Z.nc
+    remote_file: IMOS_SRS-OC-LJCO_F_20160915T044155Z_LJCO_FV02_DALEC_20160915T050002Z.nc
+  type: ADD
+- incoming:
+  - dest: SRS/OC/LJCO_DALEC
+    local_file: IMOS_SRS-OC-LJCO_F_20160915T044155Z_LJCO_FV02_DALEC_20160915T050002Z.nc
+  type: UPDATE
+assertions:
+- content: srs_oc_ljco_wws_dalec
+  expected: srs_oc_ljco_wws_dalec/expect
+  name: diff
+- name: file_exists:1
+  remote_file: SRS/OC/LJCO_DALEC/IMOS_SRS-OC-LJCO_F_20181121T230002Z_LJCO_FV01_DALEC_END-20181122T005958Z.nc
+- name: file_exists:2
+  remote_file: SRS/OC/LJCO_DALEC/IMOS_SRS-OC-LJCO_F_20181125T230002Z_LJCO_FV01_DALEC_END-20181126T005956Z.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SRS/OC/LJCO/DALEC/2018/11/IMOS_SRS-OC-LJCO_F_20181125T230002Z_LJCO_FV01_DALEC_END-20181126T005956Z.nc
+- name: file_exists:3
+  remote_file: SRS/OC/LJCO_DALEC/IMOS_SRS-OC-LJCO_F_20160915T044155Z_LJCO_FV02_DALEC_20160915T050002Z.nc
+database_schemas:
+- name: srs_oc_ljco_wws
+  tables:
+  - exclude_columns: []
+    name: srs_oc_ljco_wws_dalec_fv01_timeseries_map
+  - exclude_columns: []
+    name: srs_oc_ljco_wws_dalec_fv02_timeseries_map
+drop_schema_objects: true
+name: srs_oc_ljco_wws_dalec
+po: loz
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- srs_oc_ljco_wws-srs_oc_ljco_wws
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SRS_OC_LJCO_DALEC.log
+test_report_template: test_results
+type: pipeline_version_2

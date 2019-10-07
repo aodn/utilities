@@ -1,0 +1,48 @@
+Project:,Integrated Marine Observing System (IMOS)
+Source:,XBT Data
+Latitude:,-45.0282758621
+Longitude: ,147.406551724
+Date/Time:,26/02/2019 11:19
+This file Created:,Wed, 27 Feb 2019 05:00:11
+Platform Code:,FASB
+Vessel Name:,Astrolabe
+XBT Recorder Type:,72,See WMO code table 4770 for the information corresponding to the value 
+XBT Probe Type Fallrate Equation:,52,See WMO code table 4770 for the information corresponding to the value 
+Comment,For more information on how to acknowlege distribute and cite this dataset please refer to the IMOS website http://imos.org.au
+Metadata:,https://catalogue-123.aodn.org.au/geonetwork/srv/en/metadata.show?uuid=35234913-aa3c-48ec-b9a4-77f822f66ef8
+
+Depth Units:,Metre
+
+Temperature Units:,Degrees Celsius
+
+Depth,Temperature
+4.0,15.80
+40.5,15.925
+69.0,15.575
+73.5,15.345
+103.0,15.1
+106.0,14.745
+122.5,14.355
+124.5,14.49
+144.0,13.285
+156.5,12.905
+160.5,12.305
+169.0,12.17
+207.0,11.95
+213.5,12.025
+242.5,11.88
+255.0,11.665
+260.5,11.365
+274.0,11.075
+282.0,10.915
+288.5,10.94
+299.5,10.875
+304.5,10.64
+306.5,10.69
+320.0,10.695
+326.5,11.135
+338.5,11.03
+343.5,11.14
+388.5,10.785
+393.5,10.875
+418.5,10.83

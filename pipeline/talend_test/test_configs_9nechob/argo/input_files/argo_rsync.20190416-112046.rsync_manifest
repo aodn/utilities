@@ -1,0 +1,13 @@
+
+cd+++++++++ nmdis/
+cd+++++++++ nmdis/2901615/
+cd+++++++++ nmdis/2901615/profiles/
+.d..t...... ./
+>f+++++++++ nmdis/2901615/2901615_meta.nc
+>f+++++++++ nmdis/2901615/profiles/R2901615_000.nc
+>f+++++++++ nmdis/2901615/profiles/R2901615_001.nc
+>f+++++++++ nmdis/2901615/profiles/R2901615_002.nc
+
+receiving incremental file list
+sent 48,490 bytes  received 15,680,230 bytes  299,594.67 bytes/sec
+total size is 128,338,604  speedup is 8.16
