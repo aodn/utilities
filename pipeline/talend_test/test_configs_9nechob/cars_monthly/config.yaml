@@ -1,0 +1,42 @@
+actions:
+- incoming:
+  - dest: CSIRO/CARS
+    local_file: CARS2009_World_monthly_03.nc
+    remote_file: CARS2009_World_monthly_01.nc
+  type: ADD
+- incoming:
+  - dest: CSIRO/CARS
+    local_file: CARS2009_World_monthly_01.nc
+  type: UPDATE
+- incoming:
+  - dest: CSIRO/CARS
+    local_file: CARS2009_World_monthly_02.nc
+  type: ADD
+- file: CSIRO/Climatology/CARS/2009/AODN-product/CARS2009_World_monthly_02.nc
+  type: DELETE
+assertions:
+- content: cars_monthly
+  expected: cars_monthly/expect
+  name: diff
+- name: file_exists:1
+  remote_file: CSIRO/CARS/CARS2009_World_monthly_01.nc
+- name: file_exists:2
+  remote_file: CSIRO/CARS/CARS2009_World_monthly_02.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: CSIRO/Climatology/CARS/2009/AODN-product/CARS2009_World_monthly_02.nc
+database_schemas:
+- name: generic_timestep
+  tables:
+  - exclude_columns: []
+    name: timestep_url
+drop_schema_objects: true
+name: cars_monthly
+po: loz
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- cars_monthly-cars_monthly
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.CARS.log
+test_report_template: test_results
+type: pipeline_version_2

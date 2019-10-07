@@ -1,0 +1,33 @@
+actions:
+- incoming:
+  - dest: ANFOG/processed
+    local_file: TasEastCoast20190213.zip
+  type: ADD
+assertions:
+- content: anfog_dm
+  expected: anfog_dm/expect
+  name: diff
+- name: file_exists:1
+  remote_file: ANFOG/processed/TasEastCoast20190213.zip
+database_schemas:
+- name: anfog_dm
+  tables:
+  - exclude_columns:
+    - colour
+    name: anfog_dm_trajectory_map
+  - exclude_columns: []
+    name: anfog_dm_trajectory_data
+  - exclude_columns: []
+    name: anfog_uwa_glider_trajectory_data
+  - exclude_columns: []
+    name: anfog_uwa_glider_trajectory_map
+drop_schema_objects: true
+name: anfog_dm
+po: bp
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- anfog_dm-anfog_dm
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANFOG_DM.log
+test_report_template: test_results
+type: pipeline_version_2

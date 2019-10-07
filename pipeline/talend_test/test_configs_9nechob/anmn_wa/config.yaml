@@ -1,0 +1,45 @@
+actions:
+- incoming:
+  - dest: ANMN/WA
+    local_file: IMOS_ANMN-NRS_TZ_20081120T080000Z_NRSROT_FV01_NRSROT-0811-SBE39-27_END-20090219T030000Z_C-20180810T044335Z.nc
+  type: ADD
+- incoming:
+  - dest: ANMN/WA
+    local_file: IMOS_ANMN-NRS_TZ_20081120T080000Z_NRSROT_FV01_NRSROT-0811-SBE39-27_END-20090219T030000Z_C-20180810T044335Z.updated.nc
+    remote_file: IMOS_ANMN-NRS_TZ_20081120T080000Z_NRSROT_FV01_NRSROT-0811-SBE39-27_END-20090219T030000Z_C-20180810T044335Z.nc
+  type: UPDATE
+- file: IMOS/ANMN/NRS/NRSROT/Temperature/IMOS_ANMN-NRS_TZ_20081120T080000Z_NRSROT_FV01_NRSROT-0811-SBE39-27_END-20090219T030000Z_C-20180810T044335Z.nc
+  type: DELETE
+assertions:
+- content: anmn_wa
+  expected: anmn_wa/expect
+  name: diff
+- name: file_exists:1
+  remote_file: ANMN/WA/IMOS_ANMN-NRS_TZ_20081120T080000Z_NRSROT_FV01_NRSROT-0811-SBE39-27_END-20090219T030000Z_C-20180810T044335Z.nc
+- invert: true
+  name: file_exists:not:1
+  remote_file: IMOS/ANMN/NRS/NRSROT/Temperature/IMOS_ANMN-NRS_TZ_20081120T080000Z_NRSROT_FV01_NRSROT-0811-SBE39-27_END-20090219T030000Z_C-20180810T044335Z.nc
+database_schemas:
+- name: anmn_ts
+  tables:
+  - exclude_columns: []
+    name: anmn_ts_timeseries_data
+  - exclude_columns: []
+    name: anmn_ts_timeseries_map
+- name: anmn_metadata
+  tables:
+  - exclude_columns:
+    - date_published
+    - date_updated
+    name: anmn_all_map
+drop_schema_objects: true
+name: anmn_wa
+po: marty
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- anmn_ts_timeseries-anmn_ts_timeseries
+- moorings_metadata-moorings_metadata
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.ANMN_WA.log
+test_report_template: test_results
+type: pipeline_version_2

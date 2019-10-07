@@ -1,0 +1,42 @@
+actions:
+- incoming:
+  - dest: OceanCurrent/GSLA
+    local_file: IMOS_OceanCurrent_HV_19930101T000000Z_GSLA_FV02_DM00_C-20130913T082343Z.nc.gz
+    remote_file: IMOS_OceanCurrent_HV_19930103T000000Z_GSLA_FV02_DM00_C-20130913T082442Z.nc.gz
+  type: ADD
+- incoming:
+  - dest: OceanCurrent/GSLA
+    local_file: IMOS_OceanCurrent_HV_19930105T000000Z_GSLA_FV02_DM00_C-20130913T082541Z.nc.gz
+  type: ADD
+- incoming:
+  - dest: OceanCurrent/GSLA
+    local_file: IMOS_OceanCurrent_HV_19930103T000000Z_GSLA_FV02_DM00_C-20130913T082442Z.nc.gz
+  type: UPDATE
+- file: IMOS/OceanCurrent/GSLA/DM00/1993/IMOS_OceanCurrent_HV_19930105T000000Z_GSLA_FV02_DM00_C-20130913T082541Z.nc.gz
+  type: DELETE
+assertions:
+- content: gsla_dm00
+  expected: gsla_dm00/expect
+  name: diff
+- name: file_exists:1
+  remote_file: OceanCurrent/GSLA/IMOS_OceanCurrent_HV_19930103T000000Z_GSLA_FV02_DM00_C-20130913T082442Z.nc.gz
+- name: file_exists:2
+  remote_file: OceanCurrent/GSLA/IMOS_OceanCurrent_HV_19930105T000000Z_GSLA_FV02_DM00_C-20130913T082541Z.nc.gz
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/OceanCurrent/GSLA/DM00/1993/IMOS_OceanCurrent_HV_19930105T000000Z_GSLA_FV02_DM00_C-20130913T082541Z.nc.gz
+database_schemas:
+- name: gsla_dm00
+  tables:
+  - exclude_columns: []
+    name: gsla_dm00_timeseries_url
+drop_schema_objects: true
+name: gsla_dm00
+po: loz
+process_report_template: processing_results
+run_talend_liqui: true
+talend_jobs:
+- gsla_dm00-gsla_dm00
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.GSLA.log
+test_report_template: test_results
+type: pipeline_version_2
