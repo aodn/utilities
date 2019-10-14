@@ -1,0 +1,3 @@
+id,job_id,url,last_indexed_run,size,deleted
+1,1,IMOS/SRS/Surface-Waves/Wave-Wind-Altimetry-DM00/CRYOSAT-2/020S_260E/IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-268E-DM00.nc,3,206185,f
+2,1,IMOS/SRS/Surface-Waves/Wave-Wind-Altimetry-DM00/CRYOSAT-2/020S_260E/IMOS_SRS-Surface-Waves_MW_CRYOSAT-2_FV02_003S-269E-DM00.nc,4,204790,f
