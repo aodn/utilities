@@ -29,9 +29,9 @@ assertions:
   name: file_exists:not:0
   remote_file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
 - name: file_exists:1
-  remote_file: ACORN/any/IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
+  remote_file: IMOS/ACORN/any/IMOS_ACORN_V_20190101T003000Z_ROT_FV00_1-hour-avg.nc
 - name: file_exists:2
-  remote_file: ACORN/any/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
+  remote_file: IMOS/ACORN/any/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc
 - invert: true
   name: file_exists:not:2
   remote_file: IMOS/ACORN/gridded_1h-avg-current-map_non-QC/ROT/2019/01/01/IMOS_ACORN_V_20190101T013000Z_ROT_FV00_1-hour-avg.nc

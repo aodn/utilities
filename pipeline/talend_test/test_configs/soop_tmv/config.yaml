@@ -19,9 +19,9 @@ assertions:
   expected: soop_tmv/expect
   name: diff
 - name: file_exists:1
-  remote_file: SOOP/TMV/IMOS_SOOP-TMV_TSUB_20190313T085121Z_VLST_FV00_transect-M2D_END-20190313T184130Z.nc
+  remote_file: IMOS/SOOP/TMV/IMOS_SOOP-TMV_TSUB_20190313T085121Z_VLST_FV00_transect-M2D_END-20190313T184130Z.nc
 - name: file_exists:2
-  remote_file: SOOP/TMV/IMOS_SOOP-TMV_TSUB_20190315T084741Z_VLST_FV00_transect-M2D_END-20190315T182040Z.nc
+  remote_file: IMOS/SOOP/TMV/IMOS_SOOP-TMV_TSUB_20190315T084741Z_VLST_FV00_transect-M2D_END-20190315T182040Z.nc
 - invert: true
   name: file_exists:not:2
   remote_file: IMOS/SOOP/SOOP-TMV/VLST_Spirit-of-Tasmania-1/realtime/transect/1sec/2019/IMOS_SOOP-TMV_TSUB_20190315T084741Z_VLST_FV00_transect-M2D_END-20190315T182040Z.nc

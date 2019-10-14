@@ -23,7 +23,7 @@ assertions:
   expected: anmn_nsw/expect
   name: diff
 - name: file_exists:1
-  remote_file: ANMN/NSW/PH100.zip
+  remote_file: IMOS/ANMN/NSW/PH100.zip
 - invert: true
   name: file_exists:not:1
   remote_file: IMOS/ANMN/NSW/PH100/Velocity/IMOS_ANMN-NSW_AETVZ_20170227T190000Z_PH100_FV01_PH100-1702-Sentinel-or-Monitor-Workhorse-ADCP-109.5_END-20170527T030500Z_C-20180117T000000Z.nc

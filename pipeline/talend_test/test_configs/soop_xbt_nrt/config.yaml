@@ -31,9 +31,9 @@ assertions:
   expected: soop_xbt_nrt/expect
   name: diff
 - name: file_exists:1
-  remote_file: SOOP/XBT/NRT/IMOS_SOOP-XBT_NRT_fileList.manifest
+  remote_file: IMOS/SOOP/XBT/NRT/IMOS_SOOP-XBT_NRT_fileList.manifest
 - name: file_exists:2
-  remote_file: SOOP/XBT/NRT/IMOS_SOOP-XBT_NRT_fileList.manifest
+  remote_file: IMOS/SOOP/XBT/NRT/IMOS_SOOP-XBT_NRT_fileList.manifest
 - invert: true
   name: file_exists:not:2
   remote_file: IMOS/SOOP/SOOP-XBT/REALTIME/FASB_Astrolabe/2019/IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv

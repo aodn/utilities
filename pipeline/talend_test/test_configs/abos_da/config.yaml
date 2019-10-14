@@ -15,7 +15,7 @@ assertions:
   expected: abos_da/expect
   name: diff
 - name: file_exists:1
-  remote_file: ABOS/DA/EAC2000-2018.subset.zip
+  remote_file: IMOS/ABOS/DA/EAC2000-2018.subset.zip
 - invert: true
   name: file_exists:not:1
   remote_file: IMOS/ABOS/DA/EAC2000

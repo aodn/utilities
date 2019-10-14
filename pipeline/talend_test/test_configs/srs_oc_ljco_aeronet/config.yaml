@@ -13,7 +13,7 @@ assertions:
   expected: srs_oc_ljco_aeronet/expect
   name: diff
 - name: file_exists:1
-  remote_file: SRS/OC/LJCO_AERONET/Lucinda.lev20
+  remote_file: IMOS/SRS/OC/LJCO/AERONET/Lucinda.lev20
 database_schemas:
 - name: srs_oc_ljco_aeronet
   tables:

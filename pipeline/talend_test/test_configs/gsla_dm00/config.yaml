@@ -19,9 +19,9 @@ assertions:
   expected: gsla_dm00/expect
   name: diff
 - name: file_exists:1
-  remote_file: OceanCurrent/GSLA/IMOS_OceanCurrent_HV_19930103T000000Z_GSLA_FV02_DM00_C-20130913T082442Z.nc.gz
+  remote_file: IMOS/OceanCurrent/GSLA/IMOS_OceanCurrent_HV_19930103T000000Z_GSLA_FV02_DM00_C-20130913T082442Z.nc.gz
 - name: file_exists:2
-  remote_file: OceanCurrent/GSLA/IMOS_OceanCurrent_HV_19930105T000000Z_GSLA_FV02_DM00_C-20130913T082541Z.nc.gz
+  remote_file: IMOS/OceanCurrent/GSLA/IMOS_OceanCurrent_HV_19930105T000000Z_GSLA_FV02_DM00_C-20130913T082541Z.nc.gz
 - invert: true
   name: file_exists:not:2
   remote_file: IMOS/OceanCurrent/GSLA/DM00/1993/IMOS_OceanCurrent_HV_19930105T000000Z_GSLA_FV02_DM00_C-20130913T082541Z.nc.gz

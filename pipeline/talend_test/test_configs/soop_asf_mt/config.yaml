@@ -19,9 +19,9 @@ assertions:
   expected: soop_asf_mt/expect
   name: diff
 - name: file_exists:1
-  remote_file: SOOP/ASF/MT/IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
+  remote_file: IMOS/SOOP/ASF/MT/IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
 - name: file_exists:2
-  remote_file: SOOP/ASF/MT/IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
+  remote_file: IMOS/SOOP/ASF/MT/IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
 - invert: true
   name: file_exists:not:2
   remote_file: IMOS/SOOP/SOOP-ASF/VLHJ_Southern-Surveyor/meteorological_sst_observations/2013/IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc

@@ -29,9 +29,9 @@ assertions:
   name: file_exists:not:0
   remote_file: IMOS/ACORN/radial/FRE/2019/04/30/IMOS_ACORN_RV_20190430T081500Z_FRE_FV00_radial.nc
 - name: file_exists:1
-  remote_file: ACORN/any/IMOS_ACORN_RV_20190430T080500Z_FRE_FV00_radial.nc
+  remote_file: IMOS/ACORN/any/IMOS_ACORN_RV_20190430T080500Z_FRE_FV00_radial.nc
 - name: file_exists:2
-  remote_file: ACORN/any/IMOS_ACORN_RV_20190430T081500Z_FRE_FV00_radial.nc
+  remote_file: IMOS/ACORN/any/IMOS_ACORN_RV_20190430T081500Z_FRE_FV00_radial.nc
 - invert: true
   name: file_exists:not:2
   remote_file: IMOS/ACORN/radial/FRE/2019/04/30/IMOS_ACORN_RV_20190430T081500Z_FRE_FV00_radial.nc

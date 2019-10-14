@@ -15,7 +15,7 @@ assertions:
   expected: anmn_nrs_long_ts/expect
   name: diff
 - name: file_exists:1
-  remote_file: ANMN/NRS_MAI_NSI_MOORING/IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc
+  remote_file: IMOS/ANMN/NRS_MAI_NSI_MOORING/IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc
 - invert: true
   name: file_exists:not:1
   remote_file: IMOS/ANMN/NRS/NRSMAI/aggregated_products/IMOS_ANMN-NRS_STZ_19441015T000000Z_NRSMAI_FV02_NRSMAI-long-timeseries_END-20140703T000000Z_C-20160606T225011Z.nc
