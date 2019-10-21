@@ -35,9 +35,6 @@
     file_list: "{{ file_list.files }}"
   when: hostvars['pipeline']['file_store_type'] == 'file'
 
-- debug:
-    var: file_list
-
 - block:
     - name: "Assert {{ assert_config.remote_file }} exists"
       assert:
