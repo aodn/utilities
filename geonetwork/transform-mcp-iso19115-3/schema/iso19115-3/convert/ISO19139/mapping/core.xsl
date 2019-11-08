@@ -1,22 +1,24 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gcoold="http://www.isotc211.org/2005/gco" xmlns:gmi="http://www.isotc211.org/2005/gmi" xmlns:gmx="http://www.isotc211.org/2005/gmx"
   xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:srvold="http://www.isotc211.org/2005/srv"
-  xmlns:gml30="http://www.opengis.net/gml" xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0" xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  xmlns:gml30="http://www.opengis.net/gml" xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0" xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
   xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0" xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0" xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
   xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0" xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/1.0" xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0"
   xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0" xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0" xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
-  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0" xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/1.0" xmlns:mex="http://standards.iso.org/iso/19115/-3/mex/1.0"
-  xmlns:mic="http://standards.iso.org/iso/19115/-3/mic/1.0" xmlns:mil="http://standards.iso.org/iso/19115/-3/mil/1.0" xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0" xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/1.0" xmlns:mex="http://standards.iso.org/iso/19115/-3/mex/1.0"
+  xmlns:mic="http://standards.iso.org/iso/19115/-3/mic/1.0" xmlns:mil="http://standards.iso.org/iso/19115/-3/mil/1.0" xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0"
   xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/1.0" xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0" xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc/1.0"
-  xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0" xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0" xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
-  xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0" xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0" xmlns:mai="http://standards.iso.org/iso/19115/-3/mai/1.0"
+  xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0" xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0" xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+  xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0" xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/2.0" xmlns:mai="http://standards.iso.org/iso/19115/-3/mai/1.0"
   xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0" xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:mcpold="http://schemas.aodn.org.au/mcp-2.0"
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all">
   <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>
   <xsl:import href="../utility/dateTime.xsl"/>
   <!-- Define if parent identifier should be defined using a uuidref
       attribute or a CI_Citation with a title. -->
   <xsl:param name="isParentIdentifierDefinedWithUUIDAttribute" select="true()" as="xs:boolean"/>
+  <xsl:param name="mapAggregationInfoToAdditionalDocumentation" select="true()" as="xs:boolean"/>
   <!--
     root element templates
   -->
@@ -232,12 +234,39 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+  <xsl:template match="mcpold:revisionDate" priority="5" mode="from19139to19115-3">
+    <!--
+      revision is changed into a CI_Date that includes a dateType
+    -->
+    <xsl:choose>
+      <xsl:when test="@*[local-name()='nilReason']">
+        <xsl:element name="mdb:dateInfo">
+          <xsl:attribute name="gco:nilReason" select="@*[local-name()='nilReason']"/>
+        </xsl:element>
+      </xsl:when>
+      <xsl:otherwise>
+        <mdb:dateInfo>
+          <cit:CI_Date>
+            <cit:date>
+              <xsl:call-template name="writeDateTime"/>
+            </cit:date>
+            <xsl:call-template name="writeCodelistElement">
+              <xsl:with-param name="elementName" select="'cit:dateType'"/>
+              <xsl:with-param name="codeListName" select="'cit:CI_DateTypeCode'"/>
+              <xsl:with-param name="codeListValue" select="'revision'"/>
+            </xsl:call-template>
+          </cit:CI_Date>
+        </mdb:dateInfo>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   <xsl:template match="gmd:metadataStandardName" priority="5" mode="from19139to19115-3">
     <!--
       metadataStandardName and gmd:metadataStandardVersion are combined into a CI_Citation
     -->
     <mdb:metadataStandard>
       <cit:CI_Citation>
+        <!--
         <xsl:call-template name="writeCharacterStringElement">
           <xsl:with-param name="elementName" select="'cit:title'"/>
           <xsl:with-param name="nodeWithStringToWrite" select="."/>
@@ -246,6 +275,13 @@
           <xsl:with-param name="elementName" select="'cit:edition'"/>
           <xsl:with-param name="nodeWithStringToWrite" select="../gmd:metadataStandardVersion"/>
         </xsl:call-template>
+        -->
+        <cit:title>
+          <gco:CharacterString>Australian Marine Community Profile of ISO 19115:2018</gco:CharacterString>
+        </cit:title>
+        <cit:edition>
+          <gco:CharacterString>3.0</gco:CharacterString>
+        </cit:edition>
       </cit:CI_Citation>
     </mdb:metadataStandard>
   </xsl:template>
@@ -289,7 +325,7 @@
           <xsl:call-template name="getNamespacePrefix"/>
         </xsl:variable>
         <xsl:element name="{concat($nameSpacePrefix,':',local-name(.))}">
-          <xsl:apply-templates select="@*" mode="from19139to19115-3"/>
+          <xsl:apply-templates select="@*[local-name()!='isoType']" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:citation" mode="from19139to19115-3"/>
           <xsl:call-template name="writeCharacterStringElement">
             <xsl:with-param name="elementName" select="'mri:abstract'"/>
@@ -309,6 +345,7 @@
               <xsl:with-param name="codeListName" select="'mcc:MD_ProgressCode'"/>
             </xsl:call-template>
           <xsl:apply-templates select="gmd:pointOfContact" mode="from19139to19115-3"/>
+          <xsl:apply-templates select="mcpold:resourceContactInfo" mode="from19139to19115-3"/>
             <xsl:call-template name="writeCodelistElement">
               <xsl:with-param name="elementName" select="'mri:spatialRepresentationType'"/>
               <xsl:with-param name="codeListName" select="'mcc:MD_SpatialRepresentationTypeCode'"/>
@@ -318,14 +355,23 @@
           <!-- This is here to handle early adopters of temporalResolution -->
           <xsl:apply-templates select="gmd:temporalResolution" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:topicCategory" mode="from19139to19115-3"/>
-          <xsl:apply-templates select="gmd:extent | srvold:extent" mode="from19139to19115-3"/>
+          <xsl:apply-templates select="gmd:extent[not(child::mcpold:EX_Extent)] | srvold:extent" mode="from19139to19115-3"/>
+          <xsl:apply-templates select="gmd:extent[child::mcpold:EX_Extent]" mode="mcpextent"/>
+          <!-- map aggregationInfo to additionalDocumentation -->
+          <xsl:message><xsl:value-of select="concat('SSSS ',$mapAggregationInfoToAdditionalDocumentation)"/></xsl:message>
+          <xsl:if test="$mapAggregationInfoToAdditionalDocumentation">
+            <xsl:apply-templates select="gmd:aggregationInfo" mode="mcpto19115-3"/>
+          </xsl:if>
           <xsl:apply-templates select="gmd:resourceMaintenance" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:graphicOverview" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:resourceFormat" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:descriptiveKeywords" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:resourceSpecificUsage" mode="from19139to19115-3"/>
-          <xsl:apply-templates select="gmd:resourceConstraints" mode="from19139to19115-3"/>
-          <xsl:apply-templates select="gmd:aggregationInfo" mode="from19139to19115-3"/>
+          <xsl:apply-templates select="gmd:resourceConstraints[not(mcpold:MD_Commons)]" mode="from19139to19115-3"/>
+          <xsl:apply-templates select="gmd:resourceConstraints[mcpold:MD_Commons]" mode="mcpcommons"/>
+          <xsl:if test="not($mapAggregationInfoToAdditionalDocumentation)">
+            <xsl:apply-templates select="gmd:aggregationInfo" mode="from19139to19115-3"/>
+          </xsl:if>
           <xsl:call-template name="collectiveTitle"/>
           <xsl:apply-templates select="gmd:language" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:characterSet" mode="from19139to19115-3"/>
@@ -533,16 +579,15 @@
             </mri:name>
           </xsl:when>
         </xsl:choose>
-
         <xsl:call-template name="writeCodelistElement">
           <xsl:with-param name="elementName" select="'mri:associationType'"/>
           <xsl:with-param name="codeListName" select="'mri:DS_AssociationTypeCode'"/>
-          <xsl:with-param name="codeListValue" select="gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode/@codeListValue"/>
+          <xsl:with-param name="codeListValue" select="./gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
         </xsl:call-template>
         <xsl:call-template name="writeCodelistElement">
           <xsl:with-param name="elementName" select="'mri:initiativeType'"/>
           <xsl:with-param name="codeListName" select="'mri:DS_InitiativeTypeCode'"/>
-          <xsl:with-param name="codeListValue" select="gmd:MD_AggregateInformation/gmd:initiativeType/gmd:DS_InitiativeTypeCode/@codeListValue"/>
+          <xsl:with-param name="codeListValue" select="./gmd:MD_AggregateInformation/gmd:initiativeType/gmd:DS_InitiativeTypeCode"/>
         </xsl:call-template>
       </xsl:element>
     </mri:associatedResource>
@@ -637,6 +682,11 @@
     </xsl:element>
   </xsl:template>
   <xsl:include href="defaults.xsl"/>
+  <xsl:include href="mcpcontacts.xsl"/>
+  <xsl:include href="mcpcommons.xsl"/>
+  <xsl:include href="mcpextent.xsl"/>
+  <xsl:include href="mcpaggregationinfo.xsl"/>
+
   <!--
     Empty High-Priority Templates to prevent
     independent actions on these elements
@@ -644,6 +694,8 @@
   <xsl:template match="gmd:hierarchyLevelName" priority="5" mode="from19139to19115-3"/>
   <xsl:template match="gmd:metadataStandardVersion" priority="5" mode="from19139to19115-3"/>
   <xsl:template match="gmd:dataSetURI" priority="5" mode="from19139to19115-3"/>
+  <!-- the following is handled by mdb:metadataLinkage so we need to exclude it -->
+  <xsl:template match="gmd:onLine[descendant::gmd:protocol[gcoold:CharacterString='WWW:LINK-1.0-http--metadata-URL']]" priority="5" mode="from19139to19115-3"/>
   <!-- Match MD_ and MI_CoverageDescription -->
   <xsl:template match="gmd:contentInfo/gmd:MD_CoverageDescription/gmd:attributeDescription | gmd:contentInfo/gmi:MI_CoverageDescription/gmd:attributeDescription" priority="5" mode="from19139to19115-3"/>
   <xsl:template match="gmd:contentInfo/gmi:MI_CoverageDescription/gmi:rangeElementDescription" priority="5" mode="from19139to19115-3"/>

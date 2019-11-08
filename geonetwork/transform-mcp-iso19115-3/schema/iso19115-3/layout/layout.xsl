@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
-  xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/1.0"
+  xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/2.0"
   xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+  xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
   xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
   xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
   xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
   xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
   xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
-  xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+  xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/2.0"
   xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
   xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
   xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
   xmlns:dqm="http://standards.iso.org/iso/19157/-2/dqm/1.0"
-  xmlns:mrc="http://standards.iso.org/iso/19157/-2/mrc/1.0"
-  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  xmlns:mrc="http://standards.iso.org/iso/19157/-2/mrc/2.0"
+  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
   xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
   xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+  xmlns:mcp="http://schemas.aodn.org.au/mcp-3.0"
   xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx"
   xmlns:gts="http://www.isotc211.org/2005/gts"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -39,7 +41,8 @@
   <!-- Visit all XML tree recursively -->
   <xsl:template mode="mode-iso19115-3"
                 match="mds:*|mcc:*|mri:*|mrs:*|mrc:*|mrd:*|mco:*|msr:*|lan:*|
-                       gcx:*|gex:*|dqm:*|mdq:*|cit:*|srv:*|gml:*|gts:*|gfc:*"
+                       gcx:*|gex:*|dqm:*|mdq:*|cit:*|srv:*|gml:*|gts:*|gfc:*
+                       "
                 priority="2">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
@@ -314,10 +317,12 @@
       <xsl:with-param name="xpath" select="$xpath"/>
       <xsl:with-param name="attributesSnippet" select="$attributes"/>
       <xsl:with-param name="type"
-                      select="gn-fn-metadata:getFieldType($editorConfig, name(), name($theElement), $xpath)"/>
+                      select="gn-fn-metadata:getFieldType($editorConfig, name(),
+        name($theElement))"/>
       <xsl:with-param name="name" select="if ($isEditing) then $theElement/gn:element/@ref else ''"/>
       <xsl:with-param name="editInfo" select="$theElement/gn:element"/>
       <xsl:with-param name="parentEditInfo" select="if (exists($refToDelete)) then $refToDelete else gn:element"/>
+      <!-- TODO: Handle conditional helper -->
       <xsl:with-param name="listOfValues" select="$helper"/>
       <xsl:with-param name="toggleLang" select="$isMultilingualElementExpanded"/>
       <xsl:with-param name="forceDisplayAttributes" select="$forceDisplayAttributes"/>
@@ -388,7 +393,7 @@
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
       <xsl:with-param name="type"
-                      select="gn-fn-metadata:getFieldType($editorConfig, name(), '', $xpath)"/>
+                      select="gn-fn-metadata:getFieldType($editorConfig, name(), '')"/>
       <xsl:with-param name="editInfo" select="gn:element"/>
       <xsl:with-param name="attributesSnippet" select="$attributes"/>
     </xsl:call-template>
@@ -475,7 +480,7 @@
       <xsl:with-param name="value" select="$topicCategories"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
-      <xsl:with-param name="type" select="'data-gn-topiccategory-selector-div'"/>
+      <xsl:with-param name="directive" select="'gn-topiccategory-selector'"/>
       <xsl:with-param name="editInfo" select="gn:element"/>
       <xsl:with-param name="parentEditInfo" select="../gn:element"/>
     </xsl:call-template>
@@ -520,7 +525,6 @@
 
     <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, $name, $labels)"/>
     <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
-    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
 
     <xsl:variable name="added" select="parent::node()/parent::node()/@gn:addedObj"/>
     <xsl:call-template name="render-element">
@@ -528,7 +532,7 @@
       <xsl:with-param name="value" select="."/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="gn-fn-metadata:getXPath(.)"/>
-      <xsl:with-param name="type" select="gn-fn-metadata:getFieldType($editorConfig, name(), '', $xpath)"/>
+      <xsl:with-param name="type" select="gn-fn-metadata:getFieldType($editorConfig, name(), '')"/>
       <xsl:with-param name="name" select="if ($isEditing) then gn:element/@ref else ''"/>
       <xsl:with-param name="editInfo"
                       select="gn:element"/>

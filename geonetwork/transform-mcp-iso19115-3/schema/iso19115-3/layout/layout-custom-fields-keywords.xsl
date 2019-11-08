@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+                xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
                 xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
                 xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
                 xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
-                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
+                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
+                xmlns:mcp="http://schemas.aodn.org.au/mcp-3.0"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:gn="http://www.fao.org/geonetwork"
@@ -115,19 +117,27 @@
                   else mri:keyword/*[1]/replace(text(), ',', ',,'), ',')"/>
 
         <!-- Define the list of transformation mode available. -->
+        <!--
         <xsl:variable name="transformations"
                       as="xs:string"
                       select="if ($thesaurusConfig/@transformations != '')
                               then $thesaurusConfig/@transformations
                               else 'to-iso19115-3-keyword,to-iso19115-3-keyword-with-anchor,to-iso19115-3-keyword-as-xlink'"/>
+        -->
+        <!-- override as Marlin only links to keywords from the thesaurus -->
+        <xsl:variable name="transformations" select="'to-iso19115-3-keyword-with-anchor'"/>
 
         <!-- Get current transformation mode based on XML fragement analysis -->
+        <!--
         <xsl:variable name="transformation"
           select="if (parent::node()/@xlink:href)
                   then 'to-iso19115-3-keyword-as-xlink'
                   else if (count(mri:keyword/gmx:Anchor) > 0)
                   then 'to-iso19115-3-keyword-with-anchor'
                   else 'to-iso19115-3-keyword'"/>
+        -->
+        <!-- override as Marlin only links to keywords from the thesaurus -->
+        <xsl:variable name="transformation" select="'to-iso19115-3-keyword-with-anchor'"/>
 
         <xsl:variable name="parentName" select="name(..)"/>
 
@@ -173,6 +183,7 @@
           data-max-tags="{$maxTags}">
         </div>
 
+        <!--
         <xsl:variable name="isTypePlace" select="count(mri:type/mri:MD_KeywordTypeCode[@codeListValue='place']) > 0"/>
         <xsl:if test="$isTypePlace">
           <xsl:call-template name="render-batch-process-button">
@@ -180,6 +191,7 @@
             <xsl:with-param name="process-params">{"replace": true}</xsl:with-param>
           </xsl:call-template>
         </xsl:if>
+        -->
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates mode="mode-iso19115-3" select="*"/>

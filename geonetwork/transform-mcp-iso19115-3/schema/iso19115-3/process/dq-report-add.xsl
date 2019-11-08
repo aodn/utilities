@@ -23,13 +23,13 @@
   -->
 <xsl:stylesheet
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
-  xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
+  xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0"
   xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
   xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
-  xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+  xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0"
   xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
-  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
   xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
   xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
   xmlns:gn="http://www.fao.org/geonetwork"
@@ -49,7 +49,7 @@
   <xsl:param name="updateKey"/>
 
   <xsl:variable name="mainLang"
-                select="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue"
+                select="if (/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue) then /mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue else 'eng'"
                 as="xs:string"/>
 
   <xsl:variable name="useOnlyPTFreeText"

@@ -2,17 +2,18 @@
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
                 xmlns:dqm="http://standards.iso.org/iso/19157/-2/dqm/1.0"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
                 xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
                 xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
-                xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+                xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0"
+                xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
                 xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
-                xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+                xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
                 xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
                 xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
-                xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+                xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0"
                 xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
                 xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
@@ -20,6 +21,7 @@
                 xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+                xmlns:mcp="http://schemas.aodn.org.au/mcp-3.0"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:joda="java:org.fao.geonet.domain.ISODate"
@@ -197,19 +199,14 @@
   </xsl:template>
 
 
-
-  <!-- Format a date.
-  If null, unknown return empty,
-  if current, now return the current date time.
+  <!-- Format a date. If null, unknown, current, now return
+  the current date time.
   -->
   <xsl:function name="gn-fn-iso19115-3:formatDateTime" as="xs:string">
-    <xsl:param name="value" as="xs:string?"/>
+    <xsl:param name="value" as="xs:string"/>
 
     <xsl:choose>
-      <xsl:when test="$value='' or lower-case($value)='unknown'">
-        <xsl:value-of select="''"/>
-      </xsl:when>
-      <xsl:when test="lower-case($value)='current' or lower-case($value)='now'">
+      <xsl:when test="$value='' or lower-case($value)='unknown' or lower-case($value)='current' or lower-case($value)='now'">
         <xsl:value-of select="format-dateTime(current-dateTime(),$df)"/>
       </xsl:when>
       <xsl:otherwise>
@@ -217,7 +214,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  
+
 
   <xsl:template name="CommonFieldsFactory">
     <xsl:param name="lang" select="$documentMainLanguage"/>
@@ -309,6 +306,10 @@
         <xsl:copy-of select="gn-fn-iso19115-3:index-field('abstract', ., $langId)"/>
       </xsl:for-each>
 
+      <xsl:for-each select="mri:spatialRepresentationType">
+        <xsl:copy-of select="gn-fn-iso19115-3:index-field('spatialRepresentationType', mcc:MD_SpatialRepresentationTypeCode/@codeListValue, $langId)"/>
+      </xsl:for-each>
+
       <xsl:for-each select="mri:credit">
         <xsl:copy-of select="gn-fn-iso19115-3:index-field('credit', ., $langId)"/>
       </xsl:for-each>
@@ -324,17 +325,14 @@
 
         <xsl:for-each select="gex:temporalElement/gex:EX_TemporalExtent/gex:extent">
           <xsl:for-each select="gml:TimePeriod">
-            <xsl:for-each select="gml:beginPosition[. != '']|gml:begin/gml:TimeInstant/gml:timePosition[. != '']">
-              <Field name="tempExtentBegin"
-                     string="{lower-case(gn-fn-iso19115-3:formatDateTime(.))}"
-                     store="true" index="true"/>
-            </xsl:for-each>
-            <xsl:for-each select="gml:endPosition[. != '']|gml:end/gml:TimeInstant/gml:timePosition[. != '']">
-              <Field name="tempExtentEnd"
-                     string="{lower-case(gn-fn-iso19115-3:formatDateTime(.))}"
-                     store="true" index="true"/>
-            </xsl:for-each>
+            <Field name="tempExtentBegin"
+                   string="{lower-case(gn-fn-iso19115-3:formatDateTime(gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition))}"
+                   store="true" index="true"/>
+            <Field name="tempExtentEnd"
+                   string="{lower-case(gn-fn-iso19115-3:formatDateTime(gml:endPosition|gml:end/gml:TimeInstant/gml:timePosition))}"
+                   store="true" index="true"/>
           </xsl:for-each>
+
         </xsl:for-each>
       </xsl:for-each>
 
@@ -409,6 +407,27 @@
               </xsl:if>
             </xsl:if>
           </xsl:if>
+
+          <xsl:choose>
+            <xsl:when test="contains($thesaurusIdentifier,'sourceregister')">
+              <Field name="source" string="{string(.)}" store="true" index="true"/>
+            </xsl:when>
+            <xsl:when test="contains($thesaurusIdentifier,'surveyregister')">
+              <Field name="survey" string="{string(.)}" store="true" index="true"/>
+            </xsl:when>
+            <xsl:when test="contains($thesaurusIdentifier,'projectregister')">
+              <Field name="project" string="{string(.)}" store="true" index="true"/>
+            </xsl:when>
+            <xsl:when test="contains($thesaurusIdentifier,'gcmd_keywords')">
+              <Field name="gcmd" string="{string(.)}" store="true" index="true"/>
+            </xsl:when>
+            <xsl:when test="contains($thesaurusIdentifier,'awavea-keywords')">
+              <Field name="awavea" string="{string(.)}" store="true" index="true"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <Field name="otherkeyword" string="{string(.)}" store="true" index="true"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:for-each>
       </xsl:for-each>
 
@@ -586,21 +605,14 @@
         <xsl:variable name="fileName"  select="mcc:fileName/gco:CharacterString"/>
         <xsl:if test="$fileName != ''">
           <xsl:variable name="fileDescr" select="mcc:fileDescription/gco:CharacterString"/>
-          <xsl:choose>
-            <xsl:when test="contains($fileName ,'://')">
-              <xsl:choose>
-                <xsl:when test="string($fileDescr)='thumbnail'">
-                  <Field  name="image" string="{concat('thumbnail|', $fileName)}" store="true" index="false"/>
-                </xsl:when>
-                <xsl:when test="string($fileDescr)='large_thumbnail'">
-                  <Field  name="image" string="{concat('overview|', $fileName)}" store="true" index="false"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <Field  name="image" string="{concat('unknown|', $fileName)}" store="true" index="false"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:when>
-          </xsl:choose>
+          <xsl:if test="contains($fileName ,'://')">
+            <xsl:variable name="thumbnailType"
+                      select="if (position() = 1) then 'thumbnail' else 'overview'"/>
+            <!-- First thumbnail is flagged as thumbnail and could be considered the main one -->
+            <Field name="image"
+                   string="{concat($thumbnailType, '|', $fileName, '|', $fileDescr)}"
+                   store="true" index="false"/>
+          </xsl:if>
         </xsl:if>
       </xsl:for-each>
       <xsl:if test="count(mri:graphicOverview/mcc:MD_BrowseGraphic) = 0">
@@ -829,6 +841,10 @@
     </xsl:for-each>
 
 
+    <xsl:for-each select="$metadata/mdb:acquisitionInformation/mac:MI_AcquisitionInformation">
+      <Field  name="rasterType" string="{mac:scope/mcc:MD_Scope/mcc:level/mcc:MD_ScopeCode/@codeListValue}" store="false" index="true"/>
+      <Field  name="sensorType" string="{mac:instrument/mac:MI_Sensor/mac:type/text()}" store="false" index="true"/>
+    </xsl:for-each>
 
 
     <!-- Metadata scope -->
@@ -984,19 +1000,22 @@
     <xsl:copy-of select="gn-fn-iso19115-3:index-field('orgName', cit:name, $langId)"/>
     <xsl:variable name="role" select="../../cit:role/*/@codeListValue"/>
     <xsl:variable name="email" select="cit:contactInfo/cit:CI_Contact/
-                                              cit:address/cit:CI_Address/
-                                              cit:electronicMailAddress/gco:CharacterString"/>
+                                cit:address/cit:CI_Address/
+                                cit:electronicMailAddress/gco:CharacterString|
+                       cit:individual//cit:contactInfo/cit:CI_Contact/
+                                cit:address/cit:CI_Address/
+                                cit:electronicMailAddress/gco:CharacterString"/>
     <xsl:variable name="roleTranslation" select="util:getCodelistTranslation('cit:CI_RoleCode', string($role), string($lang))"/>
     <xsl:variable name="logo" select="cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
     <xsl:variable name="phones"
-                  select="cit:contactInfo/cit:CI_Contact/cit:phone/*/cit:number/gco:CharacterString"/>
+                  select=".//cit:contactInfo/cit:CI_Contact/cit:phone/*/cit:number/gco:CharacterString"/>
     <!--<xsl:variable name="phones"
                   select="cit:contactInfo/cit:CI_Contact/cit:phone/concat(*/cit:numberType/*/@codeListValue, ':', */cit:number/gco:CharacterString)"/>-->
     <xsl:variable name="address" select="string-join(cit:contactInfo/*/cit:address/*/(
                                           cit:deliveryPoint|cit:postalCode|cit:city|
                                           cit:administrativeArea|cit:country)/gco:CharacterString/text(), ', ')"/>
-    <xsl:variable name="individualNames" select="''"/>
-    <xsl:variable name="positionName" select="''"/>
+    <xsl:variable name="individualNames" select="cit:individual//cit:name/gco:CharacterString"/>
+    <xsl:variable name="positionName" select="cit:individual//cit:positionName/gco:CharacterString"/>
 
     <xsl:variable name="orgName">
       <xsl:apply-templates mode="localised" select="cit:name">
@@ -1012,9 +1031,9 @@
     <Field name="{$fieldPrefix}"
            string="{concat($roleTranslation, '|', $type, '|',
                               $orgName, '|', $logo, '|',
-                              string-join($email, ','), '|', $individualNames,
+                              string-join($email, ',')[normalize-space()!=''], '|', $individualNames,
                               '|', $positionName, '|',
-                              $address, '|', string-join($phones, ','))}"
+                              $address, '|', string-join($phones, ',')[normalize-space()!=''])}"
            store="true" index="false"/>
 
     <xsl:for-each select="$email">

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/1.0"
+                xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/2.0"
                 xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
                 xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
                 xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
-                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
                 xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
                 xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
@@ -145,7 +145,7 @@
           </xsl:if>
 
           <xsl:choose>
-            <xsl:when test="/root/request/lang">
+            <xsl:when test="count($listOfLanguage) > 1">
               <xsl:variable name="keyword" select="." />
 
               <xsl:if test="not($textgroupOnly)">
@@ -171,7 +171,7 @@
             <xsl:otherwise>
               <xsl:choose>
                 <xsl:when test="$withAnchor">
-                  <gcx:Anchor xlink:href="{$serviceUrl}/xml.keyword.get?thesaurus={thesaurus/key}&amp;id={uri}">
+                  <gcx:Anchor xlink:href="{concat($serviceUrl,/root/request/lang)}/xml.keyword.get?thesaurus={thesaurus/key}&amp;id={uri}">
                     <xsl:value-of select="value" />
                   </gcx:Anchor>
                 </xsl:when>
@@ -235,7 +235,7 @@
                 </cit:date>
                 <cit:dateType>
                   <cit:CI_DateTypeCode
-                          codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
+                          codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_DateTypeCode"
                           codeListValue="publication" />
                 </cit:dateType>
               </cit:CI_Date>

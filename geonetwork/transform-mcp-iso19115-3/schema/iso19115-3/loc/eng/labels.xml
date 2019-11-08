@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <labels xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0"
-        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
         xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
         xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
         xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
@@ -9,22 +9,22 @@
         xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0"
         xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
         xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
-        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
-        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
-        xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/2.0"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
+        xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/2.0"
         xmlns:reg="http://standards.iso.org/iso/19135/-2/reg/1.0"
-        xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/1.0"
+        xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/2.0"
         xmlns:mex="http://standards.iso.org/iso/19115/-3/mex/1.0"
         xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
         xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc/1.0"
-        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0"
         xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
         xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
-        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0"
         xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
-        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/2.0"
         xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
-        xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/1.0"
+        xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
         xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
         xmlns:gml="http://www.opengis.net/gml/3.2"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1200,7 +1200,7 @@
     <_condition>optional</_condition>
   </element>
   <element name="mri:additionalDocumentation" id="91.0">
-    <label>Additional documentation</label>
+    <label>Publication</label>
     <description iso="true">Publications that describe usage of data
     </description>
     <_condition>optional</_condition>
@@ -2576,10 +2576,7 @@
   </element>
   <element name="mrd:distributionFormat" id="271.0">
     <label>Distribution format</label>
-    <condition>mandatory</condition>
-    <description>Provides a description of the format of the data to be
-      distributed
-    </description>
+    <description>Provides a description of the format of the data to be distributed.</description>
   </element>
   <element name="mdb:distributionInfo" id="17.0">
     <description>Provides information about the distributor of and options for
@@ -3086,7 +3083,6 @@
       resource after the
       initial resource is completed
     </description>
-    <condition>mandatory</condition>
   </element>
   <element name="mmi:maintenanceNote" id="148.0">
     <label>Maintenance note</label>
@@ -3218,13 +3214,6 @@
   <element name="cit:name" context="cit:CI_OnlineResource" id="409.0">
     <label>Name of the resource</label>
     <description>Name of the online resource</description>
-  </element>
-  <element name="cit:name" context="cit:CI_Series" id="414.0">
-    <label>Name</label>
-    <description>Name of the series, or aggregate dataset, of which the dataset
-      is a
-      part
-    </description>
   </element>
   <element name="mri:name" context="mri:MD_CodeDomain" id="537.0">
     <label>Name</label>
@@ -3836,40 +3825,11 @@
     <label>Protocol</label>
     <description>Connection protocol to be used</description>
     <helper sort="true">
-      <option value="OGC:CSW">OGC-CSW Catalogue Service for the Web
-      </option>
-      <option value="OGC:KML">OGC-KML Keyhole Markup Language
-      </option>
-      <option value="OGC:GML">OGC-GML Geography Markup Language
-      </option>
-      <option value="OGC:ODS">OGC-ODS OpenLS Directory Service
-      </option>
-      <option value="OGC:OGS">OGC-ODS OpenLS Gateway Service</option>
-      <option value="OGC:OUS">OGC-ODS OpenLS Utility Service</option>
-      <option value="OGC:OPS">OGC-ODS OpenLS Presentation Service</option>
-      <option value="OGC:ORS">OGC-ODS OpenLS Route Service</option>
-      <option value="OGC:SOS">OGC-SOS Sensor Observation Service</option>
-      <option value="OGC:SPS">OGC-SPS Sensor Planning Service</option>
-      <option value="OGC:SAS">OGC-SAS Sensor Alert Service</option>
-      <option value="OGC:WCS">OGC-WCS Web Coverage Service</option>
-      <option value="OGC:WCTS">OGC-WCTS Web Coordinate Transformation Service</option>
-      <option value="OGC:WFS">OGC-WFS Web Feature Service</option>
-      <option value="OGC:WMS">OGC-WMS Web Map Service</option>
-      <option value="OGC:WMTS">OGC-WMS Web Map Tile Service</option>
-      <option value="OGC:WNS">OGC-WNS Web Notification Service</option>
-      <option value="OGC:WPS">OGC-WPS Web Processing Service</option>
-      <option value="WWW:DOWNLOAD-1.0-ftp--download">File for download through FTP</option>
-      <option value="WWW:DOWNLOAD-1.0-http--download">File for download</option>
-      <option value="ESRI:REST">ESRI REST Service</option>
-      <option value="FILE:GEO">GIS file</option>
-      <option value="FILE:RASTER">GIS RASTER file</option>
-      <option value="WWW:LINK-1.0-http--link" default="">Web address (URL)</option>
-      <option value="WWW:LINK-1.0-http--rss">RSS News feed (URL)</option>
-      <option value="DB:POSTGIS">PostGIS database table</option>
-      <option value="DB:ORACLE">ORACLE database table</option>
-      <option value="WWW:LINK-1.0-http--opendap">OPeNDAP URL</option>
-      <option value="RBNB:DATATURBINE">Data Turbine</option>
-      <option value="UKST">Unknown Service Type</option>
+      <option show="y" value="WWW:DOWNLOAD-1.0-http--csiro-oa-app">CSIRO Oceans and Atmosphere Data Delivery Application</option>
+      <option show="y" value="WWW:LINK-1.0-http--downloaddata">Web link (URL) to other data</option>
+      <option show="y" value="OGC:WMS-1.3.0-http-get-map">OGC-WMS Web Map Service</option>
+      <option show="y" value="WWW:DOWNLOAD-1.0-http--csiro-dap">HTTP Link to resource in CSIRO DAP</option>
+      <option show="y" value="WWW:LINK-1.0-http--link">Web link (URL) - use this if one of the above does not apply</option>
     </helper>
   </element>
   <element name="mri:purpose" id="26.0">
@@ -3972,7 +3932,6 @@
     <description>Quantitative quality information for the data specified by the
       scope
     </description>
-    <condition>conditional</condition>
   </element>
   <element name="mrl:resolution" id="182.0">
     <label>Resolution</label>
@@ -4234,33 +4193,6 @@
       keywords
     </description>
   </element>
-  <element name="cit:title" id="285.0"
-           context="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title">
-    <label>Format name</label>
-    <description>Name of the data transfer format(s)</description>
-    <help>File or link format name</help>
-    <helper>
-      <option value="Text">Text</option>
-      <option value="ESRI Shapefile">ESRI Shapefile</option>
-      <option value="Mapinfo MIF/MID">Mapinfo MIF/MID</option>
-      <option value="Mapinfo TAB">Mapinfo TAB</option>
-      <option value="KML">KML</option>
-      <option value="GML">GML</option>
-      <option value="Ascii">Ascii</option>
-      <option value="NetCDF">NetCDF</option>
-      <option value="GeoTIFF">GeoTIFF</option>
-      <option value="TIFF">TIFF</option>
-      <option value="ECW">ECW</option>
-      <option value="JPEG2000">JPEG2000</option>
-      <option value="ZIP">ZIP</option>
-      <option value="PDF">PDF</option>
-      <option value="PNG">PNG</option>
-      <option value="JPEG">JPEG</option>
-      <option value="OGC:WMC">OGC:WMC</option>
-      <option value="OGC:OWS-C">OGC OWS Context</option>
-    </helper>
-  </element>
-
   <element name="cit:title" id="360.0"
            context="/mdb:MD_Metadata/mdb:dataQualityInfo/mdq:DQ_DataQuality/mdq:report/mdq:DQ_DomainConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title">
     <label>Specification</label>
@@ -4717,9 +4649,13 @@
     <label>Time position</label>
     <description/>
   </element>
-  <element name="gml:timePosition">
-    <label>Time position</label>
-    <description/>
+  <element name="gml:timePosition" id="71000.0" context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition">
+    <label>Start Time</label>
+    <description>Start of dataset temporal extent</description>
+  </element>
+  <element name="gml:timePosition" id="71001.0" context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition">
+    <label>End Time</label>
+    <description>End of dataset temporal extent</description>
   </element>
   <element name="gml:TimePeriod">
     <label>Time period</label>
@@ -5587,4 +5523,240 @@
     <label>Item status</label>
     <description></description>
   </element>
+  <element name="cit:title" id="66285.0"
+           context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:title">
+	  <label>Title</label>
+		<description>Title of the publication.</description>
+  </element>
+  <element name="cit:date" id="66286.0"
+           context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date">
+	  <label>Date</label>
+		<description>Date of publication.</description>
+  </element>
+  <element name="cit:name" id="66287.0"
+           context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:name">
+	  <label>Author(s) Name</label>
+		<description>Name(s) of the Author(s) of publication.</description>
+  </element>
+  <element name="cit:name" id="66288.0"
+           context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name">
+	  <label>Author(s) Organisation</label>
+		<description>Name of organisation to which author(s) belongs.</description>
+  </element>
+  <element name="cit:name" id="66289.0"
+           context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:series/cit:CI_Series/cit:name">
+	  <label>Publication Name</label>
+		<description>Name of Publication eg. Book or Journal name.</description>
+  </element>
+  <element name="cit:issueIdentification" id="66290.0"
+           context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:series/cit:CI_Series/cit:issueIdentification">
+	  <label>Issue/Volume</label>
+		<description>Issue or Volume Number.</description>
+  </element>
+  <element name="cit:page" id="66291.0"
+           context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:series/cit:CI_Series/cit:page">
+	  <label>Page Number(s)</label>
+		<description>Page Numbers.</description>
+  </element>
+  <element name="mcc:code" id="66292.0"
+           context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code">
+	  <label>Author ID (eg. ORCID)</label>
+		<description>Author Identifier eg. ORCID.</description>
+  </element>
+  <element name="dq_attributeaccuracy_explanation" id="66293.0">
+    <label></label>
+    <description>Explanation of the correctness of non-quantitative attributes</description>
+  </element>
+  <element name="dq_externalpositionalaccuracy_explanation" id="66294.0">
+    <label></label>
+    <description>Explanation of how close coordinate values are to values accepted as being true</description>
+  </element>
+  <element name="dq_conceptualconsistency_explanation" id="66295.0">
+    <label></label>
+    <description>Explanation of the way in which the dataset adheres to concepts</description>
+  </element>
+  <element name="dq_completenessomission_explanation" id="66296.0">
+    <label></label>
+    <description>Explanation of any data absent from the dataset</description>
+  </element>
+  <element name="mcc:code" id="72000.0" context="/mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code">
+	  <label>Reference System</label>
+		<description>The spatial reference system used for coordinates in the dataset.</description>
+		<helper>
+			<option value="WGS 84 (EPSG:4326)">WGS 84 (EPSG:4326)</option>
+			<option value="EPSG:28355">EPSG:28355 (GDA94, Zone 55)</option>
+		</helper>
+  </element>
+  <element name="cit:title" id="285.0"
+           context="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title">
+	  <label>Format Name</label>
+		<description>If none of the suggestions matches, then please enter the name of the format you have used.</description>
+		<help>
+			<![CDATA[<p>Please select the <b>most appropriate</b> format. If not known then please select <b>'not yet ascertained'</b>.</p>]]>
+		</help>
+		<condition>mandatory</condition>
+		<helper rel="gmd:version">
+			<option value="not yet ascertained">not yet ascertained</option>
+			<option value="DIGITAL - Binary">DIGITAL - Binary</option>
+			<option value="DIGITAL - CAD - DXF">DIGITAL - CAD - DXF</option>
+			<option value="DIGITAL - CAD - Design">DIGITAL - CAD - Design</option>
+			<option value="DIGITAL - Database Files - MS Access">DIGITAL - Database Files - MS Access</option>
+			<option value="DIGITAL - Database Files - Oracle">DIGITAL - Database Files - Oracle</option>
+			<option value="DIGITAL - Database Files - Texpress">DIGITAL - Database Files - Texpress</option>
+			<option value="DIGITAL - Database Files - other">DIGITAL - Database Files - other</option>
+			<option value="DIGITAL - GIS - AS2482">DIGITAL - GIS - AS2482</option>
+			<option value="DIGITAL - GIS - ArcSDE export">DIGITAL - GIS - ArcSDE export</option>
+			<option value="DIGITAL - GIS - ArcSDE raster">DIGITAL - GIS - ArcSDE raster</option>
+			<option value="DIGITAL - GIS - ArcSDE vector">DIGITAL - GIS - ArcSDE vector</option>
+			<option value="DIGITAL - GIS - ERDAS">DIGITAL - GIS - ERDAS</option>
+			<option value="DIGITAL - GIS - ESRI Arc Map Project">DIGITAL - GIS - ESRI Arc Map Project</option>
+			<option value="DIGITAL - GIS - ESRI Coverage">DIGITAL - GIS - ESRI Coverage</option>
+			<option value="DIGITAL - GIS - ESRI Coverage Export">DIGITAL - GIS - ESRI Coverage Export</option>
+			<option value="DIGITAL - GIS - ESRI GRID raster">DIGITAL - GIS - ESRI GRID raster</option>
+			<option value="DIGITAL - GIS - ESRI Personal GeoDatabase">DIGITAL - GIS - ESRI Personal GeoDatabase</option>
+			<option value="DIGITAL - GIS - ESRI Shapefile">DIGITAL - GIS - ESRI Shapefile</option>
+			<option value="DIGITAL - GIS - MapInfo TAB format">DIGITAL - GIS - MapInfo TAB format</option>
+			<option value="DIGITAL - GIS - Geographic Markup Language (GML)">DIGITAL - GIS - Geographic Markup Language (GML)</option>
+			<option value="DIGITAL - GIS - Keyhole Markup Language (KML)">DIGITAL - GIS - Keyhole Markup Language (KML)</option>
+			<option value="DIGITAL - GIS - S.57 ENC">DIGITAL - GIS - S.57 ENC</option>
+			<option value="DIGITAL - GIS - SDTS">DIGITAL - GIS - SDTS</option>
+			<option value="DIGITAL - GIS - other">DIGITAL - GIS - other</option>
+			<option value="DIGITAL - HTML">DIGITAL - HTML</option>
+			<option value="DIGITAL - Images - BIL (DISIMP)">DIGITAL - Images - BIL (DISIMP)</option>
+			<option value="DIGITAL - Images - BMP">DIGITAL - Images - BMP</option>
+			<option value="DIGITAL - Images - ECW">DIGITAL - Images - ECW</option>
+			<option value="DIGITAL - Images - Video">DIGITAL - Images - Video</option>
+			<option value="DIGITAL - Images - EPS">DIGITAL - Images - EPS</option>
+			<option value="DIGITAL - Images - GIF">DIGITAL - Images - GIF</option>
+			<option value="DIGITAL - Images - GeoTIFF">DIGITAL - Images - GeoTIFF</option>
+			<option value="DIGITAL - Images - JPEG">DIGITAL - Images - JPEG</option>
+			<option value="DIGITAL - Images - PBM">DIGITAL - Images - PBM</option>
+			<option value="DIGITAL - Images - PDF">DIGITAL - Images - PDF</option>
+			<option value="DIGITAL - Images - PNG">DIGITAL - Images - PNG</option>
+			<option value="DIGITAL - Images - RNC">DIGITAL - Images - RNC</option>
+			<option value="DIGITAL - Images - TIFF">DIGITAL - Images - TIFF</option>
+			<option value="DIGITAL - Images - other">DIGITAL - Images - other</option>
+			<option value="DIGITAL - OGC Web Map Context (WMC)">DIGITAL - OGC Web Map Context (WMC)</option>
+			<option value="DIGITAL - OGC OWS Context">DIGITAL - OGC OWS Context</option>
+			<option value="DIGITAL - SGML">DIGITAL - SGML</option>
+			<option value="DIGITAL - Spreadsheets - MS Excel">DIGITAL - Spreadsheets - MS Excel</option>
+			<option value="DIGITAL - Spreadsheets - other">DIGITAL - Spreadsheets - other</option>
+			<option value="DIGITAL - Text Documents - ASCII">DIGITAL - Text Documents - ASCII</option>
+			<option value="DIGITAL - Text Documents - MS Word">DIGITAL - Text Documents - MS Word</option>
+			<option value="DIGITAL - Text Documents - RTF">DIGITAL - Text Documents - RTF</option>
+			<option value="DIGITAL - Text Documents - XML">DIGITAL - Text Documents - XML</option>
+			<option value="DIGITAL - Text Documents - CSV">DIGITAL - Text Documents - CSV</option>
+			<option value="DIGITAL - Text Documents - other">DIGITAL - Text Documents - other</option>
+			<option value="DIGITAL - MATLAB">DIGITAL - MATLAB</option>
+			<option value="DIGITAL - netCDF">DIGITAL - netCDF</option>
+			<option value="DIGITAL - other">DIGITAL - other</option>
+			<option value="NON-DIGITAL - Drawings">NON-DIGITAL - Drawings</option>
+			<option value="NON-DIGITAL - Field Data Sheets">NON-DIGITAL - Field Data Sheets</option>
+			<option value="NON-DIGITAL - Film (Cine)">NON-DIGITAL - Film (Cine)</option>
+			<option value="NON-DIGITAL - Manuscript">NON-DIGITAL - Manuscript</option>
+			<option value="NON-DIGITAL - Microfiche">NON-DIGITAL - Microfiche</option>
+			<option value="NON-DIGITAL - Microfilm">NON-DIGITAL - Microfilm</option>
+			<option value="NON-DIGITAL - Notebooks">NON-DIGITAL - Notebooks</option>
+			<option value="NON-DIGITAL - Photocopy">NON-DIGITAL - Photocopy</option>
+			<option value="NON-DIGITAL - Photographs (negatives and/or prints)">NON-DIGITAL - Photographs (negatives and/or prints)</option>
+			<option value="NON-DIGITAL - Plotted Maps">NON-DIGITAL - Plotted Maps</option>
+			<option value="NON-DIGITAL - Prepared Specimens - Electron Microscope Mounts">NON-DIGITAL - Prepared Specimens - Electron Microscope Mounts</option>
+			<option value="NON-DIGITAL - Prepared Specimens - Microscope Slides">NON-DIGITAL - Prepared Specimens - Microscope Slides</option>
+			<option value="NON-DIGITAL - Printed Maps">NON-DIGITAL - Printed Maps</option>
+			<option value="NON-DIGITAL - Printed Text (Reports, Books, Reprints, etc.)">NON-DIGITAL - Printed Text (Reports, Books, Reprints, etc.)</option>
+			<option value="NON-DIGITAL - Printouts (Charts, Data, Plotter Output)">NON-DIGITAL - Printouts (Charts, Data, Plotter Output)</option>
+			<option value="NON-DIGITAL - Transparencies">NON-DIGITAL - Transparencies</option>
+			<option value="NON-DIGITAL - Typescript">NON-DIGITAL - Typescript</option>
+			<option value="NON-DIGITAL - Video">NON-DIGITAL - Video</option>
+			<option value="NON-DIGITAL - Vouchered Specimens - Biological">NON-DIGITAL - Vouchered Specimens - Biological</option>
+			<option value="NON-DIGITAL - Vouchered Specimens - Geological">NON-DIGITAL - Vouchered Specimens - Geological</option>
+			<option value="NON-DIGITAL - Vouchered Specimens - other">NON-DIGITAL - Vouchered Specimens - other</option>
+			<option value="NON-DIGITAL - X-Rays (Radiographs)">NON-DIGITAL - X-Rays (Radiographs)</option>
+			<option value="NON-DIGITAL - other">NON-DIGITAL - other</option>
+		</helper>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:DP_DataParameter" id="9041.0">
+		<label>Data Parameter Info</label>
+		<description>Details about a specific Parameter, including he various names and labels used for that parameter; the unit-of-measurement (UOM) used; the minimum and maximum values measured in the dataset, and a description of the parameter the definitions of the parameters information</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterName" id="9042.0">
+		<label>Parameter Name</label>
+		<description>Specific Parameter's name or label.  Details include whether this is a shortname, longname, code or "other".  It also the details of a vocabulary list (if one is known) that the label or name belongs to, and the label's definition</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:term" id="9043.0">
+		<label>Term</label>
+		<description>Parameter Term</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:type" id="9045.0">
+		<label>Type</label>
+		<description>Type of Term - typically: long, short, code or other</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:usedInDataset" id="9046.0">
+		<label>Used in dataset?</label>
+		<description>Specific Parameter or UOM term being discussed in this element</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:vocabularyListURL" id="9047.0">
+		<label>Names VocabularyList URL</label>
+		<description>Version of the parameter vocabulary list that includes and defines this term;   Only use this, if the term actually is defined in a parameter or "UOM" vocabulary list that is available from the web</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterMinimumValue" id="9050.0">
+		<label>Min.Value in dataset</label>
+		<description>Minimum value measured - for this parameter, within this dataset</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterMaximumValue" id="9051.0">
+		<label>Max.Value in dataset</label>
+		<description>Maximum value measured - for this parameter, within this dataset</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterDescription" id="9052.0">
+		<label>Parameter Description</label>
+		<description>Description of Param</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:localDefinition" id="9053.0">
+		<label>Local definition</label>
+		<description>Local definition of Param or UOM; Used where an external vocabulary hasn't been used, or where an external vocab's definition is insufficient</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterUnits" id="9054.0">
+		<label>Parameter unit of measurement</label>
+		<description><p>Includes names and labels for the UOM, as well as details of vocabulary Lists that include the label, and defnitions.</p>
+             <p>This can be a standard UOM such as SI units; or might be a relative/local measurement. An example of the latter is:</p>
+<li>
+	<ul>PARAM name: field-based surface turbidity measure;</ul>
+	<ul>PARAM defn:   visibility test taken at 1,3 aand 5 feet below surface;</ul>
+	<ul>PARAM UOM:   possible value range is 10-0, 0 means clear;</ul>
+</li>
+<p>Test involves visible detection of an item at 1, 3, and 5 feet, under the water surface.  The item placed under the water is a plate inscribed with a shape enclosing 4 dots; and that shape is of varying sizes.</p>
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:relationshipType" id="9055.0">
+		<label>Relationship Type</label>
+    <description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterDeterminationInstrument" id="9056.0">
+		<label>Instrument Used</label>
+    <description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:platform" id="9057.0">
+		<label>Platform Used</label>
+    <description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:vocabularyTermURL" id="9058.0">
+		<label>Vocabulary Term URL</label>
+    <description></description>
+	</element>
+	<!-- ==================================================== -->
 </labels>
