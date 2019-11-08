@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration debug="true">
+  <Appenders>
+    <Console name="STDOUT">
+      <PatternLayout pattern="%d{ISO8601} %-5p [%c] - %m%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="au.org.aodn.xslt.transformCatalogue" level="info" additivity="false">
+      <AppenderRef ref="STDOUT"/>
+    </Logger>
+  </Loggers>
+</Configuration>
