@@ -22,8 +22,8 @@ public class transformCatalogue {
 
     public static void main(String[] args) throws TransformerException, IOException {
 
-        File from_19139_mcp_1_4_to_19139_mcp_2_0_xsl_file = new File("schemas/iso19115-3/convert/ISO19139/to19139.mcp-2.0.xsl");
-        File from_19139_mcp2_to_19115_3_xslFile = new File("schemas/iso19115-3/convert/ISO19139/fromISO19139MCP2.xsl");
+        File from_19139_mcp_1_4_to_19139_mcp_2_0_xsl_file = new File("schema/iso19115-3/convert/ISO19139/to19139.mcp-2.0.xsl");
+        File from_19139_mcp2_to_19115_3_xslFile = new File("schema/iso19115-3/convert/ISO19139/fromISO19139MCP2.xsl");
         String inpath = "/tmp/gn-dump-local";
         String input = "metadata.xml";
         String output = "metadata.iso19115-3.2018.xml";

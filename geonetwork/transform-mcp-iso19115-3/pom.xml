@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>au.org.aodn.xslt</groupId>
-    <artifactId>tranform-mcp-iso19115-3-</artifactId>
+    <artifactId>transform-mcp-iso19115-3</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
