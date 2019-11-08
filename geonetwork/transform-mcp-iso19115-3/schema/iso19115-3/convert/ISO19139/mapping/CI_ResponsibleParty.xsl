@@ -42,9 +42,9 @@
                 xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
                 exclude-result-prefixes="#all">
-    
-    <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>
-    
+
+<!--    <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>-->
+
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet">
         <xd:desc>
             <xd:p>
@@ -63,20 +63,49 @@
     <xsl:template match="gmd:CI_ResponsibleParty" mode="from19139to19115-3">
         <xsl:choose>
             <xsl:when test="count(gmd:individualName/gcoold:CharacterString) + count(gmd:organisationName/gcoold:CharacterString) + count(gmd:positionName/gcoold:CharacterString) > 0">
-                <!-- 
+                <!--
                 CI_ResponsibleParties that include name elements (individualName, organisationName, or positionName) are translated to CI_Responsibilities.
                 CI_ResponsibleParties without name elements are assummed to be placeholders for CI_OnlineResources. They are transformed later in the process
                 using the CI_ResponsiblePartyToOnlineResource template
                 -->
+<!--              <xsl:choose>-->
+<!--                <xsl:when test="gmd:role/gmd:CI_RoleCode/@codeListValue = 'coInvestigator'">-->
+<!--                  <xsl:with-param name="codeListValue" select="collaborator"/>-->
+<!--                </xsl:when>-->
+<!--                <xsl:otherwise>-->
+<!--                  <xsl:with-param name="codeListValue" select="gmd:role/gmd:CI_RoleCode/@codeListValue"/>-->
+<!--                </xsl:otherwise>-->
+<!--              </xsl:choose>-->
+
+
+
                <xsl:element name="cit:CI_Responsibility">
                    <xsl:apply-templates select="./@*" mode="from19139to19115-3"/>
                     <xsl:choose>
                         <xsl:when test="./gmd:role/gmd:CI_RoleCode">
-                            <xsl:call-template name="writeCodelistElement">
+                          <xsl:choose>
+                            <xsl:when test="gmd:role/gmd:CI_RoleCode/@codeListValue = 'coInvestigator'">
+                              <xsl:call-template name="writeCodelistElement">
+                                <xsl:with-param name="elementName" select="'cit:role'"/>
+                                <xsl:with-param name="codeListName" select="'cit:CI_RoleCode'"/>
+                                <xsl:with-param name="codeListValue" select="'collaborator'"/>
+                              </xsl:call-template>
+                            </xsl:when>
+                            <xsl:when test="gmd:role/gmd:CI_RoleCode/@codeListValue = 'metadataContact'">
+                              <xsl:call-template name="writeCodelistElement">
+                                <xsl:with-param name="elementName" select="'cit:role'"/>
+                                <xsl:with-param name="codeListName" select="'cit:CI_RoleCode'"/>
+                                <xsl:with-param name="codeListValue" select="'editor'"/>
+                              </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:call-template name="writeCodelistElement">
                                 <xsl:with-param name="elementName" select="'cit:role'"/>
                                 <xsl:with-param name="codeListName" select="'cit:CI_RoleCode'"/>
                                 <xsl:with-param name="codeListValue" select="gmd:role/gmd:CI_RoleCode/@codeListValue"/>
-                            </xsl:call-template>
+                              </xsl:call-template>
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </xsl:when>
                         <xsl:when test="./gmd:role/@*">
                             <cit:role>
@@ -142,11 +171,11 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template name="CI_ResponsiblePartyToOnlineResource">
-        <!-- 
+        <!--
         CI_ResponsibleParties that have no name elements and only a CI_OnlineResource
         are assumed to be used to add CI_OnlineResources to CI_Citations in 19115 where
         CI_Citations do not include CI_OnlineResources. In this case we, transform
-        only the CI_OnlineResource element of the CI_ResponsibleParty 
+        only the CI_OnlineResource element of the CI_ResponsibleParty
     -->
         <xsl:apply-templates select=".//gmd:onlineResource" mode="from19139to19115-3"/>
     </xsl:template>

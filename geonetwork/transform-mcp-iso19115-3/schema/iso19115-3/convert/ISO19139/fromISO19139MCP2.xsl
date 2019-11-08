@@ -159,16 +159,13 @@
     </xsl:for-each>
   </xsl:template>
 
-
   <xsl:include href="mapping/core.xsl"/>
   <xsl:include href="mapping/CI_ResponsibleParty.xsl"/>
   <xsl:include href="mapping/CI_Citation.xsl"/>
   <xsl:include href="mapping/SRV.xsl"/>
   <xsl:include href="mapping/DQ.xsl"/>
-  <xsl:include href="mapping/mcpdataparameters.xsl"/>
+  <xsl:include href="mapping/mcpdataparameters_aodn.xsl"/>
   <xsl:include href="mapping/mcpmetadatalinkage.xsl"/>
-
-
 
   <!-- Depending on the function of online source in ISO19139,
   categorized them in more descriptive sections. -->

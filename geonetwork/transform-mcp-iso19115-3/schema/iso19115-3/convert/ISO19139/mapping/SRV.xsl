@@ -44,7 +44,7 @@
                 xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                 exclude-result-prefixes="#all">
 
-  <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>
+<!--  <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>-->
 
   <xsl:template match="srvold:optionality" mode="from19139to19115-3">
     <srv:optionality>

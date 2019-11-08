@@ -44,8 +44,8 @@
                 xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                 exclude-result-prefixes="#all">
 
-    <xsl:import href="CI_ResponsibleParty.xsl"/>
-    <xsl:import href="../utility/dateTime.xsl"/>
+<!--    <xsl:import href="CI_ResponsibleParty.xsl"/>-->
+<!--    <xsl:import href="../utility/dateTime.xsl"/>-->
 
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet">
         <xd:desc>

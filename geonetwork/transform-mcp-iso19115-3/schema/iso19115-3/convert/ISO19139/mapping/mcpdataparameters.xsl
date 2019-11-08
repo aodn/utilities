@@ -46,31 +46,31 @@
                 xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                 exclude-result-prefixes="#all">
 
-  <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3">
-    <mdb:contentInfo>
-      <mrc:MD_CoverageDescription>
-        <mrc:attributeDescription gco:nilReason="inapplicable"/>
-        <mrc:attributeGroup> 
-          <mrc:MD_AttributeGroup>
-            <mrc:contentType>
-              <mrc:MD_CoverageContentTypeCode codeList='http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_CoverageContentTypeCode' codeListValue='physicalMeasurement'/>
-            </mrc:contentType>
-            <xsl:for-each select="*/mcpold:dataParameter">
-              <mrc:attribute>
-                <mrc:MD_SampleDimension>
-                  <mrc:otherProperty>
-                    <gco:Record xsi:type="mcp:DP_DataParameter_PropertyType">
-                      <xsl:apply-templates select="mcpold:DP_DataParameter" mode="mcpdp"/>
-                    </gco:Record>
-                  </mrc:otherProperty>
-                </mrc:MD_SampleDimension>
-              </mrc:attribute>
-            </xsl:for-each>
-          </mrc:MD_AttributeGroup>
-        </mrc:attributeGroup> 
-      </mrc:MD_CoverageDescription>
-    </mdb:contentInfo>
-  </xsl:template>
+    <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3">
+      <mdb:contentInfo>
+        <mrc:MD_CoverageDescription>
+          <mrc:attributeDescription gco:nilReason="inapplicable"/>
+          <mrc:attributeGroup>
+            <mrc:MD_AttributeGroup>
+              <mrc:contentType>
+                <mrc:MD_CoverageContentTypeCode codeList='http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_CoverageContentTypeCode' codeListValue='physicalMeasurement'/>
+              </mrc:contentType>
+              <xsl:for-each select="*/mcpold:dataParameter">
+                <mrc:attribute>
+                  <mrc:MD_SampleDimension>
+                    <mrc:otherProperty>
+                      <gco:Record xsi:type="mcp:DP_DataParameter_PropertyType">
+                        <xsl:apply-templates select="mcpold:DP_DataParameter" mode="mcpdp"/>
+                      </gco:Record>
+                    </mrc:otherProperty>
+                  </mrc:MD_SampleDimension>
+                </mrc:attribute>
+              </xsl:for-each>
+            </mrc:MD_AttributeGroup>
+          </mrc:attributeGroup>
+        </mrc:MD_CoverageDescription>
+      </mdb:contentInfo>
+    </xsl:template>
 
   <xsl:template match="mcpold:*" mode="mcpdp">
     <xsl:variable name="localname" select="local-name()"/>
