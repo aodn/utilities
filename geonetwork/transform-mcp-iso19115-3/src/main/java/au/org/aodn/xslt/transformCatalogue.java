@@ -16,6 +16,12 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+
 public class transformCatalogue {
 
     private static final Logger logger = LogManager.getLogger(transformCatalogue.class);
@@ -24,10 +30,44 @@ public class transformCatalogue {
 
         File from_19139_mcp_1_4_to_19139_mcp_2_0_xsl_file = new File("schema/iso19115-3/convert/ISO19139/to19139.mcp-2.0.xsl");
         File from_19139_mcp2_to_19115_3_xslFile = new File("schema/iso19115-3/convert/ISO19139/fromISO19139MCP2.xsl");
-        String inpath = "/tmp/gn-dump-local";
-        String input = "metadata.xml";
-        String output = "metadata.iso19115-3.2018.xml";
-        File indirectory = new File(inpath);
+
+        Options options = new Options();
+        options.addOption("d", "input_directory", true, "Directory name containing xml file name at some depth in the directory structure ");
+        options.addRequiredOption("i", "file_name", true, "Input xml file name.");
+        options.addRequiredOption("o", "output_file_name", true, "Output xml file name.");
+
+        CommandLineParser parser = new DefaultParser();
+        CommandLine cmd = null;
+
+        String header = "Convert mcp xml file to 19115-3\n\n"+
+                "If the -d option is specified then the directory will be recursively searched for any file with the name specified by the -i option. The converted file will be created with the name specified by the -o option at the same level in the directory structure as the input file.";
+
+        HelpFormatter formatter = new HelpFormatter();
+
+        try {
+            cmd = parser.parse(options, args);
+        } catch (Exception e) {
+            formatter.printHelp("transformCatalogue", header, options, null, true);
+            System.exit(1);
+        }
+
+        // Process input directory
+        String inpath = null;
+        File indirectory = null;
+        if (cmd.hasOption("d")) {
+            inpath = cmd.getOptionValue("d");
+            indirectory = new File(inpath);
+            if (!indirectory.exists()) {
+                formatter.printHelp("transformCatalogue", header, options, null, true);
+                System.exit(1);
+            }
+        }
+
+        // Process input file name
+        String input = cmd.getOptionValue("i");
+
+        // Process output file name
+        String output = cmd.getOptionValue("o");
 
         List<Path> files = new ArrayList<Path>();
         getFileNames(files, indirectory.toPath(), input);
