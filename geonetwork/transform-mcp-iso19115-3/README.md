@@ -7,7 +7,7 @@
 - If the `-d` option is specified then the directory will be recursively searched for any file with the name specified by the `-i` option. 
 - The converted file will be created with the name specified by the `-o` option at the same level in the directory structure as the input file.
 
-##Tool
+## Tool
 
 ```
 java -jar transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d <input_directory> -i <input_file_name> -o <output_file_name>
@@ -22,7 +22,11 @@ Options:
 ```
 cd utilities/geonetwork/transform-mcp-iso19115-3
 ```
-Note: Make sure `transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar` exists in target folder. Run maven tool to package jar file. 
+Run maven tool to package jar file. 
+```
+mvn package
+```
+Note: Make sure `transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar` exists in target folder. 
 ```
 java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/gn-dump-local -i metadata.xml -o metadata.iso19115-3.2018.xml
 ```
