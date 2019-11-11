@@ -18,6 +18,13 @@ assertions:
 - content: future_reef_map
   expected: future_reef_map/expect
   name: diff
+- name: file_exists:1
+  remote_file: Future_Reef_MAP/underway/RTM-Wakmatha/2012/WK201212N/FutureReefMap_GST_20121210T100429Z_9V2768_FV01.nc
+- name: file_exists:2
+  remote_file: Future_Reef_MAP/underway/RTM-Wakmatha/2013/WK201302N/FutureReefMap_GST_20130204T153916Z_9V2768_FV01.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: Future_Reef_MAP/underway/RTM-Wakmatha/2013/WK201302N/FutureReefMap_GST_20130204T153916Z_9V2768_FV01.nc
 database_schemas:
 - name: future_reef_map
   tables:

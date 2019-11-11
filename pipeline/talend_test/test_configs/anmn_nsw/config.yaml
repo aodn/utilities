@@ -22,6 +22,23 @@ assertions:
 - content: anmn_nsw
   expected: anmn_nsw/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/ANMN/NSW/PH100.zip
+- invert: true
+  name: file_exists:not:1
+  remote_file: IMOS/ANMN/NSW/PH100/Velocity/IMOS_ANMN-NSW_AETVZ_20170227T190000Z_PH100_FV01_PH100-1702-Sentinel-or-Monitor-Workhorse-ADCP-109.5_END-20170527T030500Z_C-20180117T000000Z.nc
+- invert: true
+  name: file_exists:not:1
+  remote_file: IMOS/ANMN/NSW/PH100/Biogeochem_timeseries/burst-averaged/IMOS_ANMN-NSW_BCDKOSTUZ_20170227T015944Z_PH100_FV02_PH100-1702-WQM-15-burst-averaged_END-20170415T001455Z_C-20170905T161314Z.nc
+- invert: true
+  name: file_exists:not:1
+  remote_file: IMOS/ANMN/NSW/PH100/Biogeochem_profiles/IMOS_ANMN-NSW_CDEKOSTZ_20170716T224142Z_PH100_FV01_Profile-SBE19plus_C-20171103T040301Z.nc
+- invert: true
+  name: file_exists:not:1
+  remote_file: IMOS/ANMN/NSW/PH100/Temperature/IMOS_ANMN-NSW_TZ_20170224T130000Z_PH100_FV01_PH100-1702-Aqualogger-520PT-104_END-20170527T065500Z_C-20170905T035920Z.nc
+- invert: true
+  name: file_exists:not:1
+  remote_file: IMOS/ANMN/NSW/PH100
 database_schemas:
 - name: anmn_ts
   tables:

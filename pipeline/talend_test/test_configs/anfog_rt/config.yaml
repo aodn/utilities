@@ -14,6 +14,11 @@ assertions:
 - content: anfog_rt
   expected: anfog_rt/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/ANFOG/REALTIME/slocum_glider/RowleyShoals20190425/IMOS_ANFOG_BCEOSTUV_20190425T005939Z_SL210_FV00_timeseries_END-20190514T005042Z.nc
+- invert: true
+  name: file_exists:not:1
+  remote_file: IMOS/ANFOG/REALTIME/slocum_glider/RowleyShoals20190425/IMOS_ANFOG_BCEOSTUV_20190425T005939Z_SL210_FV00_timeseries_END-20190514T005042Z.nc
 database_schemas:
 - name: anfog_rt
   tables:

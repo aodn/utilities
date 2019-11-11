@@ -14,6 +14,8 @@ assertions:
 - content: anmn_wa
   expected: anmn_wa/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/ANMN/NRS/NRSROT/Temperature/IMOS_ANMN-NRS_TZ_20081120T080000Z_NRSROT_FV01_NRSROT-0811-SBE39-27_END-20090219T030000Z_C-20180810T044335Z.nc
 database_schemas:
 - name: anmn_ts
   tables:

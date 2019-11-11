@@ -1,3 +1,17 @@
+{% macro horiz_border() -%}
+    |{{ '-' * ([heading_column_width|int, 'Pipeline name'|length]|max + 2) }}|------------
+{%- endmacro %}
+
+{% macro row(items) -%}
+    | {% for item in items -%}
+    {%  if loop.first -%}
+        {{ item }}{{ ' ' * ([heading_column_width|int, 'Pipeline name'|length]|max + 1 - item|length) }}|
+    {%- else -%}
+        {{ ' ' }}{{ item }}
+    {%- endif %}
+{%- endfor %}
+{%- endmacro -%}
+
 File Processing Results - {{ date_time }}
 -------------------------------------------------------
 Testing host:       {{ ansible_host }}
@@ -5,9 +19,9 @@ Test configuration: {{ test_config_full_path }}
 Generate expected:  {{ create_expect|default('false',true) }}
 Results full path:  {{ harvest_results_dir }}
 
-|------------------------|------------
-| Pipeline Name          | Actions
-|------------------------|------------
+{{ horiz_border() }}
+{{ row(['Pipeline name', 'Actions']) }}
+{{ horiz_border() }}
 {% for result in process_action_results %}
-| {{ result.pipeline_name }}{{ ' ' * (20 -(result.pipeline_name|length)) }}   | {{ result.actions | join(', ') }}
+{{ row([result.pipeline_name, result.actions | join(', ')]) }}
 {% endfor %}

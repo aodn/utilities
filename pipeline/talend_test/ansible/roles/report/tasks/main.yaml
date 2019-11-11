@@ -6,10 +6,16 @@
     state: directory
 
 - set_fact:
-    heading_column_width: "{{ [heading_column_width, item.Pipeline|length] | max }}"
+    heading_column_width: "{{ [heading_column_width | int, item.Pipeline | length | int] | max }}"
     handled_assertions: "{{ handled_assertions + [item.name] }}"
     tested_pipelines: "{{ tested_pipelines + [item.Pipeline] }}"
   loop: "{{ all_assertion_results }}"
+  when: template=='test_results'
+
+- set_fact:
+    heading_column_width: "{{ [heading_column_width | int, item.pipeline_name | length | int] | max }}"
+  loop: "{{ process_action_results }}"
+  when: template=='processing_results'
 
 - set_fact:
     handled_assertions: "{{ handled_assertions | unique }}"

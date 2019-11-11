@@ -57,6 +57,18 @@ assertions:
 - content: srs_oc_ljco_wws
   expected: srs_oc_ljco_wws/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/SRS/OC/LJCO/IMOS_SRS-OC-LJCO_BFZ_20150201T000000Z_SRC_FV02_EcoTriplet-daily.nc
+- name: file_exists:2
+  remote_file: IMOS/SRS/OC/LJCO/IMOS_SRS-OC-LJCO_EFZ_20180721T000000Z_SRC_FV02_HyperOCR-daily.nc
+- name: file_exists:3
+  remote_file: IMOS/SRS/OC/LJCO/IMOS_SRS-OC-LJCO_FTZ_20180717T000000Z_SRC_FV02_ACS-daily-wcc.nc
+- name: file_exists:4
+  remote_file: IMOS/SRS/OC/LJCO/IMOS_SRS-OC-LJCO_FZ_20140325T000000Z_SRC_FV02_BB9-daily.nc
+- name: file_exists:5
+  remote_file: IMOS/SRS/OC/LJCO/IMOS_SRS-OC-LJCO_KOSTUZ_20140408T003500Z_SRC_FV02_WQM-daily.nc
+- name: file_exists:6
+  remote_file: IMOS/SRS/OC/LJCO/IMOS_SRS-OC-LJCO_KOSTUZ_20150915T114210Z_SRC_FV01_WQM-hourly.nc
 database_schemas:
 - name: srs_oc_ljco_wws
   tables:

@@ -31,6 +31,8 @@ assertions:
 - content: argo
   expected: argo/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/Argo/dac/nmdis/2901615/profiles/R2901615_000.nc
 database_schemas:
 - name: argo
   tables:

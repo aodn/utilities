@@ -27,6 +27,15 @@ assertions:
 - content: auv_viewer_track
   expected: auv_viewer_track/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/AUV/auv_viewer_data/csv_outputs/Tasmania201808/DATA_Tasmania201808_r20180823_054016_SS07_Beagle_Shelf_15.csv
+- name: file_exists:2
+  remote_file: IMOS/AUV/DATA_Tasmania201808_r20180823_215013_SS08_Beagle_Shelf_13.csv
+- name: file_exists:3
+  remote_file: IMOS/AUV/auv_viewer_data/csv_outputs/Tasmania201808/auvReporting.csv
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/AUV/auv_viewer_data/csv_outputs/Tasmania201808/DATA_Tasmania201808_r20180823_215013_SS08_Beagle_Shelf_13.csv
 database_schemas:
 - name: auv_viewer_track
   tables:

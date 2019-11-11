@@ -45,6 +45,17 @@ assertions:
 - content: aodn_wave_dm
   expected: aodn_wave_dm/expect
   name: diff
+- name: file_exists:1
+  remote_file: NSW-OEH/Manly_Hydraulics_Laboratory/Wave/Byron_Bay/IMOS_ANMN-NSW_W_19930721T010000Z_WAVEBYB_WAVERIDER_FV01_END-19931110T210000Z.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: NSW-OEH/Manly_Hydraulics_Laboratory/Wave/Byron_Bay/IMOS_ANMN-NSW_W_19931130T230000Z_WAVEBYB_WAVERIDER_FV01_END-19940720T010000Z.nc
+- name: file_exists:3
+  remote_file: IMOS/AODN/AODN_WAVE_DM/DOT-WA_W_20111231T160000Z_NAT46_WAVERIDER_FV01_END-20121230T211700Z.nc
+- name: file_exists:4
+  remote_file: IMOS/AODN/AODN_WAVE_DM/BOM_W_20041231T140000Z_SORELL_WAVERIDER_FV01_END-20051231T133000Z.nc
+- name: file_exists:5
+  remote_file: IMOS/AODN/AODN_WAVE_DM/DES-QLD_W_20141231T140000Z_Gladstone_WAVERIDER_FV01_END-20151231T123000Z.nc
 database_schemas:
 - name: aodn_wave_dm
   tables:

@@ -27,6 +27,12 @@ assertions:
 - content: soop_sst
   expected: soop_sst/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/SOOP/SOOP-SST/HSB3402_Xutra-Bhum/2013/1-min-avg/IMOS_SOOP-SST_T_20130216T000000Z_HSB3402_FV01_1-min-avg_C-20130530T005007Z.nc
+- name: file_exists:2
+  remote_file: IMOS/SOOP/SOOP-SST/C6FS9_Stadacona/2018/IMOS_SOOP-SST_MT_20180118T000000Z_C6FS9_FV01_C-20180118T233004Z.nc
+- name: file_exists:3
+  remote_file: IMOS/SOOP/SOOP-SST/C6FS9_Stadacona/2018/IMOS_SOOP-SST_MT_20180119T000000Z_C6FS9_FV01_C-20180119T233004Z.nc
 database_schemas:
 - name: soop_sst
   tables:

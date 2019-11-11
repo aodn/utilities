@@ -1,23 +1,13 @@
-# Configuration for processing files through pipeline and capturing results locally
-name: soop_xbt_nrt
-type: pipeline_version_2
-po: laurent
-process_report_template: processing_results
-dirs:
-- path: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
-  owner: projectofficer
-  group: projectofficer
 actions:
-- type: ADD
-  files:
+- files:
   - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
   incoming:
   - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
-- type: UPDATE
-  files:
+  type: ADD
+- files:
   - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv.updated
     remote_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.csv
@@ -25,34 +15,47 @@ actions:
   - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T111900Z_FASB_000593_FV00.manifest
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
-- type: ADD
-  files:
+  type: UPDATE
+- files:
   - dest: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
     local_file: IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv
   incoming:
   - dest: SOOP/XBT/NRT
     local_file: IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.manifest
     remote_file: IMOS_SOOP-XBT_NRT_fileList.manifest
-- type: DELETE
-  file: IMOS/SOOP/SOOP-XBT/REALTIME/FASB_Astrolabe/2019/IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv
+  type: ADD
+- file: IMOS/SOOP/SOOP-XBT/REALTIME/FASB_Astrolabe/2019/IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv
+  type: DELETE
+assertions:
+- content: soop_xbt_nrt
+  expected: soop_xbt_nrt/expect
+  name: diff
+- name: file_exists:1
+  remote_file: IMOS/SOOP/XBT/NRT/IMOS_SOOP-XBT_NRT_fileList.manifest
+- name: file_exists:2
+  remote_file: IMOS/SOOP/XBT/NRT/IMOS_SOOP-XBT_NRT_fileList.manifest
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SOOP/SOOP-XBT/REALTIME/FASB_Astrolabe/2019/IMOS_SOOP-XBT_T_20190226T112400Z_FASB_000594_FV00.csv
+database_schemas:
+- name: soop_xbt_nrt
+  tables:
+  - exclude_columns:
+    - colour
+    name: soop_xbt_nrt_profiles_map
+  - exclude_columns: []
+    name: soop_xbt_nrt_profiles_data
+dirs:
+- group: projectofficer
+  owner: projectofficer
+  path: /vagrant/src/data-services/tmp/SOOP/SOOP_XBT_ASF_SST/data_sorted/XBT/sbddata/FASB_Astrolabe/2019
 drop_schema_objects: true
+name: soop_xbt_nrt
+po: laurent
+process_report_template: processing_results
 run_talend_liqui: true
-talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_XBT_NRT.log
 talend_jobs:
 - soop_xbt_nrt-soop_xbt_nrt
-database_schemas:
--
-  name: soop_xbt_nrt
-  tables:
-  - name: soop_xbt_nrt_profiles_map
-    exclude_columns: [colour]
-  - name: soop_xbt_nrt_profiles_data
-    exclude_columns: []
-
-# Configuration for running integration tests
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_XBT_NRT.log
 test_report_template: test_results
-assertions:
-  # Asserts harvested results are as expected
-  - name: diff
-    expected: soop_xbt_nrt/expect
-    content: soop_xbt_nrt
+type: pipeline_version_2

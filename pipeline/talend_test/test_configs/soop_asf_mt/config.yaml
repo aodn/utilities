@@ -1,41 +1,45 @@
+actions:
+- incoming:
+  - dest: SOOP/ASF/MT
+    local_file: IMOS_SOOP-ASF_MT_20130117T215000Z_VLHJ_FV01_C-20130307T042609Z.nc
+    remote_file: IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
+  type: ADD
+- incoming:
+  - dest: SOOP/ASF/MT
+    local_file: IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
+  type: ADD
+- incoming:
+  - dest: SOOP/ASF/MT
+    local_file: IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
+  type: UPDATE
+- file: IMOS/SOOP/SOOP-ASF/VLHJ_Southern-Surveyor/meteorological_sst_observations/2013/IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
+  type: DELETE
+assertions:
+- content: soop_asf_mt
+  expected: soop_asf_mt/expect
+  name: diff
+- name: file_exists:1
+  remote_file: IMOS/SOOP/ASF/MT/IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
+- name: file_exists:2
+  remote_file: IMOS/SOOP/ASF/MT/IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/SOOP/SOOP-ASF/VLHJ_Southern-Surveyor/meteorological_sst_observations/2013/IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
+database_schemas:
+- name: soop_asf_mt
+  tables:
+  - exclude_columns: []
+    name: soop_asf_mt_trajectory_data
+  - exclude_columns:
+    - colour
+    name: soop_asf_mt_trajectory_map
+drop_schema_objects: true
 name: soop_asf_mt
-type: pipeline_version_2
 po: loz
 process_report_template: processing_results
-actions:
-  - type: ADD
-    incoming:
-      - dest: SOOP/ASF/MT
-        local_file: IMOS_SOOP-ASF_MT_20130117T215000Z_VLHJ_FV01_C-20130307T042609Z.nc
-        remote_file: IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
-  - type: ADD
-    incoming:
-      - dest: SOOP/ASF/MT
-        local_file: IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
-  - type: UPDATE
-    incoming:
-      - dest: SOOP/ASF/MT
-        local_file: IMOS_SOOP-ASF_MT_20130118T000000Z_VLHJ_FV01_C-20130307T042611Z.nc
-  - type: DELETE
-    file: IMOS/SOOP/SOOP-ASF/VLHJ_Southern-Surveyor/meteorological_sst_observations/2013/IMOS_SOOP-ASF_MT_20130119T000000Z_VLHJ_FV01_C-20130307T042612Z.nc
-drop_schema_objects: true
 run_talend_liqui: true
-talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_ASF_MT.log
 talend_jobs:
-  - soop_asf_mt-soop_asf_mt
-database_schemas:
-  -
-    name: soop_asf_mt
-    tables:
-      - name: soop_asf_mt_trajectory_data
-        exclude_columns: []
-      - name: soop_asf_mt_trajectory_map
-        exclude_columns: [colour]
-
-# Configuration for running integration tests
+- soop_asf_mt-soop_asf_mt
+talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_ASF_MT.log
 test_report_template: test_results
-assertions:
-  # Asserts harvested results are as expected
-  - name: diff
-    expected: soop_asf_mt/expect
-    content: soop_asf_mt
+type: pipeline_version_2

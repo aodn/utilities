@@ -7,6 +7,8 @@ assertions:
 - content: anfog_dm
   expected: anfog_dm/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/ANFOG/processed/TasEastCoast20190213.zip
 database_schemas:
 - name: anfog_dm
   tables:

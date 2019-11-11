@@ -37,6 +37,20 @@ assertions:
 - content: anmn_nrs_dar_yon
   expected: anmn_nrs_dar_yon/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/AODN/ANMN_NRS_DAR_YON/IMOS_ANMN_F_20190201T000000Z_NRSDAR_FV00.md5.nc
+- name: file_exists:2
+  remote_file: IMOS/AODN/ANMN_NRS_DAR_YON/IMOS_ANMN_F_20190301T000000Z_NRSDAR_FV00.md5.nc
+- invert: true
+  name: file_exists:not:2
+  remote_file: IMOS/ANMN/NRS/REAL_TIME/NRSDAR/surface_downwelling_photosynthetic_radiative_flux_in_air@18.0m_channel_84316/2019/NO_QAQC/IMOS_ANMN_F_20190301T000000Z_NRSDAR_FV00.nc
+- name: file_exists:3
+  remote_file: IMOS/AODN/ANMN_NRS_DAR_YON/IMOS_ANMN_F_20190201T000000Z_NRSDAR_FV01.md5.nc
+- name: file_exists:4
+  remote_file: IMOS/AODN/ANMN_NRS_DAR_YON/IMOS_ANMN_F_20190301T000000Z_NRSDAR_FV01.md5.nc
+- invert: true
+  name: file_exists:not:4
+  remote_file: IMOS/ANMN/NRS/REAL_TIME/NRSDAR/surface_downwelling_photosynthetic_radiative_flux_in_air@18.0m_channel_84316/2019/QAQC/IMOS_ANMN_F_20190301T000000Z_NRSDAR_FV01.nc
 database_schemas:
 - name: anmn_nrs_dar_yon
   tables:

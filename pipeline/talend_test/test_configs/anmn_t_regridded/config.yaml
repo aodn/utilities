@@ -18,6 +18,13 @@ assertions:
 - content: anmn_t_regridded
   expected: anmn_t_regridded/expect
   name: diff
+- name: file_exists:1
+  remote_file: IMOS/ANMN/SA/IMOS_ANMN-NRS_T_20110320T010000Z_NRSKAI_FV02_NRSKAI-1103-gridded_END-20110718T230000Z.nc
+- invert: true
+  name: file_exists:not:1
+  remote_file: IMOS/ANMN/NRS/NRSKAI/Temperature/gridded/IMOS_ANMN-NRS_T_20110320T010000Z_NRSKAI_FV02_NRSKAI-1103-gridded_END-20110718T230000Z.nc
+- name: file_exists:2
+  remote_file: IMOS/ANMN/SA/IMOS_ANMN-NRS_T_20111220T010000Z_NRSKAI_FV02_NRSKAI-1112-gridded_END-20120415T010000Z.nc
 database_schemas:
 - name: anmn_t_regridded
   tables:
