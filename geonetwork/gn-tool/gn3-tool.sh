@@ -40,8 +40,15 @@ get_deleted_records() {
 # $1 - geonetwork address
 get_all_records() {
     local gn_addr=$1; shift
+    local gn_user=$1; shift
+    local gn_password=$1; shift
+    local gn_XSRFTOKEN=$1; shift
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000"
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000" "$gn_user" "$gn_password" "$gn_XSRFTOKEN"
+
+    # NOTE:
+    # Returns total no of records based on the value of 'maxRecords' in config-service-search.xml for Geonetwork 3.
+    # For Geonetwork 2, we can specify 'from' and 'to' value as the request parameters in xml.search api.
 }
 
 # return all available record uuids from <uuid> tags in file
@@ -85,15 +92,11 @@ export_record() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
-
-
-    rm -f /tmp/cookie.txt && \
-    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
-    XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+    local XSRFTOKEN=$1; shift
 
     echo "Exporting '$record_uuid' -> '$dir/$record_uuid'"
     local tmp_mef=`mktemp`
-    curl -s "$gn_addr/srv/eng/mef.export" -H "X-XSRF-TOKEN:$XSRFTOKEN" -b /tmp/cookie.txt -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
+    curl -s "$gn_addr/srv/eng/mef.export" -H "X-XSRF-TOKEN:$XSRFTOKEN" -b /tmp/cookie.txt -u $gn_user:$gn_password -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
         unzip -o -d $dir $tmp_mef && \
         rm -f $tmp_mef
 }
@@ -115,10 +118,15 @@ export_records() {
 
     local -i retval=0
     local count=0
+
+    rm -f /tmp/cookie.txt && \
+    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+    XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+
     if [ x"$record_uuid" = x"ALL" ]; then
         mkdir -p $record_dir
-        for record_uuid in `get_all_records $gn_addr $gn_user $gn_password`; do
-            export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password
+        for record_uuid in `get_all_records $gn_addr $gn_user $gn_password $XSRFTOKEN`; do
+           export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password $XSRFTOKEN
             let retval=$retval+$?
             let count=$count+1
             echo $count
@@ -315,7 +323,7 @@ main() {
     local record_uuid="ALL"
     local git=no
     local group=2
-    local uuid_action="overwrite"
+    local uuid_action="nothing"
     local uuid_tag="uuid"
 
     # parse the options
