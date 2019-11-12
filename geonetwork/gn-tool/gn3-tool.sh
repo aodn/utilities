@@ -144,7 +144,15 @@ export_records() {
 
     if [ x"$record_uuid" = x"ALL" ]; then
         mkdir -p $record_dir
-        for record_uuid in `get_all_records $gn_addr $gn_user $gn_password $XSRFTOKEN`; do
+
+        text_result=$(get_all_records $gn_addr $gn_user $gn_password $XSRFTOKEN)
+
+        if [[ $? -ne "0" ]]; then
+          echo "Error in finding the uuids"
+          exit
+        fi
+
+        for record_uuid in $text_result; do
            export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password $XSRFTOKEN
             let retval=$retval+$?
             let count=$count+1
