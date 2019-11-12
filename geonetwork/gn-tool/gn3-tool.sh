@@ -42,9 +42,19 @@ get_all_records() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
-    local gn_XSRFTOKEN=$1; shift
+    local gn_xsrftoken=$1; shift
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000" "$gn_user" "$gn_password" "$gn_XSRFTOKEN"
+    if [[ $gn_user != "" ]]; then
+      gn_user_arg="--username $gn_user"
+    fi
+    if [[ $gn_password != "" ]]; then
+      gn_password_arg="--password $gn_password"
+    fi
+    if [[ $gn_xsrftoken != "" ]]; then
+      gn_xsrftoken_arg="--xsrftoken $gn_xsrftoken"
+    fi
+
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000" $gn_user_arg $gn_password_arg $gn_xsrftoken_arg
 
     # NOTE:
     # Returns total no of records based on the value of 'maxRecords' in config-service-search.xml for Geonetwork 3.
@@ -92,13 +102,22 @@ export_record() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
-    local XSRFTOKEN=$1; shift
+    local gn_xsrftoken=$1; shift
 
     echo "Exporting '$record_uuid' -> '$dir/$record_uuid'"
     local tmp_mef=`mktemp`
-    curl -s "$gn_addr/srv/eng/mef.export" -H "X-XSRF-TOKEN:$XSRFTOKEN" -b /tmp/cookie.txt -u $gn_user:$gn_password -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
+
+    if [[ $gn_user != "" ]]; then
+      gn_user_pass_arg='-u '$gn_user':'$gn_password
+    fi
+    if [[ $gn_xsrftoken != "" ]]; then
+      gn_xsrftoken_arg='-H "X-XSRF-TOKEN:$gn_xsrftoken" -b /tmp/cookie.txt'
+    fi
+
+    curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg $gn_xsrftoken_arg -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
         unzip -o -d $dir $tmp_mef && \
         rm -f $tmp_mef
+
 }
 
 # export geonetwork records
@@ -131,7 +150,6 @@ export_records() {
             let count=$count+1
             echo $count
         done
-        echo $count
     else
         if [ -f $record_uuid ]; then
             for this_record_uuid in `get_all_records_from_file $record_uuid $uuid_tag`; do
@@ -354,6 +372,8 @@ main() {
         if [ x"$gn_user" = x ] || [ x"$gn_password" = x ]; then
             usage
         fi
+
+
 
         if [ "$git" = "yes" ]; then
             import_records_git $location $gn_addr $gn_user $gn_password

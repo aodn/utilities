@@ -8,9 +8,9 @@ import requests
 
 parser = argparse.ArgumentParser()
 parser.add_argument('url')
-parser.add_argument('--username')
-parser.add_argument('--password')
-parser.add_argument('--xsrftoken')
+parser.add_argument('--username', default=None)
+parser.add_argument('--password', default=None)
+parser.add_argument('--xsrftoken', default=None)
 args = parser.parse_args()
 
 headers = {}
