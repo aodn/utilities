@@ -1,21 +1,28 @@
 from xml.etree.ElementTree import fromstring, ElementTree
+import argparse
 import sys
 from requests.auth import HTTPBasicAuth
 import unicodedata
 
 import requests
 
-if len(sys.argv) > 2:
-    auth = HTTPBasicAuth(sys.argv[2], sys.argv[3])
-    if len(sys.argv) >= 5:
-        headers = {"X-XSRF-TOKEN": sys.argv[4]}
-    else:
-        headers = None
+parser = argparse.ArgumentParser()
+parser.add_argument('url')
+parser.add_argument('--username')
+parser.add_argument('--password')
+parser.add_argument('--xsrftoken')
+args = parser.parse_args()
+
+headers = {}
+if args.username and args.password:
+    auth = HTTPBasicAuth(args.username, args.password)
+    if args.xsrftoken:
+        headers["X-XSRF-TOKEN"] = args.xsrftoken
 else:
     auth = None
 
-text_xml = requests.get(sys.argv[1], headers=headers, auth=auth).text
-text_xml = text_xml.encode('ascii','ignore')
+text_xml = requests.get(args.url, headers=headers, auth=auth).text
+text_xml = text_xml.encode('ascii', 'ignore')
 xml_tree = ElementTree(fromstring(text_xml))
 
 uuids = {uuid.text for uuid in xml_tree.findall('.//uuid')}
