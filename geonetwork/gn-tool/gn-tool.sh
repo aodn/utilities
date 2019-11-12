@@ -41,7 +41,7 @@ get_deleted_records() {
 get_all_records() {
     local gn_addr=$1; shift
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000"
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index"
 }
 
 # return all available record uuids from <uuid> tags in file
@@ -86,14 +86,9 @@ export_record() {
     local gn_user=$1; shift
     local gn_password=$1; shift
 
-
-    rm -f /tmp/cookie.txt && \
-    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
-    XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
-
     echo "Exporting '$record_uuid' -> '$dir/$record_uuid'"
     local tmp_mef=`mktemp`
-    curl -s "$gn_addr/srv/eng/mef.export" -H "X-XSRF-TOKEN:$XSRFTOKEN" -b /tmp/cookie.txt -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
+    curl -s "$gn_addr/srv/eng/mef.export" -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
         unzip -o -d $dir $tmp_mef && \
         rm -f $tmp_mef
 }
@@ -114,16 +109,12 @@ export_records() {
     local gn_password=$1; shift
 
     local -i retval=0
-    local count=0
     if [ x"$record_uuid" = x"ALL" ]; then
         mkdir -p $record_dir
         for record_uuid in `get_all_records $gn_addr $gn_user $gn_password`; do
             export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password
             let retval=$retval+$?
-            let count=$count+1
-            echo $count
         done
-        echo $count
     else
         if [ -f $record_uuid ]; then
             for this_record_uuid in `get_all_records_from_file $record_uuid $uuid_tag`; do
@@ -146,114 +137,6 @@ export_records() {
 # $4 - geonetwork password
 # $5 - geonetwork group id
 # $6 - geonetwork uuid action
-import_record_gn3() {
-    local record_dir_path=$1; shift
-    local gn_addr=$1; shift
-    local gn_user=$1; shift
-    local gn_password=$1; shift
-    local group=$1; shift
-    local uuid_action=$1; shift
-
-    # prepare MEF file
-#    local tmp_mef=`mktemp`
-
-    local uuid=`basename $record_dir_path`
-#    (cd `dirname $record_dir_path` && rm -f $tmp_mef && zip -q -r $tmp_mef $uuid)
-#      echo "Importing record '$uuid' from '$record_dir_path'"
-
-    local file="${record_dir_path}/metadata/metadata.iso19115-3.2018.xml"
-    echo "Importing record '$uuid' from '$file'"
-
-
-
-    rm -f /tmp/cookie.txt ;
-    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
-    XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
-
-    body=$(curl -s -X POST \
-        -u $gn_user:$gn_password \
-        -H "accept: application/json" \
-        -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-        -b "/tmp/cookie.txt" \
-        -F "metadataType=METADATA" \
-        -F "uuidProcessing=NOTHING" \
-        -F "category=" \
-        -F "group=" \
-        -F "styleSheet=_none_" \
-        -F "transformWith=ISO19115-3-2014-to-ISO19115-3-2018" \
-        -F "publishToAll=true" \
-        -F "schema=iso19115-3.2018" \
-        -F "file=@file" \
-        $gn_addr/srv/api/0.1/records)
-
-        #        -F "assignToCatalog=false" \
-
-#        -F "file_type=MEF" \
-#        -F mefFile=@$tmp_mef \
-
-#         body=$(curl -s -X PUT \
-#        -u $gn_user:$gn_password \
-#        -H "accept: application/json" \
-#        -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-#        -b "/tmp/cookie.txt" \
-#        -F "metadataType=METADATA" \
-#        -F "uuidProcessing=NOTHING" \
-#        -F "category=" \
-#        -F "group=" \
-#        -F "styleSheet=_none_" \
-#        -F "assignToCatalog=false" \
-#        -F "transformWith=" \
-#        -F "publishToAll=" \
-#        -F "schema=iso19115-3.2018" \
-#        -F "serverFolder=/tmp/gn-dump-local" \
-#        $gn_addr/srv/api/0.1/records)
-
-
-    echo ${body}
-
-    if [[ ${body} != *"ERROR"* ]]; then
-        curl -s \
-        -u $gn_user:$gn_password \
-        -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-        -b "/tmp/cookie.txt" \
-        -d "_1_0=on&_1_1=on&_1_5=on&_1_6=on&_${group}_0=on&_${group}_1=on&_${group}_5=on&_${group}_6=on" \
-        -d "uuid=$uuid" \
-        $gn_addr/srv/eng/metadata.admin
-    fi
-
-#    rm -f $tmp_mef
-
-}
-
-# imports geonetwork records
-# $1 - file/directory to import
-# $2 - geonetwork address
-# $3 - geonetwork user
-# $4 - geonetwork password
-# $5 - geonetwork group id
-# $6 - geonetwork uuid action
-import_records_gn3() {
-    local record_location=$1; shift
-    local gn_addr=$1; shift
-    local gn_user=$1; shift
-    local gn_password=$1; shift
-    local group=$1; shift
-    local uuid_action=$1; shift
-
-    local record_file
-    local -i retval=0
-    if [ -d $record_location ]; then
-        for record_file in $record_location/*; do
-            import_record_gn3 $record_file $gn_addr $gn_user $gn_password $group $uuid_action
-            let retval=$retval+$?
-        done
-    else
-        import_record_gn3 $record_location $gn_addr $gn_user $gn_password $group
-        let retval=$retval+$?
-    fi
-    return $retval
-}
-
 import_record() {
     local record_dir_path=$1; shift
     local gn_addr=$1; shift
@@ -261,9 +144,6 @@ import_record() {
     local gn_password=$1; shift
     local group=$1; shift
     local uuid_action=$1; shift
-
-    # replacing new schema name in info.xml
-    sed -i '.original' -e 's~<schema>.*</schema>~<schema>iso19115-3.2018</schema>~' $record_dir_path/info.xml
 
     # prepare MEF file
     local tmp_mef=`mktemp`
@@ -273,14 +153,8 @@ import_record() {
 
     echo "Importing record '$uuid' from '$record_dir_path'"
 
-    rm -f /tmp/cookie.txt ;
-    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
-    XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
-
-    body=$(curl -s \
+    body=$(curl -s -X POST \
         -u $gn_user:$gn_password \
-        -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-        -b "/tmp/cookie.txt" \
         -F "insert_mode=1" \
         -F "file_type=mef" \
         -F "category=_none_" \
@@ -288,7 +162,6 @@ import_record() {
         -F "styleSheet=_none_" \
         -F "uuidAction=$uuid_action" \
         -F "template=n" \
-        -F "schema=iso19115-3.2018" \
         -F mefFile=@$tmp_mef \
         $gn_addr/srv/eng/mef.import)
 
@@ -297,8 +170,6 @@ import_record() {
     if [[ ${body} != *"ERROR"* ]]; then
         curl -s \
         -u $gn_user:$gn_password \
-        -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-        -b "/tmp/cookie.txt" \
         -d "_1_0=on&_1_1=on&_1_5=on&_1_6=on&_${group}_0=on&_${group}_1=on&_${group}_5=on&_${group}_6=on" \
         -d "uuid=$uuid" \
         $gn_addr/srv/eng/metadata.admin
@@ -424,7 +295,7 @@ main() {
     local record_uuid="ALL"
     local git=no
     local group=2
-    local uuid_action="overwrite"
+    local uuid_action="nothing"
     local uuid_tag="uuid"
 
     # parse the options
@@ -460,17 +331,6 @@ main() {
             import_records_git $location $gn_addr $gn_user $gn_password
         else
             import_records $location $gn_addr $gn_user $gn_password $group $uuid_action
-        fi
-    elif [ "$operation" = "import_gn3" ]; then
-        # must authenticate to run import
-        if [ x"$gn_user" = x ] || [ x"$gn_password" = x ]; then
-            usage
-        fi
-
-        if [ "$git" = "yes" ]; then
-            import_records_git $location $gn_addr $gn_user $gn_password
-        else
-            import_records_gn3 $location $gn_addr $gn_user $gn_password $group $uuid_action
         fi
     elif [ "$operation" = "export" ]; then
         export_records $record_uuid $uuid_tag $location $gn_addr $gn_user $gn_password
