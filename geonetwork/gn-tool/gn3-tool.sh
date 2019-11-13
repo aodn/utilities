@@ -375,29 +375,24 @@ main() {
     [ x"$location" = x ] && usage
     [ x"$gn_addr" = x ] && usage
 
+    # Check if user name exists check password or viceversa
+    if [ -n "$gn_user" ] && ! [[ -n "$gn_password" ]]; then
+      usage
+    fi
+    if [ -n "$gn_password" ] && ! [[ -n "$gn_user" ]]; then
+      usage
+    fi
+
     if [ "$operation" = "import" ]; then
         # must authenticate to run import
         if [ x"$gn_user" = x ] || [ x"$gn_password" = x ]; then
             usage
         fi
 
-
-
         if [ "$git" = "yes" ]; then
             import_records_git $location $gn_addr $gn_user $gn_password
         else
             import_records $location $gn_addr $gn_user $gn_password $group $uuid_action
-        fi
-    elif [ "$operation" = "import_gn3" ]; then
-        # must authenticate to run import
-        if [ x"$gn_user" = x ] || [ x"$gn_password" = x ]; then
-            usage
-        fi
-
-        if [ "$git" = "yes" ]; then
-            import_records_git $location $gn_addr $gn_user $gn_password
-        else
-            import_records_gn3 $location $gn_addr $gn_user $gn_password $group $uuid_action
         fi
     elif [ "$operation" = "export" ]; then
         export_records $record_uuid $uuid_tag $location $gn_addr $gn_user $gn_password

@@ -40,8 +40,17 @@ get_deleted_records() {
 # $1 - geonetwork address
 get_all_records() {
     local gn_addr=$1; shift
+    local gn_user=$1; shift
+    local gn_password=$1; shift
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000"
+    if [[ $gn_user != "" ]]; then
+      gn_user_arg="--username $gn_user"
+    fi
+    if [[ $gn_password != "" ]]; then
+      gn_password_arg="--password $gn_password"
+    fi
+
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000" $gn_user_arg $gn_password_arg
 }
 
 # return all available record uuids from <uuid> tags in file
@@ -88,7 +97,12 @@ export_record() {
 
     echo "Exporting '$record_uuid' -> '$dir/$record_uuid'"
     local tmp_mef=`mktemp`
-    curl -s "$gn_addr/srv/eng/mef.export" -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
+
+    if [[ $gn_user != "" || $gn_password != "" ]]; then
+      gn_user_pass_arg='-u '$gn_user':'$gn_password
+    fi
+
+    curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
         unzip -o -d $dir $tmp_mef && \
         rm -f $tmp_mef
 }
@@ -111,7 +125,14 @@ export_records() {
     local -i retval=0
     if [ x"$record_uuid" = x"ALL" ]; then
         mkdir -p $record_dir
-        for record_uuid in `get_all_records $gn_addr $gn_user $gn_password`; do
+        text_result=$(get_all_records $gn_addr $gn_user $gn_password)
+
+        if [[ $? -ne "0" ]]; then
+          echo "Error in finding the uuids"
+          exit
+        fi
+
+        for record_uuid in $text_result; do
             export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password
             let retval=$retval+$?
         done
@@ -320,6 +341,14 @@ main() {
     [ x"$operation" = x ] && usage
     [ x"$location" = x ] && usage
     [ x"$gn_addr" = x ] && usage
+
+    # Check if user name exists check password or viceversa
+    if [ -n "$gn_user" ] && ! [[ -n "$gn_password" ]]; then
+      usage
+    fi
+    if [ -n "$gn_password" ] && ! [[ -n "$gn_user" ]]; then
+      usage
+    fi
 
     if [ "$operation" = "import" ]; then
         # must authenticate to run import
