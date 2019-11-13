@@ -26,7 +26,7 @@ public class transformCatalogue {
 
     private static final Logger logger = LogManager.getLogger(transformCatalogue.class);
 
-    public static void main(String[] args) throws TransformerException, IOException {
+    public static void main(String[] args) {
 
         File from_19139_mcp_1_4_to_19139_mcp_2_0_xsl_file = new File("schema/iso19115-3/convert/ISO19139/to19139.mcp-2.0.xsl");
         File from_19139_mcp2_to_19115_3_xslFile = new File("schema/iso19115-3/convert/ISO19139/fromISO19139MCP2.xsl");
@@ -35,12 +35,16 @@ public class transformCatalogue {
         options.addOption("d", "input_directory", true, "Directory name containing xml file name at some depth in the directory structure ");
         options.addRequiredOption("i", "file_name", true, "Input xml file name.");
         options.addRequiredOption("o", "output_file_name", true, "Output xml file name.");
+        options.addRequiredOption("g", "geonetwork_url", true, "Geonetwork URL for the Vocabulary lookup");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = null;
 
         String header = "Convert mcp xml file to 19115-3\n\n"+
-                "If the -d option is specified then the directory will be recursively searched for any file with the name specified by the -i option. The converted file will be created with the name specified by the -o option at the same level in the directory structure as the input file.";
+                "If the -d option is specified then the directory will be recursively searched for any file with the " +
+                "name specified by the -i option. The converted file will be created with the name specified by the " +
+                "-o option at the same level in the directory structure as the input file. Provide -g option " +
+                "specifying the Geonetwork URL for the Vocabulary lookup";
 
         HelpFormatter formatter = new HelpFormatter();
 
@@ -69,6 +73,9 @@ public class transformCatalogue {
         // Process output file name
         String output = cmd.getOptionValue("o");
 
+        // Process geonetwork_url
+        String geonetwork_url = cmd.getOptionValue("g");
+
         List<Path> files = new ArrayList<Path>();
         getFileNames(files, indirectory.toPath(), input);
 
@@ -85,7 +92,7 @@ public class transformCatalogue {
                     Source mcp1_4_xslSource = new javax.xml.transform.stream.StreamSource(from_19139_mcp_1_4_to_19139_mcp_2_0_xsl_file);
 
                     // Transform from_19139_mcp_1_4_to_19139_mcp_2_0
-                    StringWriter sw_mcp1_4 = transform(mcp1_4_xmlSource, mcp1_4_xslSource);
+                    StringWriter sw_mcp1_4 = transform(mcp1_4_xmlSource, mcp1_4_xslSource, geonetwork_url);
 
                     // Outputs MCP2.0 records
                     write(file.getParent() + File.separator + "metadata.iso19139.mcp-2.0.xml", sw_mcp1_4);
@@ -96,7 +103,7 @@ public class transformCatalogue {
                 Source mcp2_xslSource = new javax.xml.transform.stream.StreamSource(from_19139_mcp2_to_19115_3_xslFile);
 
                 // Transform from_19139_mcp2_to_19115_3
-                StringWriter sw_mcp2 = transform(mcp2_xmlSource, mcp2_xslSource);
+                StringWriter sw_mcp2 = transform(mcp2_xmlSource, mcp2_xslSource, geonetwork_url);
 
                 // Outputs ISO19115-3 records
                 write(file.getParent() + File.separator + output, sw_mcp2);
@@ -115,12 +122,13 @@ public class transformCatalogue {
         return reader.getNamespaceURI();
     }
 
-    private static StringWriter transform(Source xmlSource, Source xsltSource) throws IOException, TransformerException {
+    private static StringWriter transform(Source xmlSource, Source xsltSource, String geonetwork_url) throws TransformerException {
         StringWriter sw = new StringWriter();
         Result result = new javax.xml.transform.stream.StreamResult(sw);
         TransformerFactory transFact = new TransformerFactoryImpl();
         transFact.setAttribute(FeatureKeys.SUPPRESS_XPATH_WARNINGS, Boolean.TRUE);
         Transformer trans = transFact.newTransformer(xsltSource);
+        trans.setParameter("geonetwork_url", geonetwork_url);
         trans.transform(xmlSource, result);
         return sw;
     }
