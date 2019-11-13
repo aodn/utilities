@@ -40,8 +40,25 @@ get_deleted_records() {
 # $1 - geonetwork address
 get_all_records() {
     local gn_addr=$1; shift
+    local gn_user=$1; shift
+    local gn_password=$1; shift
+    local gn_xsrftoken=$1; shift
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000"
+    if [[ $gn_user != "" ]]; then
+      gn_user_arg="--username $gn_user"
+    fi
+    if [[ $gn_password != "" ]]; then
+      gn_password_arg="--password $gn_password"
+    fi
+    if [[ $gn_xsrftoken != "" ]]; then
+      gn_xsrftoken_arg="--xsrftoken $gn_xsrftoken"
+    fi
+
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000" $gn_user_arg $gn_password_arg $gn_xsrftoken_arg
+
+    # NOTE:
+    # Returns total no of records based on the value of 'maxRecords' in config-service-search.xml for Geonetwork 3.
+    # For Geonetwork 2, we can specify 'from' and 'to' value as the request parameters in xml.search api.
 }
 
 # return all available record uuids from <uuid> tags in file
@@ -85,17 +102,22 @@ export_record() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
-
-
-    rm -f /tmp/cookie.txt && \
-    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
-    XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+    local gn_xsrftoken=$1; shift
 
     echo "Exporting '$record_uuid' -> '$dir/$record_uuid'"
     local tmp_mef=`mktemp`
-    curl -s "$gn_addr/srv/eng/mef.export" -H "X-XSRF-TOKEN:$XSRFTOKEN" -b /tmp/cookie.txt -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
+
+    if [[ $gn_user != "" ]]; then
+      gn_user_pass_arg='-u '$gn_user':'$gn_password
+    fi
+    if [[ $gn_xsrftoken != "" ]]; then
+      gn_xsrftoken_arg='-H "X-XSRF-TOKEN:$gn_xsrftoken" -b /tmp/cookie.txt'
+    fi
+
+    curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg $gn_xsrftoken_arg -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
         unzip -o -d $dir $tmp_mef && \
         rm -f $tmp_mef
+
 }
 
 # export geonetwork records
@@ -115,15 +137,27 @@ export_records() {
 
     local -i retval=0
     local count=0
+
+    rm -f /tmp/cookie.txt && \
+    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+    XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+
     if [ x"$record_uuid" = x"ALL" ]; then
         mkdir -p $record_dir
-        for record_uuid in `get_all_records $gn_addr $gn_user $gn_password`; do
-            export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password
+
+        text_result=$(get_all_records $gn_addr $gn_user $gn_password $XSRFTOKEN)
+
+        if [[ $? -ne "0" ]]; then
+          echo "Error in finding the uuids"
+          exit
+        fi
+
+        for record_uuid in $text_result; do
+           export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password $XSRFTOKEN
             let retval=$retval+$?
             let count=$count+1
             echo $count
         done
-        echo $count
     else
         if [ -f $record_uuid ]; then
             for this_record_uuid in `get_all_records_from_file $record_uuid $uuid_tag`; do
@@ -315,7 +349,7 @@ main() {
     local record_uuid="ALL"
     local git=no
     local group=2
-    local uuid_action="overwrite"
+    local uuid_action="nothing"
     local uuid_tag="uuid"
 
     # parse the options
@@ -341,6 +375,14 @@ main() {
     [ x"$location" = x ] && usage
     [ x"$gn_addr" = x ] && usage
 
+    # Check if user name exists check password or viceversa
+    if [ -n "$gn_user" ] && ! [[ -n "$gn_password" ]]; then
+      usage
+    fi
+    if [ -n "$gn_password" ] && ! [[ -n "$gn_user" ]]; then
+      usage
+    fi
+
     if [ "$operation" = "import" ]; then
         # must authenticate to run import
         if [ x"$gn_user" = x ] || [ x"$gn_password" = x ]; then
@@ -351,17 +393,6 @@ main() {
             import_records_git $location $gn_addr $gn_user $gn_password
         else
             import_records $location $gn_addr $gn_user $gn_password $group $uuid_action
-        fi
-    elif [ "$operation" = "import_gn3" ]; then
-        # must authenticate to run import
-        if [ x"$gn_user" = x ] || [ x"$gn_password" = x ]; then
-            usage
-        fi
-
-        if [ "$git" = "yes" ]; then
-            import_records_git $location $gn_addr $gn_user $gn_password
-        else
-            import_records_gn3 $location $gn_addr $gn_user $gn_password $group $uuid_action
         fi
     elif [ "$operation" = "export" ]; then
         export_records $record_uuid $uuid_tag $location $gn_addr $gn_user $gn_password

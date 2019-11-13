@@ -5,8 +5,11 @@
                 xmlns:mcpold="http://schemas.aodn.org.au/mcp-2.0"
                 exclude-result-prefixes="#all">
 
-  <xsl:variable name="geonetUri" select="concat('http://localhost:8883/geonetwork', '/srv/')"/>
+  <xsl:param name="geonetwork_url" />
+  <xsl:variable name="geonetUri" select="concat($geonetwork_url, '/srv/')"/>
   <xsl:variable name="thesauri" select="document(concat($geonetUri,'eng/thesaurus'))/response/thesauri" />
+
+
 
 <!--  <xsl:template match="gmd:identificationInfo" mode="from19139to19115-3">-->
 <!--    <xsl:apply-templates select="mcpold:dataParameters" mode="from19139to19115-3-aodn"/>-->

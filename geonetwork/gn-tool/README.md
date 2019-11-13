@@ -25,4 +25,5 @@ $ ./gn-tool.sh -o export -l /tmp/gn-dump -g https://catalogue-123.aodn.org.au/ge
 $ ./gn-tool.sh -o import -l /tmp/gn-dump -g http://10.11.12.13/geonetwork -u admin -p admin
 ```
 
+Note: Use gn3-tool.sh tool for geonetwork3
 
