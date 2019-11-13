@@ -41,7 +41,7 @@ get_deleted_records() {
 get_all_records() {
     local gn_addr=$1; shift
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index"
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000"
 }
 
 # return all available record uuids from <uuid> tags in file
