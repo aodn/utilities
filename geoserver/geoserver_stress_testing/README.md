@@ -2,6 +2,13 @@
 
 #  Testing Geoserver layer performance with Jmeter
 
+## Overview
+
+The following describes how JMeter can be used to send multiple requests to a Geoserver and capture data
+on response times along with other information.  This data can then be viewed in a set of graphs and tables in a web
+browser.  The example demonstrates sending a WFS request and 100 WMS requests to the Geoserver for a single layer
+and measuring the results.
+
 ## Setup
 
 1. [Deploy an aodnstack](https://github.com/aodn/chef/blob/master/doc/README.pipeline-box.md#deploying-your-aws-stack) or identify a non production testing Geoserver that you can configure.
