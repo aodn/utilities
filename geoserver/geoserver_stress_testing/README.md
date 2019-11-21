@@ -44,37 +44,39 @@ Tidying up ...    @ Thu Nov 21 11:20:16 AEDT 2019 (1574295616450)
 ... end of run
 
 ```
-After the first run there will be a log file in the `utilities/geoserver/geoserver_stress_testing` folder called `[layername]_log.csv`. *Keep the log for later long term comparisons*
+After the first run there will be a log file in the `utilities/geoserver/geoserver_stress_testing` folder called `[layername]_log.csv`. **Keep the log for later long term comparisons.**
 
 The same stress test can be run repeatedly.  The corresponding log for each repetition will be appended to the log file.
 
 ## Get the graphs
-The example command below uses the resulting log for a layer called `example_profile_map` graphing all the  stress test runs. This example creates an output folder called `ouput` from the log file. In that folder there is a HTML page index.html to open in a browser.
+The example command below uses the resulting log for the `srs_oc_bodbaw_trajectory_profile_map` layer.  It graphs all the  stress test runs. This example creates an output folder called `output` from the log file. In that folder there is a HTML page index.html to open in a browser.
 
 ```
-jmeter -g example_profile_map_log.csv -o output
+jmeter -g srs_oc_bodbaw_trajectory_profile_map_log.csv -o output
 ```
+
+In the following example the response times for the layers can be seen in the `Statistics` table.
+
+![thingy](images/geoserver-stress-test-graph.png) 
+
 To update the graphs after more stress tests
-```$xslt
+```bash
 rm -rf output; 
-jmeter -g example_profile_map_log.csv -o output; 
-open output/index.html
+jmeter -g srs_oc_bodbaw_trajectory_profile_map_log.csv -o output; 
+xdg-open output/index.html
 ```
 
+or on Mac
 
-###### Example all in one command (for Mac)
-
-The command below cleans up the `output` folder and recreates from the log file and opens the html page containing the report graphs in one command (mac :) )
-
-```$xslt
-rm -rf output; jmeter -g example_profile_map_log.csv -o output; open output/index.html
+```bash
+rm -rf output; jmeter -g srs_oc_bodbaw_trajectory_profile_map_log.csv -o output; open output/index.html
 ```
 
 # GeoserverStressTest.jmx further mods
 
 1. Change the set of WMS requests with python or by hand coding
 
-JMeter is looping on the contents of `australiaWMS.csv` to run the WMS tile requests. australiaWMS.csv was created using `wms_request.py` to create a a list bboxes and image sizes to return. Although `wms_request.py` could be run each time to create random tests the aim would be to benchmark by running the same load each time with only remaining variable be the layer data size or complexity.
+JMeter is looping on the contents of `australiaWMS.csv` to run the WMS tile requests. australiaWMS.csv was created using `wms_request.py` to create a list of bboxes and image sizes to return. Although `wms_request.py` could be run each time to create random tests the aim would be to benchmark by running the same load each time with only remaining variable be the layer data size or complexity.
 
 
 Below is the command used to populate australiaWMS.csv
