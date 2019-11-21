@@ -2,15 +2,19 @@
 
 #  Testing Geoserver layer performance with Jmeter
 
+## Setup
 
-
-1. Create and configure a testing Geoserver with at least one `_map` layer you wish to test
+1. [Deploy an aodnstack](https://github.com/aodn/chef/blob/master/doc/README.pipeline-box.md#deploying-your-aws-stack) or identify a non production testing Geoserver that you can configure.
+1. Configure the testing Geoserver with at least one `_map` layer you wish to test
 1. Install JMeter https://jmeter.apache.org/download_jmeter.cgi
-1. Navigate to this folder to run all the following commands..
+1. Git clone the [utilities repo](https://github.com/aodn/utilities)
 
-JMeter is a java tool with a GUI for creating sets of tests to test a servers performance. The GUI is used to define the tests while it is suggested to run the resulting tests on the command line in non-GUI mode
+## Configure JMeter
 
-1. Open the JMeter GUI to configure the preconfigured test set
+JMeter is a java tool with a GUI for creating sets of tests to test a servers performance. The GUI is used to define the tests while it is suggested to run the resulting tests on the command line in non-GUI mode.
+
+1. Navigate to the `utilities/geoserver/geoserver_stress_testing` folder to run all the following commands.
+1. Open the JMeter GUI to configure the preconfigured test set:
 
 ```$xslt
 jmeter -t GeoserverStressTest.jmx
@@ -18,25 +22,33 @@ jmeter -t GeoserverStressTest.jmx
 
 This will open the JMeter GUI
 1. Change the global server, layername, workspace, configuration
-    1. `server` is the domain name of a Geoserver (assuming an non production AWS instance)
+    1. `server` is the domain name of the testing Geoserver (assuming a non production AWS instance)
     1. `workspace` eg: aodn or imos
     1. `layername` the WMS map layername 
 
 ![thingy](images/main.png) 
 
-1. Save and close. GeoserverStressTest.jmx is now tailored ready to test your layer in the non-GUI mode
+1. Save the test plan. (File --> Save). GeoserverStressTest.jmx is now tailored ready to test your layer in the non-GUI mode
 1. The current set of tests are a single WFS request with no BBOX or data limits and multiple WMS tile requests 
 
-###### Run the test and repeat at least a few times
-```
-jmeter -n -t GeoserverStressTest.jmx
-```
-After the first run there will be a log file in the CWD called `[layername]_log.csv` 
+## Run the test plan
 
-###### Keep the log for long term comparisons!!
-1. This same stress test can be run over and over and the corresponding log for the layer will be appended.
+```bash
+~/git/utilities/geoserver/geoserver_stress_testing$ jmeter -n -t GeoserverStressTest.jmx
+Creating summariser <summary>
+Created the tree successfully using GeoserverStressTest.jmx
+Starting the test @ Thu Nov 21 11:20:04 AEDT 2019 (1574295604991)
+Waiting for possible Shutdown/StopTestNow/Heapdump message on port 4445
+summary =    101 in 00:00:11 =    9.1/s Avg:    58 Min:    50 Max:   310 Err:   101 (100.00%)
+Tidying up ...    @ Thu Nov 21 11:20:16 AEDT 2019 (1574295616450)
+... end of run
 
-#### Get the graphs
+```
+After the first run there will be a log file in the `utilities/geoserver/geoserver_stress_testing` folder called `[layername]_log.csv`. *Keep the log for later long term comparisons*
+
+The same stress test can be run repeatedly.  The corresponding log for each repetition will be appended to the log file.
+
+## Get the graphs
 The example command below uses the resulting log for a layer called `example_profile_map` graphing all the  stress test runs. This example creates an output folder called `ouput` from the log file. In that folder there is a HTML page index.html to open in a browser.
 
 ```
