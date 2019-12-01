@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #  -*- coding: utf8 -*-
 
 # derived from https://stackoverflow.com/questions/5663787/upload-folders-from-local-system-to-ftp-using-python-script

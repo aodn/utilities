@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Generates a CloudFormation template from a zone JSON file. The JSON may be extracted as follows:
 # aws route53 list-resource-record-sets --hosted-zone-id [ZONE_ID] > zone.json
