@@ -38,6 +38,9 @@ get_deleted_records() {
 
 # return all available record uuids in geonetwork
 # $1 - geonetwork address
+# $2 - geonetwork user
+# $3 - geonetwork password
+# $4 - geonetwork XSRF token
 get_all_records() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
@@ -71,6 +74,156 @@ get_all_records_from_file() {
     python ./get-uuids-from-file.py "$local_file" "$uuid_tag"
 }
 
+# return value from <specified> tags in file
+# $1 - local file
+# $2 - tag name to search for
+get_info_from_file() {
+    local local_file=$1; shift
+    local tag_name=$1; shift
+
+    python ./get-info-from-file.py "$local_file" "$tag_name"
+}
+# return all the groups info (groupid and group name) from geonetwork 3
+# $1 - geonetwork address
+# $2 - geonetwork user
+# $3 - geonetwork password
+get_groups() {
+  local gn_addr=$1; shift
+  local gn_user=$1; shift
+  local gn_password=$1; shift
+
+  withReservedGroup=false
+  profile=_none_
+
+  rm -f /tmp/cookie.txt ;
+  curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+  gn_xsrftoken=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+
+  body=$(curl -s -X GET \
+      -u $gn_user:$gn_password \
+      -H "accept: application/json" \
+      -H "X-XSRF-TOKEN:$gn_xsrftoken" \
+      -b "/tmp/cookie.txt" \
+      -F "withReservedGroup=$withReservedGroup" \
+      -F "profile=$profile" \
+      $gn_addr/srv/api/0.1/groups)
+
+  python ./get-users-groups-from-json.py "$body" "id" "name"
+
+}
+
+# return all the user's info (userid and username) from geonetwork 3
+# $1 - geonetwork address
+# $2 - geonetwork user
+# $3 - geonetwork password
+get_users() {
+  local gn_addr=$1; shift
+  local gn_user=$1; shift
+  local gn_password=$1; shift
+
+  rm -f /tmp/cookie.txt ;
+  curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+  gn_xsrftoken=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+
+  body=$(curl -s -X GET \
+      -u $gn_user:$gn_password \
+      -H "accept: application/json" \
+      -H "X-XSRF-TOKEN:$gn_xsrftoken" \
+      -b "/tmp/cookie.txt" \
+      $gn_addr/srv/api/0.1/users)
+
+  python ./get-users-groups-from-json.py "$body" "id" "username"
+
+}
+
+# return all the user's info (userid and username) from geonetwork 2 instance
+# $1 - geonetwork address
+# $2 - geonetwork user
+# $3 - geonetwork password
+get_users_gn2() {
+  local gn_addr=$1; shift
+  local gn_user=$1; shift
+  local gn_password=$1; shift
+
+  if [[ $gn_user != "" ]]; then
+      gn_user_arg="--username $gn_user"
+    fi
+    if [[ $gn_password != "" ]]; then
+      gn_password_arg="--password $gn_password"
+    fi
+
+    python ./get-users-from-xml.py "$gn_addr/srv/eng/xml.info?type=users" $gn_user_arg $gn_password_arg
+
+}
+
+# return userid of the specified record in geonetwork
+# $1 - geonetwork address
+# $2 - geonetwork user
+# $3 - geonetwork password
+# $4 - geonetwork XSRF token
+# $5 - record uuid
+get_owner_from_uuid() {
+    local gn_addr=$1; shift
+    local gn_user=$1; shift
+    local gn_password=$1; shift
+    local gn_xsrftoken=$1; shift
+    local uuid=$1; shift
+
+    if [[ $gn_user != "" ]]; then
+      gn_user_arg="--username $gn_user"
+    fi
+    if [[ $gn_password != "" ]]; then
+      gn_password_arg="--password $gn_password"
+    fi
+    if [[ $gn_xsrftoken != "" ]]; then
+      gn_xsrftoken_arg="--xsrftoken $gn_xsrftoken"
+    fi
+
+    python ./get-owner-from-uuids.py "$gn_addr/srv/eng/q?fast=index&buildSummary=false&uuid=$uuid" $gn_user_arg $gn_password_arg $gn_xsrftoken_arg
+
+}
+
+# return id when name is provided from the list (e.g. id1:name1;id2:name2)
+# $1 - list containing name value pair
+# $2 - id value
+get_id_from_name() {
+  local objs=$1; shift
+  local obj=$1; shift
+
+  id=''
+#  arr=($(echo "$objs" | tr ";" "\n"))
+  IFS=';' read -ra arr <<< "$objs"
+  for i in "${arr[@]}";
+  do
+    key="${i%%:*}"
+    value="${i##*:}"
+    if [[ $value == $obj ]]; then
+      id=$key
+    fi
+  done
+  echo ${id}
+}
+
+# return name when id is provided from the list (e.g. id1:name1;id2:name2)
+# $1 - list containing name value pair
+# $2 - name value
+get_name_from_id() {
+  local objs=$1; shift
+  local obj=$1; shift
+
+  name=''
+#  arr=($(echo "$objs" | tr ";" "\n"))
+  IFS=';' read -ra arr <<< "$objs"
+  for i in "${arr[@]}";
+  do
+    key="${i%%:*}"
+    value="${i##*:}"
+    if [[ $key == $obj ]]; then
+      name=$value
+    fi
+  done
+  echo ${name}
+}
 
 # delete a single record
 # $1 - record uuid
@@ -96,6 +249,8 @@ delete_record() {
 # $3 - geonetwork address
 # $4 - geonetwork user
 # $5 - geonetwork password
+# $6 - geonetwork XSRF token
+# $7 - users list
 export_record() {
     local record_uuid=$1; shift
     local dir=$1; shift
@@ -103,6 +258,7 @@ export_record() {
     local gn_user=$1; shift
     local gn_password=$1; shift
     local gn_xsrftoken=$1; shift
+    local users=$1; shift
 
     echo "Exporting '$record_uuid' -> '$dir/$record_uuid'"
     local tmp_mef=`mktemp`
@@ -118,6 +274,12 @@ export_record() {
         unzip -o -d $dir $tmp_mef && \
         rm -f $tmp_mef
 
+    userid=$(get_owner_from_uuid $gn_addr $gn_user $gn_password "$XSRFTOKEN" "$record_uuid")
+    username=$(get_name_from_id "$users" "$userid")
+    echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
+
+    # adding owner name in info.xml
+    sed -i '.original' -e 's~</info>~  <owner name=\"'$username'\" />\'$'\n</info>~' $dir/$record_uuid/info.xml
 }
 
 # export geonetwork records
@@ -134,6 +296,8 @@ export_records() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
+
+    users=$(get_users_gn2 $gn_addr $gn_user $gn_password)
 
     local -i retval=0
     local count=0
@@ -153,7 +317,7 @@ export_records() {
         fi
 
         for record_uuid in $text_result; do
-           export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password $XSRFTOKEN
+           export_record $record_uuid $record_dir $gn_addr $gn_user $gn_password "$XSRFTOKEN" "$users"
             let retval=$retval+$?
             let count=$count+1
             echo $count
@@ -180,6 +344,8 @@ export_records() {
 # $4 - geonetwork password
 # $5 - geonetwork group id
 # $6 - geonetwork uuid action
+# $6 - geonetwork group lists
+# $7 - geonetwork users list
 import_record() {
     local record_dir_path=$1; shift
     local gn_addr=$1; shift
@@ -187,49 +353,73 @@ import_record() {
     local gn_password=$1; shift
     local group=$1; shift
     local uuid_action=$1; shift
+    local groups=$1; shift
+    local users=$1; shift
 
-    # replacing new schema name in info.xml
-    sed -i '.original' -e 's~<schema>.*</schema>~<schema>iso19115-3.2018</schema>~' $record_dir_path/info.xml
+    if [[ -d "$record_dir_path" ]]
+    then
 
-    # prepare MEF file
-    local tmp_mef=`mktemp`
+      # replacing new schema name in info.xml
+      sed -i '.original' -e 's~<schema>.*</schema>~<schema>iso19115-3.2018</schema>~' $record_dir_path/info.xml
 
-    local uuid=`basename $record_dir_path`
-    (cd `dirname $record_dir_path` && rm -f $tmp_mef && zip -q -r $tmp_mef $uuid)
+      echo ""
+      groupname=$(get_info_from_file $record_dir_path/info.xml 'groupOwner')
+      groupid=$(get_id_from_name "$groups" "$groupname")
+      echo "Extracting groupid: '$groupid' and groupname: '$groupname' from grouplist: '$groups' "
 
-    echo "Importing record '$uuid' from '$record_dir_path'"
+      username=$(get_info_from_file $record_dir_path/info.xml 'userOwner')
+      userid=$(get_id_from_name "$users" "$username")
+      echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
 
-    rm -f /tmp/cookie.txt ;
-    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
-    XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+      # prepare MEF file
+      local tmp_mef=`mktemp`
 
-    body=$(curl -s \
-        -u $gn_user:$gn_password \
-        -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-        -b "/tmp/cookie.txt" \
-        -F "insert_mode=1" \
-        -F "file_type=mef" \
-        -F "category=_none_" \
-        -F "group=$group" \
-        -F "styleSheet=_none_" \
-        -F "uuidAction=$uuid_action" \
-        -F "template=n" \
-        -F mefFile=@$tmp_mef \
-        $gn_addr/srv/eng/mef.import)
+      local uuid=`basename $record_dir_path`
+      (cd `dirname $record_dir_path` && rm -f $tmp_mef && zip -q -r $tmp_mef $uuid)
 
-    echo ${body}
+      echo "Importing record '$uuid' from '$record_dir_path'"
 
-    if [[ ${body} != *"ERROR"* ]]; then
-        curl -s \
-        -u $gn_user:$gn_password \
-        -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-        -b "/tmp/cookie.txt" \
-        -d "_1_0=on&_1_1=on&_1_5=on&_1_6=on&_${group}_0=on&_${group}_1=on&_${group}_5=on&_${group}_6=on" \
-        -d "uuid=$uuid" \
-        $gn_addr/srv/eng/metadata.admin
+      rm -f /tmp/cookie.txt ;
+      curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+      XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+
+      body=$(curl -s \
+          -u $gn_user:$gn_password \
+          -H "X-XSRF-TOKEN:$XSRFTOKEN" \
+          -b "/tmp/cookie.txt" \
+          -F "insert_mode=1" \
+          -F "file_type=mef" \
+          -F "styleSheet=_none_" \
+          -F "uuidAction=$uuid_action" \
+          -F "template=n" \
+          -F mefFile=@$tmp_mef \
+          $gn_addr/srv/eng/mef.import)
+#          -F "category=_none_" \
+#          -F "group=$groupid" \
+
+      echo ${body}
+
+      if [[ ${body} != *"ERROR"* ]]; then
+        ownership=$(curl -s -X PUT "$gn_addr/srv/api/0.1/records/$uuid/ownership?groupIdentifier=$groupid&userIdentifier=$userid&approved=true" \
+          -u $gn_user:$gn_password \
+          -H "X-XSRF-TOKEN:$XSRFTOKEN" \
+          -b "/tmp/cookie.txt" \
+          )
+#        echo ${ownership}
+      fi
+
+#      if [[ ${body} != *"ERROR"* ]]; then
+#          curl -s \
+#          -u $gn_user:$gn_password \
+#          -H "X-XSRF-TOKEN:$XSRFTOKEN" \
+#          -b "/tmp/cookie.txt" \
+#          -d "_1_0=on&_1_1=on&_1_5=on&_1_6=on&_${group}_0=on&_${group}_1=on&_${group}_5=on&_${group}_6=on" \
+#          -d "uuid=$uuid" \
+#          $gn_addr/srv/eng/metadata.admin
+#      fi
+
+      rm -f $tmp_mef
     fi
-
-    rm -f $tmp_mef
 }
 
 # imports geonetwork records
@@ -249,13 +439,17 @@ import_records() {
 
     local record_file
     local -i retval=0
+
+    groups=$(get_groups $gn_addr $gn_user $gn_password)
+    users=$(get_users $gn_addr $gn_user $gn_password)
+
     if [ -d $record_location ]; then
         for record_file in $record_location/*; do
-            import_record $record_file $gn_addr $gn_user $gn_password $group $uuid_action
+            import_record $record_file $gn_addr $gn_user $gn_password $group $uuid_action "$groups" "$users"
             let retval=$retval+$?
         done
     else
-        import_record $record_location $gn_addr $gn_user $gn_password $group
+        import_record $record_location $gn_addr $gn_user $gn_password $group "$groups" "$users"
         let retval=$retval+$?
     fi
     return $retval

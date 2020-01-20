@@ -25,5 +25,16 @@ $ ./gn-tool.sh -o export -l /tmp/gn-dump -g https://catalogue-123.aodn.org.au/ge
 $ ./gn-tool.sh -o import -l /tmp/gn-dump -g http://10.11.12.13/geonetwork -u admin -p admin
 ```
 
-Note: Use gn3-tool.sh tool for geonetwork3
+## For Geonetwork3, use `gn3-tool.sh` tool 
 
+- User credentials is required for export as we need to extract user ownership information.
+
+#### Export 
+```
+./gn3-tool.sh -o export -l /tmp/gn-dump -g http://localhost:8882/geonetwork -u admin -p admin
+```
+
+#### Import 
+```
+./gn3-tool.sh -o import -l /tmp/gn-dump -g http://localhost:8883/geonetwork -u admin -p admin
+```
