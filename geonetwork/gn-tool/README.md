@@ -28,6 +28,8 @@ $ ./gn-tool.sh -o import -l /tmp/gn-dump -g http://10.11.12.13/geonetwork -u adm
 ## For Geonetwork3, use `gn3-tool.sh` tool 
 
 - User credentials is required for export as we need to extract user ownership information.
+- Requires python 3
+- Install requirements.txt
 
 #### Export 
 ```
