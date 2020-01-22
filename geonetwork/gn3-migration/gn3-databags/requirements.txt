@@ -1,0 +1,4 @@
+requests
+argparse_prompt
+Jinja2
+xmltodict
