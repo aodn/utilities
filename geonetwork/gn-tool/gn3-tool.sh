@@ -279,7 +279,7 @@ export_record() {
     echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
 
     # adding owner name in info.xml
-    sed -i '.original' -e 's~</info>~  <owner name=\"'$username'\" />\'$'\n</info>~' $dir/$record_uuid/info.xml
+    sed -i'.original' -e 's~</info>~  <owner name=\"'$username'\" />\'$'\n</info>~' $dir/$record_uuid/info.xml
 }
 
 # export geonetwork records
@@ -360,7 +360,7 @@ import_record() {
     then
 
       # replacing new schema name in info.xml
-      sed -i '.original' -e 's~<schema>.*</schema>~<schema>iso19115-3.2018</schema>~' $record_dir_path/info.xml
+      sed -i'.original' -e 's~<schema>.*</schema>~<schema>iso19115-3.2018</schema>~' $record_dir_path/info.xml
 
       echo ""
       groupname=$(get_info_from_file $record_dir_path/info.xml 'groupOwner')
