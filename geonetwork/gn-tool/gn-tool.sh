@@ -50,7 +50,7 @@ get_all_records() {
       gn_password_arg="--password $gn_password"
     fi
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&from=1&to=2000" $gn_user_arg $gn_password_arg
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&_isHarvested=n&from=1&to=2000" $gn_user_arg $gn_password_arg
 }
 
 # return all available record uuids from <uuid> tags in file
