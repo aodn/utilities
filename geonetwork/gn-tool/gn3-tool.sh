@@ -363,13 +363,28 @@ import_record() {
       sed -i'.original' -e 's~<schema>.*</schema>~<schema>iso19115-3.2018</schema>~' $record_dir_path/info.xml
 
       echo ""
+      data="?approved=true"
+
       groupname=$(get_info_from_file $record_dir_path/info.xml 'groupOwner')
-      groupid=$(get_id_from_name "$groups" "$groupname")
+      if [[ $groupname == 'all' ]]
+      then
+        groupid=1
+      else
+        groupid=$(get_id_from_name "$groups" "$groupname")
+      fi
       echo "Extracting groupid: '$groupid' and groupname: '$groupname' from grouplist: '$groups' "
+      data+="&groupIdentifier=$groupid"
 
       username=$(get_info_from_file $record_dir_path/info.xml 'userOwner')
-      userid=$(get_id_from_name "$users" "$username")
-      echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
+      if [[ !  -z  $username ]]
+      then
+        userid=$(get_id_from_name "$users" "$username")
+        if [[ !  -z  $userid ]]
+        then
+          echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
+          data+="&userIdentifier=$userid"
+        fi
+      fi
 
       # prepare MEF file
       local tmp_mef=`mktemp`
@@ -394,29 +409,16 @@ import_record() {
           -F "template=n" \
           -F mefFile=@$tmp_mef \
           $gn_addr/srv/eng/mef.import)
-#          -F "category=_none_" \
-#          -F "group=$groupid" \
 
       echo ${body}
 
       if [[ ${body} != *"ERROR"* ]]; then
-        ownership=$(curl -s -X PUT "$gn_addr/srv/api/0.1/records/$uuid/ownership?groupIdentifier=$groupid&userIdentifier=$userid&approved=true" \
+        ownership=$(curl -s -X PUT "$gn_addr/srv/api/0.1/records/$uuid/ownership$data" \
           -u $gn_user:$gn_password \
           -H "X-XSRF-TOKEN:$XSRFTOKEN" \
           -b "/tmp/cookie.txt" \
           )
-#        echo ${ownership}
       fi
-
-#      if [[ ${body} != *"ERROR"* ]]; then
-#          curl -s \
-#          -u $gn_user:$gn_password \
-#          -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-#          -b "/tmp/cookie.txt" \
-#          -d "_1_0=on&_1_1=on&_1_5=on&_1_6=on&_${group}_0=on&_${group}_1=on&_${group}_5=on&_${group}_6=on" \
-#          -d "uuid=$uuid" \
-#          $gn_addr/srv/eng/metadata.admin
-#      fi
 
       rm -f $tmp_mef
     fi
