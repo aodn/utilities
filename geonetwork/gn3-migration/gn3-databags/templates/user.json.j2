@@ -1,0 +1,50 @@
+{
+    "profile": {{ user['profile']|tojson }},
+{% if user['organisation'] %}
+    "organisation": {{ user['organisation']|tojson }},
+{% endif %}
+{% if user['city'] or user['country'] or user['zip'] or user['state'] or user['address'] %}
+    "addresses": [
+      {
+        "city": {{ user['city']|tojson }},
+        "country": {{ user['country']|tojson }},
+        "zip": {{ user['zip']|tojson }},
+        "state": {{ user['state']|tojson }},
+        "address": {{ user['address']|tojson }}
+      }
+    ],
+{% endif %}
+{% if user['email'] %}
+    "emailAddresses": [{{ user['email']|tojson }}],
+{% endif %}
+    "surname": {{ user['surname']|tojson }},
+{% if user['kind'] %}
+    "kind": {{ user['kind']|tojson }},
+{% endif %}
+    "enabled": true,
+    "name": {{ user['name']|tojson }},
+    "username": {{ user['username']|tojson }},
+    "password": {{ user['username']|tojson }}{{ ',' if user['profile'] != 'Administrator' else '' }}
+{% if user['profile'] != 'Administrator' %}
+    "groupsRegisteredUser": [
+  {% for user_group in user_groups if user_group['@profile']=='RegisteredUser'%}
+        {{ user_group['#text']|toname|tojson }}{{ ',' if not loop.last else ''}}
+  {% endfor %}
+    ],
+    "groupsEditor": [
+  {% for user_group in user_groups if user_group['@profile']=='Editor'%}
+        {{ user_group['#text']|toname|tojson }}{{ ',' if not loop.last else ''}}
+  {% endfor %}
+    ],
+    "groupsReviewer": [
+  {% for user_group in user_groups if user_group['@profile']=='Reviewer'%}
+        {{ user_group['#text']|toname|tojson }}{{ ',' if not loop.last else ''}}
+  {% endfor %}
+    ],
+    "groupsUserAdmin": [
+  {% for user_group in user_groups if user_group['@profile']=='UserAdmin'%}
+        {{ user_group['#text']|toname|tojson }}{{ ',' if not loop.last else ''}}
+  {% endfor %}
+    ]
+{%  endif %}
+}

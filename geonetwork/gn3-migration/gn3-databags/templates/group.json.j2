@@ -1,0 +1,16 @@
+{
+    "name": {{ group['name']|tojson }},
+    "description": {{ group['description']|tojson }},
+    "logo": null,
+    "website": null,
+    "defaultCategory": {},
+    "allowedCategories": [],
+    "enableAllowedCategories": false,
+    "email": {{ group['email']|tojson }},
+    "referrer": {{ group['referrer']|tojson }},
+    "label": {
+{% for key, value in group['label'].items() %}
+        {{ key|tojson }}: {{ value|tojson }}{{ ',' if not loop.last else ''}}
+{% endfor %}
+   }
+}
