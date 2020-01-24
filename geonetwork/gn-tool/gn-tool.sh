@@ -102,7 +102,7 @@ export_record() {
       gn_user_pass_arg='-u '$gn_user':'$gn_password
     fi
 
-    curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -d "uuid=$record_uuid&format=full&version=2" -o $tmp_mef && \
+    curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -d "uuid=$record_uuid&format=full&version=2&relation=false" -o $tmp_mef && \
         unzip -o -d $dir $tmp_mef && \
         rm -f $tmp_mef
 }
