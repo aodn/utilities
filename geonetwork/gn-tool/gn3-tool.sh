@@ -363,17 +363,30 @@ import_record() {
       sed -i'.original' -e 's~<schema>.*</schema>~<schema>iso19115-3.2018</schema>~' $record_dir_path/info.xml
 
       echo ""
-      data="?approved=true"
+      import_ownership_parameters="?approved=true"
+      error_msg=""
 
       groupname=$(get_info_from_file $record_dir_path/info.xml 'groupOwner')
-      if [[ $groupname == 'all' ]]
+      if [[ !  -z  $groupname ]]
       then
-        groupid=1
+        if [[ $groupname == 'all' ]]
+        then
+          groupid=1
+        else
+          groupid=$(get_id_from_name "$groups" "$groupname")
+        fi
+        if [[ !  -z  $groupid ]]
+        then
+          echo "Extracting groupid: '$groupid' and groupname: '$groupname' from grouplist: '$groups' "
+          import_ownership_parameters+="&groupIdentifier=$groupid"
+        else
+#          echo "Missing groupd for groupname: '$groupname'"
+          error_msg+=" ## Missing groupid for groupname: '$groupname'"
+        fi
       else
-        groupid=$(get_id_from_name "$groups" "$groupname")
+#        echo "Missing groupname"
+        error_msg+=" ## Missing groupname"
       fi
-      echo "Extracting groupid: '$groupid' and groupname: '$groupname' from grouplist: '$groups' "
-      data+="&groupIdentifier=$groupid"
 
       username=$(get_info_from_file $record_dir_path/info.xml 'userOwner')
       if [[ !  -z  $username ]]
@@ -382,45 +395,59 @@ import_record() {
         if [[ !  -z  $userid ]]
         then
           echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
-          data+="&userIdentifier=$userid"
+          import_ownership_parameters+="&userIdentifier=$userid"
+        else
+#          echo "Missing userid for username: '$username'"
+          error_msg+="\ ## Missing userid for username: '$username'"
         fi
+      else
+#        echo "Missing username"
+        error_msg+=" ## Missing username"
       fi
 
-      # prepare MEF file
-      local tmp_mef=`mktemp`
+      if [[ !  -z  $error_msg ]]
+      then
+        local uuid=`basename $record_dir_path`
+        echo "ERROR: Importing record '$uuid' from '$record_dir_path' failed due to following errors:"
+        echo $error_msg
+      else
+        # prepare MEF file
+        local tmp_mef=`mktemp`
 
-      local uuid=`basename $record_dir_path`
-      (cd `dirname $record_dir_path` && rm -f $tmp_mef && zip -q -r $tmp_mef $uuid)
+        local uuid=`basename $record_dir_path`
+        (cd `dirname $record_dir_path` && rm -f $tmp_mef && zip -q -r $tmp_mef $uuid)
 
-      echo "Importing record '$uuid' from '$record_dir_path'"
+        echo "Importing record '$uuid' from '$record_dir_path'"
 
-      rm -f /tmp/cookie.txt ;
-      curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
-      XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+        rm -f /tmp/cookie.txt ;
+        curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+        XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
 
-      body=$(curl -s \
-          -u $gn_user:$gn_password \
-          -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-          -b "/tmp/cookie.txt" \
-          -F "insert_mode=1" \
-          -F "file_type=mef" \
-          -F "styleSheet=_none_" \
-          -F "uuidAction=$uuid_action" \
-          -F "template=n" \
-          -F mefFile=@$tmp_mef \
-          $gn_addr/srv/eng/mef.import)
+        body=$(curl -s \
+            -u $gn_user:$gn_password \
+            -H "X-XSRF-TOKEN:$XSRFTOKEN" \
+            -b "/tmp/cookie.txt" \
+            -F "insert_mode=1" \
+            -F "file_type=mef" \
+            -F "styleSheet=_none_" \
+            -F "uuidAction=$uuid_action" \
+            -F "template=n" \
+            -F mefFile=@$tmp_mef \
+            $gn_addr/srv/eng/mef.import)
 
-      echo ${body}
+        echo ${body}
 
-      if [[ ${body} != *"ERROR"* ]]; then
-        ownership=$(curl -s -X PUT "$gn_addr/srv/api/0.1/records/$uuid/ownership$data" \
-          -u $gn_user:$gn_password \
-          -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-          -b "/tmp/cookie.txt" \
-          )
+        if [[ ${body} != *"ERROR"* ]]; then
+          ownership=$(curl -s -X PUT "$gn_addr/srv/api/0.1/records/$uuid/ownership$import_ownership_parameters" \
+            -u $gn_user:$gn_password \
+            -H "X-XSRF-TOKEN:$XSRFTOKEN" \
+            -b "/tmp/cookie.txt" \
+            )
+        fi
+
+        rm -f $tmp_mef
+
       fi
-
-      rm -f $tmp_mef
     fi
 }
 
