@@ -363,62 +363,91 @@ import_record() {
       sed -i'.original' -e 's~<schema>.*</schema>~<schema>iso19115-3.2018</schema>~' $record_dir_path/info.xml
 
       echo ""
+      import_ownership_parameters="?approved=true"
+      error_msg=""
+
       groupname=$(get_info_from_file $record_dir_path/info.xml 'groupOwner')
-      groupid=$(get_id_from_name "$groups" "$groupname")
-      echo "Extracting groupid: '$groupid' and groupname: '$groupname' from grouplist: '$groups' "
-
-      username=$(get_info_from_file $record_dir_path/info.xml 'userOwner')
-      userid=$(get_id_from_name "$users" "$username")
-      echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
-
-      # prepare MEF file
-      local tmp_mef=`mktemp`
-
-      local uuid=`basename $record_dir_path`
-      (cd `dirname $record_dir_path` && rm -f $tmp_mef && zip -q -r $tmp_mef $uuid)
-
-      echo "Importing record '$uuid' from '$record_dir_path'"
-
-      rm -f /tmp/cookie.txt ;
-      curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
-      XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
-
-      body=$(curl -s \
-          -u $gn_user:$gn_password \
-          -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-          -b "/tmp/cookie.txt" \
-          -F "insert_mode=1" \
-          -F "file_type=mef" \
-          -F "styleSheet=_none_" \
-          -F "uuidAction=$uuid_action" \
-          -F "template=n" \
-          -F mefFile=@$tmp_mef \
-          $gn_addr/srv/eng/mef.import)
-#          -F "category=_none_" \
-#          -F "group=$groupid" \
-
-      echo ${body}
-
-      if [[ ${body} != *"ERROR"* ]]; then
-        ownership=$(curl -s -X PUT "$gn_addr/srv/api/0.1/records/$uuid/ownership?groupIdentifier=$groupid&userIdentifier=$userid&approved=true" \
-          -u $gn_user:$gn_password \
-          -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-          -b "/tmp/cookie.txt" \
-          )
-#        echo ${ownership}
+      if [[ !  -z  $groupname ]]
+      then
+        if [[ $groupname == 'all' ]]
+        then
+          groupid=1
+        else
+          groupid=$(get_id_from_name "$groups" "$groupname")
+        fi
+        if [[ !  -z  $groupid ]]
+        then
+          echo "Extracting groupid: '$groupid' and groupname: '$groupname' from grouplist: '$groups' "
+          import_ownership_parameters+="&groupIdentifier=$groupid"
+        else
+#          echo "Missing groupd for groupname: '$groupname'"
+          error_msg+=" ## Missing groupid for groupname: '$groupname'"
+        fi
+      else
+#        echo "Missing groupname"
+        error_msg+=" ## Missing groupname"
       fi
 
-#      if [[ ${body} != *"ERROR"* ]]; then
-#          curl -s \
-#          -u $gn_user:$gn_password \
-#          -H "X-XSRF-TOKEN:$XSRFTOKEN" \
-#          -b "/tmp/cookie.txt" \
-#          -d "_1_0=on&_1_1=on&_1_5=on&_1_6=on&_${group}_0=on&_${group}_1=on&_${group}_5=on&_${group}_6=on" \
-#          -d "uuid=$uuid" \
-#          $gn_addr/srv/eng/metadata.admin
-#      fi
+      username=$(get_info_from_file $record_dir_path/info.xml 'userOwner')
+      if [[ !  -z  $username ]]
+      then
+        userid=$(get_id_from_name "$users" "$username")
+        if [[ !  -z  $userid ]]
+        then
+          echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
+          import_ownership_parameters+="&userIdentifier=$userid"
+        else
+#          echo "Missing userid for username: '$username'"
+          error_msg+="\ ## Missing userid for username: '$username'"
+        fi
+      else
+#        echo "Missing username"
+        error_msg+=" ## Missing username"
+      fi
 
-      rm -f $tmp_mef
+      if [[ !  -z  $error_msg ]]
+      then
+        local uuid=`basename $record_dir_path`
+        echo "ERROR: Importing record '$uuid' from '$record_dir_path' failed due to following errors:"
+        echo $error_msg
+      else
+        # prepare MEF file
+        local tmp_mef=`mktemp`
+
+        local uuid=`basename $record_dir_path`
+        (cd `dirname $record_dir_path` && rm -f $tmp_mef && zip -q -r $tmp_mef $uuid)
+
+        echo "Importing record '$uuid' from '$record_dir_path'"
+
+        rm -f /tmp/cookie.txt ;
+        curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+        XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
+
+        body=$(curl -s \
+            -u $gn_user:$gn_password \
+            -H "X-XSRF-TOKEN:$XSRFTOKEN" \
+            -b "/tmp/cookie.txt" \
+            -F "insert_mode=1" \
+            -F "file_type=mef" \
+            -F "styleSheet=_none_" \
+            -F "uuidAction=$uuid_action" \
+            -F "template=n" \
+            -F mefFile=@$tmp_mef \
+            $gn_addr/srv/eng/mef.import)
+
+        echo ${body}
+
+        if [[ ${body} != *"ERROR"* ]]; then
+          ownership=$(curl -s -X PUT "$gn_addr/srv/api/0.1/records/$uuid/ownership$import_ownership_parameters" \
+            -u $gn_user:$gn_password \
+            -H "X-XSRF-TOKEN:$XSRFTOKEN" \
+            -b "/tmp/cookie.txt" \
+            )
+        fi
+
+        rm -f $tmp_mef
+
+      fi
     fi
 }
 
