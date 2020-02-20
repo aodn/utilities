@@ -432,6 +432,7 @@ import_record() {
             -F "styleSheet=_none_" \
             -F "uuidAction=$uuid_action" \
             -F "template=n" \
+            -F "assign=on" \
             -F mefFile=@$tmp_mef \
             $gn_addr/srv/eng/mef.import)
 
