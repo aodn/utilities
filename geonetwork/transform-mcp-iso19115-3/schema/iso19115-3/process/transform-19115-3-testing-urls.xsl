@@ -9,7 +9,7 @@
     <substitution match="geoserver.123.aodn.org.au" replaceWith="geoserver-gn3-integration.dev.aodn.org.au"/>
     <substitution match="https?://thredds.aodn.org.au(:443)?" replaceWith="http://thredds-gn3-integration.dev.aodn.org.au"/>
     <substitution match="catalogue-imos.aodn.org.au" replaceWith="catalogue-imos.dev.aodn.org.au"/>
-    <substitution match="https?://tilecache.aodn.org.au(:443)?" replaceWith="https://tilecache-gn3-integration.dev.aodn.org.au"/>
+    <substitution match="https?://tilecache.aodn.org.au(:443)?" replaceWith="http://tilecache-gn3-integration.dev.aodn.org.au"/>
     <substitution match="https?://processes.aodn.org.au" replaceWith="https://processes-gn3-integration.dev.aodn.org.au"/>
   </xsl:variable>
 
