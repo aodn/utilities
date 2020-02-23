@@ -4,6 +4,8 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 version="2.0"
                 exclude-result-prefixes="#all">
+  
+  <xsl:output indent="yes"/>
 
   <!-- url substitutions to be performed -->
   <xsl:variable name="urlSubstitutions">
@@ -30,17 +32,28 @@
     </xsl:copy>
   </xsl:template>
 
-  <!-- substitute production service endpoints with systest service endpoints -->
-  <xsl:template match="gco:CharacterString[matches(., $urlSubstitutionSelector)]|@xlink:href[matches(., $urlSubstitutionSelector)]">
-    <xsl:variable name="url" select="."/>
+  <!-- substitute production service endpoints with integration testing endpoints -->
+  <xsl:template match="gco:CharacterString[matches(., $urlSubstitutionSelector)]">
+    <xsl:copy>
+      <xsl:apply-templates mode="substitute" select="text()"/>
+    </xsl:copy>
+  </xsl:template>
 
+  <xsl:template match="@xlink:href[matches(., $urlSubstitutionSelector)]">
+    <xsl:attribute name="xlink:href">
+      <xsl:apply-templates mode="substitute" select="."/>
+    </xsl:attribute>
+  </xsl:template>
+
+  <xsl:template mode="substitute" match="@*|text()">
+    <xsl:variable name="url" select="."/>
+ 
     <xsl:for-each select="$urlSubstitutions/substitution">
-      <xsl:if test="matches(string($url), string(@match))">
-        <copy>
-          <xsl:value-of select="replace($url, string(@match), string(@replaceWith))"/>
-        </copy>
+      <xsl:if test="matches($url, string(@match))">
+        <xsl:value-of select="replace($url, string(@match), string(@replaceWith))"/>
       </xsl:if>
     </xsl:for-each>
   </xsl:template>
 
 </xsl:stylesheet>
+
