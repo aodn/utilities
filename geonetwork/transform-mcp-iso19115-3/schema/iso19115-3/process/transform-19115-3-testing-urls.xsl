@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 version="2.0"
                 exclude-result-prefixes="#all">
@@ -33,7 +34,7 @@
   </xsl:template>
 
   <!-- substitute production service endpoints with integration testing endpoints -->
-  <xsl:template match="gco:CharacterString[matches(., $urlSubstitutionSelector)]">
+  <xsl:template match="cit:linkage/gco:CharacterString[matches(., $urlSubstitutionSelector)]">
     <xsl:copy>
       <xsl:apply-templates mode="substitute" select="text()"/>
     </xsl:copy>
