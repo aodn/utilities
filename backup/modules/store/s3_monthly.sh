@@ -11,7 +11,7 @@
 backup() {
     backup_s3_path=$1; shift
     monthly_backup_s3_path=$1; shift
-    s3cmd_options=$@
+    s4cmd_options=$@
 
     if [[ x"${backup_s3_path}" = "x" ]]; then
         logger_error "No S3 backup path is specified!!"
@@ -32,18 +32,18 @@ backup() {
     logger_info "Monthly backup path: ${this_monthly_backup_s3_path}"
 
     # check whether there is already a monthly backup for this month
-    monthly_backups=$(s3cmd ${s3cmd_options} ls s3://${this_monthly_backup_s3_path} | awk '{print $2}' | sort -r -k 1,2)
+    monthly_backups=$(s4cmd ${s4cmd_options} ls s3://${this_monthly_backup_s3_path} | awk '{print $2}' | sort -r -k 1,2)
     if [[ -n ${monthly_backups} ]]; then
         logger_info "Existing monthly backups found, exiting..."
         return 0
     fi
 
     # determine the latest backup to be copied and retained as the monthly backup
-    latest_backup=$(s3cmd ${s3cmd_options} ls s3://${backup_s3_path} | awk '{print $2}' | sort -r -k 1,2 | head -1)
+    latest_backup=$(s4cmd ${s4cmd_options} ls s3://${backup_s3_path} | awk '{print $2}' | sort -r -k 1,2 | head -1)
     logger_info "Latest backup path to store as monthly: ${latest_backup}"
 
     # execute the copy command to sync the latest backup to the monthly path
-    command_string="s3cmd ${s3cmd_options} cp --recursive ${latest_backup} s3://${this_monthly_backup_s3_path}"
+    command_string="s4cmd ${s4cmd_options} cp --recursive ${latest_backup} s3://${this_monthly_backup_s3_path}"
     command_output=$(eval ${command_string})
     retval=$?
     if [[ $retval -ne 0 ]]; then
