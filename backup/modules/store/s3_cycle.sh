@@ -33,7 +33,7 @@ backup() {
 	fi
 
 	local tmp_bucket_contents=`mktemp`
-	s3cmd "$@" ls s3://$bucket_name/ | tr -s " " | cut -d' ' -f3 | sort -r >& $tmp_bucket_contents
+	s4cmd "$@" ls s3://$bucket_name/ | tr -s " " | cut -d' ' -f3 | sort -r >& $tmp_bucket_contents
 	local -i total_backups=`cat $tmp_bucket_contents | wc -l`
 
 	if [ $total_backups -eq 0 ]; then
@@ -48,7 +48,7 @@ backup() {
 		local backup_to_remove
 		for backup_to_remove in `tail -q -n $backups_to_remove $tmp_bucket_contents`; do
 			logger_info "Removing '$backup_to_remove'"
-			s3cmd "$@" --recursive del $backup_to_remove
+			s4cmd "$@" --recursive del $backup_to_remove
 		done
 	fi
 
