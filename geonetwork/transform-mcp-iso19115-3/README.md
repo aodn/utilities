@@ -18,6 +18,7 @@ Options:
 - -i: Input xml file name
 - -o: Output xml file name
 - -g: Geonetwork URL for the Vocabulary lookup
+- -u: Update resource and metadata linkage urls
 
 ## Usage
 
