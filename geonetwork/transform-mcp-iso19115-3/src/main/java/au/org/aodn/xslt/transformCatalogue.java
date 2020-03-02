@@ -46,7 +46,8 @@ public class transformCatalogue {
                 "If the -d option is specified then the directory will be recursively searched for any file with the " +
                 "name specified by the -i option. The converted file will be created with the name specified by the " +
                 "-o option at the same level in the directory structure as the input file. Provide -g option " +
-                "specifying the Geonetwork URL for the Vocabulary lookup";
+                "specifying the Geonetwork URL for the Vocabulary lookup. If the -u option is selected all resource" +
+                "and metadata linkage URLs will be updated to point at the current stack rather than production.";
 
         HelpFormatter formatter = new HelpFormatter();
 
