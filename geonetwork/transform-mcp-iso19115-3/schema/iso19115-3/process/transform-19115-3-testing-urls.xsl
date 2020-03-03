@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
                 xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
+                xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 version="2.0"
                 exclude-result-prefixes="#all">
@@ -20,6 +21,8 @@
     <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/thesaurus" replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus"/>
     <!-- Instance point of truth links --> 
     <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/metadata.show\?uuid=" replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/"/>
+    <!-- Instance references to metadata -->
+    <substitution match="https?://catalogue-123.aodn.org.au(:443)?/geonetwork/srv/eng?/metadata.show\?uuid=" replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/"/>
     <!-- Instance download links - no disclaimer option - just change to download link for the moment until we work out what we're going to do about that -->
     <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/file.disclaimer\?uuid=(.*)&amp;fname=(.*)&amp;access=private" replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/$2/attachments/$3"/>
   </xsl:variable>
@@ -48,10 +51,18 @@
 
   <xsl:template mode="substitute" match="@*|text()">
     <xsl:variable name="url" select="."/>
- 
     <xsl:for-each select="$urlSubstitutions/substitution">
       <xsl:if test="matches($url, string(@match))">
         <xsl:value-of select="replace($url, string(@match), string(@replaceWith))"/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="mri:abstract/gco:CharacterString">
+    <xsl:variable name="abstractText" select="text()"/>
+    <xsl:for-each select="$urlSubstitutions/substitution">
+      <xsl:if test="matches($abstractText, string(@match))">
+        <xsl:value-of select="replace($abstractText, string(@match), string(@replaceWith))"/>
       </xsl:if>
     </xsl:for-each>
   </xsl:template>
