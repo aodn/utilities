@@ -58,13 +58,15 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match="mri:abstract/gco:CharacterString">
+  <xsl:template match="mri:abstract/gco:CharacterString[matches(., $urlSubstitutionSelector)]">
     <xsl:variable name="abstractText" select="text()"/>
-    <xsl:for-each select="$urlSubstitutions/substitution">
-      <xsl:if test="matches($abstractText, string(@match))">
-        <xsl:value-of select="replace($abstractText, string(@match), string(@replaceWith))"/>
-      </xsl:if>
-    </xsl:for-each>
+    <xsl:copy>
+      <xsl:for-each select="$urlSubstitutions/substitution">
+        <xsl:if test="matches($abstractText, string(@match))">
+          <xsl:value-of select="replace($abstractText, string(@match), string(@replaceWith))"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:copy>
   </xsl:template>
 
 </xsl:stylesheet>
