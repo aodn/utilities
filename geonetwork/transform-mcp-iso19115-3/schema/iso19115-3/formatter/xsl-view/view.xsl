@@ -7,6 +7,7 @@
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
                 xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
                 xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+                xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
                 xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0"
                 xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
                 xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
@@ -25,6 +26,7 @@
                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
                 xmlns:mcp="http://schemas.aodn.org.au/mcp-3.0"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:tr="java:org.fao.geonet.api.records.formatters.SchemaLocalizations"
                 xmlns:gn-fn-render="http://geonetwork-opensource.org/xsl/functions/render"
@@ -608,6 +610,39 @@
   </xsl:template>
 
   <xsl:template mode="render-field"
+                match="mri:additionalDocumentation"
+                priority="500">
+    <dl class="gn-keyword">
+      <dt>
+        <xsl:apply-templates mode="render-value" select="*/cit:title"/>
+      </dt>
+      <dd>
+        <div>
+          <ul>
+            <xsl:variable name="codespace" select="*/cit:identifier/*/mcc:codeSpace/gco:CharacterString"/>
+            <xsl:for-each select="tokenize(*/cit:identifier/*/mcc:code/gco:CharacterString,',')">
+              <li>
+                <xsl:variable name="url" select="
+                     if ($codespace = 'doi') then concat('https://doi.org/',.)
+                     else if ($codespace = 'orcid') then concat('https://orcid.org/',.)
+                     else ."/>
+                <xsl:choose>
+                  <xsl:when test="starts-with($url,'http')">
+                    <a href="{$url}"><xsl:value-of select="$url"/></a>
+                  </xsl:when>
+                  <xsl:otherwise>
+                   <xsl:value-of select="$url"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </li>
+            </xsl:for-each>
+          </ul>
+        </div>
+      </dd>
+    </dl>
+  </xsl:template>
+
+  <xsl:template mode="render-field"
                 match="mrd:distributionFormat[1]"
                 priority="100">
     <dl class="gn-format">
@@ -643,32 +678,43 @@
   <!-- mcp specific stuff -->
 
   <xsl:template mode="render-field"
-                match="mcp:DP_DataParameter"
+                match="mrc:attributeGroup"
                 priority="100">
 
-      <h4 class="view-header"><xsl:value-of select="tr:node-label(tr:create($schema), name(), null)"/></h4>
+      <h4 class="view-header">Data Parameters</h4>
 
       <dl class="gn-format">
         <dt>
         </dt>
         <dd>
-         <xsl:for-each select="descendant::*[mcp:DP_Term]">
-          <p><xsl:value-of select="tr:node-label(tr:create($schema), name(), null)"/>&#160;-&#160;<b><i><xsl:value-of select="descendant::mcp:term/gco:CharacterString"/></i></b></p>
+         <xsl:for-each select="descendant::*[mrc:MD_SampleDimension]">
+          <xsl:variable name="dpname" select="descendant::mrc:name//mcc:code/*"/>
+          <xsl:variable name="vocabUrl" select="descendant::mrc:name//mcc:code/*/@xlink:href"/>
+          <xsl:choose>
+            <xsl:when test="normalize-space($vocabUrl) = ''">
+              <p>Name: &#160;<b><i><xsl:value-of select="$dpname"/></i></b></p>
+            </xsl:when>
+            <xsl:otherwise>
+              <p>Name: &#160;<b><i><a href="{$vocabUrl}"><xsl:value-of select="$dpname"/></a></i></b></p>
+            </xsl:otherwise>
+          </xsl:choose>
 
           <table class="table table-bordered table-striped">
             <tr>
-             <xsl:for-each select="descendant::*[name()!='mcp:term' and (gco:* or *[@codeListValue])]">
-               <th>
-                 <xsl:value-of select="tr:node-label(tr:create($schema), name(), null)"/>
-               </th>
-             </xsl:for-each>
+              <th>Units</th>
+              <th>Platform</th>
+              <th>Instrument</th>
             </tr>
             <tr>
-             <xsl:for-each select="descendant::*[name()!='mcp:term' and (gco:* or *[@codeListValue])]">
-               <td style="padding-left: 2px !important;">
-                 <xsl:value-of select="*/@codeListValue|gco:*"/> 
-               </td>
-             </xsl:for-each>
+              <td style="padding-left: 2px !important;">
+                <xsl:value-of select="descendant::mrc:units/gml:BaseUnit/gml:name"/> 
+              </td>
+              <td style="padding-left: 2px !important;">
+                <xsl:value-of select="descendant::mrc:otherProperty//mac:platform/mac:MI_Platform/mac:identifier//mcc:code/*"/> 
+              </td>
+              <td style="padding-left: 2px !important;">
+                <xsl:value-of select="descendant::mrc:otherProperty//mac:platform/mac:MI_Platform/mac:instrument//mac:identifier//mcc:code/*"/> 
+              </td>
             </tr>      
           </table>
          </xsl:for-each>

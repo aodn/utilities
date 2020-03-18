@@ -21,7 +21,6 @@
                 xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
-                xmlns:mcp="http://schemas.aodn.org.au/mcp-3.0"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:joda="java:org.fao.geonet.domain.ISODate"
@@ -408,6 +407,28 @@
             </xsl:if>
           </xsl:if>
 
+          
+
+          <xsl:if test="name()='gcx:Anchor' and $thesaurusIdentifier!=''">
+          <!-- expecting something like 
+                    <gcx:Anchor 
+                      xlink:href="http://localhost:8080/geonetwork/srv/en/xml.keyword.get?thesaurus=register.theme.urn:marine.csiro.au:marlin:keywords:standardDataType&id=urn:marine.csiro.au:marlin:keywords:standardDataTypes:concept:3510">CMAR Vessel Data: ADCP</gcx:Anchor>
+           -->
+
+             <xsl:variable name="keywordId">
+               <xsl:for-each select="tokenize(@xlink:href,'&amp;')">
+                 <xsl:if test="starts-with(string(.),'id=')">
+                   <xsl:value-of select="substring-after(string(.),'id=')"/>
+                 </xsl:if>
+               </xsl:for-each>
+             </xsl:variable>
+
+             <xsl:if test="normalize-space($keywordId)!=''">
+               <Field name="{$thesaurusIdentifier}" string="{replace($keywordId,'%23','#')}" store="true" index="true"/>
+               <Field name="keywordId" string="{replace($keywordId,'%23','#')}" store="true" index="true"/>
+             </xsl:if>
+          </xsl:if>
+
           <xsl:choose>
             <xsl:when test="contains($thesaurusIdentifier,'sourceregister')">
               <Field name="source" string="{string(.)}" store="true" index="true"/>
@@ -420,6 +441,8 @@
             </xsl:when>
             <xsl:when test="contains($thesaurusIdentifier,'gcmd_keywords')">
               <Field name="gcmd" string="{string(.)}" store="true" index="true"/>
+              <xsl:variable name="gcmdlast" select="tokenize(string(.),'\|')[last()]"/>
+              <Field name="gcmd_reverse" string="{concat($gcmdlast,' (',string(.),')')}" store="true" index="true"/>
             </xsl:when>
             <xsl:when test="contains($thesaurusIdentifier,'awavea-keywords')">
               <Field name="awavea" string="{string(.)}" store="true" index="true"/>
@@ -749,6 +772,10 @@
       <xsl:copy-of select="gn-fn-iso19115-3:index-field('lineage', ., $langId)"/>
     </xsl:for-each>
 
+
+    <xsl:for-each select="$metadata/mdb:contentInfo/mrc:MD_CoverageDescription/mrc:attributeGroup/mrc:MD_AttributeGroup/mrc:attribute/mrc:MD_SampleDimension">
+      <Field  name="dataParam" string="{string(mrc:name/*/mcc:code/*)}" store="true" index="true"/>
+    </xsl:for-each>
 
 
 

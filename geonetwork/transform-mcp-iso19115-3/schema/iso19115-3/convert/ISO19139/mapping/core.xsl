@@ -13,8 +13,8 @@
   xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0" xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:mcpold="http://schemas.aodn.org.au/mcp-2.0"
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all">
-<!--  <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>-->
-<!--  <xsl:import href="../utility/dateTime.xsl"/>-->
+  <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>
+  <xsl:import href="../utility/dateTime.xsl"/>
   <!-- Define if parent identifier should be defined using a uuidref
       attribute or a CI_Citation with a title. -->
   <xsl:param name="isParentIdentifierDefinedWithUUIDAttribute" select="true()" as="xs:boolean"/>
@@ -192,24 +192,12 @@
     <!-- ************************************************************************ -->
     <mdb:metadataScope>
       <mdb:MD_MetadataScope>
-        <xsl:choose>
-          <xsl:when test="gmd:MD_ScopeCode[@codeListValue = 'publication'] |
-                                  gmx:MX_ScopeCode[@codeListValue = 'publication']">
-            <xsl:call-template name="writeCodelistElement">
-              <xsl:with-param name="elementName" select="'mdb:resourceScope'"/>
-              <xsl:with-param name="codeListName" select="'mcc:MD_ScopeCode'"/>
-              <xsl:with-param name="codeListValue" select="'document'"/>
-            </xsl:call-template>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:call-template name="writeCodelistElement">
-              <xsl:with-param name="elementName" select="'mdb:resourceScope'"/>
-              <xsl:with-param name="codeListName" select="'mcc:MD_ScopeCode'"/>
-              <xsl:with-param name="codeListValue" select="gmd:MD_ScopeCode/@codeListValue|
+        <xsl:call-template name="writeCodelistElement">
+          <xsl:with-param name="elementName" select="'mdb:resourceScope'"/>
+          <xsl:with-param name="codeListName" select="'mcc:MD_ScopeCode'"/>
+          <xsl:with-param name="codeListValue" select="gmd:MD_ScopeCode/@codeListValue|
                                   gmx:MX_ScopeCode/@codeListValue"/>
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
+        </xsl:call-template>
         <xsl:if test="../gmd:hierarchyLevelName">
           <mdb:name>
             <gco:CharacterString>
@@ -370,7 +358,6 @@
           <xsl:apply-templates select="gmd:extent[not(child::mcpold:EX_Extent)] | srvold:extent" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:extent[child::mcpold:EX_Extent]" mode="mcpextent"/>
           <!-- map aggregationInfo to additionalDocumentation -->
-          <xsl:message><xsl:value-of select="concat('SSSS ',$mapAggregationInfoToAdditionalDocumentation)"/></xsl:message>
           <xsl:if test="$mapAggregationInfoToAdditionalDocumentation">
             <xsl:apply-templates select="gmd:aggregationInfo" mode="mcpto19115-3"/>
           </xsl:if>
@@ -378,7 +365,9 @@
           <xsl:apply-templates select="gmd:graphicOverview" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:resourceFormat" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:descriptiveKeywords" mode="from19139to19115-3"/>
-          <xsl:apply-templates select="mcpold:dataParameters" mode="from19139to19115-3-aodn"/>
+          <xsl:if test="mcpold:dataParameters">
+            <xsl:apply-templates select="mcpold:dataParameters" mode="fromMCPDataParamsToKeywords"/>
+          </xsl:if>
           <xsl:apply-templates select="gmd:resourceSpecificUsage" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:resourceConstraints[not(mcpold:MD_Commons)]" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:resourceConstraints[mcpold:MD_Commons]" mode="mcpcommons"/>
@@ -699,7 +688,6 @@
   <xsl:include href="mcpcommons.xsl"/>
   <xsl:include href="mcpextent.xsl"/>
   <xsl:include href="mcpaggregationinfo.xsl"/>
-  <xsl:include href="mcpdataparameters_descriptiveKeywords_aodn.xsl"/>
 
   <!--
     Empty High-Priority Templates to prevent

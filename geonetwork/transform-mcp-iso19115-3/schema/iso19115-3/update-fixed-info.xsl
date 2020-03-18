@@ -13,6 +13,7 @@
   xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
   xmlns:dqm="http://standards.iso.org/iso/19157/-2/dqm/1.0"
   xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+  xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
   xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
   xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
   xmlns:mcp="http://schemas.aodn.org.au/mcp-3.0"
@@ -269,7 +270,6 @@
       <xsl:apply-templates select="mdb:referenceSystemInfo"/>
       <xsl:apply-templates select="mdb:metadataExtensionInfo"/>
       <xsl:apply-templates select="mdb:identificationInfo"/>
-      <xsl:apply-templates select="mdb:contentInfo"/>
 
       <!-- Add/Overwrite data parameters if we have an equipment keyword that matches one in our mapping -->
       <!-- if we have an equipment thesaurus with a match keyword then we process -->
@@ -294,31 +294,28 @@
       </xsl:variable>
 
       <!-- Now copy the constructed data parameters into the record -->
-      <xsl:if test="count($equipPresent/dp/*) > 0">
-        <mdb:contentInfo>
-          <mrc:MD_CoverageDescription>
-            <mrc:attributeDescription gco:nilReason="inapplicable" />
-            <mrc:attributeGroup>
-              <mrc:MD_AttributeGroup>
-                <mrc:contentType>
-                  <mrc:MD_CoverageContentTypeCode codeList="concat($codelistloc,'#MD_CoverageContentTypeCode')" codeListValue="physicalMeasurement" />
-                </mrc:contentType>
-                <xsl:for-each select="$equipPresent/dp/*">
-                  <mrc:attribute>
-                    <mrc:MD_SampleDimension>
-                      <mrc:otherProperty>
-                        <gco:Record xsi:type="mcp:DP_DataParameter_PropertyType">
-      	                  <xsl:copy-of select="."/>
-                        </gco:Record>
-                      </mrc:otherProperty>
-                    </mrc:MD_SampleDimension>
-                  </mrc:attribute>
-                </xsl:for-each>
-              </mrc:MD_AttributeGroup>
-            </mrc:attributeGroup>
-          </mrc:MD_CoverageDescription>
-        </mdb:contentInfo>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="count($equipPresent/dp/*) > 0">
+          <mdb:contentInfo>
+            <mrc:MD_CoverageDescription>
+              <mrc:attributeDescription gco:nilReason="inapplicable" />
+              <mrc:attributeGroup>
+                <mrc:MD_AttributeGroup>
+                  <mrc:contentType>
+                    <mrc:MD_CoverageContentTypeCode codeList="{concat($codelistloc,'#MD_CoverageContentTypeCode')}" codeListValue="physicalMeasurement" />
+                  </mrc:contentType>
+                  <xsl:for-each select="$equipPresent/dp/*">
+      	            <xsl:copy-of select="."/>
+                  </xsl:for-each>
+                </mrc:MD_AttributeGroup>
+              </mrc:attributeGroup>
+            </mrc:MD_CoverageDescription>
+          </mdb:contentInfo>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="mdb:contentInfo"/>
+        </xsl:otherwise>
+      </xsl:choose>
 
       <xsl:apply-templates select="mdb:distributionInfo"/>
       <xsl:apply-templates select="mdb:dataQualityInfo"/>
@@ -419,7 +416,75 @@
       <xsl:apply-templates select="mri:resourceMaintenance"/>
       <xsl:apply-templates select="mri:graphicOverview"/>
       <xsl:apply-templates select="mri:resourceFormat"/>
-      <xsl:apply-templates select="mri:descriptiveKeywords"/>
+      <xsl:apply-templates select="mri:descriptiveKeywords[descendant::mri:type/mri:MD_KeywordTypeCode[not(@codeListValue='platform') and not(@codeListValue='dataParameter') and not(@codeListValue='instrument')]]"/>
+      <xsl:variable name="equipPresent">
+       <xsl:for-each select="mri:descriptiveKeywords/mri:MD_Keywords[normalize-space(mri:thesaurusName/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code/gcx:Anchor)=$equipThesaurus]/mri:keyword/gcx:Anchor">
+        <xsl:element name="dp">
+           <xsl:variable name="currentKeyword" select="text()"/>
+           <!-- <xsl:message>Automatically created dp from <xsl:value-of select="$currentKeyword"/></xsl:message> -->
+           <xsl:for-each select="$mapping/map/equipment">
+              <xsl:variable name="tokens" select="tokenize(string(),',')"/>
+              <!-- <xsl:message>Checking <xsl:value-of select="$tokens[2]"/></xsl:message> -->
+              <xsl:if test="$currentKeyword=$tokens[2]">
+                 <!-- <xsl:message>KW MATCHED TOKEN: <xsl:value-of select="$tokens[2]"/></xsl:message> -->
+                 <xsl:call-template name="fillOutDataParameters">
+ 										<xsl:with-param name="tokens" select="$tokens"/> 
+                 </xsl:call-template>
+              </xsl:if>
+           </xsl:for-each>
+        </xsl:element>
+		   </xsl:for-each>
+      </xsl:variable>
+
+      <!-- Now construct data parameter keywords and put them into the record -->
+      <!-- data parameter -->
+      <xsl:if test="count($equipPresent/dp/mrc:attribute//mrc:name) > 0">
+        <mri:descriptiveKeywords>
+          <mri:MD_Keywords>
+            <xsl:for-each-group select="$equipPresent/dp/mrc:attribute//mrc:name//mcc:code/*" group-by="text()">
+              <mri:keyword>
+                <xsl:copy-of select="."/>
+              </mri:keyword>
+            </xsl:for-each-group> 
+          </mri:MD_Keywords> 
+          <mri:type>
+            <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-3.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="dataParameter">dataParameter</mri:MD_KeywordTypeCode>
+          </mri:type>
+        </mri:descriptiveKeywords>
+      </xsl:if>
+
+      <!-- platform -->
+      <xsl:if test="count($equipPresent/dp/mrc:attribute//mrc:otherProperty//mac:platform/mac:MI_Platform/mac:identifier//mcc:code) > 0">
+        <mri:descriptiveKeywords>
+          <mri:MD_Keywords>
+            <xsl:for-each-group select="$equipPresent/dp/mrc:attribute//mrc:otherProperty//mac:platform/mac:MI_Platform/mac:identifier//mcc:code/*" group-by="text()">
+              <mri:keyword>
+                <xsl:copy-of select="."/>
+              </mri:keyword>
+            </xsl:for-each-group> 
+          </mri:MD_Keywords> 
+          <mri:type>
+            <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-3.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="platform">platform</mri:MD_KeywordTypeCode>
+          </mri:type>
+        </mri:descriptiveKeywords>
+      </xsl:if>
+
+      <!-- instrument -->
+      <xsl:if test="count($equipPresent/dp/mrc:attribute//mrc:otherProperty//mac:platform//mac:instrument//mcc:code) > 0">
+        <mri:descriptiveKeywords>
+          <mri:MD_Keywords>
+            <xsl:for-each-group select="$equipPresent/dp/mrc:attribute//mrc:otherProperty//mac:platform//mac:instrument//mcc:code/*" group-by="text()">
+              <mri:keyword>
+                <xsl:copy-of select="."/>
+              </mri:keyword>
+            </xsl:for-each-group> 
+          </mri:MD_Keywords> 
+          <mri:type>
+            <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-3.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="instrument">instrument</mri:MD_KeywordTypeCode>
+          </mri:type>
+        </mri:descriptiveKeywords>
+      </xsl:if>
+
       <xsl:apply-templates select="mri:resourceSpecificUsage"/>
       <xsl:apply-templates select="mri:resourceConstraints"/>
       <xsl:apply-templates select="mri:associatedResource"/>
@@ -434,110 +499,66 @@
   <xsl:template name="fillOutDataParameters">
     <xsl:param name="tokens"/>
 
-      <mcp:DP_DataParameter>
-      	<mcp:parameterName>
-					<mcp:DP_Term>
-						<mcp:term>
-							<gco:CharacterString><xsl:value-of select="$tokens[7]"/></gco:CharacterString>
-						</mcp:term>
-						<mcp:type>
-							<mcp:DP_TypeCode codeList="{concat($codelistloc,'#DP_TypeCode')}" codeListValue="longName">longName</mcp:DP_TypeCode>
-						</mcp:type>
-						<mcp:usedInDataset>
-							<gco:Boolean>false</gco:Boolean>
-						</mcp:usedInDataset>
-            <mcp:vocabularyRelationship>
-              <mcp:DP_VocabularyRelationship>
-                <mcp:relationshipType>
-                  <mcp:DP_RelationshipTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_RelationshipTypeCode" codeListValue="skos:exactmatch">skos:exactmatch</mcp:DP_RelationshipTypeCode>
-                </mcp:relationshipType>
-                <mcp:vocabularyTermURL>
-                  <gco:CharacterString><xsl:value-of select="$tokens[8]"/></gco:CharacterString>
-                </mcp:vocabularyTermURL>
-                <mcp:vocabularyListURL gco:nilReason="inapplicable"/>
-              </mcp:DP_VocabularyRelationship>
-            </mcp:vocabularyRelationship>
-					</mcp:DP_Term>
-			  </mcp:parameterName>
-				<mcp:parameterUnits>
-					<mcp:DP_Term>
-						<mcp:term>
-							<gco:CharacterString><xsl:value-of select="$tokens[9]"/></gco:CharacterString>
-						</mcp:term>
-						<mcp:type>
-							<mcp:DP_TypeCode codeList="{concat($codelistloc,'#DP_TypeCode')}" codeListValue="longName">longName</mcp:DP_TypeCode>
-						</mcp:type>
-						<mcp:usedInDataset>
-							<gco:Boolean>false</gco:Boolean>
-						</mcp:usedInDataset>
-            <mcp:vocabularyRelationship>
-              <mcp:DP_VocabularyRelationship>
-                <mcp:relationshipType>
-                  <mcp:DP_RelationshipTypeCode codeList="{concat($codelistloc,'#DP_RelationshipTypeCode')}" codeListValue="skos:exactmatch">skos:exactmatch</mcp:DP_RelationshipTypeCode>
-                </mcp:relationshipType>
-                <mcp:vocabularyTermURL>
-                  <gco:CharacterString><xsl:value-of select="$tokens[10]"/></gco:CharacterString>
-                </mcp:vocabularyTermURL>
-                <mcp:vocabularyListURL gco:nilReason="inapplicable"/>
-              </mcp:DP_VocabularyRelationship>
-            </mcp:vocabularyRelationship>
-					</mcp:DP_Term>
-				</mcp:parameterUnits>
-				<mcp:parameterMinimumValue gco:nilReason="missing">
-					<gco:CharacterString/>
-				</mcp:parameterMinimumValue>
-				<mcp:parameterMaximumValue gco:nilReason="missing">
-					<gco:CharacterString/>
-				</mcp:parameterMaximumValue>
-        <mcp:parameterDeterminationInstrument>
-					<mcp:DP_Term>
-						<mcp:term>
-							<gco:CharacterString><xsl:value-of select="$tokens[5]"/></gco:CharacterString>
-						</mcp:term>
-						<mcp:type>
-							<mcp:DP_TypeCode codeList="{concat($codelistloc,'#DP_TypeCode')}" codeListValue="longName">longName</mcp:DP_TypeCode>
-						</mcp:type>
-						<mcp:usedInDataset>
-							<gco:Boolean>false</gco:Boolean>
-						</mcp:usedInDataset>
-            <mcp:vocabularyRelationship>
-              <mcp:DP_VocabularyRelationship>
-                <mcp:relationshipType>
-                  <mcp:DP_RelationshipTypeCode codeList="{concat($codelistloc,'#DP_RelationshipTypeCode')}" codeListValue="skos:exactmatch">skos:exactmatch</mcp:DP_RelationshipTypeCode>
-                </mcp:relationshipType>
-                <mcp:vocabularyTermURL>
-                  <gco:CharacterString><xsl:value-of select="$tokens[6]"/></gco:CharacterString>
-                </mcp:vocabularyTermURL>
-                <mcp:vocabularyListURL gco:nilReason="inapplicable"/>
-              </mcp:DP_VocabularyRelationship>
-            </mcp:vocabularyRelationship>
-					</mcp:DP_Term>
-				</mcp:parameterDeterminationInstrument>
-        <mcp:platform>
-					<mcp:DP_Term>
-						<mcp:term>
-							<gco:CharacterString><xsl:value-of select="$tokens[3]"/></gco:CharacterString>
-						</mcp:term>
-						<mcp:type>
-							<mcp:DP_TypeCode codeList="{concat($codelistloc,'#DP_TypeCode')}" codeListValue="longName">longName</mcp:DP_TypeCode>
-						</mcp:type>
-						<mcp:usedInDataset>
-							<gco:Boolean>false</gco:Boolean>
-						</mcp:usedInDataset>
-            <mcp:vocabularyRelationship>
-              <mcp:DP_VocabularyRelationship>
-                <mcp:relationshipType>
-                  <mcp:DP_RelationshipTypeCode codeList="{concat($codelistloc,'#DP_RelationshipTypeCode')}" codeListValue="skos:exactmatch">skos:exactmatch</mcp:DP_RelationshipTypeCode>
-                </mcp:relationshipType>
-                <mcp:vocabularyTermURL>
-                  <gco:CharacterString><xsl:value-of select="$tokens[4]"/></gco:CharacterString>
-                </mcp:vocabularyTermURL>
-                <mcp:vocabularyListURL gco:nilReason="inapplicable"/>
-              </mcp:DP_VocabularyRelationship>
-            </mcp:vocabularyRelationship>
-					</mcp:DP_Term>
-				</mcp:platform>
-      </mcp:DP_DataParameter>
+      <mrc:attribute>
+        <mrc:MD_SampleDimension>>
+					<mrc:name>
+						<mcc:MD_Identifier>
+              <mcc:code>
+                <gcx:Anchor xlink:href="{$tokens[8]}"><xsl:value-of select="$tokens[7]"/></gcx:Anchor>
+              </mcc:code>
+            </mcc:MD_Identifier>
+          </mrc:name>
+					<mrc:units>
+            <gml:BaseUnit gml:id="{generate-id()}">
+              <gml:identifier codeSpace="{$tokens[10]}"><xsl:value-of select="$tokens[10]"/></gml:identifier>
+              <gml:name><xsl:value-of select="$tokens[9]"/></gml:name>
+              <gml:unitsSystem />
+            </gml:BaseUnit>
+          </mrc:units>
+				  <mrc:maxValue gco:nilReason="missing"/>
+				  <mrc:minValue gco:nilReason="missing"/>
+          <mrc:otherProperty>
+            <gco:Record xsi:type="mac:MI_AcquisitionInformation_PropertyType">
+              <mac:MI_AcquisitionInformation>
+                <mac:scope>
+                  <mcc:MD_Scope>
+                    <mcc:level>
+                      <mcc:MD_ScopeCode codeList="{concat($codelistloc,'#MD_ScopeCode')}" codeListValue="collectionHardware" />
+                    </mcc:level>
+                  </mcc:MD_Scope>
+                </mac:scope>
+                <mac:platform>
+                  <mac:MI_Platform>
+                    <mac:identifier>
+                      <mcc:MD_Identifier>
+                        <mcc:code>
+                          <gcx:Anchor xlink:href="{$tokens[4]}"><xsl:value-of select="$tokens[3]"/></gcx:Anchor>
+                        </mcc:code>
+                      </mcc:MD_Identifier>
+                    </mac:identifier>
+                    <mac:description>
+                      <gco:CharacterString>Platform used to capture data</gco:CharacterString>
+                    </mac:description>
+                    <mac:instrument>
+                      <mac:MI_Instrument>
+                        <mac:identifier>
+                          <mcc:MD_Identifier>
+                            <mcc:code>
+                              <gcx:Anchor xlink:href="{$tokens[6]}"><xsl:value-of select="$tokens[5]"/></gcx:Anchor>
+                            </mcc:code>
+                          </mcc:MD_Identifier>
+                        </mac:identifier>
+                        <mac:type gco:nilReason="inapplicable" />
+                      </mac:MI_Instrument>
+                    </mac:instrument>
+                  </mac:MI_Platform>
+                </mac:platform>
+              </mac:MI_AcquisitionInformation>
+            </gco:Record>
+          </mrc:otherProperty>
+        </mrc:MD_SampleDimension>
+      </mrc:attribute>
+
   </xsl:template>
 	
 	<!-- ================================================================= -->

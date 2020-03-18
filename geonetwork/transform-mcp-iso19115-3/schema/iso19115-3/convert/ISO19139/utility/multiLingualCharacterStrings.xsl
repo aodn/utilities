@@ -25,7 +25,7 @@
         <xsl:param name="elementName"/>
         <xsl:param name="nodeWithStringToWrite"/>
         <xsl:variable name="isMultilingual" select="count($nodeWithStringToWrite/gmd:PT_FreeText) > 0"/>
-        <!--
+        <!-- 
             The hasCharacterString variable was generalized to include situations where substitutions are
             being used gor gco:CharacterString, e.g. gmx:FileName.
         -->
@@ -39,7 +39,7 @@
                     <xsl:attribute name="xsi:type" select="'lan:PT_FreeText_PropertyType'"/>
                 </xsl:if>
                 <xsl:if test="$hasChildNode">
-                    <!--
+                    <!-- 
                             This could be any substitution for gco:CharacterString.
                             Get correct namespace and preserve name for substitutions
                         -->
@@ -63,7 +63,7 @@
         <xsl:param name="codeListName"/>
         <xsl:param name="codeListValue"/>
         <!-- The correct codeList Location goes here -->
-        <xsl:variable name="codeListLocation" select="'codeListLocation'"/>
+        <xsl:variable name="codeListLocation" select="'http://schemas.aodn.org.au/mcp-3.0/schema/resources/Codelist/gmxCodelists.xml'"/>
         <xsl:if test="string-length($codeListValue) > 0">
             <xsl:element name="{$elementName}">
                 <xsl:element name="{$codeListName}">

@@ -752,6 +752,12 @@
                         <mcc:code>
                           <gco:CharacterString></gco:CharacterString>
                         </mcc:code>
+                        <mcc:codeSpace>
+                          <gco:CharacterString>doi</gco:CharacterString>
+                        </mcc:codeSpace>
+                        <!-- supporting doi, orcids at present -->
+                        <!-- doi: prepend https://doi.org, 
+                             orcid: prepend https://orcid.org -->
                       </mcc:MD_Identifier>
                     </cit:identifier>
                   </cit:CI_Citation>
@@ -836,6 +842,12 @@
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceAndUpdateFrequency"/>
         </section>
 
+        <section name="publications" displayIfRecord="
+(count(mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/*) > 0)
+">
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation"/>
+        </section>
+
         <section name="spatial">
           <field xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo" or="referenceSystemInfo" in="/mdb:MD_Metadata"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox"/>
@@ -857,23 +869,17 @@
         </section>
 
         <section name="resourceLineage" displayIfRecord="
-(count(mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/*) > 0)
+(count(mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:statement[not(@gco:nilReason)]) > 0) or
+(count(mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:processStep/mrl:LI_ProcessStep/mrl:description[not(@gco:nilReason)]) > 0)
 ">
           <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:processStep/mrl:LI_ProcessStep/mrl:description"/>
           <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"/>
         </section>
 
-        <section xpath="/mdb:MD_Metadata/mdb:contentInfo/mrc:MD_CoverageDescription/mrc:attributeGroup//mcp:DP_DataParameter" displayIfRecord="
+        <section xpath="/mdb:MD_Metadata/mdb:contentInfo/mrc:MD_CoverageDescription/mrc:attributeGroup" displayIfRecord="
 (count(mdb:MD_Metadata/mdb:contentInfo/mrc:MD_CoverageDescription/mrc:attributeGroup/mrc:MD_AttributeGroup/mrc:attribute/*) > 0)
 ">
         </section>
-<!--
-        <section name="dataParameters" displayIfRecord="
-(count(mdb:MD_Metadata/mdb:contentInfo/mrc:MD_CoverageDescription/mrc:attributeGroup/mrc:MD_AttributeGroup/mrc:attribute/*) > 0)
-">
-          <field xpath="/mdb:MD_Metadata/mdb:contentInfo/mrc:MD_CoverageDescription/mrc:attributeGroup//mcp:DP_DataParameter"/>
-        </section>
--->
 
         <section name="aboutTheMetadataRecord">
           <field xpath="/mdb:MD_Metadata/mdb:metadataIdentifier"/>

@@ -1201,8 +1201,7 @@
   </element>
   <element name="mri:additionalDocumentation" id="91.0">
     <label>Publication</label>
-    <description iso="true">Publications that describe usage of data
-    </description>
+    <description>Publications that describe usage of, or relate to, the resource/data</description>
     <_condition>optional</_condition>
   </element>
   <element name="mri:identifiedIssues" id="92.0">
@@ -2575,7 +2574,7 @@
     </helper>
   </element>
   <element name="mrd:distributionFormat" id="271.0">
-    <label>Distribution format</label>
+    <label>Distribution Format</label>
     <description>Provides a description of the format of the data to be distributed.</description>
   </element>
   <element name="mdb:distributionInfo" id="17.0">
@@ -3238,7 +3237,7 @@
   <element name="mri:nameOfMeasure" id="100.0">
     <label>Name of measure</label>
     <description>Name of the test applied to the data</description>
-    <!-- ISO19138 Data quality basic measures Annex C - under revision ISO 
+    <!-- ISO19138 Data quality basic measures Annex C - under revision ISO
       19157 http://www.iso.org/iso/fr/catalogue_detail.htm?csnumber=32575 -->
     <helper rel="mri:measureDescription">
       <option value="">-- Completeness --</option>
@@ -4650,11 +4649,11 @@
     <description/>
   </element>
   <element name="gml:timePosition" id="71000.0" context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition">
-    <label>Start Time</label>
+    <label>Start Date</label>
     <description>Start of dataset temporal extent</description>
   </element>
   <element name="gml:timePosition" id="71001.0" context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition">
-    <label>End Time</label>
+    <label>End Date</label>
     <description>End of dataset temporal extent</description>
   </element>
   <element name="gml:TimePeriod">
@@ -4752,10 +4751,10 @@
       <option value="OGC:WCS">OGC Web Coverage Service (OGC:WCS)</option>
       <option value="W3C:HTML:DOWNLOAD">Download (W3C:HTML:DOWNLOAD)</option>
       <option value="W3C:HTML:LINK">Information (W3C:HTML:LINK)</option>
-      <!--INSPIRE Service type defined in MD IR / 1.3.1 Spatial data service 
-        type <option value="discovery">Discovery Service (discovery)</option> <option 
-        value="view">View Service (view)</option> <option value="download">Download 
-        Service (download)</option> <option value="transformation">Transformation 
+      <!--INSPIRE Service type defined in MD IR / 1.3.1 Spatial data service
+        type <option value="discovery">Discovery Service (discovery)</option> <option
+        value="view">View Service (view)</option> <option value="download">Download
+        Service (download)</option> <option value="transformation">Transformation
         Service (transformation)</option> <option value="other">Other Services (other)</option> -->
     </helper>
   </element>
@@ -5525,8 +5524,12 @@
   </element>
   <element name="cit:title" id="66285.0"
            context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:title">
-	  <label>Title</label>
-		<description>Title of the publication.</description>
+	  <label>Reference</label>
+		<description>Publication Reference</description>
+		<help>
+			<![CDATA[<p>Please enter the full publcation reference eg.</p>
+               <p>Peel, D.,Patterson, T., Smith., J., Double, M., and  How, J. (In prep). A Method for Satellite Tag Data Interpolation.</p>]]>
+		</help>
   </element>
   <element name="cit:date" id="66286.0"
            context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date">
@@ -5560,8 +5563,23 @@
   </element>
   <element name="mcc:code" id="66292.0"
            context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code">
-	  <label>Author ID (eg. ORCID)</label>
-		<description>Author Identifier eg. ORCID.</description>
+	  <label>Digital Identifier</label>
+		<description>Digital Identifier relating to author or publication</description>
+		<help>
+			<![CDATA[<p>Author identifiers from the ORCID organisation can be provided - see <a href="https://orcid.org/about">https://orcid.org/about</a>. ORCIDs should be entered as an identifier eg. 0000-0002-1825-0097. Multiple ORCIDs should be entered comma separated. There is no need to enter the orcid.org URL</p>
+               <p>Digital Object Identifier for the publication can be provided - see <a href="https://www.doi.org">https://www.doi.org</a>. DOI should be entered as an identifier eg. doi:10.2991/jnmp.2006.13.4.1. There is no need to enter the doi.org URL</p>]]>
+		</help>
+    <condition>optional</condition>
+  </element>
+  <element name="mcc:codeSpace" id="66400.0"
+           context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:additionalDocumentation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:codeSpace">
+	  <label>Type of Digital Identifier</label>
+		<description>Type of Digital Identifier. ORCIDs and DOIs are supported.</description>
+		<helper>
+			<option value="doi">doi</option>
+			<option value="orcid">orcid</option>
+		</helper>
+    <condition>optional</condition>
   </element>
   <element name="dq_attributeaccuracy_explanation" id="66293.0">
     <label></label>

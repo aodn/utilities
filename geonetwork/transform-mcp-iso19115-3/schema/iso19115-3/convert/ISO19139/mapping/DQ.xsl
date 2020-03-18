@@ -13,7 +13,7 @@
   xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0" xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all">
 
-<!--  <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>-->
+  <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>
 
   <xsl:template match="gmd:dataQualityInfo" mode="from19139to19115-3">
     <xsl:if test="gmd:DQ_DataQuality/gmd:report">
