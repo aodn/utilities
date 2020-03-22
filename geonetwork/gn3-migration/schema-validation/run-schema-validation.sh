@@ -24,7 +24,9 @@ list_schema_validation_error() {
 
   local error_file=$1; shift
 
-	cat $error_file | cut -f2- -d" " | sort | uniq -c | tr -s " " | cut -f3-4 -d" " |  tr -d ":" | uniq > list-$error_file
+	cat $error_file | cut -f2- -d" " | sort | uniq -c > summary-$error_file
+
+	cat summary-$error_file | tr -s " " | cut -f3-4 -d" " |  tr -d ":" | uniq > list-$error_file
 
 	sed -e "/validates/d" -e "/fails to/d" -i.original list-$error_file
 
@@ -47,7 +49,7 @@ process_schema_validation() {
 		echo $errorname >> errors-detail-$error_file
 		cat tmp.txt >> errors-detail-$error_file
 		echo $errorname >> errors-uuid-$error_file
-		cat tmp.txt | cut -f3 -d"/" | sort | uniq -c >> errors-uuid-$error_file
+		cat tmp.txt | cut -f4 -d"/" | sort | uniq -c >> errors-uuid-$error_file
 	done<list-$error_file
 
 	[ -e tmp.txt  ] && rm tmp.txt
@@ -64,9 +66,11 @@ fix_schema_validation() {
 	local record_path=$1; shift
   local error_file=$1; shift
 
+  [ -e diff_detail-$error_file  ] && rm diff_detail-$error_file
+
 #  list_schema_validation_error $error_file
 #	error_list=$(<list-$error_file)
-	error_list=("element type" "element levelDescription" "element function" "element duration" "element dateType" "element codeSpace" "element beginTime" "element alternativeTitle" "element URL" "element TimePeriod" "element Real" "element MD_Commons" "element Polygon"  "element EX_VerticalExtent"  "element EX_Extent" "element Distance" "element Decimal" "element DateTime" "element Date" "element DS_Initiative"  "element DS_DataSet" "element DQ_Scope" "element CharacterString" "element Boolean" )
+	error_list=("element CI_Responsibility" "element CI_ResponsibleParty" "element type" "element levelDescription" "element function" "element duration" "element dateType" "element codeSpace" "element beginTime" "element alternativeTitle" "element URL" "element TimePeriod" "element Real" "element MD_Commons" "element Polygon"  "element EX_VerticalExtent"  "element EX_Extent" "element Distance" "element Decimal" "element DateTime" "element Date" "element DS_Initiative"  "element DS_DataSet" "element DQ_Scope" "element CharacterString" "element Boolean" )
 
 	for error_type in "${error_list[@]}";
   do
@@ -74,18 +78,24 @@ fix_schema_validation() {
   done
 
 	for uuid in  `ls -1 $record_path`
-	do 
+	do
+
+	    if [ ! -f "$record_path/$uuid/metadata/metadata.xml.bak" ]; then
+        cp $record_path/$uuid/metadata/metadata.xml $record_path/$uuid/metadata/metadata.xml.bak
+      fi
 
 	    schema=`xmllint --xpath '//schema/text()' $record_path/$uuid/info.xml`
-	  	error=$( { XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml' xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml; } 2>&1 )
+	  	error=$( { XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml' xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml.bak; } 2>&1 )
       for error_type in "${error_list[@]}";
       do
         if [[ $error == *"$error_type"*  ]]
         then
-          xsltproc -o $record_path/$uuid/metadata/metadata.xml fix-mcp-schema-validation.xsl $record_path/$uuid/metadata/metadata.xml
+
+          xsltproc -o $record_path/$uuid/metadata/metadata.xml fix-mcp-schema-validation-test.xsl $record_path/$uuid/metadata/metadata.xml.bak
+
+          diff -wbB $record_path/$uuid/metadata/metadata.xml.bak $record_path/$uuid/metadata/metadata.xml 2>&1 >> diff_detail-$error_file # diff/diff-$error_type-$uuid-metadata-$schema.txt
 
           tmp_error=$( { XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml' xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml; } 2>&1 )
-
           "$tmp_error" =~ 'validates'$
           if [[ $? -ne 0 ]]; then
             echo "\n\n$error_type : ${uuid}"
@@ -135,6 +145,7 @@ main() {
     [ x"$error_file" = x ] && usage
 
     check_schema_validation $schema_plugins_path $record_path $error_file
+    process_schema_validation $error_file
     fix_schema_validation $schema_plugins_path $record_path $error_file
 	  check_schema_validation $schema_plugins_path $record_path "after-fix-"$error_file
     sed -i.all "/validates/d" "after-fix-"$error_file
