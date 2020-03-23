@@ -16,7 +16,7 @@
   </xsl:template>
 
   <!-- Element <gco:Boolean/> with empty value is removed -->
-  <xsl:template match="mcp:DP_Term/mcp:usedInDataset[./gco:Boolean/*[not(*) and not(normalize-space())]]" xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0">
+  <xsl:template match="mcp:DP_Term/mcp:usedInDataset[./gco:Boolean[not(*) and not(normalize-space())]]" xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0">
     <mcp:usedInDataset />
   </xsl:template>
 
@@ -41,21 +41,11 @@
   <xsl:template match="gmd:series[gmd:DS_Initiative]"/>
   <xsl:template match="gmd:describes[gmd:DS_DataSet]"/>
 
-  <!-- *Removed top level gmd:series  when  missing child `<gmd:seriesMetadata/>` element -->
-<!--  <xsl:template match="gmd:DS_Initiative">-->
-<!--    <xsl:copy>-->
-<!--      <xsl:apply-templates select="@* | node()" />-->
-<!--      <xsl:if test="not(./gmd:seriesMetadata)">-->
-<!--        <gmd:seriesMetadata />-->
-<!--      </xsl:if>-->
-<!--    </xsl:copy>-->
-<!--  </xsl:template>-->
-
   <!-- Element `<gco:Date/>` with empty value is removed and added nilReason-->
   <xsl:template match="gmd:CI_Date/gmd:date">
     <xsl:copy>
       <xsl:choose>
-        <xsl:when test="not(normalize-space())">
+        <xsl:when test="not(@gco:nilReason != '') and not(normalize-space())">
           <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
@@ -93,13 +83,6 @@
       <xsl:value-of select="number('147.5308')" />
     </gco:Decimal>
   </xsl:template>
-
-  <!--  <xsl:template match="gmd:spatialResolution/gmd:MD_Resolution/gmd:distance/gco:Distance[not(number(./text()))]">-->
-<!--    <gco:Distance>-->
-<!--      <xsl:apply-templates select="@*"/>-->
-<!--      <xsl:value-of select="number(substring(./text(), 1, 1))" />-->
-<!--    </gco:Distance>-->
-<!--  </xsl:template>-->
 
   <!--  7 element Distance: Schemas validity error : Element '{http://www.isotc211.org/2005/gco}Distance': '1.5 Km range resolution determined by radar bandwidth' is not a valid value of the atomic type 'xs:double'.-->
   <xsl:template match="gmd:spatialResolution/gmd:MD_Resolution/gmd:distance/gco:Distance[./text()='1.5 Km range resolution determined by radar bandwidth']">
@@ -234,7 +217,7 @@
   </xsl:template>
 
   <!-- Added required child element `<gml:end/>` -->
-  <xsl:template match="gmd:extent/gml:TimePeriod" xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0">
+  <xsl:template match="gmd:extent/gml:TimePeriod">
     <xsl:copy>
       <xsl:choose>
         <xsl:when test="(./gml:beginPosition) and (./gml:end) and not(./gml:endPosition)">
@@ -252,9 +235,12 @@
             <xsl:when test="(./gml:beginPosition) and not(./gml:endPosition)">
               <gml:endPosition/>
             </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select="@*|node()"/>
-            </xsl:otherwise>
+<!--            <xsl:otherwise>-->
+<!--              <gml:TimePeriod>-->
+<!--                <xsl:apply-templates select="@* | node()" />-->
+<!--             </gml:TimePeriod>-->
+<!--&lt;!&ndash;              <xsl:apply-templates select="@*|node()"/>&ndash;&gt;-->
+<!--            </xsl:otherwise>-->
           </xsl:choose>
         </xsl:otherwise>
       </xsl:choose>
@@ -286,39 +272,43 @@
 
 
   <!--  Element `<mcp:beginTime>` replaced with `<gml:beginPosition>` and added `<gml:endPosition />` if missing-->
-  <xsl:template match="gmd:temporalElement/mcp:EX_TemporalExtent" xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0">
-    <xsl:choose>
-      <xsl:when test="(./mcp:beginTime) and not(./mcp:endTime)">
-        <gmd:EX_TemporalExtent>
+  <xsl:template match="gmd:temporalElement/*[local-name()='EX_TemporalExtent']">
+    <xsl:copy>
+      <xsl:choose>
+        <xsl:when test="(./*[local-name()='beginTime']) and not(./*[local-name()='endTime'])">
+          <xsl:apply-templates select="@*" />
           <gmd:extent>
-            <gml:TimePeriod gml:id="{generate-id(.)}">
-              <gml:beginPosition>
-                  <xsl:apply-templates select="./mcp:beginTime/gco:DateTime/text()"/>
-              </gml:beginPosition>
-              <gml:endPosition/>
-            </gml:TimePeriod>
-          </gmd:extent>
-        </gmd:EX_TemporalExtent>">
-      </xsl:when>
-      <xsl:otherwise>
-         <gmd:EX_TemporalExtent>
+              <gml:TimePeriod gml:id="{generate-id(.)}">
+                <gml:beginPosition>
+                    <xsl:apply-templates select="./*[local-name()='beginTime']/gco:DateTime/text()"/>
+                </gml:beginPosition>
+                <gml:endPosition/>
+              </gml:TimePeriod>
+            </gmd:extent>
+        </xsl:when>
+        <xsl:otherwise>
           <xsl:apply-templates select="@* | node()" />
-         </gmd:EX_TemporalExtent>
       </xsl:otherwise>
-    </xsl:choose>
+      </xsl:choose>
+    </xsl:copy>
   </xsl:template>
 
    <!--  4402cb50-e20a-44ee-93e6-4728259250d2  -->
   <!--   Missing `<gmd:code>` element added  -->
   <xsl:template match="gmd:RS_Identifier">
     <xsl:copy>
-      <xsl:if test="not(./gmd:code) and ((./gmd:codeSpace/gco:CharacterString='WGS84') or (./gmd:codeSpace/gco:CharacterString='GDA94'))">
-        <gmd:code>
-          <gco:CharacterString>
-            <xsl:apply-templates select="./gmd:codeSpace/gco:CharacterString/text()" />
-          </gco:CharacterString>
-        </gmd:code>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="not(./gmd:code) and ((./gmd:codeSpace/gco:CharacterString='WGS84') or (./gmd:codeSpace/gco:CharacterString='GDA94'))">
+          <gmd:code>
+            <gco:CharacterString>
+              <xsl:apply-templates select="./gmd:codeSpace/gco:CharacterString/text()" />
+            </gco:CharacterString>
+          </gmd:code>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="@* | node()" />
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:copy>
   </xsl:template>
 
@@ -350,5 +340,20 @@
        <xsl:apply-templates select="@* | node()" />
     </xsl:copy>
   </xsl:template>
+
+  <!--  064bff02-7ba3-46e0-b873-afdf387a1205  -->
+  <!-- Removed empty `<gmd:contact/gmd:CI_ResponsibleParty>` element   -->
+  <xsl:template match="gmd:contact[./gmd:CI_ResponsibleParty[not(*) and not(normalize-space())]]" />
+
+  <!--  064bff02-7ba3-46e0-b873-afdf387a1205  -->
+  <!-- Removed `<gmd:descriptiveKeywords` if `<gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword>` element doesn't exists -->
+  <xsl:template match="gmd:descriptiveKeywords[./gmd:MD_Keywords[not(gmd:keyword)]]" />
+
+   <!--  064bff02-7ba3-46e0-b873-afdf387a1205  -->
+  <!-- Removed `<mcp:resourceContactInfo` if `<mcp:resourceContactInfo/mcp:CI_Responsibility/mcp:party>` element doesn't exists -->
+  <xsl:template match="mcp:metadataContactInfo[./mcp:CI_Responsibility[not(mcp:party)]]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>
+  <xsl:template match="mcp:resourceContactInfo[./mcp:CI_Responsibility[not(mcp:party)]]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>
+  <xsl:template match="mcp:resourceContactInfo[./mcp:CI_Responsibility/mcp:party/error]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>
+
 
 </xsl:stylesheet>

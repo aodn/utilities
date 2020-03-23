@@ -68,9 +68,9 @@ fix_schema_validation() {
 
   [ -e diff_detail-$error_file  ] && rm diff_detail-$error_file
 
-#  list_schema_validation_error $error_file
-#	error_list=$(<list-$error_file)
-	error_list=("element error" "element CI_Responsibility" "element CI_ResponsibleParty" "element type" "element levelDescription" "element function" "element duration" "element dateType" "element codeSpace" "element beginTime" "element alternativeTitle" "element URL" "element TimePeriod" "element Real" "element MD_Commons" "element Polygon"  "element EX_VerticalExtent"  "element EX_Extent" "element Distance" "element Decimal" "element DateTime" "element Date" "element DS_Initiative"  "element DS_DataSet" "element DQ_Scope" "element CharacterString" "element Boolean" )
+  list_schema_validation_error $error_file
+	IFS=$'\n' read -d '' -r -a error_list < list-$error_file
+#	error_list=("element error" "element CI_Responsibility" "element CI_ResponsibleParty" "element type" "element levelDescription" "element function" "element duration" "element dateType" "element codeSpace" "element beginTime" "element alternativeTitle" "element URL" "element TimePeriod" "element Real" "element MD_Commons" "element Polygon"  "element EX_VerticalExtent"  "element EX_Extent" "element Distance" "element Decimal" "element DateTime" "element Date" "element DS_Initiative"  "element DS_DataSet" "element DQ_Scope" "element CharacterString" "element Boolean" )
 
 	for error_type in "${error_list[@]}";
   do
@@ -83,7 +83,7 @@ fix_schema_validation() {
 	    if [ ! -f "$record_path/$uuid/metadata/metadata.xml.bak" ]; then
         cp $record_path/$uuid/metadata/metadata.xml $record_path/$uuid/metadata/metadata.xml.bak
       fi
-
+      error_types=""
 	    schema=`xmllint --xpath '//schema/text()' $record_path/$uuid/info.xml`
 	  	error=$( { XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml' xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml.bak; } 2>&1 )
       for error_type in "${error_list[@]}";
@@ -93,11 +93,7 @@ fix_schema_validation() {
 
           xsltproc -o $record_path/$uuid/metadata/metadata.xml fix-mcp-schema-validation.xsl $record_path/$uuid/metadata/metadata.xml.bak
 
-          printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' = >> diff_detail-$error_file
-          echo "diff-$error_type-$uuid-metadata-$schema" >> diff_detail-$error_file
-          printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' - >> diff_detail-$error_file
-          diff -wbB $record_path/$uuid/metadata/metadata.xml.bak $record_path/$uuid/metadata/metadata.xml 2>&1 >> diff_detail-$error_file # diff/diff-$error_type-$uuid-metadata-$schema.txt
-          printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' = >> diff_detail-$error_file
+          error_types="${error_types} $error_type;"
 
           tmp_error=$( { XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml' xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml; } 2>&1 )
           "$tmp_error" =~ 'validates'$
@@ -108,6 +104,13 @@ fix_schema_validation() {
           fi
         fi
       done
+      if [[ ! -z $error_types ]]; then
+        printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' = >> diff-result-$error_file
+        echo "DIFF RESULT--[UUID: $uuid]--{SCHEMA: $schema}--(ERRORS:$error_types)" >> diff-result-$error_file
+        printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' - >> diff-result-$error_file
+        diff -wbB $record_path/$uuid/metadata/metadata.xml.bak $record_path/$uuid/metadata/metadata.xml 2>&1 >> diff-result-$error_file
+        printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' = >> diff-result-$error_file
+      fi
 	done
 }
 
@@ -149,7 +152,6 @@ main() {
     [ x"$error_file" = x ] && usage
 
     check_schema_validation $schema_plugins_path $record_path $error_file
-    process_schema_validation $error_file
     fix_schema_validation $schema_plugins_path $record_path $error_file
 	  check_schema_validation $schema_plugins_path $record_path "after-fix-"$error_file
     sed -i.all "/validates/d" "after-fix-"$error_file
