@@ -104,16 +104,16 @@
                       </xsl:choose>
                     </mcc:MD_Identifier>
                   </mrc:name>
-                  <mrc:maxValue>
-                    <gco:Real>
-                      <xsl:value-of select="./mcpold:parameterMaximumValue"/>
-                    </gco:Real>
-                  </mrc:maxValue>
-                  <mrc:minValue>
-                    <gco:Real>
-                      <xsl:value-of select="./mcpold:parameterMinimumValue"/>
-                    </gco:Real>
-                  </mrc:minValue>
+                  <xsl:if test="string(number(mcpold:parameterMaximumValue/*)) != 'NaN'">
+                    <mrc:maxValue>
+                      <gco:Real><xsl:value-of select="mcpold:parameterMaximumValue/*"/></gco:Real>
+                    </mrc:maxValue>
+                  </xsl:if>
+                  <xsl:if test="string(number(mcpold:parameterMinimumValue/*)) != 'NaN'">
+                    <mrc:minValue>
+                      <gco:Real><xsl:value-of select="mcpold:parameterMinimumValue/*"/></gco:Real>
+                    </mrc:minValue>
+                  </xsl:if>
                   <mrc:units>
                     <gml:BaseUnit gml:id="{generate-id()}">
                       <gml:descriptionReference />
@@ -124,7 +124,7 @@
                           </gml:identifier>
                         </xsl:when>
                         <xsl:otherwise>
-                          <gml:identifier gco:nilReason="missing"/>
+                          <gml:identifier codeSpace="unknown"/>
                         </xsl:otherwise>
                       </xsl:choose>
                       <gml:name>
@@ -143,56 +143,61 @@
     </mdb:contentInfo>
     <xsl:if test="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:platform |
       ./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:parameterDeterminationInstrument">
-    <mdb:acquisitionInformation>
       <xsl:for-each select="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter">
-        <mac:MI_AcquisitionInformation>
-          <mac:scope>
-            <mcc:MD_Scope>
-              <mcc:level>
-                <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
-                                  codeListValue="metadata"/>
-              </mcc:level>
-            </mcc:MD_Scope>
-          </mac:scope>
-          <xsl:if test="./mcpold:platform">
-            <mac:platform>
-              <mac:MI_Platform>
-                <mac:identifier>
-                  <mcc:MD_Identifier>
-                    <mcc:code>
-                      <gcx:Anchor xlink:href="{./mcpold:platform/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL}">
-                        <xsl:value-of select="./mcpold:platform/mcpold:DP_Term/mcpold:term"/>
-                      </gcx:Anchor>
-                    </mcc:code>
-                  </mcc:MD_Identifier>
-                </mac:identifier>
-                <mac:description>
-                  <gco:CharacterString><xsl:value-of select="./mcpold:platform/mcpold:DP_Term/mcpold:term"/></gco:CharacterString>
-                </mac:description>
-              </mac:MI_Platform>
-            </mac:platform>
-          </xsl:if>
-          <xsl:if test="./mcpold:parameterDeterminationInstrument">
-            <mac:instrument>
-              <mac:MI_Instrument>
-                <mac:identifier>
-                  <mcc:MD_Identifier>
-                    <mcc:code>
-                      <gcx:Anchor xlink:href="{./mcpold:parameterDeterminationInstrument/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL}">
-                        <xsl:value-of select="./mcpold:parameterDeterminationInstrument/mcpold:DP_Term/mcpold:term"/>
-                      </gcx:Anchor>
-                    </mcc:code>
-                  </mcc:MD_Identifier>
-                </mac:identifier>
-                <mac:type gco:nilReason="missing">
-                  <gco:CharacterString/>
-                </mac:type>
-              </mac:MI_Instrument>
-            </mac:instrument>
-          </xsl:if>
-        </mac:MI_AcquisitionInformation>
+        <mdb:acquisitionInformation>
+          <mac:MI_AcquisitionInformation>
+            <mac:scope>
+              <mcc:MD_Scope>
+                <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                                    codeListValue="metadata"/>
+                </mcc:level>
+              </mcc:MD_Scope>
+            </mac:scope>
+            <xsl:if test="./mcpold:platform">
+              <mac:platform>
+                <mac:MI_Platform>
+                  <mac:identifier>
+                    <mcc:MD_Identifier>
+                      <mcc:code>
+                        <gcx:Anchor xlink:href="{./mcpold:platform/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL}">
+                          <xsl:value-of select="./mcpold:platform/mcpold:DP_Term/mcpold:term"/>
+                        </gcx:Anchor>
+                      </mcc:code>
+                    </mcc:MD_Identifier>
+                  </mac:identifier>
+                  <mac:description>
+                    <gco:CharacterString><xsl:value-of select="./mcpold:platform/mcpold:DP_Term/mcpold:term"/></gco:CharacterString>
+                  </mac:description>
+                  <xsl:choose>
+                    <xsl:when test="./mcpold:parameterDeterminationInstrument">
+                      <mac:instrument>
+                        <mac:MI_Instrument>
+                          <mac:identifier>
+                            <mcc:MD_Identifier>
+                              <mcc:code>
+                                <gcx:Anchor xlink:href="{./mcpold:parameterDeterminationInstrument/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL}">
+                                  <xsl:value-of select="./mcpold:parameterDeterminationInstrument/mcpold:DP_Term/mcpold:term"/>
+                                </gcx:Anchor>
+                              </mcc:code>
+                            </mcc:MD_Identifier>
+                          </mac:identifier>
+                          <mac:type gco:nilReason="missing">
+                            <gco:CharacterString/>
+                          </mac:type>
+                        </mac:MI_Instrument>
+                      </mac:instrument>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <mac:instrument gco:nilReason="unknown"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </mac:MI_Platform>
+              </mac:platform>
+            </xsl:if>
+          </mac:MI_AcquisitionInformation>
+        </mdb:acquisitionInformation>
       </xsl:for-each>
-    </mdb:acquisitionInformation>
     </xsl:if>
   </xsl:template>
 </xsl:stylesheet>

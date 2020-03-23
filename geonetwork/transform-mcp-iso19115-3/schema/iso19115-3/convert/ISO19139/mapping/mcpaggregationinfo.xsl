@@ -59,6 +59,9 @@
                           
                           <cit:date>
                             <xsl:choose>
+                              <xsl:when test="gmd:date/@gcoold:nilReason">
+                                <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+                              </xsl:when>
                               <xsl:when test="gmd:date/gcoold:Date">
                             <gco:Date><xsl:value-of select="gmd:date/gcoold:Date"/></gco:Date>
                               </xsl:when>
