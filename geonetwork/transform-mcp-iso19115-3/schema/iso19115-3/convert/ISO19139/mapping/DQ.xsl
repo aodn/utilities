@@ -119,7 +119,7 @@
             <xsl:with-param name="nodeWithStringToWrite" select="gmd:statement"/>
           </xsl:call-template>
           <xsl:choose>
-            <xsl:when test="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope">
+            <xsl:when test="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue != ''">
               <xsl:variable name="dataQualityScopeObject" select="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope"/>
               <mrl:scope>
                 <mcc:MD_Scope>
