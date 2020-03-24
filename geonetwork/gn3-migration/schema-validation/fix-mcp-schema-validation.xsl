@@ -355,5 +355,8 @@
   <xsl:template match="mcp:resourceContactInfo[./mcp:CI_Responsibility[not(mcp:party)]]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>
   <xsl:template match="mcp:resourceContactInfo[./mcp:CI_Responsibility/mcp:party/error]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>
 
+  <!-- 023ae12a-8c0c-4abc-997a-7884f9fec9cd -->
+  <!--   Remove <gmd:MD_ScopeCode> if codeListValue is empty. Change from <gmd:level><gmd:MD_ScopeCode codeListValue=“” /> to <gmd:level gco:nilReason=“missing” />-->
+  <xsl:template match="gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode[./@codeListValue='']" />
 
 </xsl:stylesheet>
