@@ -141,6 +141,9 @@
         </mrc:attributeGroup>
       </mrc:MD_CoverageDescription>
     </mdb:contentInfo>
+  </xsl:template>
+
+  <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3-acquisition">
     <xsl:if test="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:platform |
       ./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:parameterDeterminationInstrument">
       <xsl:for-each select="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter">
