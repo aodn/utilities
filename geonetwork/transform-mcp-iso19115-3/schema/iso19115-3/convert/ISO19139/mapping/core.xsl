@@ -478,6 +478,9 @@
   </xsl:template>
   <!-- gmd:portrayalCatalogueInfo uses default templates -->
   <!-- gmd:metadataConstraints uses default templates -->
+  <xsl:template match="gmd:metadataConstraints[mcpold:MD_Commons]" mode="from19139to19115-3">
+    <xsl:apply-templates select="." mode="mcpcommons"/>
+  </xsl:template>
   <!-- gmd:applicationSchemaInfo uses default templates -->
   <!-- gmd:metadataMaintenance uses default templates -->
   <xsl:template match="gmi:acquisitionInformation" mode="from19139to19115-3">
