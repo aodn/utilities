@@ -417,7 +417,15 @@
          <mri:abstract>
             <gco:CharacterString>Waverider buoys measure wave height, wave period and (if directional) wave direction. The currently available buoys with their corresponding World Meteorological Organization (WMO) number are: Bureau of Meteorology directional (except for original Cape du Coudeic 55040) waverider buoys (thirty minute observations) - at Cape du Couedic/Kangaroo Island, South Australia (55040), new Cape du Couedic buoy (55053) and Cape Sorell, Tasmania (55026 - has been decommissioned), new Cape Sorell (55052). Western Australia Department of Transport (DOT) directional waverider buoys (three hourly observations) - at Jurien (56004), Rottnest Island (56005), Cape Naturaliste (56006), Cottesloe (56008), Esperance (56010), Albany (56011), Mandurah (56014). Queensland Department of Environment and Science (DES) waverider buoys (all directional except for Bundaberg, 30 minute observations) - at Albatross Bay (52121), North Moreton Bay (55027), Cairns (55028), Townsville (55029), Mooloolaba (55030), Hay Point (55032), Emu Park (55033), Gold Coast (55036), Tweed Heads (55037), Gladstone (55038), Caloundra (55045), Bundaberg (55046). The wave buoy data is issued in GTS bulletins (which are only available for 24 hours) : IOWK01 (in BUFR format) and SWWE01 (CREX format). The data is collated by the Bureau into a CSV file (containing the last 24 hours of observations) which is updated every hour, at 5 minutes past the hour. This data is provided via WFS to the AODN, and available via download by CSV.</gco:CharacterString>
          </mri:abstract>
-         <mri:credit/>
+         <mri:credit>
+            <gco:CharacterString>Australian Bureau of Meteorology</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Data from the Buoys in Western Australia is kindly provided by Department of Transport (DOT)</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Data from the Buoys in Queensland is kindly provided by Department of Environment and Science (DES). The following buoys are part of these joint projects: • Tweed River entrance sand bypass project (Tweed Heads) • Port of Brisbane Corporation (North Moreton Bay and Caloundra) • Gold Coast City Council (Gold Coast) • Department of Transport and Main Roads (Mooloolaba) • Gladstone Ports Corporation (Gladstone) • North Queensland Bulk Ports Corporation Limited (Hay Point, Albatross Bay)</gco:CharacterString>
+         </mri:credit>
          <mri:status>
             <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode" codeListValue="onGoing">onGoing</mcc:MD_ProgressCode>
          </mri:status>

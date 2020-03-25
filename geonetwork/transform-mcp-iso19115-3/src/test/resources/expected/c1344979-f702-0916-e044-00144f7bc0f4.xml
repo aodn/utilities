@@ -327,7 +327,49 @@
          <mri:abstract>
             <gco:CharacterString>The Australian Continuous Plankton Recorder (AusCPR) survey is a joint project between CSIRO Oceans and Atmosphere (O&amp;A) and the Australian Antarctic Division (AAD) to measure plankton communities as a guide to the health of Australia's oceans. The biomass is analysed from the same segment from which the zooplankton is analysed. All the plankton is washed onto a pre-weighed filter. This is left in an oven at 60 degrees C for 24-48 hours.  It is reweighed to give the dry weight. It is advised that anyone using the data should contact the project contact person. The aims of the AusCPR survey are to: * map plankton biodiversity and distribution * develop the first long-term plankton baseline for Australian waters * document plankton changes in response to climate change * provide indices for fisheries management * detect harmful algal blooms * validate satellite remote sensing * initialise and test ecosystem models.  Servicing and maintenance of the CPRs and analysis of the samples for the AusCPR survey will be carried out by staff based at the O&amp;A CSIRO laboratories in Queensland and Hobart and at the AAD in Hobart. The project was funded by the Integrated Marine Observing System (IMOS) and falls with the Ships of Opportunity facility. Data storage and access is planned to be interoperable with other national and international programs through the IMOS Infrastructure. Results from the AusCPR survey are available through the AODN portal: http://portal-gn3-integration.dev.aodn.org.au. This data is freely available but please acknowledge all relevant parties, as detailed in acknowledgement section. Additional information for this dataset may be available via the original MarLIN metadata entry: http://www.marine.csiro.au/marq/edd_search.Browse_Citation?txtSession=9008.</gco:CharacterString>
          </mri:abstract>
-         <mri:credit/>
+         <mri:credit>
+            <gco:CharacterString>These data are from the Australian Continuous Plankton Recorder (AusCPR) survey part of the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government.
+               Please also acknowledge the relevant party that helped to collect the data. This information is contained in the download of the zooplankton abundance.
+               ANL - ANL Windarra container shipping
+               CSIRO - Commonwealth Scientific and Industrial Research Organisation
+               MNF - Marine National Facility
+               Sealord Group Ltd.
+               SOCPR - Southern Ocean Continuous Plankton Recorder Survey
+               AIMS - Australian Institute of Marine Science
+               GA - Geoscience Australia
+               Swire Shipping
+               Malaspina Cruise - March 2011 aboard vessel Hespérides</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>A. Richardson</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>F. Coman</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>C. Davies</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>A. Slotwinski</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>M. Tonks</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>F. McEnnulty</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>J. Uribe-Palomino</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>F. Laeisz</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Wallenius Wilhelmsen</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Rio Tinto Marine</gco:CharacterString>
+         </mri:credit>
          <mri:status>
             <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode" codeListValue="onGoing">onGoing</mcc:MD_ProgressCode>
          </mri:status>

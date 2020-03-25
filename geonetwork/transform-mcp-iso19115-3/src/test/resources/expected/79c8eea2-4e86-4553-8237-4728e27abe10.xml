@@ -333,7 +333,15 @@
          <mri:abstract>
             <gco:CharacterString>25 years of Advanced Very High-Resolution Radiometer (AVHRR) data from NOAA Polar Orbiting Environmental Satellites received by six Australian and two Antarctic reception stations have been used to construct a detailed climatology of sea surface temperature (SST) at 20 cm depth around Australasia. The resulting atlas, known as the SST Atlas of Australian Regional Seas (SSTAARS), has a spatial resolution of ~2km and thus reveals unprecedented detail of regional oceanographic phenomena, including tidally-driven entrainment cooling over shelves and reef flats, wind-driven upwelling, shelf winter water fronts, cold river plumes, the footprint of the seasonal boundary current flows and standing mesoscale features in the major offshore currents.  The atlas (and associated statistics) will provide a benchmark for high-resolution ocean modelers and be a resource for ecosystem studies where temperatures, and their extremes, impact on ocean chemistry, species ranges and distribution. The SST data used to construct the atlas were one-day composites of night-only AVHRR SST (L3S-1day night) for the period 21 March 1992 to 31 December 2016 provided through the Integrated Marine Observing System (IMOS: http://www.imos.org.au).</gco:CharacterString>
          </mri:abstract>
-         <mri:credit/>
+         <mri:credit>
+            <gco:CharacterString>Integrated Marine Observing System (IMOS). IMOS is a national collaborative research infrastructure, supported by Australian Government.</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Bureau of Meteorology (BOM)</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>CSIRO Marine and Atmospheric Research (CMAR)</gco:CharacterString>
+         </mri:credit>
          <mri:status>
             <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode" codeListValue="completed">completed</mcc:MD_ProgressCode>
          </mri:status>

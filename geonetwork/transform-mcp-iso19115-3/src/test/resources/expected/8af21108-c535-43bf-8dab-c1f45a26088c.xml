@@ -309,7 +309,24 @@
          <mri:purpose>
             <gco:CharacterString>To provide information on regional variations in water temperature, salinity and chlorophyll, spatial patchiness of these variables and data sets suitable for ongoing validation of satellite ocean colour imagery.</gco:CharacterString>
          </mri:purpose>
-         <mri:credit/>
+         <mri:credit>
+            <gco:CharacterString>Australian Integrated Marine Observing System (IMOS). IMOS is an initiative of the Australian Government being conducted as part of the National Collaborative Research Infrastructure Strategy.</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>National Collaborative Research Infrastructure strategy(NCRIS) - Australian Federal Government</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Department of Innovation, Industry, Science and Research (DIISR), Australia</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Great Barrier Reef Ocean Observing System (GBROOS), a geographic node of the Integrated Marine Observing System (IMOS) project</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Australian Institute of Marine Science (AIMS)</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Thumbnail Image: Google Earth Mapping Service</gco:CharacterString>
+         </mri:credit>
          <mri:status>
             <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode" codeListValue="onGoing">onGoing</mcc:MD_ProgressCode>
          </mri:status>

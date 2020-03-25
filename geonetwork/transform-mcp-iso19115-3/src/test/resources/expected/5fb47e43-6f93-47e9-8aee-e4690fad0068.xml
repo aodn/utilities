@@ -366,7 +366,12 @@ Moored instruments are deployed by the IMOS Australian Bluewater Observing Syste
 
 These time-series observations are crucial to resolving ecosystem processes that affect carbon cycling, ocean productivity and marine responses to climate variability and change, ocean acidification and other stresses.</gco:CharacterString>
          </mri:abstract>
-         <mri:credit/>
+         <mri:credit>
+            <gco:CharacterString>Integrated Marine Observing System (IMOS). IMOS is a national collaborative research infrastructure, supported by Australian Government.</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>University of Tasmania (UTAS)</gco:CharacterString>
+         </mri:credit>
          <mri:status>
             <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode" codeListValue="completed">completed</mcc:MD_ProgressCode>
          </mri:status>
@@ -606,8 +611,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                   <gco:CharacterString>IMOS Platform | PULSE11 | Pulse 11 Mooring</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme">theme</mri:MD_KeywordTypeCode>
+                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme">theme</mri:MD_KeywordTypeCode>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -818,7 +822,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description>
+                           <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
@@ -854,13 +858,13 @@ These time-series observations are crucial to resolving ecosystem processes that
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description>
+                           <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>
-                        <gco:Real>-250</gco:Real>
+                        <gco:Real>250</gco:Real>
                      </mrc:maxValue>
                      <mrc:minValue>
                         <gco:Real>-50</gco:Real>

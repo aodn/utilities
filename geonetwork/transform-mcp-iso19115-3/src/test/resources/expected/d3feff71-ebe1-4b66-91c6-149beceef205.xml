@@ -446,7 +446,24 @@
 This product includes temperature and salinity measurements from the original water sampling program carried out by CSIRO since the 1940s, and the water sampling and CTD casts carried out by IMOS since 2009. Sampling under CSIRO was undertaken at intervals of one to several weeks, and under IMOS, sampling is approximately monthly. Temperature measurements were taken from reversing thermometers by CSIRO, and from profiling CTDs by IMOS. These are combined into a single continuous timeseries, for measurements at the surface and depths up to 50m.
 Currently this product is only available for the Maria Island NRS. Located off the east coast of Maria Island in Tasmania, the station has provided the longest high quality ocean time series in the Southern Hemisphere, operating since 1944.</gco:CharacterString>
          </mri:abstract>
-         <mri:credit/>
+         <mri:credit>
+            <gco:CharacterString>Integrated Marine Observing System (IMOS). IMOS is a national collaborative research infrastructure, supported by Australian Government.</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>CSIRO Tasmanian Marine Analysis Network (TASMAN)</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>CSIRO Tasmanian ICT Centre</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Multiple contributors including field and laboratory staff involved in the CSIRO Coastal Monitoring program from 1944 - 2008.</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Val Latham CMAR 1991-2000's (Hydrological analyses)</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Ken Ridgway (Interpolated product creator)</gco:CharacterString>
+         </mri:credit>
          <mri:status>
             <mcc:MD_ProgressCode codeList="codeListLocation#MD_ProgressCode" codeListValue="onGoing">onGoing</mcc:MD_ProgressCode>
          </mri:status>
