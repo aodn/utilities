@@ -121,16 +121,7 @@
           <gmd:alternateTitle>
             <gco:CharacterString>Marine Larval Fish Database 1983-2016</gco:CharacterString>
           </gmd:alternateTitle>
-          <gmd:date gco:nilReason="missing">
-            <gmd:CI_Date>
-              <gmd:date>
-                <gco:Date>2018-03-21</gco:Date>
-              </gmd:date>
-              <gmd:dateType>
-                <gmd:CI_DateTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
-              </gmd:dateType>
-            </gmd:CI_Date>
-          </gmd:date>
+          <gmd:date gco:nilReason="missing" />
           <gmd:identifier>
             <gmd:MD_Identifier>
               <gmd:code>

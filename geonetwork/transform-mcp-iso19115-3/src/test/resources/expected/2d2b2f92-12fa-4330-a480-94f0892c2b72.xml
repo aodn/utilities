@@ -267,16 +267,7 @@
                <cit:alternateTitle>
                   <gco:CharacterString>Marine Larval Fish Database 1983-2016</gco:CharacterString>
                </cit:alternateTitle>
-               <cit:date gco:nilReason="missing">
-                  <cit:CI_Date>
-                     <cit:date gco:nilReason="missing">
-                        <gco:DateTime>2018-03-21T00:00:00</gco:DateTime>
-                     </cit:date>
-                     <cit:dateType>
-                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
-                     </cit:dateType>
-                  </cit:CI_Date>
-               </cit:date>
+               <cit:date gco:nilReason="missing" />
                <cit:identifier>
                   <mcc:MD_Identifier>
                      <mcc:code>
