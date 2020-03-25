@@ -4355,6 +4355,22 @@
       </gmd:lineage>
     </gmd:DQ_DataQuality>
   </gmd:dataQualityInfo>
+  <gmd:metadataConstraints>
+    <mcp:MD_Commons gco:isoType="gmd:MD_Constraints" mcp:commonsType="Creative Commons">
+      <mcp:jurisdictionLink>
+        <gmd:URL>http://creativecommons.org/international/au/</gmd:URL>
+      </mcp:jurisdictionLink>
+      <mcp:licenseLink>
+        <gmd:URL>http://creativecommons.org/licenses/by/2.5/au/</gmd:URL>
+      </mcp:licenseLink>
+      <mcp:imageLink>
+        <gmd:URL>http://i.creativecommons.org/l/by/2.5/au/88x31.png</gmd:URL>
+      </mcp:imageLink>
+      <mcp:licenseName>
+        <gco:CharacterString>Attribution 2.5 Australia</gco:CharacterString>
+      </mcp:licenseName>
+    </mcp:MD_Commons>
+  </gmd:metadataConstraints>
   <mcp:revisionDate>
     <gco:DateTime>2020-02-27T18:01:15</gco:DateTime>
   </mcp:revisionDate>
