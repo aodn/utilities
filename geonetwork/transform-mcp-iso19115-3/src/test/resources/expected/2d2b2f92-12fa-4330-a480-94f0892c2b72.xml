@@ -2117,9 +2117,7 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
          </mrl:statement>
          <mrl:scope>
             <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
-               </mcc:level>
+               <mcc:level/>
             </mcc:MD_Scope>
          </mrl:scope>
       </mrl:LI_Lineage>
