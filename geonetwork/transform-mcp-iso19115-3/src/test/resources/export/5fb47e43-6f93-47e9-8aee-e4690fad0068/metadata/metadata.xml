@@ -597,7 +597,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                 <gco:CharacterString>-50</gco:CharacterString>
               </mcp:parameterMinimumValue>
               <mcp:parameterMaximumValue>
-                <gco:CharacterString>-+250</gco:CharacterString>
+                <gco:CharacterString>250</gco:CharacterString>
               </mcp:parameterMaximumValue>
               <mcp:parameterDescription gco:nilReason="missing">
                 <gco:CharacterString />
