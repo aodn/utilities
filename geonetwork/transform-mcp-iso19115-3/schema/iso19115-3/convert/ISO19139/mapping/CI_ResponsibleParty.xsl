@@ -82,7 +82,7 @@
                <xsl:element name="cit:CI_Responsibility">
                    <xsl:apply-templates select="./@*" mode="from19139to19115-3"/>
                     <xsl:choose>
-                        <xsl:when test="./gmd:role/gmd:CI_RoleCode">
+                        <xsl:when test="./gmd:role/gmd:CI_RoleCode/@codeListValue != ''">
                           <xsl:choose>
                             <xsl:when test="gmd:role/gmd:CI_RoleCode/@codeListValue = 'coInvestigator'">
                               <xsl:call-template name="writeCodelistElement">
@@ -113,7 +113,7 @@
                             </cit:role>
                         </xsl:when>
                         <xsl:otherwise>
-                            <cit:role gcoold:nilReason="missing"/>
+                            <cit:role gco:nilReason="missing"/>
                         </xsl:otherwise>
                     </xsl:choose>
                     <cit:party>
