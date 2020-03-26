@@ -38,29 +38,31 @@
   </xsl:template>
 
   <!-- *Removed gmd:series and gmd:describes when gmd:DS_DataSet is empty` -->
-  <xsl:template match="gmd:series[gmd:DS_Initiative]"/>
-  <xsl:template match="gmd:describes[gmd:DS_DataSet]"/>
+  <xsl:template match="gmd:series[./gmd:DS_Initiative/gmd:composedOf/gmd:DS_DataSet[not(*) and not(normalize-space())]]"/>
+  <xsl:template match="gmd:describes[gmd:DS_DataSet[not(*) and not(normalize-space())]]"/>
 
   <!-- Element `<gco:Date/>` with empty value is removed and added nilReason-->
   <xsl:template match="gmd:CI_Date/gmd:date">
     <xsl:copy>
       <xsl:choose>
-        <xsl:when test="not(@gco:nilReason != '') and not(normalize-space())">
-          <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        <xsl:when test="normalize-space(@gco:nilReason) or normalize-space()">
+         <!-- not empty - copy content -->
+          <xsl:apply-templates select="@* | node()" />
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="@* | node()" />
+          <!-- content is missing -->
+          <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:copy>
   </xsl:template>
+
 
   <!-- Element `<gco:DateTime/>` with Date value is replaced with `<gco:Date/>`  -->
   <xsl:template match="gmd:CI_Date/gmd:date/gco:DateTime[string-length(./text())=10]">
     <gco:Date>
       <xsl:apply-templates select="@* | text()" />
     </gco:Date>
-    <xsl:apply-templates select="@* | *[not(self::gco:DateTime)]" />
   </xsl:template>
 
     <!-- 2a044b8f-249a-4ed4-bfb7-20f49d563811 -->
@@ -235,12 +237,6 @@
             <xsl:when test="(./gml:beginPosition) and not(./gml:endPosition)">
               <gml:endPosition/>
             </xsl:when>
-<!--            <xsl:otherwise>-->
-<!--              <gml:TimePeriod>-->
-<!--                <xsl:apply-templates select="@* | node()" />-->
-<!--             </gml:TimePeriod>-->
-<!--&lt;!&ndash;              <xsl:apply-templates select="@*|node()"/>&ndash;&gt;-->
-<!--            </xsl:otherwise>-->
           </xsl:choose>
         </xsl:otherwise>
       </xsl:choose>
@@ -312,6 +308,7 @@
     </xsl:copy>
   </xsl:template>
 
+  <!-- Partially fixed by Nat -->
   <!-- Missing `<gmd:date>` element added  -->
   <!--  <xsl:template match="gmd:date/gmd:CI_Date[not(./gmd:date) and (./gmd:dateType/gmd:CI_DateTypeCode/@codeListValue='']" />-->
   <xsl:template match="gmd:CI_Date">
@@ -331,32 +328,35 @@
   <!-- Removed empty `<gmd:function/gmd:CI_OnLineFunctionCode>` element   -->
   <xsl:template match="gmd:CI_OnlineResource/gmd:function[./gmd:CI_OnLineFunctionCode/@codeList = '' and ./gmd:CI_OnLineFunctionCode/@codeListValue='']" />
 
-  <!-- Missing `<mcp:term>` element added  -->
-  <xsl:template match="mcp:parameterUnits/mcp:DP_Term" xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0">
-    <xsl:copy>
-      <xsl:if test="not(./mcp:term)">
-        <mcp:term gco:nilReason="missing"/>
-      </xsl:if>
-       <xsl:apply-templates select="@* | node()" />
-    </xsl:copy>
-  </xsl:template>
+  <!--  Fixed by Nat -->
+<!--  &lt;!&ndash; Missing `<mcp:term>` element added  &ndash;&gt;-->
+<!--  <xsl:template match="mcp:parameterUnits/mcp:DP_Term" xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0">-->
+<!--    <xsl:copy>-->
+<!--      <xsl:apply-templates select="@*" />-->
+<!--      <xsl:if test="not(./mcp:term)">-->
+<!--        <mcp:term gco:nilReason="missing"/>-->
+<!--      </xsl:if>-->
+<!--       <xsl:apply-templates select="* | node()" />-->
+<!--    </xsl:copy>-->
+<!--  </xsl:template>-->
 
-  <!--  064bff02-7ba3-46e0-b873-afdf387a1205  -->
-  <!-- Removed empty `<gmd:contact/gmd:CI_ResponsibleParty>` element   -->
-  <xsl:template match="gmd:contact[./gmd:CI_ResponsibleParty[not(*) and not(normalize-space())]]" />
+  <!-- Fixes not needed for catalogue-imos records -->
+<!--  &lt;!&ndash;  064bff02-7ba3-46e0-b873-afdf387a1205  &ndash;&gt;-->
+<!--  &lt;!&ndash; Removed empty `<gmd:contact/gmd:CI_ResponsibleParty>` element   &ndash;&gt;-->
+<!--  <xsl:template match="gmd:contact[./gmd:CI_ResponsibleParty[not(*) and not(normalize-space())]]" />-->
 
-  <!--  064bff02-7ba3-46e0-b873-afdf387a1205  -->
-  <!-- Removed `<gmd:descriptiveKeywords` if `<gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword>` element doesn't exists -->
-  <xsl:template match="gmd:descriptiveKeywords[./gmd:MD_Keywords[not(gmd:keyword)]]" />
+<!--  &lt;!&ndash;  064bff02-7ba3-46e0-b873-afdf387a1205  &ndash;&gt;-->
+<!--  &lt;!&ndash; Removed `<gmd:descriptiveKeywords` if `<gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword>` element doesn't exists &ndash;&gt;-->
+<!--  <xsl:template match="gmd:descriptiveKeywords[./gmd:MD_Keywords[not(gmd:keyword)]]" />-->
 
-   <!--  064bff02-7ba3-46e0-b873-afdf387a1205  -->
-  <!-- Removed `<mcp:resourceContactInfo` if `<mcp:resourceContactInfo/mcp:CI_Responsibility/mcp:party>` element doesn't exists -->
-  <xsl:template match="mcp:metadataContactInfo[./mcp:CI_Responsibility[not(mcp:party)]]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>
-  <xsl:template match="mcp:resourceContactInfo[./mcp:CI_Responsibility[not(mcp:party)]]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>
-  <xsl:template match="mcp:resourceContactInfo[./mcp:CI_Responsibility/mcp:party/error]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>
+<!--   &lt;!&ndash;  064bff02-7ba3-46e0-b873-afdf387a1205  &ndash;&gt;-->
+<!--  &lt;!&ndash; Removed `<mcp:resourceContactInfo` if `<mcp:resourceContactInfo/mcp:CI_Responsibility/mcp:party>` element doesn't exists &ndash;&gt;-->
+<!--  <xsl:template match="mcp:metadataContactInfo[./mcp:CI_Responsibility[not(mcp:party)]]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>-->
+<!--  <xsl:template match="mcp:resourceContactInfo[./mcp:CI_Responsibility[not(mcp:party)]]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>-->
+<!--  <xsl:template match="mcp:resourceContactInfo[./mcp:CI_Responsibility/mcp:party/error]" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"/>-->
 
-  <!-- 023ae12a-8c0c-4abc-997a-7884f9fec9cd -->
-  <!--   Remove <gmd:MD_ScopeCode> if codeListValue is empty. Change from <gmd:level><gmd:MD_ScopeCode codeListValue=“” /> to <gmd:level gco:nilReason=“missing” />-->
-  <xsl:template match="gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode[./@codeListValue='']" />
+<!--  &lt;!&ndash; 023ae12a-8c0c-4abc-997a-7884f9fec9cd &ndash;&gt;-->
+<!--  &lt;!&ndash;   Remove <gmd:MD_ScopeCode> if codeListValue is empty. Change from <gmd:level><gmd:MD_ScopeCode codeListValue=“” /> to <gmd:level gco:nilReason=“missing” />&ndash;&gt;-->
+<!--  <xsl:template match="gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode[./@codeListValue='']" />-->
 
 </xsl:stylesheet>
