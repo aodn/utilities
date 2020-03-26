@@ -120,34 +120,11 @@
           </xsl:call-template>
           <xsl:choose>
             <xsl:when test="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue != ''">
+              <xsl:apply-templates select="../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
+            </xsl:when>
+            <xsl:when test="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmx:MX_ScopeCode/@codeListValue != ''">
               <xsl:variable name="dataQualityScopeObject" select="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope"/>
-              <mrl:scope>
-                <mcc:MD_Scope>
-                  <xsl:call-template name="writeCodelistElement">
-                    <xsl:with-param name="elementName" select="'mcc:level'"/>
-                    <xsl:with-param name="codeListName" select="'mcc:MD_ScopeCode'"/>
-                    <xsl:with-param name="codeListValue"
-                      select="$dataQualityScopeObject//gmd:MD_ScopeCode/@codeListValue|
-                                            $dataQualityScopeObject//gmx:MX_ScopeCode/@codeListValue"/>
-                  </xsl:call-template>
-                  <xsl:for-each select="$dataQualityScopeObject//gmd:EX_Extent">
-                    <mcc:extent>
-                      <xsl:apply-templates select="." mode="from19139to19115-3"/>
-                    </mcc:extent>
-                  </xsl:for-each>
-                  <xsl:if test="$dataQualityScopeObject//gmd:MD_ScopeDescription">
-                    <mcc:levelDescription>
-                      <mcc:MD_ScopeDescription>
-                        <xsl:apply-templates select="$dataQualityScopeObject//gmd:MD_ScopeDescription/*" mode="from19139to19115-3"/>
-                        <!--<xsl:call-template name="writeCharacterStringElement">
-                        <xsl:with-param name="elementName" select="'cit:other'"/>
-                        <xsl:with-param name="stringToWrite" select="gmd:statement"/>
-                      </xsl:call-template>-->
-                      </mcc:MD_ScopeDescription>
-                    </mcc:levelDescription>
-                  </xsl:if>
-                </mcc:MD_Scope>
-              </mrl:scope>
+              <xsl:apply-templates select="../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
             </xsl:when>
             <xsl:otherwise>
               <mrl:scope />
@@ -158,6 +135,37 @@
         </mrl:LI_Lineage>
       </xsl:element>
     </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="gmd:DQ_DataQuality" mode="dataQualityScope">
+    <xsl:variable name="dataQualityScopeObject" select="./gmd:scope/gmd:DQ_Scope"/>
+    <mrl:scope>
+      <mcc:MD_Scope>
+        <xsl:call-template name="writeCodelistElement">
+          <xsl:with-param name="elementName" select="'mcc:level'"/>
+          <xsl:with-param name="codeListName" select="'mcc:MD_ScopeCode'"/>
+          <xsl:with-param name="codeListValue"
+                          select="$dataQualityScopeObject//gmd:MD_ScopeCode/@codeListValue|
+                                            $dataQualityScopeObject//gmx:MX_ScopeCode/@codeListValue"/>
+        </xsl:call-template>
+        <xsl:for-each select="$dataQualityScopeObject//gmd:EX_Extent">
+          <mcc:extent>
+            <xsl:apply-templates select="." mode="from19139to19115-3"/>
+          </mcc:extent>
+        </xsl:for-each>
+        <xsl:if test="$dataQualityScopeObject//gmd:MD_ScopeDescription">
+          <mcc:levelDescription>
+            <mcc:MD_ScopeDescription>
+              <xsl:apply-templates select="$dataQualityScopeObject//gmd:MD_ScopeDescription/*" mode="from19139to19115-3"/>
+              <!--<xsl:call-template name="writeCharacterStringElement">
+              <xsl:with-param name="elementName" select="'cit:other'"/>
+              <xsl:with-param name="stringToWrite" select="gmd:statement"/>
+            </xsl:call-template>-->
+            </mcc:MD_ScopeDescription>
+          </mcc:levelDescription>
+        </xsl:if>
+      </mcc:MD_Scope>
+    </mrl:scope>
   </xsl:template>
 
   <xsl:template match="gmd:report/*/gmd:result/gmd:DQ_QuantitativeResult" mode="from19139to19115-3">
