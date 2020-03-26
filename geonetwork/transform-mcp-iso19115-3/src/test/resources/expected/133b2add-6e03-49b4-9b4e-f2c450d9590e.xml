@@ -85,8 +85,7 @@
                               <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode"
-                                                        codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -263,8 +262,7 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode"
-                                         codeListValue="resourceProvider">resourceProvider</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="resourceProvider">resourceProvider</cit:CI_RoleCode>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -289,8 +287,7 @@
                                           <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode"
-                                                                    codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -400,8 +397,7 @@ The CORL area of coverage has a small overlap of commonly observed ocean with th
                                     <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                                  </cit:number>
                                  <cit:numberType>
-                                    <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode"
-                                                              codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                    <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                                  </cit:numberType>
                               </cit:CI_Telephone>
                            </cit:phone>
@@ -582,7 +578,7 @@ The CORL area of coverage has a small overlap of commonly observed ocean with th
                            <cit:date>
                               <gco:DateTime>2006-01-01T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType />
+                           <cit:dateType/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -643,7 +639,7 @@ The CORL area of coverage has a small overlap of commonly observed ocean with th
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType />
+                           <cit:dateType/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -692,7 +688,7 @@ The CORL area of coverage has a small overlap of commonly observed ocean with th
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType />
+                           <cit:dateType/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>

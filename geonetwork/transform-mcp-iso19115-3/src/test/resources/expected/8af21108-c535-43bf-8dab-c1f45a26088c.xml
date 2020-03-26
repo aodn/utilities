@@ -27,7 +27,8 @@
                  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
                  xmlns:gml="http://www.opengis.net/gml/3.2"
                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                 xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/cat/1.0 http://standards.iso.org/iso/19115/-3/cat/1.0/cat.xsd http://standards.iso.org/iso/19115/-3/cit/2.0 http://standards.iso.org/iso/19115/-3/cit/2.0/cit.xsd http://standards.iso.org/iso/19115/-3/gcx/1.0 http://standards.iso.org/iso/19115/-3/gcx/1.0/gcx.xsd http://standards.iso.org/iso/19115/-3/gex/1.0 http://standards.iso.org/iso/19115/-3/gex/1.0/gex.xsd http://standards.iso.org/iso/19115/-3/lan/1.0 http://standards.iso.org/iso/19115/-3/lan/1.0/lan.xsd http://standards.iso.org/iso/19115/-3/srv/2.0 http://standards.iso.org/iso/19115/-3/srv/2.0/srv.xsd http://standards.iso.org/iso/19115/-3/mas/1.0 http://standards.iso.org/iso/19115/-3/mas/1.0/mas.xsd http://standards.iso.org/iso/19115/-3/mcc/1.0 http://standards.iso.org/iso/19115/-3/mcc/1.0/mcc.xsd http://standards.iso.org/iso/19115/-3/mco/1.0 http://standards.iso.org/iso/19115/-3/mco/1.0/mco.xsd http://standards.iso.org/iso/19115/-3/mda/2.0 http://standards.iso.org/iso/19115/-3/mda/2.0/mda.xsd http://standards.iso.org/iso/19115/-3/mdb/2.0 http://standards.iso.org/iso/19115/-3/mdb/2.0/mdb.xsd http://standards.iso.org/iso/19115/-3/mds/2.0 http://standards.iso.org/iso/19115/-3/mds/2.0/mds.xsd http://standards.iso.org/iso/19115/-3/mdt/2.0 http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd http://standards.iso.org/iso/19115/-3/mex/1.0 http://standards.iso.org/iso/19115/-3/mex/1.0/mex.xsd http://standards.iso.org/iso/19115/-3/mmi/1.0 http://standards.iso.org/iso/19115/-3/mmi/1.0/mmi.xsd http://standards.iso.org/iso/19115/-3/mpc/1.0 http://standards.iso.org/iso/19115/-3/mpc/1.0/mpc.xsd http://standards.iso.org/iso/19115/-3/mrc/2.0 http://standards.iso.org/iso/19115/-3/mrc/2.0/mrc.xsd http://standards.iso.org/iso/19115/-3/mrd/1.0 http://standards.iso.org/iso/19115/-3/mrd/1.0/mrd.xsd http://standards.iso.org/iso/19115/-3/mri/1.0 http://standards.iso.org/iso/19115/-3/mri/1.0/mri.xsd http://standards.iso.org/iso/19115/-3/mrl/2.0 http://standards.iso.org/iso/19115/-3/mrl/2.0/mrl.xsd http://standards.iso.org/iso/19115/-3/mrs/1.0 http://standards.iso.org/iso/19115/-3/mrs/1.0/mrs.xsd http://standards.iso.org/iso/19115/-3/msr/2.0 http://standards.iso.org/iso/19115/-3/msr/2.0/msr.xsd http://standards.iso.org/iso/19157/-2/mdq/1.0 http://standards.iso.org/iso/19157/-2/mdq/1.0/mdq.xsd http://standards.iso.org/iso/19115/-3/mac/2.0 http://standards.iso.org/iso/19115/-3/mac/2.0/mac.xsd http://standards.iso.org/iso/19115/-3/gco/1.0 http://standards.iso.org/iso/19115/-3/gco/1.0/gco.xsd http://standards.iso.org/iso/19115/-3/gmw/1.0 http://standards.iso.org/iso/19115/-3/gmw/1.0/gmw.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd http://www.w3.org/1999/xlink http://www.w3.org/1999/xlink.xsd">
+                 xmlns:mcp="http://schemas.aodn.org.au/mcp-3.0"
+                 xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/cat/1.0 http://standards.iso.org/iso/19115/-3/cat/1.0/cat.xsd http://standards.iso.org/iso/19115/-3/cit/2.0 http://standards.iso.org/iso/19115/-3/cit/2.0/cit.xsd http://standards.iso.org/iso/19115/-3/gcx/1.0 http://standards.iso.org/iso/19115/-3/gcx/1.0/gcx.xsd http://standards.iso.org/iso/19115/-3/gex/1.0 http://standards.iso.org/iso/19115/-3/gex/1.0/gex.xsd http://standards.iso.org/iso/19115/-3/lan/1.0 http://standards.iso.org/iso/19115/-3/lan/1.0/lan.xsd http://standards.iso.org/iso/19115/-3/srv/2.0 http://standards.iso.org/iso/19115/-3/srv/2.0/srv.xsd http://standards.iso.org/iso/19115/-3/mas/1.0 http://standards.iso.org/iso/19115/-3/mas/1.0/mas.xsd http://standards.iso.org/iso/19115/-3/mcc/1.0 http://standards.iso.org/iso/19115/-3/mcc/1.0/mcc.xsd http://standards.iso.org/iso/19115/-3/mco/1.0 http://standards.iso.org/iso/19115/-3/mco/1.0/mco.xsd http://standards.iso.org/iso/19115/-3/mda/2.0 http://standards.iso.org/iso/19115/-3/mda/2.0/mda.xsd http://standards.iso.org/iso/19115/-3/mdb/2.0 http://standards.iso.org/iso/19115/-3/mdb/2.0/mdb.xsd http://standards.iso.org/iso/19115/-3/mds/2.0 http://standards.iso.org/iso/19115/-3/mds/2.0/mds.xsd http://standards.iso.org/iso/19115/-3/mdt/2.0 http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd http://standards.iso.org/iso/19115/-3/mex/1.0 http://standards.iso.org/iso/19115/-3/mex/1.0/mex.xsd http://standards.iso.org/iso/19115/-3/mmi/1.0 http://standards.iso.org/iso/19115/-3/mmi/1.0/mmi.xsd http://standards.iso.org/iso/19115/-3/mpc/1.0 http://standards.iso.org/iso/19115/-3/mpc/1.0/mpc.xsd http://standards.iso.org/iso/19115/-3/mrc/2.0 http://standards.iso.org/iso/19115/-3/mrc/2.0/mrc.xsd http://standards.iso.org/iso/19115/-3/mrd/1.0 http://standards.iso.org/iso/19115/-3/mrd/1.0/mrd.xsd http://standards.iso.org/iso/19115/-3/mri/1.0 http://standards.iso.org/iso/19115/-3/mri/1.0/mri.xsd http://standards.iso.org/iso/19115/-3/mrl/2.0 http://standards.iso.org/iso/19115/-3/mrl/2.0/mrl.xsd http://standards.iso.org/iso/19115/-3/mrs/1.0 http://standards.iso.org/iso/19115/-3/mrs/1.0/mrs.xsd http://standards.iso.org/iso/19115/-3/msr/2.0 http://standards.iso.org/iso/19115/-3/msr/2.0/msr.xsd http://standards.iso.org/iso/19157/-2/mdq/1.0 http://standards.iso.org/iso/19157/-2/mdq/1.0/mdq.xsd http://standards.iso.org/iso/19115/-3/mac/2.0 http://standards.iso.org/iso/19115/-3/mac/2.0/mac.xsd http://standards.iso.org/iso/19115/-3/gco/1.0 http://standards.iso.org/iso/19115/-3/gco/1.0/gco.xsd http://standards.iso.org/iso/19115/-3/gmw/1.0 http://standards.iso.org/iso/19115/-3/gmw/1.0/gmw.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd http://www.w3.org/1999/xlink http://www.w3.org/1999/xlink.xsd http://schemas.aodn.org.au/mcp-3.0 http://schemas.aodn.org.au/mcp-3.0/mcpExtensions.xsd">
    <mdb:metadataIdentifier>
       <mcc:MD_Identifier>
          <mcc:code>
@@ -41,7 +42,7 @@
             <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng">eng</lan:LanguageCode>
          </lan:language>
          <lan:characterEncoding>
-            <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
+            <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
          </lan:characterEncoding>
       </lan:PT_Locale>
    </mdb:defaultLocale>
@@ -49,7 +50,7 @@
    <mdb:metadataScope>
       <mdb:MD_MetadataScope>
          <mdb:resourceScope>
-            <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+            <mcc:MD_ScopeCode codeList="codeListLocation#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
          </mdb:resourceScope>
          <mdb:name>
             <gco:CharacterString>sub-Facility</gco:CharacterString>
@@ -59,7 +60,7 @@
    <mdb:contact>
       <cit:CI_Responsibility>
          <cit:role>
-            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="editor">editor</cit:CI_RoleCode>
+            <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="editor">editor</cit:CI_RoleCode>
          </cit:role>
          <cit:party>
             <cit:CI_Organisation>
@@ -74,7 +75,7 @@
                               <gco:CharacterString>+61 7 4753 4444</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -84,8 +85,7 @@
                               <gco:CharacterString>+61 7 4772 5852</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
-                                                        codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -143,7 +143,7 @@
             <gco:DateTime>2018-12-10T09:32:45</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -153,7 +153,7 @@
             <gco:DateTime>2018-12-10T09:32:45</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -196,15 +196,14 @@
                         <gco:DateTime>2009-04-21T00:00:00</gco:DateTime>
                      </cit:date>
                      <cit:dateType>
-                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
+                        <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
                      </cit:dateType>
                   </cit:CI_Date>
                </cit:date>
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
-                                         codeListValue="resourceProvider">resourceProvider</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="resourceProvider">resourceProvider</cit:CI_RoleCode>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -219,7 +218,7 @@
                                           <gco:CharacterString>61 3 6226 7549</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -229,8 +228,7 @@
                                           <gco:CharacterString>+61 3 6226 2107</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
-                                                                    codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -328,12 +326,12 @@
             <gco:CharacterString>Thumbnail Image: Google Earth Mapping Service</gco:CharacterString>
          </mri:credit>
          <mri:status>
-            <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode" codeListValue="onGoing">onGoing</mcc:MD_ProgressCode>
+            <mcc:MD_ProgressCode codeList="codeListLocation#MD_ProgressCode" codeListValue="onGoing">onGoing</mcc:MD_ProgressCode>
          </mri:status>
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
-                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
+                  <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
                </cit:role>
                <cit:party>
                   <cit:CI_Organisation>
@@ -348,7 +346,7 @@
                                     <gco:CharacterString>+61 7 4753 4444</gco:CharacterString>
                                  </cit:number>
                                  <cit:numberType>
-                                    <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                    <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
                                  </cit:numberType>
                               </cit:CI_Telephone>
                            </cit:phone>
@@ -358,8 +356,7 @@
                                     <gco:CharacterString>+61 7 4772 5852</gco:CharacterString>
                                  </cit:number>
                                  <cit:numberType>
-                                    <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
-                                                              codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                    <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                                  </cit:numberType>
                               </cit:CI_Telephone>
                            </cit:phone>
@@ -466,7 +463,7 @@
          <mri:resourceMaintenance>
             <mmi:MD_MaintenanceInformation>
                <mmi:maintenanceAndUpdateFrequency>
-                  <mmi:MD_MaintenanceFrequencyCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_MaintenanceFrequencyCode"
+                  <mmi:MD_MaintenanceFrequencyCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode"
                                                    codeListValue="asNeeded">asNeeded</mmi:MD_MaintenanceFrequencyCode>
                </mmi:maintenanceAndUpdateFrequency>
             </mmi:MD_MaintenanceInformation>
@@ -541,7 +538,7 @@
                   <gco:CharacterString>Oceans - Bathymetry/Seafloor Topography - Bathymetry</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
                                           codeListValue="theme">theme</mri:MD_KeywordTypeCode>
                </mri:type>
                <mri:thesaurusName>
@@ -555,14 +552,14 @@
                               <gco:DateTime>2007-07-23T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
+                              <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
                            </cit:role>
                            <cit:party>
                               <cit:CI_Organisation>
@@ -620,7 +617,7 @@
                   <gco:CharacterString>EARTH SCIENCES - Oceanography - Biological Oceanography</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
                                           codeListValue="discipline">discipline</mri:MD_KeywordTypeCode>
                </mri:type>
                <mri:thesaurusName>
@@ -634,14 +631,14 @@
                               <gco:DateTime>1998-08-28T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
+                              <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
                            </cit:role>
                            <cit:party>
                               <cit:CI_Organisation>
@@ -686,7 +683,7 @@
                   <gco:CharacterString>Thermosalinographs</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
                                           codeListValue="equipment">equipment</mri:MD_KeywordTypeCode>
                </mri:type>
                <mri:thesaurusName>
@@ -700,14 +697,14 @@
                               <gco:DateTime>2006-10-13T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
+                              <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
                            </cit:role>
                            <cit:party>
                               <cit:CI_Organisation>
@@ -722,7 +719,7 @@
                                                 <gco:CharacterString>+61 2 9359 3140</gco:CharacterString>
                                              </cit:number>
                                              <cit:numberType>
-                                                <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                                <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
                                              </cit:numberType>
                                           </cit:CI_Telephone>
                                        </cit:phone>
@@ -732,8 +729,7 @@
                                                 <gco:CharacterString>+61 2 9359 3120</gco:CharacterString>
                                              </cit:number>
                                              <cit:numberType>
-                                                <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
-                                                                          codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                                <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                                              </cit:numberType>
                                           </cit:CI_Telephone>
                                        </cit:phone>
@@ -780,7 +776,7 @@
                   <gco:CharacterString>Sensors on Tropical Research Vessels Sub-Facility, Integrated Marine Observing System (IMOS)</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
                                           codeListValue="discipline">discipline</mri:MD_KeywordTypeCode>
                </mri:type>
                <mri:thesaurusName>
@@ -794,7 +790,7 @@
                               <gco:DateTime>2018-07-13T13:45:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -827,7 +823,7 @@
                   <gco:CharacterString>Regional Seas | Arafura Sea</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
                                           codeListValue="place">place</mri:MD_KeywordTypeCode>
                </mri:type>
                <mri:thesaurusName>
@@ -841,7 +837,7 @@
                               <gco:DateTime>2017-06-15T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -873,7 +869,7 @@
                   <gco:CharacterString>States, Territories (Australia) | Queensland</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
                                           codeListValue="place">place</mri:MD_KeywordTypeCode>
                </mri:type>
                <mri:thesaurusName>
@@ -887,7 +883,7 @@
                               <gco:DateTime>2017-06-15T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -904,7 +900,7 @@
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
                                           codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
@@ -918,14 +914,14 @@
                               <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="https://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-platform-vocabulary">
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-platform-vocabulary">
                     geonetwork.thesaurus.external.theme.aodn_aodn-platform-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
@@ -949,7 +945,7 @@
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/FLUOZZZZ">Fluorescence of the water body</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
                                           codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
@@ -963,14 +959,14 @@
                               <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="https://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary">
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary">
                     geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
@@ -994,7 +990,7 @@
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">Micrograms per litre</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
                                           codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
@@ -1008,7 +1004,7 @@
                               <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -1036,7 +1032,7 @@
                   <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/instrument/entity/361">water biogeochemical sensor</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
                                           codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
@@ -1050,14 +1046,14 @@
                               <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="https://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary">
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary">
                     geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
@@ -1101,7 +1097,7 @@
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
                                                codeListValue=""/>
                            </cit:role>
                            <cit:party>
@@ -1166,7 +1162,7 @@
                   <lan:LanguageCode codeList="ttp://www.loc.gov/standards/iso639-2/" codeListValue="eng">eng</lan:LanguageCode>
                </lan:language>
                <lan:characterEncoding>
-                  <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
+                  <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
                </lan:characterEncoding>
             </lan:PT_Locale>
          </mri:defaultLocale>
@@ -1181,7 +1177,7 @@
          <mrc:attributeGroup>
             <mrc:MD_AttributeGroup>
                <mrc:contentType>
-                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CoverageContentTypeCode"
+                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_CoverageContentTypeCode"
                                                   codeListValue="physicalMeasurement"/>
                </mrc:contentType>
                <mrc:attribute>
@@ -1204,7 +1200,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e483">
+                        <gml:BaseUnit gml:id="d18e609">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPAA">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
@@ -1234,7 +1230,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e529">
+                        <gml:BaseUnit gml:id="d18e667">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/entity/481">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
@@ -1264,7 +1260,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e575">
+                        <gml:BaseUnit gml:id="d18e725">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/USTU">http://vocab.nerc.ac.uk/collection/P06/current/USTU</gml:identifier>
                            <gml:name>Nephelometric Turbidity Units</gml:name>
@@ -1294,7 +1290,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e621">
+                        <gml:BaseUnit gml:id="d18e783">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
@@ -1338,7 +1334,7 @@
                <mrd:distributorContact>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="custodian">custodian</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="custodian">custodian</cit:CI_RoleCode>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -1353,7 +1349,7 @@
                                           <gco:CharacterString>+61 7 4753 4444</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -1363,8 +1359,7 @@
                                           <gco:CharacterString>+61 7 4772 5852</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
-                                                                    codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -1541,7 +1536,7 @@
          <mrl:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+                  <mcc:MD_ScopeCode codeList="codeListLocation#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
                </mcc:level>
             </mcc:MD_Scope>
          </mrl:scope>
@@ -1553,7 +1548,7 @@
    <mdb:metadataConstraints>
       <mco:MD_SecurityConstraints>
          <mco:classification>
-            <mco:MD_ClassificationCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ClassificationCode"
+            <mco:MD_ClassificationCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_ClassificationCode"
                                        codeListValue="unclassified">unclassified</mco:MD_ClassificationCode>
          </mco:classification>
       </mco:MD_SecurityConstraints>
@@ -1561,7 +1556,7 @@
    <mdb:metadataMaintenance>
       <mmi:MD_MaintenanceInformation>
          <mmi:maintenanceAndUpdateFrequency>
-            <mmi:MD_MaintenanceFrequencyCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_MaintenanceFrequencyCode"
+            <mmi:MD_MaintenanceFrequencyCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode"
                                              codeListValue="asNeeded">asNeeded</mmi:MD_MaintenanceFrequencyCode>
          </mmi:maintenanceAndUpdateFrequency>
       </mmi:MD_MaintenanceInformation>
@@ -1571,7 +1566,7 @@
          <mac:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
                                     codeListValue="metadata"/>
                </mcc:level>
             </mcc:MD_Scope>
@@ -1611,7 +1606,7 @@
          <mac:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
                                     codeListValue="metadata"/>
                </mcc:level>
             </mcc:MD_Scope>
@@ -1651,7 +1646,7 @@
          <mac:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
                                     codeListValue="metadata"/>
                </mcc:level>
             </mcc:MD_Scope>
@@ -1691,7 +1686,7 @@
          <mac:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
                                     codeListValue="metadata"/>
                </mcc:level>
             </mcc:MD_Scope>
@@ -1727,4 +1722,3 @@
       </mac:MI_AcquisitionInformation>
    </mdb:acquisitionInformation>
 </mdb:MD_Metadata>
-

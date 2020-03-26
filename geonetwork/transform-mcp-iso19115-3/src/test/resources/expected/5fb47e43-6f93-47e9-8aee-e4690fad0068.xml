@@ -39,10 +39,10 @@
    <mdb:defaultLocale>
       <lan:PT_Locale>
          <lan:language>
-            <lan:LanguageCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#LanguageCode" codeListValue="eng">eng</lan:LanguageCode>
+            <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="eng">eng</lan:LanguageCode>
          </lan:language>
          <lan:characterEncoding>
-            <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
+            <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
          </lan:characterEncoding>
       </lan:PT_Locale>
    </mdb:defaultLocale>
@@ -50,7 +50,7 @@
    <mdb:metadataScope>
       <mdb:MD_MetadataScope>
          <mdb:resourceScope>
-            <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+            <mcc:MD_ScopeCode codeList="codeListLocation#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
          </mdb:resourceScope>
          <mdb:name>
             <gco:CharacterString>IMOS Platform level record</gco:CharacterString>
@@ -60,7 +60,7 @@
    <mdb:contact>
       <cit:CI_Responsibility>
          <cit:role>
-            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="distributor">distributor</cit:CI_RoleCode>
+            <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="distributor">distributor</cit:CI_RoleCode>
          </cit:role>
          <cit:party>
             <cit:CI_Organisation>
@@ -75,7 +75,7 @@
                               <gco:CharacterString>61 3 6226 7488</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -85,8 +85,7 @@
                               <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
-                                                        codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -150,7 +149,7 @@
             <gco:DateTime>2019-07-23T10:07:14</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -160,7 +159,7 @@
             <gco:DateTime>2019-07-23T10:07:14</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -253,15 +252,14 @@
                         <gco:DateTime>2017-02-23T00:00:00</gco:DateTime>
                      </cit:date>
                      <cit:dateType>
-                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
+                        <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
                      </cit:dateType>
                   </cit:CI_Date>
                </cit:date>
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
-                                         codeListValue="resourceProvider">resourceProvider</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="resourceProvider">resourceProvider</cit:CI_RoleCode>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -276,7 +274,7 @@
                                           <gco:CharacterString>61 3 6226 7549</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -286,8 +284,7 @@
                                           <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
-                                                                    codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -373,12 +370,12 @@ These time-series observations are crucial to resolving ecosystem processes that
             <gco:CharacterString>University of Tasmania (UTAS)</gco:CharacterString>
          </mri:credit>
          <mri:status>
-            <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode" codeListValue="completed">completed</mcc:MD_ProgressCode>
+            <mcc:MD_ProgressCode codeList="codeListLocation#MD_ProgressCode" codeListValue="completed">completed</mcc:MD_ProgressCode>
          </mri:status>
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
-                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
+                  <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
                </cit:role>
                <cit:party>
                   <cit:CI_Organisation>
@@ -581,7 +578,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                            <cit:date>
                               <gco:DateTime>2006-01-01T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType />
+                           <cit:dateType/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -611,7 +608,8 @@ These time-series observations are crucial to resolving ecosystem processes that
                   <gco:CharacterString>IMOS Platform | PULSE11 | Pulse 11 Mooring</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme">theme</mri:MD_KeywordTypeCode>
+                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme">theme</mri:MD_KeywordTypeCode>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -626,7 +624,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType />
+                           <cit:dateType/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -669,7 +667,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType />
+                           <cit:dateType/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -834,7 +832,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                         <gco:Real>0</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e356">
+                        <gml:BaseUnit gml:id="d18e454">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Metres per second squared</gml:name>
@@ -870,7 +868,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                         <gco:Real>-50</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e378">
+                        <gml:BaseUnit gml:id="d18e480">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Kilograms</gml:name>
@@ -899,10 +897,8 @@ These time-series observations are crucial to resolving ecosystem processes that
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
-                     <mrc:maxValue />
-                     <mrc:minValue />
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e400">
+                        <gml:BaseUnit gml:id="d18e506">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>

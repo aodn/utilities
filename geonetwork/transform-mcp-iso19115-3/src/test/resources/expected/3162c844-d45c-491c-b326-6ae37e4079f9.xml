@@ -1211,10 +1211,8 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
-                     <mrc:maxValue/>
-                     <mrc:minValue/>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e502">
+                        <gml:BaseUnit gml:id="d18e649">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UVAA">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
@@ -1243,10 +1241,8 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
-                     <mrc:maxValue/>
-                     <mrc:minValue/>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e537">
+                        <gml:BaseUnit gml:id="d18e693">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UVAA">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
@@ -1275,10 +1271,8 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
-                     <mrc:maxValue/>
-                     <mrc:minValue/>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e572">
+                        <gml:BaseUnit gml:id="d18e737">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/ULAA">http://vocab.nerc.ac.uk/collection/P06/current/ULAA</gml:identifier>
                            <gml:name>Metres</gml:name>
@@ -1307,10 +1301,8 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
-                     <mrc:maxValue/>
-                     <mrc:minValue/>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e607">
+                        <gml:BaseUnit gml:id="d18e781">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/ULAA">http://vocab.nerc.ac.uk/collection/P06/current/ULAA</gml:identifier>
                            <gml:name>Metres</gml:name>
@@ -1498,7 +1490,7 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                <mac:description>
                   <gco:CharacterString>orbiting satellite</gco:CharacterString>
                </mac:description>
-               <mac:instrument/>
+               <mac:instrument gco:nilReason="unknown"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>
@@ -1525,7 +1517,7 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                <mac:description>
                   <gco:CharacterString>orbiting satellite</gco:CharacterString>
                </mac:description>
-               <mac:instrument/>
+               <mac:instrument gco:nilReason="unknown"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>
@@ -1552,7 +1544,7 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                <mac:description>
                   <gco:CharacterString>orbiting satellite</gco:CharacterString>
                </mac:description>
-               <mac:instrument/>
+               <mac:instrument gco:nilReason="unknown"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>
@@ -1579,7 +1571,7 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                <mac:description>
                   <gco:CharacterString>orbiting satellite</gco:CharacterString>
                </mac:description>
-               <mac:instrument/>
+               <mac:instrument gco:nilReason="unknown"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>
