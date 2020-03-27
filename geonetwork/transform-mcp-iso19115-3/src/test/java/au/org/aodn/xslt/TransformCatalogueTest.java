@@ -32,7 +32,31 @@ public class TransformCatalogueTest {
     }
 
     @Test
-    public void runTest() throws IOException {
+    public void testMetadataConstraints() throws IOException {
+        // Copy test files to test directory
+        copyFolder(resourceDir.resolve("metadataConstraints"), testDir);
+
+        // Run transform
+        String args[] = {
+                "TransformCatalogue",
+                "-d", testDir.toString(),
+                "-i", "export.xml",
+                "-o", "metadata.iso19115-3.2018.xml",
+                "-g", "http://catalogue-imos.dev.aodn.org.au/geonetwork",
+                "-u"
+        };
+        TransformCatalogue.main(args);
+
+        // Assert each test result matches expected result
+        Path expectedFile = resourceDir.resolve("metadataConstraints/expected.xml");
+        Path actualFile = testDir.resolve("metadata.iso19115-3.2018.xml");
+        String expectedResult = new String(Files.readAllBytes(expectedFile));
+        String actualResult = new String(Files.readAllBytes(actualFile));
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void testAllMetadataTags() throws IOException {
         // Copy test files to test directory
         copyFolder(resourceDir.resolve("export"), testDir);
 
