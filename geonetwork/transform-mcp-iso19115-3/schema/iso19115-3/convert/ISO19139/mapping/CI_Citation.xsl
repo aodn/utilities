@@ -87,13 +87,20 @@
                                 </xsl:otherwise>
                             </xsl:choose>
                         </cit:date>
-                        <xsl:for-each select="descendant::gmd:dateType">
-                            <xsl:call-template name="writeCodelistElement">
-                                <xsl:with-param name="elementName" select="'cit:dateType'"/>
-                                <xsl:with-param name="codeListName" select="'cit:CI_DateTypeCode'"/>
-                                <xsl:with-param name="codeListValue" select="gmd:CI_DateTypeCode/@codeListValue"/>
-                            </xsl:call-template>
-                        </xsl:for-each>
+                        <xsl:choose>
+                            <xsl:when test=".//gmd:dateType/gmd:CI_DateTypeCode/@codeListValue != ''">
+                                <xsl:for-each select="descendant::gmd:dateType">
+                                    <xsl:call-template name="writeCodelistElement">
+                                        <xsl:with-param name="elementName" select="'cit:dateType'"/>
+                                        <xsl:with-param name="codeListName" select="'cit:CI_DateTypeCode'"/>
+                                        <xsl:with-param name="codeListValue" select="gmd:CI_DateTypeCode/@codeListValue"/>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <cit:dateType />
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </cit:CI_Date>
                 </xsl:otherwise>
             </xsl:choose>
