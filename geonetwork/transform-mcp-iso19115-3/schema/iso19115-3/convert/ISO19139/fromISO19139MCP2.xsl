@@ -154,6 +154,8 @@
         <xsl:apply-templates select="gmd:applicationSchemaInfo" mode="from19139to19115-3"/>
         <xsl:apply-templates select="gmd:metadataMaintenance" mode="from19139to19115-3"/>
         <xsl:apply-templates select="gmi:acquisitionInformation" mode="from19139to19115-3"/>
+        <!-- Slot mcpold:dataParameters (platform & instrument) into place where acquisitionInformation lives -->
+        <xsl:apply-templates select="gmd:identificationInfo//mcpold:dataParameters" mode="from19139to19115-3-acquisition"/>
       </xsl:element>
     </xsl:for-each>
   </xsl:template>

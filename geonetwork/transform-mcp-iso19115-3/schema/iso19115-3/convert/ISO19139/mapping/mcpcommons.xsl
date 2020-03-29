@@ -47,99 +47,109 @@
 
   <xsl:template match="gmd:resourceConstraints" mode="mcpcommons">
     <mri:resourceConstraints>
-      <mco:MD_LegalConstraints>
-        <mco:graphic>
-          <mcc:MD_BrowseGraphic>
-            <mcc:fileName gco:nilReason="inapplicable" />
-            <mcc:linkage>
-              <cit:CI_OnlineResource>
-                <cit:linkage>
-                  <gco:CharacterString><xsl:value-of select="*//mcpold:imageLink/gmd:URL"/></gco:CharacterString>
-                </cit:linkage>
-                <cit:protocol>
-                  <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
-                </cit:protocol>
-                <cit:description>
-                  <gco:CharacterString>License Graphic</gco:CharacterString>
-                </cit:description>
-              </cit:CI_OnlineResource>
-            </mcc:linkage>
-          </mcc:MD_BrowseGraphic>
-        </mco:graphic>
-        <mco:reference>
-          <cit:CI_Citation>
-            <cit:title>
-              <gco:CharacterString><xsl:value-of select="*//mcpold:licenseName/gcoold:CharacterString"/></gco:CharacterString>
-            </cit:title>
-            <cit:citedResponsibleParty>
-              <cit:CI_Responsibility>
-                <cit:role>
-                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
-                                   codeListValue=""/>
-                </cit:role>
-                <cit:party>
-                  <cit:CI_Organisation>
-                    <cit:name gco:nilReason="missing">
-                      <gco:CharacterString/>
-                    </cit:name>
-                    <cit:contactInfo>
-                      <cit:CI_Contact>
-                        <cit:address>
-                          <cit:CI_Address>
-                            <cit:electronicMailAddress gco:nilReason="missing">
-                              <gco:CharacterString/>
-                            </cit:electronicMailAddress>
-                          </cit:CI_Address>
-                        </cit:address>
-                        <cit:onlineResource>
-                          <cit:CI_OnlineResource>
-                            <cit:linkage>
-                              <gco:CharacterString><xsl:value-of select="*//mcpold:jurisdictionLink/gmd:URL"/></gco:CharacterString>
-                            </cit:linkage>
-                            <cit:protocol>
-                              <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
-                            </cit:protocol>
-                            <cit:name gco:nilReason="missing">
-                              <gco:CharacterString/>
-                            </cit:name>
-                            <cit:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                            </cit:description>
-                          </cit:CI_OnlineResource>
-                        </cit:onlineResource>
-                      </cit:CI_Contact>
-                    </cit:contactInfo>
-                  </cit:CI_Organisation>
-                </cit:party>
-              </cit:CI_Responsibility>
-            </cit:citedResponsibleParty>
-            <cit:onlineResource>
-              <cit:CI_OnlineResource>
-                <cit:linkage>
-                  <gco:CharacterString><xsl:value-of select="*//mcpold:licenseLink/gmd:URL"/></gco:CharacterString>
-                </cit:linkage>
-                <cit:protocol>
-                  <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
-                </cit:protocol>
-                <cit:description>
-                  <gco:CharacterString>License Text</gco:CharacterString>
-                </cit:description>
-              </cit:CI_OnlineResource>
-            </cit:onlineResource>
-          </cit:CI_Citation>
-        </mco:reference>
-        <xsl:if test="*//mcpold:attributionConstraints">
-          <mco:otherConstraints>
-            <gco:CharacterString><xsl:value-of select="*//mcpold:attributionConstraints/gcoold:CharacterString"/></gco:CharacterString>
-          </mco:otherConstraints>
-        </xsl:if>
-        <xsl:if test="*//mcpold:otherConstraints">
-          <mco:otherConstraints>
-            <gco:CharacterString><xsl:value-of select="*//mcpold:otherConstraints/gcoold:CharacterString"/></gco:CharacterString>
-          </mco:otherConstraints>
-        </xsl:if>
-      </mco:MD_LegalConstraints>
+      <xsl:apply-templates select="." mode="legalConstraints"/>
     </mri:resourceConstraints>
+  </xsl:template>
+
+  <xsl:template match="gmd:metadataConstraints" mode="mcpcommons">
+    <mdb:metadataConstraints>
+      <xsl:apply-templates select="." mode="legalConstraints"/>
+    </mdb:metadataConstraints>
+  </xsl:template>
+
+  <xsl:template match="gmd:resourceConstraints | gmd:metadataConstraints" mode="legalConstraints">
+    <mco:MD_LegalConstraints>
+      <mco:graphic>
+        <mcc:MD_BrowseGraphic>
+          <mcc:fileName gco:nilReason="inapplicable" />
+          <mcc:linkage>
+            <cit:CI_OnlineResource>
+              <cit:linkage>
+                <gco:CharacterString><xsl:value-of select="*//mcpold:imageLink/gmd:URL"/></gco:CharacterString>
+              </cit:linkage>
+              <cit:protocol>
+                <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
+              </cit:protocol>
+              <cit:description>
+                <gco:CharacterString>License Graphic</gco:CharacterString>
+              </cit:description>
+            </cit:CI_OnlineResource>
+          </mcc:linkage>
+        </mcc:MD_BrowseGraphic>
+      </mco:graphic>
+      <mco:reference>
+        <cit:CI_Citation>
+          <cit:title>
+            <gco:CharacterString><xsl:value-of select="*//mcpold:licenseName/gcoold:CharacterString"/></gco:CharacterString>
+          </cit:title>
+          <cit:citedResponsibleParty>
+            <cit:CI_Responsibility>
+              <cit:role>
+                <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
+                                 codeListValue=""/>
+              </cit:role>
+              <cit:party>
+                <cit:CI_Organisation>
+                  <cit:name gco:nilReason="missing">
+                    <gco:CharacterString/>
+                  </cit:name>
+                  <cit:contactInfo>
+                    <cit:CI_Contact>
+                      <cit:address>
+                        <cit:CI_Address>
+                          <cit:electronicMailAddress gco:nilReason="missing">
+                            <gco:CharacterString/>
+                          </cit:electronicMailAddress>
+                        </cit:CI_Address>
+                      </cit:address>
+                      <cit:onlineResource>
+                        <cit:CI_OnlineResource>
+                          <cit:linkage>
+                            <gco:CharacterString><xsl:value-of select="*//mcpold:jurisdictionLink/gmd:URL"/></gco:CharacterString>
+                          </cit:linkage>
+                          <cit:protocol>
+                            <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
+                          </cit:protocol>
+                          <cit:name gco:nilReason="missing">
+                            <gco:CharacterString/>
+                          </cit:name>
+                          <cit:description gco:nilReason="missing">
+                            <gco:CharacterString/>
+                          </cit:description>
+                        </cit:CI_OnlineResource>
+                      </cit:onlineResource>
+                    </cit:CI_Contact>
+                  </cit:contactInfo>
+                </cit:CI_Organisation>
+              </cit:party>
+            </cit:CI_Responsibility>
+          </cit:citedResponsibleParty>
+          <cit:onlineResource>
+            <cit:CI_OnlineResource>
+              <cit:linkage>
+                <gco:CharacterString><xsl:value-of select="*//mcpold:licenseLink/gmd:URL"/></gco:CharacterString>
+              </cit:linkage>
+              <cit:protocol>
+                <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
+              </cit:protocol>
+              <cit:description>
+                <gco:CharacterString>License Text</gco:CharacterString>
+              </cit:description>
+            </cit:CI_OnlineResource>
+          </cit:onlineResource>
+        </cit:CI_Citation>
+      </mco:reference>
+      <xsl:if test="*//mcpold:attributionConstraints">
+        <mco:otherConstraints>
+          <gco:CharacterString><xsl:value-of select="*//mcpold:attributionConstraints/gcoold:CharacterString"/></gco:CharacterString>
+        </mco:otherConstraints>
+      </xsl:if>
+      <xsl:if test="*//mcpold:otherConstraints">
+        <mco:otherConstraints>
+          <gco:CharacterString><xsl:value-of select="*//mcpold:otherConstraints/gcoold:CharacterString"/></gco:CharacterString>
+        </mco:otherConstraints>
+      </xsl:if>
+    </mco:MD_LegalConstraints>
   </xsl:template>
 
 </xsl:stylesheet>
