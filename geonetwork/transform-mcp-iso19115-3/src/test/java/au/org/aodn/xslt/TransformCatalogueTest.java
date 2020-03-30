@@ -37,6 +37,16 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testDataQualityInfo() throws IOException {
+        testFiles("dataQualityInfo");
+    }
+
+    @Test
+    public void testDistributionInfo() throws IOException {
+        testFiles("distributionInfo");
+    }
+
+    @Test
     public void testMetadataConstraints() throws IOException {
         testFiles("metadataConstraints");
     }
