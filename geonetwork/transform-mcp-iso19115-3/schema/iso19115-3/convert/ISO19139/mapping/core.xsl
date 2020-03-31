@@ -18,7 +18,7 @@
   <!-- Define if parent identifier should be defined using a uuidref
       attribute or a CI_Citation with a title. -->
   <xsl:param name="isParentIdentifierDefinedWithUUIDAttribute" select="true()" as="xs:boolean"/>
-  <xsl:param name="mapAggregationInfoToAdditionalDocumentation" select="true()" as="xs:boolean"/>
+  <xsl:param name="mapAggregationInfoToAdditionalDocumentation" select="false()" as="xs:boolean"/>
   <!--
     root element templates
   -->
