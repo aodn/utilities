@@ -1482,6 +1482,7 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                   </mcp:vocabularyTermURL>
                 </mcp:DP_Term>
               </mcp:parameterDeterminationInstrument>
+              <mcp:platform/>
             </mcp:DP_DataParameter>
           </mcp:dataParameter>
         </mcp:DP_DataParameters>

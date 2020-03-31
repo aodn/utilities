@@ -2064,20 +2064,58 @@ Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
-         <mac:instrument>
-            <mac:MI_Instrument>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                                    codeListValue="metadata"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                                    codeListValue="metadata"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+         <mac:platform>
+            <mac:MI_Platform>
                <mac:identifier>
                   <mcc:MD_Identifier>
                      <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/22">plankton nets</gcx:Anchor>
+                        <gcx:Anchor xlink:href=""/>
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:type gco:nilReason="missing">
+               <mac:description>
                   <gco:CharacterString/>
-               </mac:type>
-            </mac:MI_Instrument>
-         </mac:instrument>
+               </mac:description>
+               <mac:instrument>
+                  <mac:MI_Instrument>
+                     <mac:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/22">plankton nets</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mac:identifier>
+                     <mac:type gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </mac:type>
+                  </mac:MI_Instrument>
+               </mac:instrument>
+            </mac:MI_Platform>
+         </mac:platform>
       </mac:MI_AcquisitionInformation>
    </mdb:acquisitionInformation>
 </mdb:MD_Metadata>
