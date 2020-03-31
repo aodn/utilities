@@ -108,7 +108,7 @@
     <!--
     gmd:lineage moves directly under MD_Metadata
     -->
-    <xsl:for-each select="gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage">
+    <xsl:for-each select="gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage | gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:levelDescription">
       <!--
       gmd:DataQuality objects without lineage go to ISO 19157
       -->
@@ -123,8 +123,10 @@
               <xsl:apply-templates select="../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
             </xsl:when>
             <xsl:when test="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmx:MX_ScopeCode/@codeListValue != ''">
-              <xsl:variable name="dataQualityScopeObject" select="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope"/>
               <xsl:apply-templates select="../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
+            </xsl:when>
+            <xsl:when test="./gmd:MD_ScopeDescription/gmd:dataset/gcoold:CharacterString">
+              <xsl:apply-templates select="../../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
             </xsl:when>
             <xsl:otherwise>
               <mrl:scope />
