@@ -143,13 +143,21 @@
     <xsl:variable name="dataQualityScopeObject" select="./gmd:scope/gmd:DQ_Scope"/>
     <mrl:scope>
       <mcc:MD_Scope>
-        <xsl:call-template name="writeCodelistElement">
-          <xsl:with-param name="elementName" select="'mcc:level'"/>
-          <xsl:with-param name="codeListName" select="'mcc:MD_ScopeCode'"/>
-          <xsl:with-param name="codeListValue"
-                          select="$dataQualityScopeObject//gmd:MD_ScopeCode/@codeListValue|
-                                            $dataQualityScopeObject//gmx:MX_ScopeCode/@codeListValue"/>
-        </xsl:call-template>
+        <xsl:choose>
+        <xsl:when test="$dataQualityScopeObject//gmd:MD_ScopeCode/@codeListValue|
+                        $dataQualityScopeObject//gmx:MX_ScopeCode/@codeListValue">
+          <xsl:call-template name="writeCodelistElement">
+            <xsl:with-param name="elementName" select="'mcc:level'"/>
+            <xsl:with-param name="codeListName" select="'mcc:MD_ScopeCode'"/>
+            <xsl:with-param name="codeListValue"
+                            select="$dataQualityScopeObject//gmd:MD_ScopeCode/@codeListValue|
+                                    $dataQualityScopeObject//gmx:MX_ScopeCode/@codeListValue"/>
+          </xsl:call-template>
+        </xsl:when>
+          <xsl:otherwise>
+            <mcc:level />
+          </xsl:otherwise>
+        </xsl:choose>
         <xsl:for-each select="$dataQualityScopeObject//gmd:EX_Extent">
           <mcc:extent>
             <xsl:apply-templates select="." mode="from19139to19115-3"/>
