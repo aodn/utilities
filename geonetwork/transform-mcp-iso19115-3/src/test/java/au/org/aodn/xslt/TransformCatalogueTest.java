@@ -37,6 +37,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testDataParameters() throws IOException {
+        testFiles("dataParameters");
+    }
+
+    @Test
     public void testAggregationInfo() throws IOException {
         testFiles("aggregationInfo");
     }
