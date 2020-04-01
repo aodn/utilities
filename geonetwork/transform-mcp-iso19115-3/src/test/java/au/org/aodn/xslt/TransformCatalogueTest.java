@@ -52,6 +52,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testHierarchyLevel() throws IOException {
+        testFiles("hierarchyLevel");
+    }
+
+    @Test
     public void testAllMetadataTags() throws IOException {
         // Copy test files to test directory
         copyFolder(resourceDir.resolve("export"), testDir);
