@@ -347,10 +347,12 @@
             <xsl:with-param name="elementName" select="'mri:purpose'"/>
             <xsl:with-param name="nodeWithStringToWrite" select="gmd:purpose"/>
           </xsl:call-template>
-          <xsl:call-template name="writeCharacterStringElement">
-            <xsl:with-param name="elementName" select="'mri:credit'"/>
-            <xsl:with-param name="nodeWithStringToWrite" select="gmd:credit"/>
-          </xsl:call-template>
+          <xsl:for-each select="gmd:credit">
+            <xsl:call-template name="writeCharacterStringElement">
+              <xsl:with-param name="elementName" select="'mri:credit'"/>
+              <xsl:with-param name="nodeWithStringToWrite" select="."/>
+            </xsl:call-template>
+          </xsl:for-each>
             <xsl:call-template name="writeCodelistElement">
               <xsl:with-param name="elementName" select="'mri:status'"/>
               <xsl:with-param name="codeListValue" select="gmd:status/gmd:MD_ProgressCode/@codeListValue"/>
