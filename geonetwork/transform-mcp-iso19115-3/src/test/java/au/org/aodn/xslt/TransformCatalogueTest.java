@@ -42,6 +42,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testCredit() throws IOException {
+        testFiles("credit");
+    }
+
+    @Test
     public void testDataQualityInfo() throws IOException {
         testFiles("dataQualityInfo");
     }
