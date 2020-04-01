@@ -46,6 +46,7 @@
       </mdb:MD_MetadataScope>
    </mdb:metadataScope>
    <mdb:contact gco:nilReason="missing"/>
+   <mdb:dateInfo gco:nilReason="missing"/>
    <mdb:metadataStandard>
       <cit:CI_Citation>
          <cit:title>
