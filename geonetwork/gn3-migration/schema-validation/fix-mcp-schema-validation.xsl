@@ -308,17 +308,17 @@
     </xsl:copy>
   </xsl:template>
 
-  <!-- Partially fixed by Nat -->
+  <!-- Fixed by Nat -->
   <!-- Missing `<gmd:date>` element added  -->
   <!--  <xsl:template match="gmd:date/gmd:CI_Date[not(./gmd:date) and (./gmd:dateType/gmd:CI_DateTypeCode/@codeListValue='']" />-->
-  <xsl:template match="gmd:CI_Date">
-    <xsl:copy>
-      <xsl:if test="not(./gmd:date)">
-        <gmd:date gco:nilReason="missing"/>
-      </xsl:if>
-       <xsl:apply-templates select="@* | node()" />
-    </xsl:copy>
-  </xsl:template>
+<!--  <xsl:template match="gmd:CI_Date">-->
+<!--    <xsl:copy>-->
+<!--      <xsl:if test="not(./gmd:date)">-->
+<!--        <gmd:date gco:nilReason="missing"/>-->
+<!--      </xsl:if>-->
+<!--       <xsl:apply-templates select="@* | node()" />-->
+<!--    </xsl:copy>-->
+<!--  </xsl:template>-->
 
   <!--  f47a6929-1f19-4724-b74b-7c8579872cb7-->
   <!-- Removed unnecessary `<gml:duration>` element   -->
