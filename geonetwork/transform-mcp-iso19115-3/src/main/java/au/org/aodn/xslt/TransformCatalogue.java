@@ -22,9 +22,9 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
-public class transformCatalogue {
+public class TransformCatalogue {
 
-    private static final Logger logger = LogManager.getLogger(transformCatalogue.class);
+    private static final Logger logger = LogManager.getLogger(TransformCatalogue.class);
 
     public static void main(String[] args) {
 
