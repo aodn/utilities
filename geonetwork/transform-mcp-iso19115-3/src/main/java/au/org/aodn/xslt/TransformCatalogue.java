@@ -39,7 +39,6 @@ public class TransformCatalogue {
         options.addRequiredOption("o", "output_file_name", true, "Output xml file name.");
         options.addRequiredOption("g", "geonetwork_url", true, "Geonetwork URL for the Vocabulary lookup");
         options.addOption("u", "update_links", false, "Update links to integration test environment");
-        options.addOption("c", "update_codelistlocation", false, "Update codelist location");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = null;
@@ -49,8 +48,7 @@ public class TransformCatalogue {
                 "name specified by the -i option. The converted file will be created with the name specified by the " +
                 "-o option at the same level in the directory structure as the input file. Provide -g option " +
                 "specifying the Geonetwork URL for the Vocabulary lookup. If the -u option is selected all resource" +
-                "and metadata linkage URLs will be updated to point at the current stack rather than production. If " +
-                "the -c option is selected, the codelist location is updated to 19115-3 schema urls";
+                "and metadata linkage URLs will be updated to point at the current stack rather than production.";
 
         HelpFormatter formatter = new HelpFormatter();
 
@@ -120,13 +118,10 @@ public class TransformCatalogue {
                 write(file.getParent() + File.separator + output, sw_mcp2);
 
                 // Transform to update codelist location
-                StringWriter updated_sw_mcp1 = sw_mcp2;
-                if (cmd.hasOption("c")) {
-                    Source update_codeListLocation_xslSource = new javax.xml.transform.stream.StreamSource(transform_19115_3_update_codeListLocation_xslFile);
-                    Source sw_mcp1_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(sw_mcp2.toString()));
-                    updated_sw_mcp1 = transform(sw_mcp1_xmlSource, update_codeListLocation_xslSource, geonetwork_url);
-                    write(file.getParent() + File.separator + output, updated_sw_mcp1);
-                }
+                Source update_codeListLocation_xslSource = new javax.xml.transform.stream.StreamSource(transform_19115_3_update_codeListLocation_xslFile);
+                Source sw_mcp1_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(sw_mcp2.toString()));
+                StringWriter updated_sw_mcp1 = transform(sw_mcp1_xmlSource, update_codeListLocation_xslSource, geonetwork_url);
+                write(file.getParent() + File.separator + output, updated_sw_mcp1);
 
                 // If option selected update URLs to integration test
                 if (cmd.hasOption("u")) {
