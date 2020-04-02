@@ -108,7 +108,7 @@
     <!--
     gmd:lineage moves directly under MD_Metadata
     -->
-    <xsl:for-each select="gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage | gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:levelDescription">
+    <xsl:for-each select="gmd:DQ_DataQuality[not(gmd:report)]">
       <!--
       gmd:DataQuality objects without lineage go to ISO 19157
       -->
@@ -116,24 +116,24 @@
         <mrl:LI_Lineage>
           <xsl:call-template name="writeCharacterStringElement">
             <xsl:with-param name="elementName" select="'mrl:statement'"/>
-            <xsl:with-param name="nodeWithStringToWrite" select="gmd:statement"/>
+            <xsl:with-param name="nodeWithStringToWrite" select="./gmd:lineage/gmd:LI_Lineage/gmd:statement"/>
           </xsl:call-template>
           <xsl:choose>
-            <xsl:when test="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue != ''">
-              <xsl:apply-templates select="../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
+            <xsl:when test="./gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue != ''">
+              <xsl:apply-templates select="../gmd:DQ_DataQuality" mode="dataQualityScope"/>
             </xsl:when>
-            <xsl:when test="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmx:MX_ScopeCode/@codeListValue != ''">
-              <xsl:apply-templates select="../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
+            <xsl:when test="./gmd:scope/gmd:DQ_Scope/gmd:level/gmx:MX_ScopeCode/@codeListValue != ''">
+              <xsl:apply-templates select="../gmd:DQ_DataQuality" mode="dataQualityScope"/>
             </xsl:when>
-            <xsl:when test="./gmd:MD_ScopeDescription/gmd:dataset/gcoold:CharacterString">
-              <xsl:apply-templates select="../../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
+            <xsl:when test=".//gmd:MD_ScopeDescription/gmd:dataset/gcoold:CharacterString">
+              <xsl:apply-templates select="../gmd:DQ_DataQuality" mode="dataQualityScope"/>
             </xsl:when>
             <xsl:otherwise>
               <mrl:scope />
             </xsl:otherwise>
           </xsl:choose>
-          <xsl:apply-templates select="gmd:source" mode="from19139to19115-3"/>
-          <xsl:apply-templates select="gmd:processStep" mode="from19139to19115-3"/>
+          <xsl:apply-templates select="./gmd:lineage/gmd:LI_Lineage/gmd:source" mode="from19139to19115-3"/>
+          <xsl:apply-templates select="./gmd:lineage/gmd:LI_Lineage/gmd:processStep" mode="from19139to19115-3"/>
         </mrl:LI_Lineage>
       </xsl:element>
     </xsl:for-each>
@@ -163,17 +163,17 @@
             <xsl:apply-templates select="." mode="from19139to19115-3"/>
           </mcc:extent>
         </xsl:for-each>
-        <xsl:if test="$dataQualityScopeObject//gmd:MD_ScopeDescription">
+        <xsl:for-each select="$dataQualityScopeObject//gmd:MD_ScopeDescription">
           <mcc:levelDescription>
             <mcc:MD_ScopeDescription>
-              <xsl:apply-templates select="$dataQualityScopeObject//gmd:MD_ScopeDescription/*" mode="from19139to19115-3"/>
+              <xsl:apply-templates select="./*" mode="from19139to19115-3"/>
               <!--<xsl:call-template name="writeCharacterStringElement">
               <xsl:with-param name="elementName" select="'cit:other'"/>
               <xsl:with-param name="stringToWrite" select="gmd:statement"/>
             </xsl:call-template>-->
             </mcc:MD_ScopeDescription>
           </mcc:levelDescription>
-        </xsl:if>
+        </xsl:for-each>
       </mcc:MD_Scope>
     </mrl:scope>
   </xsl:template>
