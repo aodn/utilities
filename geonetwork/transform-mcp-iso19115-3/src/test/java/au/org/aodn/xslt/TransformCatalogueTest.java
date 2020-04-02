@@ -72,6 +72,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testTemporalExtent() throws IOException {
+        testFiles("temporalExtent");
+    }
+
+    @Test
     public void testAllMetadataTags() throws IOException {
         // Copy test files to test directory
         copyFolder(resourceDir.resolve("export"), testDir);
