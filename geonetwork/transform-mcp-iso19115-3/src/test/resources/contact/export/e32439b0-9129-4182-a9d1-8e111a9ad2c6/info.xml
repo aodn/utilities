@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info version="1.1">
+  <general>
+    <createDate>2009-06-25T10:29:19</createDate>
+    <changeDate>2017-07-20T11:48:35</changeDate>
+    <schema>iso19139.mcp-2.0</schema>
+    <isTemplate>false</isTemplate>
+    <localId>23383</localId>
+    <format>full</format>
+    <rating>0</rating>
+    <popularity>1803</popularity>
+    <uuid>e32439b0-9129-4182-a9d1-8e111a9ad2c6</uuid>
+    <siteId>5c6d6b45-1659-435c-91a7-4147caeed8a4</siteId>
+    <siteName>Catalogue for the 123 Portal</siteName>
+  </general>
+  <categories />
+  <privileges>
+    <group name="Former IMOS MEST" groupOwner="true">
+      <operation name="download" />
+      <operation name="view" />
+    </group>
+  </privileges>
+  <public>
+    <file name="PH_watersampling_thumbs.png" changeDate="2011-01-28T18:19:03" />
+    <file name="PH_watersampling_thumbs_s.png" changeDate="2011-01-28T18:19:03" />
+  </public>
+  <private />
+  <owner name="atkinsn" />
+</info>
+

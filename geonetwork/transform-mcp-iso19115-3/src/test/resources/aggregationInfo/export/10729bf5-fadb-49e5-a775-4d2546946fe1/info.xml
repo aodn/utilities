@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info version="1.1">
+  <general>
+    <createDate>2008-10-27T15:11:53</createDate>
+    <changeDate>2020-03-26T09:45:11</changeDate>
+    <schema>iso19139.mcp-2.0</schema>
+    <isTemplate>false</isTemplate>
+    <localId>23467</localId>
+    <format>full</format>
+    <rating>0</rating>
+    <popularity>2755</popularity>
+    <uuid>10729bf5-fadb-49e5-a775-4d2546946fe1</uuid>
+    <siteId>5c6d6b45-1659-435c-91a7-4147caeed8a4</siteId>
+    <siteName>Catalogue for the 123 Portal</siteName>
+  </general>
+  <categories />
+  <privileges>
+    <group name="Former IMOS MEST" groupOwner="true">
+      <operation name="download" />
+      <operation name="view" />
+    </group>
+  </privileges>
+  <public>
+    <file name="SOTSmoorings_s.png" changeDate="2011-01-28T18:20:01" />
+    <file name="SOTSmoorings.png" changeDate="2011-01-28T18:20:01" />
+  </public>
+  <private>
+    <file name="TrackerPulseHeavy.csv" changeDate="2011-01-28T18:20:01" />
+    <file name="StatisticsPulseLight.csv" changeDate="2011-01-28T18:20:01" />
+    <file name="TrackerPulseLight.csv" changeDate="2011-01-28T18:20:01" />
+    <file name="StatusPulseHeavy.csv" changeDate="2011-01-28T18:20:01" />
+    <file name="StatusPulseLight.csv" changeDate="2011-01-28T18:20:01" />
+    <file name="StatisticsPulseHeavy.csv" changeDate="2011-01-28T18:20:01" />
+  </private>
+  <owner name="atkinsn" />
+</info>
+
