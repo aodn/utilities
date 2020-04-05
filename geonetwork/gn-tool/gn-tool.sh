@@ -42,7 +42,7 @@ get_all_records() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
-    local harvest_all=$1; shift
+    local harvested_records=$1; shift
 
     if [[ $gn_user != "" ]]; then
       gn_user_arg="--username $gn_user"
@@ -51,13 +51,13 @@ get_all_records() {
       gn_password_arg="--password $gn_password"
     fi
 
-    if [[ $harvest_all != "" ]]; then
-      harvest_all_arg="y"
+    if [[ $harvested_records != "n" ]]; then
+      harvested_records_arg="y"
     else
-      harvest_all_arg="n"
+      harvested_records_arg="n"
     fi
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&_isHarvested=$harvest_all_arg&from=1&to=2000" $gn_user_arg $gn_password_arg
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&_isHarvested=$harvested_records_arg&from=1&to=2000" $gn_user_arg $gn_password_arg
 }
 
 # return all available record uuids from <uuid> tags in file
@@ -121,7 +121,7 @@ export_record() {
 # $gn_addr     - geonetwork address
 # $gn_user     - geonetwork user
 # $gn_password - geonetwork password
-# $harvest_all - download harvested records 'y' or 'n'
+# $harvested_records - download harvested records 'y' or 'n'
 export_records() {
     local record_uuid=$1; shift
     local uuid_tag=$1; shift
@@ -129,12 +129,12 @@ export_records() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
-    local harvest_all=$1; shift
+    local harvested_records=$1; shift
 
     local -i retval=0
     if [ x"$record_uuid" = x"ALL" ]; then
         mkdir -p $record_dir
-        text_result=$(get_all_records $gn_addr $gn_user $gn_password $harvest_all)
+        text_result=$(get_all_records $gn_addr $gn_user $gn_password $harvested_records)
         if [[ $? -ne "0" ]]; then
           echo "Error in finding the uuids"
           exit
@@ -316,7 +316,7 @@ Options:
 main() {
     # parse options with getopt
     local tmp_getops
-    tmp_getops=`getopt hGo:l:r:t:g:u:p:y:z:a: $*`
+    tmp_getops=`getopt hGo:l:r:t:g:u:p:y:z:a $*`
     [ $? != 0 ] && usage
 
     set -- $tmp_getops
@@ -327,7 +327,7 @@ main() {
     local group=2
     local uuid_action="nothing"
     local uuid_tag="uuid"
-    local harvest_all
+    local harvested_records="n"
 
     # parse the options
     while true ; do
@@ -343,7 +343,7 @@ main() {
             -p) gn_password="$2"; shift 2;;
             -y) uuid_action="$2"; shift 2;;
             -z) group="$2"; shift 2;;
-            -a) harvest_all="$2"; shift 2;;
+            -a) harvested_records="y"; shift 1;;
             --) shift; break;;
             *) usage;;
         esac
@@ -373,7 +373,7 @@ main() {
             import_records $location $gn_addr $gn_user $gn_password $group $uuid_action
         fi
     elif [ "$operation" = "export" ]; then
-        export_records $record_uuid $uuid_tag $location $gn_addr $gn_user $gn_password $harvest_all
+        export_records $record_uuid $uuid_tag $location $gn_addr $gn_user $gn_password $harvested_records
     else
         usage
     fi
