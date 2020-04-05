@@ -28,7 +28,7 @@ public class TransformCatalogueTest {
     @After
     public void tearDown() throws IOException {
         // Delete test directory
-        deleteFolder(testDir);
+//        deleteFolder(testDir);
     }
 
     @Test
@@ -74,6 +74,11 @@ public class TransformCatalogueTest {
     @Test
     public void testTemporalExtent() throws IOException {
         testFiles("temporalExtent");
+    }
+
+    @Test
+    public void testPointOfContact() throws IOException {
+        testFiles("pointOfContact");
     }
 
     @Test
