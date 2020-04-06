@@ -131,9 +131,18 @@
                       <gml:descriptionReference />
                       <xsl:choose>
                         <xsl:when test="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL">
-                          <gml:identifier codeSpace="{./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL}">
-                            <xsl:value-of select="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL"/>
-                          </gml:identifier>
+                          <xsl:choose>
+                            <xsl:when test="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyListURL/gmd:URL">
+                              <gml:identifier codeSpace="{./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyListURL/gmd:URL}">
+                                <xsl:value-of select="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL"/>
+                              </gml:identifier>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <gml:identifier codeSpace="unknown">
+                                <xsl:value-of select="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL"/>
+                              </gml:identifier>
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </xsl:when>
                         <xsl:otherwise>
                           <gml:identifier codeSpace="unknown"/>

@@ -245,7 +245,7 @@
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e19">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPAA">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -272,7 +272,7 @@
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e85">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/entity/481">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
+                           <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/1">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name/>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
