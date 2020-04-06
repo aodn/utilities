@@ -232,7 +232,7 @@
                               <gco:CharacterString/>
                            </mcc:version>
                            <mcc:description>
-                              <gco:CharacterString/>
+                              <gco:CharacterString>Parameter Description</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>

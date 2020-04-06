@@ -88,6 +88,12 @@
                         <gco:CharacterString/>
                       </mcc:version>
                       <xsl:choose>
+                        <xsl:when test="./mcpold:parameterDescription/@*[local-name()='nilReason']">
+                          <xsl:element name="mcc:description">
+                            <xsl:attribute name="gco:nilReason" select="./mcpold:parameterDescription/@*[local-name()='nilReason']"/>
+                            <gco:CharacterString/>
+                          </xsl:element>
+                        </xsl:when>
                         <xsl:when test="./mcpold:parameterDescription">
                           <mcc:description>
                             <gco:CharacterString>
@@ -95,13 +101,13 @@
                             </gco:CharacterString>
                           </mcc:description>
                         </xsl:when>
-                      <xsl:when test="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition">
-                        <mcc:description>
-                          <gco:CharacterString>
-                            <xsl:value-of select="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition"/>
-                          </gco:CharacterString>
-                        </mcc:description>
-                      </xsl:when>
+                        <xsl:when test="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition">
+                          <mcc:description>
+                            <gco:CharacterString>
+                              <xsl:value-of select="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition"/>
+                            </gco:CharacterString>
+                          </mcc:description>
+                        </xsl:when>
                         <xsl:otherwise>
                           <mcc:description  gco:nilReason="missing">
                             <gco:CharacterString />

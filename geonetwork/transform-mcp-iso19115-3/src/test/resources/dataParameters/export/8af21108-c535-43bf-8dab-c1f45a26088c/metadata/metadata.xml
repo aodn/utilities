@@ -62,8 +62,8 @@
               <mcp:parameterMaximumValue>
                 <gco:CharacterString>0</gco:CharacterString>
               </mcp:parameterMaximumValue>
-              <mcp:parameterDescription gco:nilReason="missing">
-                <gco:CharacterString />
+              <mcp:parameterDescription>
+                <gco:CharacterString>Parameter Description</gco:CharacterString>
               </mcp:parameterDescription>
               <mcp:parameterDeterminationInstrument>
                 <mcp:DP_Term>
