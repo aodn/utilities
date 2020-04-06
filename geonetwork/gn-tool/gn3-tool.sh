@@ -59,13 +59,7 @@ get_all_records() {
       gn_xsrftoken_arg="--xsrftoken $gn_xsrftoken"
     fi
 
-    if [[ $harvested_records != "n" ]]; then
-      harvested_records_arg="y"
-    else
-      harvested_records_arg="n"
-    fi
-
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&_isHarvested=$harvested_records_arg&from=1&to=2000" $gn_user_arg $gn_password_arg $gn_xsrftoken_arg
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&_isHarvested=$harvested_records&from=1&to=2000" $gn_user_arg $gn_password_arg $gn_xsrftoken_arg
 
     # NOTE:
     # Returns total no of records based on the value of 'maxRecords' in config-service-search.xml for Geonetwork 3.
