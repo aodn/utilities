@@ -122,10 +122,6 @@
             <xsl:when test="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue != ''">
               <xsl:apply-templates select="../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
             </xsl:when>
-            <xsl:when test="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level/gmx:MX_ScopeCode/@codeListValue != ''">
-              <xsl:variable name="dataQualityScopeObject" select="../../../gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope"/>
-              <xsl:apply-templates select="../../../gmd:DQ_DataQuality" mode="dataQualityScope"/>
-            </xsl:when>
             <xsl:otherwise>
               <mrl:scope />
             </xsl:otherwise>
