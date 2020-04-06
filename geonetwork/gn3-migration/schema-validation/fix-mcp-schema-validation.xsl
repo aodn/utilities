@@ -271,7 +271,7 @@
   <xsl:template match="gmd:temporalElement/*[local-name()='EX_TemporalExtent']">
     <xsl:copy>
       <xsl:choose>
-        <xsl:when test="(./*[local-name()='beginTime']) and not(./*[local-name()='endTime'])">
+        <xsl:when test="(./*[local-name()='beginTime']) and not(./*[local-name()='beginTime']/gco:DateTime[not(*) and not(normalize-space())]) and not(./*[local-name()='endTime'])">
           <xsl:apply-templates select="@*" />
           <gmd:extent>
               <gml:TimePeriod gml:id="{generate-id(.)}">
