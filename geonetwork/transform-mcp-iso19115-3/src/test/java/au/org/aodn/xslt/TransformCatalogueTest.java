@@ -52,6 +52,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testCodeListLocation() throws IOException {
+        testFiles("codelistlocation");
+    }
+
+    @Test
     public void testAllMetadataTags() throws IOException {
         // Copy test files to test directory
         copyFolder(resourceDir.resolve("export"), testDir);
@@ -61,7 +66,7 @@ public class TransformCatalogueTest {
             "TransformCatalogue",
             "-d", testDir.toString(),
             "-i", "metadata.xml",
-            "-o", "metadata.iso19115-3.2018.xml",
+            "-o", "2d2b2f92-12fa-4330-a480-94f0892c2b72.xml",
             "-g", "http://catalogue-imos.dev.aodn.org.au/geonetwork",
             "-u"
         };
@@ -71,7 +76,7 @@ public class TransformCatalogueTest {
         for (File testCaseDir: testDir.toFile().listFiles(File::isDirectory)) {
             String testCaseName = testCaseDir.getName();
             Path expectedFile = resourceDir.resolve("expected").resolve(testCaseName + ".xml");
-            Path actualFile = testCaseDir.toPath().resolve("metadata/metadata.iso19115-3.2018.xml");
+            Path actualFile = testCaseDir.toPath().resolve("metadata/2d2b2f92-12fa-4330-a480-94f0892c2b72.xml");
             String expectedResult = new String(Files.readAllBytes(expectedFile));
             String actualResult = new String(Files.readAllBytes(actualFile));
             assertEquals(expectedResult, actualResult);
@@ -88,7 +93,7 @@ public class TransformCatalogueTest {
                 "TransformCatalogue",
                 "-d", testDir.toString(),
                 "-i", "metadata.xml",
-                "-o", "metadata.iso19115-3.2018.xml",
+                "-o", "2d2b2f92-12fa-4330-a480-94f0892c2b72.xml",
                 "-g", "http://catalogue-imos.dev.aodn.org.au/geonetwork",
                 "-u"
         };
@@ -97,7 +102,7 @@ public class TransformCatalogueTest {
         for (File testCaseDir: testDir.toFile().listFiles(File::isDirectory)) {
             String testCaseName = testCaseDir.getName();
             Path expectedFile = resourceDir.resolve(testSubDirName + "/expected").resolve(testCaseName + ".xml");
-            Path actualFile = testCaseDir.toPath().resolve("metadata/metadata.iso19115-3.2018.xml");
+            Path actualFile = testCaseDir.toPath().resolve("metadata/2d2b2f92-12fa-4330-a480-94f0892c2b72.xml");
             String expectedResult = new String(Files.readAllBytes(expectedFile));
             String actualResult = new String(Files.readAllBytes(actualFile));
             assertEquals(expectedResult, actualResult);
