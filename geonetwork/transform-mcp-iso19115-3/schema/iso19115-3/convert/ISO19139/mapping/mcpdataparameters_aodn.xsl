@@ -165,7 +165,7 @@
               <mcc:MD_Scope>
                 <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                 </mcc:level>
               </mcc:MD_Scope>
             </mac:scope>
