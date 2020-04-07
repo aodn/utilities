@@ -38,17 +38,19 @@
    <mdb:defaultLocale>
       <lan:PT_Locale>
          <lan:language>
-            <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="eng">eng</lan:LanguageCode>
+            <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
          </lan:language>
          <lan:characterEncoding>
-            <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
+            <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode"
+                                     codeListValue="utf8"/>
          </lan:characterEncoding>
       </lan:PT_Locale>
    </mdb:defaultLocale>
    <mdb:metadataScope>
       <mdb:MD_MetadataScope>
          <mdb:resourceScope>
-            <mcc:MD_ScopeCode codeList="codeListLocation#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+            <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                              codeListValue="dataset"/>
          </mdb:resourceScope>
          <mdb:name>
             <gco:CharacterString/>
@@ -58,7 +60,8 @@
    <mdb:contact>
       <cit:CI_Responsibility>
          <cit:role>
-            <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="distributor">distributor</cit:CI_RoleCode>
+            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                             codeListValue="distributor"/>
          </cit:role>
          <cit:party>
             <cit:CI_Organisation>
@@ -73,7 +76,8 @@
                               <gco:CharacterString>61 3 6226 7488</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                        codeListValue="voice"/>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -83,7 +87,8 @@
                               <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                        codeListValue="facsimile"/>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -148,7 +153,8 @@
             <gco:DateTime>2020-01-14T11:11:10</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                 codeListValue="creation"/>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -158,7 +164,8 @@
             <gco:DateTime>2020-01-14T11:11:10</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                 codeListValue="revision"/>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -220,7 +227,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -267,7 +275,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -317,7 +326,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -364,7 +374,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -411,7 +422,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -461,7 +473,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -508,7 +521,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -555,7 +569,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -602,7 +617,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -652,7 +668,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -702,7 +719,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -752,7 +770,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -799,7 +818,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -846,7 +866,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -890,7 +911,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -940,7 +962,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -987,7 +1010,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -1034,7 +1058,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -1081,7 +1106,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -1128,7 +1154,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -1175,7 +1202,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -1222,7 +1250,8 @@
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="collaborator"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -1269,7 +1298,7 @@
             </cit:CI_Citation>
          </mri:citation>
          <mri:abstract>
-            <gco:CharacterString>Larval fishes are a useful metric of marine ecosystem state and change, as well as species-specific patterns in phenology. The high level of taxonomic expertise required to identify larval fishes to species level, and the considerable effort required to collect them, make these data extremely valuable. Here we collate 3178 samples of larval fishes, from 12 research projects from 1983 to November 2016, from temperate and subtropical Australian waters. This forms a benchmark for the larval fish assemblage for the region, and includes recent monitoring of larval fishes at coastal oceanographic reference stations. Comparing larval fishes among projects can be problematic to due to differences in taxonomic resolution, and identifying all taxa to species can extremely challenging, so this study reports a standard taxonomic resolution (of 221 taxa) for this region to help guide future research. All data reported here has been expertly resolved to this taxonomic resolution. 
+            <gco:CharacterString>Larval fishes are a useful metric of marine ecosystem state and change, as well as species-specific patterns in phenology. The high level of taxonomic expertise required to identify larval fishes to species level, and the considerable effort required to collect them, make these data extremely valuable. Here we collate 3178 samples of larval fishes, from 12 research projects from 1983 to November 2016, from temperate and subtropical Australian waters. This forms a benchmark for the larval fish assemblage for the region, and includes recent monitoring of larval fishes at coastal oceanographic reference stations. Comparing larval fishes among projects can be problematic to due to differences in taxonomic resolution, and identifying all taxa to species can extremely challenging, so this study reports a standard taxonomic resolution (of 221 taxa) for this region to help guide future research. All data reported here has been expertly resolved to this taxonomic resolution.
 
 The ongoing version of this larval fish database will be freely available through the Australian Ocean Data Network Portal (AODN; http://portal-gn3-integration.dev.aodn.org.au/) in the near future, and will serve as a data repository for surveys of larval fish assemblages in the region.</gco:CharacterString>
          </mri:abstract>
@@ -1286,12 +1315,14 @@ The ongoing version of this larval fish database will be freely available throug
             <gco:CharacterString>Integrated Marine Observing System (IMOS)</gco:CharacterString>
          </mri:credit>
          <mri:status>
-            <mcc:MD_ProgressCode codeList="codeListLocation#MD_ProgressCode" codeListValue="completed">completed</mcc:MD_ProgressCode>
+            <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode"
+                                 codeListValue="completed"/>
          </mri:status>
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
-                  <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                   codeListValue="collaborator"/>
                </cit:role>
                <cit:party>
                   <cit:CI_Organisation>
@@ -1338,7 +1369,8 @@ The ongoing version of this larval fish database will be freely available throug
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
-                  <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="collaborator">collaborator</cit:CI_RoleCode>
+                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                   codeListValue="collaborator"/>
                </cit:role>
                <cit:party>
                   <cit:CI_Organisation>
@@ -1383,8 +1415,8 @@ The ongoing version of this larval fish database will be freely available throug
             </cit:CI_Responsibility>
          </mri:pointOfContact>
          <mri:spatialRepresentationType>
-            <mcc:MD_SpatialRepresentationTypeCode codeList="codeListLocation#MD_SpatialRepresentationTypeCode"
-                                                  codeListValue="textTable">textTable</mcc:MD_SpatialRepresentationTypeCode>
+            <mcc:MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_SpatialRepresentationTypeCode"
+                                                  codeListValue="textTable"/>
          </mri:spatialRepresentationType>
          <mri:topicCategory>
             <mri:MD_TopicCategoryCode>biota</mri:MD_TopicCategoryCode>
@@ -1433,8 +1465,8 @@ The ongoing version of this larval fish database will be freely available throug
          <mri:resourceMaintenance>
             <mmi:MD_MaintenanceInformation>
                <mmi:maintenanceAndUpdateFrequency>
-                  <mmi:MD_MaintenanceFrequencyCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode"
-                                                   codeListValue="notPlanned">notPlanned</mmi:MD_MaintenanceFrequencyCode>
+                  <mmi:MD_MaintenanceFrequencyCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_MaintenanceFrequencyCode"
+                                                   codeListValue="notPlanned"/>
                </mmi:maintenanceAndUpdateFrequency>
             </mmi:MD_MaintenanceInformation>
          </mri:resourceMaintenance>
@@ -1472,8 +1504,8 @@ The ongoing version of this larval fish database will be freely available throug
                   <gcx:Anchor xlink:href="http://www.marlin.csiro.au:80/geonetwork/srv/eng/xml.keyword.get?thesaurus=register.dataSource.urn:marlin.csiro.au:sourceregister&amp;id=urn:marlin.csiro.au:sourceregister:concept:194">Ship: Challenger</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="dataSource">dataSource</mri:MD_KeywordTypeCode>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="dataSource"/>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -1486,7 +1518,8 @@ The ongoing version of this larval fish database will be freely available throug
                               <gco:DateTime>2016-09-23T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -1510,8 +1543,8 @@ The ongoing version of this larval fish database will be freely available throug
                   <gcx:Anchor xlink:href="http://www.marlin.csiro.au:80/geonetwork/srv/eng/xml.keyword.get?thesaurus=external.theme.gcmd_keywords&amp;id=http://gcmdservices.gsfc.nasa.gov/kms/concept/ea855d4c-f132-44f9-b31c-447e1101684d">Earth Science | Biological Classification | Animals/Vertebrates | Fish</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme">theme</mri:MD_KeywordTypeCode>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -1524,7 +1557,8 @@ The ongoing version of this larval fish database will be freely available throug
                               <gco:DateTime>2014-04-29T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -1566,7 +1600,7 @@ The ongoing version of this larval fish database will be freely available throug
                   <gcx:Anchor xlink:href="http://www.marlin.csiro.au:80/geonetwork/srv/eng/xml.keyword.get?thesaurus=register.survey.urn:marlin.csiro.au:surveyregister&amp;id=urn:marlin.csiro.au:surveyregister:concept:1268">Research Voyage: SS 08/2004</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
                                           codeListValue=""/>
                </mri:type>
                <mri:thesaurusName>
@@ -1580,7 +1614,8 @@ The ongoing version of this larval fish database will be freely available throug
                               <gco:DateTime>2018-01-09T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -1607,7 +1642,7 @@ The ongoing version of this larval fish database will be freely available throug
                   <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/489">Biotic taxonomic identification</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
                                           codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
@@ -1621,7 +1656,8 @@ The ongoing version of this larval fish database will be freely available throug
                               <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -1646,7 +1682,7 @@ The ongoing version of this larval fish database will be freely available throug
                   <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/unitsofmeasure/entity/481">Practical Salinity Unit</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
                                           codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
@@ -1660,7 +1696,8 @@ The ongoing version of this larval fish database will be freely available throug
                               <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -1682,7 +1719,7 @@ The ongoing version of this larval fish database will be freely available throug
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/22">plankton nets</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
                                           codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
@@ -1696,7 +1733,8 @@ The ongoing version of this larval fish database will be freely available throug
                               <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -1716,7 +1754,7 @@ The ongoing version of this larval fish database will be freely available throug
             <mco:MD_Constraints>
                <mco:useLimitation>
                   <gco:CharacterString>Acknowledgements
-We acknowledge the contributions of all collaborators and their institutions. We acknowledge the Australian Fisheries Management Authority who funded part of this study (grant: 2015/0819), as well as the Marine National Facility and the Australian Research Council who provided funding in support of many of these projects. 
+We acknowledge the contributions of all collaborators and their institutions. We acknowledge the Australian Fisheries Management Authority who funded part of this study (grant: 2015/0819), as well as the Marine National Facility and the Australian Research Council who provided funding in support of many of these projects.
 
 We acknowledge the support of the Integrated Marine Observing System (IMOS), which currently undertakes the larval fish monitoring at the National Reference Stations (NRS; project P12). We are grateful to the personnel who collect these NRS samples each month. If using data from project P12 please add the following acknowledgement: "Data were sourced from the Integrated Marine Observing System (IMOS) – IMOS is a national collaborative research infrastructure, supported by the Australian Government."</gco:CharacterString>
                </mco:useLimitation>
@@ -1750,7 +1788,7 @@ We acknowledge the support of the Integrated Marine Observing System (IMOS), whi
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
                                                codeListValue=""/>
                            </cit:role>
                            <cit:party>
@@ -1805,7 +1843,7 @@ We acknowledge the support of the Integrated Marine Observing System (IMOS), whi
                   </cit:CI_Citation>
                </mco:reference>
                <mco:otherConstraints>
-                  <gco:CharacterString>This is the bibliographic reference for the dataset and this metadata record that describes it: Smith, JA, Miskiewicz, AG, Beckley, LE, Everett, JD, Garcia, V, Gray, CA, Holliday D, Jordan, AR, Keane, J, Lara-Lopez, A, Leis, JM, Matis, PA, Muhling, BA, Neira, FJ, Richardson, AJ, Smith, KA, Swadling, KM, Syahailatua, A, Taylor, MD, van Ruth, PD, Ward, TM, Suthers, IM (2018), Database of Marine Larval Fish Assemblages in Australian temperate and subtropical waters 1983 - 2016. Australian Ocean Data Network - DOI: 10.4225/69/5ab33c62f9c52 (http://dx.doi.org/10.4225/69/5ab33c62f9c52) Data is supplied 'as is' without any warranty or guarantee except as required by law to be given to you. The data may not be free of error, comprehensive, current or appropriate for your particular purpose. You accept all risk and responsibility for its use. Any users of this data are required to clearly acknowledge the source of the material. 
+                  <gco:CharacterString>This is the bibliographic reference for the dataset and this metadata record that describes it: Smith, JA, Miskiewicz, AG, Beckley, LE, Everett, JD, Garcia, V, Gray, CA, Holliday D, Jordan, AR, Keane, J, Lara-Lopez, A, Leis, JM, Matis, PA, Muhling, BA, Neira, FJ, Richardson, AJ, Smith, KA, Swadling, KM, Syahailatua, A, Taylor, MD, van Ruth, PD, Ward, TM, Suthers, IM (2018), Database of Marine Larval Fish Assemblages in Australian temperate and subtropical waters 1983 - 2016. Australian Ocean Data Network - DOI: 10.4225/69/5ab33c62f9c52 (http://dx.doi.org/10.4225/69/5ab33c62f9c52) Data is supplied 'as is' without any warranty or guarantee except as required by law to be given to you. The data may not be free of error, comprehensive, current or appropriate for your particular purpose. You accept all risk and responsibility for its use. Any users of this data are required to clearly acknowledge the source of the material.
 
 Attribution Statement for NRS Stations:  "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-download]."
 
@@ -1816,10 +1854,11 @@ Attribution Statement for MNF Voyages: "The dataset [Insert-dataset-name-here] d
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
-                  <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="eng">eng</lan:LanguageCode>
+                  <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
                </lan:language>
                <lan:characterEncoding>
-                  <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
+                  <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode"
+                                           codeListValue="utf8"/>
                </lan:characterEncoding>
             </lan:PT_Locale>
          </mri:defaultLocale>
@@ -1838,7 +1877,7 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
          <mrc:attributeGroup>
             <mrc:MD_AttributeGroup>
                <mrc:contentType>
-                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_CoverageContentTypeCode"
+                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CoverageContentTypeCode"
                                                   codeListValue="physicalMeasurement"/>
                </mrc:contentType>
                <mrc:attribute>
@@ -2017,14 +2056,15 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
    <mdb:resourceLineage>
       <mrl:LI_Lineage>
          <mrl:statement>
-            <gco:CharacterString>All larval fishes were sampled by plankton nets towed from a variety of vessels. Nets were either towed obliquely (across a range of depths), or at constant near-surface depths. Upon net retrieval of this single ‘tow’, all plankton were fixed immediately in ~4% formalin in seawater (and often buffered with sodium borate or sodium carbonate to avoid sample degradation). The volume sampled by the net for each tow was determined, typically using a flowmeter attached to the mouth of the net, which was used to standardise larval fish counts to volume of water sampled. 
+            <gco:CharacterString>All larval fishes were sampled by plankton nets towed from a variety of vessels. Nets were either towed obliquely (across a range of depths), or at constant near-surface depths. Upon net retrieval of this single ‘tow’, all plankton were fixed immediately in ~4% formalin in seawater (and often buffered with sodium borate or sodium carbonate to avoid sample degradation). The volume sampled by the net for each tow was determined, typically using a flowmeter attached to the mouth of the net, which was used to standardise larval fish counts to volume of water sampled.
 
 See data paper for information on the larval fish identification.</gco:CharacterString>
          </mrl:statement>
          <mrl:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="codeListLocation#MD_ScopeCode" codeListValue="collectionSession">collectionSession</mcc:MD_ScopeCode>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="collectionSession"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mrl:scope>
@@ -2033,19 +2073,19 @@ See data paper for information on the larval fish identification.</gco:Character
    <mdb:resourceLineage>
       <mrl:LI_Lineage>
          <mrl:statement>
-            <gco:CharacterString>Project_ID; Project_name: Unique database code to identify the project (Table 1)	
-Tow_ID:	A unique identifier for each tow, which is the Project_ID plus the numerical data record for that project; e.g. P1_1 is the first record in project P1	
-Sample:	A project-specific identifier for each record	
-Date:	Date a tow was taken, yyyy-mm-dd	
-Time_local:	The local time a tow was taken, hh24:mm	
-Day_Night:	Whether the tow occurred in the day or night – only used when Time_local was unavailable	
-Latitude; Longitude:	Geographic coordinates for each tow (usually start of tow)	
-Location:	A project-specific identifier of feature of interest (e.g. oceanographic feature)	
-Volume_m3:	The volume of a tow (m3)		
+            <gco:CharacterString>Project_ID; Project_name: Unique database code to identify the project (Table 1)
+Tow_ID:	A unique identifier for each tow, which is the Project_ID plus the numerical data record for that project; e.g. P1_1 is the first record in project P1
+Sample:	A project-specific identifier for each record
+Date:	Date a tow was taken, yyyy-mm-dd
+Time_local:	The local time a tow was taken, hh24:mm
+Day_Night:	Whether the tow occurred in the day or night – only used when Time_local was unavailable
+Latitude; Longitude:	Geographic coordinates for each tow (usually start of tow)
+Location:	A project-specific identifier of feature of interest (e.g. oceanographic feature)
+Volume_m3:	The volume of a tow (m3)
 Replicate:	Identifies when tows were done consecutively to act specifically as replicates
 Cruise_ID: 	A project-specific identifier of different cruises
 Station:	A project-specific identifier of a specific location sampled multiple times
-Gear_depth_m:	The maximum depth tows were deployed to, or a range of depths sampled; surface tows have a depth=0 
+Gear_depth_m:	The maximum depth tows were deployed to, or a range of depths sampled; surface tows have a depth=0
 Gear_mesh_um:	The type of net, and the mesh dimensions (μm); summarised in Table 1
 Bathym_m:	The bottom depth at location of the tow (m)
 Temperature_C: 	Surface (&lt; 10 m) water temperature (°C) at approx.. the same time as the tow; measured with a CTD
@@ -2059,7 +2099,7 @@ Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow
          <mac:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
                                     codeListValue="metadata"/>
                </mcc:level>
             </mcc:MD_Scope>
@@ -2071,7 +2111,7 @@ Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow
          <mac:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
                                     codeListValue="metadata"/>
                </mcc:level>
             </mcc:MD_Scope>
@@ -2083,7 +2123,7 @@ Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow
          <mac:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
                                     codeListValue="metadata"/>
                </mcc:level>
             </mcc:MD_Scope>

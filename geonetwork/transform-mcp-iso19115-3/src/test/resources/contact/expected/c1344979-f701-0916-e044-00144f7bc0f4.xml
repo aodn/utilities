@@ -38,7 +38,8 @@
    <mdb:contact>
       <cit:CI_Responsibility>
          <cit:role>
-            <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
+            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                             codeListValue="pointOfContact"/>
          </cit:role>
          <cit:party>
             <cit:CI_Organisation>
@@ -84,8 +85,8 @@
                               <gco:CharacterString>Link to CSIRO - Oceans and Atmosphere IDC homepage</gco:CharacterString>
                            </cit:description>
                            <cit:function>
-                              <cit:CI_OnLineFunctionCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode"
-                                                         codeListValue="information">information</cit:CI_OnLineFunctionCode>
+                              <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_OnLineFunctionCode"
+                                                         codeListValue="information"/>
                            </cit:function>
                         </cit:CI_OnlineResource>
                      </cit:onlineResource>
