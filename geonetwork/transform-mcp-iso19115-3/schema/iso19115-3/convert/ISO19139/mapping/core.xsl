@@ -210,13 +210,21 @@
             </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
-        <xsl:if test="../gmd:hierarchyLevelName">
-          <mdb:name>
-            <gco:CharacterString>
-              <xsl:value-of select="../gmd:hierarchyLevelName/gcoold:CharacterString"/>
-            </gco:CharacterString>
-          </mdb:name>
-        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="../gmd:hierarchyLevelName/@*[local-name()='nilReason']">
+            <mdb:name>
+              <xsl:attribute name="gco:nilReason" select="../gmd:hierarchyLevelName/@*[local-name()='nilReason']"/>
+              <gco:CharacterString/>
+            </mdb:name>
+          </xsl:when>
+          <xsl:otherwise>
+            <mdb:name>
+              <gco:CharacterString>
+                <xsl:value-of select="../gmd:hierarchyLevelName/gcoold:CharacterString"/>
+              </gco:CharacterString>
+            </mdb:name>
+          </xsl:otherwise>
+        </xsl:choose>
       </mdb:MD_MetadataScope>
     </mdb:metadataScope>
   </xsl:template>
