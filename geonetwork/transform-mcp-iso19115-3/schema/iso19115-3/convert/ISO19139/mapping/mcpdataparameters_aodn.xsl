@@ -83,11 +83,6 @@
                             </gco:CharacterString>
                           </mcc:codeSpace>
                         </xsl:when>
-                        <xsl:otherwise>
-                          <mcc:codeSpace gco:nilReason="missing">
-                            <gco:CharacterString/>
-                          </mcc:codeSpace>
-                        </xsl:otherwise>
                       </xsl:choose>
                       <mcc:version gco:nilReason="missing">
                         <gco:CharacterString/>
