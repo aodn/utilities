@@ -171,6 +171,20 @@
    <mdb:resourceLineage>
       <mrl:LI_Lineage>
          <mrl:statement>
+            <gco:CharacterString>Data sampling is being conducted as part of a larger IMOS monitoring program. The zooplankton samples are analysed at the Plankton Ecology Lab at CSIRO Marine and Atmospheric Research, Queensland. The samples are settled in a 1000 ml measuring cylinder for 24 hours. The top 900ml is siphoned off once settled and the remainder is transferred into a 100ml measuring cyclinder and left to settle for 24 hours. Once settled the top 90 ml is siphoned off from these samples and the remainder is transfered into a sample jar. This is gently agitated and a 1ml sample is taken and transferred into a Segdwick rafter. The whole sample is scanned at 100x magnification to count large cells. The sample is then counted at 200x magnification to count up to 200 cells of one taxa or up to 400 squares of the Sedgwick rafter. Finally, the sample is counted at 640x magnification for small flagellates, up to 200 cells of one taxa or 20 sqaures on the Sedgwick rafter. These counts are then converted to cells / l and ml / l and the analysis data is exported to IMOS.</gco:CharacterString>
+         </mrl:statement>
+         <mrl:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="codeListLocation#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mrl:scope>
+      </mrl:LI_Lineage>
+   </mdb:resourceLineage>
+   <mdb:resourceLineage>
+      <mrl:LI_Lineage>
+         <mrl:statement>
             <gco:CharacterString>Data sampling is being conducted as part of a larger IMOS monitoring program.  The silk is removed from the CPR cassette and processed as described in Richardson et al 2006. The phytoplankton colour index (PCI) and the phytoplankton data are also analysed as per Richardson et al 2006.  The zooplankton analysis is conducted differently to that described in Richardson et al 2006 as it is counted off the silk in a bogorov tray. This is accomplished by rinsing the silks in water and straining through a 10 micron mesh sieve. The collected plankton is transferred to a bogorov tray and counted under a dissecting scope. This is done to retain the phytoplankton. AusCPR decided to analyse the zooplankton this way as it provides a more accurate analysis of the zooplankton present. It is easy to miss zooplankton when it is still on the silk and it is harder to identify. After counting the zooplankton and phytoplankton are transferred onto a preweighed filter and dried in an oven at 60 degrees C for 24-48 hours. Once dried the sample is reweighed to attain dry weight.</gco:CharacterString>
          </mrl:statement>
          <mrl:scope>

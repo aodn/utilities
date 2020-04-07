@@ -108,7 +108,7 @@
     <!--
     gmd:lineage moves directly under MD_Metadata
     -->
-    <xsl:for-each select="gmd:DQ_DataQuality[not(gmd:report)]">
+    <xsl:for-each select="gmd:DQ_DataQuality">
       <!--
       gmd:DataQuality objects without lineage go to ISO 19157
       -->
@@ -166,7 +166,7 @@
         <xsl:for-each select="$dataQualityScopeObject//gmd:MD_ScopeDescription">
           <mcc:levelDescription>
             <mcc:MD_ScopeDescription>
-              <xsl:apply-templates select="./*" mode="from19139to19115-3"/>
+              <xsl:apply-templates select="*" mode="from19139to19115-3"/>
               <!--<xsl:call-template name="writeCharacterStringElement">
               <xsl:with-param name="elementName" select="'cit:other'"/>
               <xsl:with-param name="stringToWrite" select="gmd:statement"/>
