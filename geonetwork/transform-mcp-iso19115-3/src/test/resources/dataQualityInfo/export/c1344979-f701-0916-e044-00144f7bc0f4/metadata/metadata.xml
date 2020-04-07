@@ -296,6 +296,20 @@
     <gmd:DQ_DataQuality>
       <gmd:scope>
         <gmd:DQ_Scope>
+          <gmd:level gco:nilReason="missing"/>
+          <gmd:levelDescription>
+            <gmd:MD_ScopeDescription>
+              <gmd:other gco:nilReason="missing"/>
+            </gmd:MD_ScopeDescription>
+          </gmd:levelDescription>
+        </gmd:DQ_Scope>
+      </gmd:scope>
+    </gmd:DQ_DataQuality>
+  </gmd:dataQualityInfo>
+  <gmd:dataQualityInfo>
+    <gmd:DQ_DataQuality>
+      <gmd:scope>
+        <gmd:DQ_Scope>
           <gmd:level>
             <gmx:MX_ScopeCode xmlns:gmx="http://www.isotc211.org/2005/gmx" codeList="http://bluenet3.antcrc.utas.edu.au/mcp-1.4/schema/resources/Codelist/gmxCodelists.xml#MX_ScopeCode" codeListValue="mx_dataset">mx_dataset</gmx:MX_ScopeCode>
           </gmd:level>

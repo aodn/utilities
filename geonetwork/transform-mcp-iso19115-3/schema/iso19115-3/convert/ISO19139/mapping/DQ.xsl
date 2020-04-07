@@ -108,7 +108,7 @@
     <!--
     gmd:lineage moves directly under MD_Metadata
     -->
-    <xsl:for-each select="gmd:DQ_DataQuality">
+    <xsl:for-each select="gmd:DQ_DataQuality[gmd:lineage]">
       <!--
       gmd:DataQuality objects without lineage go to ISO 19157
       -->
