@@ -32,7 +32,7 @@
                     <gco:Boolean>false</gco:Boolean>
                   </mcp:usedInDataset>
                   <mcp:vocabularyListURL>
-                    <gmd:URL>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gmd:URL>
+                    <gmd:URL>http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01</gmd:URL>
                   </mcp:vocabularyListURL>
                   <mcp:vocabularyListVersion>
                     <gco:CharacterString>18</gco:CharacterString>
