@@ -50,8 +50,8 @@
          <mdq:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mdq:scope>
@@ -66,7 +66,8 @@
                               <cit:CI_Date>
                                  <cit:date gco:nilReason="inapplicable"/>
                                  <cit:dateType>
-                                    <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                                    <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                         codeListValue="publication"/>
                                  </cit:dateType>
                               </cit:CI_Date>
                            </cit:date>
@@ -91,7 +92,8 @@
                               <cit:CI_Date>
                                  <cit:date gco:nilReason="inapplicable"/>
                                  <cit:dateType>
-                                    <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                                    <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                         codeListValue="publication"/>
                                  </cit:dateType>
                               </cit:CI_Date>
                            </cit:date>
@@ -116,7 +118,8 @@
                               <cit:CI_Date>
                                  <cit:date gco:nilReason="inapplicable"/>
                                  <cit:dateType>
-                                    <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                                    <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                         codeListValue="publication"/>
                                  </cit:dateType>
                               </cit:CI_Date>
                            </cit:date>
@@ -140,7 +143,8 @@
          <mrl:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="codeListLocation#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mrl:scope>
