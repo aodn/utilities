@@ -108,11 +108,6 @@
                             </gco:CharacterString>
                           </mcc:description>
                         </xsl:when>
-                        <xsl:otherwise>
-                          <mcc:description  gco:nilReason="missing">
-                            <gco:CharacterString />
-                          </mcc:description>
-                        </xsl:otherwise>
                       </xsl:choose>
                     </mcc:MD_Identifier>
                   </mrc:name>

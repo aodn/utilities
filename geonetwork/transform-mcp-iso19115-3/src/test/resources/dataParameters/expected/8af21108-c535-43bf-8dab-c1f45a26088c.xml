@@ -264,9 +264,6 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
