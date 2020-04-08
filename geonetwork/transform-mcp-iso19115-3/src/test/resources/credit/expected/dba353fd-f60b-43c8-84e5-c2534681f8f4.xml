@@ -57,7 +57,7 @@
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
-                  <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="eng">eng</lan:LanguageCode>
+                  <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
                </lan:language>
                <lan:characterEncoding gco:nilReason="unknown"/>
             </lan:PT_Locale>

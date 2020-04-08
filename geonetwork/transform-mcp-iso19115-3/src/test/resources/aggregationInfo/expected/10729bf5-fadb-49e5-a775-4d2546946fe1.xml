@@ -57,19 +57,19 @@
                   </cit:CI_Citation>
                </mri:name>
                <mri:associationType>
-                  <mri:DS_AssociationTypeCode codeList="codeListLocation#DS_AssociationTypeCode"
-                                              codeListValue="crossReference">crossReference</mri:DS_AssociationTypeCode>
+                  <mri:DS_AssociationTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#DS_AssociationTypeCode"
+                                              codeListValue="crossReference"/>
                </mri:associationType>
                <mri:initiativeType>
-                  <mri:DS_InitiativeTypeCode codeList="codeListLocation#DS_InitiativeTypeCode"
-                                             codeListValue="project">project</mri:DS_InitiativeTypeCode>
+                  <mri:DS_InitiativeTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#DS_InitiativeTypeCode"
+                                             codeListValue="project"/>
                </mri:initiativeType>
             </mri:MD_AssociatedResource>
          </mri:associatedResource>
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
-                  <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="eng">eng</lan:LanguageCode>
+                  <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
                </lan:language>
                <lan:characterEncoding gco:nilReason="unknown"/>
             </lan:PT_Locale>

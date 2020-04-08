@@ -51,8 +51,8 @@
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
-                  <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode"
-                                   codeListValue="principalInvestigator">principalInvestigator</cit:CI_RoleCode>
+                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                   codeListValue="principalInvestigator"/>
                </cit:role>
                <cit:party>
                   <cit:CI_Organisation>
@@ -67,7 +67,8 @@
                                     <gco:CharacterString/>
                                  </cit:number>
                                  <cit:numberType>
-                                    <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                    <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                              codeListValue="voice"/>
                                  </cit:numberType>
                               </cit:CI_Telephone>
                            </cit:phone>
@@ -77,8 +78,8 @@
                                     <gco:CharacterString/>
                                  </cit:number>
                                  <cit:numberType>
-                                    <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode"
-                                                              codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                    <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                              codeListValue="facsimile"/>
                                  </cit:numberType>
                               </cit:CI_Telephone>
                            </cit:phone>
@@ -139,7 +140,8 @@
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
-                  <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
+                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                   codeListValue="pointOfContact"/>
                </cit:role>
                <cit:party>
                   <cit:CI_Organisation>
@@ -154,7 +156,8 @@
                                     <gco:CharacterString>61 3 6226 7488</gco:CharacterString>
                                  </cit:number>
                                  <cit:numberType>
-                                    <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                    <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                              codeListValue="voice"/>
                                  </cit:numberType>
                               </cit:CI_Telephone>
                            </cit:phone>
@@ -164,8 +167,8 @@
                                     <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                                  </cit:number>
                                  <cit:numberType>
-                                    <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode"
-                                                              codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                    <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                              codeListValue="facsimile"/>
                                  </cit:numberType>
                               </cit:CI_Telephone>
                            </cit:phone>
@@ -209,8 +212,8 @@
                                     <gco:CharacterString>Website of the Australian Ocean Data Network (AODN)</gco:CharacterString>
                                  </cit:description>
                                  <cit:function>
-                                    <cit:CI_OnLineFunctionCode codeList="http://bluenet3.antcrc.utas.edu.au/mcp-1.4/schema/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode"
-                                                               codeListValue="information">information</cit:CI_OnLineFunctionCode>
+                                    <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_OnLineFunctionCode"
+                                                               codeListValue="information"/>
                                  </cit:function>
                               </cit:CI_OnlineResource>
                            </cit:onlineResource>
@@ -233,7 +236,7 @@
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
-                  <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="eng">eng</lan:LanguageCode>
+                  <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
                </lan:language>
                <lan:characterEncoding gco:nilReason="unknown"/>
             </lan:PT_Locale>
