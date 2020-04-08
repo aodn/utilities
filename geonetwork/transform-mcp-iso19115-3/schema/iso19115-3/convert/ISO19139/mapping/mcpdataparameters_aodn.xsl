@@ -75,9 +75,15 @@
                           </xsl:otherwise>
                         </xsl:choose>
                       </mcc:code>
-                      <mcc:codeSpace gco:nilReason="missing">
-                        <gco:CharacterString/>
-                      </mcc:codeSpace>
+                      <xsl:choose>
+                        <xsl:when test="./mcpold:parameterName//mcpold:vocabularyListURL/gmd:URL">
+                          <mcc:codeSpace>
+                            <gco:CharacterString>
+                              <xsl:value-of select="./mcpold:parameterName//mcpold:vocabularyListURL/gmd:URL"/>
+                            </gco:CharacterString>
+                          </mcc:codeSpace>
+                        </xsl:when>
+                      </xsl:choose>
                       <mcc:version gco:nilReason="missing">
                         <gco:CharacterString/>
                       </mcc:version>

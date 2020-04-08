@@ -18,7 +18,7 @@
   <!-- Define if parent identifier should be defined using a uuidref
       attribute or a CI_Citation with a title. -->
   <xsl:param name="isParentIdentifierDefinedWithUUIDAttribute" select="true()" as="xs:boolean"/>
-  <xsl:param name="mapAggregationInfoToAdditionalDocumentation" select="true()" as="xs:boolean"/>
+  <xsl:param name="mapAggregationInfoToAdditionalDocumentation" select="false()" as="xs:boolean"/>
   <!--
     root element templates
   -->
@@ -210,13 +210,21 @@
             </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
-        <xsl:if test="../gmd:hierarchyLevelName">
-          <mdb:name>
-            <gco:CharacterString>
-              <xsl:value-of select="../gmd:hierarchyLevelName/gcoold:CharacterString"/>
-            </gco:CharacterString>
-          </mdb:name>
-        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="../gmd:hierarchyLevelName/@*[local-name()='nilReason']">
+            <mdb:name>
+              <xsl:attribute name="gco:nilReason" select="../gmd:hierarchyLevelName/@*[local-name()='nilReason']"/>
+              <gco:CharacterString/>
+            </mdb:name>
+          </xsl:when>
+          <xsl:otherwise>
+            <mdb:name>
+              <gco:CharacterString>
+                <xsl:value-of select="../gmd:hierarchyLevelName/gcoold:CharacterString"/>
+              </gco:CharacterString>
+            </mdb:name>
+          </xsl:otherwise>
+        </xsl:choose>
       </mdb:MD_MetadataScope>
     </mdb:metadataScope>
   </xsl:template>
@@ -347,10 +355,12 @@
             <xsl:with-param name="elementName" select="'mri:purpose'"/>
             <xsl:with-param name="nodeWithStringToWrite" select="gmd:purpose"/>
           </xsl:call-template>
-          <xsl:call-template name="writeCharacterStringElement">
-            <xsl:with-param name="elementName" select="'mri:credit'"/>
-            <xsl:with-param name="nodeWithStringToWrite" select="gmd:credit"/>
-          </xsl:call-template>
+          <xsl:for-each select="gmd:credit">
+            <xsl:call-template name="writeCharacterStringElement">
+              <xsl:with-param name="elementName" select="'mri:credit'"/>
+              <xsl:with-param name="nodeWithStringToWrite" select="."/>
+            </xsl:call-template>
+          </xsl:for-each>
             <xsl:call-template name="writeCodelistElement">
               <xsl:with-param name="elementName" select="'mri:status'"/>
               <xsl:with-param name="codeListValue" select="gmd:status/gmd:MD_ProgressCode/@codeListValue"/>
