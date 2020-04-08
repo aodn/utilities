@@ -1254,9 +1254,6 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>
@@ -1268,7 +1265,7 @@
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e462">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPAA">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1287,9 +1284,6 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>
@@ -1301,7 +1295,7 @@
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e512">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/entity/481">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1320,15 +1314,12 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e562">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UVAA">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1347,15 +1338,12 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e608">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UAAA">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1374,15 +1362,12 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e654">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/HPAX">http://vocab.nerc.ac.uk/collection/P06/current/HPAX</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/HPAX</gml:identifier>
                            <gml:name>Hectopascals</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1401,15 +1386,12 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e700">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UATM">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1428,15 +1410,12 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e746">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UATM">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1455,15 +1434,12 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e792">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UATM">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1490,7 +1466,7 @@
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e838">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPPM">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1509,15 +1485,12 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e886">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPPM">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1536,15 +1509,12 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e932">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/ULPM">http://vocab.nerc.ac.uk/collection/P06/current/ULPM</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/ULPM</gml:identifier>
                            <gml:name>Litres per minute</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1570,13 +1540,6 @@
                      <cit:edition gco:nilReason="missing">
                         <gco:CharacterString/>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -1733,7 +1696,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -1773,7 +1736,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -1813,7 +1776,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -1853,7 +1816,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -1893,7 +1856,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -1933,7 +1896,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -1973,7 +1936,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -2013,7 +1976,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -2053,7 +2016,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -2093,7 +2056,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -2133,7 +2096,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>

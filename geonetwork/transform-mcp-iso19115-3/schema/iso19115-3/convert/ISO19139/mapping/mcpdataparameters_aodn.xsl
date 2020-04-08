@@ -88,6 +88,12 @@
                         <gco:CharacterString/>
                       </mcc:version>
                       <xsl:choose>
+                        <xsl:when test="./mcpold:parameterDescription/@*[local-name()='nilReason']">
+                          <xsl:element name="mcc:description">
+                            <xsl:attribute name="gco:nilReason" select="./mcpold:parameterDescription/@*[local-name()='nilReason']"/>
+                            <gco:CharacterString/>
+                          </xsl:element>
+                        </xsl:when>
                         <xsl:when test="./mcpold:parameterDescription">
                           <mcc:description>
                             <gco:CharacterString>
@@ -95,18 +101,13 @@
                             </gco:CharacterString>
                           </mcc:description>
                         </xsl:when>
-                      <xsl:when test="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition">
-                        <mcc:description>
-                          <gco:CharacterString>
-                            <xsl:value-of select="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition"/>
-                          </gco:CharacterString>
-                        </mcc:description>
-                      </xsl:when>
-                        <xsl:otherwise>
-                          <mcc:description  gco:nilReason="missing">
-                            <gco:CharacterString />
+                        <xsl:when test="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition">
+                          <mcc:description>
+                            <gco:CharacterString>
+                              <xsl:value-of select="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition"/>
+                            </gco:CharacterString>
                           </mcc:description>
-                        </xsl:otherwise>
+                        </xsl:when>
                       </xsl:choose>
                     </mcc:MD_Identifier>
                   </mrc:name>
@@ -125,9 +126,18 @@
                       <gml:descriptionReference />
                       <xsl:choose>
                         <xsl:when test="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL">
-                          <gml:identifier codeSpace="{./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL}">
-                            <xsl:value-of select="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL"/>
-                          </gml:identifier>
+                          <xsl:choose>
+                            <xsl:when test="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyListURL/gmd:URL">
+                              <gml:identifier codeSpace="{./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyListURL/gmd:URL}">
+                                <xsl:value-of select="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL"/>
+                              </gml:identifier>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <gml:identifier codeSpace="unknown">
+                                <xsl:value-of select="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL"/>
+                              </gml:identifier>
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </xsl:when>
                         <xsl:otherwise>
                           <gml:identifier codeSpace="unknown"/>
@@ -159,7 +169,7 @@
               <mcc:MD_Scope>
                 <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                 </mcc:level>
               </mcc:MD_Scope>
             </mac:scope>

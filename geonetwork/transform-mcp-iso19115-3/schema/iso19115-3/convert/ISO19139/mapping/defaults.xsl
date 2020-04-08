@@ -274,15 +274,16 @@
               <xsl:with-param name="parentElement" select="gmd:version"/>
             </xsl:call-template>
           </cit:edition>
-          <cit:identifier>
-            <mcc:MD_Identifier>
-              <mcc:code>
-                <xsl:call-template name="characterStringSubstitutions">
-                  <xsl:with-param name="parentElement" select="gmd:name"/>
-                </xsl:call-template>
-              </mcc:code>
-            </mcc:MD_Identifier>
-          </cit:identifier>
+          <!-- Removed mapping  -->
+<!--          <cit:identifier>-->
+<!--            <mcc:MD_Identifier>-->
+<!--              <mcc:code>-->
+<!--                <xsl:call-template name="characterStringSubstitutions">-->
+<!--                  <xsl:with-param name="parentElement" select="gmd:name"/>-->
+<!--                </xsl:call-template>-->
+<!--              </mcc:code>-->
+<!--            </mcc:MD_Identifier>-->
+<!--          </cit:identifier>-->
         </xsl:element>
       </xsl:element>
       <xsl:apply-templates mode="from19139to19115-3"/>

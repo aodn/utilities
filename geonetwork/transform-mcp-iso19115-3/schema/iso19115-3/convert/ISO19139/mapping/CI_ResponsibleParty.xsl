@@ -184,11 +184,23 @@
       <xsl:for-each select="gmd:CI_Telephone/*">
         <cit:phone>
           <cit:CI_Telephone>
-            <cit:number>
-              <gco:CharacterString>
-                <xsl:value-of select="./gcoold:CharacterString"/>
-              </gco:CharacterString>
-            </cit:number>
+            <xsl:choose>
+              <xsl:when test="@*[local-name()='nilReason']">
+                <cit:number>
+                  <xsl:attribute name="gco:nilReason">
+                    <xsl:value-of select="@*[local-name()='nilReason']"/>
+                  </xsl:attribute>
+                  <gco:CharacterString/>
+                </cit:number>
+              </xsl:when>
+              <xsl:otherwise>
+                <cit:number>
+                  <gco:CharacterString>
+                    <xsl:value-of select="./gcoold:CharacterString"/>
+                  </gco:CharacterString>
+                </cit:number>
+              </xsl:otherwise>
+            </xsl:choose>
             <xsl:call-template name="writeCodelistElement">
               <xsl:with-param name="elementName" select="'cit:numberType'"/>
               <xsl:with-param name="codeListName" select="'cit:CI_TelephoneTypeCode'"/>

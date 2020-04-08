@@ -1853,7 +1853,10 @@ We acknowledge the support of the Integrated Marine Observing System (IMOS), whi
                   </cit:CI_Citation>
                </mco:reference>
                <mco:otherConstraints>
-                  <gco:CharacterString>This is the bibliographic reference for the dataset and this metadata record that describes it: Smith, JA, Miskiewicz, AG, Beckley, LE, Everett, JD, Garcia, V, Gray, CA, Holliday D, Jordan, AR, Keane, J, Lara-Lopez, A, Leis, JM, Matis, PA, Muhling, BA, Neira, FJ, Richardson, AJ, Smith, KA, Swadling, KM, Syahailatua, A, Taylor, MD, van Ruth, PD, Ward, TM, Suthers, IM (2018), Database of Marine Larval Fish Assemblages in Australian temperate and subtropical waters 1983 - 2016. Australian Ocean Data Network - DOI: 10.4225/69/5ab33c62f9c52 (http://dx.doi.org/10.4225/69/5ab33c62f9c52) Data is supplied 'as is' without any warranty or guarantee except as required by law to be given to you. The data may not be free of error, comprehensive, current or appropriate for your particular purpose. You accept all risk and responsibility for its use. Any users of this data are required to clearly acknowledge the source of the material. 
+                  <gco:CharacterString>This is the bibliographic reference for the dataset and this metadata record that describes it: Smith, JA, Miskiewicz, AG, Beckley, LE, Everett, JD, Garcia, V, Gray, CA, Holliday D, Jordan, AR, Keane, J, Lara-Lopez, A, Leis, JM, Matis, PA, Muhling, BA, Neira, FJ, Richardson, AJ, Smith, KA, Swadling, KM, Syahailatua, A, Taylor, MD, van Ruth, PD, Ward, TM, Suthers, IM (2018), Database of Marine Larval Fish Assemblages in Australian temperate and subtropical waters 1983 - 2016. Australian Ocean Data Network - DOI: 10.4225/69/5ab33c62f9c52 (http://dx.doi.org/10.4225/69/5ab33c62f9c52)</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>Data is supplied 'as is' without any warranty or guarantee except as required by law to be given to you. The data may not be free of error, comprehensive, current or appropriate for your particular purpose. You accept all risk and responsibility for its use. Any users of this data are required to clearly acknowledge the source of the material. 
 
 Attribution Statement for NRS Stations:  "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-download]."
 
@@ -1901,15 +1904,12 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e904">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPAA">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1928,15 +1928,12 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d18e928">
                            <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/entity/481">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
+                           <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1955,9 +1952,6 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
@@ -1989,13 +1983,6 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                      <cit:edition>
                         <gco:CharacterString>2016.</gco:CharacterString>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>DIGITAL - Spreadsheets - MS Excel</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -2108,7 +2095,7 @@ Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -2120,7 +2107,7 @@ Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -2132,7 +2119,7 @@ Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>

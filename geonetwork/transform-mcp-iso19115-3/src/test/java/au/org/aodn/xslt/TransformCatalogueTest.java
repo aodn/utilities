@@ -82,6 +82,16 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testPointOfContact() throws IOException {
+        testFiles("pointOfContact");
+    }
+
+    @Test
+    public void testResourceConstraints() throws IOException {
+        testFiles("resourceConstraints");
+    }
+
+    @Test
     public void testAllMetadataTags() throws IOException {
         // Copy test files to test directory
         copyFolder(resourceDir.resolve("export"), testDir);
