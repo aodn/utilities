@@ -216,7 +216,17 @@
                <cit:alternateTitle>
                   <gco:CharacterString>Marine Larval Fish Database 1983-2016</gco:CharacterString>
                </cit:alternateTitle>
-               <cit:date gco:nilReason="missing"/>
+               <cit:date gco:nilReason="missing">
+                  <cit:CI_Date>
+                     <cit:date gco:nilReason="missing">
+                        <gco:DateTime>2018-03-21T00:00:00</gco:DateTime>
+                     </cit:date>
+                     <cit:dateType>
+                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                             codeListValue="creation"/>
+                     </cit:dateType>
+                  </cit:CI_Date>
+               </cit:date>
                <cit:identifier>
                   <mcc:MD_Identifier>
                      <mcc:code>
@@ -1298,22 +1308,11 @@
             </cit:CI_Citation>
          </mri:citation>
          <mri:abstract>
-            <gco:CharacterString>Larval fishes are a useful metric of marine ecosystem state and change, as well as species-specific patterns in phenology. The high level of taxonomic expertise required to identify larval fishes to species level, and the considerable effort required to collect them, make these data extremely valuable. Here we collate 3178 samples of larval fishes, from 12 research projects from 1983 to November 2016, from temperate and subtropical Australian waters. This forms a benchmark for the larval fish assemblage for the region, and includes recent monitoring of larval fishes at coastal oceanographic reference stations. Comparing larval fishes among projects can be problematic to due to differences in taxonomic resolution, and identifying all taxa to species can extremely challenging, so this study reports a standard taxonomic resolution (of 221 taxa) for this region to help guide future research. All data reported here has been expertly resolved to this taxonomic resolution.
+            <gco:CharacterString>Larval fishes are a useful metric of marine ecosystem state and change, as well as species-specific patterns in phenology. The high level of taxonomic expertise required to identify larval fishes to species level, and the considerable effort required to collect them, make these data extremely valuable. Here we collate 3178 samples of larval fishes, from 12 research projects from 1983 to November 2016, from temperate and subtropical Australian waters. This forms a benchmark for the larval fish assemblage for the region, and includes recent monitoring of larval fishes at coastal oceanographic reference stations. Comparing larval fishes among projects can be problematic to due to differences in taxonomic resolution, and identifying all taxa to species can extremely challenging, so this study reports a standard taxonomic resolution (of 221 taxa) for this region to help guide future research. All data reported here has been expertly resolved to this taxonomic resolution. 
 
 The ongoing version of this larval fish database will be freely available through the Australian Ocean Data Network Portal (AODN; http://portal-gn3-integration.dev.aodn.org.au/) in the near future, and will serve as a data repository for surveys of larval fish assemblages in the region.</gco:CharacterString>
          </mri:abstract>
-         <mri:credit>
-            <gco:CharacterString>Australian Fisheries Management Authority</gco:CharacterString>
-         </mri:credit>
-         <mri:credit>
-            <gco:CharacterString>CSIRO Marine National Facility</gco:CharacterString>
-         </mri:credit>
-         <mri:credit>
-            <gco:CharacterString>Australian Research Council (ARC)</gco:CharacterString>
-         </mri:credit>
-         <mri:credit>
-            <gco:CharacterString>Integrated Marine Observing System (IMOS)</gco:CharacterString>
-         </mri:credit>
+         <mri:credit/>
          <mri:status>
             <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode"
                                  codeListValue="completed"/>
@@ -1754,7 +1753,7 @@ The ongoing version of this larval fish database will be freely available throug
             <mco:MD_Constraints>
                <mco:useLimitation>
                   <gco:CharacterString>Acknowledgements
-We acknowledge the contributions of all collaborators and their institutions. We acknowledge the Australian Fisheries Management Authority who funded part of this study (grant: 2015/0819), as well as the Marine National Facility and the Australian Research Council who provided funding in support of many of these projects.
+We acknowledge the contributions of all collaborators and their institutions. We acknowledge the Australian Fisheries Management Authority who funded part of this study (grant: 2015/0819), as well as the Marine National Facility and the Australian Research Council who provided funding in support of many of these projects. 
 
 We acknowledge the support of the Integrated Marine Observing System (IMOS), which currently undertakes the larval fish monitoring at the National Reference Stations (NRS; project P12). We are grateful to the personnel who collect these NRS samples each month. If using data from project P12 please add the following acknowledgement: "Data were sourced from the Integrated Marine Observing System (IMOS) – IMOS is a national collaborative research infrastructure, supported by the Australian Government."</gco:CharacterString>
                </mco:useLimitation>
@@ -1843,7 +1842,7 @@ We acknowledge the support of the Integrated Marine Observing System (IMOS), whi
                   </cit:CI_Citation>
                </mco:reference>
                <mco:otherConstraints>
-                  <gco:CharacterString>This is the bibliographic reference for the dataset and this metadata record that describes it: Smith, JA, Miskiewicz, AG, Beckley, LE, Everett, JD, Garcia, V, Gray, CA, Holliday D, Jordan, AR, Keane, J, Lara-Lopez, A, Leis, JM, Matis, PA, Muhling, BA, Neira, FJ, Richardson, AJ, Smith, KA, Swadling, KM, Syahailatua, A, Taylor, MD, van Ruth, PD, Ward, TM, Suthers, IM (2018), Database of Marine Larval Fish Assemblages in Australian temperate and subtropical waters 1983 - 2016. Australian Ocean Data Network - DOI: 10.4225/69/5ab33c62f9c52 (http://dx.doi.org/10.4225/69/5ab33c62f9c52) Data is supplied 'as is' without any warranty or guarantee except as required by law to be given to you. The data may not be free of error, comprehensive, current or appropriate for your particular purpose. You accept all risk and responsibility for its use. Any users of this data are required to clearly acknowledge the source of the material.
+                  <gco:CharacterString>This is the bibliographic reference for the dataset and this metadata record that describes it: Smith, JA, Miskiewicz, AG, Beckley, LE, Everett, JD, Garcia, V, Gray, CA, Holliday D, Jordan, AR, Keane, J, Lara-Lopez, A, Leis, JM, Matis, PA, Muhling, BA, Neira, FJ, Richardson, AJ, Smith, KA, Swadling, KM, Syahailatua, A, Taylor, MD, van Ruth, PD, Ward, TM, Suthers, IM (2018), Database of Marine Larval Fish Assemblages in Australian temperate and subtropical waters 1983 - 2016. Australian Ocean Data Network - DOI: 10.4225/69/5ab33c62f9c52 (http://dx.doi.org/10.4225/69/5ab33c62f9c52) Data is supplied 'as is' without any warranty or guarantee except as required by law to be given to you. The data may not be free of error, comprehensive, current or appropriate for your particular purpose. You accept all risk and responsibility for its use. Any users of this data are required to clearly acknowledge the source of the material. 
 
 Attribution Statement for NRS Stations:  "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-download]."
 
@@ -1900,7 +1899,7 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1131">
+                        <gml:BaseUnit gml:id="d18e904">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPAA">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
@@ -1930,7 +1929,7 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1161">
+                        <gml:BaseUnit gml:id="d18e928">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/entity/481">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
@@ -1960,7 +1959,7 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1191">
+                        <gml:BaseUnit gml:id="d18e952">
                            <gml:descriptionReference/>
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
@@ -2056,7 +2055,7 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
    <mdb:resourceLineage>
       <mrl:LI_Lineage>
          <mrl:statement>
-            <gco:CharacterString>All larval fishes were sampled by plankton nets towed from a variety of vessels. Nets were either towed obliquely (across a range of depths), or at constant near-surface depths. Upon net retrieval of this single ‘tow’, all plankton were fixed immediately in ~4% formalin in seawater (and often buffered with sodium borate or sodium carbonate to avoid sample degradation). The volume sampled by the net for each tow was determined, typically using a flowmeter attached to the mouth of the net, which was used to standardise larval fish counts to volume of water sampled.
+            <gco:CharacterString>All larval fishes were sampled by plankton nets towed from a variety of vessels. Nets were either towed obliquely (across a range of depths), or at constant near-surface depths. Upon net retrieval of this single ‘tow’, all plankton were fixed immediately in ~4% formalin in seawater (and often buffered with sodium borate or sodium carbonate to avoid sample degradation). The volume sampled by the net for each tow was determined, typically using a flowmeter attached to the mouth of the net, which was used to standardise larval fish counts to volume of water sampled. 
 
 See data paper for information on the larval fish identification.</gco:CharacterString>
          </mrl:statement>
@@ -2073,25 +2072,32 @@ See data paper for information on the larval fish identification.</gco:Character
    <mdb:resourceLineage>
       <mrl:LI_Lineage>
          <mrl:statement>
-            <gco:CharacterString>Project_ID; Project_name: Unique database code to identify the project (Table 1)
-Tow_ID:	A unique identifier for each tow, which is the Project_ID plus the numerical data record for that project; e.g. P1_1 is the first record in project P1
-Sample:	A project-specific identifier for each record
-Date:	Date a tow was taken, yyyy-mm-dd
-Time_local:	The local time a tow was taken, hh24:mm
-Day_Night:	Whether the tow occurred in the day or night – only used when Time_local was unavailable
-Latitude; Longitude:	Geographic coordinates for each tow (usually start of tow)
-Location:	A project-specific identifier of feature of interest (e.g. oceanographic feature)
-Volume_m3:	The volume of a tow (m3)
+            <gco:CharacterString>Project_ID; Project_name: Unique database code to identify the project (Table 1)	
+Tow_ID:	A unique identifier for each tow, which is the Project_ID plus the numerical data record for that project; e.g. P1_1 is the first record in project P1	
+Sample:	A project-specific identifier for each record	
+Date:	Date a tow was taken, yyyy-mm-dd	
+Time_local:	The local time a tow was taken, hh24:mm	
+Day_Night:	Whether the tow occurred in the day or night – only used when Time_local was unavailable	
+Latitude; Longitude:	Geographic coordinates for each tow (usually start of tow)	
+Location:	A project-specific identifier of feature of interest (e.g. oceanographic feature)	
+Volume_m3:	The volume of a tow (m3)		
 Replicate:	Identifies when tows were done consecutively to act specifically as replicates
 Cruise_ID: 	A project-specific identifier of different cruises
 Station:	A project-specific identifier of a specific location sampled multiple times
-Gear_depth_m:	The maximum depth tows were deployed to, or a range of depths sampled; surface tows have a depth=0
+Gear_depth_m:	The maximum depth tows were deployed to, or a range of depths sampled; surface tows have a depth=0 
 Gear_mesh_um:	The type of net, and the mesh dimensions (μm); summarised in Table 1
 Bathym_m:	The bottom depth at location of the tow (m)
 Temperature_C: 	Surface (&lt; 10 m) water temperature (°C) at approx.. the same time as the tow; measured with a CTD
 Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow; measured with a CTD</gco:CharacterString>
          </mrl:statement>
-         <mrl:scope/>
+         <mrl:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mrl:scope>
       </mrl:LI_Lineage>
    </mdb:resourceLineage>
    <mdb:acquisitionInformation>
@@ -2128,34 +2134,6 @@ Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href=""/>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString/>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/22">plankton nets</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
       </mac:MI_AcquisitionInformation>
    </mdb:acquisitionInformation>
 </mdb:MD_Metadata>
