@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info version="1.1">
+  <general>
+    <createDate>2012-06-19T14:56:06</createDate>
+    <changeDate>2017-07-19T12:46:18</changeDate>
+    <schema>iso19139.mcp-2.0</schema>
+    <isTemplate>false</isTemplate>
+    <localId>23139</localId>
+    <format>full</format>
+    <rating>0</rating>
+    <popularity>1513</popularity>
+    <uuid>fe0fc464-e99d-4e71-9990-f75b4887aced</uuid>
+    <siteId>5c6d6b45-1659-435c-91a7-4147caeed8a4</siteId>
+    <siteName>Catalogue for the 123 Portal</siteName>
+  </general>
+  <categories />
+  <privileges>
+    <group name="Former IMOS MEST" groupOwner="true">
+      <operation name="download" />
+      <operation name="view" />
+    </group>
+  </privileges>
+  <public>
+    <file name="SS2011T04_s.png" changeDate="2012-06-19T14:58:02" />
+    <file name="SS2011T04.png" changeDate="2012-06-19T14:58:03" />
+  </public>
+  <private />
+  <owner name="atkinsn" />
+</info>
+

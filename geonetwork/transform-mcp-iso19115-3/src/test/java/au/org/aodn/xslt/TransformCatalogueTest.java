@@ -37,6 +37,21 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testDataParameters() throws IOException {
+        testFiles("dataParameters");
+    }
+
+    @Test
+    public void testAggregationInfo() throws IOException {
+        testFiles("aggregationInfo");
+    }
+
+    @Test
+    public void testCredit() throws IOException {
+        testFiles("credit");
+    }
+
+    @Test
     public void testDataQualityInfo() throws IOException {
         testFiles("dataQualityInfo");
     }
@@ -54,6 +69,15 @@ public class TransformCatalogueTest {
     @Test
     public void testCodeListLocation() throws IOException {
         testFiles("codelistlocation");
+    
+    @Test
+    public void testHierarchyLevel() throws IOException {
+        testFiles("hierarchyLevel");
+    }
+
+    @Test
+    public void testTemporalExtent() throws IOException {
+        testFiles("temporalExtent");
     }
 
     @Test
