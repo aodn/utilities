@@ -330,7 +330,12 @@
          <mri:purpose>
             <gco:CharacterString>The AATAMS Data Access and Search Page provides a simple data access interface for scientists, researchers and interested members of the public.</gco:CharacterString>
          </mri:purpose>
-         <mri:credit/>
+         <mri:credit>
+            <gco:CharacterString>Integrated Marine Observing System (IMOS). IMOS is a national collaborative research infrastructure, supported by Australian Government.</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Ocean Tracking Network (OTN): in-kind support</gco:CharacterString>
+         </mri:credit>
          <mri:status>
             <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode"
                                  codeListValue="onGoing"/>
@@ -1068,7 +1073,7 @@
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -1384,9 +1389,6 @@
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/489">Biotic taxonomic identification</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1414,9 +1416,6 @@
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/596">Detection of acoustic tag</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>

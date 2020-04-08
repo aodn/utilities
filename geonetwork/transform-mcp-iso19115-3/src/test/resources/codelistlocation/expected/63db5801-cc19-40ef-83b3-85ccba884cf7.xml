@@ -321,7 +321,21 @@
 
 The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocean, while the Southern Surveyor and its replacement in 2014, RV Investigator, covers shelf and offshore waters around Australia from the tropics to the sea-ice edge. The  RV L'Astrolabe is also used to collect data on route from Tasmania to Dumont d'Urville station, Antarctica. The New Zealand National Institute of Water &amp; Atmospheric Research Ltd. (NIWA) has supported the setup of underway CO2 measurements on the RV Tangaroa. The Tangaroa covers oceans adjacent to New Zealand.</gco:CharacterString>
          </mri:abstract>
-         <mri:credit/>
+         <mri:credit>
+            <gco:CharacterString>Integrated Marine Observing System (IMOS). IMOS is a national collaborative research infrastructure, supported by Australian Government.</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Marine National Facility (MNF)</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>CSIRO Oceans &amp; Atmosphere - Hobart</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Australian Antarctic Division (AAD)</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>National Institute of Water and Atmosphere (NIWA)</gco:CharacterString>
+         </mri:credit>
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
@@ -689,7 +703,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <cit:date>
                               <gco:DateTime>2006-01-01T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -760,7 +774,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -1320,9 +1334,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1356,9 +1367,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/PSLTZZ01">Practical salinity of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1392,9 +1400,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/ESSAZZ01">Wind speed in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1422,9 +1427,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/EWDAZZ01">Wind from direction in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1452,9 +1454,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/CAPHZZ01">Pressure (measured variable) exerted by the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1482,9 +1481,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/FCO2XXXX">Fugacity of carbon dioxide (at 100% humidity) in the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1512,9 +1508,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/FCO2WTAT">Fugacity of carbon dioxide (at 100% humidity) in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1542,9 +1535,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/427">Fugacity anomaly (water - air) of carbon dioxide in the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1572,9 +1562,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/XCO2DRAT">Mole fraction of carbon dioxide (dry air) in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1602,9 +1589,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/XCO2WBDY">Mole fraction of carbon dioxide (dry air) in the equilibrated marine sample</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
@@ -1632,9 +1616,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/INFLTF01">Flow rate through instrument</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
