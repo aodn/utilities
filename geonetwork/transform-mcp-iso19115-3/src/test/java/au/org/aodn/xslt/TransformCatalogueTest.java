@@ -69,7 +69,8 @@ public class TransformCatalogueTest {
     @Test
     public void testCodeListLocation() throws IOException {
         testFiles("codelistlocation");
-    
+    }
+
     @Test
     public void testHierarchyLevel() throws IOException {
         testFiles("hierarchyLevel");
