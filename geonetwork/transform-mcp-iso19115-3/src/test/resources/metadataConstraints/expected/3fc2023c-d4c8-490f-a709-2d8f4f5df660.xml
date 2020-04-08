@@ -31,7 +31,7 @@
    <mdb:metadataIdentifier>
       <mcc:MD_Identifier>
          <mcc:code>
-            <gco:CharacterString>test</gco:CharacterString>
+            <gco:CharacterString>3fc2023c-d4c8-490f-a709-2d8f4f5df660</gco:CharacterString>
          </mcc:code>
       </mcc:MD_Identifier>
    </mdb:metadataIdentifier>
@@ -127,6 +127,21 @@
                </cit:onlineResource>
             </cit:CI_Citation>
          </mco:reference>
+      </mco:MD_LegalConstraints>
+   </mdb:metadataConstraints>
+   <mdb:metadataConstraints>
+      <mco:MD_SecurityConstraints>
+         <mco:classification>
+            <mco:MD_ClassificationCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ClassificationCode"
+                                       codeListValue="unclassified"/>
+         </mco:classification>
+      </mco:MD_SecurityConstraints>
+   </mdb:metadataConstraints>
+   <mdb:metadataConstraints>
+      <mco:MD_LegalConstraints>
+         <mco:useLimitation>
+            <gco:CharacterString>This metadata record is publicly available.</gco:CharacterString>
+         </mco:useLimitation>
       </mco:MD_LegalConstraints>
    </mdb:metadataConstraints>
 </mdb:MD_Metadata>
