@@ -22,7 +22,7 @@ elif tag_name == "isTemplate":
     else:
         print('n')
 elif tag_name == "groupOwner":
-    groupOwner = 'all'
+    groupOwner = ''
     groupOwner_element = xml_tree.find('.//privileges/group[@groupOwner="true"]')
     if not (groupOwner_element is None):
         groupOwner = groupOwner_element.attrib['name']
