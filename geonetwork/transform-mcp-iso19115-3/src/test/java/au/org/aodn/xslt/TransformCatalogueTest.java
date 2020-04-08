@@ -28,7 +28,7 @@ public class TransformCatalogueTest {
     @After
     public void tearDown() throws IOException {
         // Delete test directory
-//        deleteFolder(testDir);
+        deleteFolder(testDir);
     }
 
     @Test
