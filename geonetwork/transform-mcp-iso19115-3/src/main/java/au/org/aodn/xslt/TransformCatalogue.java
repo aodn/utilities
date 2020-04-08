@@ -30,6 +30,7 @@ public class TransformCatalogue {
 
         File from_19139_mcp_1_4_to_19139_mcp_2_0_xsl_file = new File("schema/iso19115-3/convert/ISO19139/to19139.mcp-2.0.xsl");
         File from_19139_mcp2_to_19115_3_xslFile = new File("schema/iso19115-3/convert/ISO19139/fromISO19139MCP2.xsl");
+        File transform_19115_3_update_codeListLocation_xslFile = new File("schema/iso19115-3/process/update-codeListLocation.xsl");
         File transform_19115_3_testing_urls_xslFile = new File("schema/iso19115-3/process/transform-19115-3-testing-urls.xsl");
 
         Options options = new Options();
@@ -82,8 +83,13 @@ public class TransformCatalogue {
         List<Path> files = new ArrayList<Path>();
         getFileNames(files, indirectory.toPath(), input);
 
+        int count = 0;
         for (Path file : files) {
             try {
+                count++;
+                System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
+                logger.info("Transforming "+ count +  " of " + files.size());
+
                 Source mcp1_4_xmlSource = new javax.xml.transform.stream.StreamSource(file.toFile());
                 Source mcp2_xmlSource = mcp1_4_xmlSource;
 
@@ -111,13 +117,20 @@ public class TransformCatalogue {
                 // Outputs ISO19115-3 records
                 write(file.getParent() + File.separator + output, sw_mcp2);
 
+                // Transform to update codelist location
+                Source update_codeListLocation_xslSource = new javax.xml.transform.stream.StreamSource(transform_19115_3_update_codeListLocation_xslFile);
+                Source sw_mcp1_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(sw_mcp2.toString()));
+                StringWriter updated_sw_mcp1 = transform(sw_mcp1_xmlSource, update_codeListLocation_xslSource, geonetwork_url);
+                write(file.getParent() + File.separator + output, updated_sw_mcp1);
+
                 // If option selected update URLs to integration test
                 if (cmd.hasOption("u")) {
                     Source update_testing_urls_xslSource = new javax.xml.transform.stream.StreamSource(transform_19115_3_testing_urls_xslFile);
-                    Source sw_mcp2_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(sw_mcp2.toString()));
+                    Source sw_mcp2_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(updated_sw_mcp1.toString()));
                     StringWriter updated_sw_mcp2 = transform(sw_mcp2_xmlSource, update_testing_urls_xslSource, geonetwork_url);
                     write(file.getParent() + File.separator + output, updated_sw_mcp2);
                 }
+
 
             } catch( Exception e ) {
                 e.printStackTrace();
