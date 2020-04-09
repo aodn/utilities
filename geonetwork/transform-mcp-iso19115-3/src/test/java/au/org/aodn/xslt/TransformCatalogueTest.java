@@ -87,6 +87,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testDescriptiveKeywords() throws IOException {
+        testFiles("descriptiveKeywords");
+    }
+
+    @Test
     public void testAllMetadataTags() throws IOException {
         // Copy test files to test directory
         copyFolder(resourceDir.resolve("export"), testDir);
