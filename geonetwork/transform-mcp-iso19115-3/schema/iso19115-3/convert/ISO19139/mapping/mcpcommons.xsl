@@ -139,11 +139,11 @@
           </cit:onlineResource>
         </cit:CI_Citation>
       </mco:reference>
-      <xsl:if test="*//mcpold:attributionConstraints">
+      <xsl:for-each select="*//mcpold:attributionConstraints">
         <mco:otherConstraints>
-          <gco:CharacterString><xsl:value-of select="*//mcpold:attributionConstraints/gcoold:CharacterString"/></gco:CharacterString>
+          <gco:CharacterString><xsl:value-of select="./gcoold:CharacterString"/></gco:CharacterString>
         </mco:otherConstraints>
-      </xsl:if>
+      </xsl:for-each>
       <xsl:if test="*//mcpold:otherConstraints">
         <mco:otherConstraints>
           <gco:CharacterString><xsl:value-of select="*//mcpold:otherConstraints/gcoold:CharacterString"/></gco:CharacterString>

@@ -386,9 +386,6 @@ import_record() {
 #          echo "Missing groupd for groupname: '$groupname'"
           error_msg+=" ## Missing groupid for groupname: '$groupname'"
         fi
-      else
-#        echo "Missing groupname"
-        error_msg+=" ## Missing groupname"
       fi
 
       username=$(get_info_from_file $record_dir_path/info.xml 'userOwner')

@@ -62,8 +62,8 @@
               <mcp:parameterMaximumValue>
                 <gco:CharacterString>0</gco:CharacterString>
               </mcp:parameterMaximumValue>
-              <mcp:parameterDescription gco:nilReason="missing">
-                <gco:CharacterString />
+              <mcp:parameterDescription>
+                <gco:CharacterString>Parameter Description</gco:CharacterString>
               </mcp:parameterDescription>
               <mcp:parameterDeterminationInstrument>
                 <mcp:DP_Term>
@@ -141,6 +141,9 @@
                     <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
                   </mcp:type>
                   <mcp:usedInDataset/>
+                  <mcp:vocabularyListURL>
+                    <gmd:URL>http://vocab.aodn.org.au/def/unitsofmeasure/1</gmd:URL>
+                  </mcp:vocabularyListURL>
                   <mcp:vocabularyTermURL>
                     <gmd:URL>http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gmd:URL>
                   </mcp:vocabularyTermURL>

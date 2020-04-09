@@ -31,7 +31,7 @@
    <mdb:metadataIdentifier>
       <mcc:MD_Identifier>
          <mcc:code>
-            <gco:CharacterString>d3feff71-ebe1-4b66-91c6-149beceef205</gco:CharacterString>
+            <gco:CharacterString>7d3a2249-6f9a-4dc9-8bbb-354009f5b254</gco:CharacterString>
          </mcc:code>
       </mcc:MD_Identifier>
    </mdb:metadataIdentifier>
@@ -54,7 +54,7 @@
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
                                           codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
@@ -68,7 +68,8 @@
                               <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="publication">publication</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
@@ -87,7 +88,7 @@
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
-                  <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="eng">eng</lan:LanguageCode>
+                  <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
                </lan:language>
                <lan:characterEncoding gco:nilReason="unknown"/>
             </lan:PT_Locale>
@@ -100,7 +101,7 @@
          <mrc:attributeGroup>
             <mrc:MD_AttributeGroup>
                <mrc:contentType>
-                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_CoverageContentTypeCode"
+                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CoverageContentTypeCode"
                                                   codeListValue="physicalMeasurement"/>
                </mrc:contentType>
                <mrc:attribute>
@@ -117,7 +118,7 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description>
+                           <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
@@ -150,7 +151,7 @@
                            <mcc:version gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:version>
-                           <mcc:description>
+                           <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
