@@ -22,7 +22,7 @@ RUN wget -q https://bootstrap.pypa.io/get-pip.py \
 	
 RUN pip install \
 	"git+https://github.com/aodn/utilities.git#egg=github-backup&subdirectory=python-github-backup" \
-	awscli
+	awscli==1.18.39
 	
 RUN useradd --create-home --no-log-init --shell /bin/bash --uid $BUILDER_UID builder
 USER builder
