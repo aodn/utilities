@@ -92,6 +92,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testExtent() throws IOException {
+        testFiles("extent");
+    }
+
+    @Test
     public void testAllMetadataTags() throws IOException {
         // Copy test files to test directory
         copyFolder(resourceDir.resolve("export"), testDir);
