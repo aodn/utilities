@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info version="1.1">
+  <general>
+    <createDate>2016-01-29T16:11:16</createDate>
+    <changeDate>2017-03-06T17:02:56</changeDate>
+    <schema>iso19139.mcp-2.0</schema>
+    <isTemplate>false</isTemplate>
+    <localId>22964</localId>
+    <format>full</format>
+    <rating>0</rating>
+    <popularity>500</popularity>
+    <uuid>d431c584-8d1e-429b-ad6d-0e03be3b95b2</uuid>
+    <siteId>5c6d6b45-1659-435c-91a7-4147caeed8a4</siteId>
+    <siteName>Catalogue for the 123 Portal</siteName>
+  </general>
+  <categories />
+  <privileges>
+    <group name="sample" groupOwner="true">
+      <operation name="featured" />
+      <operation name="dynamic" />
+      <operation name="notify" />
+      <operation name="editing" />
+      <operation name="download" />
+      <operation name="view" />
+    </group>
+  </privileges>
+  <public>
+    <file name="ReefLifeSurveyLOGOwithCOPYRIGHT_s.png" changeDate="2015-04-09T15:48:38" />
+    <file name="ReefLifeSurveyLOGOwithCOPYRIGHT.png" changeDate="2015-04-09T15:49:05" />
+  </public>
+  <private />
+  <owner name="atkinsn" />
+</info>
+
