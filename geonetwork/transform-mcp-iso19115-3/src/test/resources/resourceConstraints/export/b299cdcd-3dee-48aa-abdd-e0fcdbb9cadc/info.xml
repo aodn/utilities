@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info version="1.1">
+  <general>
+    <createDate>2018-02-08T09:36:41</createDate>
+    <changeDate>2020-04-06T16:10:40</changeDate>
+    <schema>iso19139.mcp-2.0</schema>
+    <isTemplate>false</isTemplate>
+    <localId>25120</localId>
+    <format>full</format>
+    <rating>0</rating>
+    <popularity>1836</popularity>
+    <uuid>b299cdcd-3dee-48aa-abdd-e0fcdbb9cadc</uuid>
+    <siteId>5c6d6b45-1659-435c-91a7-4147caeed8a4</siteId>
+    <siteName>Catalogue for the 123 Portal</siteName>
+  </general>
+  <categories />
+  <privileges>
+    <group name="all">
+      <operation name="view" />
+      <operation name="download" />
+      <operation name="dynamic" />
+      <operation name="featured" />
+    </group>
+    <group name="AODN" groupOwner="true">
+      <operation name="view" />
+      <operation name="download" />
+      <operation name="dynamic" />
+      <operation name="featured" />
+      <operation name="editing" />
+      <operation name="notify" />
+    </group>
+  </privileges>
+  <public />
+  <private />
+  <owner name="atkinsn" />
+</info>
+
