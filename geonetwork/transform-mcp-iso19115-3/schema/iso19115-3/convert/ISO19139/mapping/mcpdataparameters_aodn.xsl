@@ -162,7 +162,9 @@
   <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3-acquisition">
     <xsl:if test="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:platform |
       ./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:parameterDeterminationInstrument">
-      <xsl:for-each select="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter">
+      <xsl:for-each-group select="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter"
+                          group-by="concat(./mcpold:platform/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL, '|',
+                          ./mcpold:parameterDeterminationInstrument/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL)">
         <mdb:acquisitionInformation>
           <mac:MI_AcquisitionInformation>
             <mac:scope>
@@ -173,7 +175,7 @@
                 </mcc:level>
               </mcc:MD_Scope>
             </mac:scope>
-            <xsl:if test="./mcpold:platform">
+            <xsl:if test="./mcpold:platform | ./mcpold:parameterDeterminationInstrument">
               <mac:platform>
                 <mac:MI_Platform>
                   <mac:identifier>
@@ -216,7 +218,7 @@
             </xsl:if>
           </mac:MI_AcquisitionInformation>
         </mdb:acquisitionInformation>
-      </xsl:for-each>
+      </xsl:for-each-group>
     </xsl:if>
   </xsl:template>
 </xsl:stylesheet>
