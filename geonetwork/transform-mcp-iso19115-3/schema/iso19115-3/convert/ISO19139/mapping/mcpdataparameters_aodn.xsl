@@ -40,13 +40,12 @@
                 xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
-                xmlns:mcpold="http://schemas.aodn.org.au/mcp-2.0"
-                xmlns:mcp="http://schemas.aodn.org.au/mcp-3.0"
+                xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                 exclude-result-prefixes="#all">
 
-  <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3">
+  <xsl:template match="mcp:dataParameters" mode="from19139to19115-3">
     <mdb:contentInfo>
       <mrc:MD_CoverageDescription>
         <mrc:attributeDescription gco:nilReason="inapplicable"/>
@@ -55,7 +54,7 @@
             <mrc:contentType>
               <mrc:MD_CoverageContentTypeCode codeList='http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_CoverageContentTypeCode' codeListValue='physicalMeasurement'/>
             </mrc:contentType>
-            <xsl:for-each select="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter">
+            <xsl:for-each select="./mcp:DP_DataParameters/mcp:dataParameter/mcp:DP_DataParameter">
               <mrc:attribute>
                 <mrc:MD_SampleDimension>
                   <mrc:name>
@@ -63,23 +62,23 @@
                       <mcc:authority/>
                       <mcc:code>
                         <xsl:choose>
-                          <xsl:when test="./mcpold:parameterName/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL">
-                            <gcx:Anchor xlink:href="{./mcpold:parameterName/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL}">
-                              <xsl:value-of select="./mcpold:parameterName/mcpold:DP_Term/mcpold:type/mcpold:DP_TypeCode[@codeListValue='longName']/../../mcpold:term"/>
+                          <xsl:when test="./mcp:parameterName/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL">
+                            <gcx:Anchor xlink:href="{./mcp:parameterName/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL}">
+                              <xsl:value-of select="./mcp:parameterName/mcp:DP_Term/mcp:type/mcp:DP_TypeCode[@codeListValue='longName']/../../mcp:term"/>
                             </gcx:Anchor>
                           </xsl:when>
                           <xsl:otherwise>
                             <gco:CharacterString>
-                              <xsl:value-of select="./mcpold:parameterName/mcpold:DP_Term/mcpold:type/mcpold:DP_TypeCode[@codeListValue='longName']/../../mcpold:term"/>
+                              <xsl:value-of select="./mcp:parameterName/mcp:DP_Term/mcp:type/mcp:DP_TypeCode[@codeListValue='longName']/../../mcp:term"/>
                             </gco:CharacterString>
                           </xsl:otherwise>
                         </xsl:choose>
                       </mcc:code>
                       <xsl:choose>
-                        <xsl:when test="./mcpold:parameterName//mcpold:vocabularyListURL/gmd:URL">
+                        <xsl:when test="./mcp:parameterName//mcp:vocabularyListURL/gmd:URL">
                           <mcc:codeSpace>
                             <gco:CharacterString>
-                              <xsl:value-of select="./mcpold:parameterName//mcpold:vocabularyListURL/gmd:URL"/>
+                              <xsl:value-of select="./mcp:parameterName//mcp:vocabularyListURL/gmd:URL"/>
                             </gco:CharacterString>
                           </mcc:codeSpace>
                         </xsl:when>
@@ -88,53 +87,53 @@
                         <gco:CharacterString/>
                       </mcc:version>
                       <xsl:choose>
-                        <xsl:when test="./mcpold:parameterDescription/@*[local-name()='nilReason']">
+                        <xsl:when test="./mcp:parameterDescription/@*[local-name()='nilReason']">
                           <xsl:element name="mcc:description">
-                            <xsl:attribute name="gco:nilReason" select="./mcpold:parameterDescription/@*[local-name()='nilReason']"/>
+                            <xsl:attribute name="gco:nilReason" select="./mcp:parameterDescription/@*[local-name()='nilReason']"/>
                             <gco:CharacterString/>
                           </xsl:element>
                         </xsl:when>
-                        <xsl:when test="./mcpold:parameterDescription">
+                        <xsl:when test="./mcp:parameterDescription">
                           <mcc:description>
                             <gco:CharacterString>
-                              <xsl:value-of select="./mcpold:parameterDescription"/>
+                              <xsl:value-of select="./mcp:parameterDescription"/>
                             </gco:CharacterString>
                           </mcc:description>
                         </xsl:when>
-                        <xsl:when test="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition">
+                        <xsl:when test="./mcp:parameterName/mcp:DP_Term/mcp:termDefinition">
                           <mcc:description>
                             <gco:CharacterString>
-                              <xsl:value-of select="./mcpold:parameterName/mcpold:DP_Term/mcpold:termDefinition"/>
+                              <xsl:value-of select="./mcp:parameterName/mcp:DP_Term/mcp:termDefinition"/>
                             </gco:CharacterString>
                           </mcc:description>
                         </xsl:when>
                       </xsl:choose>
                     </mcc:MD_Identifier>
                   </mrc:name>
-                  <xsl:if test="string(number(mcpold:parameterMaximumValue/*)) != 'NaN'">
+                  <xsl:if test="string(number(mcp:parameterMaximumValue/*)) != 'NaN'">
                     <mrc:maxValue>
-                      <gco:Real><xsl:value-of select="mcpold:parameterMaximumValue/*"/></gco:Real>
+                      <gco:Real><xsl:value-of select="mcp:parameterMaximumValue/*"/></gco:Real>
                     </mrc:maxValue>
                   </xsl:if>
-                  <xsl:if test="string(number(mcpold:parameterMinimumValue/*)) != 'NaN'">
+                  <xsl:if test="string(number(mcp:parameterMinimumValue/*)) != 'NaN'">
                     <mrc:minValue>
-                      <gco:Real><xsl:value-of select="mcpold:parameterMinimumValue/*"/></gco:Real>
+                      <gco:Real><xsl:value-of select="mcp:parameterMinimumValue/*"/></gco:Real>
                     </mrc:minValue>
                   </xsl:if>
                   <mrc:units>
                     <gml:BaseUnit gml:id="{generate-id()}">
                       <gml:descriptionReference />
                       <xsl:choose>
-                        <xsl:when test="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL">
+                        <xsl:when test="./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL">
                           <xsl:choose>
-                            <xsl:when test="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyListURL/gmd:URL">
-                              <gml:identifier codeSpace="{./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyListURL/gmd:URL}">
-                                <xsl:value-of select="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL"/>
+                            <xsl:when test="./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyListURL/gmd:URL">
+                              <gml:identifier codeSpace="{./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyListURL/gmd:URL}">
+                                <xsl:value-of select="./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL"/>
                               </gml:identifier>
                             </xsl:when>
                             <xsl:otherwise>
                               <gml:identifier codeSpace="unknown">
-                                <xsl:value-of select="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL"/>
+                                <xsl:value-of select="./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL"/>
                               </gml:identifier>
                             </xsl:otherwise>
                           </xsl:choose>
@@ -144,7 +143,7 @@
                         </xsl:otherwise>
                       </xsl:choose>
                       <gml:name>
-                        <xsl:value-of select="./mcpold:parameterUnits/mcpold:DP_Term/mcpold:term"/>
+                        <xsl:value-of select="./mcp:parameterUnits/mcp:DP_Term/mcp:term"/>
                       </gml:name>
                       <gml:quantityType/>
                       <gml:unitsSystem/>
@@ -159,12 +158,10 @@
     </mdb:contentInfo>
   </xsl:template>
 
-  <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3-acquisition">
-    <xsl:if test="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:platform |
-      ./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:parameterDeterminationInstrument">
-      <xsl:for-each-group select="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter"
-                          group-by="concat(./mcpold:platform/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL, '|',
-                          ./mcpold:parameterDeterminationInstrument/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL)">
+  <xsl:template match="mcp:dataParameters" mode="from19139to19115-3-acquisition">
+      <!-- platforms and there instruments -->
+      <xsl:for-each-group select="./mcp:DP_DataParameters/mcp:dataParameter/mcp:DP_DataParameter"
+                          group-by="./mcp:platform/*/mcp:term/*/text()">
         <mdb:acquisitionInformation>
           <mac:MI_AcquisitionInformation>
             <mac:scope>
@@ -175,50 +172,77 @@
                 </mcc:level>
               </mcc:MD_Scope>
             </mac:scope>
-            <xsl:if test="./mcpold:platform | ./mcpold:parameterDeterminationInstrument">
               <mac:platform>
                 <mac:MI_Platform>
                   <mac:identifier>
                     <mcc:MD_Identifier>
                       <mcc:code>
-                        <gcx:Anchor xlink:href="{./mcpold:platform/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL}">
-                          <xsl:value-of select="./mcpold:platform/mcpold:DP_Term/mcpold:term"/>
+                        <gcx:Anchor xlink:href="{current-group()[1]/mcp:platform/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL}">
+                          <xsl:value-of select="current-group()[1]/mcp:platform/mcp:DP_Term/mcp:term"/>
                         </gcx:Anchor>
                       </mcc:code>
                     </mcc:MD_Identifier>
                   </mac:identifier>
                   <mac:description>
-                    <gco:CharacterString><xsl:value-of select="./mcpold:platform/mcpold:DP_Term/mcpold:term"/></gco:CharacterString>
+                    <gco:CharacterString><xsl:value-of select="current-grouping-key()"/></gco:CharacterString>
                   </mac:description>
-                  <xsl:choose>
-                    <xsl:when test="./mcpold:parameterDeterminationInstrument">
-                      <mac:instrument>
-                        <mac:MI_Instrument>
-                          <mac:identifier>
-                            <mcc:MD_Identifier>
-                              <mcc:code>
-                                <gcx:Anchor xlink:href="{./mcpold:parameterDeterminationInstrument/mcpold:DP_Term/mcpold:vocabularyTermURL/gmd:URL}">
-                                  <xsl:value-of select="./mcpold:parameterDeterminationInstrument/mcpold:DP_Term/mcpold:term"/>
-                                </gcx:Anchor>
-                              </mcc:code>
-                            </mcc:MD_Identifier>
-                          </mac:identifier>
-                          <mac:type gco:nilReason="missing">
-                            <gco:CharacterString/>
-                          </mac:type>
-                        </mac:MI_Instrument>
-                      </mac:instrument>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <mac:instrument gco:nilReason="unknown"/>
-                    </xsl:otherwise>
-                  </xsl:choose>
+                  <xsl:for-each-group
+                          select="current-group()/mcp:parameterDeterminationInstrument"
+                          group-by="*/mcp:term/*/text()">
+                        <mac:instrument>
+                          <mac:MI_Instrument>
+                            <mac:identifier>
+                              <mcc:MD_Identifier>
+                                <mcc:code>
+                                  <gcx:Anchor xlink:href="{current-group()[1]/*/mcp:vocabularyTermURL/*/text()}">
+                                    <xsl:value-of select="current-grouping-key()"/>
+                                  </gcx:Anchor>
+                                </mcc:code>
+                              </mcc:MD_Identifier>
+                            </mac:identifier>
+                            <mac:type gco:nilReason="missing">
+                              <gco:CharacterString/>
+                            </mac:type>
+                          </mac:MI_Instrument>
+                        </mac:instrument>
+                  </xsl:for-each-group>
                 </mac:MI_Platform>
               </mac:platform>
-            </xsl:if>
           </mac:MI_AcquisitionInformation>
         </mdb:acquisitionInformation>
       </xsl:for-each-group>
-    </xsl:if>
+      <!-- instruments without platforms -->
+      <xsl:for-each-group
+              select="//mcp:dataParameters/*/*/mcp:DP_DataParameter[normalize-space(mcp:platform/*/mcp:term/*/text())='']"
+              group-by="mcp:parameterDeterminationInstrument/*/mcp:term/*/text()">
+          <mdb:acquisitionInformation>
+            <mac:MI_AcquisitionInformation>
+              <mac:scope>
+                <mcc:MD_Scope>
+                  <mcc:level>
+                    <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                                      codeListValue="dataset"/>
+                  </mcc:level>
+                </mcc:MD_Scope>
+              </mac:scope>
+              <mac:instrument>
+                <mac:MI_Instrument>
+                  <mac:identifier>
+                    <mcc:MD_Identifier>
+                      <mcc:code>
+                        <gcx:Anchor xlink:href="{current-group()[1]/mcp:parameterDeterminationInstrument/*/mcp:vocabularyTermURL/*/text()}">
+                          <xsl:value-of select="current-grouping-key()"/>
+                        </gcx:Anchor>
+                      </mcc:code>
+                    </mcc:MD_Identifier>
+                  </mac:identifier>
+                  <mac:type gco:nilReason="missing">
+                    <gco:CharacterString/>
+                  </mac:type>
+                </mac:MI_Instrument>
+              </mac:instrument>
+          </mac:MI_AcquisitionInformation>
+        </mdb:acquisitionInformation>
+      </xsl:for-each-group>
   </xsl:template>
 </xsl:stylesheet>
