@@ -139,6 +139,39 @@ EOF
 	assertTrue 'restore not identical to backup' "[ $diff_lines -eq 0 ]"
 }
 
+test_module_backup_targz() {
+	# build a tmp model
+	local backup_name="$RANDOM"
+	local directory_to_backup=`ls -1 $BACKUP_SOURCE | head -1`
+	local tmp_model=`mktemp`
+	cat > $tmp_model <<EOF
+backup() {
+	targz $backup_name $BACKUP_SOURCE/$directory_to_backup
+}
+
+store() {
+	cp $BACKUP_DEST
+}
+EOF
+	$BACKUP_EXEC -m $tmp_model >& /dev/null
+	assertTrue 'exit status of backup' "[ $? -eq 0 ]"
+
+	assertTrue 'targz backup failed' "test -f ${BACKUP_DEST}/*/$backup_name.tar.gz"
+
+	# remove source directory (it'll come back from backup)
+	mv $BACKUP_SOURCE/$directory_to_backup $BACKUP_SOURCE/$directory_to_backup.orig
+
+	# restore!
+	$BACKUP_EXEC -m $tmp_model >& /dev/null
+	assertTrue 'exit status of backup' "[ $? -eq 0 ]"
+	rm -f $tmp_model
+
+	# take a diff between directories after restore, they should be identical
+	local -i diff_lines=`diff -urN $BACKUP_SOURCE/$directory_to_backup.orig $BACKUP_SOURCE/$directory_to_backup | wc -l`
+
+	assertTrue 'restore not identical to backup' "[ $diff_lines -eq 0 ]"
+}
+
 # test backup::tar backup and exclude
 test_module_backup_tar_excludes() {
 	# build a tmp model
