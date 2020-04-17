@@ -35,6 +35,8 @@
          </mcc:code>
       </mcc:MD_Identifier>
    </mdb:metadataIdentifier>
+   <mdb:contact gco:nilReason="missing"/>
+   <mdb:dateInfo gco:nilReason="missing"/>
    <mdb:metadataStandard>
       <cit:CI_Citation>
          <cit:title>
@@ -44,6 +46,10 @@
    </mdb:metadataStandard>
    <mdb:identificationInfo>
       <mri:MD_DataIdentification>
+         <mri:citation gco:nilReason="missing"/>
+         <mri:abstract gco:nilReason="missing"/>
+         <mri:credit gco:nilReason="missing"/>
+         <mri:topicCategory gco:nilReason="missing"/>
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
                <mri:keyword>
@@ -256,6 +262,14 @@
                </mri:thesaurusName>
             </mri:MD_Keywords>
          </mri:descriptiveKeywords>
+         <mri:defaultLocale>
+            <lan:PT_Locale>
+               <lan:language>
+                  <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
+               </lan:language>
+               <lan:characterEncoding gco:nilReason="unknown"/>
+            </lan:PT_Locale>
+         </mri:defaultLocale>
       </mri:MD_DataIdentification>
    </mdb:identificationInfo>
    <mdb:contentInfo>
@@ -271,18 +285,13 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e13">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e21">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
@@ -295,18 +304,13 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/894">Concentration of inferred chlorophyll from relative fluorescence per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e59">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e67">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UMMC</gml:identifier>
                            <gml:name>Milligrams per cubic metre</gml:name>
                            <gml:quantityType/>
@@ -319,18 +323,13 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/PSLTZZ01">Practical salinity of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e105">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e113">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
                            <gml:quantityType/>
@@ -343,18 +342,13 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/629">Colored Dissolved Organic Matter</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e151">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e159">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPB</gml:identifier>
                            <gml:name>Parts per billion</gml:name>
                            <gml:quantityType/>
@@ -367,18 +361,13 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/AHSFZZ01">Height above bed in the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e197">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e205">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/ULAA</gml:identifier>
                            <gml:name>Metres</gml:name>
                            <gml:quantityType/>

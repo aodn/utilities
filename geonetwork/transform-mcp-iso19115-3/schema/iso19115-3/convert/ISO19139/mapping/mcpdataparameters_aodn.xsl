@@ -59,7 +59,6 @@
                 <mrc:MD_SampleDimension>
                   <mrc:name>
                     <mcc:MD_Identifier>
-                      <mcc:authority/>
                       <mcc:code>
                         <xsl:choose>
                           <xsl:when test="./mcp:parameterName/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL">
@@ -83,9 +82,6 @@
                           </mcc:codeSpace>
                         </xsl:when>
                       </xsl:choose>
-                      <mcc:version gco:nilReason="missing">
-                        <gco:CharacterString/>
-                      </mcc:version>
                       <xsl:choose>
                         <xsl:when test="./mcp:parameterDescription/@*[local-name()='nilReason']">
                           <xsl:element name="mcc:description">
@@ -122,7 +118,6 @@
                   </xsl:if>
                   <mrc:units>
                     <gml:BaseUnit gml:id="{generate-id()}">
-                      <gml:descriptionReference />
                       <xsl:choose>
                         <xsl:when test="./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL">
                           <xsl:choose>

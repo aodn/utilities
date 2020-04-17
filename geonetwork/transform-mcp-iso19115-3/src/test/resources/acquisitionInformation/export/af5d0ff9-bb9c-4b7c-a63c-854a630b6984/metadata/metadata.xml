@@ -3,6 +3,10 @@
   <gmd:fileIdentifier>
     <gco:CharacterString>af5d0ff9-bb9c-4b7c-a63c-854a630b6984</gco:CharacterString>
   </gmd:fileIdentifier>
+  <gmd:contact gco:nilReason="missing">
+  </gmd:contact>
+  <gmd:dateStamp gco:nilReason="missing">
+  </gmd:dateStamp>
   <gmd:metadataStandardName>
     <gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
   </gmd:metadataStandardName>
@@ -11,6 +15,13 @@
   </gmd:metadataStandardVersion>
   <gmd:identificationInfo>
     <mcp:MD_DataIdentification gco:isoType="gmd:MD_DataIdentification">
+      <gmd:citation gco:nilReason="missing"/>
+      <gmd:abstract gco:nilReason="missing"/>
+      <gmd:credit gco:nilReason="missing"/>
+      <gmd:language>
+        <gco:CharacterString>eng</gco:CharacterString>
+      </gmd:language>
+      <gmd:topicCategory gco:nilReason="missing"/>
       <mcp:dataParameters>
         <mcp:DP_DataParameters>
           <mcp:dataParameter>
