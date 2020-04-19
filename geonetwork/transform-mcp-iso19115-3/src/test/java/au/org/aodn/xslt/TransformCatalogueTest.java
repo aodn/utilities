@@ -97,6 +97,16 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testSamplingFrequency() throws IOException {
+        testFiles("samplingFrequency");
+    }
+
+    @Test
+    public void testMetadataContact() throws IOException {
+        testFiles("metadataContact");
+    }
+
+    @Test
     public void testAllMetadataTags() throws IOException {
         // Copy test files to test directory
         copyFolder(resourceDir.resolve("export"), testDir);
