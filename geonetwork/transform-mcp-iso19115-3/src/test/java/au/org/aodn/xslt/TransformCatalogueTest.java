@@ -137,6 +137,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testSpatialRepresentationType() throws IOException {
+        testFiles("spatialRepresentationType");
+    }
+
+    @Test
     public void testAllMetadataTags() throws IOException {
         // Copy test files to test directory
         copyFolder(resourceDir.resolve("export"), testDir);
