@@ -142,6 +142,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testSpatialResolution() throws IOException {
+        testFiles("spatialResolution");
+    }
+
+    @Test
     public void testEnvironmentDescription() throws IOException {
         testFiles("environmentDescription");
     }
