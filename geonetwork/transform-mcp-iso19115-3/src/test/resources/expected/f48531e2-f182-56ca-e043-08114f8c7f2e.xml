@@ -569,24 +569,6 @@
                </gex:verticalElement>
             </gex:EX_Extent>
          </mri:extent>
-         <mri:additionalDocumentation>
-            <cit:CI_Citation>
-               <cit:title>
-                  <gco:CharacterString>Lynch, T.P., Roughan, M., Mclaughlan, D., Hughes, D., Cherry, D., Critchley, G., Allen, S., Pender, L., Thompson, P., Richardson, A.J., Coman, F., Steinberg, C., Terhell, D., Seuront, L., Mclean, C., Brinkman, G. and G. Meyers A. 2008. National Reference Station infrastructure for Australia: Using telemetry and central processing to report multi-disciplinary data streams for monitoring marine ecosystem response to climate change. Accepted June 2008 Oceans 2008.</gco:CharacterString>
-               </cit:title>
-               <cit:date>
-                  <cit:CI_Date>
-                     <cit:date>
-                        <gco:Date>2008</gco:Date>
-                     </cit:date>
-                     <cit:dateType>
-                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
-                                             codeListValue="publication"/>
-                     </cit:dateType>
-                  </cit:CI_Date>
-               </cit:date>
-            </cit:CI_Citation>
-         </mri:additionalDocumentation>
          <mri:resourceMaintenance>
             <mmi:MD_MaintenanceInformation>
                <mmi:maintenanceAndUpdateFrequency>
@@ -1071,6 +1053,32 @@
                </mco:otherConstraints>
             </mco:MD_LegalConstraints>
          </mri:resourceConstraints>
+         <mri:associatedResource>
+            <mri:MD_AssociatedResource>
+               <mri:name>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gco:CharacterString>Lynch, T.P., Roughan, M., Mclaughlan, D., Hughes, D., Cherry, D., Critchley, G., Allen, S., Pender, L., Thompson, P., Richardson, A.J., Coman, F., Steinberg, C., Terhell, D., Seuront, L., Mclean, C., Brinkman, G. and G. Meyers A. 2008. National Reference Station infrastructure for Australia: Using telemetry and central processing to report multi-disciplinary data streams for monitoring marine ecosystem response to climate change. Accepted June 2008 Oceans 2008.</gco:CharacterString>
+                     </cit:title>
+                     <cit:date>
+                        <cit:CI_Date>
+                           <cit:date>
+                              <gco:DateTime>2008-01-01T00:00:00</gco:DateTime>
+                           </cit:date>
+                           <cit:dateType>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
+                           </cit:dateType>
+                        </cit:CI_Date>
+                     </cit:date>
+                  </cit:CI_Citation>
+               </mri:name>
+               <mri:associationType>
+                  <mri:DS_AssociationTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#DS_AssociationTypeCode"
+                                              codeListValue="crossReference"/>
+               </mri:associationType>
+            </mri:MD_AssociatedResource>
+         </mri:associatedResource>
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
@@ -1097,25 +1105,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/CHLTVOLU">Concentration of chlorophyll per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e544">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UMMC">http://vocab.nerc.ac.uk/collection/P06/current/UMMC</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e444">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UMMC</gml:identifier>
                            <gml:name>Milligrams per cubic metre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1127,25 +1124,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/761">Concentration of chlorophyll-c3 per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e602">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e490">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1157,25 +1143,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/767">Concentration of Mg-2,4-divinyl pheoporphyrin a5 monomethyl ester per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e672">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e546">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1187,25 +1162,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/758">Concentration of chlorophyll-c2 per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e742">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e602">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1217,25 +1181,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/759">Concentration of chlorophyll-c1 per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e812">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e658">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1247,25 +1200,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/760">Concentration of chlorophyll-c1c2 per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e882">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e714">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1277,25 +1219,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/757">Concentration of chlorophyllide-a per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e952">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e770">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1307,25 +1238,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/756">Concentration of pheophorbide-a per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1022">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e826">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1337,25 +1257,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/PERDXXXX">Concentration of peridinin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1092">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e882">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1367,25 +1276,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/755">Concentration of pyropheophorbide-a per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1162">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e938">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1397,25 +1295,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/762">Concentration of 19-butanoyloxyfucoxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1232">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e994">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1427,25 +1314,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/FUCXZZZZ">Concentration of fucoxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1303">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1051">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1457,25 +1333,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/734">Concentration of neoxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1373">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1107">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1487,25 +1352,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/763">Concentration of 4-keto-19-hexanoyloxyfucoxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1443">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1163">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1517,25 +1371,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/735">Concentration of prasinoxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1513">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1219">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1547,25 +1390,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/736">Concentration of violaxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1583">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1275">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1577,25 +1409,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/747">Concentration of 19-hexanoyloxyfucoxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1653">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1331">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1607,25 +1428,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/737">Concentration of astaxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1723">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1387">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1637,25 +1447,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/744">Concentration of diadinochrome per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1793">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1443">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1667,25 +1466,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/742">Concentration of diadinoxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1863">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1499">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1697,25 +1485,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/738">Concentration of dinoxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1933">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1555">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1727,25 +1504,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/658">Concentration of antheraxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2003">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1611">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1757,25 +1523,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/ALLOXXPX">Concentration of alloxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2074">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1668">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1787,25 +1542,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/739">Concentration of diatoxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2144">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1724">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1817,25 +1561,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/740">Concentration of zeaxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2214">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1780">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1847,25 +1580,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/660">Concentration of lutein per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2284">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1836">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1877,25 +1599,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/659">Concentration of canthaxanthin per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2354">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1892">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1907,25 +1618,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/743">Concentration of gyroxanthin diester per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2424">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e1948">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1937,25 +1637,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/746">Concentration of divinyl chlorophyll-b per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2494">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2004">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1967,25 +1656,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/745">Concentration of chlorophyll-b per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2564">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2060">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1997,25 +1675,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/746">Concentration of divinyl chlorophyll-b per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2634">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2116">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2027,25 +1694,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/754">Concentration of divinyl chlorophyll-a per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2704">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2172">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2057,25 +1713,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/750">Concentration of chlorophyll-a per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2774">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2228">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2087,25 +1732,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/752">Concentration of chlorophyll-a plus divinyl chlorophyll-a per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2845">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2285">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2117,25 +1751,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/478">Concentration of echinenone per unit mass of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2915">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2341">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2147,25 +1770,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/749">Concentration of pheophytin-b per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e2985">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2397">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2177,25 +1789,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/748">Concentration of pheophytin-a per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e3055">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2453">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2207,25 +1808,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/741">Concentration of lycopene per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e3125">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2509">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2237,25 +1827,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/764">Concentration of alpha-carotene per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e3195">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2565">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2267,25 +1846,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/765">Concentration of beta-carotene per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e3265">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2621">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2297,25 +1865,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/766">Concentration of alpha-carotene and beta-carotene per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e3335">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2677">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2327,25 +1884,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/751">Concentration of pyropheophytin-a per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e3405">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UGPL">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e2733">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -2371,13 +1917,6 @@
                      <cit:edition>
                         <gco:CharacterString>unknown</gco:CharacterString>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>html</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -2711,1647 +2250,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/823">small boat</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>small boat</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/30">discrete water samplers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>

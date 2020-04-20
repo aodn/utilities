@@ -556,13 +556,6 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                      <cit:edition>
                         <gco:CharacterString>4.0</gco:CharacterString>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>NetCDF</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -601,7 +594,7 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                            <cit:date>
                               <gco:DateTime>2007-04-17T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -645,7 +638,7 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -674,7 +667,7 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                                        </cit:phone>
                                        <cit:phone>
                                           <cit:CI_Telephone>
-                                             <cit:number>
+                                             <cit:number gco:nilReason="missing">
                                                 <gco:CharacterString/>
                                              </cit:number>
                                              <cit:numberType>
@@ -1136,7 +1129,10 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                   </cit:CI_Citation>
                </mco:reference>
                <mco:otherConstraints>
-                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]." Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
+                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]."</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
                </mco:otherConstraints>
             </mco:MD_LegalConstraints>
          </mri:resourceConstraints>
@@ -1166,25 +1162,14 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/640">Eastward geostrophic current velocity in the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e649">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UVAA">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e502">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1196,25 +1181,14 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/641">Northward geostrophic current velocity in the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e693">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UVAA">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e537">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1226,25 +1200,14 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/642">Sea surface height anomaly</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e737">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/ULAA">http://vocab.nerc.ac.uk/collection/P06/current/ULAA</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e572">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/ULAA</gml:identifier>
                            <gml:name>Metres</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1256,25 +1219,14 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/643">Sea surface height above geoid</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e781">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/ULAA">http://vocab.nerc.ac.uk/collection/P06/current/ULAA</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e607">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/ULAA</gml:identifier>
                            <gml:name>Metres</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1444,7 +1396,7 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -1460,88 +1412,6 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                <mac:description>
                   <gco:CharacterString>orbiting satellite</gco:CharacterString>
                </mac:description>
-               <mac:instrument gco:nilReason="unknown"/>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/65">orbiting satellite</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>orbiting satellite</gco:CharacterString>
-               </mac:description>
-               <mac:instrument gco:nilReason="unknown"/>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/65">orbiting satellite</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>orbiting satellite</gco:CharacterString>
-               </mac:description>
-               <mac:instrument gco:nilReason="unknown"/>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/65">orbiting satellite</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>orbiting satellite</gco:CharacterString>
-               </mac:description>
-               <mac:instrument gco:nilReason="unknown"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>

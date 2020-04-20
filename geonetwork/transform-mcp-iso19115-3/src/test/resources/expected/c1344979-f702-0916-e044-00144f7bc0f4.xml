@@ -278,16 +278,16 @@
          </mri:abstract>
          <mri:credit>
             <gco:CharacterString>These data are from the Australian Continuous Plankton Recorder (AusCPR) survey part of the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government.
-               Please also acknowledge the relevant party that helped to collect the data. This information is contained in the download of the zooplankton abundance.
-               ANL - ANL Windarra container shipping
-               CSIRO - Commonwealth Scientific and Industrial Research Organisation
-               MNF - Marine National Facility
-               Sealord Group Ltd.
-               SOCPR - Southern Ocean Continuous Plankton Recorder Survey
-               AIMS - Australian Institute of Marine Science
-               GA - Geoscience Australia
-               Swire Shipping
-               Malaspina Cruise - March 2011 aboard vessel Hespérides</gco:CharacterString>
+Please also acknowledge the relevant party that helped to collect the data. This information is contained in the download of the zooplankton abundance.
+ANL - ANL Windarra container shipping
+CSIRO - Commonwealth Scientific and Industrial Research Organisation
+MNF - Marine National Facility 
+Sealord Group Ltd.
+SOCPR - Southern Ocean Continuous Plankton Recorder Survey
+AIMS - Australian Institute of Marine Science
+GA - Geoscience Australia
+Swire Shipping
+Malaspina Cruise - March 2011 aboard vessel Hespérides</gco:CharacterString>
          </mri:credit>
          <mri:credit>
             <gco:CharacterString>A. Richardson</gco:CharacterString>
@@ -453,24 +453,6 @@
                </gex:verticalElement>
             </gex:EX_Extent>
          </mri:extent>
-         <mri:additionalDocumentation>
-            <cit:CI_Citation>
-               <cit:title>
-                  <gco:CharacterString>Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Witt M (2006) Using continuous plankton recorder data. Prog Oceanogr 68:27-74</gco:CharacterString>
-               </cit:title>
-               <cit:date>
-                  <cit:CI_Date>
-                     <cit:date>
-                        <gco:Date>2006</gco:Date>
-                     </cit:date>
-                     <cit:dateType>
-                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
-                                             codeListValue="publication"/>
-                     </cit:dateType>
-                  </cit:CI_Date>
-               </cit:date>
-            </cit:CI_Citation>
-         </mri:additionalDocumentation>
          <mri:resourceMaintenance>
             <mmi:MD_MaintenanceInformation>
                <mmi:maintenanceAndUpdateFrequency>
@@ -877,6 +859,32 @@
                </mco:otherConstraints>
             </mco:MD_LegalConstraints>
          </mri:resourceConstraints>
+         <mri:associatedResource>
+            <mri:MD_AssociatedResource>
+               <mri:name>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gco:CharacterString>Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Witt M (2006) Using continuous plankton recorder data. Prog Oceanogr 68:27-74</gco:CharacterString>
+                     </cit:title>
+                     <cit:date>
+                        <cit:CI_Date>
+                           <cit:date>
+                              <gco:DateTime>2006-01-01T00:00:00</gco:DateTime>
+                           </cit:date>
+                           <cit:dateType>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
+                           </cit:dateType>
+                        </cit:CI_Date>
+                     </cit:date>
+                  </cit:CI_Citation>
+               </mri:name>
+               <mri:associationType>
+                  <mri:DS_AssociationTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#DS_AssociationTypeCode"
+                                              codeListValue="crossReference"/>
+               </mri:associationType>
+            </mri:MD_AssociatedResource>
+         </mri:associatedResource>
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
@@ -919,25 +927,17 @@ Acknowledgements - Data Acknowledgements</gco:CharacterString>
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/570">Dry weight biomass per unit volume of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description>
                               <gco:CharacterString>Biomass index - The dry weight of the silk segment in mg/m3 of water filtered</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e450">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UMMC">http://vocab.nerc.ac.uk/collection/P06/current/UMMC</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e365">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UMMC</gml:identifier>
                            <gml:name>Milligrams per cubic metre</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -961,13 +961,6 @@ Acknowledgements - Data Acknowledgements</gco:CharacterString>
                      <cit:alternateTitle/>
                      <cit:date gco:nilReason="unknown"/>
                      <cit:edition gco:nilReason="missing"/>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>DIGITAL - Database Files - Oracle</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -1214,7 +1207,7 @@ Acknowledgements - Data Acknowledgements</gco:CharacterString>
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
