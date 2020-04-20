@@ -46,34 +46,48 @@
                 exclude-result-prefixes="#all">
 
   <xsl:template match="mcp:samplingFrequency" mode="mcpsamplingfrequency">
-      <mri:temporalResolution>
-          <xsl:choose>
-            <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='hourly']">
+      <xsl:choose>
+        <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='hourly']">
+            <mri:temporalResolution>
                 <gco:TM_PeriodDuration>P0Y0M0DT1H0M0S</gco:TM_PeriodDuration>
-            </xsl:when>
-            <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='daily']">
+            </mri:temporalResolution>
+        </xsl:when>
+        <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='daily']">
+            <mri:temporalResolution>
                 <gco:TM_PeriodDuration>P0Y0M1DT0H0M0S</gco:TM_PeriodDuration>
-            </xsl:when>
-            <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='weekly']">
+            </mri:temporalResolution>
+        </xsl:when>
+        <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='weekly']">
+            <mri:temporalResolution>
                 <gco:TM_PeriodDuration>P0Y0M7DT0H0M0S</gco:TM_PeriodDuration>
-            </xsl:when>
-            <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='fortnightly']">
+            </mri:temporalResolution>
+        </xsl:when>
+        <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='fortnightly']">
+            <mri:temporalResolution>
                 <gco:TM_PeriodDuration>P0Y0M14DT0H0M0S</gco:TM_PeriodDuration>
-            </xsl:when>
-            <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='monthly']">
+            </mri:temporalResolution>
+        </xsl:when>
+        <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='monthly']">
+            <mri:temporalResolution>
                 <gco:TM_PeriodDuration>P0Y1M0DT0H0M0S</gco:TM_PeriodDuration>
-            </xsl:when>
-            <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='quarterly']">
+            </mri:temporalResolution>
+        </xsl:when>
+        <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='quarterly']">
+            <mri:temporalResolution>
                 <gco:TM_PeriodDuration>P0Y4M0DT0H0M0S</gco:TM_PeriodDuration>
-            </xsl:when>
-            <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='biannually']">
+            </mri:temporalResolution>
+        </xsl:when>
+        <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='biannually']">
+            <mri:temporalResolution>
                 <gco:TM_PeriodDuration>P0Y6M0DT0H0M0S</gco:TM_PeriodDuration>
-            </xsl:when>
-            <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='annually']">
+            </mri:temporalResolution>
+        </xsl:when>
+        <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='annually']">
+            <mri:temporalResolution>
                 <gco:TM_PeriodDuration>P1Y0M0DT0H0M0S</gco:TM_PeriodDuration>
-            </xsl:when>
-        </xsl:choose>
-      </mri:temporalResolution>
+            </mri:temporalResolution>
+        </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>

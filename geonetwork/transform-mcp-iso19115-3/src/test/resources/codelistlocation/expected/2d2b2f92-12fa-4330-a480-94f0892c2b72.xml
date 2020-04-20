@@ -1897,18 +1897,13 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e904">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e904">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
@@ -1921,18 +1916,13 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/PSLTZZ01">Practical salinity of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e928">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e928">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
                            <gml:quantityType/>
@@ -1945,18 +1935,13 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/489">Biotic taxonomic identification</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e952">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e952">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
                            <gml:quantityType/>
@@ -2099,30 +2084,20 @@ Salinity:	Surface (&lt; 10 m) salinity (PSU) at approx. the same time as the tow
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
+         <mac:instrument>
+            <mac:MI_Instrument>
+               <mac:identifier>
+                  <mcc:MD_Identifier>
+                     <mcc:code>
+                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/22">plankton nets</gcx:Anchor>
+                     </mcc:code>
+                  </mcc:MD_Identifier>
+               </mac:identifier>
+               <mac:type gco:nilReason="missing">
+                  <gco:CharacterString/>
+               </mac:type>
+            </mac:MI_Instrument>
+         </mac:instrument>
       </mac:MI_AcquisitionInformation>
    </mdb:acquisitionInformation>
 </mdb:MD_Metadata>

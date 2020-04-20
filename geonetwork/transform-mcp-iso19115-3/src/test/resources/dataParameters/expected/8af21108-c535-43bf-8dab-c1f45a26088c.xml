@@ -228,13 +228,9 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description>
                               <gco:CharacterString>Parameter Description</gco:CharacterString>
                            </mcc:description>
@@ -247,8 +243,7 @@
                         <gco:Real>-1000</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e19">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e19">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
@@ -261,18 +256,13 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/PSLTZZ01"/>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e85">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e85">
                            <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/1">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name/>
                            <gml:quantityType/>
@@ -321,32 +311,6 @@
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
