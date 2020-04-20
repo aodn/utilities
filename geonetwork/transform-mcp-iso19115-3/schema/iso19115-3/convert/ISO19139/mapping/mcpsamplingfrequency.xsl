@@ -67,7 +67,7 @@
                 <gco:TM_PeriodDuration>P0Y4M0DT0H0M0S</gco:TM_PeriodDuration>
             </xsl:when>
             <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='biannually']">
-                <gco:TM_PeriodDuration>P2Y0M0DT0H0M0S</gco:TM_PeriodDuration>
+                <gco:TM_PeriodDuration>P0Y6M0DT0H0M0S</gco:TM_PeriodDuration>
             </xsl:when>
             <xsl:when test="./gmd:MD_MaintenanceFrequencyCode[@codeListValue='annually']">
                 <gco:TM_PeriodDuration>P1Y0M0DT0H0M0S</gco:TM_PeriodDuration>
