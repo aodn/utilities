@@ -1333,13 +1333,9 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>
@@ -1349,8 +1345,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gco:Real>-2</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e545">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e545">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
@@ -1363,13 +1358,9 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/PSLTZZ01">Practical salinity of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>
@@ -1379,8 +1370,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gco:Real>0</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e595">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e595">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
                            <gml:quantityType/>
@@ -1393,18 +1383,13 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/ESSAZZ01">Wind speed in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e645">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e645">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
                            <gml:quantityType/>
@@ -1417,18 +1402,13 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/EWDAZZ01">Wind from direction in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e691">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e691">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
                            <gml:quantityType/>
@@ -1441,18 +1421,13 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/CAPHZZ01">Pressure (measured variable) exerted by the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e737">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e737">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/HPAX</gml:identifier>
                            <gml:name>Hectopascals</gml:name>
                            <gml:quantityType/>
@@ -1465,18 +1440,13 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/FCO2XXXX">Fugacity of carbon dioxide (at 100% humidity) in the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e783">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e783">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
                            <gml:quantityType/>
@@ -1489,18 +1459,13 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/FCO2WTAT">Fugacity of carbon dioxide (at 100% humidity) in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e829">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e829">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
                            <gml:quantityType/>
@@ -1513,18 +1478,13 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/427">Fugacity anomaly (water - air) of carbon dioxide in the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e875">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e875">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
                            <gml:quantityType/>
@@ -1537,21 +1497,16 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/XCO2DRAT">Mole fraction of carbon dioxide (dry air) in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description>
                               <gco:CharacterString>Measured every 4 hours after standard runs</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e921">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e921">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
                            <gml:quantityType/>
@@ -1564,18 +1519,13 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/XCO2WBDY">Mole fraction of carbon dioxide (dry air) in the equilibrated marine sample</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e969">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e969">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
                            <gml:quantityType/>
@@ -1588,18 +1538,13 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/INFLTF01">Flow rate through instrument</gcx:Anchor>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1015">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e1015">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/ULPM</gml:identifier>
                            <gml:name>Litres per minute</gml:name>
                            <gml:quantityType/>
@@ -1836,32 +1781,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -1876,32 +1795,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -1916,72 +1809,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/101">anemometers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -1996,32 +1823,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -2036,32 +1837,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -2076,153 +1851,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/351">dissolved gas sensors</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/382">atmospheric gas analysers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/382">atmospheric gas analysers</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="dataset"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
-               <mac:instrument gco:nilReason="unknown"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>

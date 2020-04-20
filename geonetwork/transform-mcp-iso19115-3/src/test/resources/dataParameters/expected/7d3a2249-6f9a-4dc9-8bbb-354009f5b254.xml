@@ -108,16 +108,12 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>sea_water_temperature</gco:CharacterString>
                            </mcc:code>
                            <mcc:codeSpace>
                               <gco:CharacterString>http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
@@ -130,8 +126,7 @@
                         <gco:Real>-1000</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e18">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e18">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Metres</gml:name>
                            <gml:quantityType/>
@@ -144,21 +139,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString/>
                            </mcc:code>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e55">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e55">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
                            <gml:quantityType/>
