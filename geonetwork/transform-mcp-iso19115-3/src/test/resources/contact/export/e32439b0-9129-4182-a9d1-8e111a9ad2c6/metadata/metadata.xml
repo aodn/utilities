@@ -59,8 +59,8 @@
               <gmd:name gco:nilReason="missing">
                 <gco:CharacterString />
               </gmd:name>
-              <gmd:description>
-                <gco:CharacterString>Website of the Australian Ocean Data Network (AODN)</gco:CharacterString>
+              <gmd:description gco:nilReason="missing">
+                <gco:CharacterString/>
               </gmd:description>
             </gmd:CI_OnlineResource>
           </gmd:onlineResource>

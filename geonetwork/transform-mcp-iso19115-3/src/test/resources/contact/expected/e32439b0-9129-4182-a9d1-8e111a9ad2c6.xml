@@ -106,8 +106,8 @@
                            <cit:name gco:nilReason="missing">
                               <gco:CharacterString/>
                            </cit:name>
-                           <cit:description>
-                              <gco:CharacterString>Website of the Australian Ocean Data Network (AODN)</gco:CharacterString>
+                           <cit:description gco:nilReason="missing">
+                              <gco:CharacterString/>
                            </cit:description>
                         </cit:CI_OnlineResource>
                      </cit:onlineResource>
