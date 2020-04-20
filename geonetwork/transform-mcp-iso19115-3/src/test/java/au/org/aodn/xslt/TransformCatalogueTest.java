@@ -42,6 +42,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testDatasetUri() throws IOException {
+        testFiles("datasetUri");
+    }
+
+    @Test
     public void testAggregationInfo() throws IOException {
         testFiles("aggregationInfo");
     }
