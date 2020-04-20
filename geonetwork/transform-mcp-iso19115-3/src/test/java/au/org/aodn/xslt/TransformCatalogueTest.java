@@ -92,6 +92,21 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testAcquisitionInformation() throws IOException {
+        testFiles("acquisitionInformation");
+    }
+
+    @Test
+    public void testSamplingFrequency() throws IOException {
+        testFiles("samplingFrequency");
+    }
+
+    @Test
+    public void testMetadataContact() throws IOException {
+        testFiles("metadataContact");
+    }
+
+    @Test
     public void testCitation() throws IOException {
         testFiles("citation");
     }
