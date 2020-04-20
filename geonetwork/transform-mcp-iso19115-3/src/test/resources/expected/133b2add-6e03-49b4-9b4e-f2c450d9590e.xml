@@ -536,7 +536,7 @@ The CORL area of coverage has a small overlap of commonly observed ocean with th
                            <cit:date>
                               <gco:DateTime>2006-01-01T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -598,7 +598,7 @@ The CORL area of coverage has a small overlap of commonly observed ocean with th
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -648,7 +648,7 @@ The CORL area of coverage has a small overlap of commonly observed ocean with th
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -760,7 +760,10 @@ The CORL area of coverage has a small overlap of commonly observed ocean with th
                   </cit:CI_Citation>
                </mco:reference>
                <mco:otherConstraints>
-                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]." Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
+                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]."</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
                </mco:otherConstraints>
             </mco:MD_LegalConstraints>
          </mri:resourceConstraints>
@@ -791,13 +794,6 @@ The CORL area of coverage has a small overlap of commonly observed ocean with th
                      <cit:edition gco:nilReason="missing">
                         <gco:CharacterString/>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>

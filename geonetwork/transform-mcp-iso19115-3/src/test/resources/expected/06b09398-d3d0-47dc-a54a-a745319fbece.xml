@@ -691,13 +691,6 @@
                      <cit:edition>
                         <gco:CharacterString>3.5</gco:CharacterString>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>NetCDF</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -814,7 +807,7 @@
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -1308,7 +1301,10 @@
                   </cit:CI_Citation>
                </mco:reference>
                <mco:otherConstraints>
-                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]." Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
+                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]."</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
                </mco:otherConstraints>
             </mco:MD_LegalConstraints>
          </mri:resourceConstraints>
@@ -1338,19 +1334,9 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>
@@ -1360,9 +1346,8 @@
                         <gco:Real>-2</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e713">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPAA">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e590">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1374,25 +1359,17 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/PSLTZZ01">Practical salinity of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description>
                               <gco:CharacterString>Not measured with Weddell Seals (non-CTD tag)</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e777">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/entity/481">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e640">
+                           <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1404,25 +1381,17 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/APSAZZ01">Speed (over ground) of measurement platform</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description>
                               <gco:CharacterString>Only measured for Weddell Seals (SRDL tag)</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e838">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UVAA">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e688">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1434,25 +1403,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/565">Pressure (measured variable) in the water body exerted by overlying sea water and any medium above it</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e899">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPDB">http://vocab.nerc.ac.uk/collection/P06/current/UPDB</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e736">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPDB</gml:identifier>
                            <gml:name>Decibars</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1464,25 +1422,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/ALATZZ01">Latitude north</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e957">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UAAA">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e782">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1494,25 +1441,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/ALONZZ01">Longitude east</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1001">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UAAA">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e817">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1538,13 +1474,6 @@
                      <cit:edition>
                         <gco:CharacterString>3.5</gco:CharacterString>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>NetCDF</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -1754,7 +1683,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>
@@ -1784,32 +1713,6 @@
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/77">land-sea mammals</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>land-sea mammals</gco:CharacterString>
-               </mac:description>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -1824,32 +1727,6 @@
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/77">land-sea mammals</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>land-sea mammals</gco:CharacterString>
-               </mac:description>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -1864,100 +1741,6 @@
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/77">land-sea mammals</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>land-sea mammals</gco:CharacterString>
-               </mac:description>
-               <mac:instrument>
-                  <mac:MI_Instrument>
-                     <mac:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/130">CTD</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mac:identifier>
-                     <mac:type gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </mac:type>
-                  </mac:MI_Instrument>
-               </mac:instrument>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/77">land-sea mammals</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>land-sea mammals</gco:CharacterString>
-               </mac:description>
-               <mac:instrument gco:nilReason="unknown"/>
-            </mac:MI_Platform>
-         </mac:platform>
-      </mac:MI_AcquisitionInformation>
-   </mdb:acquisitionInformation>
-   <mdb:acquisitionInformation>
-      <mac:MI_AcquisitionInformation>
-         <mac:scope>
-            <mcc:MD_Scope>
-               <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
-               </mcc:level>
-            </mcc:MD_Scope>
-         </mac:scope>
-         <mac:platform>
-            <mac:MI_Platform>
-               <mac:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/77">land-sea mammals</gcx:Anchor>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>land-sea mammals</gco:CharacterString>
-               </mac:description>
-               <mac:instrument gco:nilReason="unknown"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>

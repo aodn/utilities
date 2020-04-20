@@ -41,7 +41,8 @@
             <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
          </lan:language>
          <lan:characterEncoding>
-            <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
+            <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode"
+                                     codeListValue="utf8"/>
          </lan:characterEncoding>
       </lan:PT_Locale>
    </mdb:defaultLocale>
@@ -49,7 +50,8 @@
    <mdb:metadataScope>
       <mdb:MD_MetadataScope>
          <mdb:resourceScope>
-            <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+            <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                              codeListValue="dataset"/>
          </mdb:resourceScope>
          <mdb:name>
             <gco:CharacterString>IMOS Platform level record</gco:CharacterString>
@@ -59,7 +61,8 @@
    <mdb:contact>
       <cit:CI_Responsibility>
          <cit:role>
-            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="distributor">distributor</cit:CI_RoleCode>
+            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                             codeListValue="distributor"/>
          </cit:role>
          <cit:party>
             <cit:CI_Organisation>
@@ -74,7 +77,8 @@
                               <gco:CharacterString>61 3 6226 7488</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                        codeListValue="voice"/>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -84,7 +88,8 @@
                               <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                        codeListValue="facsimile"/>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -148,7 +153,8 @@
             <gco:DateTime>2019-07-23T10:07:14</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                 codeListValue="creation"/>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -158,7 +164,8 @@
             <gco:DateTime>2019-07-23T10:07:14</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                 codeListValue="revision"/>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -195,14 +202,16 @@
                         <gco:DateTime>2017-02-23T00:00:00</gco:DateTime>
                      </cit:date>
                      <cit:dateType>
-                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
+                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                             codeListValue="creation"/>
                      </cit:dateType>
                   </cit:CI_Date>
                </cit:date>
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="resourceProvider">resourceProvider</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="resourceProvider"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -217,7 +226,8 @@
                                           <gco:CharacterString>61 3 6226 7549</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                                    codeListValue="voice"/>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -227,7 +237,8 @@
                                           <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                                    codeListValue="facsimile"/>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -313,12 +324,14 @@ These time-series observations are crucial to resolving ecosystem processes that
             <gco:CharacterString>University of Tasmania (UTAS)</gco:CharacterString>
          </mri:credit>
          <mri:status>
-            <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode" codeListValue="completed">completed</mcc:MD_ProgressCode>
+            <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode"
+                                 codeListValue="completed"/>
          </mri:status>
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
-                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
+                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                   codeListValue="pointOfContact"/>
                </cit:role>
                <cit:party>
                   <cit:CI_Organisation>
@@ -414,18 +427,11 @@ These time-series observations are crucial to resolving ecosystem processes that
                </gex:temporalElement>
             </gex:EX_Extent>
          </mri:extent>
-         <mri:additionalDocumentation>
-            <cit:CI_Citation>
-               <cit:title>
-                  <gco:CharacterString>Southern Ocean Automated Time Series SOTS</gco:CharacterString>
-               </cit:title>
-            </cit:CI_Citation>
-         </mri:additionalDocumentation>
          <mri:resourceMaintenance>
             <mmi:MD_MaintenanceInformation>
                <mmi:maintenanceAndUpdateFrequency>
-                  <mmi:MD_MaintenanceFrequencyCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode"
-                                                   codeListValue="irregular">irregular</mmi:MD_MaintenanceFrequencyCode>
+                  <mmi:MD_MaintenanceFrequencyCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_MaintenanceFrequencyCode"
+                                                   codeListValue="irregular"/>
                </mmi:maintenanceAndUpdateFrequency>
             </mmi:MD_MaintenanceInformation>
          </mri:resourceMaintenance>
@@ -467,13 +473,6 @@ These time-series observations are crucial to resolving ecosystem processes that
                      <cit:edition gco:nilReason="missing">
                         <gco:CharacterString/>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>Comma Separated Variable files</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -505,8 +504,8 @@ These time-series observations are crucial to resolving ecosystem processes that
                   <gco:CharacterString>Solid Earth | Geochemistry | Biogeochemistry</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme">theme</mri:MD_KeywordTypeCode>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -521,13 +520,14 @@ These time-series observations are crucial to resolving ecosystem processes that
                            <cit:date>
                               <gco:DateTime>2006-01-01T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                               codeListValue="owner"/>
                            </cit:role>
                            <cit:party>
                               <cit:CI_Organisation>
@@ -551,8 +551,8 @@ These time-series observations are crucial to resolving ecosystem processes that
                   <gco:CharacterString>IMOS Platform | PULSE11 | Pulse 11 Mooring</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme">theme</mri:MD_KeywordTypeCode>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -567,13 +567,14 @@ These time-series observations are crucial to resolving ecosystem processes that
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                               codeListValue="owner"/>
                            </cit:role>
                            <cit:party>
                               <cit:CI_Organisation>
@@ -594,8 +595,8 @@ These time-series observations are crucial to resolving ecosystem processes that
                   <gco:CharacterString>Global / Oceans | Southern Ocean</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="place">place</mri:MD_KeywordTypeCode>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="place"/>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -610,13 +611,14 @@ These time-series observations are crucial to resolving ecosystem processes that
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                               codeListValue="owner"/>
                            </cit:role>
                            <cit:party>
                               <cit:CI_Organisation>
@@ -666,7 +668,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
                                                codeListValue=""/>
                            </cit:role>
                            <cit:party>
@@ -721,17 +723,41 @@ These time-series observations are crucial to resolving ecosystem processes that
                   </cit:CI_Citation>
                </mco:reference>
                <mco:otherConstraints>
-                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]." Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
+                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]."</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
                </mco:otherConstraints>
             </mco:MD_LegalConstraints>
          </mri:resourceConstraints>
+         <mri:associatedResource>
+            <mri:MD_AssociatedResource>
+               <mri:name>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gco:CharacterString>Southern Ocean Automated Time Series SOTS</gco:CharacterString>
+                     </cit:title>
+                     <cit:date/>
+                  </cit:CI_Citation>
+               </mri:name>
+               <mri:associationType>
+                  <mri:DS_AssociationTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#DS_AssociationTypeCode"
+                                              codeListValue="crossReference"/>
+               </mri:associationType>
+               <mri:initiativeType>
+                  <mri:DS_InitiativeTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#DS_InitiativeTypeCode"
+                                             codeListValue="project"/>
+               </mri:initiativeType>
+            </mri:MD_AssociatedResource>
+         </mri:associatedResource>
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
                   <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
                </lan:language>
                <lan:characterEncoding>
-                  <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
+                  <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode"
+                                           codeListValue="utf8"/>
                </lan:characterEncoding>
             </lan:PT_Locale>
          </mri:defaultLocale>
@@ -746,23 +772,16 @@ These time-series observations are crucial to resolving ecosystem processes that
          <mrc:attributeGroup>
             <mrc:MD_AttributeGroup>
                <mrc:contentType>
-                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_CoverageContentTypeCode"
+                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CoverageContentTypeCode"
                                                   codeListValue="physicalMeasurement"/>
                </mrc:contentType>
                <mrc:attribute>
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>acceleration</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
@@ -775,8 +794,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                         <gco:Real>0</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e454">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e356">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Metres per second squared</gml:name>
                            <gml:quantityType/>
@@ -789,16 +807,9 @@ These time-series observations are crucial to resolving ecosystem processes that
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>tension</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
@@ -811,8 +822,7 @@ These time-series observations are crucial to resolving ecosystem processes that
                         <gco:Real>-50</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e480">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e378">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Kilograms</gml:name>
                            <gml:quantityType/>
@@ -825,24 +835,16 @@ These time-series observations are crucial to resolving ecosystem processes that
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>voltage</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description>
                               <gco:CharacterString>Voltage of battery</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e506">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e400">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
                            <gml:quantityType/>
@@ -894,8 +896,8 @@ These time-series observations are crucial to resolving ecosystem processes that
                         <gco:CharacterString>Mooring diagram</gco:CharacterString>
                      </cit:description>
                      <cit:function>
-                        <cit:CI_OnLineFunctionCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode"
-                                                   codeListValue="information">information</cit:CI_OnLineFunctionCode>
+                        <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_OnLineFunctionCode"
+                                                   codeListValue="information"/>
                      </cit:function>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
@@ -906,8 +908,8 @@ These time-series observations are crucial to resolving ecosystem processes that
    <mdb:metadataConstraints>
       <mco:MD_SecurityConstraints>
          <mco:classification>
-            <mco:MD_ClassificationCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_ClassificationCode"
-                                       codeListValue="unclassified">unclassified</mco:MD_ClassificationCode>
+            <mco:MD_ClassificationCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ClassificationCode"
+                                       codeListValue="unclassified"/>
          </mco:classification>
       </mco:MD_SecurityConstraints>
    </mdb:metadataConstraints>

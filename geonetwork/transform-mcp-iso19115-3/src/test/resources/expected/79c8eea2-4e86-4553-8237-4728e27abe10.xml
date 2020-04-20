@@ -52,6 +52,9 @@
             <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
                               codeListValue="dataset"/>
          </mdb:resourceScope>
+         <mdb:name>
+            <gco:CharacterString/>
+         </mdb:name>
       </mdb:MD_MetadataScope>
    </mdb:metadataScope>
    <mdb:contact>
@@ -401,13 +404,6 @@
                      <cit:edition>
                         <gco:CharacterString>4.1</gco:CharacterString>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>NetCDF</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -481,7 +477,7 @@
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
@@ -920,7 +916,10 @@
                   </cit:CI_Citation>
                </mco:reference>
                <mco:otherConstraints>
-                  <gco:CharacterString>The citation in a list of references is: citation author name/s (year metadata published), metadata title. Citation author organisation/s. File identifier and Data accessed at (add http link). The User agrees that whenever the Product or imagery/data derived from the Product are published by the User, the CSIRO Marine Laboratories shall be acknowledged as the source of the Product.</gco:CharacterString>
+                  <gco:CharacterString>The citation in a list of references is: citation author name/s (year metadata published), metadata title. Citation author organisation/s. File identifier and Data accessed at (add http link).</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>The User agrees that whenever the Product or imagery/data derived from the Product are published by the User, the CSIRO Marine Laboratories shall be acknowledged as the source of the Product.</gco:CharacterString>
                </mco:otherConstraints>
                <mco:otherConstraints>
                   <gco:CharacterString>The User acknowledges that the Product was developed by CSIRO for its own research purposes. The CSIRO will not therefore be liable for interpretation of or inconsistencies, discrepancies, errors or omissions in any or all of the Product as supplied. Any use of or reliance by the User on the Product or any part thereof is at the User\'s own risk and CSIRO shall not be liable for any loss or damage howsoever arising as a result of such use. The User agrees to indemnify and hold harmless CSIRO in respect of any loss or damage (including any rights arising from negligence or infringement of third party intellectual property rights) suffered by CSIRO as a result of User\'s use of or reliance on the Data.</gco:CharacterString>
@@ -956,25 +955,14 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e500">
-                           <gml:descriptionReference/>
-                           <gml:identifier codeSpace="http://vocab.nerc.ac.uk/collection/P06/current/UPAA">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
+                        <gml:BaseUnit gml:id="d19e381">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
                            <gml:unitsSystem/>
@@ -1000,13 +988,6 @@
                      <cit:edition>
                         <gco:CharacterString>4.1</gco:CharacterString>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>NetCDF</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -1134,7 +1115,7 @@
             <mcc:MD_Scope>
                <mcc:level>
                   <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
-                                    codeListValue="metadata"/>
+                                    codeListValue="dataset"/>
                </mcc:level>
             </mcc:MD_Scope>
          </mac:scope>

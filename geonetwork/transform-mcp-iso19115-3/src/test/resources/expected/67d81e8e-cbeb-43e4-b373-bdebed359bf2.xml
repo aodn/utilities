@@ -41,14 +41,16 @@
             <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
          </lan:language>
          <lan:characterEncoding>
-            <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
+            <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode"
+                                     codeListValue="utf8"/>
          </lan:characterEncoding>
       </lan:PT_Locale>
    </mdb:defaultLocale>
    <mdb:metadataScope>
       <mdb:MD_MetadataScope>
          <mdb:resourceScope>
-            <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+            <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                              codeListValue="dataset"/>
          </mdb:resourceScope>
          <mdb:name>
             <gco:CharacterString>IMOS Dataset level record</gco:CharacterString>
@@ -58,7 +60,8 @@
    <mdb:contact>
       <cit:CI_Responsibility>
          <cit:role>
-            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="distributor">distributor</cit:CI_RoleCode>
+            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                             codeListValue="distributor"/>
          </cit:role>
          <cit:party>
             <cit:CI_Organisation>
@@ -73,7 +76,8 @@
                               <gco:CharacterString>61 3 6226 7488</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                        codeListValue="voice"/>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -83,7 +87,8 @@
                               <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                            </cit:number>
                            <cit:numberType>
-                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                              <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                        codeListValue="facsimile"/>
                            </cit:numberType>
                         </cit:CI_Telephone>
                      </cit:phone>
@@ -147,7 +152,8 @@
             <gco:DateTime>2016-11-02T16:42:38</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                 codeListValue="creation"/>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -157,7 +163,8 @@
             <gco:DateTime>2016-11-02T16:42:38</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                 codeListValue="revision"/>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>
@@ -194,14 +201,16 @@
                         <gco:DateTime>2016-11-02T10:00:00</gco:DateTime>
                      </cit:date>
                      <cit:dateType>
-                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
+                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                             codeListValue="creation"/>
                      </cit:dateType>
                   </cit:CI_Date>
                </cit:date>
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
-                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="resourceProvider">resourceProvider</cit:CI_RoleCode>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="resourceProvider"/>
                      </cit:role>
                      <cit:party>
                         <cit:CI_Organisation>
@@ -216,7 +225,8 @@
                                           <gco:CharacterString>61 3 6226 7549</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                                    codeListValue="voice"/>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -226,7 +236,8 @@
                                           <gco:CharacterString>61 3 6226 2107</gco:CharacterString>
                                        </cit:number>
                                        <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                                    codeListValue="facsimile"/>
                                        </cit:numberType>
                                     </cit:CI_Telephone>
                                  </cit:phone>
@@ -312,12 +323,14 @@
             <gco:CharacterString>South Australian Research and Development Institute (SARDI)</gco:CharacterString>
          </mri:credit>
          <mri:status>
-            <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode" codeListValue="completed">completed</mcc:MD_ProgressCode>
+            <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode"
+                                 codeListValue="completed"/>
          </mri:status>
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
-                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="principalInvestigator">principalInvestigator</cit:CI_RoleCode>
+                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                   codeListValue="principalInvestigator"/>
                </cit:role>
                <cit:party>
                   <cit:CI_Organisation>
@@ -332,7 +345,8 @@
                                     <gco:CharacterString>61 8 8207 5421</gco:CharacterString>
                                  </cit:number>
                                  <cit:numberType>
-                                    <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                                    <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
+                                                              codeListValue="voice"/>
                                  </cit:numberType>
                               </cit:CI_Telephone>
                            </cit:phone>
@@ -380,7 +394,8 @@
          <mri:pointOfContact>
             <cit:CI_Responsibility>
                <cit:role>
-                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
+                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                   codeListValue="pointOfContact"/>
                </cit:role>
                <cit:party>
                   <cit:CI_Organisation>
@@ -474,28 +489,11 @@
                </gex:verticalElement>
             </gex:EX_Extent>
          </mri:extent>
-         <mri:additionalDocumentation>
-            <cit:CI_Citation>
-               <cit:title>
-                  <gco:CharacterString>SAIMOS Flow Cytometry data</gco:CharacterString>
-               </cit:title>
-               <cit:date>
-                  <cit:CI_Date>
-                     <cit:date>
-                        <gco:Date>2012-05-16</gco:Date>
-                     </cit:date>
-                     <cit:dateType>
-                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
-                     </cit:dateType>
-                  </cit:CI_Date>
-               </cit:date>
-            </cit:CI_Citation>
-         </mri:additionalDocumentation>
          <mri:resourceMaintenance>
             <mmi:MD_MaintenanceInformation>
                <mmi:maintenanceAndUpdateFrequency>
-                  <mmi:MD_MaintenanceFrequencyCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode"
-                                                   codeListValue="asNeeded">asNeeded</mmi:MD_MaintenanceFrequencyCode>
+                  <mmi:MD_MaintenanceFrequencyCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_MaintenanceFrequencyCode"
+                                                   codeListValue="asNeeded"/>
                </mmi:maintenanceAndUpdateFrequency>
             </mmi:MD_MaintenanceInformation>
          </mri:resourceMaintenance>
@@ -538,8 +536,8 @@
                   <gco:CharacterString>Biosphere | Microbiota | Bacteria</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme">theme</mri:MD_KeywordTypeCode>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -555,14 +553,16 @@
                               <gco:DateTime>2006-01-01T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="revision"/>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                               codeListValue="owner"/>
                            </cit:role>
                            <cit:party>
                               <cit:CI_Organisation>
@@ -593,14 +593,16 @@
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode" codeListValue="revision">revision</cit:CI_DateTypeCode>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="revision"/>
                            </cit:dateType>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                               codeListValue="owner"/>
                            </cit:role>
                            <cit:party>
                               <cit:CI_Organisation>
@@ -627,8 +629,8 @@
                   <gco:CharacterString>Picophytoplankton</gco:CharacterString>
                </mri:keyword>
                <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme">theme</mri:MD_KeywordTypeCode>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -643,13 +645,14 @@
                            <cit:date>
                               <gco:DateTime>2008-10-30T00:00:00</gco:DateTime>
                            </cit:date>
-                           <cit:dateType/>
+                           <cit:dateType gco:nilReason="missing"/>
                         </cit:CI_Date>
                      </cit:date>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode" codeListValue="owner">owner</cit:CI_RoleCode>
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                               codeListValue="owner"/>
                            </cit:role>
                            <cit:party>
                               <cit:CI_Organisation>
@@ -699,7 +702,7 @@
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
                            <cit:role>
-                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
                                                codeListValue=""/>
                            </cit:role>
                            <cit:party>
@@ -754,17 +757,43 @@
                   </cit:CI_Citation>
                </mco:reference>
                <mco:otherConstraints>
-                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]." Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
+                  <gco:CharacterString>The citation in a list of references is: "IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]."</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
                </mco:otherConstraints>
             </mco:MD_LegalConstraints>
          </mri:resourceConstraints>
+         <mri:associatedResource>
+            <mri:MD_AssociatedResource>
+               <mri:name>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gco:CharacterString>SAIMOS Flow Cytometry data</gco:CharacterString>
+                     </cit:title>
+                     <cit:date>
+                        <cit:CI_Date>
+                           <cit:date>
+                              <gco:DateTime>2012-05-16T00:00:00</gco:DateTime>
+                           </cit:date>
+                           <cit:dateType>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="creation"/>
+                           </cit:dateType>
+                        </cit:CI_Date>
+                     </cit:date>
+                  </cit:CI_Citation>
+               </mri:name>
+            </mri:MD_AssociatedResource>
+         </mri:associatedResource>
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
                   <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
                </lan:language>
                <lan:characterEncoding>
-                  <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</lan:MD_CharacterSetCode>
+                  <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode"
+                                           codeListValue="utf8"/>
                </lan:characterEncoding>
             </lan:PT_Locale>
          </mri:defaultLocale>
@@ -776,31 +805,26 @@
          <mrc:attributeGroup>
             <mrc:MD_AttributeGroup>
                <mrc:contentType>
-                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_CoverageContentTypeCode"
+                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CoverageContentTypeCode"
                                                   codeListValue="physicalMeasurement"/>
                </mrc:contentType>
                <mrc:attribute>
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>latitude</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <mcc:codeSpace>
+                              <gco:CharacterString>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e476">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e371">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Decimal degrees</gml:name>
                            <gml:quantityType/>
@@ -813,24 +837,19 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>longitude</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <mcc:codeSpace>
+                              <gco:CharacterString>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e510">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e402">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Decimal degrees</gml:name>
                            <gml:quantityType/>
@@ -843,24 +862,19 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>wind_speed</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <mcc:codeSpace>
+                              <gco:CharacterString>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e544">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e433">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Knots</gml:name>
                            <gml:quantityType/>
@@ -873,24 +887,19 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>wind_from_direction</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <mcc:codeSpace>
+                              <gco:CharacterString>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e578">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e464">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Degree</gml:name>
                            <gml:quantityType/>
@@ -903,24 +912,19 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>depth</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <mcc:codeSpace>
+                              <gco:CharacterString>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description>
                               <gco:CharacterString>Maximum and sampling depth both recorded.</gco:CharacterString>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e612">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e495">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Metres</gml:name>
                            <gml:quantityType/>
@@ -933,24 +937,19 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>sea_surface_temperature</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <mcc:codeSpace>
+                              <gco:CharacterString>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e647">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e526">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
@@ -963,24 +962,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>depth_of_chlorophyll_maximum</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e689">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e564">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Metres</gml:name>
                            <gml:quantityType/>
@@ -993,24 +984,19 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>concentration_of_chlorophyll_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <mcc:codeSpace>
+                              <gco:CharacterString>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e721">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e593">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Micrograms per cubic metre</gml:name>
                            <gml:quantityType/>
@@ -1023,24 +1009,19 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>mass_concentration_of_suspended_matter_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <mcc:codeSpace>
+                              <gco:CharacterString>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e763">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e631">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Milligrams per litre</gml:name>
                            <gml:quantityType/>
@@ -1053,24 +1034,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>mass_concentration_of_particulate_inorganic_matter_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e805">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e669">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Milligrams per litre</gml:name>
                            <gml:quantityType/>
@@ -1083,24 +1056,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>mass_concentration_of_particulate_organic_matter_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e837">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e698">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Milligrams per litre</gml:name>
                            <gml:quantityType/>
@@ -1113,24 +1078,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>mole_concentration_of_nitrogen_in_ammonium_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e870">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e728">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Micromolar</gml:name>
                            <gml:quantityType/>
@@ -1143,24 +1100,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>mole_concentration_of_nitrogen_in_nitrate_and_nitrite_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e902">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e757">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Micromolar</gml:name>
                            <gml:quantityType/>
@@ -1173,24 +1122,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>mole_concentration_of_phosphorus_in_phosphate_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e934">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e786">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Micromolar</gml:name>
                            <gml:quantityType/>
@@ -1203,24 +1144,19 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>mole_concentration_of_silicate_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <mcc:codeSpace>
+                              <gco:CharacterString>http://cf-pcmdi.llnl.gov/documents/cf-standard-names</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e966">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e815">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Micromolar</gml:name>
                            <gml:quantityType/>
@@ -1233,24 +1169,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>amount_of_picophytoplankton_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1008">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e853">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Cells per millilitre</gml:name>
                            <gml:quantityType/>
@@ -1263,24 +1191,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>amount_of_bacteria_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1032">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e875">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Cells per millilitre</gml:name>
                            <gml:quantityType/>
@@ -1293,24 +1213,16 @@
                   <mrc:MD_SampleDimension>
                      <mrc:name>
                         <mcc:MD_Identifier>
-                           <mcc:authority/>
                            <mcc:code>
                               <gco:CharacterString>amount_of_virus_in_sea_water</gco:CharacterString>
                            </mcc:code>
-                           <mcc:codeSpace gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:codeSpace>
-                           <mcc:version gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:version>
                            <mcc:description gco:nilReason="missing">
                               <gco:CharacterString/>
                            </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d18e1056">
-                           <gml:descriptionReference/>
+                        <gml:BaseUnit gml:id="d19e897">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Cells per millilitre</gml:name>
                            <gml:quantityType/>
@@ -1339,13 +1251,6 @@
                      <cit:edition>
                         <gco:CharacterString>2007</gco:CharacterString>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>Microsoft Excel</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -1362,13 +1267,6 @@
                      <cit:edition gco:nilReason="missing">
                         <gco:CharacterString/>
                      </cit:edition>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString>fcs files</gco:CharacterString>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
                   </cit:CI_Citation>
                </mrd:formatSpecificationCitation>
             </mrd:MD_Format>
@@ -1556,7 +1454,8 @@
          <mrl:scope>
             <mcc:MD_Scope>
                <mcc:level>
-                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</mcc:MD_ScopeCode>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
                </mcc:level>
                <mcc:levelDescription>
                   <mcc:MD_ScopeDescription>
