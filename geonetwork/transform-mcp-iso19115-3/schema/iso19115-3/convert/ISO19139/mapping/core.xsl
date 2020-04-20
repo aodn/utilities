@@ -376,6 +376,7 @@
           <xsl:apply-templates select="gmd:spatialResolution" mode="from19139to19115-3"/>
           <!-- This is here to handle early adopters of temporalResolution -->
           <xsl:apply-templates select="gmd:temporalResolution" mode="from19139to19115-3"/>
+          <xsl:apply-templates select="mcpold:samplingFrequency" mode="mcpsamplingfrequency"/>
           <xsl:apply-templates select="gmd:topicCategory" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:extent[not(child::mcpold:EX_Extent)] | srvold:extent" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:extent[child::mcpold:EX_Extent]" mode="mcpextent"/>
@@ -711,6 +712,7 @@
   <xsl:include href="mcpcontacts.xsl"/>
   <xsl:include href="mcpcommons.xsl"/>
   <xsl:include href="mcpextent.xsl"/>
+  <xsl:include href="mcpsamplingfrequency.xsl"/>
   <xsl:include href="mcpaggregationinfo.xsl"/>
   <xsl:include href="mcpdataparameters_descriptiveKeywords_aodn.xsl"/>
 

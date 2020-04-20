@@ -95,7 +95,7 @@
                               <xsl:call-template name="writeCodelistElement">
                                 <xsl:with-param name="elementName" select="'cit:role'"/>
                                 <xsl:with-param name="codeListName" select="'cit:CI_RoleCode'"/>
-                                <xsl:with-param name="codeListValue" select="'editor'"/>
+                                <xsl:with-param name="codeListValue" select="'pointOfContact'"/>
                               </xsl:call-template>
                             </xsl:when>
                             <xsl:otherwise>
