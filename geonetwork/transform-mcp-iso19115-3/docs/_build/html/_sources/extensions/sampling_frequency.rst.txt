@@ -1,0 +1,4 @@
+.. _sampling_frequency:
+
+Data Sampling Frequency (mcp:samplingFrequency)
+###############################################

@@ -1,0 +1,4 @@
+.. _vocabularies:
+
+Vocabularies used by the MCP
+############################

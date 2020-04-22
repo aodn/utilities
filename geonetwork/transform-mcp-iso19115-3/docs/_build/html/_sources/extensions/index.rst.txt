@@ -1,0 +1,14 @@
+.. _extensions:
+
+Extensions to ISO19115
+######################
+
+.. toctree::
+   :maxdepth: 2
+
+   data_parameters.rst
+   commons_licensing.rst
+   revision_date.rst
+   sampling_frequency.rst
+   temporal_extent.rst
+   taxonomic_coverage.rst

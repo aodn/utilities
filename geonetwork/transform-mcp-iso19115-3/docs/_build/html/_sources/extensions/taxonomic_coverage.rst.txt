@@ -1,0 +1,4 @@
+.. _taxonomic_coverage:
+
+Taxonomic Coverage (mcp:taxonomicCoverage)
+##########################################

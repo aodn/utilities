@@ -1,0 +1,4 @@
+.. _revision_date:
+
+Metadata Revision Date (mcp:revisionDate)
+#########################################

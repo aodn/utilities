@@ -1,0 +1,5 @@
+.. _commons_licensing:
+
+Commons Licensing Constraints (mcp:MD_Commons)
+##############################################
+

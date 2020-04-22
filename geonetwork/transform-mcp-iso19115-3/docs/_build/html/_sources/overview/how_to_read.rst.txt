@@ -1,0 +1,11 @@
+.. _how_to_read:
+
+How To Read This Document
+#########################
+
+This mapping document is designed to be read in conjunction with the
+`Marine Community Profile 2.0 manual <https://mcp-profile-docs.readthedocs.io/en/stable/index.html>`_ .
+Please read that document for a description of the MCP 2.0 elements and codelists and the associated ISO standards
+documents for a description of ISO 19115-1 elements and codelists.  Refer to this document to see how each of the
+MCP 2.0 elements, codelist extensions and codelists defined in the MCP 2.0 Manual are mapped to ISO 19115-1
+elements and codelists.

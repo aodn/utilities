@@ -1,0 +1,21 @@
+.. mcp2-to-19115-3-2018 documentation master file, created by
+   sphinx-quickstart on Thu Apr  9 16:54:55 2020.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Marine Community Profile v2.0 to ISO 19115-1 Mapping
+====================================================
+
+This document contains the mapping of Marine Community Profile v2.0 to ISO 19115-1 performed by the AODN
+Metadata Mapping Working Group.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+
+   overview/index.rst
+   extensions/index.rst
+   codelist_extensions/index.rst
+   mcp_codelists/index.rst
+   vocabularies/index.rst

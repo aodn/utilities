@@ -1,0 +1,21 @@
+.. _data_parameters:
+
+Data Parameters (mcp:dataParameters)
+####################################
+
+.. list-table:: Mapping to Keywords
+   :widths: 5 45 5 45
+   :header-rows: 1
+
+   * - No.
+     - Name/Role Name
+     - No.
+     - Name/Role Name
+   * - 942
+     - parameterName
+     -
+     - code
+
+
+
+
