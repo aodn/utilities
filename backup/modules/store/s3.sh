@@ -27,7 +27,7 @@ backup() {
 	backup_key_timestamp=`_generate_date`
 
 	logger_info "Spooling backup to S3 bucket 's3://$bucket_name/$backup_key_timestamp'"
-	s4cmd "$@" --recursive put $_BACKUP_DEST/* s3://$bucket_name/$backup_key_timestamp/
+	s4cmd "$@" --recursive --num-threads=4 --multipart-split-size=26214400 --max-singlepart-upload-size=26214400 put $_BACKUP_DEST/* s3://$bucket_name/$backup_key_timestamp/
 }
 
 # pulls backups from s3 (latest backup)
