@@ -22,6 +22,14 @@
   <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3-aodn">
     <xsl:variable name="descriptiveKeywords" as="node()*">
       <xsl:call-template name="createDescriptiveKeywords">
+        <xsl:with-param name="uris" select="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:platform//gmd:URL"/>
+        <xsl:with-param name="typeCode" select="'platform'"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:copy-of select="$descriptiveKeywords//mri:descriptiveKeywords" copy-namespaces="no"/>
+
+    <xsl:variable name="descriptiveKeywords" as="node()*">
+      <xsl:call-template name="createDescriptiveKeywords">
         <xsl:with-param name="uris" select="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:parameterName//gmd:URL"/>
         <xsl:with-param name="typeCode" select="'theme'"/>
       </xsl:call-template>
@@ -35,14 +43,6 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:copy-of select="$descriptiveKeywords//mri:descriptiveKeywords" copy-namespaces="no" />
-
-    <xsl:variable name="descriptiveKeywords" as="node()*">
-      <xsl:call-template name="createDescriptiveKeywords">
-        <xsl:with-param name="uris" select="./mcpold:DP_DataParameters/mcpold:dataParameter/mcpold:DP_DataParameter/mcpold:platform//gmd:URL"/>
-        <xsl:with-param name="typeCode" select="'platform'"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:copy-of select="$descriptiveKeywords//mri:descriptiveKeywords" copy-namespaces="no"/>
 
 
   </xsl:template>
@@ -170,63 +170,63 @@
     </xsl:if>
   </xsl:function>
 
-  <!--  <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3-aodn">-->
+<!--  <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3-aodn">-->
 
-  <!--    <xsl:variable name="textgroupOnly" select="false()"/>-->
-  <!--    <xsl:variable name="listOfLanguage" select="false()"/>-->
-  <!--    <xsl:variable name="withAnchor" select="true()"/>-->
-  <!--    <xsl:variable name="withThesaurusAnchor" select="true()"/>-->
-  <!--    -->
-  <!--    <xsl:for-each select="./mcpold:DP_DataParameters/mcpold:dataParameter">-->
-  <!--      <xsl:for-each select="./mcpold:DP_DataParameter/*/mcpold:DP_Term">-->
-  <!--        <xsl:variable name="uri" select="./mcpold:vocabularyTermURL/gmd:URL" />-->
-  <!--        <xsl:variable name="label" select="./mcpold:term" />-->
-  <!--        <xsl:variable name="typeCode" select="./mcpold:type/mcpold:DP_TypeCode" />-->
+<!--    <xsl:variable name="textgroupOnly" select="false()"/>-->
+<!--    <xsl:variable name="listOfLanguage" select="false()"/>-->
+<!--    <xsl:variable name="withAnchor" select="true()"/>-->
+<!--    <xsl:variable name="withThesaurusAnchor" select="true()"/>-->
+<!--    -->
+<!--    <xsl:for-each select="./mcpold:DP_DataParameters/mcpold:dataParameter">-->
+<!--      <xsl:for-each select="./mcpold:DP_DataParameter/*/mcpold:DP_Term">-->
+<!--        <xsl:variable name="uri" select="./mcpold:vocabularyTermURL/gmd:URL" />-->
+<!--        <xsl:variable name="label" select="./mcpold:term" />-->
+<!--        <xsl:variable name="typeCode" select="./mcpold:type/mcpold:DP_TypeCode" />-->
 
-  <!--        <xsl:variable name="currentThesaurus" as="node()*">-->
-  <!--          <xsl:call-template name="findThesaurus">-->
-  <!--            <xsl:with-param name="uri" select="$uri"/>-->
-  <!--          </xsl:call-template>-->
-  <!--        </xsl:variable>-->
+<!--        <xsl:variable name="currentThesaurus" as="node()*">-->
+<!--          <xsl:call-template name="findThesaurus">-->
+<!--            <xsl:with-param name="uri" select="$uri"/>-->
+<!--          </xsl:call-template>-->
+<!--        </xsl:variable>-->
 
-  <!--        <xsl:for-each select="$currentThesaurus">-->
-  <!--          <mri:descriptiveKeywords>-->
-  <!--            <mri:MD_Keywords>-->
-  <!--              <mri:keyword>-->
-  <!--                <xsl:choose>-->
-  <!--                  <xsl:when test="$withAnchor">-->
-  <!--                    <gcx:Anchor xlink:href="{$uri}">-->
-  <!--                      <xsl:value-of select="$label" />-->
-  <!--                    </gcx:Anchor>-->
-  <!--                  </xsl:when>-->
-  <!--                  <xsl:otherwise>-->
-  <!--                    <gco:CharacterString>-->
-  <!--                      <xsl:value-of select="$label" />-->
-  <!--                    </gco:CharacterString>-->
-  <!--                  </xsl:otherwise>-->
-  <!--                </xsl:choose>-->
-  <!--              </mri:keyword>-->
-  <!--              &lt;!&ndash;          <mri:type>&ndash;&gt;-->
-  <!--              &lt;!&ndash;            <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="{$typeCode}"/>&ndash;&gt;-->
-  <!--              &lt;!&ndash;          </mri:type>&ndash;&gt;-->
-  <!--              &lt;!&ndash;                <xsl:copy-of select="$selectedKeyword//gmd:thesaurusName" />&ndash;&gt;-->
+<!--        <xsl:for-each select="$currentThesaurus">-->
+<!--          <mri:descriptiveKeywords>-->
+<!--            <mri:MD_Keywords>-->
+<!--              <mri:keyword>-->
+<!--                <xsl:choose>-->
+<!--                  <xsl:when test="$withAnchor">-->
+<!--                    <gcx:Anchor xlink:href="{$uri}">-->
+<!--                      <xsl:value-of select="$label" />-->
+<!--                    </gcx:Anchor>-->
+<!--                  </xsl:when>-->
+<!--                  <xsl:otherwise>-->
+<!--                    <gco:CharacterString>-->
+<!--                      <xsl:value-of select="$label" />-->
+<!--                    </gco:CharacterString>-->
+<!--                  </xsl:otherwise>-->
+<!--                </xsl:choose>-->
+<!--              </mri:keyword>-->
+<!--              &lt;!&ndash;          <mri:type>&ndash;&gt;-->
+<!--              &lt;!&ndash;            <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="{$typeCode}"/>&ndash;&gt;-->
+<!--              &lt;!&ndash;          </mri:type>&ndash;&gt;-->
+<!--              &lt;!&ndash;                <xsl:copy-of select="$selectedKeyword//gmd:thesaurusName" />&ndash;&gt;-->
 
-  <!--            </mri:MD_Keywords>-->
-  <!--          </mri:descriptiveKeywords>-->
-  <!--        </xsl:for-each>-->
-  <!--      </xsl:for-each>-->
-  <!--      <xsl:copy-of select="geonet:add-iso19115-3-thesaurus-info($currentThesaurus, $withThesaurusAnchor, $thesauri, true())" />-->
-  <!--    </xsl:for-each>-->
-  <!--  </xsl:template>-->
+<!--            </mri:MD_Keywords>-->
+<!--          </mri:descriptiveKeywords>-->
+<!--        </xsl:for-each>-->
+<!--      </xsl:for-each>-->
+<!--      <xsl:copy-of select="geonet:add-iso19115-3-thesaurus-info($currentThesaurus, $withThesaurusAnchor, $thesauri, true())" />-->
+<!--    </xsl:for-each>-->
+<!--  </xsl:template>-->
 
-  <!--  <xsl:template name="findThesaurus">-->
-  <!--    <xsl:param name="uri"/>-->
-  <!--    <xsl:for-each select="$thesauri/thesaurus">-->
-  <!--      <xsl:variable name="selectedKeyword" select="document(concat($geonetUri,'api/registries/vocabularies/keyword?thesaurus=',./key/text(),'&amp;id=',$uri))" />-->
-  <!--        <xsl:if test="string($selectedKeyword//gmd:keyword)">-->
-  <!--          <xsl:value-of select="./key/text()" />-->
-  <!--        </xsl:if>-->
-  <!--    </xsl:for-each>-->
-  <!--  </xsl:template>-->
+<!--  <xsl:template name="findThesaurus">-->
+<!--    <xsl:param name="uri"/>-->
+<!--    <xsl:for-each select="$thesauri/thesaurus">-->
+<!--      <xsl:variable name="selectedKeyword" select="document(concat($geonetUri,'api/registries/vocabularies/keyword?thesaurus=',./key/text(),'&amp;id=',$uri))" />-->
+<!--        <xsl:if test="string($selectedKeyword//gmd:keyword)">-->
+<!--          <xsl:value-of select="./key/text()" />-->
+<!--        </xsl:if>-->
+<!--    </xsl:for-each>-->
+<!--  </xsl:template>-->
 
 </xsl:stylesheet>
