@@ -57,7 +57,7 @@
           <xsl:for-each select="$thesauri/thesaurus">
             <xsl:variable name="selectedKeyword" select="document(concat($geonetUri,'api/registries/vocabularies/keyword?thesaurus=',./key/text(),'&amp;transformation=to-iso19139-keyword-with-anchor','&amp;id=',$uri))" />
             <xsl:if test="string($selectedKeyword//gmd:keyword[1])">
-                <xsl:call-template name="drawDescriptiveKeywords">
+                <xsl:call-template name="transformDescriptiveKeywords">
                   <xsl:with-param name="selectedKeyword" select="$selectedKeyword"/>
                   <xsl:with-param name="typeCode" select="$typeCode"/>
                   <xsl:with-param name="currentThesaurus" as="node()*" select="./key/text()"/>
@@ -70,7 +70,7 @@
   </xsl:template>
 
 
-  <xsl:template name="drawDescriptiveKeywords">
+  <xsl:template name="transformDescriptiveKeywords">
     <xsl:param name="selectedKeyword"/>
     <xsl:param name="typeCode"/>
     <xsl:param name="currentThesaurus"/>
