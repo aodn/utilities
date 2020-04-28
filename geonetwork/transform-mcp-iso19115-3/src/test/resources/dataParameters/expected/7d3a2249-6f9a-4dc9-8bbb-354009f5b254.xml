@@ -65,7 +65,7 @@
                      <cit:date>
                         <cit:CI_Date>
                            <cit:date>
-                              <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
+                              <gco:Date>2020-03-03</gco:Date>
                            </cit:date>
                            <cit:dateType>
                               <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
