@@ -1664,8 +1664,7 @@ The ongoing version of this larval fish database will be freely available throug
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary</gcx:Anchor>
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </cit:identifier>
@@ -1701,8 +1700,7 @@ The ongoing version of this larval fish database will be freely available throug
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary</gcx:Anchor>
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </cit:identifier>

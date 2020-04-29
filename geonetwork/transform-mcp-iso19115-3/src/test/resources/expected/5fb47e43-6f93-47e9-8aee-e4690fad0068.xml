@@ -633,6 +633,27 @@ These time-series observations are crucial to resolving ecosystem processes that
                </mri:thesaurusName>
             </mri:MD_Keywords>
          </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gco:CharacterString>acceleration</gco:CharacterString>
+               </mri:keyword>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gco:CharacterString>tension</gco:CharacterString>
+               </mri:keyword>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gco:CharacterString>voltage</gco:CharacterString>
+               </mri:keyword>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
          <mri:resourceConstraints>
             <mco:MD_Constraints>
                <mco:useLimitation>

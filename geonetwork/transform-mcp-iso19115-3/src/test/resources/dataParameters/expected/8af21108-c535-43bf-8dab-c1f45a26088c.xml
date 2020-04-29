@@ -76,8 +76,7 @@
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-platform-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-platform-vocabulary</gcx:Anchor>
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-platform-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-platform-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </cit:identifier>
@@ -89,9 +88,6 @@
             <mri:MD_Keywords>
                <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
-               </mri:keyword>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/PSLTZZ01">Practical salinity of the water body</gcx:Anchor>
                </mri:keyword>
                <mri:type>
                   <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
@@ -116,13 +112,19 @@
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary</gcx:Anchor>
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </cit:identifier>
                   </cit:CI_Citation>
                </mri:thesaurusName>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
+               </mri:keyword>
             </mri:MD_Keywords>
          </mri:descriptiveKeywords>
          <mri:descriptiveKeywords>
@@ -156,8 +158,7 @@
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary</gcx:Anchor>
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </cit:identifier>
@@ -189,7 +190,7 @@
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
+                              <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
                            </mcc:code>
                            <mcc:description>
                               <gco:CharacterString>Parameter Description</gco:CharacterString>
@@ -217,12 +218,40 @@
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/PSLTZZ01"/>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
+                           </mcc:code>
+                           <mcc:description>
+                              <gco:CharacterString>Parameter Description</gco:CharacterString>
+                           </mcc:description>
+                        </mcc:MD_Identifier>
+                     </mrc:name>
+                     <mrc:maxValue>
+                        <gco:Real>0</gco:Real>
+                     </mrc:maxValue>
+                     <mrc:minValue>
+                        <gco:Real>-1000</gco:Real>
+                     </mrc:minValue>
+                     <mrc:units>
+                        <gml:BaseUnit gml:id="d19e47">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
+                           <gml:name>Degrees Celsius</gml:name>
+                           <gml:quantityType/>
+                           <gml:unitsSystem/>
+                        </gml:BaseUnit>
+                     </mrc:units>
+                  </mrc:MD_SampleDimension>
+               </mrc:attribute>
+               <mrc:attribute>
+                  <mrc:MD_SampleDimension>
+                     <mrc:name>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href=""/>
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e85">
+                        <gml:BaseUnit gml:id="d19e113">
                            <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/1">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name/>
                            <gml:quantityType/>
