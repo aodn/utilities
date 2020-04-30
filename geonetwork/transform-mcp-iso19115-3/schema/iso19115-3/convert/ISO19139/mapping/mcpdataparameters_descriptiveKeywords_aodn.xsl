@@ -15,6 +15,15 @@
                 xmlns:mcpold="http://schemas.aodn.org.au/mcp-2.0"
                 exclude-result-prefixes="#all">
 
+  <xsl:variable name="parameterExceptionsList" as="element()*">
+    <term>Height above bed in the water body</term>
+    <term>Speed (over ground) of measurement platform</term>
+    <term>Latitude north</term>
+    <term>Longitude east</term>
+    <term>Flow rate through instrument</term>
+    <term>Depth below surface of the water body</term>
+  </xsl:variable>
+
   <xsl:template match="mcpold:dataParameters" mode="from19139to19115-3-aodn">
 
       <xsl:call-template name="transformKeywords">
@@ -44,7 +53,7 @@
       <mri:descriptiveKeywords>
         <mri:MD_Keywords>
           <xsl:for-each-group select="$parameter/mcpold:DP_Term[.//gcoold:CharacterString/text()]" group-by="./mcpold:term|mcpold:name/gcoold:CharacterString/text()">
-            <xsl:if test=".//(mcpold:vocabularyTermURL|mcpold:vocabularyListURL)">
+            <xsl:if test=".//(mcpold:vocabularyTermURL|mcpold:vocabularyListURL) and not(index-of($parameterExceptionsList, ./mcpold:term|mcpold:name/gcoold:CharacterString/text()))">
               <mri:keyword>
                 <gcx:Anchor xlink:href="{.//(mcpold:vocabularyTermURL|mcpold:vocabularyListURL)/gmd:URL/text()}">
                   <xsl:value-of select="./mcpold:term|mcpold:name/gcoold:CharacterString/text()" />
@@ -52,8 +61,38 @@
               </mri:keyword>
             </xsl:if>
           </xsl:for-each-group>
+          <mri:type>
+            <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="{$typeCode}"/>
+          </mri:type>
           <xsl:call-template name="createThesaurusInfo">
             <xsl:with-param name="typeCode" select="$typeCode"/>
+          </xsl:call-template>
+        </mri:MD_Keywords>
+      </mri:descriptiveKeywords>
+    </xsl:if>
+
+    <!-- If there is a term that is in the parameterExceptionsList -->
+    <xsl:variable name="parameterExceptionListString" select="string-join(distinct-values($parameterExceptionsList/text()),'%2C')"/>
+    <xsl:variable name="parameterMatches" select="$parameter/mcpold:DP_Term/(mcpold:term|mcpold:name)/gcoold:CharacterString/contains($parameterExceptionListString, text())"/>
+
+    <!-- For exception keywords -->
+    <xsl:if test="$parameterMatches=true()">
+      <mri:descriptiveKeywords>
+        <mri:MD_Keywords>
+          <xsl:for-each-group select="$parameter/mcpold:DP_Term[.//gcoold:CharacterString/text()]" group-by="./mcpold:term|mcpold:name/gcoold:CharacterString/text()">
+            <xsl:if test=".//(mcpold:vocabularyTermURL|mcpold:vocabularyListURL) and index-of($parameterExceptionsList, ./mcpold:term|mcpold:name/gcoold:CharacterString/text())">
+              <mri:keyword>
+                <gcx:Anchor xlink:href="{.//(mcpold:vocabularyTermURL|mcpold:vocabularyListURL)/gmd:URL/text()}">
+                  <xsl:value-of select="./mcpold:term|mcpold:name/gcoold:CharacterString/text()" />
+                </gcx:Anchor>
+              </mri:keyword>
+            </xsl:if>
+          </xsl:for-each-group>
+          <mri:type>
+            <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="{$typeCode}"/>
+          </mri:type>
+          <xsl:call-template name="createThesaurusInfo">
+            <xsl:with-param name="typeCode" select="'sampling'"/>
           </xsl:call-template>
         </mri:MD_Keywords>
       </mri:descriptiveKeywords>
@@ -77,9 +116,6 @@
 
   <xsl:template name="createThesaurusInfo">
     <xsl:param name="typeCode"/>
-    <mri:type>
-      <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="{$typeCode}"/>
-    </mri:type>
     <xsl:choose>
       <xsl:when test="$typeCode='platform'">
         <xsl:call-template name="createThesaurusElement">
@@ -100,6 +136,13 @@
           <xsl:with-param name="title" select="'AODN Instrument Vocabulary'"/>
           <xsl:with-param name="uri" select="'http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary'"/>
           <xsl:with-param name="name" select="'geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary'"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$typeCode='sampling'">
+        <xsl:call-template name="createThesaurusElement">
+          <xsl:with-param name="title" select="'AODN Sampling Parameter Vocabulary'"/>
+          <xsl:with-param name="uri" select="'http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-sampling-parameter-vocabulary'"/>
+          <xsl:with-param name="name" select="'geonetwork.thesaurus.external.theme.aodn_aodn-sampling-parameter-vocabulary'"/>
         </xsl:call-template>
       </xsl:when>
     </xsl:choose>
