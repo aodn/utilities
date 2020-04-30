@@ -969,7 +969,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                </mri:keyword>
                <mri:type>
                   <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme"/>
+                                          codeListValue="platform"/>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -979,7 +979,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:date>
                         <cit:CI_Date>
                            <cit:date>
-                              <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
+                              <gco:Date>2020-03-03</gco:Date>
                            </cit:date>
                            <cit:dateType>
                               <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
@@ -990,8 +990,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-platform-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-platform-vocabulary</gcx:Anchor>
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-platform-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-platform-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </cit:identifier>
@@ -1043,7 +1042,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:date>
                         <cit:CI_Date>
                            <cit:date>
-                              <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
+                              <gco:Date>2020-03-03</gco:Date>
                            </cit:date>
                            <cit:dateType>
                               <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
@@ -1054,66 +1053,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
-                  </cit:CI_Citation>
-               </mri:thesaurusName>
-            </mri:MD_Keywords>
-         </mri:descriptiveKeywords>
-         <mri:descriptiveKeywords>
-            <mri:MD_Keywords>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UPAA">Degrees Celsius</gcx:Anchor>
-               </mri:keyword>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/unitsofmeasure/entity/481">Practical Salinity Unit</gcx:Anchor>
-               </mri:keyword>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UVAA">Metres per second</gcx:Anchor>
-               </mri:keyword>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UAAA">Degrees</gcx:Anchor>
-               </mri:keyword>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/HPAX">Hectopascals</gcx:Anchor>
-               </mri:keyword>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UATM">Microatmospheres</gcx:Anchor>
-               </mri:keyword>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UPPM">Parts per million</gcx:Anchor>
-               </mri:keyword>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/ULPM">Litres per minute</gcx:Anchor>
-               </mri:keyword>
-               <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme"/>
-               </mri:type>
-               <mri:thesaurusName>
-                  <cit:CI_Citation>
-                     <cit:title>
-                        <gcx:Anchor>AODN Units of Measure Vocabulary</gcx:Anchor>
-                     </cit:title>
-                     <cit:date>
-                        <cit:CI_Date>
-                           <cit:date>
-                              <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
-                           </cit:date>
-                           <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
-                                                   codeListValue="publication"/>
-                           </cit:dateType>
-                        </cit:CI_Date>
-                     </cit:date>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-units-of-measure-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-units-of-measure-vocabulary</gcx:Anchor>
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </cit:identifier>
@@ -1143,7 +1083,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                </mri:keyword>
                <mri:type>
                   <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme"/>
+                                          codeListValue="instrument"/>
                </mri:type>
                <mri:thesaurusName>
                   <cit:CI_Citation>
@@ -1153,7 +1093,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:date>
                         <cit:CI_Date>
                            <cit:date>
-                              <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
+                              <gco:Date>2020-03-03</gco:Date>
                            </cit:date>
                            <cit:dateType>
                               <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
@@ -1164,45 +1104,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:identifier>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
-                  </cit:CI_Citation>
-               </mri:thesaurusName>
-            </mri:MD_Keywords>
-         </mri:descriptiveKeywords>
-         <mri:descriptiveKeywords>
-            <mri:MD_Keywords>
-               <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/INFLTF01">Flow rate through instrument</gcx:Anchor>
-               </mri:keyword>
-               <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme"/>
-               </mri:type>
-               <mri:thesaurusName>
-                  <cit:CI_Citation>
-                     <cit:title>
-                        <gcx:Anchor>AODN Sampling Parameter Vocabulary</gcx:Anchor>
-                     </cit:title>
-                     <cit:date>
-                        <cit:CI_Date>
-                           <cit:date>
-                              <gco:DateTime>2020-03-03T00:00:00</gco:DateTime>
-                           </cit:date>
-                           <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
-                                                   codeListValue="publication"/>
-                           </cit:dateType>
-                        </cit:CI_Date>
-                     </cit:date>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-sampling-parameter-vocabulary">
-                    geonetwork.thesaurus.external.theme.aodn_aodn-sampling-parameter-vocabulary</gcx:Anchor>
+                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </cit:identifier>
