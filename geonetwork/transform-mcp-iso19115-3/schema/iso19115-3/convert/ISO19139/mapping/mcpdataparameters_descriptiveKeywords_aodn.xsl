@@ -64,7 +64,7 @@
     </xsl:variable>
 
     <!-- create a descriptive keywords section for each typeCode, thesaurus combination -->
-    <xsl:for-each-group select="$termMappings/termMapping" group-by="concat(@typeCode, '#', @thesaurus)">
+    <xsl:for-each-group select="$termMappings/termMapping[normalize-space(@term)]" group-by="concat(@typeCode, '#', @thesaurus)">
       <mri:descriptiveKeywords>
         <mri:MD_Keywords>
           <xsl:for-each-group select="current-group()" group-by="@term">
