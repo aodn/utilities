@@ -46,8 +46,8 @@ get_all_records() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
-    local gn_xsrftoken=$1; shift
     local harvested_records=$1; shift
+    local gn_xsrftoken=$1; shift
 
     if [[ $gn_user != "" ]]; then
       gn_user_arg="--username $gn_user"
@@ -58,11 +58,8 @@ get_all_records() {
     if [[ $gn_xsrftoken != "" ]]; then
       gn_xsrftoken_arg="--xsrftoken $gn_xsrftoken"
     fi
-    if [[ $harvested_records == "" ]]; then
-      harvested_records="n"
-    fi
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&_isHarvested=$harvested_records&from=1&to=10000" $gn_user_arg $gn_password_arg $gn_xsrftoken_arg
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&_isHarvested=$harvested_records&from=1&to=2000" $gn_user_arg $gn_password_arg $gn_xsrftoken_arg
 
     # NOTE:
     # Returns total no of records based on the value of 'maxRecords' in config-service-search.xml for Geonetwork 3.
@@ -315,7 +312,7 @@ export_records() {
     if [ x"$record_uuid" = x"ALL" ]; then
         mkdir -p $record_dir
 
-        text_result=$(get_all_records $gn_addr $gn_user $gn_password $XSRFTOKEN $harvested_records)
+        text_result=$(get_all_records $gn_addr $gn_user $gn_password $harvested_records $XSRFTOKEN)
 
         if [[ $? -ne "0" ]]; then
           echo "Error in finding the uuids"
