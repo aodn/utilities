@@ -37,7 +37,6 @@ public class TransformCatalogue {
         options.addOption("d", "input_directory", true, "Directory name containing xml file name at some depth in the directory structure ");
         options.addRequiredOption("i", "file_name", true, "Input xml file name.");
         options.addRequiredOption("o", "output_file_name", true, "Output xml file name.");
-        options.addRequiredOption("g", "geonetwork_url", true, "Geonetwork URL for the Vocabulary lookup");
         options.addOption("u", "update_links", false, "Update links to integration test environment");
 
         CommandLineParser parser = new DefaultParser();
@@ -77,9 +76,6 @@ public class TransformCatalogue {
         // Process output file name
         String output = cmd.getOptionValue("o");
 
-        // Process geonetwork_url
-        String geonetwork_url = cmd.getOptionValue("g");
-
         List<Path> files = new ArrayList<Path>();
         getFileNames(files, indirectory.toPath(), input);
 
@@ -101,7 +97,7 @@ public class TransformCatalogue {
                     Source mcp1_4_xslSource = new javax.xml.transform.stream.StreamSource(from_19139_mcp_1_4_to_19139_mcp_2_0_xsl_file);
 
                     // Transform from_19139_mcp_1_4_to_19139_mcp_2_0
-                    StringWriter sw_mcp1_4 = transform(mcp1_4_xmlSource, mcp1_4_xslSource, geonetwork_url);
+                    StringWriter sw_mcp1_4 = transform(mcp1_4_xmlSource, mcp1_4_xslSource);
 
                     // Outputs MCP2.0 records
                     write(file.getParent() + File.separator + "metadata.iso19139.mcp-2.0.xml", sw_mcp1_4);
@@ -112,7 +108,7 @@ public class TransformCatalogue {
                 Source mcp2_xslSource = new javax.xml.transform.stream.StreamSource(from_19139_mcp2_to_19115_3_xslFile);
 
                 // Transform from_19139_mcp2_to_19115_3
-                StringWriter sw_mcp2 = transform(mcp2_xmlSource, mcp2_xslSource, geonetwork_url);
+                StringWriter sw_mcp2 = transform(mcp2_xmlSource, mcp2_xslSource);
 
                 // Outputs ISO19115-3 records
                 write(file.getParent() + File.separator + output, sw_mcp2);
@@ -120,14 +116,14 @@ public class TransformCatalogue {
                 // Transform to update codelist location
                 Source update_codeListLocation_xslSource = new javax.xml.transform.stream.StreamSource(transform_19115_3_update_codeListLocation_xslFile);
                 Source sw_mcp1_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(sw_mcp2.toString()));
-                StringWriter updated_sw_mcp1 = transform(sw_mcp1_xmlSource, update_codeListLocation_xslSource, geonetwork_url);
+                StringWriter updated_sw_mcp1 = transform(sw_mcp1_xmlSource, update_codeListLocation_xslSource);
                 write(file.getParent() + File.separator + output, updated_sw_mcp1);
 
                 // If option selected update URLs to integration test
                 if (cmd.hasOption("u")) {
                     Source update_testing_urls_xslSource = new javax.xml.transform.stream.StreamSource(transform_19115_3_testing_urls_xslFile);
                     Source sw_mcp2_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(updated_sw_mcp1.toString()));
-                    StringWriter updated_sw_mcp2 = transform(sw_mcp2_xmlSource, update_testing_urls_xslSource, geonetwork_url);
+                    StringWriter updated_sw_mcp2 = transform(sw_mcp2_xmlSource, update_testing_urls_xslSource);
                     write(file.getParent() + File.separator + output, updated_sw_mcp2);
                 }
 
@@ -146,13 +142,12 @@ public class TransformCatalogue {
         return reader.getNamespaceURI();
     }
 
-    private static StringWriter transform(Source xmlSource, Source xsltSource, String geonetwork_url) throws TransformerException {
+    private static StringWriter transform(Source xmlSource, Source xsltSource) throws TransformerException {
         StringWriter sw = new StringWriter();
         Result result = new javax.xml.transform.stream.StreamResult(sw);
         TransformerFactory transFact = new TransformerFactoryImpl();
         transFact.setAttribute(FeatureKeys.SUPPRESS_XPATH_WARNINGS, Boolean.TRUE);
         Transformer trans = transFact.newTransformer(xsltSource);
-        trans.setParameter("geonetwork_url", geonetwork_url);
         trans.transform(xmlSource, result);
         return sw;
     }

@@ -117,7 +117,6 @@ public class TransformCatalogueTest {
             "-d", testDir.toString(),
             "-i", "metadata.xml",
             "-o", "metadata.iso19115-3.2018.xml",
-            "-g", "http://catalogue-imos.dev.aodn.org.au/geonetwork",
             "-u"
         };
         TransformCatalogue.main(args);
@@ -144,7 +143,6 @@ public class TransformCatalogueTest {
                 "-d", testDir.toString(),
                 "-i", "metadata.xml",
                 "-o", "metadata.iso19115-3.2018.xml",
-                "-g", "http://catalogue-imos.dev.aodn.org.au/geonetwork",
                 "-u"
         };
         TransformCatalogue.main(args);
