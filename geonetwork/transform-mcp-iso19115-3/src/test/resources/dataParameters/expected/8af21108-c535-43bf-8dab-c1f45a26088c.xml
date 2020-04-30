@@ -87,6 +87,17 @@
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
                <mri:keyword>
+                  <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
+               </mri:keyword>
+               <mri:type>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
+               </mri:type>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                </mri:keyword>
                <mri:type>
@@ -118,13 +129,6 @@
                      </cit:identifier>
                   </cit:CI_Citation>
                </mri:thesaurusName>
-            </mri:MD_Keywords>
-         </mri:descriptiveKeywords>
-         <mri:descriptiveKeywords>
-            <mri:MD_Keywords>
-               <mri:keyword>
-                  <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
-               </mri:keyword>
             </mri:MD_Keywords>
          </mri:descriptiveKeywords>
          <mri:descriptiveKeywords>

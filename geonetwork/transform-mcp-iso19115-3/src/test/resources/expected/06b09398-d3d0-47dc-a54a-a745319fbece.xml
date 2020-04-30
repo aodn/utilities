@@ -1069,9 +1069,6 @@
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
                <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/APSAZZ01">Speed (over ground) of measurement platform</gcx:Anchor>
-               </mri:keyword>
-               <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/ALATZZ01">Latitude north</gcx:Anchor>
                </mri:keyword>
                <mri:keyword>

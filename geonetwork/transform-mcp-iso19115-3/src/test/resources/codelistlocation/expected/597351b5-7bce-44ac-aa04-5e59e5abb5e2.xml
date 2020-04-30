@@ -988,42 +988,6 @@
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
                <mri:keyword>
-                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/INFLTF01">Flow rate through instrument</gcx:Anchor>
-               </mri:keyword>
-               <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme"/>
-               </mri:type>
-               <mri:thesaurusName>
-                  <cit:CI_Citation>
-                     <cit:title>
-                        <gcx:Anchor>AODN Sampling Parameter Vocabulary</gcx:Anchor>
-                     </cit:title>
-                     <cit:date>
-                        <cit:CI_Date>
-                           <cit:date>
-                              <gco:Date>2020-03-03</gco:Date>
-                           </cit:date>
-                           <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
-                                                   codeListValue="publication"/>
-                           </cit:dateType>
-                        </cit:CI_Date>
-                     </cit:date>
-                     <cit:identifier>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-sampling-parameter-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-sampling-parameter-vocabulary</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </cit:identifier>
-                  </cit:CI_Citation>
-               </mri:thesaurusName>
-            </mri:MD_Keywords>
-         </mri:descriptiveKeywords>
-         <mri:descriptiveKeywords>
-            <mri:MD_Keywords>
-               <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/134">water temperature sensor</gcx:Anchor>
                </mri:keyword>
                <mri:keyword>
