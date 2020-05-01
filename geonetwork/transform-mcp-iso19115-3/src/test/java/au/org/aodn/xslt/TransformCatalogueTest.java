@@ -156,27 +156,6 @@ public class TransformCatalogueTest {
         testFiles("environmentDescription");
     }
 
-        // Run transform
-        String args[] = {
-            "TransformCatalogue",
-            "-d", testDir.toString(),
-            "-i", "metadata.xml",
-            "-o", "metadata.iso19115-3.2018.xml",
-            "-u"
-        };
-        TransformCatalogue.main(args);
-
-        // Assert each test result matches expected result
-        for (File testCaseDir: testDir.toFile().listFiles(File::isDirectory)) {
-            String testCaseName = testCaseDir.getName();
-            Path expectedFile = resourceDir.resolve("expected").resolve(testCaseName + ".xml");
-            Path actualFile = testCaseDir.toPath().resolve("metadata/metadata.iso19115-3.2018.xml");
-            String expectedResult = new String(Files.readAllBytes(expectedFile));
-            String actualResult = new String(Files.readAllBytes(actualFile));
-            assertEquals(expectedResult, actualResult);
-        }
-    }
-
     private void testFiles(String testSubDirName) throws IOException {
         Path resourceSubDir = resourceDir.resolve(testSubDirName + "/export");
         // Copy test files to test directory
