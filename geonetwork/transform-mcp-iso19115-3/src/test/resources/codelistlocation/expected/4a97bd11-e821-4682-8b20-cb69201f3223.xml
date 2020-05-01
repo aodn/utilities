@@ -1581,6 +1581,7 @@
                <mac:description>
                   <gco:CharacterString>organism</gco:CharacterString>
                </mac:description>
+               <mac:instrument gco:nilReason="missing"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>

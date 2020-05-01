@@ -1370,6 +1370,7 @@ References: http://oceancurrent.imos.org.au/</gco:CharacterString>
                <mac:description>
                   <gco:CharacterString>orbiting satellite</gco:CharacterString>
                </mac:description>
+               <mac:instrument gco:nilReason="missing"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>

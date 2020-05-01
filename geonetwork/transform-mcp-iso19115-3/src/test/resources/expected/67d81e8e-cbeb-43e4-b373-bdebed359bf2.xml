@@ -876,6 +876,7 @@
                      </cit:date>
                   </cit:CI_Citation>
                </mri:name>
+               <mri:associationType gco:nilReason="missing"/>
             </mri:MD_AssociatedResource>
          </mri:associatedResource>
          <mri:defaultLocale>

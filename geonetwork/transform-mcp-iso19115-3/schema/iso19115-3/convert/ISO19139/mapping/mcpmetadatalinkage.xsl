@@ -54,11 +54,11 @@
   <xsl:template match="gmd:URL" mode="mcpmetadatalinkage">
     <gco:CharacterString><xsl:value-of select="."/></gco:CharacterString>
   </xsl:template>
-   
+
   <xsl:template match="gmd:*" mode="mcpmetadatalinkage">
     <xsl:variable name="localname" select="local-name()"/>
     <xsl:element name="{concat('cit:',$localname)}">
-      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates select="@*" mode="mcpmetadatalinkage"/>
       <xsl:apply-templates select="*" mode="mcpmetadatalinkage"/>
     </xsl:element>
   </xsl:template>
@@ -72,8 +72,19 @@
 
   <xsl:template match="*" mode="mcpmetadatalinkage">
     <xsl:copy>
-      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates select="@*" mode="mcpmetadatalinkage"/>
       <xsl:apply-templates select="*" mode="mcpmetadatalinkage"/>
     </xsl:copy>
   </xsl:template>
+
+  <xsl:template match="@gcoold:*" mode="mcpmetadatalinkage">
+    <xsl:attribute name="{concat('gco:',local-name())}">
+      <xsl:value-of select="."/>
+    </xsl:attribute>
+  </xsl:template>
+
+  <xsl:template match="@*" mode="mcpmetadatalinkage">
+    <xsl:copy-of select="."/>
+  </xsl:template>
+
 </xsl:stylesheet>

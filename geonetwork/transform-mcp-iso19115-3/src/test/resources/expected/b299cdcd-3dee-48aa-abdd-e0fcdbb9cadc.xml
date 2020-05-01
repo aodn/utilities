@@ -1529,6 +1529,7 @@
                <mac:description>
                   <gco:CharacterString>moored surface buoy</gco:CharacterString>
                </mac:description>
+               <mac:instrument gco:nilReason="missing"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>
