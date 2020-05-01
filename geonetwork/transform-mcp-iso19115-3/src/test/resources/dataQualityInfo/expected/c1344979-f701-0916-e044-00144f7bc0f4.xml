@@ -382,4 +382,30 @@
          </mrl:scope>
       </mrl:LI_Lineage>
    </mdb:resourceLineage>
+   <mdb:resourceLineage>
+      <mrl:LI_Lineage>
+         <mrl:statement gco:nilReason="missing">
+            <gco:CharacterString/>
+         </mrl:statement>
+         <mrl:scope>
+            <mcc:MD_Scope>
+               <mcc:level gco:nilReason="missing"/>
+               <mcc:levelDescription>
+                  <mcc:MD_ScopeDescription>
+                     <mcc:other>
+                        <gco:CharacterString>IMOS Platform level record</gco:CharacterString>
+                     </mcc:other>
+                  </mcc:MD_ScopeDescription>
+               </mcc:levelDescription>
+               <mcc:levelDescription>
+                  <mcc:MD_ScopeDescription>
+                     <mcc:dataset>
+                        <gco:CharacterString>IMOS Dataset level record</gco:CharacterString>
+                     </mcc:dataset>
+                  </mcc:MD_ScopeDescription>
+               </mcc:levelDescription>
+            </mcc:MD_Scope>
+         </mrl:scope>
+      </mrl:LI_Lineage>
+   </mdb:resourceLineage>
 </mdb:MD_Metadata>

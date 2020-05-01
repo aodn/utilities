@@ -152,6 +152,7 @@
             <xsl:with-param name="codeListValue"
                             select="$dataQualityScopeObject//gmd:MD_ScopeCode/@codeListValue|
                                     $dataQualityScopeObject//gmx:MX_ScopeCode/@codeListValue"/>
+            <xsl:with-param name="required" select="true()"/>
           </xsl:call-template>
         </xsl:when>
           <xsl:otherwise>
