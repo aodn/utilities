@@ -53,6 +53,9 @@
                <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
                </mri:keyword>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/41">moored surface buoy</gcx:Anchor>
+               </mri:keyword>
                <mri:type>
                   <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
                                           codeListValue="platform"/>
@@ -99,6 +102,9 @@
             <mri:MD_Keywords>
                <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
+               </mri:keyword>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/GSPRZZ01">Directional spreading of waves on the water body</gcx:Anchor>
                </mri:keyword>
                <mri:type>
                   <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
@@ -264,6 +270,28 @@
                      </mrc:units>
                   </mrc:MD_SampleDimension>
                </mrc:attribute>
+               <mrc:attribute>
+                  <mrc:MD_SampleDimension>
+                     <mrc:name>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/GSPRZZ01">Directional spreading of waves on the water body</gcx:Anchor>
+                           </mcc:code>
+                           <mcc:description>
+                              <gco:CharacterString>Directional spread of the dominant wave.</gco:CharacterString>
+                           </mcc:description>
+                        </mcc:MD_Identifier>
+                     </mrc:name>
+                     <mrc:units>
+                        <gml:BaseUnit gml:id="d19e162">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
+                           <gml:name>Degrees</gml:name>
+                           <gml:quantityType/>
+                           <gml:unitsSystem/>
+                        </gml:BaseUnit>
+                     </mrc:units>
+                  </mrc:MD_SampleDimension>
+               </mrc:attribute>
             </mrc:MD_AttributeGroup>
          </mrc:attributeGroup>
       </mrc:MD_CoverageDescription>
@@ -318,6 +346,33 @@
                      </mac:type>
                   </mac:MI_Instrument>
                </mac:instrument>
+            </mac:MI_Platform>
+         </mac:platform>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+         <mac:platform>
+            <mac:MI_Platform>
+               <mac:identifier>
+                  <mcc:MD_Identifier>
+                     <mcc:code>
+                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/41">moored surface buoy</gcx:Anchor>
+                     </mcc:code>
+                  </mcc:MD_Identifier>
+               </mac:identifier>
+               <mac:description>
+                  <gco:CharacterString>moored surface buoy</gco:CharacterString>
+               </mac:description>
+               <mac:instrument gco:nilReason="missing"/>
             </mac:MI_Platform>
          </mac:platform>
       </mac:MI_AcquisitionInformation>

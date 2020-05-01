@@ -181,9 +181,11 @@
                   <mac:description>
                     <gco:CharacterString><xsl:value-of select="current-grouping-key()"/></gco:CharacterString>
                   </mac:description>
-                  <xsl:for-each-group
-                          select="current-group()/mcp:parameterDeterminationInstrument"
-                          group-by="*/mcp:term/*/text()">
+                  <xsl:choose>
+                    <xsl:when test="current-group()/mcp:parameterDeterminationInstrument">
+                      <xsl:for-each-group
+                              select="current-group()/mcp:parameterDeterminationInstrument"
+                              group-by="*/mcp:term/*/text()">
                         <mac:instrument>
                           <mac:MI_Instrument>
                             <mac:identifier>
@@ -200,7 +202,12 @@
                             </mac:type>
                           </mac:MI_Instrument>
                         </mac:instrument>
-                  </xsl:for-each-group>
+                      </xsl:for-each-group>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <mac:instrument gco:nilReason="missing"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </mac:MI_Platform>
               </mac:platform>
           </mac:MI_AcquisitionInformation>
