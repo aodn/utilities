@@ -1036,6 +1036,7 @@ Currently this product is only available for the Maria Island NRS. Located off t
                      </cit:date>
                   </cit:CI_Citation>
                </mri:name>
+               <mri:associationType gco:nilReason="missing"/>
             </mri:MD_AssociatedResource>
          </mri:associatedResource>
          <mri:defaultLocale>

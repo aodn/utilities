@@ -610,6 +610,7 @@
           <xsl:with-param name="elementName" select="'mri:associationType'"/>
           <xsl:with-param name="codeListName" select="'mri:DS_AssociationTypeCode'"/>
           <xsl:with-param name="codeListValue" select="./gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
+          <xsl:with-param name="required" select="true()"/>
         </xsl:call-template>
         <xsl:call-template name="writeCodelistElement">
           <xsl:with-param name="elementName" select="'mri:initiativeType'"/>
