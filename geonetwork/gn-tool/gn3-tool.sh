@@ -46,8 +46,8 @@ get_all_records() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
+    local record_selection=$1; shift
     local gn_xsrftoken=$1; shift
-    local harvested_records=$1; shift
 
     if [[ $gn_user != "" ]]; then
       gn_user_arg="--username $gn_user"
@@ -59,7 +59,7 @@ get_all_records() {
       gn_xsrftoken_arg="--xsrftoken $gn_xsrftoken"
     fi
 
-    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&_isHarvested=$harvested_records&from=1&to=2000" $gn_user_arg $gn_password_arg $gn_xsrftoken_arg
+    python ./get-uuids.py "$gn_addr/srv/eng/xml.search?fast=index&_isHarvested=$record_selection&from=1&to=2000" $gn_user_arg $gn_password_arg $gn_xsrftoken_arg
 
     # NOTE:
     # Returns total no of records based on the value of 'maxRecords' in config-service-search.xml for Geonetwork 3.
@@ -298,7 +298,7 @@ export_records() {
     local gn_addr=$1; shift
     local gn_user=$1; shift
     local gn_password=$1; shift
-    local harvested_records=$1; shift
+    local record_selection=$1; shift
 
     users=$(get_users_gn2 $gn_addr $gn_user $gn_password)
 
@@ -312,7 +312,7 @@ export_records() {
     if [ x"$record_uuid" = x"ALL" ]; then
         mkdir -p $record_dir
 
-        text_result=$(get_all_records $gn_addr $gn_user $gn_password $XSRFTOKEN $harvested_records)
+        text_result=$(get_all_records $gn_addr $gn_user $gn_password $record_selection $XSRFTOKEN)
 
         if [[ $? -ne "0" ]]; then
           echo "Error in finding the uuids"
@@ -558,14 +558,14 @@ Options:
   -p                         Password to login with.
   -y                         Import action type must be one of 'overwrite', or 'nothing' or 'generateUUID'
   -z                         Genetwork group id.
-  -a                         Export all harvested records"
+  -s                         Record selection - must be one of 'non-harvested' (Default), 'harvested' or 'all'"
     exit 3
 }
 
 main() {
     # parse options with getopt
     local tmp_getops
-    tmp_getops=`getopt hGo:l:r:t:g:u:p:y:z:a $*`
+    tmp_getops=`getopt hGo:l:r:t:g:u:p:y:z:s: $*`
     [ $? != 0 ] && usage
 
     set -- $tmp_getops
@@ -576,7 +576,7 @@ main() {
     local group=2
     local uuid_action="nothing"
     local uuid_tag="uuid"
-    local harvested_records="n"
+    local record_selection="non-harvested"
 
     # parse the options
     while true ; do
@@ -592,7 +592,7 @@ main() {
             -p) gn_password="$2"; shift 2;;
             -y) uuid_action="$2"; shift 2;;
             -z) group="$2"; shift 2;;
-            -a) harvested_records="y";  shift 1;;
+            -s) record_selection="$2"; shift 2;;
             --) shift; break;;
             *) usage;;
         esac
@@ -610,6 +610,13 @@ main() {
       usage
     fi
 
+    case $record_selection in
+      "non-harvested") record_selection="n";;
+      "harvested") record_selection="y";;
+      "all") record_selection="";;
+      *) usage;;
+    esac
+
     if [ "$operation" = "import" ]; then
         # must authenticate to run import
         if [ x"$gn_user" = x ] || [ x"$gn_password" = x ]; then
@@ -622,7 +629,7 @@ main() {
             import_records $location $gn_addr $gn_user $gn_password $group $uuid_action
         fi
     elif [ "$operation" = "export" ]; then
-        export_records $record_uuid $uuid_tag $location $gn_addr $gn_user $gn_password $harvested_records
+        export_records $record_uuid $uuid_tag $location $gn_addr $gn_user $gn_password $record_selection
     else
         usage
     fi
