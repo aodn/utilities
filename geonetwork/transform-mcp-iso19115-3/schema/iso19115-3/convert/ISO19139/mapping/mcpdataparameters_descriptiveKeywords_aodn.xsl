@@ -132,7 +132,7 @@
 
   <!-- mapping for terms without vocabulary references -->
 
-  <xsl:template mode="map-term" match="*[not(*/mcp:vocabularyTermURL/*/text() or */mcp:vocabularyListURL/*/text())]">
+  <xsl:template mode="map-term" match="*[not(*/mcp:vocabularyTermURL/*/text() or */mcp:vocabularyListURL/*/text())]" priority="100">
     <xsl:param name="typeCode"/>
 
     <termMapping term="{*/mcp:term/*/text()}" typeCode="{$typeCode}"/>
