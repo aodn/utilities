@@ -6,18 +6,16 @@
 - Intended for data exported by gn3-tool.
 - If the `-d` option is specified then the directory will be recursively searched for any file with the name specified by the `-i` option. 
 - The converted file will be created with the name specified by the `-o` option at the same level in the directory structure as the input file.
-- The geonetwork url provided should be one configured with the vocabs that could be the target geonetwork url that you will be importing records into.
 
 ## Tool
 
 ```
-java -jar transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d <input_directory> -i <input_file_name> -o <output_file_name> -g <geonetwork_url>
+java -jar transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d <input_directory> -i <input_file_name> -o <output_file_name>
 ```
 Options:
 - -d: Directory name containing xml file name at some depth in the directory structure
 - -i: Input xml file name
 - -o: Output xml file name
-- -g: Geonetwork URL for the Vocabulary lookup
 - -u: Update resource and metadata linkage urls
 
 ## Usage
@@ -31,7 +29,7 @@ mvn package
 ```
 Note: Make sure `transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar` exists in target folder. 
 ```
-java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/gn-dump-local -i metadata.xml -o metadata.iso19115-3.2018.xml -g http://geonetwork-url/geonetwork
+java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/gn-dump-local -i metadata.xml -o metadata.iso19115-3.2018.xml
 ```
 
 
