@@ -64,6 +64,9 @@
                   <gmd:protocol gco:nilReason="missing">
                     <gco:CharacterString/>
                   </gmd:protocol>
+                  <gmd:applicationProfile gco:nilReason="missing">
+                    <gco:CharacterString />
+                  </gmd:applicationProfile>
                   <gmd:name gco:nilReason="missing">
                     <gco:CharacterString/>
                   </gmd:name>

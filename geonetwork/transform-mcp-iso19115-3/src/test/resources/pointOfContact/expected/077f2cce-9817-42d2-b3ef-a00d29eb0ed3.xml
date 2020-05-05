@@ -113,6 +113,9 @@
                                  <cit:protocol gco:nilReason="missing">
                                     <gco:CharacterString/>
                                  </cit:protocol>
+                                 <cit:applicationProfile gco:nilReason="missing">
+                                    <gco:CharacterString/>
+                                 </cit:applicationProfile>
                                  <cit:name gco:nilReason="missing">
                                     <gco:CharacterString/>
                                  </cit:name>
