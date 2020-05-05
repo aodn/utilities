@@ -92,6 +92,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testMetadataLinkage() throws IOException {
+        testFiles("metadataLinkage");
+    }
+
+    @Test
     public void testResourceConstraints() throws IOException {
         testFiles("resourceConstraints");
     }

@@ -62,30 +62,40 @@
         <xsl:param name="elementName"/>
         <xsl:param name="codeListName"/>
         <xsl:param name="codeListValue"/>
+        <xsl:param name="required" select="false()"/>
         <!-- The correct codeList Location goes here -->
         <xsl:variable name="codeListLocation" select="'codeListLocation'"/>
-        <xsl:if test="string-length($codeListValue) > 0">
-            <xsl:element name="{$elementName}">
-                <xsl:element name="{$codeListName}">
-                    <xsl:attribute name="codeList">
-                        <xsl:value-of select="$codeListLocation"/>
-                        <xsl:value-of select="'#'"/>
-                        <xsl:value-of select="substring-after($codeListName,':')"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="codeListValue">
-                        <!-- the anyValidURI value is used for testing with paths -->
-                        <!--<xsl:value-of select="'anyValidURI'"/>-->
-                        <!-- commented out for testing -->
-                        <xsl:value-of select="$codeListValue"/>
-                    </xsl:attribute>
-                    <xsl:value-of select="$codeListValue"/>
-                </xsl:element>
-            </xsl:element>
-            <!--<xsl:if test="@*">
+        <xsl:choose>
+            <xsl:when test="string-length($codeListValue) > 0">
                 <xsl:element name="{$elementName}">
-                    <xsl:apply-templates select="@*"/>
+                    <xsl:element name="{$codeListName}">
+                        <xsl:attribute name="codeList">
+                            <xsl:value-of select="$codeListLocation"/>
+                            <xsl:value-of select="'#'"/>
+                            <xsl:value-of select="substring-after($codeListName,':')"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="codeListValue">
+                            <!-- the anyValidURI value is used for testing with paths -->
+                            <!--<xsl:value-of select="'anyValidURI'"/>-->
+                            <!-- commented out for testing -->
+                            <xsl:value-of select="$codeListValue"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="$codeListValue"/>
+                    </xsl:element>
                 </xsl:element>
-            </xsl:if>-->
-        </xsl:if>
+                <!--<xsl:if test="@*">
+                    <xsl:element name="{$elementName}">
+                        <xsl:apply-templates select="@*"/>
+                    </xsl:element>
+                </xsl:if>-->
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:if test="$required">
+                    <xsl:element name="{$elementName}">
+                        <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+                    </xsl:element>
+                </xsl:if>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
