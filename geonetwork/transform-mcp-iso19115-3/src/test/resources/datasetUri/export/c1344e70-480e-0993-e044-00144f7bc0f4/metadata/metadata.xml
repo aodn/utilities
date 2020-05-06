@@ -10,4 +10,19 @@
   <gmd:dataSetURI>
     <gco:CharacterString>http://imos.aodn.org.au/webportal/</gco:CharacterString>
   </gmd:dataSetURI>
+  <gmd:identificationInfo>
+    <mcp:MD_DataIdentification gco:isoType="gmd:MD_DataIdentification">
+      <gmd:citation>
+        <gmd:CI_Citation>
+          <gmd:title gco:nilReason="missing"/>
+          <gmd:alternateTitle gco:nilReason="missing"/>
+          <gmd:date gco:nilReason="missing"/>
+        </gmd:CI_Citation>
+      </gmd:citation>
+      <gmd:abstract gco:nilReason="missing"/>
+      <gmd:language>
+        <gco:CharacterString xmlns:srv="http://www.isotc211.org/2005/srv">eng</gco:CharacterString>
+      </gmd:language>
+    </mcp:MD_DataIdentification>
+  </gmd:identificationInfo>
 </mcp:MD_Metadata>
