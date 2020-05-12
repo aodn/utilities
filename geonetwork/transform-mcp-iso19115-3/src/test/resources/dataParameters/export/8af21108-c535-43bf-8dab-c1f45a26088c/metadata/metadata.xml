@@ -24,6 +24,93 @@
               <mcp:parameterName>
                 <mcp:DP_Term>
                   <mcp:term>
+                    <gco:CharacterString>Temperature of the water body</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:parameterName>
+              <mcp:parameterName>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>TEMP</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="shortName">shortName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>true</gco:Boolean>
+                  </mcp:usedInDataset>
+                </mcp:DP_Term>
+              </mcp:parameterName>
+              <mcp:parameterUnits>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>Degrees Celsius</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:parameterUnits>
+              <mcp:parameterMinimumValue>
+                <gco:CharacterString>-3</gco:CharacterString>
+              </mcp:parameterMinimumValue>
+              <mcp:parameterMaximumValue>
+                <gco:CharacterString>40</gco:CharacterString>
+              </mcp:parameterMaximumValue>
+              <mcp:parameterDeterminationInstrument>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>CTD</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.nerc.ac.uk/collection/L05/current/130</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:parameterDeterminationInstrument>
+              <mcp:platform>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>drifting subsurface profiling float</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.nerc.ac.uk/collection/L06/current/46</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:platform>
+            </mcp:DP_DataParameter>
+          </mcp:dataParameter>
+          <mcp:dataParameter>
+            <mcp:DP_DataParameter>
+              <mcp:parameterName>
+                <mcp:DP_Term>
+                  <mcp:term>
                     <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
                   </mcp:term>
                   <mcp:type>

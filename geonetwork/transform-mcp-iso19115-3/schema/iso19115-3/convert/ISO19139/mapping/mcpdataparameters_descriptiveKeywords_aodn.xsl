@@ -49,15 +49,15 @@
   <xsl:template match="mcp:dataParameters" mode="from19139to19115-3-aodn">
     <!-- map each term to its keywordTypeCode/thesaurus (excluded parameters aren't included) -->
     <xsl:variable name="termMappings">
-      <xsl:apply-templates mode="map-term" select=".//mcp:platform">
+      <xsl:apply-templates mode="map-term" select=".//mcp:platform[*/*/mcp:DP_TypeCode/@codeListValue='longName']">
         <xsl:with-param name="typeCode" select="'platform'"/>
         <xsl:with-param name="defaultThesaurus" select="'platform'"/>
       </xsl:apply-templates>
-      <xsl:apply-templates mode="map-term" select=".//mcp:parameterName">
+      <xsl:apply-templates mode="map-term" select=".//mcp:parameterName[*/*/mcp:DP_TypeCode/@codeListValue='longName']">
         <xsl:with-param name="typeCode" select="'theme'"/>
         <xsl:with-param name="defaultThesaurus" select="'parameter'"/>
       </xsl:apply-templates>
-      <xsl:apply-templates mode="map-term" select=".//mcp:parameterDeterminationInstrument">
+      <xsl:apply-templates mode="map-term" select=".//mcp:parameterDeterminationInstrument[*/*/mcp:DP_TypeCode/@codeListValue='longName']">
         <xsl:with-param name="typeCode" select="'instrument'"/>
         <xsl:with-param name="defaultThesaurus" select="'instrument'"/>
       </xsl:apply-templates>

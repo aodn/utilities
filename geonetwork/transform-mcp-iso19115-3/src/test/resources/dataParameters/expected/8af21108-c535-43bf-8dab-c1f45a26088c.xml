@@ -51,6 +51,9 @@
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
                <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/46">drifting subsurface profiling float</gcx:Anchor>
+               </mri:keyword>
+               <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
                </mri:keyword>
                <mri:keyword>
@@ -88,20 +91,6 @@
                      </cit:identifier>
                   </cit:CI_Citation>
                </mri:thesaurusName>
-            </mri:MD_Keywords>
-         </mri:descriptiveKeywords>
-         <mri:descriptiveKeywords>
-            <mri:MD_Keywords>
-               <mri:keyword>
-                  <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
-               </mri:keyword>
-               <mri:keyword>
-                  <gco:CharacterString>Latitude north</gco:CharacterString>
-               </mri:keyword>
-               <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme"/>
-               </mri:type>
             </mri:MD_Keywords>
          </mri:descriptiveKeywords>
          <mri:descriptiveKeywords>
@@ -145,6 +134,23 @@
          </mri:descriptiveKeywords>
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
+               <mri:keyword>
+                  <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
+               </mri:keyword>
+               <mri:keyword>
+                  <gco:CharacterString>Latitude north</gco:CharacterString>
+               </mri:keyword>
+               <mri:type>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
+               </mri:type>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/130">CTD</gcx:Anchor>
+               </mri:keyword>
                <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/134">water temperature sensor</gcx:Anchor>
                </mri:keyword>
@@ -209,6 +215,31 @@
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mrc:name>
+                     <mrc:maxValue>
+                        <gco:Real>40</gco:Real>
+                     </mrc:maxValue>
+                     <mrc:minValue>
+                        <gco:Real>-3</gco:Real>
+                     </mrc:minValue>
+                     <mrc:units>
+                        <gml:BaseUnit gml:id="d19e19">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
+                           <gml:name>Degrees Celsius</gml:name>
+                           <gml:quantityType/>
+                           <gml:unitsSystem/>
+                        </gml:BaseUnit>
+                     </mrc:units>
+                  </mrc:MD_SampleDimension>
+               </mrc:attribute>
+               <mrc:attribute>
+                  <mrc:MD_SampleDimension>
+                     <mrc:name>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
                               <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
                            </mcc:code>
                            <mcc:description>
@@ -223,7 +254,7 @@
                         <gco:Real>-1000</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e19">
+                        <gml:BaseUnit gml:id="d19e78">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
@@ -251,7 +282,7 @@
                         <gco:Real>-1000</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e47">
+                        <gml:BaseUnit gml:id="d19e106">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:quantityType/>
@@ -270,7 +301,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e113">
+                        <gml:BaseUnit gml:id="d19e172">
                            <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/1">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name/>
                            <gml:quantityType/>
@@ -292,7 +323,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e162">
+                        <gml:BaseUnit gml:id="d19e221">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
                            <gml:quantityType/>
@@ -311,7 +342,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e199">
+                        <gml:BaseUnit gml:id="d19e258">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
                            <gml:quantityType/>
@@ -324,6 +355,46 @@
          </mrc:attributeGroup>
       </mrc:MD_CoverageDescription>
    </mdb:contentInfo>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+         <mac:platform>
+            <mac:MI_Platform>
+               <mac:identifier>
+                  <mcc:MD_Identifier>
+                     <mcc:code>
+                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/46">drifting subsurface profiling float</gcx:Anchor>
+                     </mcc:code>
+                  </mcc:MD_Identifier>
+               </mac:identifier>
+               <mac:description>
+                  <gco:CharacterString>drifting subsurface profiling float</gco:CharacterString>
+               </mac:description>
+               <mac:instrument>
+                  <mac:MI_Instrument>
+                     <mac:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/130">CTD</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mac:identifier>
+                     <mac:type gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </mac:type>
+                  </mac:MI_Instrument>
+               </mac:instrument>
+            </mac:MI_Platform>
+         </mac:platform>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
    <mdb:acquisitionInformation>
       <mac:MI_AcquisitionInformation>
          <mac:scope>
