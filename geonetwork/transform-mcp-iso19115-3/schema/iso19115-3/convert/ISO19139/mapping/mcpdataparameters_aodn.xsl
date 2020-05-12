@@ -222,9 +222,7 @@
                       </mcc:code>
                     </mcc:MD_Identifier>
                   </mac:identifier>
-                  <mac:description>
-                    <gco:CharacterString><xsl:value-of select="current-grouping-key()"/></gco:CharacterString>
-                  </mac:description>
+                  <mac:description gco:nilReason="missing"/>
                   <xsl:choose>
                     <xsl:when test="current-group()/mcp:parameterDeterminationInstrument">
                       <xsl:for-each-group

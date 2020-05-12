@@ -366,9 +366,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>NOAA-17</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -406,9 +404,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>NOAA-18</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -446,9 +442,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>drifting subsurface profiling float</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -486,9 +480,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -540,9 +532,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>moored surface buoy</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument gco:nilReason="missing"/>
             </mac:MI_Platform>
          </mac:platform>
@@ -567,9 +557,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>seabird and duck</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>

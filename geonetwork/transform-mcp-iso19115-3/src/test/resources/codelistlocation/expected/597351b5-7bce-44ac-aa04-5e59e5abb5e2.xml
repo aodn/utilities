@@ -1527,9 +1527,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>vessel of opportunity</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
