@@ -1389,14 +1389,14 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                </mrc:attribute>
                <mrc:attribute>
                   <mrc:MD_SampleDimension>
+                     <mrc:description>
+                        <gco:CharacterString>Measured every 4 hours after standard runs</gco:CharacterString>
+                     </mrc:description>
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/XCO2DRAT">Mole fraction of carbon dioxide (dry air) in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:description>
-                              <gco:CharacterString>Measured every 4 hours after standard runs</gco:CharacterString>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>

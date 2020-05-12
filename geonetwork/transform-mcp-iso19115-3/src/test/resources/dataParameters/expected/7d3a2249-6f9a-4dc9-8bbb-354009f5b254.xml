@@ -80,6 +80,9 @@
                </mrc:contentType>
                <mrc:attribute>
                   <mrc:MD_SampleDimension>
+                     <mrc:description gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </mrc:description>
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
@@ -88,9 +91,6 @@
                            <mcc:codeSpace>
                               <gco:CharacterString>http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01</gco:CharacterString>
                            </mcc:codeSpace>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>

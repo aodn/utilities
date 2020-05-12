@@ -255,6 +255,13 @@
                            </mcc:code>
                         </mcc:MD_Identifier>
                      </mrc:name>
+                     <mrc:name>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gco:CharacterString>TEMP</gco:CharacterString>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mrc:name>
                      <mrc:maxValue>
                         <gco:Real>40</gco:Real>
                      </mrc:maxValue>
@@ -272,14 +279,14 @@
                </mrc:attribute>
                <mrc:attribute>
                   <mrc:MD_SampleDimension>
+                     <mrc:description>
+                        <gco:CharacterString>Parameter Description</gco:CharacterString>
+                     </mrc:description>
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
                               <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
                            </mcc:code>
-                           <mcc:description>
-                              <gco:CharacterString>Parameter Description</gco:CharacterString>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>
@@ -299,14 +306,14 @@
                </mrc:attribute>
                <mrc:attribute>
                   <mrc:MD_SampleDimension>
+                     <mrc:description>
+                        <gco:CharacterString>Directional spread of the dominant wave.</gco:CharacterString>
+                     </mrc:description>
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/GSPRZZ01">Directional spreading of waves on the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:description>
-                              <gco:CharacterString>Directional spread of the dominant wave.</gco:CharacterString>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
