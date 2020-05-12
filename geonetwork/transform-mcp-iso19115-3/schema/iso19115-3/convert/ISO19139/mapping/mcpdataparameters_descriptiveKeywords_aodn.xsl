@@ -15,36 +15,7 @@
                 xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
                 exclude-result-prefixes="#all">
 
-  <xsl:variable name="excludedParameters">
-    <term>Height above bed in the water body</term>
-    <term>Speed (over ground) of measurement platform</term>
-    <term>Flow rate through instrument</term>
-    <term>Depth below surface of the water body</term>
-  </xsl:variable>
-
-  <xsl:variable name="samplingParameters">
-    <term>Latitude north</term>
-    <term>Longitude east</term>
-  </xsl:variable>
-
-  <xsl:variable name="thesauri">
-    <thesaurus id="platform"
-               title="AODN Platform Vocabulary"
-               uri="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-platform-vocabulary"
-               name="geonetwork.thesaurus.external.theme.aodn_aodn-platform-vocabulary"/>
-    <thesaurus id="instrument"
-               title="AODN Instrument Vocabulary"
-               uri="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary"
-               name="geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary"/>
-    <thesaurus id="parameter"
-               title="AODN Discovery Parameter Vocabulary"
-               uri="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary"
-               name="geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary"/>
-    <thesaurus id="sampling-parameter"
-               title="AODN Sampling Parameter Vocabulary"
-               uri="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-sampling-parameter-vocabulary"
-               name="geonetwork.thesaurus.external.theme.aodn_aodn-sampling-parameter-vocabulary"/>
-  </xsl:variable>
+  <xsl:variable name="config" select="document('mcpdataparameters_config_aodn.xml')/config"/>
 
   <xsl:template match="mcp:dataParameters" mode="from19139to19115-3-aodn">
     <!-- map each term to its keywordTypeCode/thesaurus (excluded parameters aren't included) -->
@@ -88,7 +59,7 @@
                                     codeListValue="{current-group()[1]/@typeCode}"/>
           </mri:type>
           <xsl:if test="current-group()[1]/@thesaurus">
-            <xsl:variable name="thesaurus" select="$thesauri/thesaurus[@id=current-group()/@thesaurus]"/>
+            <xsl:variable name="thesaurus" select="$config/thesauri/thesaurus[@id=current-group()/@thesaurus]"/>
             <mri:thesaurusName>
               <cit:CI_Citation>
                 <cit:title>
@@ -140,11 +111,11 @@
 
   <!-- don't add a mapping for excluded parameters -->
 
-  <xsl:template mode="map-term" match="mcp:parameterName[$excludedParameters/term[text()=current()/*/mcp:term/*/text()]]"/>
+  <xsl:template mode="map-term" match="mcp:parameterName[$config/excludedParameters/term[text()=current()/*/mcp:term/*/text()]]"/>
 
   <!-- mapping for sampling parameters -->
 
-  <xsl:template mode="map-term" match="mcp:parameterName[$samplingParameters/term[text()=current()/*/mcp:term/*/text()]]">
+  <xsl:template mode="map-term" match="mcp:parameterName[$config/samplingParameters/term[text()=current()/*/mcp:term/*/text()]]">
     <xsl:param name="typeCode"/>
 
     <termMapping term="{*/mcp:term/*/text()}" termUri="{*/mcp:vocabularyTermURL/*/text()}" typeCode="{$typeCode}" thesaurus="sampling-parameter"/>

@@ -317,7 +317,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e321">
+                        <gml:BaseUnit gml:id="d19e356">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
                            <gml:unitsSystem/>
@@ -335,7 +335,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e358">
+                        <gml:BaseUnit gml:id="d19e393">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
                            <gml:unitsSystem/>
