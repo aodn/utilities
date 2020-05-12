@@ -103,29 +103,6 @@
                         <gml:BaseUnit gml:id="d19e18">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Metres</gml:name>
-                           <gml:quantityType/>
-                           <gml:unitsSystem/>
-                        </gml:BaseUnit>
-                     </mrc:units>
-                  </mrc:MD_SampleDimension>
-               </mrc:attribute>
-               <mrc:attribute>
-                  <mrc:MD_SampleDimension>
-                     <mrc:name>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gco:CharacterString/>
-                           </mcc:code>
-                           <mcc:description gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </mcc:description>
-                        </mcc:MD_Identifier>
-                     </mrc:name>
-                     <mrc:units>
-                        <gml:BaseUnit gml:id="d19e55">
-                           <gml:identifier codeSpace="unknown"/>
-                           <gml:name/>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>

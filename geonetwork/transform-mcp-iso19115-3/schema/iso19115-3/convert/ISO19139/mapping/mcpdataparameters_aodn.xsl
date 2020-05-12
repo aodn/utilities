@@ -54,81 +54,83 @@
             <mrc:contentType>
               <mrc:MD_CoverageContentTypeCode codeList='http://standards.iso.org/iso/19115/resources/Codelist/cat/codelists.xml#MD_CoverageContentTypeCode' codeListValue='physicalMeasurement'/>
             </mrc:contentType>
-            <xsl:for-each select="./mcp:DP_DataParameters/mcp:dataParameter/mcp:DP_DataParameter">
+            <xsl:for-each-group select="./mcp:DP_DataParameters/mcp:dataParameter/mcp:DP_DataParameter"
+                                group-by="./mcp:parameterName/*[*/mcp:DP_TypeCode/@codeListValue='longName']/mcp:term/*/text()">
+              <xsl:variable name="dataParameter" select="current-group()[1]"/>
               <mrc:attribute>
                 <mrc:MD_SampleDimension>
                   <mrc:name>
                     <mcc:MD_Identifier>
                       <mcc:code>
                         <xsl:choose>
-                          <xsl:when test="./mcp:parameterName/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL">
-                            <gcx:Anchor xlink:href="{./mcp:parameterName/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL}">
-                              <xsl:value-of select="./mcp:parameterName/mcp:DP_Term/mcp:type/mcp:DP_TypeCode[@codeListValue='longName']/../../mcp:term"/>
+                          <xsl:when test="$dataParameter/mcp:parameterName/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL">
+                            <gcx:Anchor xlink:href="{$dataParameter/mcp:parameterName/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL}">
+                              <xsl:value-of select="$dataParameter/mcp:parameterName/mcp:DP_Term/mcp:type/mcp:DP_TypeCode[@codeListValue='longName']/../../mcp:term"/>
                             </gcx:Anchor>
                           </xsl:when>
                           <xsl:otherwise>
                             <gco:CharacterString>
-                              <xsl:value-of select="./mcp:parameterName/mcp:DP_Term/mcp:type/mcp:DP_TypeCode[@codeListValue='longName']/../../mcp:term"/>
+                              <xsl:value-of select="$dataParameter/mcp:parameterName/mcp:DP_Term/mcp:type/mcp:DP_TypeCode[@codeListValue='longName']/../../mcp:term"/>
                             </gco:CharacterString>
                           </xsl:otherwise>
                         </xsl:choose>
                       </mcc:code>
                       <xsl:choose>
-                        <xsl:when test="./mcp:parameterName//mcp:vocabularyListURL/gmd:URL">
+                        <xsl:when test="$dataParameter/mcp:parameterName//mcp:vocabularyListURL/gmd:URL">
                           <mcc:codeSpace>
                             <gco:CharacterString>
-                              <xsl:value-of select="./mcp:parameterName//mcp:vocabularyListURL/gmd:URL"/>
+                              <xsl:value-of select="$dataParameter/mcp:parameterName//mcp:vocabularyListURL/gmd:URL"/>
                             </gco:CharacterString>
                           </mcc:codeSpace>
                         </xsl:when>
                       </xsl:choose>
                       <xsl:choose>
-                        <xsl:when test="./mcp:parameterDescription/@*[local-name()='nilReason']">
+                        <xsl:when test="$dataParameter/mcp:parameterDescription/@*[local-name()='nilReason']">
                           <xsl:element name="mcc:description">
-                            <xsl:attribute name="gco:nilReason" select="./mcp:parameterDescription/@*[local-name()='nilReason']"/>
+                            <xsl:attribute name="gco:nilReason" select="$dataParameter/mcp:parameterDescription/@*[local-name()='nilReason']"/>
                             <gco:CharacterString/>
                           </xsl:element>
                         </xsl:when>
-                        <xsl:when test="./mcp:parameterDescription">
+                        <xsl:when test="$dataParameter/mcp:parameterDescription">
                           <mcc:description>
                             <gco:CharacterString>
-                              <xsl:value-of select="./mcp:parameterDescription"/>
+                              <xsl:value-of select="$dataParameter/mcp:parameterDescription"/>
                             </gco:CharacterString>
                           </mcc:description>
                         </xsl:when>
-                        <xsl:when test="./mcp:parameterName/mcp:DP_Term/mcp:termDefinition">
+                        <xsl:when test="$dataParameter/mcp:parameterName/mcp:DP_Term/mcp:termDefinition">
                           <mcc:description>
                             <gco:CharacterString>
-                              <xsl:value-of select="./mcp:parameterName/mcp:DP_Term/mcp:termDefinition"/>
+                              <xsl:value-of select="$dataParameter/mcp:parameterName/mcp:DP_Term/mcp:termDefinition"/>
                             </gco:CharacterString>
                           </mcc:description>
                         </xsl:when>
                       </xsl:choose>
                     </mcc:MD_Identifier>
                   </mrc:name>
-                  <xsl:if test="string(number(mcp:parameterMaximumValue/*)) != 'NaN'">
+                  <xsl:if test="string(number($dataParameter/mcp:parameterMaximumValue/*)) != 'NaN'">
                     <mrc:maxValue>
-                      <gco:Real><xsl:value-of select="mcp:parameterMaximumValue/*"/></gco:Real>
+                      <gco:Real><xsl:value-of select="$dataParameter/mcp:parameterMaximumValue/*"/></gco:Real>
                     </mrc:maxValue>
                   </xsl:if>
-                  <xsl:if test="string(number(mcp:parameterMinimumValue/*)) != 'NaN'">
+                  <xsl:if test="string(number($dataParameter/mcp:parameterMinimumValue/*)) != 'NaN'">
                     <mrc:minValue>
-                      <gco:Real><xsl:value-of select="mcp:parameterMinimumValue/*"/></gco:Real>
+                      <gco:Real><xsl:value-of select="$dataParameter/mcp:parameterMinimumValue/*"/></gco:Real>
                     </mrc:minValue>
                   </xsl:if>
                   <mrc:units>
                     <gml:BaseUnit gml:id="{generate-id()}">
                       <xsl:choose>
-                        <xsl:when test="./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL">
+                        <xsl:when test="$dataParameter/mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL">
                           <xsl:choose>
-                            <xsl:when test="./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyListURL/gmd:URL">
-                              <gml:identifier codeSpace="{./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyListURL/gmd:URL}">
-                                <xsl:value-of select="./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL"/>
+                            <xsl:when test="$dataParameter/mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyListURL/gmd:URL">
+                              <gml:identifier codeSpace="{$dataParameter/mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyListURL/gmd:URL}">
+                                <xsl:value-of select="$dataParameter/mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL"/>
                               </gml:identifier>
                             </xsl:when>
                             <xsl:otherwise>
                               <gml:identifier codeSpace="unknown">
-                                <xsl:value-of select="./mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL"/>
+                                <xsl:value-of select="$dataParameter/mcp:parameterUnits/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL"/>
                               </gml:identifier>
                             </xsl:otherwise>
                           </xsl:choose>
@@ -138,15 +140,14 @@
                         </xsl:otherwise>
                       </xsl:choose>
                       <gml:name>
-                        <xsl:value-of select="./mcp:parameterUnits/mcp:DP_Term/mcp:term"/>
+                        <xsl:value-of select="$dataParameter/mcp:parameterUnits/mcp:DP_Term/mcp:term"/>
                       </gml:name>
-                      <gml:quantityType/>
                       <gml:unitsSystem/>
                     </gml:BaseUnit>
                   </mrc:units>
                 </mrc:MD_SampleDimension>
               </mrc:attribute>
-            </xsl:for-each>
+            </xsl:for-each-group>
           </mrc:MD_AttributeGroup>
         </mrc:attributeGroup>
       </mrc:MD_CoverageDescription>

@@ -24,6 +24,154 @@
               <mcp:parameterName>
                 <mcp:DP_Term>
                   <mcp:term>
+                    <gco:CharacterString>Skin temperature of the water body</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.aodn.org.au/def/discovery_parameter/entity/97</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:parameterName>
+              <mcp:parameterUnits>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>Degrees Kelvin</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.nerc.ac.uk/collection/P06/current/UPKA</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:parameterUnits>
+              <mcp:parameterMinimumValue>
+                <gco:CharacterString>271</gco:CharacterString>
+              </mcp:parameterMinimumValue>
+              <mcp:parameterMaximumValue>
+                <gco:CharacterString>306</gco:CharacterString>
+              </mcp:parameterMaximumValue>
+              <mcp:parameterDeterminationInstrument>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>radiometers</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.nerc.ac.uk/collection/L05/current/122</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:parameterDeterminationInstrument>
+              <mcp:platform>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>NOAA-17</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.aodn.org.au/def/platform/entity/872</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:platform>
+            </mcp:DP_DataParameter>
+          </mcp:dataParameter>
+          <mcp:dataParameter>
+            <mcp:DP_DataParameter>
+              <mcp:parameterName>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>Skin temperature of the water body</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.aodn.org.au/def/discovery_parameter/entity/97</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:parameterName>
+              <mcp:parameterUnits>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>Degrees Kelvin</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.nerc.ac.uk/collection/P06/current/UPKA</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:parameterUnits>
+              <mcp:parameterMinimumValue>
+                <gco:CharacterString>271</gco:CharacterString>
+              </mcp:parameterMinimumValue>
+              <mcp:parameterMaximumValue>
+                <gco:CharacterString>306</gco:CharacterString>
+              </mcp:parameterMaximumValue>
+              <mcp:parameterDeterminationInstrument>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>radiometers</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.nerc.ac.uk/collection/L05/current/122</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:parameterDeterminationInstrument>
+              <mcp:platform>
+                <mcp:DP_Term>
+                  <mcp:term>
+                    <gco:CharacterString>NOAA-18</gco:CharacterString>
+                  </mcp:term>
+                  <mcp:type>
+                    <mcp:DP_TypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#DP_TypeCode" codeListValue="longName">longName</mcp:DP_TypeCode>
+                  </mcp:type>
+                  <mcp:usedInDataset>
+                    <gco:Boolean>false</gco:Boolean>
+                  </mcp:usedInDataset>
+                  <mcp:vocabularyTermURL>
+                    <gmd:URL>http://vocab.aodn.org.au/def/platform/entity/873</gmd:URL>
+                  </mcp:vocabularyTermURL>
+                </mcp:DP_Term>
+              </mcp:platform>
+            </mcp:DP_DataParameter>
+          </mcp:dataParameter>
+          <mcp:dataParameter>
+            <mcp:DP_DataParameter>
+              <mcp:parameterName>
+                <mcp:DP_Term>
+                  <mcp:term>
                     <gco:CharacterString>Temperature of the water body</gco:CharacterString>
                   </mcp:term>
                   <mcp:type>

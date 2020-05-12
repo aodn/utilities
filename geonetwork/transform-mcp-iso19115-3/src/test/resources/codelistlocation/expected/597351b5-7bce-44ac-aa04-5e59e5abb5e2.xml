@@ -1164,7 +1164,6 @@
                         <gml:BaseUnit gml:id="d19e462">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1189,7 +1188,6 @@
                         <gml:BaseUnit gml:id="d19e512">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1208,7 +1206,6 @@
                         <gml:BaseUnit gml:id="d19e562">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1227,7 +1224,6 @@
                         <gml:BaseUnit gml:id="d19e608">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1246,7 +1242,6 @@
                         <gml:BaseUnit gml:id="d19e654">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/HPAX</gml:identifier>
                            <gml:name>Hectopascals</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1265,7 +1260,6 @@
                         <gml:BaseUnit gml:id="d19e700">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1284,7 +1278,6 @@
                         <gml:BaseUnit gml:id="d19e746">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1303,7 +1296,6 @@
                         <gml:BaseUnit gml:id="d19e792">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1325,7 +1317,6 @@
                         <gml:BaseUnit gml:id="d19e838">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1344,7 +1335,6 @@
                         <gml:BaseUnit gml:id="d19e886">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1363,7 +1353,6 @@
                         <gml:BaseUnit gml:id="d19e932">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/ULPM</gml:identifier>
                            <gml:name>Litres per minute</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>

@@ -1388,7 +1388,6 @@
                         <gml:BaseUnit gml:id="d19e675">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1407,7 +1406,6 @@
                         <gml:BaseUnit gml:id="d19e706">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>

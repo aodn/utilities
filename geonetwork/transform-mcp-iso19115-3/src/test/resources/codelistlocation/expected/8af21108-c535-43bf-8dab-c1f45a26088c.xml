@@ -1170,7 +1170,6 @@
                         <gml:BaseUnit gml:id="d19e483">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1189,7 +1188,6 @@
                         <gml:BaseUnit gml:id="d19e529">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1208,7 +1206,6 @@
                         <gml:BaseUnit gml:id="d19e575">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/USTU</gml:identifier>
                            <gml:name>Nephelometric Turbidity Units</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1227,7 +1224,6 @@
                         <gml:BaseUnit gml:id="d19e621">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>

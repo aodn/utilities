@@ -51,6 +51,12 @@
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
                <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/872">NOAA-17</gcx:Anchor>
+               </mri:keyword>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/873">NOAA-18</gcx:Anchor>
+               </mri:keyword>
+               <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/46">drifting subsurface profiling float</gcx:Anchor>
                </mri:keyword>
                <mri:keyword>
@@ -95,6 +101,9 @@
          </mri:descriptiveKeywords>
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/97">Skin temperature of the water body</gcx:Anchor>
+               </mri:keyword>
                <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                </mri:keyword>
@@ -148,6 +157,9 @@
          </mri:descriptiveKeywords>
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/122">radiometers</gcx:Anchor>
+               </mri:keyword>
                <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/130">CTD</gcx:Anchor>
                </mri:keyword>
@@ -215,6 +227,30 @@
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/97">Skin temperature of the water body</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mrc:name>
+                     <mrc:maxValue>
+                        <gco:Real>306</gco:Real>
+                     </mrc:maxValue>
+                     <mrc:minValue>
+                        <gco:Real>271</gco:Real>
+                     </mrc:minValue>
+                     <mrc:units>
+                        <gml:BaseUnit gml:id="d19e19">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPKA</gml:identifier>
+                           <gml:name>Degrees Kelvin</gml:name>
+                           <gml:unitsSystem/>
+                        </gml:BaseUnit>
+                     </mrc:units>
+                  </mrc:MD_SampleDimension>
+               </mrc:attribute>
+               <mrc:attribute>
+                  <mrc:MD_SampleDimension>
+                     <mrc:name>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                            </mcc:code>
                         </mcc:MD_Identifier>
@@ -226,10 +262,9 @@
                         <gco:Real>-3</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e19">
+                        <gml:BaseUnit gml:id="d19e119">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -254,57 +289,9 @@
                         <gco:Real>-1000</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e78">
+                        <gml:BaseUnit gml:id="d19e178">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
-                           <gml:unitsSystem/>
-                        </gml:BaseUnit>
-                     </mrc:units>
-                  </mrc:MD_SampleDimension>
-               </mrc:attribute>
-               <mrc:attribute>
-                  <mrc:MD_SampleDimension>
-                     <mrc:name>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
-                           </mcc:code>
-                           <mcc:description>
-                              <gco:CharacterString>Parameter Description</gco:CharacterString>
-                           </mcc:description>
-                        </mcc:MD_Identifier>
-                     </mrc:name>
-                     <mrc:maxValue>
-                        <gco:Real>0</gco:Real>
-                     </mrc:maxValue>
-                     <mrc:minValue>
-                        <gco:Real>-1000</gco:Real>
-                     </mrc:minValue>
-                     <mrc:units>
-                        <gml:BaseUnit gml:id="d19e106">
-                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
-                           <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
-                           <gml:unitsSystem/>
-                        </gml:BaseUnit>
-                     </mrc:units>
-                  </mrc:MD_SampleDimension>
-               </mrc:attribute>
-               <mrc:attribute>
-                  <mrc:MD_SampleDimension>
-                     <mrc:name>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href=""/>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mrc:name>
-                     <mrc:units>
-                        <gml:BaseUnit gml:id="d19e172">
-                           <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/1">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
-                           <gml:name/>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -323,10 +310,9 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e221">
+                        <gml:BaseUnit gml:id="d19e321">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -342,10 +328,9 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e258">
+                        <gml:BaseUnit gml:id="d19e358">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -355,6 +340,86 @@
          </mrc:attributeGroup>
       </mrc:MD_CoverageDescription>
    </mdb:contentInfo>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+         <mac:platform>
+            <mac:MI_Platform>
+               <mac:identifier>
+                  <mcc:MD_Identifier>
+                     <mcc:code>
+                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/872">NOAA-17</gcx:Anchor>
+                     </mcc:code>
+                  </mcc:MD_Identifier>
+               </mac:identifier>
+               <mac:description>
+                  <gco:CharacterString>NOAA-17</gco:CharacterString>
+               </mac:description>
+               <mac:instrument>
+                  <mac:MI_Instrument>
+                     <mac:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/122">radiometers</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mac:identifier>
+                     <mac:type gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </mac:type>
+                  </mac:MI_Instrument>
+               </mac:instrument>
+            </mac:MI_Platform>
+         </mac:platform>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+         <mac:platform>
+            <mac:MI_Platform>
+               <mac:identifier>
+                  <mcc:MD_Identifier>
+                     <mcc:code>
+                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/873">NOAA-18</gcx:Anchor>
+                     </mcc:code>
+                  </mcc:MD_Identifier>
+               </mac:identifier>
+               <mac:description>
+                  <gco:CharacterString>NOAA-18</gco:CharacterString>
+               </mac:description>
+               <mac:instrument>
+                  <mac:MI_Instrument>
+                     <mac:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/122">radiometers</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mac:identifier>
+                     <mac:type gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </mac:type>
+                  </mac:MI_Instrument>
+               </mac:instrument>
+            </mac:MI_Platform>
+         </mac:platform>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
    <mdb:acquisitionInformation>
       <mac:MI_AcquisitionInformation>
          <mac:scope>
