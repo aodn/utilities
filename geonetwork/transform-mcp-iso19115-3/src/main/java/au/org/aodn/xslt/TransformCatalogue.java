@@ -14,7 +14,10 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -31,13 +34,13 @@ public class TransformCatalogue {
         File from_19139_mcp_1_4_to_19139_mcp_2_0_xsl_file = new File("schema/iso19115-3/convert/ISO19139/to19139.mcp-2.0.xsl");
         File from_19139_mcp2_to_19115_3_xslFile = new File("schema/iso19115-3/convert/ISO19139/fromISO19139MCP2.xsl");
         File transform_19115_3_update_codeListLocation_xslFile = new File("schema/iso19115-3/process/update-codeListLocation.xsl");
-        File transform_19115_3_testing_urls_xslFile = new File("schema/iso19115-3/process/transform-19115-3-testing-urls.xsl");
+        File substitute_urls_xslFile = new File("schema/iso19115-3/process/substitute-urls.xsl");
 
         Options options = new Options();
         options.addOption("d", "input_directory", true, "Directory name containing xml file name at some depth in the directory structure ");
         options.addRequiredOption("i", "file_name", true, "Input xml file name.");
         options.addRequiredOption("o", "output_file_name", true, "Output xml file name.");
-        options.addOption("u", "update_links", false, "Update links to integration test environment");
+        options.addOption("u", "url_substitutions", true, "Url substitutions configuration file");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = null;
@@ -119,11 +122,14 @@ public class TransformCatalogue {
                 StringWriter updated_sw_mcp1 = transform(sw_mcp1_xmlSource, update_codeListLocation_xslSource);
                 write(file.getParent() + File.separator + output, updated_sw_mcp1);
 
-                // If option selected update URLs to integration test
+                // If url_substitutions is specified perform the requested substitutions
                 if (cmd.hasOption("u")) {
-                    Source update_testing_urls_xslSource = new javax.xml.transform.stream.StreamSource(transform_19115_3_testing_urls_xslFile);
+                    String configFile = cmd.getOptionValue("u");
+                    Map<String, Object> parameters = new HashMap<>();
+                    parameters.put("configFile", configFile);
+                    Source substitute_urls_xslSource = new javax.xml.transform.stream.StreamSource(substitute_urls_xslFile);
                     Source sw_mcp2_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(updated_sw_mcp1.toString()));
-                    StringWriter updated_sw_mcp2 = transform(sw_mcp2_xmlSource, update_testing_urls_xslSource);
+                    StringWriter updated_sw_mcp2 = transform(sw_mcp2_xmlSource, substitute_urls_xslSource, parameters);
                     write(file.getParent() + File.separator + output, updated_sw_mcp2);
                 }
 
@@ -143,11 +149,19 @@ public class TransformCatalogue {
     }
 
     private static StringWriter transform(Source xmlSource, Source xsltSource) throws TransformerException {
+        return transform(xmlSource, xsltSource, new HashMap<>());
+    }
+
+    private static StringWriter transform(Source xmlSource, Source xsltSource,
+                                          Map<String, Object> parameters) throws TransformerException {
         StringWriter sw = new StringWriter();
         Result result = new javax.xml.transform.stream.StreamResult(sw);
         TransformerFactory transFact = new TransformerFactoryImpl();
         transFact.setAttribute(FeatureKeys.SUPPRESS_XPATH_WARNINGS, Boolean.TRUE);
         Transformer trans = transFact.newTransformer(xsltSource);
+        for (Entry<String, Object> parameter: parameters.entrySet()) {
+            trans.setParameter(parameter.getKey(), parameter.getValue());
+        }
         trans.transform(xmlSource, result);
         return sw;
     }

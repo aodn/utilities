@@ -161,7 +161,16 @@ public class TransformCatalogueTest {
         testFiles("environmentDescription");
     }
 
+    @Test
+    public void testProdSubstitutions() throws IOException {
+        testFiles("prodSubstitutions", "url-substitutions/imos-prod.xml");
+    }
+
     private void testFiles(String testSubDirName) throws IOException {
+        testFiles(testSubDirName, "url-substitutions/imos-test.xml");
+    }
+
+    private void testFiles(String testSubDirName, String urlSubstitutionsFile) throws IOException {
         Path resourceSubDir = resourceDir.resolve(testSubDirName + "/export");
         // Copy test files to test directory
         copyFolder(resourceSubDir, testDir);
@@ -172,7 +181,7 @@ public class TransformCatalogueTest {
                 "-d", testDir.toString(),
                 "-i", "metadata.xml",
                 "-o", "metadata.iso19115-3.2018.xml",
-                "-u"
+                "-u", urlSubstitutionsFile
         };
         TransformCatalogue.main(args);
         // Assert each test result matches expected result

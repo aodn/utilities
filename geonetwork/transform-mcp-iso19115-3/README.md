@@ -6,6 +6,7 @@
 - Intended for data exported by gn3-tool.
 - If the `-d` option is specified then the directory will be recursively searched for any file with the name specified by the `-i` option. 
 - The converted file will be created with the name specified by the `-o` option at the same level in the directory structure as the input file.
+- If the `-u` option is specified then url substitutions in the specified configuration file will be applied after the transformation
 
 ## Tool
 
@@ -16,7 +17,7 @@ Options:
 - -d: Directory name containing xml file name at some depth in the directory structure
 - -i: Input xml file name
 - -o: Output xml file name
-- -u: Update resource and metadata linkage urls
+- -u: URL substitutions configuration file
 
 ## Usage
 
@@ -29,7 +30,7 @@ mvn package
 ```
 Note: Make sure `transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar` exists in target folder. 
 ```
-java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/gn-dump-local -i metadata.xml -o metadata.iso19115-3.2018.xml
+java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/gn-dump-local -i metadata.xml -o metadata.iso19115-3.2018.xml -u url-substitutions/imos-prod.xml
 ```
 
 
