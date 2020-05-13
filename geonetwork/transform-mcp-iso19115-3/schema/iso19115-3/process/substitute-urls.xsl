@@ -6,28 +6,28 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 version="2.0"
                 exclude-result-prefixes="#all">
-  
+
   <xsl:output indent="yes"/>
 
-  <!-- url substitutions to be performed -->
-  <xsl:variable name="urlSubstitutions">
-    <!-- Stack endpoints -->
-    <substitution match="https?://portal.aodn.org.au" replaceWith="http://portal-gn3-integration.dev.aodn.org.au"/>
-    <substitution match="https?://geoserver.123.aodn.org.au" replaceWith="http://geoserver-gn3-integration.dev.aodn.org.au"/>
-    <substitution match="https?://thredds.aodn.org.au" replaceWith="http://thredds-gn3-integration.dev.aodn.org.au"/>
-    <substitution match="https?://tilecache.aodn.org.au" replaceWith="http://tilecache-gn3-integration.dev.aodn.org.au"/>
-    <substitution match="https?://processes.aodn.org.au" replaceWith="https://processes-gn3-integration.dev.aodn.org.au"/>
-    <!-- Instance keyword thesauri links -->
-    <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/thesaurus" replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus"/>
-    <!-- Instance point of truth links --> 
-    <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/metadata.show\?uuid=" replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/"/>
-    <!-- Instance references to metadata -->
-    <substitution match="https?://catalogue-123.aodn.org.au(:443)?/geonetwork/srv/eng?/metadata.show\?uuid=" replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/"/>
-    <!-- Instance download links - no disclaimer option - just change to download link for the moment until we work out what we're going to do about that -->
-    <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/file.disclaimer\?uuid=(.*)&amp;fname=(.*)&amp;access=private" replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/$2/attachments/$3"/>
-  </xsl:variable>
+  <xsl:param name="configFile"/>
+
+  <!-- load url substitutions to be performed -->
+  <xsl:variable name="urlSubstitutions" select="document($configFile)/urlSubstitutions"/>
 
   <xsl:variable name="urlSubstitutionSelector" select="string-join($urlSubstitutions/substitution/@match, '|')"/>
+
+  <xsl:template match="/">
+    <!-- abort if we can't load the url substitutions file or there are no substitutions -->
+    <xsl:if test="not(doc-available($configFile))">
+        <xsl:message terminate="yes" select="concat('Could not load url substitutions configuration file: ', $configFile)"/>
+    </xsl:if>
+    <!-- abort if there are no substitutions to apply -->
+    <xsl:if test="not($urlSubstitutionSelector)">
+        <xsl:message terminate="yes" select="concat('No substitutions specified in: ', $configFile)"/>
+    </xsl:if>
+    <!-- All good - apply templates -->
+    <xsl:apply-templates select="@*|node()"/>
+  </xsl:template>
 
   <!-- default action is to copy -->
   <xsl:template match="@*|node()">

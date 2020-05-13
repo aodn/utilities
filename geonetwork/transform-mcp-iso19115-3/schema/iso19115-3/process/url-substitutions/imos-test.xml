@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- URL Substitutions to be performed when migrating records from the old GN2 catalogue-imos -->
+<!-- instance to the GN3  catalogue-imos integration testing instance -->
+
+<urlSubstitutions>
+    <!-- Stack endpoints -->
+    <substitution match="https?://portal.aodn.org.au"
+            replaceWith="http://portal-gn3-integration.dev.aodn.org.au"/>
+    <substitution match="https?://geoserver.123.aodn.org.au"
+            replaceWith="http://geoserver-gn3-integration.dev.aodn.org.au"/>
+    <substitution match="https?://thredds.aodn.org.au"
+            replaceWith="http://thredds-gn3-integration.dev.aodn.org.au"/>
+    <substitution match="https?://tilecache.aodn.org.au"
+            replaceWith="http://tilecache-gn3-integration.dev.aodn.org.au"/>
+    <substitution match="https?://processes.aodn.org.au"
+            replaceWith="https://processes-gn3-integration.dev.aodn.org.au"/>
+
+    <!-- Instance keyword thesauri links -->
+    <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/thesaurus"
+            replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus"/>
+
+    <!-- Instance point of truth links -->
+    <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/metadata.show\?uuid="
+            replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/"/>
+
+    <!-- References to old url -->
+    <substitution match="https?://catalogue-123.aodn.org.au(:443)?/geonetwork/srv/eng?/metadata.show\?uuid="
+            replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/"/>
+
+    <!-- Instance download links -->
+    <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/file.disclaimer\?uuid=(.*)&amp;fname=(.*)&amp;access=private"
+            replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/$2/attachments/$3"/>
+</urlSubstitutions>
