@@ -1065,7 +1065,7 @@
                <mco:reference>
                   <cit:CI_Citation>
                      <cit:title>
-                        <gco:CharacterString>Attribution 4.0 International</gco:CharacterString>
+                        <gco:CharacterString>Creative Commons Attribution 4.0 International License</gco:CharacterString>
                      </cit:title>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
