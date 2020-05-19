@@ -68,7 +68,7 @@
          <mco:reference>
             <cit:CI_Citation>
                <cit:title>
-                  <gco:CharacterString>Attribution 2.5 Australia</gco:CharacterString>
+                  <gco:CharacterString>Creative Commons Attribution 2.5 Australia License</gco:CharacterString>
                </cit:title>
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>

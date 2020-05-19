@@ -1751,7 +1751,7 @@ We acknowledge the support of the Integrated Marine Observing System (IMOS), whi
                <mco:reference>
                   <cit:CI_Citation>
                      <cit:title>
-                        <gco:CharacterString>Attribution 4.0 International</gco:CharacterString>
+                        <gco:CharacterString>Creative Commons Attribution 4.0 International License</gco:CharacterString>
                      </cit:title>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
@@ -1864,7 +1864,6 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                         <gml:BaseUnit gml:id="d19e904">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1883,7 +1882,6 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                         <gml:BaseUnit gml:id="d19e928">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1902,7 +1900,6 @@ Richardson AJ, Walne AW, John AWG, Jonas TD, Lindley JA, Sims DW, Stevens D, Wit
                         <gml:BaseUnit gml:id="d19e952">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>

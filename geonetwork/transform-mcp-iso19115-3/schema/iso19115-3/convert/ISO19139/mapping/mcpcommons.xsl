@@ -80,7 +80,7 @@
       <mco:reference>
         <cit:CI_Citation>
           <cit:title>
-            <gco:CharacterString><xsl:value-of select="*//mcpold:licenseName/gcoold:CharacterString"/></gco:CharacterString>
+            <gco:CharacterString><xsl:value-of select="concat('Creative Commons ',*//mcpold:licenseName/gcoold:CharacterString, ' License')"/></gco:CharacterString>
           </cit:title>
           <cit:citedResponsibleParty>
             <cit:CI_Responsibility>

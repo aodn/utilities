@@ -1142,7 +1142,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                <mco:reference>
                   <cit:CI_Citation>
                      <cit:title>
-                        <gco:CharacterString>Attribution 4.0 International</gco:CharacterString>
+                        <gco:CharacterString>Creative Commons Attribution 4.0 International License</gco:CharacterString>
                      </cit:title>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
@@ -1250,7 +1250,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gml:BaseUnit gml:id="d19e545">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1275,7 +1274,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gml:BaseUnit gml:id="d19e595">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1294,7 +1292,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gml:BaseUnit gml:id="d19e645">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1313,7 +1310,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gml:BaseUnit gml:id="d19e691">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1332,7 +1328,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gml:BaseUnit gml:id="d19e737">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/HPAX</gml:identifier>
                            <gml:name>Hectopascals</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1351,7 +1346,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gml:BaseUnit gml:id="d19e783">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1370,7 +1364,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gml:BaseUnit gml:id="d19e829">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1389,7 +1382,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gml:BaseUnit gml:id="d19e875">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1397,21 +1389,20 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                </mrc:attribute>
                <mrc:attribute>
                   <mrc:MD_SampleDimension>
+                     <mrc:description>
+                        <gco:CharacterString>Measured every 4 hours after standard runs</gco:CharacterString>
+                     </mrc:description>
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/XCO2DRAT">Mole fraction of carbon dioxide (dry air) in the atmosphere</gcx:Anchor>
                            </mcc:code>
-                           <mcc:description>
-                              <gco:CharacterString>Measured every 4 hours after standard runs</gco:CharacterString>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d19e921">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1430,26 +1421,6 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gml:BaseUnit gml:id="d19e969">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
-                           <gml:quantityType/>
-                           <gml:unitsSystem/>
-                        </gml:BaseUnit>
-                     </mrc:units>
-                  </mrc:MD_SampleDimension>
-               </mrc:attribute>
-               <mrc:attribute>
-                  <mrc:MD_SampleDimension>
-                     <mrc:name>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/INFLTF01">Flow rate through instrument</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mrc:name>
-                     <mrc:units>
-                        <gml:BaseUnit gml:id="d19e1015">
-                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/ULPM</gml:identifier>
-                           <gml:name>Litres per minute</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1666,9 +1637,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>

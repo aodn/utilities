@@ -31,7 +31,7 @@
    <mdb:metadataIdentifier>
       <mcc:MD_Identifier>
          <mcc:code>
-            <gco:CharacterString>7eb84dce-23df-4cb2-b12d-c1fd33445bd2</gco:CharacterString>
+            <gco:CharacterString>4402cb50-e20a-44ee-93e6-4728259250d2</gco:CharacterString>
          </mcc:code>
       </mcc:MD_Identifier>
    </mdb:metadataIdentifier>
@@ -47,113 +47,105 @@
    <mdb:metadataLinkage>
       <cit:CI_OnlineResource>
          <cit:linkage>
-            <gco:CharacterString>http://apps.aims.gov.au/metadata/view/7eb84dce-23df-4cb2-b12d-c1fd33445bd2</gco:CharacterString>
+            <gco:CharacterString>https://catalogue-imos.aodn.org.au:443/geonetwork/srv/api/records/4402cb50-e20a-44ee-93e6-4728259250d2</gco:CharacterString>
          </cit:linkage>
          <cit:protocol>
             <gco:CharacterString>WWW:LINK-1.0-http--metadata-URL</gco:CharacterString>
          </cit:protocol>
-         <cit:name gco:nilReason="missing">
-            <gco:CharacterString/>
-         </cit:name>
          <cit:description>
             <gco:CharacterString>Point of truth URL of this metadata record</gco:CharacterString>
          </cit:description>
-         <cit:function>
-            <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_OnLineFunctionCode"
-                                       codeListValue=""/>
-         </cit:function>
       </cit:CI_OnlineResource>
    </mdb:metadataLinkage>
-   <mdb:identificationInfo gco:nilReason="missing"/>
+   <mdb:identificationInfo>
+      <mri:MD_DataIdentification>
+         <mri:citation gco:nilReason="missing"/>
+         <mri:abstract gco:nilReason="missing"/>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gco:CharacterString>Argo Floats Facility, Integrated Marine Observing System (IMOS)</gco:CharacterString>
+               </mri:keyword>
+               <mri:type>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="discipline"/>
+               </mri:type>
+               <mri:thesaurusName>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gco:CharacterString>AODN Organisation Vocabulary</gco:CharacterString>
+                     </cit:title>
+                     <cit:date>
+                        <cit:CI_Date>
+                           <cit:date>
+                              <gco:DateTime>2018-07-13T11:07:00</gco:DateTime>
+                           </cit:date>
+                           <cit:dateType>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
+                           </cit:dateType>
+                        </cit:CI_Date>
+                     </cit:date>
+                     <cit:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="https://catalogue-imos.aodn.org.au:443/geonetwork/srv/eng/thesaurus.download?ref=external.discipline.aodnorganisationvocabulary_unpublished_for_IMOS_keywords">geonetwork.thesaurus.external.discipline.aodnorganisationvocabulary_unpublished_for_IMOS_keywords</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </cit:identifier>
+                  </cit:CI_Citation>
+               </mri:thesaurusName>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:defaultLocale>
+            <lan:PT_Locale>
+               <lan:language>
+                  <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
+               </lan:language>
+               <lan:characterEncoding gco:nilReason="unknown"/>
+            </lan:PT_Locale>
+         </mri:defaultLocale>
+      </mri:MD_DataIdentification>
+   </mdb:identificationInfo>
    <mdb:distributionInfo>
       <mrd:MD_Distribution>
+         <mrd:distributionFormat gco:nilReason="missing"/>
          <mrd:transferOptions>
-            <mrd:MD_DigitalTransferOptions/>
+            <mrd:MD_DigitalTransferOptions>
+               <mrd:onLine>
+                  <cit:CI_OnlineResource>
+                     <cit:linkage>
+                        <gco:CharacterString>http://geoserver-123.aodn.org.au/geoserver/wms</gco:CharacterString>
+                     </cit:linkage>
+                     <cit:protocol>
+                        <gco:CharacterString>OGC:WMS-1.1.1-http-get-map</gco:CharacterString>
+                     </cit:protocol>
+                     <cit:name>
+                        <gco:CharacterString>imos:argo_profile_map</gco:CharacterString>
+                     </cit:name>
+                     <cit:description>
+                        <gco:CharacterString>Argo Profiles</gco:CharacterString>
+                     </cit:description>
+                  </cit:CI_OnlineResource>
+               </mrd:onLine>
+               <mrd:onLine>
+                  <cit:CI_OnlineResource>
+                     <cit:linkage>
+                        <gco:CharacterString>https://catalogue-imos.aodn.org.au:443/geonetwork/srv/api/records/9e5c3031-a026-48b3-a153-a70c2e2b78b9/attachments/Bronte_Tilbrook_730_report_050808.wmv</gco:CharacterString>
+                     </cit:linkage>
+                     <cit:protocol>
+                        <gco:CharacterString>WWW:DOWNLOAD-1.0-http--downloadother</gco:CharacterString>
+                     </cit:protocol>
+                     <cit:name>
+                        <gcx:MimeFileType type="audio/x-ms-wmv">Bronte_Tilbrook_730_report_050808.wmv</gcx:MimeFileType>
+                     </cit:name>
+                     <cit:description>
+                        <gco:CharacterString>Video file (wmv): Research Leader Bronte Tilbrook on the ABC 7:30 Report</gco:CharacterString>
+                     </cit:description>
+                  </cit:CI_OnlineResource>
+               </mrd:onLine>
+            </mrd:MD_DigitalTransferOptions>
          </mrd:transferOptions>
       </mrd:MD_Distribution>
    </mdb:distributionInfo>
-   <mdb:metadataConstraints>
-      <mco:MD_LegalConstraints>
-         <mco:graphic>
-            <mcc:MD_BrowseGraphic>
-               <mcc:fileName gco:nilReason="inapplicable"/>
-               <mcc:linkage>
-                  <cit:CI_OnlineResource>
-                     <cit:linkage>
-                        <gco:CharacterString>http://i.creativecommons.org/l/by/2.5/au/88x31.png</gco:CharacterString>
-                     </cit:linkage>
-                     <cit:protocol>
-                        <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
-                     </cit:protocol>
-                     <cit:description>
-                        <gco:CharacterString>License Graphic</gco:CharacterString>
-                     </cit:description>
-                  </cit:CI_OnlineResource>
-               </mcc:linkage>
-            </mcc:MD_BrowseGraphic>
-         </mco:graphic>
-         <mco:reference>
-            <cit:CI_Citation>
-               <cit:title>
-                  <gco:CharacterString>Creative Commons Attribution 2.5 Australia License</gco:CharacterString>
-               </cit:title>
-               <cit:citedResponsibleParty>
-                  <cit:CI_Responsibility>
-                     <cit:role>
-                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
-                                         codeListValue=""/>
-                     </cit:role>
-                     <cit:party>
-                        <cit:CI_Organisation>
-                           <cit:name gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </cit:name>
-                           <cit:contactInfo>
-                              <cit:CI_Contact>
-                                 <cit:address>
-                                    <cit:CI_Address>
-                                       <cit:electronicMailAddress gco:nilReason="missing">
-                                          <gco:CharacterString/>
-                                       </cit:electronicMailAddress>
-                                    </cit:CI_Address>
-                                 </cit:address>
-                                 <cit:onlineResource>
-                                    <cit:CI_OnlineResource>
-                                       <cit:linkage>
-                                          <gco:CharacterString>http://creativecommons.org/international/au/</gco:CharacterString>
-                                       </cit:linkage>
-                                       <cit:protocol>
-                                          <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
-                                       </cit:protocol>
-                                       <cit:name gco:nilReason="missing">
-                                          <gco:CharacterString/>
-                                       </cit:name>
-                                       <cit:description gco:nilReason="missing">
-                                          <gco:CharacterString/>
-                                       </cit:description>
-                                    </cit:CI_OnlineResource>
-                                 </cit:onlineResource>
-                              </cit:CI_Contact>
-                           </cit:contactInfo>
-                        </cit:CI_Organisation>
-                     </cit:party>
-                  </cit:CI_Responsibility>
-               </cit:citedResponsibleParty>
-               <cit:onlineResource>
-                  <cit:CI_OnlineResource>
-                     <cit:linkage>
-                        <gco:CharacterString>http://creativecommons.org/licenses/by/2.5/au/</gco:CharacterString>
-                     </cit:linkage>
-                     <cit:protocol>
-                        <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
-                     </cit:protocol>
-                     <cit:description>
-                        <gco:CharacterString>License Text</gco:CharacterString>
-                     </cit:description>
-                  </cit:CI_OnlineResource>
-               </cit:onlineResource>
-            </cit:CI_Citation>
-         </mco:reference>
-      </mco:MD_LegalConstraints>
-   </mdb:metadataConstraints>
 </mdb:MD_Metadata>

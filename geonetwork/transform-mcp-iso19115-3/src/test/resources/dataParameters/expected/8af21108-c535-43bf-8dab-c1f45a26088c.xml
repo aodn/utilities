@@ -51,6 +51,15 @@
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
                <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/872">NOAA-17</gcx:Anchor>
+               </mri:keyword>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/873">NOAA-18</gcx:Anchor>
+               </mri:keyword>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/46">drifting subsurface profiling float</gcx:Anchor>
+               </mri:keyword>
+               <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
                </mri:keyword>
                <mri:keyword>
@@ -93,19 +102,8 @@
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
                <mri:keyword>
-                  <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
+                  <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/97">Skin temperature of the water body</gcx:Anchor>
                </mri:keyword>
-               <mri:keyword>
-                  <gco:CharacterString>Latitude north</gco:CharacterString>
-               </mri:keyword>
-               <mri:type>
-                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
-                                          codeListValue="theme"/>
-               </mri:type>
-            </mri:MD_Keywords>
-         </mri:descriptiveKeywords>
-         <mri:descriptiveKeywords>
-            <mri:MD_Keywords>
                <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                </mri:keyword>
@@ -145,6 +143,26 @@
          </mri:descriptiveKeywords>
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
+               <mri:keyword>
+                  <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
+               </mri:keyword>
+               <mri:keyword>
+                  <gco:CharacterString>Latitude north</gco:CharacterString>
+               </mri:keyword>
+               <mri:type>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
+               </mri:type>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/122">radiometers</gcx:Anchor>
+               </mri:keyword>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/130">CTD</gcx:Anchor>
+               </mri:keyword>
                <mri:keyword>
                   <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/134">water temperature sensor</gcx:Anchor>
                </mri:keyword>
@@ -209,24 +227,20 @@
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
-                              <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
+                              <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/97">Skin temperature of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:description>
-                              <gco:CharacterString>Parameter Description</gco:CharacterString>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>
-                        <gco:Real>0</gco:Real>
+                        <gco:Real>306</gco:Real>
                      </mrc:maxValue>
                      <mrc:minValue>
-                        <gco:Real>-1000</gco:Real>
+                        <gco:Real>271</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
                         <gml:BaseUnit gml:id="d19e19">
-                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
-                           <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPKA</gml:identifier>
+                           <gml:name>Degrees Kelvin</gml:name>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -239,9 +253,40 @@
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/TEMPPR01">Temperature of the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:description>
-                              <gco:CharacterString>Parameter Description</gco:CharacterString>
-                           </mcc:description>
+                        </mcc:MD_Identifier>
+                     </mrc:name>
+                     <mrc:name>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gco:CharacterString>TEMP</gco:CharacterString>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mrc:name>
+                     <mrc:maxValue>
+                        <gco:Real>40</gco:Real>
+                     </mrc:maxValue>
+                     <mrc:minValue>
+                        <gco:Real>-3</gco:Real>
+                     </mrc:minValue>
+                     <mrc:units>
+                        <gml:BaseUnit gml:id="d19e119">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
+                           <gml:name>Degrees Celsius</gml:name>
+                           <gml:unitsSystem/>
+                        </gml:BaseUnit>
+                     </mrc:units>
+                  </mrc:MD_SampleDimension>
+               </mrc:attribute>
+               <mrc:attribute>
+                  <mrc:MD_SampleDimension>
+                     <mrc:description>
+                        <gco:CharacterString>Parameter Description</gco:CharacterString>
+                     </mrc:description>
+                     <mrc:name>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gco:CharacterString>Temperature of the TEST water body</gco:CharacterString>
+                           </mcc:code>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:maxValue>
@@ -251,10 +296,9 @@
                         <gco:Real>-1000</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e47">
+                        <gml:BaseUnit gml:id="d19e178">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -262,40 +306,20 @@
                </mrc:attribute>
                <mrc:attribute>
                   <mrc:MD_SampleDimension>
-                     <mrc:name>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href=""/>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mrc:name>
-                     <mrc:units>
-                        <gml:BaseUnit gml:id="d19e113">
-                           <gml:identifier codeSpace="http://vocab.aodn.org.au/def/unitsofmeasure/1">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
-                           <gml:name/>
-                           <gml:quantityType/>
-                           <gml:unitsSystem/>
-                        </gml:BaseUnit>
-                     </mrc:units>
-                  </mrc:MD_SampleDimension>
-               </mrc:attribute>
-               <mrc:attribute>
-                  <mrc:MD_SampleDimension>
+                     <mrc:description>
+                        <gco:CharacterString>Directional spread of the dominant wave.</gco:CharacterString>
+                     </mrc:description>
                      <mrc:name>
                         <mcc:MD_Identifier>
                            <mcc:code>
                               <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/GSPRZZ01">Directional spreading of waves on the water body</gcx:Anchor>
                            </mcc:code>
-                           <mcc:description>
-                              <gco:CharacterString>Directional spread of the dominant wave.</gco:CharacterString>
-                           </mcc:description>
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e162">
+                        <gml:BaseUnit gml:id="d19e354">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -311,10 +335,9 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e199">
+                        <gml:BaseUnit gml:id="d19e391">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -339,13 +362,125 @@
                <mac:identifier>
                   <mcc:MD_Identifier>
                      <mcc:code>
+                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/872">NOAA-17</gcx:Anchor>
+                     </mcc:code>
+                  </mcc:MD_Identifier>
+               </mac:identifier>
+               <mac:description gco:nilReason="missing"/>
+               <mac:instrument>
+                  <mac:MI_Instrument>
+                     <mac:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/122">radiometers</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mac:identifier>
+                     <mac:type gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </mac:type>
+                  </mac:MI_Instrument>
+               </mac:instrument>
+            </mac:MI_Platform>
+         </mac:platform>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+         <mac:platform>
+            <mac:MI_Platform>
+               <mac:identifier>
+                  <mcc:MD_Identifier>
+                     <mcc:code>
+                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/873">NOAA-18</gcx:Anchor>
+                     </mcc:code>
+                  </mcc:MD_Identifier>
+               </mac:identifier>
+               <mac:description gco:nilReason="missing"/>
+               <mac:instrument>
+                  <mac:MI_Instrument>
+                     <mac:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/122">radiometers</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mac:identifier>
+                     <mac:type gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </mac:type>
+                  </mac:MI_Instrument>
+               </mac:instrument>
+            </mac:MI_Platform>
+         </mac:platform>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+         <mac:platform>
+            <mac:MI_Platform>
+               <mac:identifier>
+                  <mcc:MD_Identifier>
+                     <mcc:code>
+                        <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/46">drifting subsurface profiling float</gcx:Anchor>
+                     </mcc:code>
+                  </mcc:MD_Identifier>
+               </mac:identifier>
+               <mac:description gco:nilReason="missing"/>
+               <mac:instrument>
+                  <mac:MI_Instrument>
+                     <mac:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/130">CTD</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mac:identifier>
+                     <mac:type gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </mac:type>
+                  </mac:MI_Instrument>
+               </mac:instrument>
+            </mac:MI_Platform>
+         </mac:platform>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+         <mac:platform>
+            <mac:MI_Platform>
+               <mac:identifier>
+                  <mcc:MD_Identifier>
+                     <mcc:code>
                         <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L06/current/31">research vessel</gcx:Anchor>
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>research vessel</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
@@ -397,9 +532,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>moored surface buoy</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument gco:nilReason="missing"/>
             </mac:MI_Platform>
          </mac:platform>
@@ -424,9 +557,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>seabird and duck</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>

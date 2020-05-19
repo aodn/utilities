@@ -1283,7 +1283,7 @@
                <mco:reference>
                   <cit:CI_Citation>
                      <cit:title>
-                        <gco:CharacterString>Attribution 4.0 International</gco:CharacterString>
+                        <gco:CharacterString>Creative Commons Attribution 4.0 International License</gco:CharacterString>
                      </cit:title>
                      <cit:citedResponsibleParty>
                         <cit:CI_Responsibility>
@@ -1388,7 +1388,6 @@
                         <gml:BaseUnit gml:id="d19e675">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1407,7 +1406,6 @@
                         <gml:BaseUnit gml:id="d19e706">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -1578,9 +1576,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>organism</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument gco:nilReason="missing"/>
             </mac:MI_Platform>
          </mac:platform>

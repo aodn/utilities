@@ -205,7 +205,6 @@
                         <gml:BaseUnit gml:id="d19e21">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -224,7 +223,6 @@
                         <gml:BaseUnit gml:id="d19e67">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UMMC</gml:identifier>
                            <gml:name>Milligrams per cubic metre</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -243,7 +241,6 @@
                         <gml:BaseUnit gml:id="d19e113">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -262,26 +259,6 @@
                         <gml:BaseUnit gml:id="d19e159">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPB</gml:identifier>
                            <gml:name>Parts per billion</gml:name>
-                           <gml:quantityType/>
-                           <gml:unitsSystem/>
-                        </gml:BaseUnit>
-                     </mrc:units>
-                  </mrc:MD_SampleDimension>
-               </mrc:attribute>
-               <mrc:attribute>
-                  <mrc:MD_SampleDimension>
-                     <mrc:name>
-                        <mcc:MD_Identifier>
-                           <mcc:code>
-                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/P01/current/AHSFZZ01">Height above bed in the water body</gcx:Anchor>
-                           </mcc:code>
-                        </mcc:MD_Identifier>
-                     </mrc:name>
-                     <mrc:units>
-                        <gml:BaseUnit gml:id="d19e205">
-                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/ULAA</gml:identifier>
-                           <gml:name>Metres</gml:name>
-                           <gml:quantityType/>
                            <gml:unitsSystem/>
                         </gml:BaseUnit>
                      </mrc:units>
@@ -310,9 +287,7 @@
                      </mcc:code>
                   </mcc:MD_Identifier>
                </mac:identifier>
-               <mac:description>
-                  <gco:CharacterString>unmanned autonomous underwater vehicle</gco:CharacterString>
-               </mac:description>
+               <mac:description gco:nilReason="missing"/>
                <mac:instrument>
                   <mac:MI_Instrument>
                      <mac:identifier>
