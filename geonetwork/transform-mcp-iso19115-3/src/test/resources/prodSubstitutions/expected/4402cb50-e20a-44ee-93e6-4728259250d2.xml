@@ -61,6 +61,32 @@
       <mri:MD_DataIdentification>
          <mri:citation gco:nilReason="missing"/>
          <mri:abstract gco:nilReason="missing"/>
+         <mri:graphicOverview>
+            <mcc:MD_BrowseGraphic>
+               <mcc:fileName>
+                  <gco:CharacterString>https://catalogue-imos.aodn.org.au:443/geonetwork/srv/api/records/4402cb50-e20a-44ee-93e6-4728259250d2/attachments/southern_surveyor_pic_s.png</gco:CharacterString>
+               </mcc:fileName>
+               <mcc:fileDescription>
+                  <gco:CharacterString>thumbnail</gco:CharacterString>
+               </mcc:fileDescription>
+               <mcc:fileType>
+                  <gco:CharacterString>png</gco:CharacterString>
+               </mcc:fileType>
+            </mcc:MD_BrowseGraphic>
+         </mri:graphicOverview>
+         <mri:graphicOverview>
+            <mcc:MD_BrowseGraphic>
+               <mcc:fileName>
+                  <gco:CharacterString>http://www.marlin.csiro.au:80/geonetwork/srv/eng/resources.get?uuid=c3c9663f-50ba-41c9-b1ac-b5a9b7e9d4f7&amp;fname=imos_abd_data_oview.png</gco:CharacterString>
+               </mcc:fileName>
+               <mcc:fileDescription>
+                  <gco:CharacterString>large_thumbnail</gco:CharacterString>
+               </mcc:fileDescription>
+               <mcc:fileType>
+                  <gco:CharacterString>png</gco:CharacterString>
+               </mcc:fileType>
+            </mcc:MD_BrowseGraphic>
+         </mri:graphicOverview>
          <mri:descriptiveKeywords>
             <mri:MD_Keywords>
                <mri:keyword>

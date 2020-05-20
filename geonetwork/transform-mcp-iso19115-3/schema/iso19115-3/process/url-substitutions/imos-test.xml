@@ -3,7 +3,9 @@
 <!-- URL Substitutions to be performed when migrating records from the old GN2 catalogue-imos -->
 <!-- instance to the GN3  catalogue-imos integration testing instance -->
 
-<urlSubstitutions>
+<config>
+    <url>http://catalogue-imos.dev.aodn.org.au/geonetwork/srv</url>
+
     <!-- Stack endpoints -->
     <substitution match="https?://portal.aodn.org.au"
             replaceWith="http://portal-gn3-integration.dev.aodn.org.au"/>
@@ -31,4 +33,4 @@
     <!-- Instance download links -->
     <substitution match="https?://catalogue-imos.aodn.org.au(:443)?/geonetwork/srv/eng?/file.disclaimer\?uuid=(.*)&amp;fname=(.*)&amp;access=private"
             replaceWith="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/$2/attachments/$3"/>
-</urlSubstitutions>
+</config>
