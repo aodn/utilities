@@ -208,12 +208,9 @@
                                  <cit:protocol>
                                     <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                                  </cit:protocol>
-                                 <cit:name gco:nilReason="missing">
-                                    <gco:CharacterString/>
-                                 </cit:name>
-                                 <cit:description>
+                                 <cit:name>
                                     <gco:CharacterString>Website of the Australian Ocean Data Network (AODN)</gco:CharacterString>
-                                 </cit:description>
+                                 </cit:name>
                                  <cit:function>
                                     <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_OnLineFunctionCode"
                                                                codeListValue="information"/>

@@ -238,7 +238,7 @@
                         <gco:Real>271</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e19">
+                        <gml:BaseUnit gml:id="d20e19">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPKA</gml:identifier>
                            <gml:name>Degrees Kelvin</gml:name>
                            <gml:unitsSystem/>
@@ -269,7 +269,7 @@
                         <gco:Real>-3</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e119">
+                        <gml:BaseUnit gml:id="d20e119">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:unitsSystem/>
@@ -296,7 +296,7 @@
                         <gco:Real>-1000</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e178">
+                        <gml:BaseUnit gml:id="d20e178">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:unitsSystem/>
@@ -317,7 +317,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e354">
+                        <gml:BaseUnit gml:id="d20e354">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
                            <gml:unitsSystem/>
@@ -335,7 +335,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e391">
+                        <gml:BaseUnit gml:id="d20e391">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name/>
                            <gml:unitsSystem/>

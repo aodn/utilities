@@ -107,6 +107,11 @@ public class TransformCatalogueTest {
     }
 
     @Test
+    public void testOnlineResource() throws IOException {
+        testFiles("onlineResource");
+    }
+
+    @Test
     public void testSamplingFrequency() throws IOException {
         testFiles("samplingFrequency");
     }

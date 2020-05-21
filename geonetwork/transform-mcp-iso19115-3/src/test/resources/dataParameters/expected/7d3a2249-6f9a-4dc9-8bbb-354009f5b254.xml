@@ -100,7 +100,7 @@
                         <gco:Real>-1000</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e18">
+                        <gml:BaseUnit gml:id="d20e18">
                            <gml:identifier codeSpace="unknown"/>
                            <gml:name>Metres</gml:name>
                            <gml:unitsSystem/>
