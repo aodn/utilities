@@ -126,12 +126,9 @@
                            <cit:protocol>
                               <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                            </cit:protocol>
-                           <cit:name gco:nilReason="missing">
-                              <gco:CharacterString/>
-                           </cit:name>
-                           <cit:description>
+                           <cit:name>
                               <gco:CharacterString>Website of the Australian Ocean Data Network (AODN)</gco:CharacterString>
-                           </cit:description>
+                           </cit:name>
                         </cit:CI_OnlineResource>
                      </cit:onlineResource>
                   </cit:CI_Contact>
@@ -278,12 +275,9 @@
                                        <cit:protocol>
                                           <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                                        </cit:protocol>
-                                       <cit:name gco:nilReason="missing">
-                                          <gco:CharacterString/>
-                                       </cit:name>
-                                       <cit:description>
+                                       <cit:name>
                                           <gco:CharacterString>Website of the Integrated Marine Observing System (IMOS)</gco:CharacterString>
-                                       </cit:description>
+                                       </cit:name>
                                     </cit:CI_OnlineResource>
                                  </cit:onlineResource>
                                  <cit:hoursOfService>
@@ -306,12 +300,9 @@
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>Website of the Integrated Marine Observing System (IMOS)</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </cit:onlineResource>
             </cit:CI_Citation>
@@ -404,12 +395,9 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                                  <cit:protocol>
                                     <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                                  </cit:protocol>
-                                 <cit:name gco:nilReason="missing">
-                                    <gco:CharacterString/>
-                                 </cit:name>
-                                 <cit:description>
+                                 <cit:name>
                                     <gco:CharacterString>Website of the Australian Ocean Data Network (AODN)</gco:CharacterString>
-                                 </cit:description>
+                                 </cit:name>
                               </cit:CI_OnlineResource>
                            </cit:onlineResource>
                         </cit:CI_Contact>
@@ -1247,7 +1235,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gco:Real>-2</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e545">
+                        <gml:BaseUnit gml:id="d20e545">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:unitsSystem/>
@@ -1271,7 +1259,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         <gco:Real>0</gco:Real>
                      </mrc:minValue>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e595">
+                        <gml:BaseUnit gml:id="d20e595">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
                            <gml:unitsSystem/>
@@ -1289,7 +1277,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e645">
+                        <gml:BaseUnit gml:id="d20e645">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UVAA</gml:identifier>
                            <gml:name>Metres per second</gml:name>
                            <gml:unitsSystem/>
@@ -1307,7 +1295,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e691">
+                        <gml:BaseUnit gml:id="d20e691">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UAAA</gml:identifier>
                            <gml:name>Degrees</gml:name>
                            <gml:unitsSystem/>
@@ -1325,7 +1313,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e737">
+                        <gml:BaseUnit gml:id="d20e737">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/HPAX</gml:identifier>
                            <gml:name>Hectopascals</gml:name>
                            <gml:unitsSystem/>
@@ -1343,7 +1331,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e783">
+                        <gml:BaseUnit gml:id="d20e783">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
                            <gml:unitsSystem/>
@@ -1361,7 +1349,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e829">
+                        <gml:BaseUnit gml:id="d20e829">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
                            <gml:unitsSystem/>
@@ -1379,7 +1367,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e875">
+                        <gml:BaseUnit gml:id="d20e875">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UATM</gml:identifier>
                            <gml:name>Microatmospheres</gml:name>
                            <gml:unitsSystem/>
@@ -1400,7 +1388,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e921">
+                        <gml:BaseUnit gml:id="d20e921">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
                            <gml:unitsSystem/>
@@ -1418,7 +1406,7 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e969">
+                        <gml:BaseUnit gml:id="d20e969">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPPM</gml:identifier>
                            <gml:name>Parts per million</gml:name>
                            <gml:unitsSystem/>
@@ -1458,12 +1446,9 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>Link to biogeochemical sensors page on IMOS website</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                      <cit:function>
                         <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_OnLineFunctionCode"
                                                    codeListValue="information"/>
@@ -1478,12 +1463,9 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>Marine National Facility Website: Information about RV Southern Surveyor and RV Investigator</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
                <mrd:onLine>
@@ -1510,12 +1492,9 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>NetCDF files via THREDDS catalog</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
                <mrd:onLine>
@@ -1526,12 +1505,9 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>View and download data though the AODN Portal</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
                <mrd:onLine>
@@ -1574,12 +1550,9 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>OGC WFS help documentation</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
                <mrd:onLine>
@@ -1606,12 +1579,9 @@ The RV Aurora Australis provides data on surface ocean CO2 for the Southern Ocea
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>ncUrlList help documentation</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
             </mrd:MD_DigitalTransferOptions>

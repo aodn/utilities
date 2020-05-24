@@ -716,6 +716,7 @@
   <xsl:include href="mcpsamplingfrequency.xsl"/>
   <xsl:include href="mcpaggregationinfo.xsl"/>
   <xsl:include href="mcpdataparameters_descriptiveKeywords_aodn.xsl"/>
+  <xsl:include href="online-resource-imos.xsl"/>
 
   <!--
     Empty High-Priority Templates to prevent

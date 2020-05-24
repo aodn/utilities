@@ -272,9 +272,9 @@
                                        <cit:protocol>
                                           <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                                        </cit:protocol>
-                                       <cit:description>
+                                       <cit:name>
                                           <gco:CharacterString>Website of the Integrated Marine Observing System (IMOS)</gco:CharacterString>
-                                       </cit:description>
+                                       </cit:name>
                                     </cit:CI_OnlineResource>
                                  </cit:onlineResource>
                               </cit:CI_Contact>
@@ -304,9 +304,9 @@
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>Website of the Integrated Marine Observing System (IMOS)</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </cit:onlineResource>
             </cit:CI_Citation>
@@ -1167,7 +1167,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e483">
+                        <gml:BaseUnit gml:id="d20e483">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPAA</gml:identifier>
                            <gml:name>Degrees Celsius</gml:name>
                            <gml:unitsSystem/>
@@ -1185,7 +1185,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e529">
+                        <gml:BaseUnit gml:id="d20e529">
                            <gml:identifier codeSpace="unknown">http://vocab.aodn.org.au/def/unitsofmeasure/entity/481</gml:identifier>
                            <gml:name>Practical Salinity Unit</gml:name>
                            <gml:unitsSystem/>
@@ -1203,7 +1203,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e575">
+                        <gml:BaseUnit gml:id="d20e575">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/USTU</gml:identifier>
                            <gml:name>Nephelometric Turbidity Units</gml:name>
                            <gml:unitsSystem/>
@@ -1221,7 +1221,7 @@
                         </mcc:MD_Identifier>
                      </mrc:name>
                      <mrc:units>
-                        <gml:BaseUnit gml:id="d19e621">
+                        <gml:BaseUnit gml:id="d20e621">
                            <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UGPL</gml:identifier>
                            <gml:name>Micrograms per litre</gml:name>
                            <gml:unitsSystem/>
@@ -1361,12 +1361,9 @@
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>IMOS: Sensors on Tropical Research Vessels</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
                <mrd:onLine>
@@ -1377,12 +1374,9 @@
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>NetCDF files via THREDDS catalog</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
                <mrd:onLine>
@@ -1393,12 +1387,9 @@
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>View and download data though the AODN Portal</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
                <mrd:onLine>
@@ -1441,12 +1432,9 @@
                      <cit:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                      </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
+                     <cit:name>
                         <gco:CharacterString>OGC WFS help documentation</gco:CharacterString>
-                     </cit:description>
+                     </cit:name>
                   </cit:CI_OnlineResource>
                </mrd:onLine>
             </mrd:MD_DigitalTransferOptions>

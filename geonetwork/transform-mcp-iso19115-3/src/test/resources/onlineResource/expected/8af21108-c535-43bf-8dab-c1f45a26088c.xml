@@ -51,9 +51,6 @@
                <cit:title>
                   <gco:CharacterString>Sensors on Tropical Research Vessels: Enhanced Measurements from Ships of Opportunity (SOOP)</gco:CharacterString>
                </cit:title>
-               <cit:alternateTitle>
-                  <gco:CharacterString>Ship underway data in tropical waters</gco:CharacterString>
-               </cit:alternateTitle>
                <cit:date>
                   <cit:CI_Date>
                      <cit:date>
@@ -65,16 +62,6 @@
                      </cit:dateType>
                   </cit:CI_Date>
                </cit:date>
-               <cit:editionDate>
-                  <gco:DateTime>2014-01-08T00:00:00</gco:DateTime>
-               </cit:editionDate>
-               <cit:identifier>
-                  <mcc:MD_Identifier>
-                     <mcc:code>
-                        <gco:CharacterString>DOI: 10.26198/5e156a63a8f75</gco:CharacterString>
-                     </mcc:code>
-                  </mcc:MD_Identifier>
-               </cit:identifier>
                <cit:citedResponsibleParty>
                   <cit:CI_Responsibility>
                      <cit:role>
@@ -82,56 +69,12 @@
                                          codeListValue="resourceProvider"/>
                      </cit:role>
                      <cit:party>
-                        <cit:CI_Organisation>
-                           <cit:name>
-                              <gco:CharacterString>Integrated Marine Observing System (IMOS)</gco:CharacterString>
+                        <cit:CI_Individual>
+                           <cit:name gco:nilReason="missing">
+                              <gco:CharacterString/>
                            </cit:name>
                            <cit:contactInfo>
                               <cit:CI_Contact>
-                                 <cit:phone>
-                                    <cit:CI_Telephone>
-                                       <cit:number>
-                                          <gco:CharacterString>61 3 6226 7549</gco:CharacterString>
-                                       </cit:number>
-                                       <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
-                                                                    codeListValue="voice"/>
-                                       </cit:numberType>
-                                    </cit:CI_Telephone>
-                                 </cit:phone>
-                                 <cit:phone>
-                                    <cit:CI_Telephone>
-                                       <cit:number>
-                                          <gco:CharacterString>+61 3 6226 2107</gco:CharacterString>
-                                       </cit:number>
-                                       <cit:numberType>
-                                          <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_TelephoneTypeCode"
-                                                                    codeListValue="facsimile"/>
-                                       </cit:numberType>
-                                    </cit:CI_Telephone>
-                                 </cit:phone>
-                                 <cit:address>
-                                    <cit:CI_Address>
-                                       <cit:deliveryPoint>
-                                          <gco:CharacterString>Private Bag 110</gco:CharacterString>
-                                       </cit:deliveryPoint>
-                                       <cit:city>
-                                          <gco:CharacterString>Hobart</gco:CharacterString>
-                                       </cit:city>
-                                       <cit:administrativeArea>
-                                          <gco:CharacterString>Tasmania</gco:CharacterString>
-                                       </cit:administrativeArea>
-                                       <cit:postalCode>
-                                          <gco:CharacterString>7001</gco:CharacterString>
-                                       </cit:postalCode>
-                                       <cit:country>
-                                          <gco:CharacterString>Australia</gco:CharacterString>
-                                       </cit:country>
-                                       <cit:electronicMailAddress>
-                                          <gco:CharacterString>imos@imos.org.au</gco:CharacterString>
-                                       </cit:electronicMailAddress>
-                                    </cit:CI_Address>
-                                 </cit:address>
                                  <cit:onlineResource>
                                     <cit:CI_OnlineResource>
                                        <cit:linkage>
@@ -145,35 +88,12 @@
                                        </cit:name>
                                     </cit:CI_OnlineResource>
                                  </cit:onlineResource>
-                                 <cit:hoursOfService>
-                                    <gco:CharacterString>9am to 5pm UTC+10: Monday to Friday</gco:CharacterString>
-                                 </cit:hoursOfService>
                               </cit:CI_Contact>
                            </cit:contactInfo>
-                           <cit:individual>
-                              <cit:CI_Individual>
-                                 <cit:name gco:nilReason="missing">
-                                    <gco:CharacterString/>
-                                 </cit:name>
-                                 <cit:positionName gco:nilReason="missing">
-                                    <gco:CharacterString/>
-                                 </cit:positionName>
-                              </cit:CI_Individual>
-                           </cit:individual>
-                        </cit:CI_Organisation>
+                        </cit:CI_Individual>
                      </cit:party>
                   </cit:CI_Responsibility>
                </cit:citedResponsibleParty>
-               <cit:series>
-                  <cit:CI_Series>
-                     <cit:name>
-                        <gco:CharacterString>CAASM Metadata</gco:CharacterString>
-                     </cit:name>
-                  </cit:CI_Series>
-               </cit:series>
-               <cit:otherCitationDetails>
-                  <gco:CharacterString>The citation in a list of references is: 'IMOS [year-of-data-downloaded], [Title], [data-access-url], accessed [date-of-access]'</gco:CharacterString>
-               </cit:otherCitationDetails>
                <cit:onlineResource>
                   <cit:CI_OnlineResource>
                      <cit:linkage>
@@ -190,6 +110,38 @@
             </cit:CI_Citation>
          </mri:citation>
          <mri:abstract gco:nilReason="missing"/>
+         <mri:pointOfContact>
+            <cit:CI_Responsibility>
+               <cit:role>
+                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                   codeListValue="pointOfContact"/>
+               </cit:role>
+               <cit:party>
+                  <cit:CI_Individual>
+                     <cit:name>
+                        <gco:CharacterString>Benthuysen, Jessica, Dr</gco:CharacterString>
+                     </cit:name>
+                     <cit:contactInfo>
+                        <cit:CI_Contact>
+                           <cit:onlineResource>
+                              <cit:CI_OnlineResource>
+                                 <cit:linkage>
+                                    <gco:CharacterString>http://www.aims.gov.au</gco:CharacterString>
+                                 </cit:linkage>
+                                 <cit:protocol>
+                                    <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+                                 </cit:protocol>
+                              </cit:CI_OnlineResource>
+                           </cit:onlineResource>
+                           <cit:hoursOfService>
+                              <gco:CharacterString>0800 to 1640 UTC+10: Monday to Friday</gco:CharacterString>
+                           </cit:hoursOfService>
+                        </cit:CI_Contact>
+                     </cit:contactInfo>
+                  </cit:CI_Individual>
+               </cit:party>
+            </cit:CI_Responsibility>
+         </mri:pointOfContact>
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
@@ -200,4 +152,57 @@
          </mri:defaultLocale>
       </mri:MD_DataIdentification>
    </mdb:identificationInfo>
+   <mdb:distributionInfo>
+      <mrd:MD_Distribution>
+         <mrd:distributionFormat>
+            <mrd:MD_Format>
+               <mrd:formatSpecificationCitation>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gco:CharacterString>Web Download</gco:CharacterString>
+                     </cit:title>
+                     <cit:alternateTitle/>
+                     <cit:date gco:nilReason="unknown"/>
+                     <cit:edition>
+                        <gco:CharacterString>HTTP:1.1</gco:CharacterString>
+                     </cit:edition>
+                  </cit:CI_Citation>
+               </mrd:formatSpecificationCitation>
+            </mrd:MD_Format>
+         </mrd:distributionFormat>
+         <mrd:transferOptions>
+            <mrd:MD_DigitalTransferOptions>
+               <mrd:onLine>
+                  <cit:CI_OnlineResource>
+                     <cit:linkage>
+                        <gco:CharacterString>http://data.aims.gov.au/extpubs/do/viewPub.do?articleId=8541</gco:CharacterString>
+                     </cit:linkage>
+                     <cit:protocol>
+                        <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
+                     </cit:protocol>
+                     <cit:name>
+                        <gco:CharacterString>Enhancing ship of opportunity sea surface temperature observations in the Australian region</gco:CharacterString>
+                     </cit:name>
+                     <cit:description>
+                        <gco:CharacterString>Beggs H, Verein R, Kippo H, Underwood M, Barton IJ, Steinberg CR, Schulz E, Hibbins R, Thomas A and Ball G (2009) Enhancing ship of opportunity sea surface temperature observations in the Australian region. unformatted - In: Proceedings of the GHRSST Data Users Symposium, Santa Rosa, USA, 28-29 May 2009.</gco:CharacterString>
+                     </cit:description>
+                  </cit:CI_OnlineResource>
+               </mrd:onLine>
+               <mrd:onLine>
+                  <cit:CI_OnlineResource>
+                     <cit:linkage>
+                        <gco:CharacterString>http://imos.org.au/tropicalresearchvessels.html</gco:CharacterString>
+                     </cit:linkage>
+                     <cit:protocol>
+                        <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+                     </cit:protocol>
+                     <cit:name>
+                        <gco:CharacterString>IMOS: Sensors on Tropical Research Vessels</gco:CharacterString>
+                     </cit:name>
+                  </cit:CI_OnlineResource>
+               </mrd:onLine>
+            </mrd:MD_DigitalTransferOptions>
+         </mrd:transferOptions>
+      </mrd:MD_Distribution>
+   </mdb:distributionInfo>
 </mdb:MD_Metadata>
