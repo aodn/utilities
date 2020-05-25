@@ -660,7 +660,7 @@
          <mri:graphicOverview>
             <mcc:MD_BrowseGraphic>
                <mcc:fileName>
-                  <gco:CharacterString>southern_surveyor_pic_s.png</gco:CharacterString>
+                  <gco:CharacterString>http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/597351b5-7bce-44ac-aa04-5e59e5abb5e2/attachments/southern_surveyor_pic_s.png</gco:CharacterString>
                </mcc:fileName>
                <mcc:fileDescription>
                   <gco:CharacterString>thumbnail</gco:CharacterString>
@@ -673,7 +673,7 @@
          <mri:graphicOverview>
             <mcc:MD_BrowseGraphic>
                <mcc:fileName>
-                  <gco:CharacterString>southern_surveyor_pic.png</gco:CharacterString>
+                  <gco:CharacterString>http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/597351b5-7bce-44ac-aa04-5e59e5abb5e2/attachments/southern_surveyor_pic.png</gco:CharacterString>
                </mcc:fileName>
                <mcc:fileDescription>
                   <gco:CharacterString>large_thumbnail</gco:CharacterString>

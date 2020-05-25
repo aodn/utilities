@@ -485,7 +485,7 @@
          <mri:graphicOverview>
             <mcc:MD_BrowseGraphic>
                <mcc:fileName>
-                  <gco:CharacterString>SOOP-Bounding-Box_s.png</gco:CharacterString>
+                  <gco:CharacterString>http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/8af21108-c535-43bf-8dab-c1f45a26088c/attachments/SOOP-Bounding-Box_s.png</gco:CharacterString>
                </mcc:fileName>
                <mcc:fileDescription>
                   <gco:CharacterString>thumbnail</gco:CharacterString>
@@ -498,7 +498,7 @@
          <mri:graphicOverview>
             <mcc:MD_BrowseGraphic>
                <mcc:fileName>
-                  <gco:CharacterString>SOOP-Bounding-Box.png</gco:CharacterString>
+                  <gco:CharacterString>http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/api/records/8af21108-c535-43bf-8dab-c1f45a26088c/attachments/SOOP-Bounding-Box.png</gco:CharacterString>
                </mcc:fileName>
                <mcc:fileDescription>
                   <gco:CharacterString>large_thumbnail</gco:CharacterString>
