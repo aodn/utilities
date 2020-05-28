@@ -94,6 +94,9 @@
          </mri:resourceConstraints>
          <mri:resourceConstraints>
             <mco:MD_LegalConstraints>
+               <mco:useLimitation>
+                  <gco:CharacterString>Use limitation</gco:CharacterString>
+               </mco:useLimitation>
                <mco:graphic>
                   <mcc:MD_BrowseGraphic>
                      <mcc:fileName gco:nilReason="inapplicable"/>
@@ -179,6 +182,15 @@
                </mco:otherConstraints>
                <mco:otherConstraints>
                   <gco:CharacterString>Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: "Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government." If relevant, also credit other organisations involved in collection of this particular datastream (as listed in 'credit' in the metadata record).</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>Derivative constraints</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>Commercial use constraints</gco:CharacterString>
+               </mco:otherConstraints>
+               <mco:otherConstraints>
+                  <gco:CharacterString>Collective Works constraints</gco:CharacterString>
                </mco:otherConstraints>
                <mco:otherConstraints>
                   <gco:CharacterString>Please refer to http://www.bom.gov.au/other/disclaimer.shtml for Bureau disclaimer details.</gco:CharacterString>
