@@ -59,6 +59,11 @@
 
   <xsl:template match="gmd:resourceConstraints | gmd:metadataConstraints" mode="legalConstraints">
     <mco:MD_LegalConstraints>
+      <xsl:for-each select="*//gmd:useLimitation">
+        <mco:useLimitation>
+          <gco:CharacterString><xsl:value-of select="./gcoold:CharacterString"/></gco:CharacterString>
+        </mco:useLimitation>
+      </xsl:for-each>
       <mco:graphic>
         <mcc:MD_BrowseGraphic>
           <mcc:fileName gco:nilReason="inapplicable" />
@@ -139,12 +144,11 @@
           </cit:onlineResource>
         </cit:CI_Citation>
       </mco:reference>
-      <xsl:for-each select="*//mcpold:attributionConstraints">
-        <mco:otherConstraints>
-          <gco:CharacterString><xsl:value-of select="./gcoold:CharacterString"/></gco:CharacterString>
-        </mco:otherConstraints>
-      </xsl:for-each>
-      <xsl:for-each select="*//mcpold:otherConstraints">
+      <xsl:for-each select="*//(mcpold:attributionConstraints
+                               |mcpold:derivativeConstraints
+                               |mcpold:commercialUseConstraints
+                               |mcpold:collectiveWorksConstraints
+                               |mcpold:otherConstraints)">
         <mco:otherConstraints>
           <gco:CharacterString><xsl:value-of select="./gcoold:CharacterString"/></gco:CharacterString>
         </mco:otherConstraints>
