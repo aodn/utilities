@@ -15,7 +15,10 @@
                 xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
                 exclude-result-prefixes="#all">
 
-  <xsl:variable name="config" select="document('mcpdataparameters_config_aodn.xml')/config"/>
+  <xsl:param name="configFile"/>
+
+  <xsl:variable name="targetUrl" select="document($configFile)/config/url"/>
+  <xsl:variable name="thesauriConfig" select="document('mcpdataparameters_config_aodn.xml')/config"/>
 
   <xsl:template match="mcp:dataParameters" mode="from19139to19115-3-aodn">
     <!-- map each term to its keywordTypeCode/thesaurus (excluded parameters aren't included) -->
@@ -59,7 +62,7 @@
                                     codeListValue="{current-group()[1]/@typeCode}"/>
           </mri:type>
           <xsl:if test="current-group()[1]/@thesaurus">
-            <xsl:variable name="thesaurus" select="$config/thesauri/thesaurus[@id=current-group()/@thesaurus]"/>
+            <xsl:variable name="thesaurus" select="$thesauriConfig/thesauri/thesaurus[@id=current-group()/@thesaurus]"/>
             <mri:thesaurusName>
               <cit:CI_Citation>
                 <cit:title>
@@ -79,8 +82,8 @@
                 <cit:identifier>
                   <mcc:MD_Identifier>
                     <mcc:code>
-                      <gcx:Anchor xlink:href="{$thesaurus/@uri}">
-                        <xsl:value-of select="$thesaurus/@name"/></gcx:Anchor>
+                      <gcx:Anchor xlink:href="{concat($targetUrl, '/eng/thesaurus.download?ref=', $thesaurus/@fileName)}">
+                        <xsl:value-of select="concat('geonetwork.thesaurus.',$thesaurus/@fileName)"/></gcx:Anchor>
                     </mcc:code>
                   </mcc:MD_Identifier>
                 </cit:identifier>
@@ -111,11 +114,11 @@
 
   <!-- don't add a mapping for excluded parameters -->
 
-  <xsl:template mode="map-term" match="mcp:parameterName[$config/excludedParameters/term[text()=current()/*/mcp:term/*/text()]]"/>
+  <xsl:template mode="map-term" match="mcp:parameterName[$thesauriConfig/excludedParameters/term[text()=current()/*/mcp:term/*/text()]]"/>
 
   <!-- mapping for sampling parameters -->
 
-  <xsl:template mode="map-term" match="mcp:parameterName[$config/samplingParameters/term[text()=current()/*/mcp:term/*/text()]]">
+  <xsl:template mode="map-term" match="mcp:parameterName[$thesauriConfig/samplingParameters/term[text()=current()/*/mcp:term/*/text()]]">
     <xsl:param name="typeCode"/>
 
     <termMapping term="{*/mcp:term/*/text()}" termUri="{*/mcp:vocabularyTermURL/*/text()}" typeCode="{$typeCode}" thesaurus="sampling-parameter"/>

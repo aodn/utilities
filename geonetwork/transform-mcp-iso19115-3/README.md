@@ -6,7 +6,7 @@
 - Intended for data exported by gn3-tool.
 - If the `-d` option is specified then the directory will be recursively searched for any file with the name specified by the `-i` option. 
 - The converted file will be created with the name specified by the `-o` option at the same level in the directory structure as the input file.
-- If the `-u` option is specified then url substitutions specified in the configuration file specified will be applied after the transformation
+- Use the `-u` option to specify the configuration file to use for the target instance.  Contains the instance url and url substitutions to be made. 
 
 ## Tool
 
@@ -17,7 +17,7 @@ Options:
 - -d: Directory name containing xml file name at some depth in the directory structure
 - -i: Input xml file name
 - -o: Output xml file name
-- -u: URL substitutions configuration file
+- -u: Target instance configuration file
 
 ## Usage
 

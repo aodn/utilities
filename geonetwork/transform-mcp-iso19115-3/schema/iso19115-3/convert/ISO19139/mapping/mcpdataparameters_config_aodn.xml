@@ -14,20 +14,16 @@
     <thesauri>
         <thesaurus id="platform"
                    title="AODN Platform Vocabulary"
-                   uri="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-platform-vocabulary"
-                   name="geonetwork.thesaurus.external.theme.aodn_aodn-platform-vocabulary"/>
+                   fileName="external.theme.aodn_aodn-platform-vocabulary"/>
         <thesaurus id="instrument"
                    title="AODN Instrument Vocabulary"
-                   uri="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary"
-                   name="geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary"/>
+                   fileName="external.theme.aodn_aodn-instrument-vocabulary"/>
         <thesaurus id="parameter"
                    title="AODN Discovery Parameter Vocabulary"
-                   uri="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary"
-                   name="geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary"/>
+                   fileName="external.theme.aodn_aodn-discovery-parameter-vocabulary"/>
         <thesaurus id="sampling-parameter"
                    title="AODN Sampling Parameter Vocabulary"
-                   uri="http://catalogue-imos.dev.aodn.org.au/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-sampling-parameter-vocabulary"
-                   name="geonetwork.thesaurus.external.theme.aodn_aodn-sampling-parameter-vocabulary"/>
+                   fileName="external.theme.aodn_aodn-sampling-parameter-vocabulary"/>
     </thesauri>
 </config>
 

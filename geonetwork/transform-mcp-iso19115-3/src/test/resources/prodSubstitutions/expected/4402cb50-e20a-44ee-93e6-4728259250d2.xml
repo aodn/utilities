@@ -123,6 +123,114 @@
                </mri:thesaurusName>
             </mri:MD_Keywords>
          </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/872">NOAA-17</gcx:Anchor>
+               </mri:keyword>
+               <mri:type>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="platform"/>
+               </mri:type>
+               <mri:thesaurusName>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gcx:Anchor>AODN Platform Vocabulary</gcx:Anchor>
+                     </cit:title>
+                     <cit:date>
+                        <cit:CI_Date>
+                           <cit:date>
+                              <gco:Date>2020-03-03</gco:Date>
+                           </cit:date>
+                           <cit:dateType>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
+                           </cit:dateType>
+                        </cit:CI_Date>
+                     </cit:date>
+                     <cit:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="https://catalogue-imos.aodn.org.au:443/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-platform-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-platform-vocabulary</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </cit:identifier>
+                  </cit:CI_Citation>
+               </mri:thesaurusName>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/97">Skin temperature of the water body</gcx:Anchor>
+               </mri:keyword>
+               <mri:type>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme"/>
+               </mri:type>
+               <mri:thesaurusName>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gcx:Anchor>AODN Discovery Parameter Vocabulary</gcx:Anchor>
+                     </cit:title>
+                     <cit:date>
+                        <cit:CI_Date>
+                           <cit:date>
+                              <gco:Date>2020-03-03</gco:Date>
+                           </cit:date>
+                           <cit:dateType>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
+                           </cit:dateType>
+                        </cit:CI_Date>
+                     </cit:date>
+                     <cit:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="https://catalogue-imos.aodn.org.au:443/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-discovery-parameter-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-discovery-parameter-vocabulary</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </cit:identifier>
+                  </cit:CI_Citation>
+               </mri:thesaurusName>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/122">radiometers</gcx:Anchor>
+               </mri:keyword>
+               <mri:type>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="instrument"/>
+               </mri:type>
+               <mri:thesaurusName>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gcx:Anchor>AODN Instrument Vocabulary</gcx:Anchor>
+                     </cit:title>
+                     <cit:date>
+                        <cit:CI_Date>
+                           <cit:date>
+                              <gco:Date>2020-03-03</gco:Date>
+                           </cit:date>
+                           <cit:dateType>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
+                           </cit:dateType>
+                        </cit:CI_Date>
+                     </cit:date>
+                     <cit:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="https://catalogue-imos.aodn.org.au:443/geonetwork/srv/eng/thesaurus.download?ref=external.theme.aodn_aodn-instrument-vocabulary">geonetwork.thesaurus.external.theme.aodn_aodn-instrument-vocabulary</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </cit:identifier>
+                  </cit:CI_Citation>
+               </mri:thesaurusName>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
          <mri:defaultLocale>
             <lan:PT_Locale>
                <lan:language>
@@ -133,6 +241,43 @@
          </mri:defaultLocale>
       </mri:MD_DataIdentification>
    </mdb:identificationInfo>
+   <mdb:contentInfo>
+      <mrc:MD_CoverageDescription>
+         <mrc:attributeDescription gco:nilReason="inapplicable"/>
+         <mrc:attributeGroup>
+            <mrc:MD_AttributeGroup>
+               <mrc:contentType>
+                  <mrc:MD_CoverageContentTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CoverageContentTypeCode"
+                                                  codeListValue="physicalMeasurement"/>
+               </mrc:contentType>
+               <mrc:attribute>
+                  <mrc:MD_SampleDimension>
+                     <mrc:name>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/discovery_parameter/entity/97">Skin temperature of the water body</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mrc:name>
+                     <mrc:maxValue>
+                        <gco:Real>306</gco:Real>
+                     </mrc:maxValue>
+                     <mrc:minValue>
+                        <gco:Real>271</gco:Real>
+                     </mrc:minValue>
+                     <mrc:units>
+                        <gml:BaseUnit gml:id="d20e55">
+                           <gml:identifier codeSpace="unknown">http://vocab.nerc.ac.uk/collection/P06/current/UPKA</gml:identifier>
+                           <gml:name>Degrees Kelvin</gml:name>
+                           <gml:unitsSystem/>
+                        </gml:BaseUnit>
+                     </mrc:units>
+                  </mrc:MD_SampleDimension>
+               </mrc:attribute>
+            </mrc:MD_AttributeGroup>
+         </mrc:attributeGroup>
+      </mrc:MD_CoverageDescription>
+   </mdb:contentInfo>
    <mdb:distributionInfo>
       <mrd:MD_Distribution>
          <mrd:distributionFormat gco:nilReason="missing"/>
@@ -174,4 +319,42 @@
          </mrd:transferOptions>
       </mrd:MD_Distribution>
    </mdb:distributionInfo>
+   <mdb:acquisitionInformation>
+      <mac:MI_AcquisitionInformation>
+         <mac:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mac:scope>
+         <mac:platform>
+            <mac:MI_Platform>
+               <mac:identifier>
+                  <mcc:MD_Identifier>
+                     <mcc:code>
+                        <gcx:Anchor xlink:href="http://vocab.aodn.org.au/def/platform/entity/872">NOAA-17</gcx:Anchor>
+                     </mcc:code>
+                  </mcc:MD_Identifier>
+               </mac:identifier>
+               <mac:description gco:nilReason="missing"/>
+               <mac:instrument>
+                  <mac:MI_Instrument>
+                     <mac:identifier>
+                        <mcc:MD_Identifier>
+                           <mcc:code>
+                              <gcx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L05/current/122">radiometers</gcx:Anchor>
+                           </mcc:code>
+                        </mcc:MD_Identifier>
+                     </mac:identifier>
+                     <mac:type gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </mac:type>
+                  </mac:MI_Instrument>
+               </mac:instrument>
+            </mac:MI_Platform>
+         </mac:platform>
+      </mac:MI_AcquisitionInformation>
+   </mdb:acquisitionInformation>
 </mdb:MD_Metadata>
