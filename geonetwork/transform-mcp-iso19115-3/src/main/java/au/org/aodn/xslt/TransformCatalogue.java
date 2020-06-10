@@ -13,6 +13,7 @@ import java.io.*;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +41,7 @@ public class TransformCatalogue {
         options.addOption("d", "input_directory", true, "Directory name containing xml file name at some depth in the directory structure ");
         options.addRequiredOption("i", "file_name", true, "Input xml file name.");
         options.addRequiredOption("o", "output_file_name", true, "Output xml file name.");
-        options.addOption("u", "url_substitutions", true, "Url substitutions configuration file");
+        options.addRequiredOption("u", "url_substitutions", true, "Url substitutions configuration file");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = null;
@@ -48,9 +49,9 @@ public class TransformCatalogue {
         String header = "Convert mcp xml file to 19115-3\n\n"+
                 "If the -d option is specified then the directory will be recursively searched for any file with the " +
                 "name specified by the -i option. The converted file will be created with the name specified by the " +
-                "-o option at the same level in the directory structure as the input file. Provide -g option " +
-                "specifying the Geonetwork URL for the Vocabulary lookup. If the -u option is selected all resource" +
-                "and metadata linkage URLs will be updated to point at the current stack rather than production.";
+                "-o option at the same level in the directory structure as the input file. Specify the config file " +
+                "containing target url and resource and metadata linkage " +
+                "url replacements to be made during the transformation using the -u option.";
 
         HelpFormatter formatter = new HelpFormatter();
 
@@ -78,6 +79,10 @@ public class TransformCatalogue {
 
         // Process output file name
         String output = cmd.getOptionValue("o");
+
+        // Process transform config file
+        String uArg = cmd.getOptionValue("u");
+        String configFile = Paths.get(uArg).toAbsolutePath().toString();
 
         List<Path> files = new ArrayList<Path>();
         getFileNames(files, indirectory.toPath(), input);
@@ -110,8 +115,12 @@ public class TransformCatalogue {
 
                 Source mcp2_xslSource = new javax.xml.transform.stream.StreamSource(from_19139_mcp2_to_19115_3_xslFile);
 
+                // Transform parameters
+                Map<String, Object> parameters = new HashMap<>();
+                parameters.put("configFile", configFile);
+
                 // Transform from_19139_mcp2_to_19115_3
-                StringWriter sw_mcp2 = transform(mcp2_xmlSource, mcp2_xslSource);
+                StringWriter sw_mcp2 = transform(mcp2_xmlSource, mcp2_xslSource, parameters);
 
                 // Outputs ISO19115-3 records
                 write(file.getParent() + File.separator + output, sw_mcp2);
@@ -122,17 +131,11 @@ public class TransformCatalogue {
                 StringWriter updated_sw_mcp1 = transform(sw_mcp1_xmlSource, update_codeListLocation_xslSource);
                 write(file.getParent() + File.separator + output, updated_sw_mcp1);
 
-                // If url_substitutions is specified perform the requested substitutions
-                if (cmd.hasOption("u")) {
-                    String configFile = cmd.getOptionValue("u");
-                    Map<String, Object> parameters = new HashMap<>();
-                    parameters.put("configFile", configFile);
-                    Source substitute_urls_xslSource = new javax.xml.transform.stream.StreamSource(substitute_urls_xslFile);
-                    Source sw_mcp2_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(updated_sw_mcp1.toString()));
-                    StringWriter updated_sw_mcp2 = transform(sw_mcp2_xmlSource, substitute_urls_xslSource, parameters);
-                    write(file.getParent() + File.separator + output, updated_sw_mcp2);
-                }
-
+                // Perform the requested substitutions
+                Source substitute_urls_xslSource = new javax.xml.transform.stream.StreamSource(substitute_urls_xslFile);
+                Source sw_mcp2_xmlSource = new javax.xml.transform.stream.StreamSource(new StringReader(updated_sw_mcp1.toString()));
+                StringWriter updated_sw_mcp2 = transform(sw_mcp2_xmlSource, substitute_urls_xslSource, parameters);
+                write(file.getParent() + File.separator + output, updated_sw_mcp2);
 
             } catch( Exception e ) {
                 e.printStackTrace();
