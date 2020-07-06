@@ -1,0 +1,3 @@
+timeseries_id,file_url,size,site_code,time
+2,IMOS/ACORN/gridded_1h-avg-current-map_QC/ROT/2018/12/31/IMOS_ACORN_V_20181231T223000Z_ROT_FV01_1-hour-avg.nc,124554,"ROT, Rottnest Shelf",2018-12-31 22:30:00
+3,IMOS/ACORN/gridded_1h-avg-current-map_QC/ROT/2018/12/31/IMOS_ACORN_V_20181231T233000Z_ROT_FV01_1-hour-avg.nc,124960,"ROT, Rottnest Shelf",2018-12-31 23:30:00

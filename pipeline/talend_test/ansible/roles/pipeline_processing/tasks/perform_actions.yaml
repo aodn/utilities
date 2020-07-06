@@ -1,0 +1,7 @@
+---
+- include_vars:
+    file: "{{ test_config_file }}"
+- name: "Perform pipeline processing"
+  include_role:
+    name: process_files
+  when: enabled is undefined or enabled == true

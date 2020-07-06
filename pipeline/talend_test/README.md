@@ -7,7 +7,7 @@ Multiple harvesters can be tested against multiple integration tests.
 
 ## Requirements
 
-The example tests have been configured to work with the [PO Box for Talend Open Studio 7](https://github.com/aodn/chef/blob/master/doc/README.po-box7.md)
+The example tests have been configured to work with the [PO stack](https://github.com/aodn/chef/blob/master/doc/README.pipeline-box.md)
 so get this launched first.
 They are written using Ansible.
 
@@ -30,15 +30,14 @@ See [ansible.cfg](https://docs.ansible.com/ansible/latest/installation_guide/int
 - copy ansible.cfg to `/etc/ansible/ansible.cfg` for permanent changes to ansible
 - add `allow_world_readable_tmpfiles=true` to `/etc/ansible/ansible.cfg`
 
-Create .pgpass entries on your local machine:
-- refer to [this document](https://blog.sleeplessbeastie.eu/2014/03/23/how-to-non-interactively-provide-password-for-the-postgresql-interactive-terminal/) for how to create a .pgpass file
-- add an entry like this:
-  ```po7.aodn.org.au:5432:harvest:admin:admin```
-
+Copy the stack integration details returned by stackman info --show-secrets --output-format json to stack_integration.json
+in the talend_test root directory.  This contains the required database connection details used to connect to the
+database to setup tests and capture changes made to te database and s3 bucket details used to access files processed by the pipeline. 
+ 
 Obtain the location of the vagrant private ssh key (do this in the chef directory from which you launched the po7 box):
 
 ```shell script
-vagrant ssh-config po7
+vagrant ssh-config pipeline
 ```
 Note the value of the `IdentityFile` entry in the output.
 
@@ -280,7 +279,7 @@ Each run will create a backup of the previous run in the `reports` directory.
 
 ### Hosts using Vagrant
 
-The above describes how to use the integration tests on po-box7 using vagrant.
+The above describes how to use the integration tests on the PO stack using the pipeline box.
 
 ### Hosts on nectar
 
@@ -290,7 +289,6 @@ database, log files and files stored on s3 or on the host.  Therefore the proces
 To use the integration with hosts on nectar first edit `test_configs/hosts`:
  
 - update ansible_host to point to the pipeline host.
-- update db_user to a user with database admin privileges on the pipeline host.
 - update file_store_type to 's3' if processed files are stored on s3 or 'file' if they are stored directly on the pipeline host.
 - update file_store to an s3 bucket (eg 's3://imos-data-pipeline-talend7') if processed files stored on s3 or a directory on the pipeline host (eg '/s3/imos-data') 
 if they are stored directly on the pipeline host.
@@ -300,16 +298,11 @@ if they are stored directly on the pipeline host.
 Example `test_configs/hosts` file for 9-nec-hob.emii.org.au:
 ```
 [pipeline-processing-servers]
-pipeline ansible_host=9-nec-hob.emii.org.au db_user=admin file_store_type=s3 file_store=s3://imos-data-pipeline-talend7 pipeline_incoming_dir_prefix=/mnt/ebs/incoming
+pipeline ansible_host=9-nec-hob.emii.org.au file_store_type=s3 file_store=s3://imos-data-pipeline-talend7 pipeline_incoming_dir_prefix=/mnt/ebs/incoming
 
 [integration-test-servers]
 testserver ansible_host=localhost harvest_host=9-nec-hob.emii.org.au
 ```
-
-Create .pgpass entries on your local machine for the database:
-- refer to [this document](https://blog.sleeplessbeastie.eu/2014/03/23/how-to-non-interactively-provide-password-for-the-postgresql-interactive-terminal/) for how to create a .pgpass file
-- add an entry like this:
-  ```9-nec-hob.emii.org.au:5432:harvest:admin:adminpassword```
 
 When running pipeline processing and testing playbooks the vagrant user and key-file is not required. For example:
 ```shell script
@@ -317,10 +310,6 @@ When running pipeline processing and testing playbooks the vagrant user and key-
 -i test_configs_9nechob/hosts --extra-vars "test_config=test_configs_9nechob create_expect=true"
 ```
 
-### AWS Stacks
-
-The integration tests do not currently support pipelines deployed to AWS stacks.   
-  
 ## Types of test
 
 Note that there are several type of test: `pipeline_version_1`, `pipeline_version_2` and `harvester`. 

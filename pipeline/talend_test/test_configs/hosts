@@ -1,5 +1,5 @@
 [pipeline-processing-servers]
-pipeline ansible_host=po7.aodn.org.au db_user=admin file_store_type=file file_store=/s3/imos-data pipeline_incoming_dir_prefix=/var/incoming
+pipeline ansible_host=10.11.12.13 file_store_type=s3 file_store=/s3/imos-data pipeline_incoming_dir_prefix=/var/incoming
 
 [integration-test-servers]
-testserver ansible_host=localhost harvest_host=po7.aodn.org.au
+testserver ansible_host=localhost harvest_host=10.11.12.13

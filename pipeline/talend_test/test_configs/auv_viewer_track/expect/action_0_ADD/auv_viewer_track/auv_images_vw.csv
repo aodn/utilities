@@ -1,0 +1,1 @@
+fk_auv_tracks,site_code,image_folder,dive_code_name,campaign_code,image_filename,cluster_tag,longitude,latitude,image_width,depth_sensor,altitude_sensor,depth,sea_water_temperature,sea_water_salinity,chlorophyll_concentration_in_sea_water,backscattering_ratio,colored_dissolved_organic_matter,time,geom

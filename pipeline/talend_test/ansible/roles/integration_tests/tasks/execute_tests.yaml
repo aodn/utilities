@@ -4,3 +4,4 @@
 - name: "Execute tests on results of pipeline processing"
   include_role:
     name: execute_tests
+  when: enabled is undefined or enabled == true

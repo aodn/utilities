@@ -14,7 +14,7 @@
     loop_var: server_item
 
 - name: "list files in s3 bucket"
-  shell: "aws s3 ls --recursive {{ hostvars['pipeline']['file_store'] }}/{{ assert_config.remote_file }} | awk '{print $4}'"
+  shell: "aws s3 ls --recursive {{ stack_integration.bucket_name }}/{{ assert_config.remote_file }} | awk '{print $4}'"
   register: objects_list
   delegate_to: localhost
   when: hostvars['pipeline']['file_store_type'] == 's3'
@@ -64,4 +64,4 @@
     [ { 'Pipeline': name, 'name':item.name,
     'result': assertion_result.failed,
     'template': 'file_exists.j2',
-    'template_vars': {'msg': hostvars['pipeline']['file_store'] + '/' + assertion_result.msg} } ] }}" # Add to results accumulator for report
+    'template_vars': {'msg': {{ stack_integration.bucket_name }} + '/' + assertion_result.msg} } ] }}" # Add to results accumulator for report

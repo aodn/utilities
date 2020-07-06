@@ -1,6 +1,6 @@
 ---
 - name: list s3 objects to delete
-  shell: "aws s3 ls --recursive s3://{{ host_bucket }}/{{ action_item.file }} | awk '{print $4}'"
+  shell: "aws s3 ls --recursive {{ stack_integration.bucket_name }}/{{ action_item.file }} | awk '{print $4}'"
   register: objects_list
   when: (type == 'pipeline_version_1' or type == 'pipeline_version_2') and
         action_item.type == 'DELETE' and action_item.file is defined
@@ -20,6 +20,6 @@
 - name: delete files using po_s3_del
   become: yes
   become_user: root
-  command: "sudo -u projectofficer -i po_s3_del {{ item }}"
+  command: "sudo -u vagrant -i po_s3_del {{ item }}"
   with_items: "{{ delete_list }}"
   when: delete_list is defined

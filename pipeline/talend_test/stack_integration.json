@@ -1,0 +1,15 @@
+{
+    "stack_integration": {
+        "comment": "These values can be retrieved from the output of the `stackman info --show-secrets` command",
+        "access_key_id": "[ACCESS_KEY]",
+        "secret_access_key": "[SECRET_KEY]",
+        "database_password": "[DB_PASSWORD]",
+        "geonetwork_password": "[GEONETWORK_PASSWORD]",
+        "database_user": "imosadmin",
+        "geonetwork_user": "admin",
+        "bucket_name": "s3://imos-data-[STACK-NAME].dev.aodn.org.au",
+        "database_host": "harvest-db-[STACK-NAME].dev.aodn.org.au",
+        "geonetwork_endpoint": "http://geonetwork-[STACK-NAME].dev.aodn.org.au/geonetwork",
+        "geoserver_endpoint": "http://geoserver-[STACK-NAME].dev.aodn.org.au/geoserver"
+   }
+}

@@ -1,0 +1,3 @@
+timeseries_id,file_url,size,time,platform_code,site_code,ssr_Radar
+1,IMOS/ACORN/radial_quality_controlled/RRK/2017/12/19/IMOS_ACORN_RV_20171219T080000Z_RRK_FV01_radial.nc,103218,2017-12-19 00:00:00,RRK,"COF, Coffs Harbour (NSW), Red Rock (NSW)",
+2,IMOS/ACORN/radial_quality_controlled/RRK/2017/12/19/IMOS_ACORN_RV_20171219T081000Z_RRK_FV01_radial.nc,100208,2017-12-19 08:10:00,RRK,"COF, Coffs Harbour (NSW), Red Rock (NSW)",

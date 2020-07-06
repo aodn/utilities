@@ -62,6 +62,7 @@ def run_module():
         tmp_dir=dict(type='str', required=True),
         db_user=dict(type='str', required=True),
         db_host=dict(type='str', required=True),
+        db_pass=dict(type='str', required=True),
     )
 
     module = AnsibleModule(
@@ -71,9 +72,10 @@ def run_module():
 
     p = type('Params', (), module.params)
 
-    conn_string = "dbname='harvest' user='{db_user}' host='{db_host}'".format(
+    conn_string = "dbname='harvest' user='{db_user}' host='{db_host}' password='{db_pass}'".format(
         db_user=p.db_user,
-        db_host=p.db_host)
+        db_host=p.db_host,
+        db_pass=p.db_pass)
 
     for table in p.schema_obj['tables']:
         select_statement = generate_select_statement(conn_string, p.schema_obj['name'], table['name'], table['exclude_columns'])

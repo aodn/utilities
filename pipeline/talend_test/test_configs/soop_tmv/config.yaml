@@ -43,3 +43,4 @@ talend_jobs:
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.SOOP_TMV_NRT.log
 test_report_template: test_results
 type: pipeline_version_2
+enabled: false

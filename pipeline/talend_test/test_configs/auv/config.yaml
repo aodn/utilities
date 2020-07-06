@@ -71,3 +71,4 @@ talend_jobs:
 talend_log_file: /mnt/ebs/log/pipeline/process/tasks.AUV.log
 test_report_template: test_results
 type: pipeline_version_2
+enabled: true

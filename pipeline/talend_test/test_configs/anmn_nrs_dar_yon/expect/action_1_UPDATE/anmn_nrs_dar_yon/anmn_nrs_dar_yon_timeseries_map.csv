@@ -1,0 +1,2 @@
+channel_id,time_coverage_start,time_coverage_end,platform_code,site_code,VARNAME,LONGNAME,NOMINAL_DEPTH,geom
+84316,2019-02-22 05:30:00,2019-03-01 00:00:00,Darwin,NRSDAR,DOWN_PHOTOSYNTH_FLUX,surface_downwelling_photosynthetic_radiative_flux_in_air,18,0101000020E6100000D42B6519E2566040C80C54C6BFAF28C0

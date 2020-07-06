@@ -1,0 +1,6 @@
+---
+- set_fact:
+    task_file: ../pipeline_processing/tasks/perform_actions.yaml
+- name: "Run pipeline processing"
+  include_role:
+    name: configure

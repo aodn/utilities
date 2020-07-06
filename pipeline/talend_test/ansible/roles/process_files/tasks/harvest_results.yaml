@@ -17,16 +17,14 @@
   file: path={{ tmp_dir }}/{{ item.name }} state=directory mode="a+w"
   with_items: "{{ database_schemas }}"
 
-- set_fact:
-    database_user: "{{ db_user | default(ansible_ssh_user) }}"
-
 - name: sql select queries
   delegate_to: localhost
   psql_harvest_queries:
     schema_obj: "{{ item }}"
     tmp_dir: "{{ tmp_dir }}/{{ item.name }}"
-    db_user: "{{ database_user }}"
-    db_host: "{{ ansible_host }}"
+    db_user: "{{ stack_integration.database_user }}"
+    db_host: "{{ stack_integration.database_host }}"
+    db_pass: "{{ stack_integration.database_password }}"
   loop: "{{ database_schemas }}"
 
 - set_fact:

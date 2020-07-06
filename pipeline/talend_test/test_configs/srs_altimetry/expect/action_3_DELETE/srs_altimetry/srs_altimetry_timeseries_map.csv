@@ -1,0 +1,2 @@
+file_id,size,url,site_name,instrument,time_coverage_start,time_coverage_end,TEMP_b,PSAL_b,PRES_b,CNDC_b,UCUR_b,VCUR_b,geom
+1,619231,IMOS/SRS/ALTIMETRY/calibration_validation/SRSBASS3B/CTD_timeseries/IMOS_SRSALT_TCS_20170404T231500Z_BASS3B_FV01_SBE37d28m.nc,"Bass Strait, TAS",SBE37,2017-04-04 23:20:00,2017-09-25 21:10:00,t,t,f,t,f,f,0101000020E6100000000000803F236240000000A0794744C0

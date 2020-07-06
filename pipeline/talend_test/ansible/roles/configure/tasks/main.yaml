@@ -1,6 +1,10 @@
 ---
 - set_fact:
     test_config_full_path: "{{ inventory_dir | dirname }}/{{ test_config }}"
+    stack_integration_full_path: "{{ inventory_dir | dirname }}/stack_integration.json"
+
+- include_vars:
+    file: "{{ stack_integration_full_path }}"
 
 - delegate_to: localhost
   stat:

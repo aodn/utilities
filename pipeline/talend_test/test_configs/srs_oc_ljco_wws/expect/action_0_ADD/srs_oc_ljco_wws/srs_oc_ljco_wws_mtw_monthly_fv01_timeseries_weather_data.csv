@@ -1,0 +1,1 @@
+measurement_id,file_id,TIME,LATITUDE,LONGITUDE,AIRT,AIRT_quality_control,ATMP,ATMP_quality_control,RELH,RELH_quality_control,WDIR,WDIR_quality_control,WSPD,WSPD_quality_control,WSPD_max,WSPD_max_quality_control,AIRT_b,ATMP_b,RELH_b,WDIR_b,WSPD_b,WSPD_max_b,geom

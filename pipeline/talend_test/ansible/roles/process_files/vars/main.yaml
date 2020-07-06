@@ -15,5 +15,3 @@ allowed_log_dirs:
 
 harvester_timeout: "{{ timeout|default(800) }}"
 
-host_buckets:
-  pipeline: imos-data-pipeline-talend7
