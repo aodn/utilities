@@ -230,22 +230,6 @@
                      </cit:name>
                   </cit:CI_Series>
                </cit:series>
-               <cit:onlineResource>
-                  <cit:CI_OnlineResource>
-                     <cit:linkage gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:linkage>
-                     <cit:protocol gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:protocol>
-                     <cit:name gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:description>
-                  </cit:CI_OnlineResource>
-               </cit:onlineResource>
             </cit:CI_Citation>
          </mri:citation>
          <mri:abstract gco:nilReason="missing"/>

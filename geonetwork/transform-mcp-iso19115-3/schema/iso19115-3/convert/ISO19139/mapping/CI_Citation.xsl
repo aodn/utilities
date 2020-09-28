@@ -58,14 +58,6 @@
     <xsl:template match="gmd:CI_Citation" mode="from19139to19115-3">
         <xsl:element name="cit:CI_Citation">
             <xsl:apply-templates mode="from19139to19115-3"/>
-            <!-- Special attention is required for CI_ResponsibleParties that are included in the 
-                CI_Citation only for a URL. These are currently identified as those 
-                with no name elements (individualName, organisationName, or positionName)
-            -->
-            <xsl:for-each
-                select=".//gmd:CI_ResponsibleParty[count(gmd:individualName/gco:CharacterString) + count(gmd:organisationName/gco:CharacterString) + count(gmd:positionName/gco:CharacterString) = 0]">
-                <xsl:call-template name="CI_ResponsiblePartyToOnlineResource"/>
-            </xsl:for-each>
         </xsl:element>
     </xsl:template>
 

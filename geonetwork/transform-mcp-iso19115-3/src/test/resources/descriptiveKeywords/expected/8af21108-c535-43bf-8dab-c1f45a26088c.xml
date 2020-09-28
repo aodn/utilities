@@ -124,16 +124,6 @@
                            </cit:party>
                         </cit:CI_Responsibility>
                      </cit:citedResponsibleParty>
-                     <cit:onlineResource>
-                        <cit:CI_OnlineResource>
-                           <cit:linkage>
-                              <gco:CharacterString>http://gcmd.nasa.gov/index.html</gco:CharacterString>
-                           </cit:linkage>
-                           <cit:protocol>
-                              <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
-                           </cit:protocol>
-                        </cit:CI_OnlineResource>
-                     </cit:onlineResource>
                   </cit:CI_Citation>
                </mri:thesaurusName>
             </mri:MD_Keywords>
@@ -198,16 +188,6 @@
                            </cit:party>
                         </cit:CI_Responsibility>
                      </cit:citedResponsibleParty>
-                     <cit:onlineResource>
-                        <cit:CI_OnlineResource>
-                           <cit:linkage>
-                              <gco:CharacterString>http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1297.01998?OpenDocument</gco:CharacterString>
-                           </cit:linkage>
-                           <cit:protocol>
-                              <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
-                           </cit:protocol>
-                        </cit:CI_OnlineResource>
-                     </cit:onlineResource>
                   </cit:CI_Citation>
                </mri:thesaurusName>
             </mri:MD_Keywords>
@@ -295,16 +275,6 @@
                            </cit:party>
                         </cit:CI_Responsibility>
                      </cit:citedResponsibleParty>
-                     <cit:onlineResource>
-                        <cit:CI_OnlineResource>
-                           <cit:linkage>
-                              <gco:CharacterString>http://www.aodc.gov.au/</gco:CharacterString>
-                           </cit:linkage>
-                           <cit:protocol>
-                              <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
-                           </cit:protocol>
-                        </cit:CI_OnlineResource>
-                     </cit:onlineResource>
                   </cit:CI_Citation>
                </mri:thesaurusName>
             </mri:MD_Keywords>

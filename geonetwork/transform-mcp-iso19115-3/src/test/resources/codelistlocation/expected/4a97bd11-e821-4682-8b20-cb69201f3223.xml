@@ -300,19 +300,6 @@
                <cit:otherCitationDetails>
                   <gco:CharacterString>The citation in a list of references is: "IMOS. [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access]".</gco:CharacterString>
                </cit:otherCitationDetails>
-               <cit:onlineResource>
-                  <cit:CI_OnlineResource>
-                     <cit:linkage>
-                        <gco:CharacterString>www.imos.org.au/html</gco:CharacterString>
-                     </cit:linkage>
-                     <cit:protocol>
-                        <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
-                     </cit:protocol>
-                     <cit:name>
-                        <gco:CharacterString>Website for the Integrated Marine Observing System</gco:CharacterString>
-                     </cit:name>
-                  </cit:CI_OnlineResource>
-               </cit:onlineResource>
             </cit:CI_Citation>
          </mri:citation>
          <mri:abstract>
