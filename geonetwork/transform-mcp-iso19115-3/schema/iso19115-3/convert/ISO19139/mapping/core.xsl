@@ -528,30 +528,9 @@
   gmd:identificationInformation templates
   -->
   <xsl:template match="/*/gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty" mode="from19139to19115-3">
-    <xsl:if test="not(preceding-sibling::gmd:citedResponsibleParty) and /*/gmd:dataSetURI">
-      <!-- **********************************************************************
-      The first citedResponsibleParty is special because the identifier
-      created from the gmd:dataSetURI goes before it.
-      WARNING: A record with a dataSetIdentifier and no
-      citedResponsibleParties will fail.
-      ********************************************************************** -->
-      <cit:identifier>
-        <mcc:MD_Identifier>
-          <mcc:code>
-            <gco:CharacterString>
-              <xsl:value-of select="/*/gmd:dataSetURI/gcoold:CharacterString"/>
-            </gco:CharacterString>
-          </mcc:code>
-        </mcc:MD_Identifier>
-      </cit:identifier>
-    </xsl:if>
-    <!-- Avoid putting out empty citedResponsibleParties for just onlineResources (responsible parties without names) -->
-    <xsl:if
-      test="count(gmd:CI_ResponsibleParty/gmd:individualName/gcoold:CharacterString) + count(gmd:CI_ResponsibleParty/gmd:organisationName/gcoold:CharacterString) + count(gmd:CI_ResponsibleParty/gmd:positionName/gcoold:CharacterString) != 0">
-      <cit:citedResponsibleParty>
-        <xsl:apply-templates mode="from19139to19115-3"/>
-      </cit:citedResponsibleParty>
-    </xsl:if>
+    <cit:citedResponsibleParty>
+      <xsl:apply-templates mode="from19139to19115-3"/>
+    </cit:citedResponsibleParty>
   </xsl:template>
   <xsl:template match="/*/gmd:identificationInfo/*/gmd:resourceSpecificUsage/gmd:MD_Usage/gmd:usageDateTime" mode="from19139to19115-3">
     <mri:usageDateTime>
