@@ -528,9 +528,13 @@
   gmd:identificationInformation templates
   -->
   <xsl:template match="/*/gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty" mode="from19139to19115-3">
-    <cit:citedResponsibleParty>
-      <xsl:apply-templates mode="from19139to19115-3"/>
-    </cit:citedResponsibleParty>
+    <!-- Avoid putting out empty citedResponsibleParties for just onlineResources (responsible parties without names) -->
+    <xsl:if
+      test="count(gmd:CI_ResponsibleParty/gmd:individualName/gcoold:CharacterString) + count(gmd:CI_ResponsibleParty/gmd:organisationName/gcoold:CharacterString) + count(gmd:CI_ResponsibleParty/gmd:positionName/gcoold:CharacterString) != 0">
+      <cit:citedResponsibleParty>
+        <xsl:apply-templates mode="from19139to19115-3"/>
+      </cit:citedResponsibleParty>
+    </xsl:if>
   </xsl:template>
   <xsl:template match="/*/gmd:identificationInfo/*/gmd:resourceSpecificUsage/gmd:MD_Usage/gmd:usageDateTime" mode="from19139to19115-3">
     <mri:usageDateTime>
@@ -588,13 +592,13 @@
         <xsl:call-template name="writeCodelistElement">
           <xsl:with-param name="elementName" select="'mri:associationType'"/>
           <xsl:with-param name="codeListName" select="'mri:DS_AssociationTypeCode'"/>
-          <xsl:with-param name="codeListValue" select="./gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode"/>
+          <xsl:with-param name="codeListValue" select="./gmd:MD_AggregateInformation/gmd:associationType/gmd:DS_AssociationTypeCode/@codeListValue"/>
           <xsl:with-param name="required" select="true()"/>
         </xsl:call-template>
         <xsl:call-template name="writeCodelistElement">
           <xsl:with-param name="elementName" select="'mri:initiativeType'"/>
           <xsl:with-param name="codeListName" select="'mri:DS_InitiativeTypeCode'"/>
-          <xsl:with-param name="codeListValue" select="./gmd:MD_AggregateInformation/gmd:initiativeType/gmd:DS_InitiativeTypeCode"/>
+          <xsl:with-param name="codeListValue" select="./gmd:MD_AggregateInformation/gmd:initiativeType/gmd:DS_InitiativeTypeCode/@codeListValue"/>
         </xsl:call-template>
       </xsl:element>
     </mri:associatedResource>
@@ -609,9 +613,11 @@
         <xsl:apply-templates select="ancestor::gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier" mode="from19139to19115-3"/>
       </cit:identifier>
     </xsl:if>
-    <cit:citedResponsibleParty>
-      <xsl:apply-templates mode="from19139to19115-3"/>
-    </cit:citedResponsibleParty>
+    <xsl:if test="gmd:CI_ResponsibleParty[count(gmd:individualName/gcoold:CharacterString) + count(gmd:organisationName/gcoold:CharacterString) + count(gmd:positionName/gcoold:CharacterString) > 0]">
+      <cit:citedResponsibleParty>
+        <xsl:apply-templates mode="from19139to19115-3"/>
+      </cit:citedResponsibleParty>
+    </xsl:if>
   </xsl:template>
   <!--
     gmd:referenceSystemInformation templates

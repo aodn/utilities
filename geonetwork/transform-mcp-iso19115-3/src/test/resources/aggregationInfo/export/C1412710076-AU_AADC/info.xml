@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info version="1.1">
+  <general>
+    <createDate>2020-02-17T20:01:01</createDate>
+    <changeDate>2020-02-17T20:10:44</changeDate>
+    <schema>iso19139</schema>
+    <isTemplate>false</isTemplate>
+    <localId>1073</localId>
+    <format>full</format>
+    <rating>0</rating>
+    <popularity>253</popularity>
+    <uuid>C1412710076-AU_AADC</uuid>
+    <siteId>8d77e503-5ddb-4079-8e5e-02699e9219e3</siteId>
+    <siteName>University of Tasmania, Australia</siteName>
+  </general>
+  <categories />
+  <privileges>
+    <group name="all">
+      <operation name="view" />
+      <operation name="download" />
+      <operation name="dynamic" />
+      <operation name="featured" />
+    </group>
+  </privileges>
+  <public />
+  <private />
+</info>
+
