@@ -31,6 +31,12 @@
         <xsl:with-param name="typeCode" select="'theme'"/>
         <xsl:with-param name="defaultThesaurus" select="'parameter'"/>
       </xsl:apply-templates>
+      <!-- Add keywords for parameters with only a short name - as per IMAS usage -->
+      <xsl:apply-templates mode="map-term" select=".//mcp:dataParameter[not(.//mcp:parameterName[*/*/mcp:DP_TypeCode/@codeListValue='longName'])]
+                                                    //mcp:parameterName[*/mcp:type/*/@codeListValue='shortName']">
+        <xsl:with-param name="typeCode" select="'theme'"/>
+        <xsl:with-param name="defaultThesaurus" select="'parameter'"/>
+      </xsl:apply-templates>
       <xsl:apply-templates mode="map-term" select=".//mcp:parameterDeterminationInstrument[*/*/mcp:DP_TypeCode/@codeListValue='longName']">
         <xsl:with-param name="typeCode" select="'instrument'"/>
         <xsl:with-param name="defaultThesaurus" select="'instrument'"/>

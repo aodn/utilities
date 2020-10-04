@@ -57,7 +57,43 @@
     </xd:doc>
     <xsl:template match="gmd:CI_Citation" mode="from19139to19115-3">
         <xsl:element name="cit:CI_Citation">
-            <xsl:apply-templates mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:title" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:alternateTitle" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:date" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:edition" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:editionDate" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:identifier" mode="from19139to19115-3"/>
+
+            <!-- Add any datasetUri as an identifier in the resource (dataIdentification) citation -->
+
+            <xsl:if test="../../..[name()='gmd:identificationInfo'] and /*/gmd:dataSetURI">
+              <cit:identifier>
+                <mcc:MD_Identifier>
+                  <mcc:code>
+                    <gco:CharacterString>
+                      <xsl:value-of select="/*/gmd:dataSetURI/gcoold:CharacterString"/>
+                    </gco:CharacterString>
+                  </mcc:code>
+                </mcc:MD_Identifier>
+              </cit:identifier>
+            </xsl:if>
+
+            <xsl:apply-templates select="gmd:citedResponsibleParty" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:presentationForm" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:series" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:otherCitationDetails" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:collectiveTitle" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:ISBN" mode="from19139to19115-3"/>
+            <xsl:apply-templates select="gmd:ISSN" mode="from19139to19115-3"/>
+
+            <!-- Special attention is required for CI_ResponsibleParties that are included in the
+                CI_Citation only for a URL. These are currently identified as those
+                with no name elements (individualName, organisationName, or positionName)
+            -->
+            <xsl:for-each
+                select=".//gmd:CI_ResponsibleParty[count(gmd:individualName/gcoold:CharacterString) + count(gmd:organisationName/gcoold:CharacterString) + count(gmd:positionName/gcoold:CharacterString) = 0]">
+                <xsl:call-template name="CI_ResponsiblePartyToOnlineResource"/>
+            </xsl:for-each>
         </xsl:element>
     </xsl:template>
 
