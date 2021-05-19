@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
+<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="GeoserverStressTest" enabled="true">
       <stringProp name="TestPlan.comments">applies test requests to the layer specified assumes</stringProp>
@@ -9,7 +9,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="layername" elementType="Argument">
             <stringProp name="Argument.name">layername</stringProp>
-            <stringProp name="Argument.value">example_profile_map</stringProp>
+            <stringProp name="Argument.value">srs_oc_bodbaw_trajectory_profile_map</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="workspace" elementType="Argument">
@@ -19,7 +19,7 @@
           </elementProp>
           <elementProp name="server" elementType="Argument">
             <stringProp name="Argument.name">server</stringProp>
-            <stringProp name="Argument.value">geoserver-yourname-fullstack.dev.aodn.org.au</stringProp>
+            <stringProp name="Argument.value">geoserver-aodnstack-cmrose.dev.aodn.org.au</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
