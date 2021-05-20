@@ -99,8 +99,10 @@ export_record() {
     echo "Exporting '$record_uuid' -> '$dir/$record_uuid'"
     local tmp_mef=`mktemp`
 
-    if [[ $gn_user != "" || $gn_password != "" ]]; then
+    if [[ $gn_user != "" && $gn_password != "" ]]; then
       gn_user_pass_arg='-u '$gn_user':'$gn_password
+    else
+      gn_user_pass_arg=""
     fi
 
     curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -d "uuid=$record_uuid&format=full&version=2&relation=false" -o $tmp_mef && \
