@@ -432,18 +432,18 @@ def main():
 
         file_19193 = os.path.join(metadata_dir, "metadata.xml.txt")
         file_19115 = os.path.join(metadata_dir, "metadata.iso19115-3.2018.xml.txt")
-        # try:
-        #     unmatched_19139, unmatched_19115, matched_lines, tag_values_dict, mapped_tags = match_tags(metadata_dir, file_19193, file_19115, mapped_tags, dest_dir)
-        # except TypeError:
-        #     continue
-        # overall_matched_lines.extend(matched_lines)
-        # overall_tag_values_dict = update_tag_values_dict(overall_tag_values_dict, tag_values_dict)
-        # for tag, value in unmatched_19139:
-        #     if tag not in set([pair[0] for pair in unmatched_content_19139]):
-        #         unmatched_content_19139.append([tag, value])
-        # for tag, value in unmatched_19115:
-        #     if tag not in set([pair[0] for pair in unmatched_content_19115]):
-        #         unmatched_content_19115.append([tag, value])
+        try:
+            unmatched_19139, unmatched_19115, matched_lines, tag_values_dict, mapped_tags = match_tags(metadata_dir, file_19193, file_19115, mapped_tags, dest_dir)
+        except TypeError:
+            continue
+        overall_matched_lines.extend(matched_lines)
+        overall_tag_values_dict = update_tag_values_dict(overall_tag_values_dict, tag_values_dict)
+        for tag, value in unmatched_19139:
+            if tag not in set([pair[0] for pair in unmatched_content_19139]):
+                unmatched_content_19139.append([tag, value])
+        for tag, value in unmatched_19115:
+            if tag not in set([pair[0] for pair in unmatched_content_19115]):
+                unmatched_content_19115.append([tag, value])
 
     # Write results
     with open(os.path.join(dest_dir, "overall_matched_results.csv"), "w") as result_file:
