@@ -312,7 +312,7 @@ Options:
 main() {
     # parse options with getopt
     local tmp_getops
-    tmp_getops=`getopt hGo:l:r:t:g:u:p:y:z:a: $*`
+    tmp_getops=`getopt hGo:l:r:t:g:u:p:y:z:s: $*`
     [ $? != 0 ] && usage
 
     set -- $tmp_getops

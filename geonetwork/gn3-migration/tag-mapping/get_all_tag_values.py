@@ -54,8 +54,8 @@ def get_all_tag_values(source_dir, dest_dir):
     with open(os.path.join(dest_dir, "tag_values.csv"), "w") as result_file:
         for tag, value_list in tag_values_dict.items():
             result_file.write(tag + "\n")
-            for value in set(value_list):
-                result_file.write("'', '%s'\n" % value)
+            # for value in set(value_list):
+            #     result_file.write("'', '%s'\n" % value)
 
 
 get_all_tag_values(args.source_dir, args.dest_dir)
