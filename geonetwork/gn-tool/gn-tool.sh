@@ -106,11 +106,18 @@ export_record() {
     fi
 
     if curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -d "uuid=$record_uuid&format=full&version=2&relation=false" -o $tmp_mef ; then
-        if unzip -o -d $dir $tmp_mef ; then
+      if unzip -o -d $dir $tmp_mef ; then
+        echo "Export of '$record_uuid' succeeded"
+      else
+        echo "Export of '$record_uuid' with mef version 2.0 failed. Trying version 1.0"
+        if curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -d "uuid=$record_uuid&format=full&relation=false" -o $tmp_mef ; then
+          mkdir -p "$dir/$record_uuid/metadata"
+          unzip -o -d "$dir/$record_uuid/metadata" $tmp_mef
           echo "Export of '$record_uuid' succeeded"
         else
           echo "Export of '$record_uuid' failed"
         fi
+      fi
     fi
     rm -f $tmp_mef
 }
