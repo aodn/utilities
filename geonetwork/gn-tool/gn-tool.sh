@@ -156,7 +156,6 @@ export_records() {
         if [ -f $record_uuid ]; then
             for this_record_uuid in `get_all_records_from_file $record_uuid $uuid_tag`; do
                 export_record $this_record_uuid $record_dir $gn_addr $gn_user $gn_password
-#                export_record $this_record_id $record_dir $gn_addr $gn_user $gn_password
                 let retval=$retval+$?
             done
         else
