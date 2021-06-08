@@ -1,0 +1,25 @@
+encoding: iso8859-1
+format: csv
+hashing: md5
+name: bgc_phyto_raw
+path: schemas/BGC_Phyto_Raw.csv
+profile: tabular-schemas-resource
+schema:
+  fields:
+    - name: SAMPLE
+      type: integer
+    - name: TAXON_NAME
+      type: string
+    - name: TAXON_GROUP
+      type: string
+    - name: GENUS
+      type: string
+    - name: SPECIES
+      type: string
+    - name: SPCODE
+      type: integer
+    - name: CELL_L
+      type: number
+    - name: BIOVOLUME_UM3L
+      type: number
+scheme: file

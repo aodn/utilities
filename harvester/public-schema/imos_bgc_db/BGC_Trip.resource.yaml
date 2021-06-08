@@ -1,0 +1,27 @@
+encoding: utf-8
+format: csv
+hashing: md5
+name: bgc_trip
+path: schemas/BGC_Trip.csv
+profile: tabular-schemas-resource
+schema:
+  fields:
+    - name: PROJECTNAME
+      type: string
+    - name: TRIP_CODE
+      type: string
+    - name: SAMPLE
+      type: integer
+    - name: STATION
+      type: string
+    - name: LONGITUDE
+      type: number
+    - name: LATITUDE
+      type: number
+    - name: SAMPLEDATELOCAL
+      type: datetime
+    - name: BIOMASS_MGM3
+      type: number
+    - name: SAMPLETYPE
+      type: string
+scheme: file
