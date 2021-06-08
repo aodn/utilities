@@ -6,16 +6,34 @@
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 version="2.0">
 
-
-    <xsl:output method="text"/>
-
+    <xsl:output method="xml" indent="yes"/>
     <xsl:variable name="main-root" select="/"/>
 
-    <xsl:template match="/">
+    <xsl:template match="@*|node()">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+    </xsl:template>
 
-        <xsl:text>&#xa;MCP 1.4, </xsl:text><xsl:value-of select="count(//mcp:MD_Metadata)"/>
-        <xsl:text>&#xa;MCP 2.0, </xsl:text><xsl:value-of select="count(//mcp-2.0:MD_Metadata)"/>
-        <xsl:text>&#xa;ISO19139, </xsl:text><xsl:value-of select="count(//gmd:MD_Metadata)"/>
+    <xsl:template match="/groups/group">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()"/>
+            <report>
+                <xsl:apply-templates mode="report" select="records"/>
+                <xsl:text>&#xa;</xsl:text>
+            </report>
+        </xsl:copy>
+    </xsl:template>
+
+    <xsl:template match="records" mode="report" >
+
+<!--        <xsl:message>BEGIN</xsl:message>-->
+<!--        <xsl:message select="node()" />-->
+<!--        <xsl:message>END</xsl:message>-->
+
+        <xsl:text>&#xa;MCP 1.4, </xsl:text><xsl:value-of select="count(mcp:MD_Metadata)"/>
+        <xsl:text>&#xa;MCP 2.0, </xsl:text><xsl:value-of select="count(mcp-2.0:MD_Metadata)"/>
+        <xsl:text>&#xa;ISO19139, </xsl:text><xsl:value-of select="count(gmd:MD_Metadata)"/>
         <xsl:text>&#xa;</xsl:text>
 
         <xsl:variable name="contributors-set" as="node()*">
@@ -135,12 +153,11 @@
 
     </xsl:template>
 
-
     <!-- List contributors URL -->
     <xsl:template name="findContributors">
         <xsl:param name="pot_text"/>
 
-        <xsl:for-each select="$main-root//gmd:distributionInfo//gmd:CI_OnlineResource/gmd:description/gco:CharacterString[starts-with(., $pot_text)]/ancestor::node()/gmd:linkage/gmd:URL/text()" >
+        <xsl:for-each select="gmd:distributionInfo//gmd:CI_OnlineResource/gmd:description/gco:CharacterString[starts-with(., $pot_text)]/ancestor::node()/gmd:linkage/gmd:URL/text()" >
             <xsl:value-of select="substring-before(substring-after(., '://'), '/')"/>
         </xsl:for-each>
     </xsl:template>
@@ -151,7 +168,7 @@
         <xsl:param name="pot_url"/>
         <xsl:param name="separator"/>
 
-        <xsl:for-each select="$main-root//gmd:distributionInfo//gmd:CI_OnlineResource/gmd:description/gco:CharacterString[starts-with(., $pot_text)]/ancestor::node()/gmd:linkage" >
+        <xsl:for-each select="gmd:distributionInfo//gmd:CI_OnlineResource/gmd:description/gco:CharacterString[starts-with(., $pot_text)]/ancestor::node()/gmd:linkage" >
             <xsl:choose>
                 <xsl:when test="substring-after(./gmd:URL, $separator)[starts-with(., $pot_url)]">
                     <xsl:value-of select="./ancestor-or-self::node()/gmd:fileIdentifier/gco:CharacterString/node()"/>
@@ -163,7 +180,7 @@
     <!-- List contributors orgName -->
     <xsl:template name="findOrgNameMatchedRecords">
         <xsl:param name="pot_text"/>
-        <xsl:for-each select="$main-root//gmd:distributionInfo" >
+        <xsl:for-each select="gmd:distributionInfo" >
             <xsl:choose>
                 <xsl:when test="not(.//gmd:CI_OnlineResource/gmd:description/gco:CharacterString[text()= $pot_text])">
                     <xsl:copy-of select=".//gmd:distributor//gmd:organisationName/gco:CharacterString" />
@@ -176,7 +193,7 @@
     <xsl:template name="getOrganisationNameMatchedRecords" as="node()*">
         <xsl:param name="orgName"/>
 
-        <xsl:for-each select="$main-root//gmd:distributionInfo" >
+        <xsl:for-each select="gmd:distributionInfo" >
             <xsl:choose>
                 <xsl:when test=".//gmd:distributor//gmd:organisationName/gco:CharacterString[starts-with(., $orgName)]">
                     <xsl:copy-of select="./ancestor-or-self::node()/gmd:fileIdentifier/gco:CharacterString/node()"/>
@@ -188,7 +205,7 @@
     <!-- List Unknown contributors URL -->
     <xsl:template name="findUnknownContributors">
         <xsl:param name="pot_text"/>
-        <xsl:for-each select="$main-root//gmd:distributionInfo" >
+        <xsl:for-each select="gmd:distributionInfo" >
             <xsl:choose>
 <!--                <xsl:when test="(not(.//gmd:CI_OnlineResource/gmd:description/gco:CharacterString[starts-with(., $pot_text)]) and not(.//gmd:distributor//gmd:organisationName/gco:CharacterString[text() != '']))">-->
                 <xsl:when test="(not(.//gmd:CI_OnlineResource/gmd:description/gco:CharacterString[starts-with(., $pot_text)]))">
@@ -240,7 +257,7 @@
         <xsl:param name="records"/>
         <results>
             <xsl:for-each select="$records">
-                <xsl:variable name="record" select="$main-root//gmd:fileIdentifier/gco:CharacterString[node()=current()]"/>
+                <xsl:variable name="record" select="gmd:fileIdentifier/gco:CharacterString[node()=current()]"/>
                     <xsl:call-template name="countEachMetadataElement">
                         <xsl:with-param name="record" select="$record"/>
                     </xsl:call-template>
