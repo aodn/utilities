@@ -18,6 +18,8 @@
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
             <report>
+                <xsl:text>### Group: </xsl:text><xsl:value-of select="name"/><xsl:text>&#xa;</xsl:text>
+                <xsl:text>&#xa;</xsl:text>
                 <xsl:apply-templates mode="report" select="records"/>
                 <xsl:text>&#xa;</xsl:text>
             </report>
@@ -28,11 +30,6 @@
 
         <xsl:variable name="main_root" select="."/>
 
-        <xsl:text>&#xa;MCP 1.4, </xsl:text><xsl:value-of select="count($main_root/mcp:MD_Metadata)"/>
-        <xsl:text>&#xa;MCP 2.0, </xsl:text><xsl:value-of select="count($main_root/mcp-2.0:MD_Metadata)"/>
-        <xsl:text>&#xa;ISO19139, </xsl:text><xsl:value-of select="count($main_root/gmd:MD_Metadata)"/>
-        <xsl:text>&#xa;</xsl:text>
-
         <xsl:variable name="contributors-set" as="node()*">
             <xsl:call-template name="findContributors">
                 <xsl:with-param name="pot_text" select="'Point of truth URL of this metadata record'"/>
@@ -40,8 +37,14 @@
             </xsl:call-template>
         </xsl:variable>
 
-        <xsl:text>&#xa;Known, </xsl:text>
-        <xsl:value-of select="count($contributors-set)"/>
+        <xsl:text>| Metadata Schema | No of metadata records |&#xa;</xsl:text>
+        <xsl:text>|--|:--:|&#xa;</xsl:text>
+        <xsl:text>| MCP 1.4 | </xsl:text><xsl:value-of select="count($main_root/mcp:MD_Metadata)"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| MCP 2.0 | </xsl:text><xsl:value-of select="count($main_root/mcp-2.0:MD_Metadata)"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| ISO19139 | </xsl:text><xsl:value-of select="count($main_root/gmd:MD_Metadata)"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>&#xa;</xsl:text>
+        <xsl:text>| Contributors | No of metadata records |&#xa;</xsl:text>
+        <xsl:text>|--|:--:|&#xa;</xsl:text>
 
         <xsl:for-each select="distinct-values($contributors-set)">
             <xsl:variable name="contributor" select="." />
@@ -55,9 +58,9 @@
                 </xsl:call-template>
             </xsl:variable>
 
-            <xsl:text>&#xa;</xsl:text><xsl:value-of select="$contributor"/><xsl:text>, </xsl:text>
-            <xsl:value-of select="count($contributor-records)"/>
+            <xsl:text>| </xsl:text><xsl:value-of select="$contributor"/><xsl:text> | </xsl:text><xsl:value-of select="count($contributor-records)"/><xsl:text> |&#xa;</xsl:text>
         </xsl:for-each>
+        <xsl:text>&#xa;&#xa;</xsl:text>
 
         <xsl:variable name="unknown-contributors-records" as="node()*">
             <xsl:call-template name="findUnknownContributors">
@@ -66,8 +69,10 @@
             </xsl:call-template>
         </xsl:variable>
 
-        <xsl:text>&#xa;Unknown, </xsl:text>
-        <xsl:copy-of select="count($unknown-contributors-records)"/>
+<!--        <xsl:text>&#xa;Known, </xsl:text>-->
+<!--        <xsl:value-of select="count($contributors-set)"/>-->
+<!--        <xsl:text>&#xa;Unknown, </xsl:text>-->
+<!--        <xsl:copy-of select="count($unknown-contributors-records)"/>-->
 
         <xsl:for-each select="distinct-values($contributors-set)">
             <xsl:variable name="contributor" select="." />
@@ -259,37 +264,39 @@
         <xsl:param name="contributor"/>
         <xsl:param name="varcountMetadataElements"/>
 
-        <xsl:text>&#xa;&#xa;</xsl:text><xsl:value-of select="$contributor"/><xsl:text>, </xsl:text><xsl:value-of select="count($varcountMetadataElements/results/uuid)"/>
+        <xsl:text>| MCP Elements | </xsl:text><xsl:value-of select="$contributor"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>|--|:--:|&#xa;</xsl:text>
+        <!--        <xsl:value-of select="count($varcountMetadataElements/results/uuid)"/>-->
 <!--        <xsl:text>&#xa;records count:</xsl:text><xsl:copy-of select="count($varcountMetadataElements/results/uuid)"/>-->
-        <xsl:text>&#xa;DP_DataParameters, </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/DP_DataParameters)"/>
-        <xsl:text>&#xa;DP_DataParameters:parameterName, </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/parameterName)"/>
-        <xsl:text>&#xa;DP_DataParameters:parameterAnalysisMethod:DP_Term, </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/parameterAnalysisMethod)"/>
-        <xsl:text>&#xa;MD_Constraints:otherConstraints:FreeText, </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/otherConstraints)"/>
-        <xsl:text>&#xa;MD_DataIdentification:samplingFrequency, </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/samplingFrequency/@count)"/>
+        <xsl:text>| DP_DataParameters | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/DP_DataParameters)"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| DP_DataParameters:parameterName | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/parameterName)"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| DP_DataParameters:parameterAnalysisMethod:DP_Term | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/parameterAnalysisMethod)"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| MD_Constraints:otherConstraints:FreeText | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/otherConstraints)"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| MD_DataIdentification:samplingFrequency | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/samplingFrequency/@count)"/><xsl:text> |&#xa;</xsl:text>
         <xsl:for-each-group select="$varcountMetadataElements/results/samplingFrequency/MD_MaintenanceFrequencyCode" group-by="@codeListValue">
-            <xsl:text>&#xa;MD_DataIdentification:samplingFrequency:MD_MaintenanceFrequencyCode (</xsl:text><xsl:value-of select="current-grouping-key()"/><xsl:text>), </xsl:text><xsl:value-of select="count(current-group())"/>
+            <xsl:text>| MD_DataIdentification:samplingFrequency:MD_MaintenanceFrequencyCode (</xsl:text><xsl:value-of select="current-grouping-key()"/><xsl:text>) | </xsl:text><xsl:value-of select="count(current-group())"/><xsl:text> |&#xa;</xsl:text>
         </xsl:for-each-group>
-        <xsl:text>&#xa;EX_TemporalExtent:currency, </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/currency/@count)"/>
+        <xsl:text>| EX_TemporalExtent:currency | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/currency/@count)"/><xsl:text> |&#xa;</xsl:text>
         <xsl:for-each-group select="$varcountMetadataElements/results/currency/MD_CurrencyTypeCode" group-by="@codeListValue">
-            <xsl:text>&#xa;EX_TemporalExtent:currency:MD_CurrencyTypeCode (</xsl:text><xsl:value-of select="current-grouping-key()"/><xsl:text>), </xsl:text><xsl:value-of select="count(current-group())"/>
+            <xsl:text>| EX_TemporalExtent:currency:MD_CurrencyTypeCode (</xsl:text><xsl:value-of select="current-grouping-key()"/><xsl:text>) | </xsl:text><xsl:value-of select="count(current-group())"/><xsl:text> |&#xa;</xsl:text>
         </xsl:for-each-group>
-        <xsl:text>&#xa;EX_TemporalExtent:temporalAggregation, </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/temporalAggregation/@count)"/>
+        <xsl:text>| EX_TemporalExtent:temporalAggregation | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/temporalAggregation/@count)"/><xsl:text> |&#xa;</xsl:text>
         <xsl:for-each-group select="$varcountMetadataElements/results/temporalAggregation/MD_TemporalAggregationUnitCode" group-by="@codeListValue">
-            <xsl:text>&#xa;EX_TemporalExtent:temporalAggregation:MD_TemporalAggregationUnitCode (</xsl:text><xsl:value-of select="current-grouping-key()"/><xsl:text>), </xsl:text><xsl:value-of select="count(current-group())"/>
+            <xsl:text>| EX_TemporalExtent:temporalAggregation:MD_TemporalAggregationUnitCode (</xsl:text><xsl:value-of select="current-grouping-key()"/><xsl:text>) | </xsl:text><xsl:value-of select="count(current-group())"/><xsl:text> |&#xa;</xsl:text>
         </xsl:for-each-group>
-        <xsl:text>&#xa;MD_DataIdentification:TC_TaxonomicCoverage, </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/TC_TaxonomicCoverage)"/>
-        <xsl:text>&#xa;CI_DateTypeCode (unknown), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_DateTypeCode[@codeListValue = 'unknown'])"/>
-        <xsl:text>&#xa;CI_RoleCode (coinvestigator), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'coinvestigator'])"/>
-        <xsl:text>&#xa;CI_RoleCode (licensor), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'licensor'])"/>
-        <xsl:text>&#xa;CI_RoleCode (researchassistant), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'researchassistant'])"/>
-        <xsl:text>&#xa;CI_RoleCode (IPowner), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'IPowner'])"/>
-        <xsl:text>&#xa;CI_RoleCode (moralRightsOwner), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'moralRightsOwner'])"/>
-        <xsl:text>&#xa;CI_RoleCode (metadataContact), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'metadataContact'])"/>
-        <xsl:text>&#xa;MD_ScopeCode (observed), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'observed'])"/>
-        <xsl:text>&#xa;MD_ScopeCode (derived), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'derived'])"/>
-        <xsl:text>&#xa;MD_ScopeCode (publication), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'publication'])"/>
-        <xsl:text>&#xa;MD_ScopeCode (dataObject), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'dataObject'])"/>
-        <xsl:text>&#xa;MD_ScopeCode (project), </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'project'])"/>
+        <xsl:text>| MD_DataIdentification:TC_TaxonomicCoverage | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/TC_TaxonomicCoverage)"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| CI_DateTypeCode (unknown) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_DateTypeCode[@codeListValue = 'unknown'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| CI_RoleCode (coinvestigator) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'coinvestigator'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| CI_RoleCode (licensor) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'licensor'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| CI_RoleCode (researchassistant) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'researchassistant'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| CI_RoleCode (IPowner) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'IPowner'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| CI_RoleCode (moralRightsOwner) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'moralRightsOwner'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| CI_RoleCode (metadataContact) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'metadataContact'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| MD_ScopeCode (observed) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'observed'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| MD_ScopeCode (derived) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'derived'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| MD_ScopeCode (publication) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'publication'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| MD_ScopeCode (dataObject) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'dataObject'])"/><xsl:text> |&#xa;</xsl:text>
+        <xsl:text>| MD_ScopeCode (project) | </xsl:text><xsl:value-of select="sum($varcountMetadataElements/results/CI_RoleCode[@codeListValue = 'project'])"/><xsl:text> |&#xa;</xsl:text>
     </xsl:template>
 
 
