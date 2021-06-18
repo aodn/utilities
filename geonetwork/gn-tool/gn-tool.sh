@@ -105,9 +105,21 @@ export_record() {
       gn_user_pass_arg=""
     fi
 
-    curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -d "uuid=$record_uuid&format=full&version=2&relation=false" -o $tmp_mef && \
-        unzip -o -d $dir $tmp_mef && \
-        rm -f $tmp_mef
+    if curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -d "uuid=$record_uuid&format=full&version=2&relation=false" -o $tmp_mef ; then
+      if unzip -o -d $dir $tmp_mef ; then
+        echo "Export of '$record_uuid' succeeded"
+      else
+        echo "Export of '$record_uuid' with mef version 2.0 failed. Trying version 1.0"
+        if curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -d "uuid=$record_uuid&format=full&relation=false" -o $tmp_mef ; then
+          mkdir -p "$dir/$record_uuid/metadata"
+          unzip -o -d "$dir/$record_uuid/metadata" $tmp_mef
+          echo "Export of '$record_uuid' succeeded"
+        else
+          echo "Export of '$record_uuid' failed"
+        fi
+      fi
+    fi
+    rm -f $tmp_mef
 }
 
 # export geonetwork records
@@ -312,7 +324,7 @@ Options:
 main() {
     # parse options with getopt
     local tmp_getops
-    tmp_getops=`getopt hGo:l:r:t:g:u:p:y:z:a: $*`
+    tmp_getops=`getopt hGo:l:r:t:g:u:p:y:z:s: $*`
     [ $? != 0 ] && usage
 
     set -- $tmp_getops
