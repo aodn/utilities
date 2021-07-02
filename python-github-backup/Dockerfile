@@ -23,7 +23,7 @@ RUN wget -q https://bootstrap.pypa.io/pip/3.5/get-pip.py \
     && rm -rf get-pip.py
 
 RUN pip install \
-	github-backup==0.33.0 \
+	github-backup==0.39.0 \
 	awscli==1.18.39
 	
 RUN useradd --create-home --no-log-init --shell /bin/bash --uid $BUILDER_UID builder
