@@ -28,7 +28,7 @@ public class TransformCatalogueTest {
     @After
     public void tearDown() throws IOException {
         // Delete test directory
-        deleteFolder(testDir);
+        //deleteFolder(testDir);
     }
 
     @Test
@@ -164,6 +164,12 @@ public class TransformCatalogueTest {
     @Test
     public void testEnvironmentDescription() throws IOException {
         testFiles("environmentDescription");
+    }
+
+
+    @Test
+    public void codeListValue() throws IOException {
+        testFiles("codelistvalue");
     }
 
     @Test
