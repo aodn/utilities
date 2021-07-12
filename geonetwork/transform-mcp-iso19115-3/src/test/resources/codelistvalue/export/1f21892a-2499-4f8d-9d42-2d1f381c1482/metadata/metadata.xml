@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mcp:MD_Metadata xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:geonet="http://www.fao.org/geonetwork" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" gco:isoType="gmd:MD_Metadata" xsi:schemaLocation="http://schemas.aodn.org.au/mcp-2.0 http://schemas.aodn.org.au/mcp-2.0/schema.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd http://rs.tdwg.org/dwc/terms/ http://schemas.aodn.org.au/mcp-2.0/mcpDwcTerms.xsd">
+  <gmd:fileIdentifier xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:CharacterString>1f21892a-2499-4f8d-9d42-2d1f381c1482</gco:CharacterString>
+  </gmd:fileIdentifier>
+  <gmd:language xmlns:gmd="http://www.isotc211.org/2005/gmd" gco:nilReason="missing">
+    <gco:CharacterString />
+  </gmd:language>
+  <gmd:characterSet xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:MD_CharacterSetCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
+  </gmd:characterSet>
+  <gmd:parentIdentifier xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:CharacterString>436e580e-ff33-4d15-a39c-b04c7d65083c</gco:CharacterString>
+  </gmd:parentIdentifier>
+  <gmd:hierarchyLevel xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:MD_ScopeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+  </gmd:hierarchyLevel>
+  <gmd:hierarchyLevelName xmlns:gmd="http://www.isotc211.org/2005/gmd" gco:nilReason="missing">
+    <gco:CharacterString />
+  </gmd:hierarchyLevelName>
+  <gmd:contact xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>Emma Flukes</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:organisationName>
+        <gco:CharacterString>Institute for Marine and Antarctic Studies (IMAS), University of Tasmania (UTAS)</gco:CharacterString>
+      </gmd:organisationName>
+      <gmd:positionName>
+        <gco:CharacterString>Data Manager</gco:CharacterString>
+      </gmd:positionName>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:address>
+            <gmd:CI_Address>
+              <gmd:deliveryPoint>
+                <gco:CharacterString>Private Bag 129</gco:CharacterString>
+              </gmd:deliveryPoint>
+              <gmd:city>
+                <gco:CharacterString>Hobart</gco:CharacterString>
+              </gmd:city>
+              <gmd:administrativeArea>
+                <gco:CharacterString>Tasmania</gco:CharacterString>
+              </gmd:administrativeArea>
+              <gmd:postalCode>
+                <gco:CharacterString>7001</gco:CharacterString>
+              </gmd:postalCode>
+              <gmd:country>
+                <gco:CharacterString>Australia</gco:CharacterString>
+              </gmd:country>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>Emma.Flukes@utas.edu.au</gco:CharacterString>
+              </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+          </gmd:address>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="metadataContact">metadataContact</gmd:CI_RoleCode>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:dateStamp xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:DateTime>2016-09-12T23:34:49</gco:DateTime>
+  </gmd:dateStamp>
+  <gmd:metadataStandardName xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:CharacterString>2.0</gco:CharacterString>
+  </gmd:metadataStandardVersion>
+  <gmd:identificationInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <mcp:MD_DataIdentification gco:isoType="gmd:MD_DataIdentification">
+      <gmd:citation>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>2016 SoE Marine Chapter - Effectiveness of Management - Traditional use of marine resources</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime>2016-06-17</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+          <gmd:citedResponsibleParty>
+            <gmd:CI_ResponsibleParty>
+              <gmd:organisationName>
+                <gco:CharacterString>Department of the Environment (DoE), Australian Government</gco:CharacterString>
+              </gmd:organisationName>
+              <gmd:contactInfo>
+                <gmd:CI_Contact>
+                  <gmd:address>
+                    <gmd:CI_Address>
+                      <gmd:deliveryPoint>
+                        <gco:CharacterString>Australian Government Department of the Environment</gco:CharacterString>
+                      </gmd:deliveryPoint>
+                      <gmd:deliveryPoint>
+                        <gco:CharacterString>GPO Box 787</gco:CharacterString>
+                      </gmd:deliveryPoint>
+                      <gmd:city>
+                        <gco:CharacterString>Canberra</gco:CharacterString>
+                      </gmd:city>
+                      <gmd:administrativeArea>
+                        <gco:CharacterString>Australian Capital Territory</gco:CharacterString>
+                      </gmd:administrativeArea>
+                      <gmd:postalCode>
+                        <gco:CharacterString>2601</gco:CharacterString>
+                      </gmd:postalCode>
+                      <gmd:country>
+                        <gco:CharacterString>Australia</gco:CharacterString>
+                      </gmd:country>
+                    </gmd:CI_Address>
+                  </gmd:address>
+                </gmd:CI_Contact>
+              </gmd:contactInfo>
+              <gmd:role>
+                <gmd:CI_RoleCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="resourceProvider">resourceProvider</gmd:CI_RoleCode>
+              </gmd:role>
+            </gmd:CI_ResponsibleParty>
+          </gmd:citedResponsibleParty>
+        </gmd:CI_Citation>
+      </gmd:citation>
+      <gmd:abstract>
+        <gco:CharacterString>The Marine chapter of the 2016 State of the Environment (SoE) report incorporates multiple expert templates developed from streams of marine data. This metadata record describes the Expert Assessment "Effectiveness of marine management of traditional use of marine resources". The full Expert Assessment, including figures and tables (where provided), is attached to this record. Where available, the Data Stream(s) used to generate this Expert Assessment are accessible through the "On-line Resources" section of this record.
+
+----------------------------------------
+
+DESCRIPTION OF THE PRESSURE BEING MANAGED, AND ITS IMPACT
+Quantifying the traditional use of marine resources by Indigenous communities is difficult due to the dispersed and sporadic nature of much traditional harvesting and the often complex and sensitive process of building community endorsement for long term monitoring programs to quantify harvest levels.  Across Australia, there is a high diversity of community initiatives for monitoring and managing traditional harvest due to the specific local context for planning, managing and conservation. Since the 2011 assessment, the workforce of Indigenous rangers has grown around Australia and this has increased the on-ground capacity for monitoring the traditional take (e.g., GBRMPA, 2011; DIPF, 2013).  In the Great Barrier Reef, as part of a Traditional use of marine resource agreement (TUMRA), Traditional owners are required to monitor, record and report traditional harvest activities (GBRMPA, 2008).  In the Northern Territory, Indigenous rangers record information on the loss or return of aquatic species (e.g. fish, dugong, turtles) in their patrol areas (DIPF, 2013). Kimberley coastal communities are advancing with developing and implementing monitoring and evaluation frameworks (Jackson et al., 2015).  Wide scale involvement of Indigenous rangers in monitoring programs also occurs in the Torres Strait (Johnson et al., 2015).  Even with increased effort dedicated to Indigenous natural and cultural resource management, results have been mixed, with many projects falling well short of both Indigenous and non-Indigenous expectations (Barbour &amp; Schlesinger, 2012).  Natural and cultural resource management is considered a worthy and necessary goal (Ens et al., 2012), yet designing and implementing programs to achieve sustainability goals are not straightforward (Dressler et al., 2010).  Determining whether traditional harvest is sustainable needs to be assessed on a case-by-case community basis given the wider ecological and pressure conditions within an area and as such, it is important to consider the state of the harvested population, state of supporting habitats, range of threats, and controls to limit human impacts.
+
+DATA STREAM(S) USED IN EXPERT ASSESSMENT
+The information used in the assessment was based on extracting insightful statements from reports and articles across Australia on Traditional use of marine resources. No data sets were used to generate this assessment.
+
+2016 SOE ASSESSMENT SUMMARY [see attached Expert Assessment for full details]
+• Understanding of pressure: Gradual shift from the well-recognised need to understand sustainable traditional harvest levels towards building on-ground capacity and solutions for quantifying this level.
+• Planning associated with management of pressure: Indigenous-driven planning is growing yet it is not consistently linked to a framework that assesses the performance of stated objectives.
+• Input for informing management of pressure: Further progress on consistent recording and storing of data on traditional harvesting is needed before it informs management frameworks about the impact of this use.
+• Processes associated with developing, monitoring, and updating management: An extensive range of Indigenous-based initiatives are advancing to support the management of Traditional use of marine resources; assessing their performance is the next increment for effective management.
+• Outputs from management framework in place: Improved community involvement for developing protocols for cultural resource management is empowering Indigenous people to make more informed decisions about regulatory solutions.
+• Outcomes of management framework in place: Indigenous-driven planning and management achieves higher environmental outcomes; greater effectiveness with rolling forward programs to meet future priorities and challenges.
+
+CHANGES SINCE 2011 SOE ASSESSMENT
+Effectiveness of management associated with the traditional use of resources was not included in the 2011 assessment.</gco:CharacterString>
+      </gmd:abstract>
+      <gmd:purpose>
+        <gco:CharacterString>To describe the effectiveness of marine management of traditional use of marine resources for use in the Marine chapter of the 2016 State of the Environment report.</gco:CharacterString>
+      </gmd:purpose>
+      <gmd:pointOfContact>
+        <gmd:CI_ResponsibleParty>
+          <gmd:individualName>
+            <gco:CharacterString>Hunter, Cass</gco:CharacterString>
+          </gmd:individualName>
+          <gmd:organisationName>
+            <gco:CharacterString>CSIRO Oceans and Atmosphere</gco:CharacterString>
+          </gmd:organisationName>
+          <gmd:positionName>
+            <gco:CharacterString>Indigenous social ecological  researcher</gco:CharacterString>
+          </gmd:positionName>
+          <gmd:contactInfo>
+            <gmd:CI_Contact>
+              <gmd:address>
+                <gmd:CI_Address>
+                  <gmd:deliveryPoint>
+                    <gco:CharacterString>PO Box 780</gco:CharacterString>
+                  </gmd:deliveryPoint>
+                  <gmd:city>
+                    <gco:CharacterString>Atherton</gco:CharacterString>
+                  </gmd:city>
+                  <gmd:administrativeArea>
+                    <gco:CharacterString>Queensland</gco:CharacterString>
+                  </gmd:administrativeArea>
+                  <gmd:postalCode>
+                    <gco:CharacterString>4883</gco:CharacterString>
+                  </gmd:postalCode>
+                  <gmd:country>
+                    <gco:CharacterString>Australia</gco:CharacterString>
+                  </gmd:country>
+                  <gmd:electronicMailAddress>
+                    <gco:CharacterString>cass.hunter@csiro.au</gco:CharacterString>
+                  </gmd:electronicMailAddress>
+                </gmd:CI_Address>
+              </gmd:address>
+            </gmd:CI_Contact>
+          </gmd:contactInfo>
+          <gmd:role>
+            <gmd:CI_RoleCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="author">author</gmd:CI_RoleCode>
+          </gmd:role>
+        </gmd:CI_ResponsibleParty>
+      </gmd:pointOfContact>
+      <gmd:pointOfContact>
+        <gmd:CI_ResponsibleParty>
+          <gmd:individualName>
+            <gco:CharacterString>Skewes, Tim</gco:CharacterString>
+          </gmd:individualName>
+          <gmd:organisationName>
+            <gco:CharacterString>CSIRO Oceans and Atmosphere</gco:CharacterString>
+          </gmd:organisationName>
+          <gmd:positionName>
+            <gco:CharacterString>Ecologist</gco:CharacterString>
+          </gmd:positionName>
+          <gmd:contactInfo>
+            <gmd:CI_Contact>
+              <gmd:address>
+                <gmd:CI_Address>
+                  <gmd:deliveryPoint>
+                    <gco:CharacterString>GPO Box 2583</gco:CharacterString>
+                  </gmd:deliveryPoint>
+                  <gmd:city>
+                    <gco:CharacterString>Brisbane</gco:CharacterString>
+                  </gmd:city>
+                  <gmd:administrativeArea>
+                    <gco:CharacterString>Queensland</gco:CharacterString>
+                  </gmd:administrativeArea>
+                  <gmd:postalCode>
+                    <gco:CharacterString>4001</gco:CharacterString>
+                  </gmd:postalCode>
+                  <gmd:country>
+                    <gco:CharacterString>Australia</gco:CharacterString>
+                  </gmd:country>
+                  <gmd:electronicMailAddress>
+                    <gco:CharacterString>tim.skewes@csiro.au</gco:CharacterString>
+                  </gmd:electronicMailAddress>
+                </gmd:CI_Address>
+              </gmd:address>
+              <gmd:onlineResource>
+                <gmd:CI_OnlineResource>
+                  <gmd:linkage>
+                    <gmd:URL>http://orcid.org/0000-0002-8972-6734</gmd:URL>
+                  </gmd:linkage>
+                  <gmd:protocol>
+                    <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+                  </gmd:protocol>
+                  <gmd:name gco:nilReason="missing">
+                    <gco:CharacterString />
+                  </gmd:name>
+                  <gmd:description>
+                    <gco:CharacterString>ORCID ID</gco:CharacterString>
+                  </gmd:description>
+                </gmd:CI_OnlineResource>
+              </gmd:onlineResource>
+            </gmd:CI_Contact>
+          </gmd:contactInfo>
+          <gmd:role>
+            <gmd:CI_RoleCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="author">author</gmd:CI_RoleCode>
+          </gmd:role>
+        </gmd:CI_ResponsibleParty>
+      </gmd:pointOfContact>
+      <gmd:graphicOverview>
+        <gmd:MD_BrowseGraphic>
+          <gmd:fileName>
+            <gco:CharacterString>soe2016.jpg</gco:CharacterString>
+          </gmd:fileName>
+          <gmd:fileDescription>
+            <gco:CharacterString>thumbnail</gco:CharacterString>
+          </gmd:fileDescription>
+          <gmd:fileType>
+            <gco:CharacterString>jpg</gco:CharacterString>
+          </gmd:fileType>
+        </gmd:MD_BrowseGraphic>
+      </gmd:graphicOverview>
+      <gmd:descriptiveKeywords>
+        <gmd:MD_Keywords>
+          <gmd:keyword>
+            <gco:CharacterString>marine resources</gco:CharacterString>
+          </gmd:keyword>
+          <gmd:keyword>
+            <gco:CharacterString>expert assessment</gco:CharacterString>
+          </gmd:keyword>
+          <gmd:type>
+            <gmd:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme">theme</gmd:MD_KeywordTypeCode>
+          </gmd:type>
+        </gmd:MD_Keywords>
+      </gmd:descriptiveKeywords>
+      <gmd:language>
+        <gco:CharacterString>eng</gco:CharacterString>
+      </gmd:language>
+      <gmd:characterSet>
+        <gmd:MD_CharacterSetCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
+      </gmd:characterSet>
+      <gmd:topicCategory>
+        <gmd:MD_TopicCategoryCode>society</gmd:MD_TopicCategoryCode>
+      </gmd:topicCategory>
+      <gmd:extent>
+        <gmd:EX_Extent>
+          <gmd:geographicElement>
+            <gmd:EX_GeographicBoundingBox>
+              <gmd:westBoundLongitude>
+                <gco:Decimal>102.65625000000001</gco:Decimal>
+              </gmd:westBoundLongitude>
+              <gmd:eastBoundLongitude>
+                <gco:Decimal>162.421875</gco:Decimal>
+              </gmd:eastBoundLongitude>
+              <gmd:southBoundLatitude>
+                <gco:Decimal>-47.4609375</gco:Decimal>
+              </gmd:southBoundLatitude>
+              <gmd:northBoundLatitude>
+                <gco:Decimal>-7.207031249999999</gco:Decimal>
+              </gmd:northBoundLatitude>
+            </gmd:EX_GeographicBoundingBox>
+          </gmd:geographicElement>
+          <gmd:temporalElement>
+            <mcp:EX_TemporalExtent gco:isoType="gmd:EX_TemporalExtent">
+              <gmd:extent>
+                <gml:TimePeriod xmlns:gml="http://www.opengis.net/gml" gml:id="N10315">
+                  <gml:begin>
+                    <gml:TimeInstant gml:id="N1031B">
+                      <gml:timePosition>2011-12-12</gml:timePosition>
+                    </gml:TimeInstant>
+                  </gml:begin>
+                  <gml:end>
+                    <gml:TimeInstant gml:id="N10326">
+                      <gml:timePosition>2016-01-01</gml:timePosition>
+                    </gml:TimeInstant>
+                  </gml:end>
+                </gml:TimePeriod>
+              </gmd:extent>
+            </mcp:EX_TemporalExtent>
+          </gmd:temporalElement>
+        </gmd:EX_Extent>
+      </gmd:extent>
+      <gmd:supplementalInformation>
+        <gco:CharacterString>Barbour, W., and Christine Schlesinger, C. (2012). Who’s the boss? Post-colonialism, ecological research and conservation management on Australian Indigenous lands. Ecological Management and Restoration, 13(1): 36-41. http://dx.doi.org/10.1111/j.1442-8903.2011.00632.x  
+Butler, J. R. A., A. Tawake, T. Skewes, L. Tawake, and V. McGrath. 2012. Integrating traditional
+ecological knowledge and fisheries management in the Torres Strait, Australia: the catalytic role of turtles and dugong as cultural keystone species. Ecology and Society 17(4): 34. http://dx.doi.org/10.5751/ES-05165-170434
+Department of Primary Industry and fisheries. (2013). Indigenous community marine ranger program.  Northern Territory Government, pages 1-4. 
+Dobbs, K. (2007). A reef-wide framework for managing traditional use of marine resources in the Great Barrier Reef Marine Park. Great Barrier Reef Marine Park Authority.
+Dressler W., Buscher B., Schoon M. et al. (2010) From hope to crisis and back again? A critical history of the global CBNCRM narrative. Environmental Conservation 1, 5–15. http://dx.doi.org/10.1017/S0376892910000044
+Ens, E.J., Finlayson, M., Preuss, K., Jackson, S. and Holcombe, S. (2012). Australian approaches for managing ‘country’ using Indigenous and non-Indigenous knowledge. Ecological Management and Restoration, 13(1): 100-107. http://dx.doi.org/10.1111/j.1442-8903.2011.00634.x
+Great Barrier Reef Marine Park Authority. (2008). Traditional use of marine resources agreement (TUMRA) workbook. Pages 1-9.
+Great Barrier Reef Marine Park Authority. (2011). Traditional Owners of the Great Barrier Reef.  Reef facts for tour guides.  Issue 4.
+Hill, R., C. Grant, M. George, C. Robinson, S. Jackson, and N. Abel. (2012). A typology of indigenous engagement in Australian environmental management: implications for knowledge integration and social-ecological system sustainability. Ecology and Society 17(1): 23. http://dx.doi.org/10.5751/ES-04587-170123
+Hill, R., Pert, P., Davies, J., Robinson, C., Walsh, F., and Falco-Mammone, F. (2013). Indigenous Land Management in Australia: extent, scope, diversity, barriers and success factors.  CSIRO Ecosystem Sciences, Cairns.
+Hope Vale Aboriginal Council (HVAC). (1999). Guugu Yimmithir Bam Wii: Ngawiya and Girrbithi: A Turtle and Dugong Hunting Management Plan. Hopevale, Queensland.
+Jackson, M.V., Kennett, R., Bayliss, P., Warren, R., Waina, N., Adams, J., Cheinmora, L., Vigilante, T., Jungine, E., Woolagoodja, K., Woolagoodja, F., Umbagai, J., Holmes, J. and Weisenberger, F. (2015). Developing collaborative marine turtle monitoring in the Kimberley region of northern Australia.  Ecological Management and Restoration, 16(3): 163-176. http://dx.doi.org/10.1111/emr.12184
+Johnson, J.E., Marsh, H., Hamann, M., Duke, N., Burrows, D., Bainbridge, S., Sweatman, H., Brodie, J., Bohensky, E., Butler, J., Laurance, S. (2015).  Tropical Research in Australia’s Torres Strait region. Report to the National Environmental Research Program. Reef and Rainforest Research Centre Limited, Cairns (33pp.).
+NAILSMA (North Australian Indigenous Land and Sea Management Alliance Ltd). (2009). Performance story report on Evaluation of Investment in the Dugong and Marine Turtle Project. NAILSMA, Darwin.
+Nursey-Bray, M. and Jacobson, C. (2014). ‘Which Way?’: the contribution of Indigenous marine governance. Australian Journal of Maritime and Ocean Affairs, 6(1): 27-40). http://dx.doi.org/10.1080/18366503.2014.888136
+Marsh, H., Grayson, J., Grech, A., Hagihara, R., and Sobtzich. (2015). Re-evaluation of the sustainability of a marine mammal harvest by Indigenous people using several lines of evidence. Biological Conservation, 192: 324-330. http://dx.doi.org/10.1016/j.biocon.2015.10.007
+Moorcroft, H. (2012). Wunambal Gaambera Healthy Country Plan.  Page 116-123, in Figgis, P., Fitzsimons, J. and Irving, J. (eds). Innovation for 21st Century Conservation. Australian Committee for IUCN, Sydney.
+Sustainability, Environment, Water, Population and Communities. (2012). Northern Australia Indigenous Ranger Coordinators Workshop. Darwin, June 7–8. Workshop Outcomes Report.
+Torres Strait Regional Authority. (2014). Ranger achievements for 2014-2015. TSRA, 1-32. http://www.tsra.gov.au/__data/assets/pdf_file/0004/9553/Ranger-Achievements-2014-2017.pdf</gco:CharacterString>
+      </gmd:supplementalInformation>
+    </mcp:MD_DataIdentification>
+  </gmd:identificationInfo>
+  <gmd:distributionInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:MD_Distribution>
+      <gmd:transferOptions>
+        <gmd:MD_DigitalTransferOptions>
+          <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>https://catalogue.aodn.org.au:443/geonetwork/srv/en/file.disclaimer?uuid=1f21892a-2499-4f8d-9d42-2d1f381c1482&amp;fname=Management_Traditional_use_of_Marine_Resources_final.pdf&amp;access=private</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>WWW:DOWNLOAD-1.0-http--downloaddata</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:name>
+                <gmx:MimeFileType xmlns:gmx="http://www.isotc211.org/2005/gmx" type="application/pdf">Management_Traditional_use_of_Marine_Resources_final.pdf</gmx:MimeFileType>
+              </gmd:name>
+              <gmd:description>
+                <gco:CharacterString>EXPERT ASSESSMENT - Effectiveness of Marine Management of Traditional Use of Marine Resources [direct download]</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
+          <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>https://www.environment.gov.au/science/soe</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:name gco:nilReason="missing">
+                <gco:CharacterString />
+              </gmd:name>
+              <gmd:description>
+                <gco:CharacterString>State of the Environment (SoE) reporting webpage</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
+          <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>https://catalogue.aodn.org.au:443/geonetwork/srv/en/metadata.show?uuid=1f21892a-2499-4f8d-9d42-2d1f381c1482</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>WWW:LINK-1.0-http--metadata-URL</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:description>
+                <gco:CharacterString>Point of truth URL of this metadata record</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
+        </gmd:MD_DigitalTransferOptions>
+      </gmd:transferOptions>
+    </gmd:MD_Distribution>
+  </gmd:distributionInfo>
+  <gmd:dataQualityInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:DQ_DataQuality>
+      <gmd:scope>
+        <gmd:DQ_Scope>
+          <gmd:level>
+            <gmd:MD_ScopeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+          </gmd:level>
+        </gmd:DQ_Scope>
+      </gmd:scope>
+      <gmd:lineage>
+        <gmd:LI_Lineage>
+          <gmd:statement>
+            <gco:CharacterString>QUALITY OF DATA USED IN THE ASSESSMENT
+The limited availability of information of Traditional harvest levels restricted the certainty of the assessment.</gco:CharacterString>
+          </gmd:statement>
+          <gmd:source>
+            <gmd:LI_Source>
+              <gmd:description>
+                <gco:CharacterString>CUSTODIAN AND LOCATION OF DATA
+Indigenous groups and agencies, state/territory agencies, GBRMPA, Universities (no specific data products were used in this assessment).</gco:CharacterString>
+              </gmd:description>
+            </gmd:LI_Source>
+          </gmd:source>
+        </gmd:LI_Lineage>
+      </gmd:lineage>
+    </gmd:DQ_DataQuality>
+  </gmd:dataQualityInfo>
+  <gmd:dataQualityInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:DQ_DataQuality>
+      <gmd:scope>
+        <gmd:DQ_Scope>
+          <gmd:level>
+            <gmd:MD_ScopeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="derived">derived</gmd:MD_ScopeCode>
+          </gmd:level>
+        </gmd:DQ_Scope>
+      </gmd:scope>
+      <gmd:lineage>
+        <gmd:LI_Lineage>
+          <gmd:processStep>
+            <gmd:LI_ProcessStep>
+              <gmd:description>
+                <gco:CharacterString>METHOD USED TO DETERMINE STATE OR RECENT TREND
+A desktop study was undertaken by reviewing the literature to extract and identify successes and barriers identified in association with Traditional use of marine resources.  This literature review required a synthesis of the extent and trend in Traditional use.  The literature review included key material based on national and state based studies, grey literature, government and non-government reports and scientific journal articles.</gco:CharacterString>
+              </gmd:description>
+            </gmd:LI_ProcessStep>
+          </gmd:processStep>
+        </gmd:LI_Lineage>
+      </gmd:lineage>
+    </gmd:DQ_DataQuality>
+  </gmd:dataQualityInfo>
+  <gmd:metadataConstraints xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <mcp:MD_Commons gco:isoType="gmd:MD_Constraints" mcp:commonsType="Creative Commons">
+      <mcp:jurisdictionLink>
+        <gmd:URL>http://creativecommons.org/international/</gmd:URL>
+      </mcp:jurisdictionLink>
+      <mcp:licenseLink>
+        <gmd:URL>http://creativecommons.org/licenses/by/4.0/</gmd:URL>
+      </mcp:licenseLink>
+      <mcp:imageLink>
+        <gmd:URL>http://i.creativecommons.org/l/by/4.0/88x31.png</gmd:URL>
+      </mcp:imageLink>
+      <mcp:licenseName>
+        <gco:CharacterString>Attribution 4.0 International</gco:CharacterString>
+      </mcp:licenseName>
+      <mcp:attributionConstraints>
+        <gco:CharacterString>When citing this Expert Assessment in a list of references use the following format:
+citation author name/s (year metadata published), metadata title. Citation author organisation/s. File identifier and Data accessed at (add http link).</gco:CharacterString>
+      </mcp:attributionConstraints>
+    </mcp:MD_Commons>
+  </gmd:metadataConstraints>
+  <mcp:revisionDate>
+    <gco:DateTime>2016-09-12T23:34:49</gco:DateTime>
+  </mcp:revisionDate>
+</mcp:MD_Metadata>
