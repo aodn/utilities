@@ -42,6 +42,7 @@ public class TransformCatalogue {
         options.addRequiredOption("i", "file_name", true, "Input xml file name.");
         options.addRequiredOption("o", "output_file_name", true, "Output xml file name.");
         options.addRequiredOption("u", "url_substitutions", true, "Url substitutions configuration file");
+        options.addOption("k", false, "kill-switch (stops processing on any failure");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = null;
@@ -87,8 +88,13 @@ public class TransformCatalogue {
         List<Path> files = new ArrayList<Path>();
         getFileNames(files, indirectory.toPath(), input);
 
+        List<HashMap<String, String>> failed = new ArrayList();
+
         int count = 0;
         for (Path file : files) {
+
+            HashMap<String, String> details = new HashMap();
+
             try {
                 count++;
                 System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
@@ -99,6 +105,8 @@ public class TransformCatalogue {
 
                 String namespaceURI = getNamespaceURI(mcp1_4_xmlSource);
                 logger.info(namespaceURI);
+                details.put("file", file.toString());
+                details.put("namespace", namespaceURI);
 
                 if(namespaceURI.equals("http://bluenet3.antcrc.utas.edu.au/mcp")) {
 
@@ -138,10 +146,20 @@ public class TransformCatalogue {
                 write(file.getParent() + File.separator + output, updated_sw_mcp2);
 
             } catch( Exception e ) {
+                failed.add(details);
                 e.printStackTrace();
+                if (cmd.hasOption("k")) {
+                    break;
+                }
             }
 
         } // for each path
+
+        logger.info("Failed report:");
+        for (HashMap<String, String> detail: failed) {
+            System.out.println(detail.get("file") + "\t" + detail.get("namespace"));
+        }
+
     }
 
     private static String getNamespaceURI(Source source) throws XMLStreamException {
