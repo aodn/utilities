@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mcp:MD_Metadata xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:geonet="http://www.fao.org/geonetwork" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" gco:isoType="gmd:MD_Metadata" xsi:schemaLocation="http://schemas.aodn.org.au/mcp-2.0 http://schemas.aodn.org.au/mcp-2.0/schema.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd http://rs.tdwg.org/dwc/terms/ http://schemas.aodn.org.au/mcp-2.0/mcpDwcTerms.xsd">
+  <gmd:fileIdentifier xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:CharacterString>032f4500-5c91-4d96-b141-597992da3d3a</gco:CharacterString>
+  </gmd:fileIdentifier>
+  <gmd:language xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:CharacterString>eng</gco:CharacterString>
+  </gmd:language>
+  <gmd:characterSet xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:MD_CharacterSetCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
+  </gmd:characterSet>
+  <gmd:parentIdentifier xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:CharacterString>436e580e-ff33-4d15-a39c-b04c7d65083c</gco:CharacterString>
+  </gmd:parentIdentifier>
+  <gmd:hierarchyLevel xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:MD_ScopeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+  </gmd:hierarchyLevel>
+  <gmd:hierarchyLevelName xmlns:gmd="http://www.isotc211.org/2005/gmd" gco:nilReason="missing">
+    <gco:CharacterString />
+  </gmd:hierarchyLevelName>
+  <gmd:contact xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>Emma Flukes</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:organisationName>
+        <gco:CharacterString>Institute for Marine and Antarctic Studies (IMAS), University of Tasmania (UTAS)</gco:CharacterString>
+      </gmd:organisationName>
+      <gmd:positionName>
+        <gco:CharacterString>Data Manager</gco:CharacterString>
+      </gmd:positionName>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:address>
+            <gmd:CI_Address>
+              <gmd:deliveryPoint>
+                <gco:CharacterString>Private Bag 129</gco:CharacterString>
+              </gmd:deliveryPoint>
+              <gmd:city>
+                <gco:CharacterString>Hobart</gco:CharacterString>
+              </gmd:city>
+              <gmd:administrativeArea>
+                <gco:CharacterString>Tasmania</gco:CharacterString>
+              </gmd:administrativeArea>
+              <gmd:postalCode>
+                <gco:CharacterString>7001</gco:CharacterString>
+              </gmd:postalCode>
+              <gmd:country>
+                <gco:CharacterString>Australia</gco:CharacterString>
+              </gmd:country>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>Emma.Flukes@utas.edu.au</gco:CharacterString>
+              </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+          </gmd:address>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="metadataContact">metadataContact</gmd:CI_RoleCode>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:dateStamp xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:DateTime>2016-09-12T13:12:02</gco:DateTime>
+  </gmd:dateStamp>
+  <gmd:metadataStandardName xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gco:CharacterString>2.0</gco:CharacterString>
+  </gmd:metadataStandardVersion>
+  <gmd:identificationInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <mcp:MD_DataIdentification gco:isoType="gmd:MD_DataIdentification">
+      <gmd:citation>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>2016 SoE Marine Chapter - State and Trends - Water column, abyss (&gt;700 m)</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime>2016-06-17</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+          <gmd:citedResponsibleParty>
+            <gmd:CI_ResponsibleParty>
+              <gmd:organisationName>
+                <gco:CharacterString>Department of the Environment (DoE), Australian Government</gco:CharacterString>
+              </gmd:organisationName>
+              <gmd:contactInfo>
+                <gmd:CI_Contact>
+                  <gmd:address>
+                    <gmd:CI_Address>
+                      <gmd:deliveryPoint>
+                        <gco:CharacterString>Australian Government Department of the Environment</gco:CharacterString>
+                      </gmd:deliveryPoint>
+                      <gmd:deliveryPoint>
+                        <gco:CharacterString>GPO Box 787</gco:CharacterString>
+                      </gmd:deliveryPoint>
+                      <gmd:city>
+                        <gco:CharacterString>Canberra</gco:CharacterString>
+                      </gmd:city>
+                      <gmd:administrativeArea>
+                        <gco:CharacterString>Australian Capital Territory</gco:CharacterString>
+                      </gmd:administrativeArea>
+                      <gmd:postalCode>
+                        <gco:CharacterString>2601</gco:CharacterString>
+                      </gmd:postalCode>
+                      <gmd:country>
+                        <gco:CharacterString>Australia</gco:CharacterString>
+                      </gmd:country>
+                    </gmd:CI_Address>
+                  </gmd:address>
+                </gmd:CI_Contact>
+              </gmd:contactInfo>
+              <gmd:role>
+                <gmd:CI_RoleCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="resourceProvider">resourceProvider</gmd:CI_RoleCode>
+              </gmd:role>
+            </gmd:CI_ResponsibleParty>
+          </gmd:citedResponsibleParty>
+        </gmd:CI_Citation>
+      </gmd:citation>
+      <gmd:abstract>
+        <gco:CharacterString>The Marine chapter of the 2016 State of the Environment (SoE) report incorporates multiple expert templates developed from streams of marine data. This metadata record describes the Expert Assessment "The state and trends of habitats and communities - water column, abyss (&gt;700 m)". The full Expert Assessment, including figures and tables (where provided), is attached to this record. Where available, the Data Stream(s) used to generate this Expert Assessment are accessible through the "On-line Resources" section of this record.
+
+----------------------------------------
+
+DESCRIPTION OF HABITAT/COMMUNITY FOR EXPERT ASSESSMENT
+The water column is home to a diversity of communities. The relative biomass of the major communities is estimated to be 300:75:10:1 for phytoplankton, bacteria, zooplankton and higher predators in the southern ocean (Marchant 2002). For these dominant communities the major determinants of habitat quality is considered to be temperature (T), salinity (S), light, nutrients, dissolved oxygen (DO), pH, and food availability. SOE assessments for fish, EBPC listed species, marine mammals and benthic communities are found at elsewhere in this chapter. The phytoplankton community dominates the water column in terms of biomass and is the basis of all food for the other communities. Phytoplankton are all produced in the illuminated upper ~ 100m of the water column with light, phytoplankton biomass and food for other organisms generally declining exponentially with depth (Rex et al., 2006). At intermediate depths there is typically an oxygen and salinity minimum plus a nutrient maximum while deeper waters are progressively colder.  
+The major potential threats to the water column as habitat can be considered to be: warming of ocean, declining nutrients in the surface mixed layer (SLM), reductions in primary production, declining DO (Talley et al., 2016), decreasing pH and over fishing. The SLM from Port Hedland to Cape Howe has risen ~ 1°C from 1993 to 2013 (Foster et al., 2014), and portions of the SW region were 3°C hotter during February 2011 than normal (Pearce and Feng 2013). Open ocean phytoplankton biomass and primary production have generally declined at mid latitudes (Siegel et al., 2013, Signorini et al., 2015) although they have increased in the SE region (Matear et al., 2013; Kelly et al., 2015). There is very little evidence available of any other biotic responses from the water column to these climatic pressures although concerns over acidification continue to grow (e.g. Mongin et al., 2016) especially for deep sea corals (Thresher et al., 2011; Thresher et al., 2015). 
+
+DATA STREAM(S) USED IN EXPERT ASSESSMENT
+Chlorophyll a data are computed from the level 3 (L3) daily global products using one merging method following Maritorena and Siegel (2005). Details can be found at http://www.globcolour.info/products_description.html 
+Zooplankton data are from Australia’s National Reference Stations operated by the Integrated Marine Observing System.
+
+----------------------------------------
+
+2016 SOE ASSESSMENT SUMMARY [see attached Expert Assessment for full details]
+
+• 2016 •
+Assessment grade: Good
+Assessment trend: Unclear
+Confidence grade: Limited evidence or limited consensus
+Confidence trend: Limited evidence or limited consensus
+Comparability: Grade and trend are somewhat comparable to the 2011 assessment
+• 2011 •
+Assessment grade: Very good
+Assessment trend: Stable
+Confidence grade: Limited evidence or limited consensus
+Confidence trend: Limited evidence or limited consensus
+
+----------------------------------------
+
+CHANGES SINCE 2011 SOE ASSESSMENT
+This assessment uses observations from a greater range of spatial and temporal scales allowing a better assessment of current state and trends to be made. The time series of observations is becoming long enough to distinguish temporal variability associated with shorter term climate cycles (e.g. ENSO) from the longer term but relatively gradual impacts of climate change. These longer term trends are more apparent today than ever before.  Consequently the SOE grade applicable to an increasing portion of these waters should be downgraded from ‘very good’ to ‘good’.</gco:CharacterString>
+      </gmd:abstract>
+      <gmd:purpose>
+        <gco:CharacterString>To describe the state and trends in the quality of the water column community, abyssal depth (&gt;700 m) for use in the Marine chapter of the 2016 State of the Environment report.</gco:CharacterString>
+      </gmd:purpose>
+      <gmd:pointOfContact>
+        <gmd:CI_ResponsibleParty>
+          <gmd:individualName>
+            <gco:CharacterString>Thompson, Peter</gco:CharacterString>
+          </gmd:individualName>
+          <gmd:organisationName>
+            <gco:CharacterString>CSIRO Oceans and Atmosphere</gco:CharacterString>
+          </gmd:organisationName>
+          <gmd:contactInfo>
+            <gmd:CI_Contact>
+              <gmd:address>
+                <gmd:CI_Address>
+                  <gmd:deliveryPoint>
+                    <gco:CharacterString>GPO Box 1538</gco:CharacterString>
+                  </gmd:deliveryPoint>
+                  <gmd:city>
+                    <gco:CharacterString>Hobart</gco:CharacterString>
+                  </gmd:city>
+                  <gmd:administrativeArea>
+                    <gco:CharacterString>Tasmania</gco:CharacterString>
+                  </gmd:administrativeArea>
+                  <gmd:postalCode>
+                    <gco:CharacterString>7000</gco:CharacterString>
+                  </gmd:postalCode>
+                  <gmd:country>
+                    <gco:CharacterString>Australia</gco:CharacterString>
+                  </gmd:country>
+                  <gmd:electronicMailAddress>
+                    <gco:CharacterString>Peter.A.Thompson@csiro.au</gco:CharacterString>
+                  </gmd:electronicMailAddress>
+                </gmd:CI_Address>
+              </gmd:address>
+              <gmd:onlineResource>
+                <gmd:CI_OnlineResource>
+                  <gmd:linkage>
+                    <gmd:URL>http://orcid.org/0000-0002-9504-5433</gmd:URL>
+                  </gmd:linkage>
+                  <gmd:protocol>
+                    <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+                  </gmd:protocol>
+                  <gmd:name gco:nilReason="missing">
+                    <gco:CharacterString />
+                  </gmd:name>
+                  <gmd:description>
+                    <gco:CharacterString>ORCID ID</gco:CharacterString>
+                  </gmd:description>
+                </gmd:CI_OnlineResource>
+              </gmd:onlineResource>
+            </gmd:CI_Contact>
+          </gmd:contactInfo>
+          <gmd:role>
+            <gmd:CI_RoleCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="author">author</gmd:CI_RoleCode>
+          </gmd:role>
+        </gmd:CI_ResponsibleParty>
+      </gmd:pointOfContact>
+      <gmd:graphicOverview>
+        <gmd:MD_BrowseGraphic>
+          <gmd:fileName>
+            <gco:CharacterString>soe2016.jpg</gco:CharacterString>
+          </gmd:fileName>
+          <gmd:fileDescription>
+            <gco:CharacterString>thumbnail</gco:CharacterString>
+          </gmd:fileDescription>
+          <gmd:fileType>
+            <gco:CharacterString>jpg</gco:CharacterString>
+          </gmd:fileType>
+        </gmd:MD_BrowseGraphic>
+      </gmd:graphicOverview>
+      <gmd:descriptiveKeywords>
+        <gmd:MD_Keywords>
+          <gmd:keyword>
+            <gco:CharacterString>water column</gco:CharacterString>
+          </gmd:keyword>
+          <gmd:keyword>
+            <gco:CharacterString>abyssal communities</gco:CharacterString>
+          </gmd:keyword>
+          <gmd:keyword>
+            <gco:CharacterString>zooplankton</gco:CharacterString>
+          </gmd:keyword>
+          <gmd:keyword>
+            <gco:CharacterString>expert assessment</gco:CharacterString>
+          </gmd:keyword>
+          <gmd:type>
+            <gmd:MD_KeywordTypeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme">theme</gmd:MD_KeywordTypeCode>
+          </gmd:type>
+        </gmd:MD_Keywords>
+      </gmd:descriptiveKeywords>
+      <gmd:language>
+        <gco:CharacterString>eng</gco:CharacterString>
+      </gmd:language>
+      <gmd:characterSet>
+        <gmd:MD_CharacterSetCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
+      </gmd:characterSet>
+      <gmd:topicCategory>
+        <gmd:MD_TopicCategoryCode>oceans</gmd:MD_TopicCategoryCode>
+      </gmd:topicCategory>
+      <gmd:extent>
+        <gmd:EX_Extent>
+          <gmd:geographicElement>
+            <gmd:EX_GeographicBoundingBox>
+              <gmd:westBoundLongitude>
+                <gco:Decimal>102.65625000000001</gco:Decimal>
+              </gmd:westBoundLongitude>
+              <gmd:eastBoundLongitude>
+                <gco:Decimal>162.421875</gco:Decimal>
+              </gmd:eastBoundLongitude>
+              <gmd:southBoundLatitude>
+                <gco:Decimal>-47.4609375</gco:Decimal>
+              </gmd:southBoundLatitude>
+              <gmd:northBoundLatitude>
+                <gco:Decimal>-7.207031249999999</gco:Decimal>
+              </gmd:northBoundLatitude>
+            </gmd:EX_GeographicBoundingBox>
+          </gmd:geographicElement>
+          <gmd:temporalElement>
+            <mcp:EX_TemporalExtent gco:isoType="gmd:EX_TemporalExtent">
+              <gmd:extent>
+                <gml:TimePeriod xmlns:gml="http://www.opengis.net/gml" gml:id="N10315">
+                  <gml:begin>
+                    <gml:TimeInstant gml:id="N1031B">
+                      <gml:timePosition>2011-12-12</gml:timePosition>
+                    </gml:TimeInstant>
+                  </gml:begin>
+                  <gml:end>
+                    <gml:TimeInstant gml:id="N10326">
+                      <gml:timePosition>2016-01-01</gml:timePosition>
+                    </gml:TimeInstant>
+                  </gml:end>
+                </gml:TimePeriod>
+              </gmd:extent>
+            </mcp:EX_TemporalExtent>
+          </gmd:temporalElement>
+        </gmd:EX_Extent>
+      </gmd:extent>
+      <gmd:supplementalInformation>
+        <gco:CharacterString>Feng, M., McPhaden, M. J., Xie, S., &amp; Hafner, J. 2013. La Niña forces unprecedented Leeuwin Current warming in 2011. Scientific Reports 3, 1277; DOI:10.1038/srep01277.
+Foster, S.D., Griffin, D.A., Dunstan, P.K. 2014. Twenty Years of High-Resolution Sea Surface Temperature Imagery around Australia: Inter-Annual and Annual Variability. PLoS ONE 9(7): e100762. doi:10.1371/journal.pone.0100762
+Kelly, P., Clementson, L., Lyne, V. 2015. Decadal and seasonal changes in temperature, salinity, nitrate, and chlorophyll in inshore and offshore waters along southeast Australia. J. Geophys. Res. Oceans, 120: 4226.
+Maritorena, S. and Siegel, D.A. 2005. Consistent Merging of Satellite Ocean Colour Data Sets Using a Bio-Optical Model. Remote Sensing of Environment, 94, 4, 429-440.
+Matear, R. J., M. A. Chamberlain, C. Sun, and M. Feng. 2013. Climate change projection of the Tasman Sea from an Eddy-resolving Ocean Model, J. Geophys. Res. Oceans, 118:  2961–2976
+Mongin, M., Baird, M.E., Tilbrook, B., Matear, R/J., Lenton, A., Herzfeld, M., Wild-Allen, K., Skerratt, J., Margvelashvili, N., Robson, B.J., Duarte, C.M., Gustafsson, M.S.M., Ralph, P.J., Steven, A.D.L. 2016. The exposure of the Great Barrier Reef to ocean acidification. Nature Communications DOI: 10.1038/ncomms10732
+Siegel DA, Behrenfeld MJ, Maritorena S, McClain, C.R., Anoine, D., Bailey, S.W., Botempi, P.S., Boss, E.S., Dierssen, H.M., Doney, S.C., Eplee, Jr., R.E., Evens, R.H., Feldman, G.C., Fields, E., Franz, B.A., Kuring, N.A., Mengelt, C., Nelson, N.B., Patt, F.S., Robinson, W.D., Sarmento, J.L., Swan, C.M., Werdell, P.J., Westbury, T.K., Wilding, J.G., Yoder, J.A. 2013. Regional to global assessments of phytoplankton dynamics from the SeaWiFS mission. Remote Sensing of Environment, 135, 77–91.
+Stramma, L., Schmidtko, S., Levin, L.A., Johnson, G.C., 2010. Ocean oxygen minima expansions and their biological impacts. Deep-Sea Research I, doi:10.1016/j.dsr.2010.01.005
+Stramma, L., Prince, E.D., Schmidtko, S., Luo, J., Hoolihan, J.P., Visbeck, M., Wallace, D.W.R., Brandt, P. &amp; Körtzinger, A. 2012. Expansion of oxygen minimum zones may reduce available habitat for tropical pelagic fishes. Nature Climate Change 2: 33-37.
+Thompson, PA, Bonham, P, Rochester, W, Doblin, MA, Waite, AM, Richardson A, Rousseaux C. 2015. Climate variability drives plankton community composition changes: an El Niño to La Niña transition around Australia. J. Plankton Res. 37(5): 966–984. doi:10.1093/plankt/fbv069
+Thompson, P.A., Baird, M.E., Ingleton, T., Doblin, M.A. 2009 Long-term changes in temperate Australian coastal waters and implications for phytoplankton. Marine Ecology Progress Series 384: 1-19.
+Thompson, P.A., T. O’Brien, K. Isensee, L. Lorenzoni, et al. 2016.  The Indian Ocean, in What are Marine Ecological Time Series telling us about the ocean? A status report. O'Brien, T.D., Isensee, K., Lorenzoni, L., Valdés, J.L. (eds).  IOC-UNESCO, Paris. IOC Technical Series, No. 129.  In review.
+Thresher, R.E., Tilbrook, B., Fallon, S., Wilson, N.C. and Adkins, J. 2011. Effects of chronic low carbonate saturation levels on the distribution, growth and skeletal chemistry of deep-sea corals and other seamount megabenthos. Marine Ecology Progress Series 442: 87-99.
+Thresher, R.E., Guinotte, J.M., Matear, R.J., Hobday, A.J. 2015. Options for managing impacts of climate change on a deep-sea community. Nature Climate Change 5:  DOI: 10.1038/NCLIMATE2611.</gco:CharacterString>
+      </gmd:supplementalInformation>
+    </mcp:MD_DataIdentification>
+  </gmd:identificationInfo>
+  <gmd:distributionInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:MD_Distribution>
+      <gmd:transferOptions>
+        <gmd:MD_DigitalTransferOptions>
+          <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>https://catalogue.aodn.org.au:443/geonetwork/srv/en/file.disclaimer?uuid=032f4500-5c91-4d96-b141-597992da3d3a&amp;fname=State_and_trends_water_column_abyss_final.pdf&amp;access=private</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>WWW:DOWNLOAD-1.0-http--downloaddata</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:name>
+                <gmx:MimeFileType xmlns:gmx="http://www.isotc211.org/2005/gmx" type="application/pdf">State_and_trends_water_column_abyss_final.pdf</gmx:MimeFileType>
+              </gmd:name>
+              <gmd:description>
+                <gco:CharacterString>EXPERT ASSESSMENT - Water Column, Abyss (&gt;700 m) [direct download]</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
+          <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>http://www.globcolour.info/index.html</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:name gco:nilReason="missing">
+                <gco:CharacterString />
+              </gmd:name>
+              <gmd:description>
+                <gco:CharacterString>DATA STREAM USED IN EXPERT ASSESSMENT - European Service for Ocean Colour [online access point]</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
+          <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>https://portal.aodn.org.au/search?uuid=c13451a9-7cfe-091c-e044-00144f7bc0f4</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:name gco:nilReason="missing">
+                <gco:CharacterString />
+              </gmd:name>
+              <gmd:description>
+                <gco:CharacterString>DATA STREAM USED IN EXPERT ASSESSMENT - IMOS National Reference Station (NRS) - Zooplankton Abundance [online access point]</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
+          <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>https://portal.aodn.org.au/search?uuid=c13451a9-7cfc-091c-e044-00144f7bc0f4</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:name gco:nilReason="missing">
+                <gco:CharacterString />
+              </gmd:name>
+              <gmd:description>
+                <gco:CharacterString>DATA STREAM USED IN EXPERT ASSESSMENT - IMOS National Reference Station (NRS) - Zooplankton Biomass [online access point]</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
+          <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>https://www.environment.gov.au/science/soe</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:name gco:nilReason="missing">
+                <gco:CharacterString />
+              </gmd:name>
+              <gmd:description>
+                <gco:CharacterString>State of the Environment (SoE) reporting webpage</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
+          <gmd:onLine>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>https://catalogue.aodn.org.au:443/geonetwork/srv/en/metadata.show?uuid=032f4500-5c91-4d96-b141-597992da3d3a</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>WWW:LINK-1.0-http--metadata-URL</gco:CharacterString>
+              </gmd:protocol>
+              <gmd:description>
+                <gco:CharacterString>Point of truth URL of this metadata record</gco:CharacterString>
+              </gmd:description>
+            </gmd:CI_OnlineResource>
+          </gmd:onLine>
+        </gmd:MD_DigitalTransferOptions>
+      </gmd:transferOptions>
+    </gmd:MD_Distribution>
+  </gmd:distributionInfo>
+  <gmd:dataQualityInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:DQ_DataQuality>
+      <gmd:scope>
+        <gmd:DQ_Scope>
+          <gmd:level>
+            <gmd:MD_ScopeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+          </gmd:level>
+        </gmd:DQ_Scope>
+      </gmd:scope>
+      <gmd:lineage>
+        <gmd:LI_Lineage>
+          <gmd:statement>
+            <gco:CharacterString>QUALITY OF DATA USED IN THE ASSESSMENT
+Spatial and temporal coverage are excellent.  Conversion of ocean colour to chlorophyll a introduces a source of potential error.  Data could be extracted for each region to allow improved regional assessments of state and trend.</gco:CharacterString>
+          </gmd:statement>
+          <gmd:source>
+            <gmd:LI_Source>
+              <gmd:description>
+                <gco:CharacterString>CUSTODIAN AND LOCATION OF DATA
+The remotely sensed data and details can be found at http://www.globcolour.info/products_description.html 
+The in situ zooplankton data and details can be found at: https://portal.aodn.org.au/search (see links in On-line resources section of this record for specific datasets).</gco:CharacterString>
+              </gmd:description>
+            </gmd:LI_Source>
+          </gmd:source>
+        </gmd:LI_Lineage>
+      </gmd:lineage>
+    </gmd:DQ_DataQuality>
+  </gmd:dataQualityInfo>
+  <gmd:dataQualityInfo xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <gmd:DQ_DataQuality>
+      <gmd:scope>
+        <gmd:DQ_Scope>
+          <gmd:level>
+            <gmd:MD_ScopeCode codeList="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="derived">derived</gmd:MD_ScopeCode>
+          </gmd:level>
+        </gmd:DQ_Scope>
+      </gmd:scope>
+      <gmd:lineage>
+        <gmd:LI_Lineage>
+          <gmd:processStep>
+            <gmd:LI_ProcessStep>
+              <gmd:description>
+                <gco:CharacterString>METHOD USED TO DETERMINE STATE OR RECENT TREND
+Linear regression fit to each pixel over the duration from 1997 to 2015.</gco:CharacterString>
+              </gmd:description>
+            </gmd:LI_ProcessStep>
+          </gmd:processStep>
+        </gmd:LI_Lineage>
+      </gmd:lineage>
+    </gmd:DQ_DataQuality>
+  </gmd:dataQualityInfo>
+  <gmd:metadataConstraints xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <mcp:MD_Commons gco:isoType="gmd:MD_Constraints" mcp:commonsType="Creative Commons">
+      <mcp:jurisdictionLink>
+        <gmd:URL>http://creativecommons.org/international/</gmd:URL>
+      </mcp:jurisdictionLink>
+      <mcp:licenseLink>
+        <gmd:URL>http://creativecommons.org/licenses/by/4.0/</gmd:URL>
+      </mcp:licenseLink>
+      <mcp:imageLink>
+        <gmd:URL>http://i.creativecommons.org/l/by/4.0/88x31.png</gmd:URL>
+      </mcp:imageLink>
+      <mcp:licenseName>
+        <gco:CharacterString>Attribution 4.0 International</gco:CharacterString>
+      </mcp:licenseName>
+      <mcp:attributionConstraints>
+        <gco:CharacterString>When citing this Expert Assessment in a list of references use the following format:
+citation author name/s (year metadata published), metadata title. Citation author organisation/s. File identifier and Data accessed at (add http link).</gco:CharacterString>
+      </mcp:attributionConstraints>
+    </mcp:MD_Commons>
+  </gmd:metadataConstraints>
+  <mcp:revisionDate>
+    <gco:DateTime>2016-09-12T13:12:02</gco:DateTime>
+  </mcp:revisionDate>
+</mcp:MD_Metadata>
