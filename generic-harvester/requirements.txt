@@ -1,0 +1,9 @@
+simpleeval
+netCDF4
+python-dateutil
+alembic
+psycopg2
+Click
+requests
+pendulum
+geoalchemy2
