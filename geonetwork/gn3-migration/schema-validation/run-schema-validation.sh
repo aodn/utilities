@@ -4,16 +4,24 @@
 # $schema_plugins_path - Schema plugin path
 # $record_path - 	Path for MEF exported metadata records folder
 # $error_file -	Filename of the schema validation error file
+
+#set -x
+
 check_schema_validation() {
 
 	local schema_plugins_path=$1; shift
 	local record_path=$1; shift
   local error_file=$1; shift
+  local copy_record=$1; shift
 
 	for uuid in `ls -1 $record_path`
-	do 
+	do
 	  schema=`xmllint --xpath '//schema/text()' $record_path/$uuid/info.xml`
-	  XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml' xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml
+	  XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml'
+	  xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml
+	  if [ $? -ne 0 ] && [ "$copy_record" -eq 0 ]; then
+	    cp $record_path/$uuid/metadata/metadata.xml $schema/$uuid.xml
+    fi
 	done >$error_file 2>&1
 
 }
@@ -91,7 +99,7 @@ fix_schema_validation() {
         if [[ $error == *"$error_type"*  ]]
         then
 
-          xsltproc -o $record_path/$uuid/metadata/metadata.xml fix-mcp-schema-validation.xsl $record_path/$uuid/metadata/metadata.xml.bak
+          xsltproc -o $record_path/$uuid/metadata/metadata.xml $schema/fix-mcp-schema-validation.xsl $record_path/$uuid/metadata/metadata.xml.bak
 
           error_types="${error_types} $error_type;"
 
@@ -151,10 +159,11 @@ main() {
     [ x"$record_path" = x ] && usage
     [ x"$error_file" = x ] && usage
 
-    check_schema_validation $schema_plugins_path $record_path $error_file
+    check_schema_validation $schema_plugins_path $record_path $error_file 1
     fix_schema_validation $schema_plugins_path $record_path $error_file
-	  check_schema_validation $schema_plugins_path $record_path "after-fix-"$error_file
+	  check_schema_validation $schema_plugins_path $record_path "after-fix-"$error_file 0
     sed -i.all "/validates/d" "after-fix-"$error_file
+    sed -n "/Schemas validity error/p" "after-fix-"$error_file > "after-fix-validity-errors-"$error_file
 
 }
 
