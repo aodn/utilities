@@ -51,7 +51,21 @@
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template>     
+    </xsl:template>  
+    
+    <!-- Element `<gco:DateTime/>` missing value -->
+    <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>    
+    
+    <!-- Element `<gco:Integer/>` missing value -->
+    <xsl:template match="gmd:denominator[gco:Integer = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>      
     
     <!-- Element `<gmd:EX_BoundingPolygon>` missing <gmd:polygon> is added with nilReason -->
     <xsl:template match="gmd:EX_BoundingPolygon[not(gmd:polygon)]">
@@ -75,5 +89,20 @@
             <gmd:verticalCRS gco:nilReason="missing" />
         </xsl:copy>
     </xsl:template>
+    
+    <!-- Element `<gml:VerticalCRS>` remove extra <gm1:verticalCS> -->
+    <xsl:template match="gmd:verticalCRS/gml:VerticalCRS[gml:usesVerticalCS][gml:verticalCS = '']">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+        </xsl:copy>
+    </xsl:template>
+    <xsl:template match="gmd:verticalCRS/gml:VerticalCRS[gml:usesVerticalCS][gml:verticalCS = '']/gml:verticalCS" />
+    
+    <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
+    <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>    
 
 </xsl:stylesheet>

@@ -20,7 +20,9 @@
     </xsl:template>
     
     <!-- Proposed manual change - namespace update -->
-    <!-- 00ce1c70-1bbc-4f3f-8345-7091484d6ed4/metadata/metadata.xml:352: element TimePeriod: Schemas validity error : Element '{http://www.opengis.net/gml}TimePeriod': This element is not expected. Expected is one of ( {http://www.opengis.net/gml/3.2}AbstractTimePrimitive, {http://www.opengis.net/gml/3.2}TimeInstant, {http://www.opengis.net/gml/3.2}TimePeriod, {http://www.opengis.net/gml/3.2}TimeNode, {http://www.opengis.net/gml/3.2}TimeEdge ). -->
+    <!-- fb4a64a0-4cf3-42da-b6ee-358b64ea2c6d/metadata/metadata.xml:310 -->
+    <!-- 00ce1c70-1bbc-4f3f-8345-7091484d6ed4/metadata/metadata.xml:352 -->
+    <!-- element TimePeriod: Schemas validity error : Element '{http://www.opengis.net/gml}TimePeriod': This element is not expected. Expected is one of ( {http://www.opengis.net/gml/3.2}AbstractTimePrimitive, {http://www.opengis.net/gml/3.2}TimeInstant, {http://www.opengis.net/gml/3.2}TimePeriod, {http://www.opengis.net/gml/3.2}TimeNode, {http://www.opengis.net/gml/3.2}TimeEdge ). -->
     <!-- [gmd:fileIdentifier/gco:CharacterString='00ce1c70-1bbc-4f3f-8345-7091484d6ed4'] -->
     <!-- From xmlns:gml="http://www.opengis.net/gml" to xmlns:gml="http://www.opengis.net/gml/3.2" -->  
 

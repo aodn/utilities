@@ -43,7 +43,31 @@
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
+    </xsl:template>
+    
+    <!-- Element `<gco:Date/>` missing value -->
+    <xsl:template match="gmd:CI_Date/gmd:date[gco:Date = '']|gmd:dateOfNextUpdate[gco:Date = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>   
+    
+    <!-- gco:DateTime missing date removed and labelled missing -->
+    <xsl:template match="gmd:plannedAvailableDateTime[gco:DateTime[text()[substring-before(.,'T') = '']]]">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
     </xsl:template>    
+    
+    <!-- `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decmimal/> -->
+    <xsl:template match="//gmd:westBoundLongitude[gco:Decimal[not(node())]]|
+        //gmd:eastBoundLongitude[gco:Decimal[not(node())]]|
+        //gmd:southBoundLatitude[gco:Decimal[not(node())]]|
+        //gmd:northBoundLatitude[gco:Decimal[not(node())]]">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>  
     
     <!-- Element <gmd:graphicOverview> missing <fileName> node is added with nilReason -->
     <xsl:template match="gmd:MD_BrowseGraphic[not(gmd:fileName)]">
@@ -51,7 +75,39 @@
             <gmd:fileName gco:nilReason="missing" />
             <xsl:apply-templates select="@* | node()" />
         </xsl:copy>
-    </xsl:template>    
+    </xsl:template>
+    
+    <!-- Element gml:VerticalCRS missing child verticalDatum or usesVerticalDatum -->
+    <xsl:template match="gml:VerticalCRS">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <xsl:if test="not(./gml:usesVerticalDatum) and not(./gml:verticalDatum)">
+                <gml:usesVerticalDatum nilReason="missing"/>
+            </xsl:if>
+        </xsl:copy>
+    </xsl:template>   
+    
+    <!-- Element `<gco:DateTime/>` missing value -->
+    <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template> 
+    
+    <!-- Element `<gco:Integer/>` missing value -->
+    <xsl:template match="gmd:denominator[gco:Integer = '']|gmd:numberOfDimensions[gco:Integer = '']|gmd:dimensionSize[gco:Integer = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>     
+    
+    <!-- Element `<gco:Boolean/>` missing value -->
+    <xsl:template match="gmd:transformationParameterAvailability[gco:Boolean = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>        
+    
     
     <!-- Element `<gmd:CI_Citation/>. Swap ordering of <gmd:citedResponsibleParty> and <gmd:identifier> if both present and <gmd:identifier> follows <gmd:citedResponsibleParty> -->
     <!-- TODO -->
