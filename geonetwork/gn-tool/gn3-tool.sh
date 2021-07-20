@@ -110,6 +110,8 @@ get_groups() {
       -F "profile=$profile" \
       $gn_addr/srv/api/0.1/groups)
 
+  echo $body
+
   python ./get-users-groups-from-json.py "$body" "id" "name"
 
 }
@@ -369,41 +371,41 @@ import_record() {
       import_ownership_parameters="?approved=true"
       error_msg=""
 
-      groupname=$(get_info_from_file $record_dir_path/info.xml 'groupOwner')
-      if [[ !  -z  $groupname ]]
-      then
-        if [[ $groupname == 'all' ]]
-        then
-          groupid=1
-        else
-          groupid=$(get_id_from_name "$groups" "$groupname")
-        fi
-        if [[ !  -z  $groupid ]]
-        then
-          echo "Extracting groupid: '$groupid' and groupname: '$groupname' from grouplist: '$groups' "
-          import_ownership_parameters+="&groupIdentifier=$groupid"
-        else
-#          echo "Missing groupd for groupname: '$groupname'"
-          error_msg+=" ## Missing groupid for groupname: '$groupname'"
-        fi
-      fi
+#      groupname=$(get_info_from_file $record_dir_path/info.xml 'groupOwner')
+#      if [[ !  -z  $groupname ]]
+#      then
+#        if [[ $groupname == 'all' ]]
+#        then
+#          groupid=1
+#        else
+#          groupid=$(get_id_from_name "$groups" "$groupname")
+#        fi
+#        if [[ !  -z  $groupid ]]
+#        then
+#          echo "Extracting groupid: '$groupid' and groupname: '$groupname' from grouplist: '$groups' "
+#          import_ownership_parameters+="&groupIdentifier=$groupid"
+#        else
+##          echo "Missing groupd for groupname: '$groupname'"
+#          error_msg+=" ## Missing groupid for groupname: '$groupname'"
+#        fi
+#      fi
 
-      username=$(get_info_from_file $record_dir_path/info.xml 'userOwner')
-      if [[ !  -z  $username ]]
-      then
-        userid=$(get_id_from_name "$users" "$username")
-        if [[ !  -z  $userid ]]
-        then
-          echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
-          import_ownership_parameters+="&userIdentifier=$userid"
-        else
-#          echo "Missing userid for username: '$username'"
-          error_msg+="\ ## Missing userid for username: '$username'"
-        fi
-      else
-#        echo "Missing username"
-        error_msg+=" ## Missing username"
-      fi
+#      username=$(get_info_from_file $record_dir_path/info.xml 'userOwner')
+#      if [[ !  -z  $username ]]
+#      then
+#        userid=$(get_id_from_name "$users" "$username")
+#        if [[ !  -z  $userid ]]
+#        then
+#          echo "Extracting userid: '$userid' and username: '$username' from userlist: '$users' "
+#          import_ownership_parameters+="&userIdentifier=$userid"
+#        else
+##          echo "Missing userid for username: '$username'"
+#          error_msg+="\ ## Missing userid for username: '$username'"
+#        fi
+#      else
+##        echo "Missing username"
+#        error_msg+=" ## Missing username"
+#      fi
 
       if [[ !  -z  $error_msg ]]
       then
