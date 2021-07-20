@@ -22,7 +22,7 @@ if args.username and args.password:
 else:
     auth = None
 
-text_xml = requests.get(args.url, headers=headers, auth=auth).text
+text_xml = requests.get(args.url, headers=headers, auth=auth, verify=False).text
 text_xml = text_xml.encode('ascii', 'ignore')
 
 try:
