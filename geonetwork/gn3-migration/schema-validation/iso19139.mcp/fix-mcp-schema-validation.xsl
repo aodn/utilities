@@ -2,12 +2,15 @@
 
 <!-- Fix ups for iso19139.mcp -->
 
-<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
+<!-- Records using http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd -->
+<!-- These are not validated -->
+<!-- e76a13e0-3402-11dc-849f-00188b4c0af8 -->
+
+<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
-    xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
-    exclude-result-prefixes="#all">
+    xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp">
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
     <xsl:strip-space elements="*"/>
@@ -25,14 +28,7 @@
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>
-    
-    <!-- `<gco:Integer/> missing value. Apply nilReason and remove <gco:Integer/>-->
-    <xsl:template match="gmd:MD_RepresentativeFraction/gmd:denominator[gco:Integer='']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-    
+  
     <!-- `<gco:Integer/> Invalid integer value. Remove invalid characters -->
     <xsl:template match="gco:Integer[not(number(.))]/text()">
         <xsl:value-of select="replace(., '[^0-9]', '')"/>
@@ -114,19 +110,12 @@
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>    
-
-    <!-- Element `<gco:Integer/>` missing value -->
-    <xsl:template match="gmd:denominator[gco:Integer = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>  
     
     <!-- Element mcp:MD_DataIdentification missing gmd:language -->
     <xsl:template match="mcp:MD_DataIdentification[not(./gmd:language)]">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
-            <gml:language nilReason="missing"/>
+            <gmd:language gco:nilReason="missing"/>
         </xsl:copy>
     </xsl:template>
 
@@ -169,6 +158,14 @@
         </xsl:copy>
     </xsl:template>
     <xsl:template match="gmd:topicCategory/gmd:MD_TopicCategoryCode[. = '']" />
+    
+    <!-- Element gmd:MD_Keywords missing gmd:keyword -->
+    <xsl:template match="gmd:MD_Keywords[not(gmd:keyword)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gmd:keyword gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>    
         
     
     <!-- Element `<gmd:CI_Citation/>. Swap ordering of <gmd:citedResponsibleParty> and <gmd:identifier> if both present and <gmd:identifier> follows <gmd:citedResponsibleParty> -->

@@ -2,12 +2,11 @@
 
 <!-- Fix ups for iso19139.mcp-1.4 -->
 
-<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
+<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
-    xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
-    exclude-result-prefixes="#all">
+    xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp">
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
     <xsl:strip-space elements="*"/>

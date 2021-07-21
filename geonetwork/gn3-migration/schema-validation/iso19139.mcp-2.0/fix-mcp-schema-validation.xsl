@@ -3,14 +3,13 @@
 <!-- Fix ups for iso19139.mcp-2.0 -->
 
 
-<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
+<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
     xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
     xmlns:gmx="http://www.isotc211.org/2005/gmx"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    exclude-result-prefixes="#all">
+    xmlns:xlink="http://www.w3.org/1999/xlink">
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
     <xsl:strip-space elements="*"/>

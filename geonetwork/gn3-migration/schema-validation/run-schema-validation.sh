@@ -162,19 +162,22 @@ main() {
     check_schema_validation $schema_plugins_path $record_path $error_file 1
     fix_schema_validation $schema_plugins_path $record_path $error_file
 
-    # Correct namespace errors
-    sed -i 's/%7B/{/g' "$error_file"
-    sed -i 's/%7D/}/g' "$error_file"
-    filelist=$( grep "{http://www.opengis.net/gml/3.2}" "$error_file" | awk '{split($0,a,":");print a[1]}'  )
+	  check_schema_validation $schema_plugins_path $record_path "after-fix-"$error_file 1
+
+	  # Correct namespace errors
+    sed -i 's/%7B/{/g' "after-fix-$error_file"
+    sed -i 's/%7D/}/g' "after-fix-$error_file"
+    filelist=$( grep "{http://www.opengis.net/gml/3.2}" "after-fix-$error_file" | awk '{split($0,a,":");print a[1]}'  )
     while read file;
     do
       # xmlns:gml="http://www.opengis.net/gml" to xmlns:gml="http://www.opengis.net/gml/3.2"
       sed -i 's/xmlns:gml="http:\/\/www.opengis.net\/gml"/xmlns:gml="http:\/\/www.opengis.net\/gml\/3.2"/g' "$file"
     done <<< "$filelist"
 
-	  check_schema_validation $schema_plugins_path $record_path "after-fix-"$error_file 0
-    sed -i.all "/validates/d" "after-fix-"$error_file
-    sed -n "/Schemas validity error/p" "after-fix-"$error_file > "after-fix-validity-errors-"$error_file
+ 	  check_schema_validation $schema_plugins_path $record_path "after-fix2-"$error_file 0
+
+    sed -i.all "/validates/d" "after-fix2-"$error_file
+    sed -n "/Schemas validity error/p" "after-fix2-"$error_file > "after-fix-validity-errors-"$error_file
 
 }
 
