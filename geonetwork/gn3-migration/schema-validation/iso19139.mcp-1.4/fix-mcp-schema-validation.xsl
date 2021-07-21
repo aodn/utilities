@@ -6,7 +6,7 @@
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
-    xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
+    xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
     exclude-result-prefixes="#all">
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />

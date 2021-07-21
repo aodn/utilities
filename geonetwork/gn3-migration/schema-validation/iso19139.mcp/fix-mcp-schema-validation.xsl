@@ -92,7 +92,14 @@
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template> 
+    </xsl:template>
+    
+    <!-- Element `gmd:dateStamp/gco:DateTime missing value -->
+    <xsl:template match="gmd:dateStamp[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>     
     
     <!-- Element `<gco:Integer/>` missing value -->
     <xsl:template match="gmd:denominator[gco:Integer = '']|gmd:numberOfDimensions[gco:Integer = '']|gmd:dimensionSize[gco:Integer = '']">
@@ -106,8 +113,63 @@
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template>        
+    </xsl:template>    
+
+    <!-- Element `<gco:Integer/>` missing value -->
+    <xsl:template match="gmd:denominator[gco:Integer = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>  
     
+    <!-- Element mcp:MD_DataIdentification missing gmd:language -->
+    <xsl:template match="mcp:MD_DataIdentification[not(./gmd:language)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gml:language nilReason="missing"/>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- Element gmd:EX_BoundingPolygon missing children -->
+    <xsl:template match="gmd:EX_BoundingPolygon[not(*)]">
+        <xsl:copy>
+            <gmd:polygon gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Element gmd:CI_Citation missing gmd:date -->
+    <xsl:template match="gmd:CI_Citation[not(gmd:date)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gmd:date gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Element gmd:CI_Citation missing gmd:title -->
+    <xsl:template match="gmd:CI_Citation[not(gmd:title)]">
+        <xsl:copy>
+            <gmd:title gco:nilReason="missing" />
+            <xsl:apply-templates select="@* | node()" />
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Element gmd:EX_VerticalExtent missing gmd:verticalCRS -->
+    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gmd:verticalCRS gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Element gmd:MD_TopicCategoryCode missing value -->
+    <xsl:template match="gmd:topicCategory[gmd:MD_TopicCategoryCode = '']">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    <xsl:template match="gmd:topicCategory/gmd:MD_TopicCategoryCode[. = '']" />
+        
     
     <!-- Element `<gmd:CI_Citation/>. Swap ordering of <gmd:citedResponsibleParty> and <gmd:identifier> if both present and <gmd:identifier> follows <gmd:citedResponsibleParty> -->
     <!-- TODO -->

@@ -6,7 +6,6 @@
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
-    xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
     exclude-result-prefixes="#all">
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
@@ -25,5 +24,26 @@
     <!-- element TimePeriod: Schemas validity error : Element '{http://www.opengis.net/gml}TimePeriod': This element is not expected. Expected is one of ( {http://www.opengis.net/gml/3.2}AbstractTimePrimitive, {http://www.opengis.net/gml/3.2}TimeInstant, {http://www.opengis.net/gml/3.2}TimePeriod, {http://www.opengis.net/gml/3.2}TimeNode, {http://www.opengis.net/gml/3.2}TimeEdge ). -->
     <!-- [gmd:fileIdentifier/gco:CharacterString='00ce1c70-1bbc-4f3f-8345-7091484d6ed4'] -->
     <!-- From xmlns:gml="http://www.opengis.net/gml" to xmlns:gml="http://www.opengis.net/gml/3.2" -->  
-
+    
+    <!-- Element gmd:MD_Metadata change xmlns:gml="http://www.opengis.net/gml" version to xmlns:gml="http://www.opengis.net/gml/3.2"-->
+    <!-- Element gmd:MD_Metadata change xmlns:gml="http://www.opengis.net/gml" version to xmlns:gml="http://www.opengis.net/gml/3.2"-->
+    
+    <!--
+    <xsl:template match="//gmd:MD_Metadata/namespace::*">
+        <gmd:MD_Metadata>
+            <xsl:for-each select=".">
+                <xsl:choose>
+                    <xsl:when test="contains(., 'http://www.opengis.net/gml')">
+                        <xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:namespace name="." select="."/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+            <xsl:apply-templates select="@* | node()" />
+        </gmd:MD_Metadata>
+    </xsl:template>
+    -->
+    
 </xsl:stylesheet>
