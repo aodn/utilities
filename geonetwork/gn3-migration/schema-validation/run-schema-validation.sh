@@ -20,7 +20,7 @@ check_schema_validation() {
 	  XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml'
 	  xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml
 	  if [ $? -ne 0 ] && [ "$copy_record" -eq 0 ]; then
-	    cp $record_path/$uuid/metadata/metadata.xml $schema/$uuid.xml
+	    cp $record_path/$uuid/metadata/metadata.xml.bak $schema/$uuid.xml
     fi
 	done >$error_file 2>&1
 

@@ -5,6 +5,7 @@
 <!-- Records using http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd -->
 <!-- These are not validated -->
 <!-- e76a13e0-3402-11dc-849f-00188b4c0af8 -->
+<!-- 0292f830-723d-11dc-a0c6-00188b4c0af8 -->
 
 <xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
     xmlns:gml="http://www.opengis.net/gml"
@@ -36,6 +37,13 @@
     
     <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
     <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- gco:Real value is not a number -->
+    <xsl:template match="//gmd:minimumValue[gco:Real[string(number(node())) = 'NaN']]">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -81,7 +89,25 @@
                 <gml:usesVerticalDatum nilReason="missing"/>
             </xsl:if>
         </xsl:copy>
-    </xsl:template>   
+    </xsl:template>
+    
+    <!-- Element gmd:EX_VerticalExtent missing gmd:minimumValue, maximumValue and verticalCRS  -->
+    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:minimumValue) and not(gmd:maximumValue) and not(gmd:verticalCRS)]">
+        <xsl:copy>
+            <gmd:minimumValue gco:nilReason="missing" />
+            <gmd:maximumValue gco:nilReason="missing" />
+            <gmd:verticalCRS gco:nilReason="missing" />
+            <xsl:apply-templates select="@* | node()" />
+        </xsl:copy>
+    </xsl:template> 
+    
+    <!-- Element gmd:EX_VerticalExtent missing verticalCRS  -->
+    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gmd:verticalCRS gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>     
     
     <!-- Element `<gco:DateTime/>` missing value -->
     <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
@@ -110,14 +136,33 @@
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>    
-    
+
     <!-- Element mcp:MD_DataIdentification missing gmd:language -->
-    <xsl:template match="mcp:MD_DataIdentification[not(./gmd:language)]">
+<!--    <xsl:template match="mcp:MD_DataIdentification[not(./gmd:language)]">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
             <gmd:language gco:nilReason="missing"/>
         </xsl:copy>
     </xsl:template>
+    -->
+    
+    <!-- mcp:MD_DataIdentification missing gmd:language  Add in correct order -->
+    <xsl:template match="mcp:MD_DataIdentification[not(gmd:language)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="not(self::gmd:characterSet)">
+                        <xsl:apply-templates select="." />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <gmd:language gco:nilReason="missing" />
+                        <xsl:copy-of select="." />
+                    </xsl:otherwise>
+                </xsl:choose>          
+            </xsl:for-each>
+        </xsl:copy>        
+    </xsl:template>    
 
     <!-- Element gmd:EX_BoundingPolygon missing children -->
     <xsl:template match="gmd:EX_BoundingPolygon[not(*)]">
@@ -127,7 +172,7 @@
     </xsl:template>
     
     <!-- Element gmd:CI_Citation missing gmd:date -->
-    <xsl:template match="gmd:CI_Citation[not(gmd:date)]">
+    <xsl:template match="gmd:CI_Citation[.!=''][not(gmd:date)]">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
             <gmd:date gco:nilReason="missing" />
@@ -135,21 +180,21 @@
     </xsl:template>
     
     <!-- Element gmd:CI_Citation missing gmd:title -->
-    <xsl:template match="gmd:CI_Citation[not(gmd:title)]">
+    <xsl:template match="gmd:CI_Citation[.!=''][not(gmd:title)]">
         <xsl:copy>
             <gmd:title gco:nilReason="missing" />
             <xsl:apply-templates select="@* | node()" />
         </xsl:copy>
     </xsl:template>
     
-    <!-- Element gmd:EX_VerticalExtent missing gmd:verticalCRS -->
-    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
+    <!-- Element gmd:CI_Citation empty -->
+    <xsl:template match="gmd:CI_Citation[.='']">
         <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />
-            <gmd:verticalCRS gco:nilReason="missing" />
+            <gmd:title gco:nilReason="missing" />
+            <gmd:date gco:nilReason="missing" />
         </xsl:copy>
-    </xsl:template>
-    
+    </xsl:template>    
+ 
     <!-- Element gmd:MD_TopicCategoryCode missing value -->
     <xsl:template match="gmd:topicCategory[gmd:MD_TopicCategoryCode = '']">
         <xsl:copy>
@@ -160,21 +205,11 @@
     <xsl:template match="gmd:topicCategory/gmd:MD_TopicCategoryCode[. = '']" />
     
     <!-- Element gmd:MD_Keywords missing gmd:keyword -->
-    <xsl:template match="gmd:MD_Keywords[not(gmd:keyword)]">
+    <xsl:template match="//gmd:MD_Keywords[not(gmd:keyword)]">
         <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />
             <gmd:keyword gco:nilReason="missing" />
+            <xsl:apply-templates select="@* | node()" />
         </xsl:copy>
     </xsl:template>    
-        
-    
-    <!-- Element `<gmd:CI_Citation/>. Swap ordering of <gmd:citedResponsibleParty> and <gmd:identifier> if both present and <gmd:identifier> follows <gmd:citedResponsibleParty> -->
-    <!-- TODO -->
-<!--    <xsl:template match = "gmd:CI_Citation[gmd:citedResponsibleParty[following-sibling::gmd:identifier]]">-->
-<!--        <xsl:copy>-->
-<!--            <xsl:apply-templates select="@* | node()" />      -->
-<!--            <xsl:apply-templates select="gmd:identifier, gmd:citedResponsibleParty"/>-->
-<!--        </xsl:copy> -->
-<!--    </xsl:template>-->
 
 </xsl:stylesheet>

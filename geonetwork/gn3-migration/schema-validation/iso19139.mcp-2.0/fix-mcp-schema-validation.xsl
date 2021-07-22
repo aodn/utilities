@@ -43,5 +43,80 @@
         <xsl:attribute name="xlink:href" select="concat(substring-before(.,'?'),'?',encode-for-uri(substring-after(.,'?')))"/>
     </xsl:template>
     
+    <!-- mcp:MD_DataIdentification missing gmd:language  Add in correct order -->
+    <xsl:template match="mcp:MD_DataIdentification[not(gmd:language)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="not(self::gmd:characterSet)">
+                        <xsl:apply-templates select="." />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <gmd:language gco:nilReason="missing" />
+                        <xsl:copy-of select="." />
+                    </xsl:otherwise>
+                </xsl:choose>          
+            </xsl:for-each>
+        </xsl:copy>        
+    </xsl:template>
+    
+    <!-- `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
+    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
+    <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>  
+
+    <!-- Element `<gco:DateTime/>` missing value -->
+    <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>    
+    
+    <!-- Element `<gco:Integer/>` missing value -->
+    <xsl:template match="gmd:denominator[gco:Integer = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>  
+    
+    <!-- Element <gm1:verticalCRS/>. Add <gml:verticalDatum/> -->
+    <xsl:template match="gml:VerticalCRS[not(gml:verticalDatum)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />      
+            <gml:verticalDatum />
+        </xsl:copy>
+    </xsl:template>   
+    
+    <!-- Element gmd:EX_VerticalExtent missing verticalCRS  -->
+    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gmd:verticalCRS gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>        
+    
+    <!-- Element `<mcp:DP_DataParameter/>` missing value -->
+    <xsl:template match="mcp:dataParameter[mcp:DP_DataParameter = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>   
+    
+    <!-- Element `<mcp:dataParameters/>` expected but have <mcp:dataparameters/> -->
+    <xsl:template match="mcp:dataparameters">
+        <xsl:element name="mcp:dataParameters">
+            <xsl:apply-templates select="@* | node()"/>
+        </xsl:element>
+    </xsl:template>     
 
 </xsl:stylesheet>
