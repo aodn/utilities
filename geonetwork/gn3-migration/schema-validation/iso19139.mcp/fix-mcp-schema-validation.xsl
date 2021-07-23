@@ -102,7 +102,7 @@
     </xsl:template> 
     
     <!-- Element gmd:EX_VerticalExtent missing verticalCRS  -->
-    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
+    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS) and gmd:minimumValue and gmd:maximumValue]">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
             <gmd:verticalCRS gco:nilReason="missing" />
@@ -210,6 +210,21 @@
             <gmd:keyword gco:nilReason="missing" />
             <xsl:apply-templates select="@* | node()" />
         </xsl:copy>
-    </xsl:template>    
+    </xsl:template>  
+    
+    <!-- Element gmd:EX_GeographicDescription missing all children -->
+    <xsl:template match="//gmd:geographicElement[gmd:EX_GeographicDescription[not(gmd:extentTypeCode) and not(gmd:geographicIdentifier)]]">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>   
+    
+    <!-- <gmd:MD_TopicCategoryCode>climatology/meteorology/atmosphere</gmd:MD_TopicCategoryCode> not in enumeration -->
+    <xsl:template match="//gmd:MD_TopicCategoryCode[text() = 'climatology/meteorology/atmosphere']">
+        <xsl:copy>
+            <xsl:value-of select="'climatologyMeteorologyAtmosphere'"/>
+        </xsl:copy>
+    </xsl:template>  
+    
 
 </xsl:stylesheet>

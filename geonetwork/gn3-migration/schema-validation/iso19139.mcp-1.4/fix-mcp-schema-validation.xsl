@@ -92,7 +92,7 @@
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template>      
+    </xsl:template>    
     
     <!-- Element `<gmd:EX_BoundingPolygon>` missing <gmd:polygon> is added with nilReason -->
     <xsl:template match="gmd:EX_BoundingPolygon[not(gmd:polygon)]">
