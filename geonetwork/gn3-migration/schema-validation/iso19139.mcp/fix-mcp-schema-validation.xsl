@@ -7,6 +7,9 @@
 <!-- e76a13e0-3402-11dc-849f-00188b4c0af8 -->
 <!-- 0292f830-723d-11dc-a0c6-00188b4c0af8 -->
 
+<!-- Templates -->
+<!-- e8c0865c-8493-4dd8-b9f6-0da85055bd57 -->
+
 <xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"

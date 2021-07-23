@@ -16,7 +16,8 @@ check_schema_validation() {
 
 	for uuid in `ls -1 $record_path`
 	do
-	  schema=`xmllint --xpath '//schema/text()' $record_path/$uuid/info.xml`
+	  info_file=$( find "$record_path/$uuid" -name info.xml )
+	  schema=`xmllint --xpath '//schema/text()' "$info_file"`
 	  XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml'
 	  xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml
 	  if [ $? -ne 0 ] && [ "$copy_record" -eq 0 ]; then
@@ -168,11 +169,14 @@ main() {
     sed -i 's/%7B/{/g' "after-fix-$error_file"
     sed -i 's/%7D/}/g' "after-fix-$error_file"
     filelist=$( grep "{http://www.opengis.net/gml/3.2}" "after-fix-$error_file" | awk '{split($0,a,":");print a[1]}'  )
-    while read file;
-    do
-      # xmlns:gml="http://www.opengis.net/gml" to xmlns:gml="http://www.opengis.net/gml/3.2"
-      sed -i 's/xmlns:gml="http:\/\/www.opengis.net\/gml"/xmlns:gml="http:\/\/www.opengis.net\/gml\/3.2"/g' "$file"
-    done <<< "$filelist"
+    if [ "$filelist" != '' ];
+    then
+      while read file;
+      do
+        # xmlns:gml="http://www.opengis.net/gml" to xmlns:gml="http://www.opengis.net/gml/3.2"
+        sed -i 's/xmlns:gml="http:\/\/www.opengis.net\/gml"/xmlns:gml="http:\/\/www.opengis.net\/gml\/3.2"/g' "$file"
+      done <<< "$filelist"
+    fi
 
  	  check_schema_validation $schema_plugins_path $record_path "after-fix2-"$error_file 0
 

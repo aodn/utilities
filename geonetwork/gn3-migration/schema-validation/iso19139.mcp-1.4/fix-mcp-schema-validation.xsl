@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Templates -->
+<!-- d6cf3c60-9f49-4fb5-9125-27043dc9e7e9 -->
+
 <!-- Fix ups for iso19139.mcp-1.4 -->
 
 <xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
@@ -85,7 +88,14 @@
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template>    
+    </xsl:template>   
+    
+    <!-- Element `<gco:DateTime/>` missing value -->
+    <xsl:template match="gmd:dateStamp[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>      
     
     <!-- Element `<gco:Integer/>` missing value -->
     <xsl:template match="gmd:denominator[gco:Integer = '']">
