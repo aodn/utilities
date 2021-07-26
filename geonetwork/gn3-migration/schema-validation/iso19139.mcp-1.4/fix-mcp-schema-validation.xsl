@@ -2,6 +2,7 @@
 
 <!-- Templates -->
 <!-- d6cf3c60-9f49-4fb5-9125-27043dc9e7e9 -->
+<!-- 308784f4-11ac-45f5-a489-078044420c33 -->
 
 <!-- Fix ups for iso19139.mcp-1.4 -->
 
@@ -95,7 +96,12 @@
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template>      
+    </xsl:template>  
+
+    <!-- gco:DateTime missing time replaced with gco:Date -->
+    <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
+        <gco:Date><xsl:value-of select="."/></gco:Date>
+    </xsl:template>
     
     <!-- Element `<gco:Integer/>` missing value -->
     <xsl:template match="gmd:denominator[gco:Integer = '']">

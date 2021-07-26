@@ -124,7 +124,24 @@
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template>     
+    </xsl:template>   
+    
+    <!-- gco:DateTime missing time replaced with gco:Date -->
+    <!-- Non ISO date formats corrected -->
+    <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
+<!--        <xsl:choose>
+            <xsl:when test=".='1/2/2015'">
+                <gco:Date><xsl:value-of select="'2015-02-01'"/></gco:Date>
+            </xsl:when>
+            <xsl:when test="'.=1/1/2015'">
+                <gco:Date><xsl:value-of select="'2015-01-01'"/></gco:Date>
+            </xsl:when>
+            <xsl:otherwise>
+                <gco:Date><xsl:value-of select="."/></gco:Date>                
+            </xsl:otherwise>
+        </xsl:choose> -->
+        <gco:Date><xsl:value-of select="."/></gco:Date>                
+    </xsl:template>    
     
     <!-- Element `<gco:Integer/>` missing value -->
     <xsl:template match="gmd:denominator[gco:Integer = '']|gmd:numberOfDimensions[gco:Integer = '']|gmd:dimensionSize[gco:Integer = '']">

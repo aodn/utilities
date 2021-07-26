@@ -61,6 +61,22 @@
         </xsl:copy>        
     </xsl:template>
     
+    <!-- gmd:CI_Citation has gmd:citedResponsibleParty and gmd:identifier incorrectly ordered -->
+    <xsl:template match="gmd:CI_Citation[gmd:citedResponsibleParty[following-sibling::gmd:identifier]]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="not(self::gmd:citedResponsibleParty) and not(self::gmd:identifier)">
+                        <xsl:apply-templates select="." />
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:for-each>
+            <xsl:copy-of select="gmd:identifier"/>
+            <xsl:copy-of select="gmd:citedResponsibleParty"/>
+        </xsl:copy>        
+    </xsl:template>
+    
     <!-- `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
     <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
         <xsl:copy>
@@ -118,5 +134,24 @@
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
     </xsl:template>     
+    
+    <!-- <gml:TimePeriod> without endPosition -->
+    <xsl:template match="gml:TimePeriod[gml:beginPosition][not(gml:endPosition)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />      
+            <gml:endPosition indeterminatePosition="unknown" />
+        </xsl:copy>
+    </xsl:template>  
+
+    <!-- More than one gmd:supplementalInformation in mcp:MD_DataIdentification -->
+    <!-- TODO: combine the CharacterStrings into one? 
+    <xsl:template match="mcp:MD_DataIdentification[gmd:supplementalInformation[following-sibling::gmd:supplementalInformation]]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />      
+            <gml:endPosition indeterminatePosition="unknown" />
+        </xsl:copy>
+    </xsl:template> -->
+    
+    
 
 </xsl:stylesheet>
