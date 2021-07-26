@@ -166,6 +166,12 @@ public class TransformCatalogueTest {
         testFiles("environmentDescription");
     }
 
+
+    @Test
+    public void codeListValue() throws IOException {
+        testFiles("codelistvalue");
+    }
+
     @Test
     public void testProdSubstitutions() throws IOException {
         testFiles("prodSubstitutions", "url-substitutions/imos-prod.xml");

@@ -65,6 +65,19 @@
         <xsl:param name="required" select="false()"/>
         <!-- The correct codeList Location goes here -->
         <xsl:variable name="codeListLocation" select="'codeListLocation'"/>
+        <xsl:variable name="codeListValueNew">
+            <xsl:choose>
+                <xsl:when test="$codeListValue='derived'">
+                    <xsl:value-of select="'collectionSession'"/>
+                </xsl:when>
+                <xsl:when test="$codeListValue='observed'">
+                    <xsl:value-of select="'dataset'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$codeListValue"/>
+                </xsl:otherwise>                             
+            </xsl:choose>
+        </xsl:variable>
         <xsl:choose>
             <xsl:when test="string-length($codeListValue) > 0">
                 <xsl:element name="{$elementName}">
@@ -78,9 +91,9 @@
                             <!-- the anyValidURI value is used for testing with paths -->
                             <!--<xsl:value-of select="'anyValidURI'"/>-->
                             <!-- commented out for testing -->
-                            <xsl:value-of select="$codeListValue"/>
+                            <xsl:value-of select="$codeListValueNew"/>
                         </xsl:attribute>
-                        <xsl:value-of select="$codeListValue"/>
+                        <xsl:value-of select="$codeListValueNew"/>
                     </xsl:element>
                 </xsl:element>
                 <!--<xsl:if test="@*">
