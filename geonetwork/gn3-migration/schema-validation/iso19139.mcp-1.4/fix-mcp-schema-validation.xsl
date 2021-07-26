@@ -132,6 +132,13 @@
         </xsl:copy>
     </xsl:template>  
     
+    <!-- <gmd:minimumValue> or <gmd:maximumValue> invalid 'n/a' value. Apply nilReason and remove <gco:Real/> -->
+    <xsl:template match="//gmd:maximumValue[gco:Real = 'n/a']|//gmd:minimumValue[gco:Real = 'n/a']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>     
+    
     <!-- More than one mcp:dataParameters.  Move the parameters into the first. -->
     <xsl:template match="mcp:dataParameters[following-sibling::mcp:dataParameters][1]/mcp:DP_DataParameters">
         <xsl:variable name="container" select="."/>

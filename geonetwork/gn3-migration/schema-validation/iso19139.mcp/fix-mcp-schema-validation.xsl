@@ -129,18 +129,38 @@
     <!-- gco:DateTime missing time replaced with gco:Date -->
     <!-- Non ISO date formats corrected -->
     <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
-<!--        <xsl:choose>
+        <xsl:choose>
             <xsl:when test=".='1/2/2015'">
+                <!-- 
+                    0bef875d-5f77-4b31-bd56-de73fafc2b2e
+                    c5a37946-a6cc-463e-be28-711b785d0f9f
+                    da7dba82-ef56-426a-bb19-843e5e7e72d8
+                -->
                 <gco:Date><xsl:value-of select="'2015-02-01'"/></gco:Date>
             </xsl:when>
             <xsl:when test="'.=1/1/2015'">
+                <!--
+                    45c37065-6aeb-4f31-b107-1a39a977df6f
+                    4dae96c7-5be0-4b1d-9a01-160812886a91
+                -->
                 <gco:Date><xsl:value-of select="'2015-01-01'"/></gco:Date>
+            </xsl:when>
+            <xsl:when test="'.=2/2/2015'">
+                <!--
+                    d3169300-ba62-4ac1-823a-0bc43909f8e7
+                -->
+                <gco:Date><xsl:value-of select="'2015-02-02'"/></gco:Date>
+            </xsl:when>
+            <xsl:when test="'.=1/2/2008'">
+                <!--
+                    7d0b4a53-1863-4600-92a4-d385c88e9be9
+                -->
+                <gco:Date><xsl:value-of select="'2008-02-01'"/></gco:Date>
             </xsl:when>
             <xsl:otherwise>
                 <gco:Date><xsl:value-of select="."/></gco:Date>                
             </xsl:otherwise>
-        </xsl:choose> -->
-        <gco:Date><xsl:value-of select="."/></gco:Date>                
+        </xsl:choose>
     </xsl:template>    
     
     <!-- Element `<gco:Integer/>` missing value -->
