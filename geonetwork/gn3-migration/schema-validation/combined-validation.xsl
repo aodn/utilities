@@ -34,6 +34,7 @@
     <!-- MISSING VALUES -->
 
     <!-- iso19139 `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
+    <!-- post manual values enter? -->
     <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -41,6 +42,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decmimal/> -->
+    <!-- post manual values enter? -->
     <xsl:template match="//gmd:westBoundLongitude[gco:Decimal[not(node())]]|
         //gmd:eastBoundLongitude[gco:Decimal[not(node())]]|
         //gmd:southBoundLatitude[gco:Decimal[not(node())]]|
@@ -51,6 +53,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-1.4 `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
+    <!-- post manual values enter? -->
     <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -58,6 +61,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-2.0 `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
+    <!-- post manual values enter? -->
     <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -65,6 +69,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
+    <!-- post manual check? -->
     <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -72,6 +77,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-1.4 `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
+    <!-- post manual check? -->
     <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -79,6 +85,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-2.0 `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
+    <!-- post manual check?  parameters?-->
     <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -86,6 +93,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-1.4 `<gco:Integer/>` missing value -->
+    <!-- post manual check? -->
     <xsl:template match="gmd:denominator[gco:Integer = '']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -93,6 +101,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp `<gco:Integer/>` missing value -->
+    <!-- post manual check? -->
     <xsl:template match="gmd:denominator[gco:Integer = '']|gmd:numberOfDimensions[gco:Integer = '']|gmd:dimensionSize[gco:Integer = '']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -100,6 +109,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-2.0 `<gco:Integer/>` missing value -->
+    <!-- post manual check? -->
     <xsl:template match="gmd:denominator[gco:Integer = '']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -107,6 +117,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp `<gco:Boolean/>` missing value -->
+    <!-- pre transform check missing/true/false -->
     <xsl:template match="gmd:transformationParameterAvailability[gco:Boolean = '']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -170,6 +181,7 @@
     </xsl:template>
 
     <!-- iso19139 gco:Distance missing value -->
+    <!-- where is Distance being used -->
     <xsl:template match="gmd:distance[gco:Distance = '']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -177,6 +189,7 @@
     </xsl:template>
 
     <!-- iso19139 `<gmd:MD_TopicCategoryCode/>` missing value -->
+    <!-- make sure there is at least on Topic Category (if none add "oceans") -->
     <xsl:template match="gmd:topicCategory[gmd:MD_TopicCategoryCode = '']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -184,6 +197,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp gmd:MD_TopicCategoryCode missing value -->
+    <!-- make sure there is at least on Topic Category (if none add "oceans") -->
     <xsl:template match="gmd:topicCategory[gmd:MD_TopicCategoryCode = '']">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
@@ -202,11 +216,14 @@
     <!-- INVALID VALUES (other than '') -->
 
     <!-- iso19139.mcp `<gco:Integer/> Invalid integer value. Remove invalid characters -->
+    <!-- allow for negative -->
+    <!-- check and fix before transform -->
     <xsl:template match="gco:Integer[not(number(.))]/text()">
         <xsl:value-of select="replace(., '[^0-9]', '')"/>
     </xsl:template>
 
     <!-- iso19139.mcp gco:Real value is not a number -->
+    <!-- check and fix before transform -->
     <xsl:template match="//gmd:minimumValue[gco:Real[string(number(node())) = 'NaN']]">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -214,6 +231,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp gco:DateTime missing date removed and labelled missing -->
+    <!-- check and fix? before transform -->
     <xsl:template match="gmd:plannedAvailableDateTime[gco:DateTime[text()[substring-before(.,'T') = '']]]">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -232,6 +250,7 @@
 
     <!-- iso19139.mcp gco:DateTime missing time replaced with gco:Date -->
     <!-- Non ISO date formats corrected -->
+    <!-- check and fix before transform -->
     <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
         <xsl:choose>
             <xsl:when test=".='1/2/2015'">
@@ -275,6 +294,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-1.4 <gmd:minimumValue> or <gmd:maximumValue> invalid 'n/a' value. Apply nilReason and remove <gco:Real/> -->
+    <!-- check and fix? before transform -->
     <xsl:template match="//gmd:maximumValue[gco:Real = 'n/a']|//gmd:minimumValue[gco:Real = 'n/a']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -373,6 +393,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp mcp:MD_DataIdentification missing gmd:language  Add in correct order -->
+    <!-- check and fix? before transform, make eng? -->
     <xsl:template match="mcp:MD_DataIdentification[not(gmd:language)]">
         <xsl:copy>
             <xsl:apply-templates select="@*" />
@@ -406,6 +427,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp gmd:CI_Citation missing gmd:title -->
+    <!-- check and fix? before transform -->
     <xsl:template match="gmd:CI_Citation[.!=''][not(gmd:title)]">
         <xsl:copy>
             <gmd:title gco:nilReason="missing" />
@@ -460,6 +482,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-2.0 `<mcp:DP_Term/>` missing <mcp:usedInDataset> is added with nilReason -->
+    <!-- check and fix? before transform -->
     <xsl:template match="mcp:DP_Term[not(mcp:usedInDataset)]">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
@@ -468,6 +491,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-2.0 mcp:MD_DataIdentification missing gmd:language  Add in correct order -->
+    <!-- duplicate -->
     <xsl:template match="mcp:MD_DataIdentification[not(gmd:language)]">
         <xsl:copy>
             <xsl:apply-templates select="@*" />
@@ -488,6 +512,7 @@
     <!-- OTHER -->
 
     <!-- iso19139.mcp-1.4 (Similar to Issue 3210?) More than one mcp:dataParameters.  Move the parameters into the first. -->
+    <!-- check before transform -->
     <xsl:template match="mcp:dataParameters[following-sibling::mcp:dataParameters][1]/mcp:DP_DataParameters">
         <xsl:variable name="container" select="."/>
         <xsl:variable name="dataParameters" select="parent::node()/following-sibling::mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter"/>
@@ -506,6 +531,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-2.0 gmd:CI_Citation has gmd:citedResponsibleParty and gmd:identifier incorrectly ordered -->
+    <!-- check and before transform -->
     <xsl:template match="gmd:CI_Citation[gmd:citedResponsibleParty[following-sibling::gmd:identifier]]">
         <xsl:copy>
             <xsl:apply-templates select="@*" />
