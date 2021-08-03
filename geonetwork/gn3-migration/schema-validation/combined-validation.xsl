@@ -40,22 +40,25 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139 <gco:DateTime/> missing value -->
-    <xsl:template match="gmd:date[gco:DateTime = '']">
+    <!-- iso19139.mcp `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decmimal/> -->
+    <xsl:template match="//gmd:westBoundLongitude[gco:Decimal[not(node())]]|
+        //gmd:eastBoundLongitude[gco:Decimal[not(node())]]|
+        //gmd:southBoundLatitude[gco:Decimal[not(node())]]|
+        //gmd:northBoundLatitude[gco:Decimal[not(node())]]">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139 `<gmd:MD_TopicCategoryCode/>` missing value -->
-    <xsl:template match="gmd:topicCategory[gmd:MD_TopicCategoryCode = '']">
+    <!-- iso19139.mcp-1.4 `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
+    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139 gco:Distance missing value -->
-    <xsl:template match="gmd:distance[gco:Distance = '']">
+    <!-- iso19139.mcp-2.0 `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
+    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -68,18 +71,15 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139.mcp `<gco:Date/>` missing value -->
-    <xsl:template match="gmd:CI_Date/gmd:date[gco:Date = '']|gmd:dateOfNextUpdate[gco:Date = '']">
+    <!-- iso19139.mcp-1.4 `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
+    <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139.mcp `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decmimal/> -->
-    <xsl:template match="//gmd:westBoundLongitude[gco:Decimal[not(node())]]|
-        //gmd:eastBoundLongitude[gco:Decimal[not(node())]]|
-        //gmd:southBoundLatitude[gco:Decimal[not(node())]]|
-        //gmd:northBoundLatitude[gco:Decimal[not(node())]]">
+    <!-- iso19139.mcp-2.0 `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
+    <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -92,20 +92,6 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139.mcp `<gco:DateTime/>` missing value -->
-    <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp `gmd:dateStamp/gco:DateTime missing value -->
-    <xsl:template match="gmd:dateStamp[gco:DateTime = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
     <!-- iso19139.mcp `<gco:Integer/>` missing value -->
     <xsl:template match="gmd:denominator[gco:Integer = '']|gmd:numberOfDimensions[gco:Integer = '']|gmd:dimensionSize[gco:Integer = '']">
         <xsl:copy>
@@ -113,8 +99,85 @@
         </xsl:copy>
     </xsl:template>
 
+    <!-- iso19139.mcp-2.0 `<gco:Integer/>` missing value -->
+    <xsl:template match="gmd:denominator[gco:Integer = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
     <!-- iso19139.mcp `<gco:Boolean/>` missing value -->
     <xsl:template match="gmd:transformationParameterAvailability[gco:Boolean = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139 <gco:DateTime/> missing value -->
+    <xsl:template match="gmd:date[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp `<gco:DateTime/>` missing value -->
+    <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp `gco:DateTime missing value -->
+    <xsl:template match="gmd:dateStamp[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp-1.4 `<gco:DateTime/>` missing value -->
+    <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp-1.4 `<gco:DateTime/>` missing value -->
+    <xsl:template match="gmd:dateStamp[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp-2.0 `<gco:DateTime/>` missing value -->
+    <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp `<gco:Date/>` missing value -->
+    <xsl:template match="gmd:CI_Date/gmd:date[gco:Date = '']|gmd:dateOfNextUpdate[gco:Date = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp-1.4 `<gco:Date/>` missing value -->
+    <xsl:template match="gmd:CI_Date/gmd:date[gco:Date = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139 gco:Distance missing value -->
+    <xsl:template match="gmd:distance[gco:Distance = '']">
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139 `<gmd:MD_TopicCategoryCode/>` missing value -->
+    <xsl:template match="gmd:topicCategory[gmd:MD_TopicCategoryCode = '']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -128,69 +191,6 @@
         </xsl:copy>
     </xsl:template>
     <xsl:template match="gmd:topicCategory/gmd:MD_TopicCategoryCode[. = '']" />
-
-    <!-- iso19139.mcp-1.4 `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
-    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-1.4 `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
-    <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-1.4 `<gco:Date/>` missing value -->
-    <xsl:template match="gmd:CI_Date/gmd:date[gco:Date = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-1.4 `<gco:DateTime/>` missing value -->
-    <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-1.4 `<gco:DateTime/>` missing value -->
-    <xsl:template match="gmd:dateStamp[gco:DateTime = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-2.0 `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
-    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-2.0 `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
-    <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-2.0 `<gco:DateTime/>` missing value -->
-    <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-2.0 `<gco:Integer/>` missing value -->
-    <xsl:template match="gmd:denominator[gco:Integer = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
 
     <!-- iso19139.mcp-2.0 `<mcp:DP_DataParameter/>` missing value -->
     <xsl:template match="mcp:dataParameter[mcp:DP_DataParameter = '']">
@@ -218,6 +218,16 @@
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp-1.4 gco:DateTime missing time replaced with gco:Date -->
+    <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
+        <gco:Date><xsl:value-of select="."/></gco:Date>
+    </xsl:template>
+
+    <!-- iso19139.mcp-2.0 gco:DateTime missing time replaced with gco:Date -->
+    <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
+        <gco:Date><xsl:value-of select="."/></gco:Date>
     </xsl:template>
 
     <!-- iso19139.mcp gco:DateTime missing time replaced with gco:Date -->
@@ -264,21 +274,11 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139.mcp-1.4 gco:DateTime missing time replaced with gco:Date -->
-    <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
-        <gco:Date><xsl:value-of select="."/></gco:Date>
-    </xsl:template>
-
     <!-- iso19139.mcp-1.4 <gmd:minimumValue> or <gmd:maximumValue> invalid 'n/a' value. Apply nilReason and remove <gco:Real/> -->
     <xsl:template match="//gmd:maximumValue[gco:Real = 'n/a']|//gmd:minimumValue[gco:Real = 'n/a']">
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-2.0 gco:DateTime missing time replaced with gco:Date -->
-    <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
-        <gco:Date><xsl:value-of select="."/></gco:Date>
     </xsl:template>
 
     <!-- iso19139.mcp-2.0 gmx:Anchor Incorrectly formatted href -->
@@ -296,20 +296,19 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139.mcp `<gmd:aggregateDataSetIdentifier><gmd:MD_Identifier/>` missing child nodes is updated with nilReason -->
-    <xsl:template match="gmd:aggregateDataSetIdentifier[gmd:MD_Identifier[not(*)]]">
+    <!-- iso19139.mcp-1.4 `<gmd:CI_Date/>` missing <gmd:date> is added with nilReason -->
+    <xsl:template match="gmd:CI_Date[not(gmd:date)]">
         <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+            <gmd:date gco:nilReason="missing" />
+            <xsl:apply-templates select="@* | node()" />
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139.mcp gml:VerticalCRS missing child verticalDatum or usesVerticalDatum -->
-    <xsl:template match="gml:VerticalCRS">
+    <!--iso19139.mcp-2.0 <gml:TimePeriod> without endPosition -->
+    <xsl:template match="gml:TimePeriod[gml:beginPosition][not(gml:endPosition)]">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
-            <xsl:if test="not(./gml:usesVerticalDatum) and not(./gml:verticalDatum)">
-                <gml:usesVerticalDatum nilReason="missing"/>
-            </xsl:if>
+            <gml:endPosition indeterminatePosition="unknown" />
         </xsl:copy>
     </xsl:template>
 
@@ -323,11 +322,53 @@
         </xsl:copy>
     </xsl:template>
 
+    <!-- iso19139.mcp-1.4 `<gmd:EX_VerticalExtent>` missing <gmd:verticalCRS> is added with nilReason -->
+    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gmd:verticalCRS gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>
+
     <!-- iso19139.mcp gmd:EX_VerticalExtent missing verticalCRS  -->
     <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS) and gmd:minimumValue and gmd:maximumValue]">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
             <gmd:verticalCRS gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp-2.0 gmd:EX_VerticalExtent missing verticalCRS  -->
+    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gmd:verticalCRS gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp gml:VerticalCRS missing child verticalDatum or usesVerticalDatum -->
+    <xsl:template match="gml:VerticalCRS">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <xsl:if test="not(./gml:usesVerticalDatum) and not(./gml:verticalDatum)">
+                <gml:usesVerticalDatum nilReason="missing"/>
+            </xsl:if>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp-1.4  <gm1:verticalCRS/>. Add <gml:verticalDatum/> -->
+    <xsl:template match="gml:VerticalCRS[not(gml:verticalDatum)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gml:verticalDatum />
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- iso19139.mcp-2.0 <gm1:verticalCRS/>. Add <gml:verticalDatum/> -->
+    <xsl:template match="gml:VerticalCRS[not(gml:verticalDatum)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+            <gml:verticalDatum />
         </xsl:copy>
     </xsl:template>
 
@@ -395,27 +436,10 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139.mcp-1.4 `<gmd:EX_VerticalExtent>` missing <gmd:verticalCRS> is added with nilReason -->
-    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
+    <!-- iso19139.mcp `<gmd:aggregateDataSetIdentifier><gmd:MD_Identifier/>` missing child nodes is updated with nilReason -->
+    <xsl:template match="gmd:aggregateDataSetIdentifier[gmd:MD_Identifier[not(*)]]">
         <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />
-            <gmd:verticalCRS gco:nilReason="missing" />
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-1.4  <gm1:verticalCRS/>. Add <gml:verticalDatum/> -->
-    <xsl:template match="gml:VerticalCRS[not(gml:verticalDatum)]">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />
-            <gml:verticalDatum />
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-1.4 `<gmd:CI_Date/>` missing <gmd:date> is added with nilReason -->
-    <xsl:template match="gmd:CI_Date[not(gmd:date)]">
-        <xsl:copy>
-            <gmd:date gco:nilReason="missing" />
-            <xsl:apply-templates select="@* | node()" />
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>
 
@@ -461,33 +485,9 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- iso19139.mcp-2.0 <gm1:verticalCRS/>. Add <gml:verticalDatum/> -->
-    <xsl:template match="gml:VerticalCRS[not(gml:verticalDatum)]">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />
-            <gml:verticalDatum />
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- iso19139.mcp-2.0 gmd:EX_VerticalExtent missing verticalCRS  -->
-    <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />
-            <gmd:verticalCRS gco:nilReason="missing" />
-        </xsl:copy>
-    </xsl:template>
-
-    <!--iso19139.mcp-2.0 <gml:TimePeriod> without endPosition -->
-    <xsl:template match="gml:TimePeriod[gml:beginPosition][not(gml:endPosition)]">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />
-            <gml:endPosition indeterminatePosition="unknown" />
-        </xsl:copy>
-    </xsl:template>
-
     <!-- OTHER -->
 
-    <!-- iso19139.mcp-1.4 Issue 3210 More than one mcp:dataParameters.  Move the parameters into the first. -->
+    <!-- iso19139.mcp-1.4 (Similar to Issue 3210?) More than one mcp:dataParameters.  Move the parameters into the first. -->
     <xsl:template match="mcp:dataParameters[following-sibling::mcp:dataParameters][1]/mcp:DP_DataParameters">
         <xsl:variable name="container" select="."/>
         <xsl:variable name="dataParameters" select="parent::node()/following-sibling::mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter"/>
