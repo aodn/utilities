@@ -11,6 +11,8 @@
 <!-- iso19139.mcp e76a13e0-3402-11dc-849f-00188b4c0af8 -->
 <!-- iso19139.mcp 0292f830-723d-11dc-a0c6-00188b4c0af8 -->
 
+<!-- TODO: produce report listing records for items where post transform manual updates are to be performed -->
+
 <xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
                   xmlns:gml="http://www.opengis.net/gml"
                   xmlns:gco="http://www.isotc211.org/2005/gco"
@@ -531,7 +533,7 @@
     </xsl:template>
 
     <!-- iso19139.mcp-2.0 gmd:CI_Citation has gmd:citedResponsibleParty and gmd:identifier incorrectly ordered -->
-    <!-- check and before transform -->
+    <!-- check before transform -->
     <xsl:template match="gmd:CI_Citation[gmd:citedResponsibleParty[following-sibling::gmd:identifier]]">
         <xsl:copy>
             <xsl:apply-templates select="@*" />
