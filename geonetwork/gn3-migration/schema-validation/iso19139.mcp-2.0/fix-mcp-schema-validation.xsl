@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Manual edits -->
+<!-- 5344966e-ea85-4c98-b699-546dba9cb39e 
+        More than one gmd:EX_GeographicBoundingBox not allowed
+        <gmd:geographicElement>
+          <gmd:EX_GeographicBoundingBox>
+             <gmd:westBoundLongitude gco:nilReason="missing"/>
+             <gmd:eastBoundLongitude gco:nilReason="missing"/>
+             <gmd:southBoundLatitude gco:nilReason="missing"/>
+             <gmd:northBoundLatitude>
+                <gco:Decimal>-31.67195</gco:Decimal>
+             </gmd:northBoundLatitude>
+          </gmd:EX_GeographicBoundingBox>
+          <gmd:EX_GeographicBoundingBox>
+             <gmd:westBoundLongitude gco:nilReason="missing"/>
+             <gmd:eastBoundLongitude gco:nilReason="missing"/>
+             <gmd:southBoundLatitude gco:nilReason="missing"/>
+             <gmd:northBoundLatitude>
+                <gco:Decimal>-29.69225</gco:Decimal>
+             </gmd:northBoundLatitude>
+          </gmd:EX_GeographicBoundingBox>
+        </gmd:geographicElement>
+               
+         Invalid xlink:href 
+         <gmx:Anchor xlink:href="http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords">geonetwork.thesaurus.external.theme.sciencekeywords</gmx:Anchor>
+-->
+
+
 <!-- Fix ups for iso19139.mcp-2.0 -->
 
 
@@ -40,14 +67,11 @@
     </xsl:template>
 
     <!-- iso19139.mcp-2.0 gmx:Anchor Incorrectly formatted href -->
-    <!-- breaks 09df3cc3-6d91-4b87-a3b7-cca7a288ff6f et al
-    Caused by encode-for-uri()?
-<gmx:Anchor xlink:href="http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.ANZSRC_FOR_Codes">geonetwork.thesaurus.external.theme.ANZSRC_FOR_Codes</gmx:Anchor>
-    -->
+    <!-- Missing port -->
+    <!-- uri encode parameters -->
     <xsl:template match="gmx:Anchor/@xlink:href">
         <xsl:attribute name="xlink:href">
-            <xsl:value-of select="concat(replace(substring-before(.,'?'),'http://metadata.imas.utas.edu.au:','http://metadata.imas.utas.edu.au'),'?',encode-for-uri(substring-after(.,'?')))"/>
-<!--            <xsl:value-of select="concat(replace(substring-before(.,'?'),'http://metadata.imas.utas.edu.au:','http://metadata.imas.utas.edu.au'),'?',substring-after(.,'?'))"/>-->
+            <xsl:value-of select="concat(replace(substring-before(.,'?'),'http://metadata.imas.utas.edu.au:/','http://metadata.imas.utas.edu.au/'),'?',replace(replace(encode-for-uri(substring-after(.,'?')),'%3D','='),'%26','&amp;'))"/>
         </xsl:attribute>
     </xsl:template>
     
@@ -151,14 +175,23 @@
         </xsl:copy>
     </xsl:template>  
 
-    <!-- More than one gmd:supplementalInformation in mcp:MD_DataIdentification -->
-    <!-- TODO: combine the CharacterStrings into one? 
-    <xsl:template match="mcp:MD_DataIdentification[gmd:supplementalInformation[following-sibling::gmd:supplementalInformation]]">
+    <!-- More than one gmd:supplementalInformation in mcp:MD_DataIdentification combine the CharacterStrings into one --> 
+    <xsl:template match="mcp:MD_DataIdentification[gmd:supplementalInformation[following-sibling::gmd:supplementalInformation]]/gmd:supplementalInformation[1]">
+        <xsl:copy>
+            <gco:CharacterString>
+                <xsl:value-of select="concat(.,./following-sibling::gmd:supplementalInformation)" />
+            </gco:CharacterString>
+        </xsl:copy>
+    </xsl:template>
+    <xsl:template match="mcp:MD_DataIdentification/gmd:supplementalInformation[position()>1]" />
+    
+    <!-- <gmd:MD_Format> without gmd:version -->
+    <xsl:template match="gmd:MD_Format[not(gmd:version)]">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />      
-            <gml:endPosition indeterminatePosition="unknown" />
+            <gmd:version gco:nilReason="missing" />
         </xsl:copy>
-    </xsl:template> -->
+    </xsl:template>  
     
     
 

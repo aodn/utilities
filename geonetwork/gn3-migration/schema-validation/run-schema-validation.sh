@@ -16,7 +16,7 @@ check_schema_validation() {
 
 	for uuid in `ls -1 $record_path`
 	do
-	  info_file=$( find "$record_path/$uuid" -name info.xml )
+	  info_file=$( find "$record_path/$uuid" -name info.xml )  # TODO: this not always finding the file?
 	  schema=`xmllint --xpath '//schema/text()' "$info_file"`
 	  XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml'
 	  xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml
