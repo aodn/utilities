@@ -3,7 +3,7 @@
 <!-- Fix ups for iso19139.mcp-2.0 -->
 
 
-<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
@@ -37,10 +37,18 @@
     <!-- gco:DateTime which is a date has invalid children replaced with gco:Date. Make sure the content is a date and not datetime -->
     <xsl:template match="gco:DateTime[gco:Date[not(text()[contains(., 'T')])]]">
         <xsl:copy-of select="gco:Date" />
-    </xsl:template> 
-    
+    </xsl:template>
+
+    <!-- iso19139.mcp-2.0 gmx:Anchor Incorrectly formatted href -->
+    <!-- breaks 09df3cc3-6d91-4b87-a3b7-cca7a288ff6f et al
+    Caused by encode-for-uri()?
+<gmx:Anchor xlink:href="http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.ANZSRC_FOR_Codes">geonetwork.thesaurus.external.theme.ANZSRC_FOR_Codes</gmx:Anchor>
+    -->
     <xsl:template match="gmx:Anchor/@xlink:href">
-        <xsl:attribute name="xlink:href" select="concat(substring-before(.,'?'),'?',encode-for-uri(substring-after(.,'?')))"/>
+        <xsl:attribute name="xlink:href">
+            <xsl:value-of select="concat(replace(substring-before(.,'?'),'http://metadata.imas.utas.edu.au:','http://metadata.imas.utas.edu.au'),'?',encode-for-uri(substring-after(.,'?')))"/>
+<!--            <xsl:value-of select="concat(replace(substring-before(.,'?'),'http://metadata.imas.utas.edu.au:','http://metadata.imas.utas.edu.au'),'?',substring-after(.,'?'))"/>-->
+        </xsl:attribute>
     </xsl:template>
     
     <!-- mcp:MD_DataIdentification missing gmd:language  Add in correct order -->
@@ -56,9 +64,9 @@
                         <gmd:language gco:nilReason="missing" />
                         <xsl:copy-of select="." />
                     </xsl:otherwise>
-                </xsl:choose>          
+                </xsl:choose>
             </xsl:for-each>
-        </xsl:copy>        
+        </xsl:copy>
     </xsl:template>
     
     <!-- gmd:CI_Citation has gmd:citedResponsibleParty and gmd:identifier incorrectly ordered -->

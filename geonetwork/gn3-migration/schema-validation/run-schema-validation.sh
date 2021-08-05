@@ -100,7 +100,8 @@ fix_schema_validation() {
         if [[ $error == *"$error_type"*  ]]
         then
 
-          xsltproc -o $record_path/$uuid/metadata/metadata.xml $schema/fix-mcp-schema-validation.xsl $record_path/$uuid/metadata/metadata.xml.bak
+#          xsltproc -o $record_path/$uuid/metadata/metadata.xml $schema/fix-mcp-schema-validation.xsl $record_path/$uuid/metadata/metadata.xml.bak
+          java -jar saxon9he.jar -s:$record_path/$uuid/metadata/metadata.xml.bak -o:$record_path/$uuid/metadata/metadata.xml -xsl:$schema/fix-mcp-schema-validation.xsl
 
           error_types="${error_types} $error_type;"
 
