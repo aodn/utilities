@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Manual edits -->
+<!-- 95204c39-71b3-4335-8435-d4d4f027bc8a
+        More than one gmd:code not allowed
+        <gmd:RS_Identifier>
+           <gmd:code>
+              <gmx:Anchor xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xlink:href=""/>
+           </gmd:code>
+           <gmd:code>
+              <gmx:Anchor xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          xlink:href=""/>
+           </gmd:code>
+           <gmd:code>
+              <gco:CharacterString>http://vocab.aodn.org.au/def/discovery_parameter/entity/488</gco:CharacterString>
+           </gmd:code>
+        </gmd:RS_Identifier>
+-->
+
 <!-- Templates -->
 <!-- d6cf3c60-9f49-4fb5-9125-27043dc9e7e9 -->
 <!-- 308784f4-11ac-45f5-a489-078044420c33 -->
@@ -57,6 +77,31 @@
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
             <gmd:verticalCRS gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- mcp:EX_TemporalExtent time period missing gmd:extent -->
+    <xsl:template match="mcp:EX_TemporalExtent[not(gmd:extent) and mcp:beginTime[following-sibling::mcp:endTime]]" >
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <gmd:extent>
+                <gml:TimePeriod gml:id='a'>
+                    <gml:begin>
+                        <gml:TimeInstant gml:id='b'>
+                            <gml:timePosition>
+                                <xsl:value-of select="mcp:beginTime" />
+                            </gml:timePosition>
+                        </gml:TimeInstant>
+                    </gml:begin>
+                    <gml:end>
+                        <gml:TimeInstant gml:id='c'>
+                            <gml:timePosition>
+                                <xsl:value-of select="mcp:endTime" />
+                            </gml:timePosition>
+                        </gml:TimeInstant>
+                    </gml:end>
+                </gml:TimePeriod>
+            </gmd:extent>
         </xsl:copy>
     </xsl:template>
     
@@ -164,8 +209,7 @@
     </xsl:template>     
     
     <!-- More than one mcp:dataParameters.  Move the parameters into the first. -->
-    <xsl:template match="mcp:dataParameters[following-sibling::mcp:dataParameters][1]/mcp:DP_DataParameters">
-        <xsl:variable name="container" select="."/>
+    <xsl:template match="mcp:dataParameters[following-sibling::mcp:dataParameters[1]]/mcp:DP_DataParameters">
         <xsl:variable name="dataParameters" select="parent::node()/following-sibling::mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter"/>
         <xsl:copy>v
             <xsl:apply-templates select="@* | node()" />
@@ -215,7 +259,7 @@
     </xsl:template>   
     
     <!-- mcp:DP_DataParameter missing mcp:parameterMinimumValue and mcp:parameterMaximumValue. Add with nilReason-->
-    <xsl:template match="mcp:DP_DataParameter[not(mcp:parameterMinimumValue) and not(mcp:parameterMaximumValue)]">
+    <xsl:template match="mcp:DP_DataParameter[mcp:parameterUnits and not(mcp:parameterMinimumValue) and not(mcp:parameterMaximumValue)]">
         <xsl:copy>
             <xsl:apply-templates select="@*" />
             <xsl:for-each select="node()">

@@ -21,9 +21,24 @@
              </gmd:northBoundLatitude>
           </gmd:EX_GeographicBoundingBox>
         </gmd:geographicElement>
-               
-         Invalid xlink:href 
-         <gmx:Anchor xlink:href="http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords">geonetwork.thesaurus.external.theme.sciencekeywords</gmx:Anchor>
+-->
+<!-- Invalid xlink:href
+     <gmx:Anchor xlink:href="http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords">geonetwork.thesaurus.external.theme.sciencekeywords</gmx:Anchor>
+     The port number is missing, remove the ':'
+        1de0e8b1-4777-4526-b3d7-805938b8e6bc
+        2a9a9f90-79a3-498b-a2d2-0f822fe35ed9
+        5344966e-ea85-4c98-b699-546dba9cb39e
+        a10d4447-73bb-4bba-a12b-20d8c803ef30
+        e8769cd6-8693-4252-8a5e-1ab2a25d4e4e
+        fd645850-00c8-47f7-842c-4ef54ebdab52
+-->
+<!-- e8769cd6-8693-4252-8a5e-1ab2a25d4e4e
+    gml:VerticalCRS missing required gml:verticalDatum and gml:verticalCS
+    <gml:VerticalCRS xmlns:gml="http://www.opengis.net/gml" gml:id="d506824e667a1052958">
+       <gml:identifier codeSpace="urn:ogc:def:crs:EPSG::">EPSG::5715</gml:identifier>
+       <gml:name>MSL depth</gml:name>
+       <gml:scope>World</gml:scope>
+    </gml:VerticalCRS>
 -->
 
 
@@ -74,6 +89,13 @@
             <xsl:value-of select="concat(replace(substring-before(.,'?'),'http://metadata.imas.utas.edu.au:/','http://metadata.imas.utas.edu.au/'),'?',replace(replace(encode-for-uri(substring-after(.,'?')),'%3D','='),'%26','&amp;'))"/>
         </xsl:attribute>
     </xsl:template>
+    <!--
+    <xsl:template match="//gmx:Anchor[@xlink:href='http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords']/@xlink:href">
+        <xsl:attribute name="xlink:href">
+            <xsl:value-of select="'http://metadata.imas.utas.edu.au/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords'"/>
+        </xsl:attribute>
+    </xsl:template>
+    -->    
     
     <!-- mcp:MD_DataIdentification missing gmd:language  Add in correct order -->
     <xsl:template match="mcp:MD_DataIdentification[not(gmd:language)]">
@@ -137,13 +159,13 @@
         </xsl:copy>
     </xsl:template>  
     
-    <!-- Element <gm1:verticalCRS/>. Add <gml:verticalDatum/> -->
-    <xsl:template match="gml:VerticalCRS[not(gml:verticalDatum)]">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />      
-            <gml:verticalDatum />
-        </xsl:copy>
-    </xsl:template>   
+    <!-- Element <gml:verticalCRS/>. Add <gml:verticalDatum/> -->
+<!--    <xsl:template match="gml:VerticalCRS[not(gml:verticalDatum)]">-->
+<!--        <xsl:copy>-->
+<!--            <xsl:apply-templates select="@* | node()" />      -->
+<!--            <gml:verticalDatum />-->
+<!--        </xsl:copy>-->
+<!--    </xsl:template>   -->
     
     <!-- Element gmd:EX_VerticalExtent missing verticalCRS  -->
     <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
@@ -168,7 +190,7 @@
     </xsl:template>     
     
     <!-- <gml:TimePeriod> without endPosition -->
-    <xsl:template match="gml:TimePeriod[gml:beginPosition][not(gml:endPosition)]">
+    <xsl:template match="gml:TimePeriod[gml:beginPosition and not(gml:endPosition)]">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />      
             <gml:endPosition indeterminatePosition="unknown" />
