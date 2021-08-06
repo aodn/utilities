@@ -101,7 +101,7 @@ fix_schema_validation() {
         then
 
 #          xsltproc -o $record_path/$uuid/metadata/metadata.xml $schema/fix-mcp-schema-validation.xsl $record_path/$uuid/metadata/metadata.xml.bak
-          java -jar saxon9he.jar -s:$record_path/$uuid/metadata/metadata.xml.bak -o:$record_path/$uuid/metadata/metadata.xml -xsl:$schema/fix-mcp-schema-validation.xsl 2>&1 >> messages-$error_file
+          java -jar saxon9he.jar -s:$record_path/$uuid/metadata/metadata.xml.bak -o:$record_path/$uuid/metadata/metadata.xml -xsl:$schema/fix-mcp-schema-validation.xsl >>messages-$error_file 2>&1
 
           error_types="${error_types} $error_type;"
 
