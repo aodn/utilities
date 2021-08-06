@@ -45,7 +45,7 @@
 <!-- Fix ups for iso19139.mcp-2.0 -->
 
 
-<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
+<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
@@ -65,6 +65,7 @@
     
     <!-- Element `<mcp:DP_Term/>` missing <mcp:usedInDataset> is added with nilReason -->
     <xsl:template match="mcp:DP_Term[not(mcp:usedInDataset)]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:DP_Term missing mcp:usedInDataset is added with nilReason')" />
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
             <mcp:usedInDataset gco:nilReason="missing" />
@@ -73,11 +74,13 @@
     
     <!-- gco:DateTime missing time replaced with gco:Date -->
     <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:DateTime missing time replaced with gco:Date')" />
         <gco:Date><xsl:value-of select="."/></gco:Date>
     </xsl:template>
     
     <!-- gco:DateTime which is a date has invalid children replaced with gco:Date. Make sure the content is a date and not datetime -->
     <xsl:template match="gco:DateTime[gco:Date[not(text()[contains(., 'T')])]]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:DateTime which is a date has invalid children replaced with gco:Date. Make sure the content is a date and not datetime')" />
         <xsl:copy-of select="gco:Date" />
     </xsl:template>
 
@@ -85,6 +88,7 @@
     <!-- Missing port -->
     <!-- uri encode parameters -->
     <xsl:template match="gmx:Anchor/@xlink:href">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','iso19139.mcp-2.0 gmx:Anchor Incorrectly formatted href')" />
         <xsl:attribute name="xlink:href">
             <xsl:value-of select="concat(replace(substring-before(.,'?'),'http://metadata.imas.utas.edu.au:/','http://metadata.imas.utas.edu.au/'),'?',replace(replace(encode-for-uri(substring-after(.,'?')),'%3D','='),'%26','&amp;'))"/>
         </xsl:attribute>
@@ -99,6 +103,7 @@
     
     <!-- mcp:MD_DataIdentification missing gmd:language  Add in correct order -->
     <xsl:template match="mcp:MD_DataIdentification[not(gmd:language)]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:MD_DataIdentification missing gmd:language  Add in correct order')" />
         <xsl:copy>
             <xsl:apply-templates select="@*" />
             <xsl:for-each select="node()">
@@ -117,6 +122,7 @@
     
     <!-- gmd:CI_Citation has gmd:citedResponsibleParty and gmd:identifier incorrectly ordered -->
     <xsl:template match="gmd:CI_Citation[gmd:citedResponsibleParty[following-sibling::gmd:identifier]]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Citation has gmd:citedResponsibleParty and gmd:identifier incorrectly ordered')" />
         <xsl:copy>
             <xsl:apply-templates select="@*" />
             <xsl:for-each select="node()">
@@ -133,6 +139,7 @@
     
     <!-- `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
     <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Decimal missing value. Apply nilReason and remove gco:Decimal')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -140,6 +147,7 @@
     
     <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
     <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Real missing value. Apply nilReason and remove gco:Real')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -147,6 +155,7 @@
 
     <!-- Element `<gco:DateTime/>` missing value -->
     <xsl:template match="gmd:CI_Date/gmd:date[gco:DateTime = '']">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:DateTime missing value')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -154,6 +163,7 @@
     
     <!-- Element `<gco:Integer/>` missing value -->
     <xsl:template match="gmd:denominator[gco:Integer = '']">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Integer missing value')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -169,6 +179,7 @@
     
     <!-- Element gmd:EX_VerticalExtent missing verticalCRS  -->
     <xsl:template match="gmd:EX_VerticalExtent[not(gmd:verticalCRS)]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:EX_VerticalExtent missing verticalCRS')" />
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
             <gmd:verticalCRS gco:nilReason="missing" />
@@ -177,6 +188,7 @@
     
     <!-- Element `<mcp:DP_DataParameter/>` missing value -->
     <xsl:template match="mcp:dataParameter[mcp:DP_DataParameter = '']">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:DP_DataParameter missing value')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -184,6 +196,7 @@
     
     <!-- Element `<mcp:dataParameters/>` expected but have <mcp:dataparameters/> -->
     <xsl:template match="mcp:dataparameters">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:dataParameters expected but have mcp:dataparameters')" />
         <xsl:element name="mcp:dataParameters">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
@@ -191,6 +204,7 @@
     
     <!-- <gml:TimePeriod> without endPosition -->
     <xsl:template match="gml:TimePeriod[gml:beginPosition and not(gml:endPosition)]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gml:TimePeriod> without endPosition')" />
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />      
             <gml:endPosition indeterminatePosition="unknown" />
@@ -199,6 +213,7 @@
 
     <!-- More than one gmd:supplementalInformation in mcp:MD_DataIdentification combine the CharacterStrings into one --> 
     <xsl:template match="mcp:MD_DataIdentification[gmd:supplementalInformation[following-sibling::gmd:supplementalInformation]]/gmd:supplementalInformation[1]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','More than one gmd:supplementalInformation in mcp:MD_DataIdentification combine the CharacterStrings into one')" />
         <xsl:copy>
             <gco:CharacterString>
                 <xsl:value-of select="concat(.,./following-sibling::gmd:supplementalInformation)" />
@@ -209,6 +224,7 @@
     
     <!-- <gmd:MD_Format> without gmd:version -->
     <xsl:template match="gmd:MD_Format[not(gmd:version)]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:MD_Format without gmd:version')" />
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />      
             <gmd:version gco:nilReason="missing" />
