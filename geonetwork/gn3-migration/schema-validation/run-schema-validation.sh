@@ -161,6 +161,8 @@ main() {
     [ x"$record_path" = x ] && usage
     [ x"$error_file" = x ] && usage
 
+    rm messages-$error_file
+
     check_schema_validation $schema_plugins_path $record_path $error_file 1
     fix_schema_validation $schema_plugins_path $record_path $error_file
 

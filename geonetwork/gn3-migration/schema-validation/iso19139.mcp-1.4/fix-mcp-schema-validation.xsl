@@ -192,7 +192,7 @@
     
     <!-- Element `<gmd:DQ_Scope>` missing <gmd:level> is added with nilReason -->
     <xsl:template match="gmd:DQ_Scope[not(gmd:level)]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:DQ_Scope missing <gmd:level> is added with nilReason')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:DQ_Scope missing gmd:level is added with nilReason')" />
         <xsl:copy>
             <gmd:level gco:nilReason="missing" />
             <xsl:apply-templates select="@* | node()" />
