@@ -43,7 +43,7 @@ Note that gn-tool is capable of exporting all MEFs by not supplying the uuid of 
 
 ```
 # e.g.
-./download_mefs.sh catalogue_aodn_non_harvested_uuids.txt /tmp/catalogue_aodn_mcp
+./download_mefs.sh catalogue_aodn_hosted_uuids.txt /tmp/catalogue_aodn_hosted_backup
 ```
 
 #### Execute Tool to validate schemas (and fixes them if needed)
@@ -53,16 +53,77 @@ https://github.com/aodn/utilities/tree/master/geonetwork/gn3-migration/schema-va
 - gather together plugins into a single directory first (Craig will identify)
 - work currently underway by Craig to resolve issues here
 
+##### Catalogue AODN hosted MCP records
+
+- Create a fresh working directory in a convenient location
+
+```
+mkdir catalogue_aodn_hosted_mcp 
+cd catalogue_aodn_hosted_mcp
+```
+
+- Obtain a list of UUIDS for non harvested mcp records
+
+```
+ssh 6-aws-syd "sudo -u postgres psql -d geonetwork_aodn -c \"\\copy (select uuid from metadata where isharvested = 'n' and istemplate = 'n' and (schemaid = 'iso19139.mcp' or schemaid = 'iso19139.mcp-1.4' or schemaid = 'iso19139.mcp-2.0')) to stdout\" > catalogue_aodn_non_harvested_mcp_uuids.txt"
+scp 6-aws-syd:catalogue_aodn_non_harvested_mcp_uuids.txt uuids.txt
+```
+
+- Download the MEFS
+
+```
+./download_mefs.sh catalogue_aodn_hosted_uuids.txt catalogue_aodn_hosted_mcp
+```
+
+- Locate misplaced info.xml files
+
+Some info.xml files are in an unexpected location for the validator.  Find and move these.
+
+```
+for f in $(find . -name info.xml | grep metadata); do mv $f $(dirname $(dirname $f)); done
+```
+
+- Source and copy the schema plugins to one location
+
+These can be obtained from https://github.com/aodn/schema-plugins/tree/180e374a2f1ac181a79bc3b9432b46739301e0e6
+
+Required schemas are iso19139.mcp-1.4, iso19139.mcp-2.0 and iso19139.mcp
+
+Copy them to a convenient location other than the working directory created in step one (eg catalogue_aodn_hosted_mcp)
+
+- Validate and correct
+
+```
+cd schema-validation
+./run-schema-validation.sh -s schemaPlugins-dir -r catalogue_aodn_hosted_mcp -e 'catalogue_aodn_hosted_mcp.txt'
+```
+
+Check the messages-catalogue_aodn_hosted_mcp.txt and after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt and console
+
+- Manual corrections TODO
+
+
+
+- Report (messages logs, list of manual changes, list of records not validated) TODO
+messages-catalogue_aodn_hosted_mcp.txt
+
+
 #### Transform MCP -> 19115-3
 
 TODO:
 - fix url-substitutions (if needed)
 
-java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/output -i metadata.xml -o metadata.iso19115-3.2018.xml -u url-substitutions/imos-prod.xml
+```
+rm -rf /tmp/catalogue_aodn_hosted
+cp -R /tmp/catalogue_aodn_hosted_backup /tmp/catalogue_aodn_hosted
+java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/catalogue_aodn_hosted -i metadata.xml -o metadata.iso19115-3.2018.xml -u url-substitutions/aodn-test.xml
+```
 
 #### 5. Import into target GN3 catalogue
 
+```
 ./gn3-tool.sh  -o import -l /path/to/mefs -g  http://<target_url>/geonetwork -u <username> -p <password>
+```
 
 ## Verification
 - [x] 19139 records can be transformed using transform-mcp-iso19115-3 and result in iso19115-3.2018 when imported
@@ -84,4 +145,83 @@ We should:
   - count of records
   - unique schemas (should only be 19115-3)
   
- 
+  
+## Frozen harvester records to import as hosted records
+
+### Bluenet
+
+#### Ignore record
+
+Ignore this record, Nat has identified it as not migrate-able (appears to be a test record anyway)
+```
+a6097db0-7b8c-11dc-b279-00188b4c0af8
+```
+
+Also ignore the only record with the `fgdc-std` schema as it appears to be some kind of template
+
+#### Get UUID list
+```
+ssh 6-aws-syd "sudo -u postgres psql -d geonetwork_aodn -c \"\\copy (select uuid from metadata where harvestuuid = (select value from settings where parentid = (select parentid from settings where name = 'name' and value = 'bluenet (don''t delete)') and name = 'uuid') and istemplate = 'n' and schemaid not in ('fgdc-std') and uuid != 'a6097db0-7b8c-11dc-b279-00188b4c0af8') to stdout\" > /tmp/catalogue_bluenet_uuids.txt"
+scp 6-aws-syd:/tmp/catalogue_aodn_bluenet_uuids.txt .
+```
+
+#### Download bluenet MEFS
+
+Count: 968
+By grepping it appears the number of 1.5-experimental: 955
+
+```
+./download_mefs.sh catalogue_aodn_bluenet_uuids.txt /tmp/catalogue_aodn_bluenet_backup
+```
+
+We don't need to run schema validations because they will all be done in-situ in catalogue-aodn GN2
+
+#### Transform MCP
+
+NOTE: There is potentially an issue where records are not converted to -3. Use git to confirm
+
+```
+rm -rf /tmp/catalogue_aodn_bluenet
+cp -R /tmp/catalogue_aodn_bluenet_backup /tmp/catalogue_aodn_bluenet
+(cd /tmp/catalogue_aodn_bluenet ; git init)
+(cd /tmp/catalogue_aodn_bluenet ; git add .)
+(cd /tmp/catalogue_aodn_bluenet ; git commit -m "init commit")
+java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/catalogue_aodn_bluenet -i metadata.xml -o metadata.iso19115-3.2018.xml -u url-substitutions/aodn-test.xml
+```
+Check git to confirm -3 records added
+
+#### Upload to target
+
+```
+./gn3-tool.sh  -o import -l /tmp/catalogue_aodn_bluenet -g http://geonetwork3-gsatimos.dev.aodn.org.au/geonetwork -u admin -p admin
+```
+
+#### Pots
+- pots are http://geonetwork.marvlis... (need to check with Bene/Nat)
+
+
+### MARVLIS
+
+#### Get UUID list
+```
+ssh 6-aws-syd "sudo -u postgres psql -d geonetwork_aodn -c \"\\copy (select uuid from metadata where harvestuuid = (select value from settings where parentid = (select parentid from settings where name = 'name' and value = 'MARVLIS') and name = 'uuid') and istemplate = 'n' and schemaid not in ('fgdc-std')) to stdout\" > /tmp/catalogue_aodn_marvlis_uuids.txt"
+scp 6-aws-syd:/tmp/catalogue_aodn_marvlis_uuids.txt .
+```
+
+#### Download MEFS
+
+```
+./download_mefs.sh catalogue_aodn_marvlis_uuids.txt /tmp/catalogue_aodn_marvlis_backup
+```
+
+#### transform to 19115-3
+```
+java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/catalogue_aodn_marvlis -i metadata.xml -o metadata.iso19115-3.2018.xml -u url-substitutions/aodn.xml
+```
+
+#### Upload to target
+
+```
+./gn3-tool.sh  -o import -l /tmp/catalogue_aodn_marvlis -g http://geonetwork3-gsatimos.dev.aodn.org.au/geonetwork -u admin -p admin
+```
+
