@@ -58,21 +58,20 @@ https://github.com/aodn/utilities/tree/master/geonetwork/gn3-migration/schema-va
 - Create a fresh working directory in a convenient location
 
 ```
-mkdir catalogue_aodn_hosted_mcp 
-cd catalogue_aodn_hosted_mcp
+mkdir /tmp/catalogue_aodn_hosted_mcp
 ```
 
 - Obtain a list of UUIDS for non harvested mcp records
 
 ```
 ssh 6-aws-syd "sudo -u postgres psql -d geonetwork_aodn -c \"\\copy (select uuid from metadata where isharvested = 'n' and istemplate = 'n' and (schemaid = 'iso19139.mcp' or schemaid = 'iso19139.mcp-1.4' or schemaid = 'iso19139.mcp-2.0')) to stdout\" > catalogue_aodn_non_harvested_mcp_uuids.txt"
-scp 6-aws-syd:catalogue_aodn_non_harvested_mcp_uuids.txt uuids.txt
+scp 6-aws-syd:catalogue_aodn_non_harvested_mcp_uuids.txt /tmp/uuids.txt
 ```
 
 - Download the MEFS
 
 ```
-./download_mefs.sh catalogue_aodn_hosted_uuids.txt catalogue_aodn_hosted_mcp
+./download_mefs.sh /tmp/uuids.txt /tmp/catalogue_aodn_hosted_mcp
 ```
 
 - Locate misplaced info.xml files
@@ -80,7 +79,7 @@ scp 6-aws-syd:catalogue_aodn_non_harvested_mcp_uuids.txt uuids.txt
 Some info.xml files are in an unexpected location for the validator.  Find and move these.
 
 ```
-for f in $(find . -name info.xml | grep metadata); do mv $f $(dirname $(dirname $f)); done
+for f in $(find /tmp/catalogue_aodn_hosted_mcp -name info.xml | grep metadata); do mv $f $(dirname $(dirname $f)); done
 ```
 
 - Source and copy the schema plugins to one location
@@ -89,13 +88,13 @@ These can be obtained from https://github.com/aodn/schema-plugins/tree/180e374a2
 
 Required schemas are iso19139.mcp-1.4, iso19139.mcp-2.0 and iso19139.mcp
 
-Copy them to a convenient location other than the working directory created in step one (eg catalogue_aodn_hosted_mcp)
+Copy them to a convenient location other than the working directory created in step one (eg /tmp/schemaPlugins)
 
 - Validate and correct
 
 ```
-cd schema-validation
-./run-schema-validation.sh -s schemaPlugins-dir -r catalogue_aodn_hosted_mcp -e 'catalogue_aodn_hosted_mcp.txt'
+cd gn3-migration/schema-validation
+./run-schema-validation.sh -s /tmp/schemaPlugins-dir -r /tmp/catalogue_aodn_hosted_mcp -e 'catalogue_aodn_hosted_mcp.txt'
 ```
 
 Check the messages-catalogue_aodn_hosted_mcp.txt and after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt and console
