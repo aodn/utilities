@@ -122,7 +122,7 @@ Check the messages-catalogue_aodn_hosted_mcp.txt and after-fix-validity-errors-c
 
 Using the content of messages-catalogue_aodn_hosted_mcp.txt create an Excel report of all the changes made to the records. 
 
-Example: [messages-catalogue_aodn_hosted_mcp.xlsx](https://github.com/aodn/utilities/files/6951866/messages-catalogue_aodn_hosted_mcp.xlsx)
+Example: [messages-corrected-catalogue_aodn_hosted_mcp.xlsx](https://github.com/aodn/utilities/files/6952212/messages-corrected-catalogue_aodn_hosted_mcp.xlsx)
 
 Using the content of after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt create a list of manual corrections required. Some of these corrections will need to be manually made in the metadata.xml files before import. 
 
@@ -150,7 +150,7 @@ fd645850-00c8-47f7-842c-4ef54ebdab52/metadata/metadata.xml:299: Anchor, attribut
 
 - Perform post import checks and manual corrections
 
-Refer to after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt and [messages-catalogue_aodn_hosted_mcp.xlsx](https://github.com/aodn/utilities/files/6951866/messages-catalogue_aodn_hosted_mcp.xlsx) for notes on specific checks and corrections to be made.
+Refer to after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt and [messages-corrected-catalogue_aodn_hosted_mcp.xlsx](https://github.com/aodn/utilities/files/6952212/messages-corrected-catalogue_aodn_hosted_mcp.xlsx) for notes on specific checks and corrections to be made.
 
 
 #### Transform MCP -> 19115-3
