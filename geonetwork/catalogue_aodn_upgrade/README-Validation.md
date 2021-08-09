@@ -1,3 +1,5 @@
+[bluenet_marvlis_uuids.txt](https://github.com/aodn/utilities/files/6952457/bluenet_marvlis_uuids.txt)
+[bluenet_marvlis_uuids.txt](https://github.com/aodn/utilities/files/6952460/bluenet_marvlis_uuids.txt)
 # Catalogue AODN hosted MCP records
 
 - Create a fresh working directory in a convenient location
@@ -101,5 +103,6 @@ Refer to after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt and [messages-c
 
 Repeat as per hosted records using the following uuid list:
 
-bluenet_marvlis_uuids.txt
+[bluenet_marvlis_uuids.txt](https://github.com/aodn/utilities/files/6952461/bluenet_marvlis_uuids.txt)
+
 
