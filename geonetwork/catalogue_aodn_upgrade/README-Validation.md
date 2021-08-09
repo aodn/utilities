@@ -1,4 +1,4 @@
-##### Catalogue AODN hosted MCP records
+# Catalogue AODN hosted MCP records
 
 - Create a fresh working directory in a convenient location
 
@@ -96,3 +96,10 @@ fd645850-00c8-47f7-842c-4ef54ebdab52/metadata/metadata.xml:299: Anchor, attribut
 - Perform post import checks and manual corrections
 
 Refer to after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt and [messages-corrected-catalogue_aodn_hosted_mcp.xlsx](https://github.com/aodn/utilities/files/6952212/messages-corrected-catalogue_aodn_hosted_mcp.xlsx) for notes on specific checks and corrections to be made.
+
+# Catalogue AODN MARVL and Bluenet MCP records
+
+Repeat as per hosted records using the following uuid list:
+
+bluenet_marvlis_uuids.txt
+
