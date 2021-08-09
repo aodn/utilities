@@ -4,16 +4,25 @@
 # $schema_plugins_path - Schema plugin path
 # $record_path - 	Path for MEF exported metadata records folder
 # $error_file -	Filename of the schema validation error file
+
+#set -x
+
 check_schema_validation() {
 
 	local schema_plugins_path=$1; shift
 	local record_path=$1; shift
   local error_file=$1; shift
+  local copy_record=$1; shift
 
 	for uuid in `ls -1 $record_path`
-	do 
-	  schema=`xmllint --xpath '//schema/text()' $record_path/$uuid/info.xml`
-	  XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml' xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml
+	do
+	  info_file=$( find "$record_path/$uuid" -name info.xml )  # TODO: this not always finding the file?
+	  schema=`xmllint --xpath '//schema/text()' "$info_file"`
+	  XML_CATALOG_FILES='$schema_plugins_path/$schema/oasis-catalog.xml'
+	  xmllint --schema "$schema_plugins_path/$schema/schema.xsd" --noout $record_path/$uuid/metadata/metadata.xml
+	  if [ $? -ne 0 ] && [ "$copy_record" -eq 0 ]; then
+	    cp $record_path/$uuid/metadata/metadata.xml.bak $schema/$uuid.xml
+    fi
 	done >$error_file 2>&1
 
 }
@@ -91,7 +100,8 @@ fix_schema_validation() {
         if [[ $error == *"$error_type"*  ]]
         then
 
-          xsltproc -o $record_path/$uuid/metadata/metadata.xml fix-mcp-schema-validation.xsl $record_path/$uuid/metadata/metadata.xml.bak
+#          xsltproc -o $record_path/$uuid/metadata/metadata.xml $schema/fix-mcp-schema-validation.xsl $record_path/$uuid/metadata/metadata.xml.bak
+          java -jar saxon9he.jar -s:$record_path/$uuid/metadata/metadata.xml.bak -o:$record_path/$uuid/metadata/metadata.xml -xsl:$schema/fix-mcp-schema-validation.xsl >>messages-$error_file 2>&1
 
           error_types="${error_types} $error_type;"
 
@@ -151,10 +161,30 @@ main() {
     [ x"$record_path" = x ] && usage
     [ x"$error_file" = x ] && usage
 
-    check_schema_validation $schema_plugins_path $record_path $error_file
+    rm messages-$error_file
+
+    check_schema_validation $schema_plugins_path $record_path $error_file 1
     fix_schema_validation $schema_plugins_path $record_path $error_file
-	  check_schema_validation $schema_plugins_path $record_path "after-fix-"$error_file
-    sed -i.all "/validates/d" "after-fix-"$error_file
+
+	  check_schema_validation $schema_plugins_path $record_path "after-fix-"$error_file 1
+
+	  # Correct namespace errors
+    sed -i 's/%7B/{/g' "after-fix-$error_file"
+    sed -i 's/%7D/}/g' "after-fix-$error_file"
+    filelist=$( grep "{http://www.opengis.net/gml/3.2}" "after-fix-$error_file" | awk '{split($0,a,":");print a[1]}'  )
+    if [ "$filelist" != '' ];
+    then
+      while read file;
+      do
+        # xmlns:gml="http://www.opengis.net/gml" to xmlns:gml="http://www.opengis.net/gml/3.2"
+        sed -i 's/xmlns:gml="http:\/\/www.opengis.net\/gml"/xmlns:gml="http:\/\/www.opengis.net\/gml\/3.2"/g' "$file"
+      done <<< "$filelist"
+    fi
+
+ 	  check_schema_validation $schema_plugins_path $record_path "after-fix2-"$error_file 0
+
+    sed -i.all "/validates/d" "after-fix2-"$error_file
+    sed -n "/Schemas validity error/p" "after-fix2-"$error_file > "after-fix-validity-errors-"$error_file
 
 }
 
