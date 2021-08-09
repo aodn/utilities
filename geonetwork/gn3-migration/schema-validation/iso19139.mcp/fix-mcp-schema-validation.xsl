@@ -6,6 +6,7 @@
 <!-- These are not validated -->
 <!-- e76a13e0-3402-11dc-849f-00188b4c0af8 -->
 <!-- 0292f830-723d-11dc-a0c6-00188b4c0af8 -->
+<!-- fdc8625e-7b26-4860-8c90-92c6c884d7ec -->
 
 <!-- Templates -->
 <!-- e8c0865c-8493-4dd8-b9f6-0da85055bd57 -->
@@ -40,8 +41,24 @@
         <xsl:value-of select="replace(., '[^0-9\-]', '')"/>
     </xsl:template>
     
+    
     <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
-    <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
+ <!--   <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Real missing value. Apply nilReason and remove gco:Real','post manual values enter?',',check and fix before transform')" />
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template> -->
+    
+    <!-- gco:Real value is not a number -->
+ <!--   <xsl:template match="//gmd:minimumValue[gco:Real[string(number(node())) = 'NaN']]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Real value is not a number')" />
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+    </xsl:template> -->
+       
+    <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
+    <xsl:template match="gmd:maximumValue[gco:Real = '']|gmd:minimumValue[gco:Real = '']">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Real missing value. Apply nilReason and remove gco:Real','post manual values enter?',',check and fix before transform')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -49,12 +66,12 @@
     </xsl:template>
     
     <!-- gco:Real value is not a number -->
-    <xsl:template match="//gmd:minimumValue[gco:Real[string(number(node())) = 'NaN']]">
+    <xsl:template match="gmd:minimumValue[gco:Real = 'NaN']">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Real value is not a number')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template>
+    </xsl:template>    
     
     <!-- Element `<gco:Date/>` missing value -->
     <xsl:template match="gmd:CI_Date/gmd:date[gco:Date = '']|gmd:dateOfNextUpdate[gco:Date = '']">
@@ -63,7 +80,7 @@
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>   
-    
+
     <!-- gco:DateTime missing date removed and labelled missing -->
     <xsl:template match="gmd:plannedAvailableDateTime[gco:DateTime[text()[substring-before(.,'T') = '']]]">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:DateTime missing date removed and labelled missing',',check and fix? before transform')" />
@@ -192,6 +209,14 @@
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>    
+    
+    <!-- Element `<gco:Boolean/>` missing value -->
+    <xsl:template match="extentTypeCode[gco:Boolean = '']">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Boolean missing value',',pre transform check missing/true/false')" />
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>       
 
     <!-- Element mcp:MD_DataIdentification missing gmd:language -->
 <!--    <xsl:template match="mcp:MD_DataIdentification[not(./gmd:language)]">
@@ -290,6 +315,27 @@
             <xsl:value-of select="'climatologyMeteorologyAtmosphere'"/>
         </xsl:copy>
     </xsl:template>  
+    
+    <!-- mcp:DP_DataParameter missing mcp:parameterMinimumValue, mcp:parameterMaximumValue and mcp:ParameterDescription. Add with nilReason-->
+    <xsl:template match="mcp:DP_DataParameter[mcp:parameterUnits and not(mcp:parameterMinimumValue) and not(mcp:parameterMaximumValue) and not(mcp:parameterDescription)]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:DP_DataParameter missing mcp:parameterMinimumValue. Add with nilReason')" />
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="not(self::mcp:parameterUnits)">
+                        <xsl:apply-templates select="." />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="." />                        
+                        <mcp:parameterMinimumValue gco:nilReason="missing" />
+                        <mcp:parameterMaximumValue gco:nilReason="missing" />
+                        <mcp:parameterDescription gco:nilReason="missing" />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:copy>
+    </xsl:template>       
     
 
 </xsl:stylesheet>
