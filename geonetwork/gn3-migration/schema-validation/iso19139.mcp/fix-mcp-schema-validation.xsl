@@ -36,13 +36,13 @@
   
     <!-- `<gco:Integer/> Invalid integer value. Remove invalid characters -->
     <xsl:template match="gco:Integer[not(number(.))]/text()">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Integer Invalid integer value. Remove invalid characters')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Integer Invalid integer value. Remove invalid characters',',check and fix before transform')" />
         <xsl:value-of select="replace(., '[^0-9\-]', '')"/>
     </xsl:template>
     
     <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
     <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Real missing value. Apply nilReason and remove gco:Real')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Real missing value. Apply nilReason and remove gco:Real','post manual values enter?',',check and fix before transform')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -66,7 +66,7 @@
     
     <!-- gco:DateTime missing date removed and labelled missing -->
     <xsl:template match="gmd:plannedAvailableDateTime[gco:DateTime[text()[substring-before(.,'T') = '']]]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:DateTime missing date removed and labelled missing')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:DateTime missing date removed and labelled missing',',check and fix? before transform')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -77,7 +77,7 @@
         //gmd:eastBoundLongitude[gco:Decimal[not(node())]]|
         //gmd:southBoundLatitude[gco:Decimal[not(node())]]|
         //gmd:northBoundLatitude[gco:Decimal[not(node())]]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Decimal missing value. Apply nilReason and remove gco:Decmimal')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Decimal missing value. Apply nilReason and remove gco:Decmimal',',post manual values enter?')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -142,7 +142,7 @@
     <!-- gco:DateTime missing time replaced with gco:Date -->
     <!-- Non ISO date formats corrected -->
     <xsl:template match="gco:DateTime[text()[not(contains(., 'T'))]]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:DateTime missing time replaced with gco:Date')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:DateTime missing time replaced with gco:Date',',check and fix before transform')" />
         <xsl:choose>
             <xsl:when test=".='1/2/2015'">
                 <!-- 
@@ -179,7 +179,7 @@
     
     <!-- Element `<gco:Integer/>` missing value -->
     <xsl:template match="gmd:denominator[gco:Integer = '']|gmd:numberOfDimensions[gco:Integer = '']|gmd:dimensionSize[gco:Integer = '']">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Integer missing value')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Integer missing value',',post manual check?')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -187,7 +187,7 @@
     
     <!-- Element `<gco:Boolean/>` missing value -->
     <xsl:template match="gmd:transformationParameterAvailability[gco:Boolean = '']">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Boolean missing value')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Boolean missing value',',pre transform check missing/true/false')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -204,7 +204,7 @@
     
     <!-- mcp:MD_DataIdentification missing gmd:language  Add in correct order -->
     <xsl:template match="mcp:MD_DataIdentification[not(gmd:language)]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:MD_DataIdentification missing gmd:language  Add in correct order')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:MD_DataIdentification missing gmd:language  Add in correct order',',check and fix? before transform, make eng?')" />
         <xsl:copy>
             <xsl:apply-templates select="@*" />
             <xsl:for-each select="node()">
@@ -240,7 +240,7 @@
     
     <!-- Element gmd:CI_Citation missing gmd:title -->
     <xsl:template match="gmd:CI_Citation[.!='' and not(gmd:title)]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Citation missing gmd:title')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Citation missing gmd:title',',check and fix? before transform')" />
         <xsl:copy>
             <gmd:title gco:nilReason="missing" />
             <xsl:apply-templates select="@* | node()" />
@@ -258,7 +258,7 @@
  
     <!-- Element gmd:MD_TopicCategoryCode missing value -->
     <xsl:template match="gmd:topicCategory[gmd:MD_TopicCategoryCode = '']">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:MD_TopicCategoryCode missing value')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:MD_TopicCategoryCode missing value',',make sure there is at least on Topic Category (if none add oceans)')" />
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>

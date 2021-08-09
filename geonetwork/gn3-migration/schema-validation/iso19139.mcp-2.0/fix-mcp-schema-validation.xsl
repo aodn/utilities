@@ -65,7 +65,7 @@
     
     <!-- Element `<mcp:DP_Term/>` missing <mcp:usedInDataset> is added with nilReason -->
     <xsl:template match="mcp:DP_Term[not(mcp:usedInDataset)]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:DP_Term missing mcp:usedInDataset is added with nilReason')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:DP_Term missing mcp:usedInDataset is added with nilReason',',check and fix? before transform')" />
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
             <mcp:usedInDataset gco:nilReason="missing" />
@@ -122,7 +122,7 @@
     
     <!-- gmd:CI_Citation has gmd:citedResponsibleParty and gmd:identifier incorrectly ordered -->
     <xsl:template match="gmd:CI_Citation[gmd:citedResponsibleParty[following-sibling::gmd:identifier]]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Citation has gmd:citedResponsibleParty and gmd:identifier incorrectly ordered')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Citation has gmd:citedResponsibleParty and gmd:identifier incorrectly ordered',',check before transform')" />
         <xsl:copy>
             <xsl:apply-templates select="@*" />
             <xsl:for-each select="node()">
@@ -139,7 +139,7 @@
     
     <!-- `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
     <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Decimal missing value. Apply nilReason and remove gco:Decimal')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Decimal missing value. Apply nilReason and remove gco:Decimal',',post manual values enter?')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -147,7 +147,7 @@
     
     <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
     <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Real missing value. Apply nilReason and remove gco:Real')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Real missing value. Apply nilReason and remove gco:Real',',post manual check?  parameters?')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
@@ -163,7 +163,7 @@
     
     <!-- Element `<gco:Integer/>` missing value -->
     <xsl:template match="gmd:denominator[gco:Integer = '']">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Integer missing value')" />
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Integer missing value',',post manual check?')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>

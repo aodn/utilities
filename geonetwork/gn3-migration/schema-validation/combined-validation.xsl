@@ -37,11 +37,11 @@
 
     <!-- iso19139 `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
     <!-- post manual values enter? -->
-    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
+<!--    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">-->
+<!--        <xsl:copy>-->
+<!--            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>-->
+<!--        </xsl:copy>-->
+<!--    </xsl:template>-->
 
     <!-- iso19139.mcp `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decmimal/> -->
     <!-- post manual values enter? -->
@@ -184,19 +184,19 @@
 
     <!-- iso19139 gco:Distance missing value -->
     <!-- where is Distance being used -->
-    <xsl:template match="gmd:distance[gco:Distance = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
+<!--    <xsl:template match="gmd:distance[gco:Distance = '']">-->
+<!--        <xsl:copy>-->
+<!--            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>-->
+<!--        </xsl:copy>-->
+<!--    </xsl:template>-->
 
     <!-- iso19139 `<gmd:MD_TopicCategoryCode/>` missing value -->
     <!-- make sure there is at least on Topic Category (if none add "oceans") -->
-    <xsl:template match="gmd:topicCategory[gmd:MD_TopicCategoryCode = '']">
-        <xsl:copy>
-            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>
+<!--    <xsl:template match="gmd:topicCategory[gmd:MD_TopicCategoryCode = '']">-->
+<!--        <xsl:copy>-->
+<!--            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>-->
+<!--        </xsl:copy>-->
+<!--    </xsl:template>-->
 
     <!-- iso19139.mcp gmd:MD_TopicCategoryCode missing value -->
     <!-- make sure there is at least on Topic Category (if none add "oceans") -->
@@ -311,12 +311,12 @@
     <!-- MISSING CHILD NODES -->
 
     <!-- iso19139 `<gmd:CI_Date/>` missing <gmd:date> is added with nilReason -->
-    <xsl:template match="gmd:CI_Date[not(gmd:date)]">
-        <xsl:copy>
-            <gmd:date gco:nilReason="missing" />
-            <xsl:apply-templates select="@* | node()" />
-        </xsl:copy>
-    </xsl:template>
+<!--    <xsl:template match="gmd:CI_Date[not(gmd:date)]">-->
+<!--        <xsl:copy>-->
+<!--            <gmd:date gco:nilReason="missing" />-->
+<!--            <xsl:apply-templates select="@* | node()" />-->
+<!--        </xsl:copy>-->
+<!--    </xsl:template>-->
 
     <!-- iso19139.mcp-1.4 `<gmd:CI_Date/>` missing <gmd:date> is added with nilReason -->
     <xsl:template match="gmd:CI_Date[not(gmd:date)]">
@@ -494,22 +494,22 @@
 
     <!-- iso19139.mcp-2.0 mcp:MD_DataIdentification missing gmd:language  Add in correct order -->
     <!-- duplicate -->
-    <xsl:template match="mcp:MD_DataIdentification[not(gmd:language)]">
-        <xsl:copy>
-            <xsl:apply-templates select="@*" />
-            <xsl:for-each select="node()">
-                <xsl:choose>
-                    <xsl:when test="not(self::gmd:characterSet)">
-                        <xsl:apply-templates select="." />
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <gmd:language gco:nilReason="missing" />
-                        <xsl:copy-of select="." />
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
-        </xsl:copy>
-    </xsl:template>
+<!--    <xsl:template match="mcp:MD_DataIdentification[not(gmd:language)]">-->
+<!--        <xsl:copy>-->
+<!--            <xsl:apply-templates select="@*" />-->
+<!--            <xsl:for-each select="node()">-->
+<!--                <xsl:choose>-->
+<!--                    <xsl:when test="not(self::gmd:characterSet)">-->
+<!--                        <xsl:apply-templates select="." />-->
+<!--                    </xsl:when>-->
+<!--                    <xsl:otherwise>-->
+<!--                        <gmd:language gco:nilReason="missing" />-->
+<!--                        <xsl:copy-of select="." />-->
+<!--                    </xsl:otherwise>-->
+<!--                </xsl:choose>-->
+<!--            </xsl:for-each>-->
+<!--        </xsl:copy>-->
+<!--    </xsl:template>-->
 
     <!-- OTHER -->
 
