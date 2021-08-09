@@ -92,10 +92,24 @@ Copy them to a convenient location other than the working directory created in s
 
 - Validate and correct
 
+Before running the validation make sure xmllint and saxon9he are installed as per the README.md
+
 ```
 cd gn3-migration/schema-validation
-./run-schema-validation.sh -s /tmp/schemaPlugins-dir -r /tmp/catalogue_aodn_hosted_mcp -e 'catalogue_aodn_hosted_mcp.txt'
+./run-schema-validation.sh -s /tmp/schemaPlugins -r /tmp/catalogue_aodn_hosted_mcp -e 'catalogue_aodn_hosted_mcp.txt'
 ```
+
+The script will do the following for each record:
+ - Make a backup of the original metadata.xml in metadata.xml.bak
+ - Using xmllint validate the metadata.xml.bak against the schema identified in the info.xml file
+ - Apply corrections to the metadata.xml file using the associated fix-mcp-schema-validation.xsl file found in the iso19139.mcp, iso19139.mcp-1.4 or iso19139.mcp-2.0 directory.
+ - Validate the resulting metadata.xml to generate final reports
+
+During the process several log and report files are generated. 
+ - catalogue_aodn_hosted_mcp.txt                            Detail of each non-compliant element found in original metadata
+ - summary-catalogue_aodn_hosted_mcp.txt                    Counts of non-compliant elements found in original metadata
+ - after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt  Remaining errors that the tool could not correct
+ - messages-catalogue_aodn_hosted_mcp.txt                   CSV list of "metadata-file-corrected","element-corrected","schema-xsl-used-to-correct","description-of-error"
 
 Check the messages-catalogue_aodn_hosted_mcp.txt and after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt and console
 
