@@ -36,7 +36,7 @@ for f in $(find /tmp/catalogue_aodn_hosted_mcp -name info.xml | grep metadata); 
 
 - Source and copy the schema plugins to one location
 
-These can be obtained from https://github.com/aodn/schema-plugins/tree/180e374a2f1ac181a79bc3b9432b46739301e0e6
+These can be obtained from https://github.com/aodn/schema-plugins
 
 Required schemas are iso19139.mcp-1.4, iso19139.mcp-2.0 and iso19139.mcp
 
@@ -44,7 +44,7 @@ Copy them to a convenient location other than the working directory created in s
 
 - Validate and correct
 
-Before running the validation make sure xmllint and saxon9he are installed as per the README.md
+Before running the validation make sure xmllint and saxon9he are installed as per the README.md (see: https://github.com/aodn/utilities/pull/259/files#diff-b2a78821534e880090aae11187ad4a87c454f501dc3b8a6aa36e65f8ac7b84bd)
 
 ```
 cd gn3-migration/schema-validation
