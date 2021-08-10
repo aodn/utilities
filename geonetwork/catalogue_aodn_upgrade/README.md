@@ -158,6 +158,8 @@ scp 6-aws-syd:/tmp/catalogue_aodn_marvlis_uuids.txt .
 
 #### transform to 19115-3
 ```
+rm -rf /tmp/catalogue_aodn_marvlis
+cp -R /tmp/catalogue_aodn_marvlis_backup /tmp/catalogue_aodn_marvlis
 java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.jar -d /tmp/catalogue_aodn_marvlis -i metadata.xml -o metadata.iso19115-3.2018.xml -u url-substitutions/aodn.xml
 ```
 

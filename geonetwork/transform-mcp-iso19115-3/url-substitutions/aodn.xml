@@ -14,6 +14,10 @@
     <substitution match="https?://catalogue.aodn.org.au(:443)?/geonetwork/srv/eng?/metadata.show\?uuid="
             replaceWith="https://catalogue.aodn.org.au:443/geonetwork/srv/api/records/"/>
 
+    <!-- Instance point of truth links - marvlis -->
+    <substitution match="https?://geonetwork.marvlis.aodn.org.au(:443)?/geonetwork/srv/eng?/metadata.show\?uuid="
+            replaceWith="https://catalogue.aodn.org.au:443/geonetwork/srv/api/records/"/>
+
     <!-- Instance download links  - map the GN2 endpoint to the GN3 enpoint -->
     <substitution match="https?://catalogue.aodn.org.au(:443)?/geonetwork/srv/eng?/file.disclaimer\?uuid=(.*)&amp;fname=(.*)&amp;access=private"
             replaceWith="https://catalogue.aodn.org.au:443/geonetwork/srv/api/records/$2/attachments/$3"/>
