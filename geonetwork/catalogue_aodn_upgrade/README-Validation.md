@@ -104,6 +104,7 @@ Refer to after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt and [messages-c
 Repeat as per hosted records using the one of following uuid lists:
 
 For all Bluenet and MARVL records: [bluenet_marvlis_uuids.txt](https://github.com/aodn/utilities/files/6952461/bluenet_marvlis_uuids.txt)
+
 For Bluenet and MARVL records that require correction: [corrected-uuids-bluenet_marvlis.txt](https://github.com/aodn/utilities/files/6965365/corrected-uuids-bluenet_marvlis.txt)
 
 
