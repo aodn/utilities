@@ -44,10 +44,11 @@ Copy them to a convenient location other than the working directory created in s
 
 - Validate and correct
 
-Before running the validation make sure xmllint and saxon9he are installed as per the README.md (see: https://github.com/aodn/utilities/pull/259/files#diff-b2a78821534e880090aae11187ad4a87c454f501dc3b8a6aa36e65f8ac7b84bd)
+Checkout this branch: https://github.com/aodn/utilities/tree/3210-mcp-validation
 
+Before running the validation make sure xmllint and saxon9he are installed as per the [README.md](https://github.com/aodn/utilities/blob/3210-mcp-validation/geonetwork/gn3-migration/schema-validation/README.md)
 ```
-cd gn3-migration/schema-validation
+cd geonetwork/gn3-migration/schema-validation
 ./run-schema-validation.sh -s /tmp/schemaPlugins -r /tmp/catalogue_aodn_hosted_mcp -e 'catalogue_aodn_hosted_mcp.txt'
 ```
 
