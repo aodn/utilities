@@ -1,30 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Manual edits -->
-<!-- 95204c39-71b3-4335-8435-d4d4f027bc8a
-        More than one gmd:code not allowed
-        <gmd:RS_Identifier>
-           <gmd:code>
-              <gmx:Anchor xmlns:gmx="http://www.isotc211.org/2005/gmx"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                          xlink:href=""/>
-           </gmd:code>
-           <gmd:code>
-              <gmx:Anchor xmlns:gmx="http://www.isotc211.org/2005/gmx"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                          xlink:href=""/>
-           </gmd:code>
-           <gmd:code>
-              <gco:CharacterString>http://vocab.aodn.org.au/def/discovery_parameter/entity/488</gco:CharacterString>
-           </gmd:code>
-        </gmd:RS_Identifier>
--->
-
-<!-- Templates -->
-<!-- d6cf3c60-9f49-4fb5-9125-27043dc9e7e9 -->
-<!-- 308784f4-11ac-45f5-a489-078044420c33 -->
-<!-- 462cb14b-4339-46f6-927f-be280edaf4bd -->
-
 <!-- Fix ups for iso19139.mcp-1.4 -->
 
 <xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0"

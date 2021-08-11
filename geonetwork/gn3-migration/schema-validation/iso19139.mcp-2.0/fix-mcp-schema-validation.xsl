@@ -1,49 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Manual edits -->
-<!-- 5344966e-ea85-4c98-b699-546dba9cb39e 
-        More than one gmd:EX_GeographicBoundingBox not allowed
-        <gmd:geographicElement>
-          <gmd:EX_GeographicBoundingBox>
-             <gmd:westBoundLongitude gco:nilReason="missing"/>
-             <gmd:eastBoundLongitude gco:nilReason="missing"/>
-             <gmd:southBoundLatitude gco:nilReason="missing"/>
-             <gmd:northBoundLatitude>
-                <gco:Decimal>-31.67195</gco:Decimal>
-             </gmd:northBoundLatitude>
-          </gmd:EX_GeographicBoundingBox>
-          <gmd:EX_GeographicBoundingBox>
-             <gmd:westBoundLongitude gco:nilReason="missing"/>
-             <gmd:eastBoundLongitude gco:nilReason="missing"/>
-             <gmd:southBoundLatitude gco:nilReason="missing"/>
-             <gmd:northBoundLatitude>
-                <gco:Decimal>-29.69225</gco:Decimal>
-             </gmd:northBoundLatitude>
-          </gmd:EX_GeographicBoundingBox>
-        </gmd:geographicElement>
--->
-<!-- Invalid xlink:href
-     <gmx:Anchor xlink:href="http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords">geonetwork.thesaurus.external.theme.sciencekeywords</gmx:Anchor>
-     The port number is missing, remove the ':'
-        1de0e8b1-4777-4526-b3d7-805938b8e6bc
-        2a9a9f90-79a3-498b-a2d2-0f822fe35ed9
-        5344966e-ea85-4c98-b699-546dba9cb39e
-        a10d4447-73bb-4bba-a12b-20d8c803ef30
-        e8769cd6-8693-4252-8a5e-1ab2a25d4e4e
-        fd645850-00c8-47f7-842c-4ef54ebdab52
--->
-<!-- e8769cd6-8693-4252-8a5e-1ab2a25d4e4e
-    gml:VerticalCRS missing required gml:verticalDatum and gml:verticalCS
-    <gml:VerticalCRS xmlns:gml="http://www.opengis.net/gml" gml:id="d506824e667a1052958">
-       <gml:identifier codeSpace="urn:ogc:def:crs:EPSG::">EPSG::5715</gml:identifier>
-       <gml:name>MSL depth</gml:name>
-       <gml:scope>World</gml:scope>
-    </gml:VerticalCRS>
--->
-
-
 <!-- Fix ups for iso19139.mcp-2.0 -->
-
 
 <xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0"
     xmlns:gml="http://www.opengis.net/gml"

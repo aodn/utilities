@@ -2,15 +2,6 @@
 
 <!-- Fix ups for iso19139.mcp -->
 
-<!-- Records using http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd -->
-<!-- These are not validated -->
-<!-- e76a13e0-3402-11dc-849f-00188b4c0af8 -->
-<!-- 0292f830-723d-11dc-a0c6-00188b4c0af8 -->
-<!-- fdc8625e-7b26-4860-8c90-92c6c884d7ec -->
-
-<!-- Templates -->
-<!-- e8c0865c-8493-4dd8-b9f6-0da85055bd57 -->
-
 <xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0"
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"
