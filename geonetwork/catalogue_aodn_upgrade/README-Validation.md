@@ -92,7 +92,7 @@ Repeat as per hosted records using the one of following uuid lists:
 
 For all Bluenet and MARVL records: [bluenet_marvlis_uuids.txt](https://github.com/aodn/utilities/files/6952461/bluenet_marvlis_uuids.txt)
 
-For Bluenet and MARVL records that require correction: [corrected-uuids-bluenet_marvlis.txt](https://github.com/aodn/utilities/files/6965365/corrected-uuids-bluenet_marvlis.txt)
+For just the Bluenet and MARVL records that have been identified as requiring correction: [corrected-uuids-bluenet_marvlis.txt](https://github.com/aodn/utilities/files/6965365/corrected-uuids-bluenet_marvlis.txt)
 
 Example report file: [messages-corrected-catalogue_aodn_hosted_mcp.xlsx](https://github.com/aodn/utilities/files/6965372/messages-corrected-catalogue_aodn_hosted_mcp.xlsx)
 
