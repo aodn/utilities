@@ -107,5 +107,11 @@ For all Bluenet and MARVL records: [bluenet_marvlis_uuids.txt](https://github.co
 
 For Bluenet and MARVL records that require correction: [corrected-uuids-bluenet_marvlis.txt](https://github.com/aodn/utilities/files/6965365/corrected-uuids-bluenet_marvlis.txt)
 
+Example report file: [messages-corrected-catalogue_aodn_hosted_mcp.xlsx](https://github.com/aodn/utilities/files/6965372/messages-corrected-catalogue_aodn_hosted_mcp.xlsx)
+
+Example remaining validity errors for manual correction: [after-fix-validity-errors-bluenet_marvlis.txt](https://github.com/aodn/utilities/files/6965380/after-fix-validity-errors-bluenet_marvlis.txt)
+
+
+
 
 
