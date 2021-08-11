@@ -15,7 +15,8 @@
     xmlns:gml="http://www.opengis.net/gml"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gmd="http://www.isotc211.org/2005/gmd"
-    xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp">
+    xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
+    xmlns:srv="http://www.isotc211.org/2005/srv">
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
     <xsl:strip-space elements="*"/>
@@ -35,12 +36,11 @@
         </xsl:copy>
     </xsl:template>
   
-    <!-- `<gco:Integer/> Invalid integer value. Remove invalid characters -->
+    <!-- gco:Integer Invalid integer value. Remove invalid characters -->
     <xsl:template match="gco:Integer[not(number(.))]/text()">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Integer Invalid integer value. Remove invalid characters',',check and fix before transform')" />
         <xsl:value-of select="replace(., '[^0-9\-]', '')"/>
     </xsl:template>
-    
     
     <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
  <!--   <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
@@ -73,13 +73,27 @@
         </xsl:copy>
     </xsl:template>    
     
-    <!-- Element `<gco:Date/>` missing value -->
+    <!-- Element gco:Date missing value -->
     <xsl:template match="gmd:CI_Date/gmd:date[gco:Date = '']|gmd:dateOfNextUpdate[gco:Date = '']">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Date missing value')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
-    </xsl:template>   
+    </xsl:template> 
+    
+    <!-- gmd:CI_Date has too many gmd:date. The extras are empty -->
+    <xsl:template match="gmd:CI_Date[gmd:date[following-sibling::gmd:date/gco:Date = '']]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Date had too many gmd:date. The extras are empty')" />
+        <xsl:copy>
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="not(self::gmd:date/gco:Date = '')">
+                        <xsl:apply-templates select="." />
+                    </xsl:when>
+                </xsl:choose>          
+            </xsl:for-each>            
+        </xsl:copy>
+    </xsl:template>
 
     <!-- gco:DateTime missing date removed and labelled missing -->
     <xsl:template match="gmd:plannedAvailableDateTime[gco:DateTime[text()[substring-before(.,'T') = '']]]">
@@ -148,6 +162,15 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- gmd:CI_Date missing gmd:date -->
+    <xsl:template match="gmd:CI_Date[not(gmd:date)]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Date missing gmd:date')" />
+        <xsl:copy>
+            <gmd:date gco:nilReason="missing" />
+            <xsl:apply-templates select="@* | node()" />
+        </xsl:copy>
+    </xsl:template>
+    
     <!-- Element `gmd:dateStamp/gco:DateTime missing value -->
     <xsl:template match="gmd:dateStamp[gco:DateTime = '']">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:dateStamp/gco:DateTime missing value')" />
@@ -211,7 +234,7 @@
     </xsl:template>    
     
     <!-- Element `<gco:Boolean/>` missing value -->
-    <xsl:template match="extentTypeCode[gco:Boolean = '']">
+    <xsl:template match="gmd:extentTypeCode[gco:Boolean = '']">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Boolean missing value',',pre transform check missing/true/false')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
@@ -255,13 +278,62 @@
     </xsl:template>
     
     <!-- Element gmd:CI_Citation missing gmd:date -->
-    <xsl:template match="gmd:CI_Citation[.!='' and not(gmd:date)]">
+    <xsl:template match="gmd:CI_Citation[not(gmd:date) and not(gmd:alternateTitle) and gmd:title]">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Citation missing gmd:date')" />
         <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />
-            <gmd:date gco:nilReason="missing" />
-        </xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="self::gmd:title">
+                        <xsl:copy-of select="." />                        
+                        <gmd:date gco:nilReason="missing" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="." />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:copy>        
     </xsl:template>
+    <xsl:template match="gmd:CI_Citation[not(gmd:date) and gmd:alternateTitle and gmd:title]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Citation missing gmd:date')" />
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="self::gmd:alternateTitle">
+                        <xsl:copy-of select="." />                        
+                        <gmd:date gco:nilReason="missing" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="." />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:copy>        
+    </xsl:template>    
+ 
+ <!--
+    <xsl:template match="mcp:DP_DataParameter[mcp:parameterUnits and not(mcp:parameterMinimumValue) and not(mcp:parameterMaximumValue) and not(mcp:parameterDescription)]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:DP_DataParameter missing mcp:parameterMinimumValue. Add with nilReason')" />
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="not(self::mcp:parameterUnits)">
+                        <xsl:apply-templates select="." />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="." />                        
+                        <mcp:parameterMinimumValue gco:nilReason="missing" />
+                        <mcp:parameterMaximumValue gco:nilReason="missing" />
+                        <mcp:parameterDescription gco:nilReason="missing" />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:copy>
+    </xsl:template>    
+    -->
     
     <!-- Element gmd:CI_Citation missing gmd:title -->
     <xsl:template match="gmd:CI_Citation[.!='' and not(gmd:title)]">
@@ -300,6 +372,46 @@
         </xsl:copy>
     </xsl:template>  
     
+    <!-- gmd:MD_Keywords has gmd:keyword in wrong order -->
+    <!--  THIS IS NOT COMPLETE
+    <xsl:template match="gmd:MD_Keywords[gmd:type[following-sibling::gmd:keyword] or gmd:thesaurus[following-sibling::gmd:keyword]]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:MD_Keywords has gmd:keyword in wrong order')" />
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="self::gmd:keyword">
+                        <xsl:apply-templates select="." />
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:for-each>
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="not(self::gmd:keyword)">
+                        <xsl:apply-templates select="." />
+                    </xsl:when>
+                    <xsl
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:copy>
+    </xsl:template>  -->
+    
+    <!-- gmd:CI_ResponsibleParty has gmd:organisationName in wrong order -->
+    <!-- NOT COMPLETE -->
+   <!-- <xsl:template match="gmd:CI_ResponsibleParty[gmd:individualName[not(following-sibling::gmd:organisationName)]]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_ResponsibleParty has gmd:organisationName in wrong order')" />
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <xsl:for-each select="node()">
+                <xsl:choose>
+                    <xsl:when test="self::gmd:individualName">
+                        <xsl:apply-templates select="." />
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:copy>
+    </xsl:template>       -->
+    
     <!-- Element gmd:EX_GeographicDescription missing all children -->
     <xsl:template match="//gmd:geographicElement[gmd:EX_GeographicDescription[not(gmd:extentTypeCode) and not(gmd:geographicIdentifier)]]">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:EX_GeographicDescription missing all children')" />
@@ -335,7 +447,43 @@
                 </xsl:choose>
             </xsl:for-each>
         </xsl:copy>
-    </xsl:template>       
+    </xsl:template>   
+
+    <!-- gmd:CI_Contact more than one gmd:onlineResource -->
+    <!-- element onlineResource: Schemas validity error : Element '{http://www.isotc211.org/2005/gmd}onlineResource': This element is not expected. Expected is one of ( {http://www.isotc211.org/2005/gmd}hoursOfService, {http://www.isotc211.org/2005/gmd}contactInstructions ) -->
+    <xsl:template match="gmd:CI_Contact[gmd:onlineResource[following-sibling::gmd:onlineResource]]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Contact more than one gmd:onlineResource',',correct manually')" />
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" />
+        </xsl:copy>
+    </xsl:template>    
     
+    <!-- gmd:EX_SpatialTemporalExtent missing gmd:spatialExtent.  Convert to a gmd:EX_TemporalExtent -->
+    <xsl:template match="gmd:EX_SpatialTemporalExtent[not(gmd:EX_TemporalExtent)]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:EX_SpatialTemporalExtent missing gmd:spatialExtent.  Convert to a gmd:EX_TemporalExtent')" />
+        <gmd:EX_TemporalExtent>
+            <xsl:apply-templates select="@* | node()" />
+        </gmd:EX_TemporalExtent>
+    </xsl:template>
+    
+    <!-- gmd:EX_TemporalExtent missing gmd:extent and no beginTime or endTime -->
+    <xsl:template match="mcp:EX_TemporalExtent[not(gmd:extent) and mcp:beginTime[gco:DateTime = ''] and mcp:endTime[gco:DateTime = '']]">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:EX_TemporalExtent missing gmd:extent and no beginTime or endTime')" />
+        <xsl:copy>
+            <xsl:apply-templates select="@*" />
+            <gmd:extent gco:nilReason="missing" />
+        </xsl:copy>
+    </xsl:template>    
+    
+    <!-- gmd:identificationInfo has srv:SV_ServiceIdentification, should be gmd:MD_ServiceIdentification -->
+    <xsl:template match="gmd:identificationInfo/srv:SV_ServiceIdentification">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:identificationInfo has srv:SV_ServiceIdentification, should be gmd:MD_ServiceIdentification')" />
+        <gmd:MD_ServiceIdentification>
+            <xsl:apply-templates select="@* | node()" />
+        </gmd:MD_ServiceIdentification>
+    </xsl:template>
+    <xsl:template match="gmd:identificationInfo/srv:SV_ServiceIdentification/srv:couplingType | gmd:identificationInfo/srv:SV_ServiceIdentification/srv:containsOperations" />
+    
+    <!-- gml:VerticalCS -->
 
 </xsl:stylesheet>
