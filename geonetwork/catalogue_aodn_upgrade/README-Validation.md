@@ -78,6 +78,7 @@ Example: [after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt](https://githu
 - Import corrected records into catalogue.aodn.org.au (Geonetwork 2)
 
 ```
+cd geonetwork/gn-tool/
 ./gn-tool.sh -o import -y overwrite -l /tmp/catalogue_aodn_hosted_mcp -g  http://<target_url>/geonetwork -u <username> -p <password>
 ```
 
