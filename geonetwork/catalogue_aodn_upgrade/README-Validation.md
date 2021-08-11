@@ -73,21 +73,8 @@ Example: [messages-corrected-catalogue_aodn_hosted_mcp.xlsx](https://github.com/
 
 Using the content of after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt create a list of manual corrections required. Some of these corrections will need to be manually made in the metadata.xml files before import.
 
-Example:
-```
-068252d5-773b-4bd5-8980-100ad436ed7b/metadata/metadata.xml:1507: Anchor, attributehref: 'http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords' is not a valid value of the atomic type 'xs:anyURI'.
-07556fa0-d8ae-4b19-95dd-def52db223a1/metadata/metadata.xml:296: DP_DataParameters: Character content other than whitespace is not allowed because the content type is 'element-only'.
-1de0e8b1-4777-4526-b3d7-805938b8e6bc/metadata/metadata.xml:1013: Anchor', attributehref: 'http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords' is not a valid value of the atomic type 'xs:anyURI'.
-2a9a9f90-79a3-498b-a2d2-0f822fe35ed9/metadata/metadata.xml:676: Anchor', attributehref: 'http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords' is not a valid value of the atomic type 'xs:anyURI'.
-5344966e-ea85-4c98-b699-546dba9cb39e/metadata/metadata.xml:282: Anchor', attributehref: 'http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords' is not a valid value of the atomic type 'xs:anyURI'.
-5344966e-ea85-4c98-b699-546dba9cb39e/metadata/metadata.xml:366: EX_GeographicBoundingBox: This element is not expected.
-95204c39-71b3-4335-8435-d4d4f027bc8a/metadata/metadata.xml:255: code: This element is not expected. Expected is one of ( {http://www.isotc211.org/2005/gmd}codeSpace, {http://www.isotc211.org/2005/gmd}version ).
-982bac15-44c6-4424-9844-18337d318d39/metadata/metadata.xml:237: VerticalCRS: Missing child element(s). Expected is one of ( {http://www.opengis.net/gml}verticalDatum, {http://www.opengis.net/gml}usesVerticalDatum ).
-a10d4447-73bb-4bba-a12b-20d8c803ef30/metadata/metadata.xml:304: Anchor, attributehref: 'http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords' is not a valid value of the atomic type 'xs:anyURI'.
-e8769cd6-8693-4252-8a5e-1ab2a25d4e4e/metadata/metadata.xml:394: Anchor, attributehref: 'http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords' is not a valid value of the atomic type 'xs:anyURI'.
-e8769cd6-8693-4252-8a5e-1ab2a25d4e4e/metadata/metadata.xml:506: VerticalCRS: Missing child element(s). Expected is one of ( {http://www.opengis.net/gml}scope, {http://www.opengis.net/gml}verticalCS, {http://www.opengis.net/gml}usesVerticalCS ).
-fd645850-00c8-47f7-842c-4ef54ebdab52/metadata/metadata.xml:299: Anchor, attributehref: 'http://metadata.imas.utas.edu.au:/geonetwork/srv/en/thesaurus.download?ref=external.theme.sciencekeywords' is not a valid value of the atomic type 'xs:anyURI'.
-```
+Example: [after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt](https://github.com/aodn/utilities/files/6965392/after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt)
+
 
 - Import corrected records into catalogue.aodn.org.au (Geonetwork 2)
 
