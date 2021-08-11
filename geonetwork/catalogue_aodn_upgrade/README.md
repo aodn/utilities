@@ -99,11 +99,26 @@ Ignore this record, Nat has identified it as not migrate-able (appears to be a t
 a6097db0-7b8c-11dc-b279-00188b4c0af8
 ```
 
+Also ignore these junk/template records identified by Craig
+
+```
+211d2692-b120-4dc0-a204-866fe734433d
+2a6cc5e1-f4fe-479c-8b41-9e2cdbe89aca
+4d55aee7-94e8-4c62-923c-412f376b2f13
+533c94dd-1b89-46d4-b999-e1418ab811a2
+69058797-cb81-47c4-824a-402440c75dee
+8a735fe4-9136-494d-964c-14265a0ed069
+b586905d-09dc-4ed9-8241-1a91c5bc4e1e
+b836f4df-3576-4151-8a89-f92b7e4a48bc
+e3f83178-fe7d-4165-8d2d-c52eccc791d7
+f312d2ab-0750-40c9-8217-97c39a1f4332
+```
+
 Also ignore the only record with the `fgdc-std` schema as it appears to be some kind of template
 
 #### Get UUID list
 ```
-ssh 6-aws-syd "sudo -u postgres psql -d geonetwork_aodn -c \"\\copy (select uuid from metadata where harvestuuid = (select value from settings where parentid = (select parentid from settings where name = 'name' and value = 'bluenet (don''t delete)') and name = 'uuid') and istemplate = 'n' and schemaid not in ('fgdc-std') and uuid != 'a6097db0-7b8c-11dc-b279-00188b4c0af8') to stdout\" > /tmp/catalogue_bluenet_uuids.txt"
+ssh 6-aws-syd "sudo -u postgres psql -d geonetwork_aodn -c \"\\copy (select uuid from metadata where harvestuuid = (select value from settings where parentid = (select parentid from settings where name = 'name' and value = 'bluenet (don''t delete)') and name = 'uuid') and istemplate = 'n' and schemaid not in ('fgdc-std') and uuid not in ('211d2692-b120-4dc0-a204-866fe734433d', '2a6cc5e1-f4fe-479c-8b41-9e2cdbe89aca', '4d55aee7-94e8-4c62-923c-412f376b2f13', '533c94dd-1b89-46d4-b999-e1418ab811a2', '69058797-cb81-47c4-824a-402440c75dee', '8a735fe4-9136-494d-964c-14265a0ed069', 'b586905d-09dc-4ed9-8241-1a91c5bc4e1e', 'b836f4df-3576-4151-8a89-f92b7e4a48bc', 'e3f83178-fe7d-4165-8d2d-c52eccc791d7', 'f312d2ab-0750-40c9-8217-97c39a1f4332', 'a6097db0-7b8c-11dc-b279-00188b4c0af8')) to stdout\" > /tmp/catalogue_aodn_bluenet_uuids.txt"
 scp 6-aws-syd:/tmp/catalogue_aodn_bluenet_uuids.txt .
 ```
 
