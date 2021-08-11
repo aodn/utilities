@@ -1,5 +1,3 @@
-[bluenet_marvlis_uuids.txt](https://github.com/aodn/utilities/files/6952457/bluenet_marvlis_uuids.txt)
-[bluenet_marvlis_uuids.txt](https://github.com/aodn/utilities/files/6952460/bluenet_marvlis_uuids.txt)
 # Catalogue AODN hosted MCP records
 
 - Create a fresh working directory in a convenient location
