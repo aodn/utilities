@@ -79,7 +79,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="string-length($codeListValue) > 0">
+            <xsl:when test="string-length($codeListValue[0]) > 0">
                 <xsl:element name="{$elementName}">
                     <xsl:element name="{$codeListName}">
                         <xsl:attribute name="codeList">
