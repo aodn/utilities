@@ -98,10 +98,10 @@ get_groups() {
   profile=_none_
 
   rm -f /tmp/cookie.txt ;
-  curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+  curl -k -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
   gn_xsrftoken=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
 
-  body=$(curl -s -X GET \
+  body=$(curl -k -s -X GET \
       -u $gn_user:$gn_password \
       -H "accept: application/json" \
       -H "X-XSRF-TOKEN:$gn_xsrftoken" \
@@ -126,10 +126,10 @@ get_users() {
   local gn_password=$1; shift
 
   rm -f /tmp/cookie.txt ;
-  curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+  curl -k -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
   gn_xsrftoken=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
 
-  body=$(curl -s -X GET \
+  body=$(curl -k -s -X GET \
       -u $gn_user:$gn_password \
       -H "accept: application/json" \
       -H "X-XSRF-TOKEN:$gn_xsrftoken" \
@@ -240,8 +240,9 @@ delete_record() {
     local gn_user=$1; shift
     local gn_password=$1; shift
 
+
     echo "Deleting record '$record_uuid'"
-    curl -s \
+    curl -k -s \
         -u $gn_user:$gn_password \
         -d "uuid=$record_uuid" \
         "$gn_addr/srv/eng/xml.metadata.delete"
@@ -274,7 +275,7 @@ export_record() {
       gn_xsrftoken_arg='-H "X-XSRF-TOKEN:$gn_xsrftoken" -b /tmp/cookie.txt'
     fi
 
-    curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg $gn_xsrftoken_arg -d "uuid=$record_uuid&format=full&version=2&relation=false" -o $tmp_mef && \
+    curl -k -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg $gn_xsrftoken_arg -d "uuid=$record_uuid&format=full&version=2&relation=false" -o $tmp_mef && \
         unzip -o -d $dir $tmp_mef && \
         rm -f $tmp_mef
 
@@ -308,7 +309,7 @@ export_records() {
     local count=0
 
     rm -f /tmp/cookie.txt && \
-    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+    curl -k -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
     XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
 
     if [ x"$record_uuid" = x"ALL" ]; then
@@ -422,10 +423,10 @@ import_record() {
         echo "Importing record '$uuid' from '$record_dir_path'"
 
         rm -f /tmp/cookie.txt ;
-        curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+        curl -k -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
         XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
 
-        body=$(curl -s \
+        body=$(curl -k -s \
             -u $gn_user:$gn_password \
             -H "X-XSRF-TOKEN:$XSRFTOKEN" \
             -b "/tmp/cookie.txt" \
@@ -441,7 +442,7 @@ import_record() {
         echo ${body}
 
         if [[ ${body} != *"ERROR"* ]]; then
-          ownership=$(curl -s -X PUT "$gn_addr/srv/api/0.1/records/$uuid/ownership$import_ownership_parameters" \
+          ownership=$(curl -k -s -X PUT "$gn_addr/srv/api/0.1/records/$uuid/ownership$import_ownership_parameters" \
             -u $gn_user:$gn_password \
             -H "X-XSRF-TOKEN:$XSRFTOKEN" \
             -b "/tmp/cookie.txt" \
