@@ -184,3 +184,61 @@ java -jar ./target/transform-mcp-iso19115-3-1.0-SNAPSHOT-jar-with-dependencies.j
 ./gn3-tool.sh  -o import -l /tmp/catalogue_aodn_marvlis -g http://geonetwork3-gsatimos.dev.aodn.org.au/geonetwork -u admin -p admin
 ```
 
+
+### Update ownership of records
+
+It appears that exported MEFs do not contain ownership information. To resolve this in the GN3 target we can apply the ownership to the database post-migration.
+The process is:
+ - export csv report of record ownership
+ - update the GN3 catalogue-aodn db directly using this report
+
+Before executing this step, take a dump of the database. If it needs to be restored, then drop the database and re-cook the node
+```
+sudo -u postgres pg_dump geonetwork_aodn > /tmp/geonetwork_aodn_pre_ownership_fix.sql
+```
+
+```
+# export CSV of uuids and owners
+ssh 6-aws-syd
+rm /tmp/record_owners.csv
+sudo -u postgres psql -d geonetwork_aodn
+COPY (select m.uuid, m.owner as owner_id, u.username from metadata m join users u on m.owner = u.id where m.isharvested = 'n' and istemplate = 'n') TO '/tmp/record_owners.csv' DELIMITER ',' CSV HEADER;
+ctrl+d (exit)
+
+# download csv
+rm /tmp/record_owners.csv
+scp 6-aws-syd:/tmp/record_owners.csv /tmp/record_owners.csv
+
+# upload csv
+scp /tmp/record_owners.csv 11-aws-syd:
+
+# apply the changes
+ssh 11-aws-syd
+sudo -u postgres psql -d geonetwork_admin
+
+-- create temporary table
+CREATE TEMP TABLE record_owners(uuid varchar, owner_id int, username varchar);
+copy record_owners(uuid, owner_id, username) from '/tmp/record_owners.csv' DELIMITER ','CSV HEADER;
+
+-- do the update
+WITH owner_update_map AS (
+ SELECT metadata.uuid as metadata_uuid, users.username as old_username, record_owners.username as new_owner_username, users.id as new_owner_id from metadata metadata
+ JOIN record_owners record_owners
+ ON metadata.uuid = record_owners.uuid
+ JOIN users users
+ ON users.username = record_owners.username
+ ORDER BY metadata.uuid asc
+)
+UPDATE metadata SET owner=owner_update_map.new_owner_id
+FROM owner_update_map
+WHERE metadata.uuid=owner_update_map.metadata_uuid
+and metadata.isharvested = 'n';
+```
+
+Re-index
+
+Smoke test records have been assigned by cross referencing records/owners
+
+```
+select uuid, owner from metadata where owner = (select id from users where username = 'maronm');
+```
