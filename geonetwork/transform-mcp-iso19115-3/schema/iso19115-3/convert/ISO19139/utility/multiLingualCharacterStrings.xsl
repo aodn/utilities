@@ -63,8 +63,50 @@
         <xsl:param name="codeListName"/>
         <xsl:param name="codeListValue"/>
         <xsl:param name="required" select="false()"/>
-        <!-- The correct codeList Location goes here -->
-        <xsl:variable name="codeListLocation" select="'codeListLocation'"/>
+        <xsl:param name="codeListLocation" select="'codeListLocation'"/>
+        <xsl:choose>
+            <xsl:when test="$codeListValue instance of xs:string">
+                <xsl:call-template name="writeCodelistElementString">
+                    <xsl:with-param name="elementName" select="$elementName"/>
+                    <xsl:with-param name="codeListName" select="$codeListName"/>
+                    <xsl:with-param name="codeListValue" select="$codeListValue"/>
+                    <xsl:with-param name="required" select="$required"/>                    
+                    <xsl:with-param name="codeListLocation" select="$codeListLocation"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="writeCodelistElementSequence">
+                    <xsl:with-param name="elementName" select="$elementName"/>
+                    <xsl:with-param name="codeListName" select="$codeListName"/>
+                    <xsl:with-param name="codeListValue" select="$codeListValue"/>
+                    <xsl:with-param name="required" select="$required"/>                    
+                    <xsl:with-param name="codeListLocation" select="$codeListLocation"/>                    
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template name="writeCodelistElementSequence">
+        <xsl:param name="elementName"/>
+        <xsl:param name="codeListName"/>
+        <xsl:param name="codeListValue"/>
+        <xsl:param name="required"/>
+        <xsl:param name="codeListLocation"/>  
+        <xsl:for-each select="$codeListValue">
+            <xsl:call-template name="writeCodelistElementString">
+                <xsl:with-param name="elementName" select="$elementName"/>
+                <xsl:with-param name="codeListName" select="$codeListName"/>
+                <xsl:with-param name="codeListValue" select="."/>
+                <xsl:with-param name="required" select="$required"/>                    
+                <xsl:with-param name="codeListLocation" select="$codeListLocation"/>
+            </xsl:call-template>            
+        </xsl:for-each>
+    </xsl:template>
+    <xsl:template name="writeCodelistElementString">
+        <xsl:param name="elementName"/>
+        <xsl:param name="codeListName"/>
+        <xsl:param name="codeListValue"/>
+        <xsl:param name="required"/>
+        <xsl:param name="codeListLocation"/>
         <xsl:variable name="codeListValueNew">
             <xsl:choose>
                 <xsl:when test="$codeListValue='derived'">
@@ -79,7 +121,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="string-length($codeListValue[0]) > 0">
+            <xsl:when test="string-length($codeListValue) > 0">
                 <xsl:element name="{$elementName}">
                     <xsl:element name="{$codeListName}">
                         <xsl:attribute name="codeList">

@@ -153,6 +153,7 @@
                             select="$dataQualityScopeObject//gmd:MD_ScopeCode/@codeListValue|
                                     $dataQualityScopeObject//gmx:MX_ScopeCode/@codeListValue"/>
             <xsl:with-param name="required" select="true()"/>
+            <xsl:with-param name="codeListLocation">https://standards.iso.org/iso/19115/-3/mcc/1.0/codelists.xml</xsl:with-param>
           </xsl:call-template>
         </xsl:when>
           <xsl:otherwise>
