@@ -91,15 +91,28 @@
         <xsl:param name="codeListValue"/>
         <xsl:param name="required"/>
         <xsl:param name="codeListLocation"/>  
-        <xsl:for-each select="$codeListValue">
-            <xsl:call-template name="writeCodelistElementString">
-                <xsl:with-param name="elementName" select="$elementName"/>
-                <xsl:with-param name="codeListName" select="$codeListName"/>
-                <xsl:with-param name="codeListValue" select="."/>
-                <xsl:with-param name="required" select="$required"/>                    
-                <xsl:with-param name="codeListLocation" select="$codeListLocation"/>
-            </xsl:call-template>            
-        </xsl:for-each>
+        <xsl:choose>
+            <xsl:when test="count($codeListValue) > 0">
+                <xsl:for-each select="$codeListValue">
+                    <xsl:call-template name="writeCodelistElementString">
+                        <xsl:with-param name="elementName" select="$elementName"/>
+                        <xsl:with-param name="codeListName" select="$codeListName"/>
+                        <xsl:with-param name="codeListValue" select="."/>
+                        <xsl:with-param name="required" select="$required"/>                    
+                        <xsl:with-param name="codeListLocation" select="$codeListLocation"/>
+                    </xsl:call-template>            
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="writeCodelistElementString">
+                    <xsl:with-param name="elementName" select="$elementName"/>
+                    <xsl:with-param name="codeListName" select="$codeListName"/>
+                    <xsl:with-param name="codeListValue" select="$codeListValue"/>
+                    <xsl:with-param name="required" select="$required"/>                    
+                    <xsl:with-param name="codeListLocation" select="$codeListLocation"/>
+                </xsl:call-template>                   
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <xsl:template name="writeCodelistElementString">
         <xsl:param name="elementName"/>
