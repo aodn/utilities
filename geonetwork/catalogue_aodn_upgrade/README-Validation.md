@@ -101,6 +101,7 @@ Example remaining validity errors for manual correction: [after-fix-validity-err
 # Reset MEFs
 
 ```
+cd /tmp/catalogue_aodn_hosted_mcp
 for f in $(find . -name metadata.xml); do mv $f $f.old; done
 for f in $(find . -name metadata.xml.bak); do mv $f $(dirname $f)/metadata.xml; done
 ```
