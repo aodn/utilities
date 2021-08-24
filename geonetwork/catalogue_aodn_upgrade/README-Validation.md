@@ -98,6 +98,13 @@ Example report file: [messages-corrected-catalogue_aodn_hosted_mcp.xlsx](https:/
 
 Example remaining validity errors for manual correction: [after-fix-validity-errors-bluenet_marvlis.txt](https://github.com/aodn/utilities/files/6965380/after-fix-validity-errors-bluenet_marvlis.txt)
 
+# Reset MEFs
+
+```
+for f in $(find . -name metadata.xml); do mv $f $f.old; done
+for f in $(find . -name metadata.xml.bak); do mv $f $(dirname $f)/metadata.xml; done
+```
+
 
 
 
