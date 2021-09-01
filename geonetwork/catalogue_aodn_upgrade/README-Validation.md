@@ -88,7 +88,7 @@ Refer to after-fix-validity-errors-catalogue_aodn_hosted_mcp.txt and [messages-c
 
 # Catalogue AODN MARVL and Bluenet MCP records
 
-Repeat as per hosted records using the one of following uuid lists:
+Repeat as per hosted records using one of the following uuid lists:
 
 For all Bluenet and MARVL records: [bluenet_marvlis_uuids.txt](https://github.com/aodn/utilities/files/6952461/bluenet_marvlis_uuids.txt)
 
