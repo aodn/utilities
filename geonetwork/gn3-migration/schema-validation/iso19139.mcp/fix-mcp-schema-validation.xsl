@@ -302,30 +302,19 @@
                 </xsl:choose>
             </xsl:for-each>
         </xsl:copy>        
-    </xsl:template>    
- 
- <!--
-    <xsl:template match="mcp:DP_DataParameter[mcp:parameterUnits and not(mcp:parameterMinimumValue) and not(mcp:parameterMaximumValue) and not(mcp:parameterDescription)]">
-        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:DP_DataParameter missing mcp:parameterMinimumValue. Add with nilReason')" />
-        <xsl:copy>
-            <xsl:apply-templates select="@*" />
-            <xsl:for-each select="node()">
-                <xsl:choose>
-                    <xsl:when test="not(self::mcp:parameterUnits)">
-                        <xsl:apply-templates select="." />
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:copy-of select="." />                        
-                        <mcp:parameterMinimumValue gco:nilReason="missing" />
-                        <mcp:parameterMaximumValue gco:nilReason="missing" />
-                        <mcp:parameterDescription gco:nilReason="missing" />
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
-        </xsl:copy>
-    </xsl:template>    
-    -->
-    
+    </xsl:template>
+
+    <!-- mcp:DP_DataParameter missing mcp:parameterMinimumValue, mcp:parameterMaximumValue and mcp:parameterDescription. Add with nilReason -->
+<!--    <xsl:template match="mcp:DP_DataParameter[not(mcp:parameterMinimumValue) and not(mcp:parameterMaximumValue) and not(mcp:parameterDescription)]">-->
+<!--        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','mcp:DP_DataParameter missing mcp:parameterMinimumValue, mcp:parameterMaximumValue and mcp:parameterDescription. Add with nilReason')" />-->
+<!--        <xsl:copy>-->
+<!--            <xsl:apply-templates select="@* | node()" />-->
+<!--            <mcp:parameterMinimumValue gco:nilReason="missing" />-->
+<!--            <mcp:parameterMaximumValue gco:nilReason="missing" />-->
+<!--            <mcp:parameterDescription gco:nilReason="missing" />-->
+<!--        </xsl:copy>-->
+<!--    </xsl:template>-->
+
     <!-- Element gmd:CI_Citation missing gmd:title -->
     <xsl:template match="gmd:CI_Citation[.!='' and not(gmd:title)]">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:CI_Citation missing gmd:title',',check and fix? before transform')" />
@@ -464,8 +453,16 @@
             <xsl:apply-templates select="@*" />
             <gmd:extent gco:nilReason="missing" />
         </xsl:copy>
-    </xsl:template>    
-    
+    </xsl:template>
+
+<!--    <xsl:template match="mcp:EX_TemporalExtent[not(gmd:extent) and not(mcp:beginTime) and not(mcp:endTime)]">-->
+<!--        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:EX_TemporalExtent missing gmd:extent, mcp:beginTime and mcp:endTime')" />-->
+<!--        <xsl:copy>-->
+<!--            <gmd:extent gco:nilReason="missing" />-->
+<!--            <xsl:apply-templates select="@* | node()" />-->
+<!--        </xsl:copy>-->
+<!--    </xsl:template>-->
+
     <!-- gmd:identificationInfo has srv:SV_ServiceIdentification, should be gmd:MD_ServiceIdentification -->
     <xsl:template match="gmd:identificationInfo/srv:SV_ServiceIdentification">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:identificationInfo has srv:SV_ServiceIdentification, should be gmd:MD_ServiceIdentification')" />

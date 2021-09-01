@@ -95,12 +95,46 @@
     </xsl:template>
     
     <!-- `<gco:Decimal/> missing value. Apply nilReason and remove <gco:Decimal/>-->
+    <!--
     <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude[gco:Decimal='']">
         <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gco:Decimal missing value. Apply nilReason and remove gco:Decimal',',post manual values enter?')" />
         <xsl:copy>
             <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
         </xsl:copy>
     </xsl:template>
+    -->
+    
+    <!-- gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude/gco:Decimal missing value. Apply nilReason and remove gco:Decimal -->
+    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude[gco:Decimal='']">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:EX_GeographicBoundingBox/gmd:westBoundLongitude/gco:Decimal missing value. Apply nilReason and remove gco:Decimal',',post manual values enter?')" />
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude/gco:Decimal missing value. Apply nilReason and remove gco:Decimal -->
+    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude[gco:Decimal='']">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:EX_GeographicBoundingBox/gmd:eastBoundLongitude/gco:Decimal missing value. Apply nilReason and remove gco:Decimal',',post manual values enter?')" />
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>    
+    
+    <!-- gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude/gco:Decimal missing value. Apply nilReason and remove gco:Decimal -->
+    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude[gco:Decimal='']">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:EX_GeographicBoundingBox/gmd:southBoundLatitude/gco:Decimal missing value. Apply nilReason and remove gco:Decimal',',post manual values enter?')" />
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude/gco:Decimal missing value. Apply nilReason and remove gco:Decimal -->
+    <xsl:template match="gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude[gco:Decimal='']">
+        <xsl:message select="concat(base-uri(),',',replace(path(),'Q\{[^}]*\}',''),',',base-uri(document('')),',','gmd:EX_GeographicBoundingBox/gmd:northBoundLatitude/gco:Decimal missing value. Apply nilReason and remove gco:Decimal',',post manual values enter?')" />
+        <xsl:copy>
+            <xsl:attribute name="gco:nilReason">missing</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>       
     
     <!-- `<gco:Real/> missing value. Apply nilReason and remove <gco:Real/> -->
     <xsl:template match="//gmd:maximumValue[gco:Real[not(node())]]|//gmd:minimumValue[gco:Real[not(node())]]">
