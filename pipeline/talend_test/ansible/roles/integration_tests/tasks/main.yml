@@ -1,6 +1,0 @@
----
-- set_fact:
-    task_file: ../integration_tests/tasks/execute_tests.yaml
-- name: "Run integration tests"
-  include_role:
-    name: configure
