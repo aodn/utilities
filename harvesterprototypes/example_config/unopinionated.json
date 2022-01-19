@@ -1,0 +1,15 @@
+{
+    "yaml_path": "schemas",
+    "ddl_path": "ddl",
+    "db_schema": "unopinionated",
+    "schema_version": 1,
+    "steps": [
+        {"name": "copy_from_csv", "args": {"path": "data/BGC_Phyto_ChangeLog.csv","truncate": "true"}},
+        {"name": "copy_from_csv", "args": {"path": "data/BGC_Phyto_Raw.csv","truncate": "true"}},
+        {"name": "copy_from_csv", "args": {"path": "data/BGC_Trip.csv","truncate": "true"}},
+        {"name": "copy_from_csv", "args": {"path": "data/BGC_Zoop_ChangeLog.csv","truncate": "true"}},
+        {"name": "copy_from_csv", "args": {"path": "data/BGC_Zoop_Raw.csv","truncate": "true"}},
+        {"name": "refresh_materialized_view", "args":  {"name":  "bgc_phyto_aggregation"}},
+        {"name": "refresh_materialized_view", "args":  {"name":  "bgc_zoop_aggregation"}}
+    ]
+}

@@ -1,0 +1,19 @@
+encoding: iso8859-1
+format: csv
+hashing: md5
+name: bgc_phyto_changelog
+path: schemas/BGC_Phyto_ChangeLog.csv
+profile: tabular-schemas-resource
+schema:
+  fields:
+    - name: TAXON_NAME
+      type: string
+    - name: START_DATE
+      type: datetime
+    - name: PARENT_NAME
+      type: string
+    - name: TRAINING
+      type: any
+    - name: COMMENTS
+      type: string
+scheme: file

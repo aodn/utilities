@@ -1,0 +1,9 @@
+{
+    "yaml_path": "schemas",
+    "ddl_path": "ddl",
+    "dml_path": "dml",
+    "data_path": "data",
+    "db_schema": "opinionated",
+    "schema_version": 1,
+    "mv_refresh": ["bgc_phyto_aggregation", "bgc_zoop_aggregation"]
+}

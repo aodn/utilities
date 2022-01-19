@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+    app:
+        build: .
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/app
+        links:
+            - db
+        environment:
+            - POSTGRES_HOST=db
+
+    db:
+        image: "postgres:9.6"
+        ports:
+            - "5435:5435"
+        command: -p 5435
+        environment:
+            POSTGRES_DB: harvest
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: admin
+            APP_DB_USER: test
+            APP_DB_PASS: test
+        volumes:
+            - ./docker_db:/docker-entrypoint-initdb.d/

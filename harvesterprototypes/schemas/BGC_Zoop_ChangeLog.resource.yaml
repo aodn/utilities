@@ -1,0 +1,19 @@
+encoding: utf-8
+format: csv
+hashing: md5
+name: bgc_zoop_changelog
+path: schemas/BGC_Zoop_ChangeLog.csv
+profile: tabular-schemas-resource
+schema:
+  fields:
+    - name: TAXON_NAME
+      type: string
+    - name: START_DATE
+      type: datetime
+    - name: PARENT_NAME
+      type: string
+    - name: TRAINING
+      type: string
+    - name: COMMENTS
+      type: string
+scheme: file

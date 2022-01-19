@@ -1,0 +1,5 @@
+CREATE ROLE test LOGIN PASSWORD 'test';
+
+CREATE SCHEMA test;
+
+ALTER SCHEMA test owner TO test;
