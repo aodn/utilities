@@ -272,7 +272,7 @@ export_record() {
       gn_xsrftoken_arg='-H "X-XSRF-TOKEN:$gn_xsrftoken" -b /tmp/cookie.txt'
     fi
 
-    curl -s "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg $gn_xsrftoken_arg -d "uuid=$record_uuid&format=full&version=2&relation=false" -o $tmp_mef && \
+    curl -L --post301 "$gn_addr/srv/eng/mef.export" $gn_user_pass_arg -H "X-XSRF-TOKEN:$gn_xsrftoken" -b /tmp/cookie.txt -d "uuid=$record_uuid&format=full&version=2&relation=false" -o $tmp_mef && \
         unzip -o -d $dir $tmp_mef && \
         rm -f $tmp_mef
 
@@ -306,7 +306,7 @@ export_records() {
     local count=0
 
     rm -f /tmp/cookie.txt && \
-    curl -s -c /tmp/cookie.txt -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
+    curl -s -c /tmp/cookie.txt -L --post301 -X POST -u $gn_user:$gn_password $gn_addr/srv/api/0.1 | grep -o 'XSRF-TOKEN.*'
     XSRFTOKEN=$(grep -o 'XSRF-TOKEN.*' /tmp/cookie.txt  | sed -E 's/[[:space:]]+/ /g' | cut -d  ' ' -f 2)
 
     if [ x"$record_uuid" = x"ALL" ]; then
