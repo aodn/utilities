@@ -5,13 +5,25 @@ This utility is used to rotate a user's default AWS key pair in a single command
 ### Installation
 
 1. Clone this repo
-    ```bash
+    ``` bash
     git clone https://github.com/aodn/utilities.git
     ```
 1. Ensure that you have boto3 installed
-    ```bash
+    ``` bash
     pip install --upgrade boto3
     ```    
+
+**OPTIONAL:** do a sparse-checkout of this bloated repository so you only grab this utility:
+1. Clone this repo
+    ``` bash
+    git clone --depth 1 --filter=blob:none --no-checkout git@github.com:aodn/utilities.git
+    ```
+2. Next, cd into the repo, enable sparse-checkout and configure sparse-checkout to only include the folder we care about
+    ``` bash
+    cd utilities
+    git sparse-checkout init
+    git sparse-checkout set aws/rotatekey
+    ```
 
 ### Usage
 ```bash
