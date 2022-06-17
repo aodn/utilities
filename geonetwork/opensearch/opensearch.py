@@ -16,10 +16,17 @@ import sys
 from pathlib import Path, PurePath
 import xml.etree.ElementTree as ET
 import requests
+import boto3
 
 
 def index_id(info):
     # uuid from info.xml
+    global done
+    done += 1
+    print(f'({done} of {len(paths_to_process)}) Found: {info}')
+    if Path(info).parts[0] == "s3:":
+        s3.download_file(bucket, info.replace(f"s3://{bucket}/", ''), '/tmp/info.xml')
+        info = '/tmp/info.xml'
     text_xml = ET.parse(info)
     xml_tree = text_xml.getroot()
     return xml_tree.find('.//uuid').text
@@ -32,11 +39,18 @@ def get_document_path(info_path):
 
 def document(path):
     # document from metadata.xml
-    metadata = get_document_path(path)
+    doc_path = get_document_path(path)
+    if doc_path.parts[0] == "s3:":
+        s3.download_file(bucket, str(doc_path).replace(f"s3:/{bucket}/", ''), '/tmp/metadata.xml')
+        metadata = '/tmp/metadata.xml'
+        doc_path = str(doc_path).replace("s3:", "https://s3-ap-southeast-2.amazonaws.com")
+    else:
+        metadata = doc_path
+    print('Preparing: ' + str(doc_path))
     text_xml = ET.parse(metadata)
     xml_tree = text_xml.getroot()
     doc = {key: get_field(xml_tree, value) for key, value in schema.items()}
-    doc["_path"] = metadata.as_uri()
+    doc["_path"] = str(doc_path)
     return doc
 
 
@@ -57,6 +71,7 @@ def geojson_multipolygon(elements):
         ]
     }
     return multipolygon
+
 
 def text(elements):
     if len(elements) == 1:
@@ -142,6 +157,28 @@ def count_results(items):
     return count
 
 
+def get_mefs_from_s3():
+    # Obtain the mefs from an S3 bucket
+    paginator = s3.get_paginator('list_objects')
+    page_iterator = paginator.paginate(Bucket=bucket)
+    paths = []
+    for page in page_iterator:
+        for obj in page['Contents']:
+            path = f"s3://{bucket}/{obj['Key']}"
+            if PurePath(path).name == "info.xml":
+                paths.append(path)
+    return paths
+
+
+def get_paths():
+    # A list of paths
+    if source.startswith('s3://'):
+        paths = get_mefs_from_s3()
+    else:
+        paths = list(Path(source).rglob('info.xml'))
+    return paths
+
+
 # Schema: Declare XPath expressions
 # Can have more than one expression for a field eg. organisations
 # Can specify the search services data type eg. spatial_extent
@@ -179,6 +216,16 @@ ns = {
 
 source = sys.argv[1]
 searchservice_url = sys.argv[2]
+if len(sys.argv) > 3:
+    aws_profile = sys.argv[3]
+
+if source.startswith("s3://"):
+    bucket = PurePath(source).parts[1]
+    session = boto3.Session(profile_name=aws_profile)
+    s3 = session.client('s3')
+
+paths_to_process = get_paths()
+done = 0
 
 # All the actions for a _bulk index of the source data
 actions = [
@@ -188,7 +235,7 @@ actions = [
         "_type": "index",  # the action type
         "_source": document(path)  # POST payload for the action
     }
-    for path in Path(source).rglob('info.xml')
+    for path in paths_to_process
 ]
 
 response = bulk(actions)

@@ -1,6 +1,25 @@
+# About
+
+This will upload and index Geonetwork metadata.xml documents from a collection of Geonetwork MEFs to an
+AWS OpenSearch service. For geo-spatial searching of extents [define a `geo_shape` mapping](#define-a-geo_shape-mapping). 
+
 # Usage: 
 
-./opensearch.py <directory containing geonetwork MEFs> <url to index/search service>
+```
+./opensearch.py <source directory containing geonetwork MEFs> <url to index/search service> <optional aws profile>
+```
+
+The source directory can be on the local file system or an S3 bucket in https://s3-ap-southeast-2.amazonaws.com. If using
+S3 the source directory should be of the form ```s3://<bucket><path to directory containing MEFs>```
+
+```
+Local path example: 
+  ./opensearch.py ~/catalogue-imos-dump https://search-example.ap-southeast-2.es.amazonaws.com 
+S3 example: 
+  ./opensearch.py s3://example/catalogue-imos-dump https://search-example.ap-southeast-2.es.amazonaws.com nonproduction-admin
+```
+
+AWS profile is required if using s3 and must be configured on local host.
 
 # Sample OpenSearch queries
 
@@ -13,7 +32,7 @@ GET _cluster/health?pretty
 DELETE /catalogue-imos
 ```
 
-## Define a geo_shape mapping
+## [Define a geo_shape mapping]
 This is needed for geo-spatial searches of spatial_extent.
 Delete the index first.
 ```
@@ -91,7 +110,8 @@ POST _plugins/_sql?format=json
 ```
 ### Search date in temporal extent
 
-#### format=json fails here
+#### format=json
+This does not work at time of writing due to unknown issue.
 ```
 POST _plugins/_sql?format=json
 {
