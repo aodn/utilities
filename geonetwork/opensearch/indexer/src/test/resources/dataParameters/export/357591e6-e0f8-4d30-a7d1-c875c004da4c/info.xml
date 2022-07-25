@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info version="1.1">
+  <general>
+    <createDate>2011-11-21T14:06:02</createDate>
+    <changeDate>2018-12-17T11:47:07</changeDate>
+    <schema>iso19139.mcp-2.0</schema>
+    <isTemplate>false</isTemplate>
+    <localId>242</localId>
+    <format>full</format>
+    <rating>0</rating>
+    <popularity>2643</popularity>
+    <uuid>357591e6-e0f8-4d30-a7d1-c875c004da4c</uuid>
+    <siteId>b9264f25-6e6f-4032-87cf-22be154e6411</siteId>
+    <siteName>University of Tasmania, Australia</siteName>
+  </general>
+  <categories />
+  <privileges>
+    <group name="all">
+      <operation name="view" />
+      <operation name="download" />
+    </group>
+  </privileges>
+  <public>
+    <file name="csq_map150_229_226_17_84491115368I64P_s.png" changeDate="2011-11-21T14:09:01" />
+    <file name="csq_map150_229_226_17_84491115368I64P.png" changeDate="2011-11-21T14:09:02" />
+  </public>
+  <private>
+    <file name="Developing_monitoring_program_MontaguRiverdataset.xlsx" changeDate="2011-11-24T16:22:52" />
+    <file name="CCNRM_report_1.pdf" changeDate="2011-11-21T14:06:02" />
+  </private>
+</info>
+

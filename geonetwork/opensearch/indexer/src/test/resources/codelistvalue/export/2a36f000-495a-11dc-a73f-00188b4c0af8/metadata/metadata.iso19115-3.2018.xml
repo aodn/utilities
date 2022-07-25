@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0"
+                 xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
+                 xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+                 xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+                 xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+                 xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0"
+                 xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+                 xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+                 xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+                 xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
+                 xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/1.0"
+                 xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/1.0"
+                 xmlns:mex="http://standards.iso.org/iso/19115/-3/mex/1.0"
+                 xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+                 xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc/1.0"
+                 xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0"
+                 xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+                 xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+                 xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0"
+                 xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+                 xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/2.0"
+                 xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+                 xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
+                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+                 xmlns:gml="http://www.opengis.net/gml/3.2"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/cat/1.0 http://standards.iso.org/iso/19115/-3/cat/1.0/cat.xsd http://standards.iso.org/iso/19115/-3/cit/2.0 http://standards.iso.org/iso/19115/-3/cit/2.0/cit.xsd http://standards.iso.org/iso/19115/-3/gcx/1.0 http://standards.iso.org/iso/19115/-3/gcx/1.0/gcx.xsd http://standards.iso.org/iso/19115/-3/gex/1.0 http://standards.iso.org/iso/19115/-3/gex/1.0/gex.xsd http://standards.iso.org/iso/19115/-3/lan/1.0 http://standards.iso.org/iso/19115/-3/lan/1.0/lan.xsd http://standards.iso.org/iso/19115/-3/srv/2.0 http://standards.iso.org/iso/19115/-3/srv/2.0/srv.xsd http://standards.iso.org/iso/19115/-3/mas/1.0 http://standards.iso.org/iso/19115/-3/mas/1.0/mas.xsd http://standards.iso.org/iso/19115/-3/mcc/1.0 http://standards.iso.org/iso/19115/-3/mcc/1.0/mcc.xsd http://standards.iso.org/iso/19115/-3/mco/1.0 http://standards.iso.org/iso/19115/-3/mco/1.0/mco.xsd http://standards.iso.org/iso/19115/-3/mda/2.0 http://standards.iso.org/iso/19115/-3/mda/2.0/mda.xsd http://standards.iso.org/iso/19115/-3/mdb/2.0 http://standards.iso.org/iso/19115/-3/mdb/2.0/mdb.xsd http://standards.iso.org/iso/19115/-3/mds/2.0 http://standards.iso.org/iso/19115/-3/mds/2.0/mds.xsd http://standards.iso.org/iso/19115/-3/mdt/2.0 http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd http://standards.iso.org/iso/19115/-3/mex/1.0 http://standards.iso.org/iso/19115/-3/mex/1.0/mex.xsd http://standards.iso.org/iso/19115/-3/mmi/1.0 http://standards.iso.org/iso/19115/-3/mmi/1.0/mmi.xsd http://standards.iso.org/iso/19115/-3/mpc/1.0 http://standards.iso.org/iso/19115/-3/mpc/1.0/mpc.xsd http://standards.iso.org/iso/19115/-3/mrc/2.0 http://standards.iso.org/iso/19115/-3/mrc/2.0/mrc.xsd http://standards.iso.org/iso/19115/-3/mrd/1.0 http://standards.iso.org/iso/19115/-3/mrd/1.0/mrd.xsd http://standards.iso.org/iso/19115/-3/mri/1.0 http://standards.iso.org/iso/19115/-3/mri/1.0/mri.xsd http://standards.iso.org/iso/19115/-3/mrl/2.0 http://standards.iso.org/iso/19115/-3/mrl/2.0/mrl.xsd http://standards.iso.org/iso/19115/-3/mrs/1.0 http://standards.iso.org/iso/19115/-3/mrs/1.0/mrs.xsd http://standards.iso.org/iso/19115/-3/msr/2.0 http://standards.iso.org/iso/19115/-3/msr/2.0/msr.xsd http://standards.iso.org/iso/19157/-2/mdq/1.0 http://standards.iso.org/iso/19157/-2/mdq/1.0/mdq.xsd http://standards.iso.org/iso/19115/-3/mac/2.0 http://standards.iso.org/iso/19115/-3/mac/2.0/mac.xsd http://standards.iso.org/iso/19115/-3/gco/1.0 http://standards.iso.org/iso/19115/-3/gco/1.0/gco.xsd http://standards.iso.org/iso/19115/-3/gmw/1.0 http://standards.iso.org/iso/19115/-3/gmw/1.0/gmw.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd http://www.w3.org/1999/xlink http://www.w3.org/1999/xlink.xsd">
+   <mdb:metadataIdentifier>
+      <mcc:MD_Identifier>
+         <mcc:code>
+            <gco:CharacterString>2a36f000-495a-11dc-a73f-00188b4c0af8</gco:CharacterString>
+         </mcc:code>
+      </mcc:MD_Identifier>
+   </mdb:metadataIdentifier>
+   <mdb:defaultLocale>
+      <lan:PT_Locale>
+         <lan:language>
+            <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
+         </lan:language>
+         <lan:characterEncoding>
+            <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode"
+                                     codeListValue="utf8"/>
+         </lan:characterEncoding>
+      </lan:PT_Locale>
+   </mdb:defaultLocale>
+   <mdb:parentMetadata uuidref="de166950-4934-11dc-a73f-00188b4c0af8"/>
+   <mdb:metadataScope>
+      <mdb:MD_MetadataScope>
+         <mdb:resourceScope>
+            <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                              codeListValue="dataset"/>
+         </mdb:resourceScope>
+         <mdb:name>
+            <gco:CharacterString/>
+         </mdb:name>
+      </mdb:MD_MetadataScope>
+   </mdb:metadataScope>
+   <mdb:contact>
+      <cit:CI_Responsibility>
+         <cit:role>
+            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                             codeListValue="author"/>
+         </cit:role>
+         <cit:party>
+            <cit:CI_Organisation>
+               <cit:name>
+                  <gco:CharacterString>Pendoley Environmental Pty Ltd</gco:CharacterString>
+               </cit:name>
+               <cit:individual>
+                  <cit:CI_Individual>
+                     <cit:name>
+                        <gco:CharacterString>Pendoley, Kellie, Dr</gco:CharacterString>
+                     </cit:name>
+                     <cit:contactInfo>
+                        <cit:CI_Contact>
+                           <cit:address>
+                              <cit:CI_Address>
+                                 <cit:electronicMailAddress>
+                                    <gco:CharacterString>kellie.pendoley@penv.com.au</gco:CharacterString>
+                                 </cit:electronicMailAddress>
+                              </cit:CI_Address>
+                           </cit:address>
+                        </cit:CI_Contact>
+                     </cit:contactInfo>
+                     <cit:positionName>
+                        <gco:CharacterString>Principal Scientist</gco:CharacterString>
+                     </cit:positionName>
+                  </cit:CI_Individual>
+               </cit:individual>
+            </cit:CI_Organisation>
+         </cit:party>
+      </cit:CI_Responsibility>
+   </mdb:contact>
+   <mdb:contact>
+      <cit:CI_Responsibility>
+         <cit:role>
+            <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                             codeListValue="processor"/>
+         </cit:role>
+         <cit:party>
+            <cit:CI_Individual>
+               <cit:contactInfo>
+                  <cit:CI_Contact>
+                     <cit:address>
+                        <cit:CI_Address>
+                           <cit:electronicMailAddress>
+                              <gco:CharacterString>info@bluenet.org.au</gco:CharacterString>
+                           </cit:electronicMailAddress>
+                        </cit:CI_Address>
+                     </cit:address>
+                  </cit:CI_Contact>
+               </cit:contactInfo>
+               <cit:positionName>
+                  <gco:CharacterString>BlueNet Data Facilitator</gco:CharacterString>
+               </cit:positionName>
+            </cit:CI_Individual>
+         </cit:party>
+      </cit:CI_Responsibility>
+   </mdb:contact>
+   <mdb:dateInfo>
+      <cit:CI_Date>
+         <cit:date>
+            <gco:DateTime>2007-08-13T13:07:00</gco:DateTime>
+         </cit:date>
+         <cit:dateType>
+            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                 codeListValue="creation"/>
+         </cit:dateType>
+      </cit:CI_Date>
+   </mdb:dateInfo>
+   <mdb:dateInfo>
+      <cit:CI_Date>
+         <cit:date>
+            <gco:DateTime>2015-05-06T11:42:52</gco:DateTime>
+         </cit:date>
+         <cit:dateType>
+            <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                 codeListValue="revision"/>
+         </cit:dateType>
+      </cit:CI_Date>
+   </mdb:dateInfo>
+   <mdb:metadataStandard>
+      <cit:CI_Citation>
+         <cit:title>
+            <gco:CharacterString>ISO 19115-3:2018</gco:CharacterString>
+         </cit:title>
+      </cit:CI_Citation>
+   </mdb:metadataStandard>
+   <mdb:metadataLinkage>
+      <cit:CI_OnlineResource>
+         <cit:linkage>
+            <gco:CharacterString>https://catalogue.aodn.org.au/geonetwork/srv/en/metadata.show?uuid=2a36f000-495a-11dc-a73f-00188b4c0af8</gco:CharacterString>
+         </cit:linkage>
+         <cit:protocol>
+            <gco:CharacterString>WWW:LINK-1.0-http--metadata-URL</gco:CharacterString>
+         </cit:protocol>
+         <cit:description>
+            <gco:CharacterString>Point of truth URL of this metadata record</gco:CharacterString>
+         </cit:description>
+      </cit:CI_OnlineResource>
+   </mdb:metadataLinkage>
+   <mdb:identificationInfo>
+      <mri:MD_DataIdentification>
+         <mri:citation>
+            <cit:CI_Citation>
+               <cit:title>
+                  <gco:CharacterString>Sea Turtles and the Environmental Management of Industrial Activities in North West W.A. - Hatchling wavelength preference</gco:CharacterString>
+               </cit:title>
+               <cit:date>
+                  <cit:CI_Date>
+                     <cit:date>
+                        <gco:DateTime>2007-08-13T13:05:00</gco:DateTime>
+                     </cit:date>
+                     <cit:dateType>
+                        <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                             codeListValue="creation"/>
+                     </cit:dateType>
+                  </cit:CI_Date>
+               </cit:date>
+               <cit:citedResponsibleParty>
+                  <cit:CI_Responsibility>
+                     <cit:role>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="author"/>
+                     </cit:role>
+                     <cit:party>
+                        <cit:CI_Organisation>
+                           <cit:name>
+                              <gco:CharacterString>School of Biological Sciences and Biotechnology (BSB), Murdoch University</gco:CharacterString>
+                           </cit:name>
+                           <cit:individual>
+                              <cit:CI_Individual>
+                                 <cit:name>
+                                    <gco:CharacterString>Pendoley, Kellie</gco:CharacterString>
+                                 </cit:name>
+                                 <cit:contactInfo>
+                                    <cit:CI_Contact>
+                                       <cit:address>
+                                          <cit:CI_Address>
+                                             <cit:electronicMailAddress>
+                                                <gco:CharacterString>pendoley@newton.dialix.com.au</gco:CharacterString>
+                                             </cit:electronicMailAddress>
+                                          </cit:CI_Address>
+                                       </cit:address>
+                                    </cit:CI_Contact>
+                                 </cit:contactInfo>
+                                 <cit:positionName>
+                                    <gco:CharacterString>PhD Student</gco:CharacterString>
+                                 </cit:positionName>
+                              </cit:CI_Individual>
+                           </cit:individual>
+                        </cit:CI_Organisation>
+                     </cit:party>
+                  </cit:CI_Responsibility>
+               </cit:citedResponsibleParty>
+            </cit:CI_Citation>
+         </mri:citation>
+         <mri:abstract>
+            <gco:CharacterString>Green turtle and flatback hatchlings from Barrow Island and hawksbill hatchlings from Varanus Island in the Lowendal Group were collected and used in experiments to assess the preference of these species to short or long light wavelengths.
+
+Data obtained from these experiments combined with light emission analyses in Chapter 5 of the thesis are used to identify the lights that are potentially the most disruptive to hatchlings on Barrow, Lowendal, Montebello (B-L-M) complex nesting beaches.</gco:CharacterString>
+         </mri:abstract>
+         <mri:credit>
+            <gco:CharacterString>ChevronTexaco</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Apache Energy</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Natural Hertiage Trust Grant #9924</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>BHP Billiton</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Santos</gco:CharacterString>
+         </mri:credit>
+         <mri:credit>
+            <gco:CharacterString>Woodside</gco:CharacterString>
+         </mri:credit>
+         <mri:status>
+            <mcc:MD_ProgressCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ProgressCode"
+                                 codeListValue="completed"/>
+         </mri:status>
+         <mri:pointOfContact>
+            <cit:CI_Responsibility>
+               <cit:role>
+                  <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                   codeListValue="author"/>
+               </cit:role>
+               <cit:party>
+                  <cit:CI_Organisation>
+                     <cit:name>
+                        <gco:CharacterString>Pendoley Environmental Pty Ltd</gco:CharacterString>
+                     </cit:name>
+                     <cit:individual>
+                        <cit:CI_Individual>
+                           <cit:name>
+                              <gco:CharacterString>Pendoley, Kellie, Dr</gco:CharacterString>
+                           </cit:name>
+                           <cit:contactInfo>
+                              <cit:CI_Contact>
+                                 <cit:address>
+                                    <cit:CI_Address>
+                                       <cit:electronicMailAddress>
+                                          <gco:CharacterString>kellie.pendoley@penv.com.au</gco:CharacterString>
+                                       </cit:electronicMailAddress>
+                                    </cit:CI_Address>
+                                 </cit:address>
+                              </cit:CI_Contact>
+                           </cit:contactInfo>
+                           <cit:positionName>
+                              <gco:CharacterString>Principal Scientist</gco:CharacterString>
+                           </cit:positionName>
+                        </cit:CI_Individual>
+                     </cit:individual>
+                  </cit:CI_Organisation>
+               </cit:party>
+            </cit:CI_Responsibility>
+         </mri:pointOfContact>
+         <mri:spatialRepresentationType>
+            <mcc:MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_SpatialRepresentationTypeCode"
+                                                  codeListValue="textTable"/>
+         </mri:spatialRepresentationType>
+         <mri:topicCategory>
+            <mri:MD_TopicCategoryCode>oceans</mri:MD_TopicCategoryCode>
+         </mri:topicCategory>
+         <mri:extent>
+            <gex:EX_Extent>
+               <gex:geographicElement>
+                  <gex:EX_GeographicBoundingBox>
+                     <gex:westBoundLongitude>
+                        <gco:Decimal>115.2</gco:Decimal>
+                     </gex:westBoundLongitude>
+                     <gex:eastBoundLongitude>
+                        <gco:Decimal>115.7</gco:Decimal>
+                     </gex:eastBoundLongitude>
+                     <gex:southBoundLatitude>
+                        <gco:Decimal>-21.2</gco:Decimal>
+                     </gex:southBoundLatitude>
+                     <gex:northBoundLatitude>
+                        <gco:Decimal>-20.2</gco:Decimal>
+                     </gex:northBoundLatitude>
+                  </gex:EX_GeographicBoundingBox>
+               </gex:geographicElement>
+               <gex:temporalElement>
+                  <gex:EX_TemporalExtent>
+                     <gex:extent>
+                        <gml:TimePeriod gml:id="d390e1556">
+                           <gml:beginPosition>2000-01</gml:beginPosition>
+                           <gml:endPosition>2002-01</gml:endPosition>
+                        </gml:TimePeriod>
+                     </gex:extent>
+                  </gex:EX_TemporalExtent>
+               </gex:temporalElement>
+            </gex:EX_Extent>
+         </mri:extent>
+         <mri:resourceMaintenance>
+            <mmi:MD_MaintenanceInformation>
+               <mmi:maintenanceAndUpdateFrequency>
+                  <mmi:MD_MaintenanceFrequencyCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_MaintenanceFrequencyCode"
+                                                   codeListValue="notPlanned"/>
+               </mmi:maintenanceAndUpdateFrequency>
+            </mmi:MD_MaintenanceInformation>
+         </mri:resourceMaintenance>
+         <mri:graphicOverview>
+            <mcc:MD_BrowseGraphic>
+               <mcc:fileName>
+                  <gco:CharacterString>https://catalogue-imos.aodn.org.au:443/geonetwork/srv/api/records/2a36f000-495a-11dc-a73f-00188b4c0af8/attachments/turtle_wavelength_s.png</gco:CharacterString>
+               </mcc:fileName>
+               <mcc:fileDescription>
+                  <gco:CharacterString>thumbnail</gco:CharacterString>
+               </mcc:fileDescription>
+               <mcc:fileType>
+                  <gco:CharacterString>png</gco:CharacterString>
+               </mcc:fileType>
+            </mcc:MD_BrowseGraphic>
+         </mri:graphicOverview>
+         <mri:graphicOverview>
+            <mcc:MD_BrowseGraphic>
+               <mcc:fileName>
+                  <gco:CharacterString>https://catalogue-imos.aodn.org.au:443/geonetwork/srv/api/records/2a36f000-495a-11dc-a73f-00188b4c0af8/attachments/turtle_wavelength.png</gco:CharacterString>
+               </mcc:fileName>
+               <mcc:fileDescription>
+                  <gco:CharacterString>large_thumbnail</gco:CharacterString>
+               </mcc:fileDescription>
+               <mcc:fileType>
+                  <gco:CharacterString>png</gco:CharacterString>
+               </mcc:fileType>
+            </mcc:MD_BrowseGraphic>
+         </mri:graphicOverview>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gco:CharacterString>Oceans | Marine Biology | Marine Reptiles</gco:CharacterString>
+               </mri:keyword>
+               <mri:keyword>
+                  <gco:CharacterString>Biosphere | Ecological Dynamics | Post-breeding</gco:CharacterString>
+               </mri:keyword>
+               <mri:keyword>
+                  <gco:CharacterString>Radiance Or Imagery | Visible Wavelengths | Visible Radiance</gco:CharacterString>
+               </mri:keyword>
+               <mri:type>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="discipline"/>
+               </mri:type>
+               <mri:thesaurusName>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gco:CharacterString>Global Change Master Directory Earth Science Keywords v.5.3.8</gco:CharacterString>
+                     </cit:title>
+                     <cit:date>
+                        <cit:CI_Date>
+                           <cit:date>
+                              <gco:DateTime>2007-04-17T10:31:12</gco:DateTime>
+                           </cit:date>
+                           <cit:dateType>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="revision"/>
+                           </cit:dateType>
+                        </cit:CI_Date>
+                     </cit:date>
+                     <cit:citedResponsibleParty>
+                        <cit:CI_Responsibility>
+                           <cit:role>
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                               codeListValue="owner"/>
+                           </cit:role>
+                           <cit:party>
+                              <cit:CI_Organisation>
+                                 <cit:name>
+                                    <gco:CharacterString>NASA</gco:CharacterString>
+                                 </cit:name>
+                                 <cit:contactInfo>
+                                    <cit:CI_Contact>
+                                       <cit:onlineResource>
+                                          <cit:CI_OnlineResource>
+                                             <cit:linkage>
+                                                <gco:CharacterString>http://gcmd.nasa.gov/Resources/valids/</gco:CharacterString>
+                                             </cit:linkage>
+                                             <cit:protocol>
+                                                <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+                                             </cit:protocol>
+                                          </cit:CI_OnlineResource>
+                                       </cit:onlineResource>
+                                    </cit:CI_Contact>
+                                 </cit:contactInfo>
+                              </cit:CI_Organisation>
+                           </cit:party>
+                        </cit:CI_Responsibility>
+                     </cit:citedResponsibleParty>
+                  </cit:CI_Citation>
+               </mri:thesaurusName>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:descriptiveKeywords>
+            <mri:MD_Keywords>
+               <mri:keyword>
+                  <gco:CharacterString>Chelonia mydas</gco:CharacterString>
+               </mri:keyword>
+               <mri:keyword>
+                  <gco:CharacterString>39 020002</gco:CharacterString>
+               </mri:keyword>
+               <mri:keyword>
+                  <gco:CharacterString>Natator depressus</gco:CharacterString>
+               </mri:keyword>
+               <mri:keyword>
+                  <gco:CharacterString>39 020005</gco:CharacterString>
+               </mri:keyword>
+               <mri:keyword>
+                  <gco:CharacterString>Eretmochelys imbricata</gco:CharacterString>
+               </mri:keyword>
+               <mri:keyword>
+                  <gco:CharacterString>39 020003</gco:CharacterString>
+               </mri:keyword>
+               <mri:type>
+                  <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="taxon"/>
+               </mri:type>
+               <mri:thesaurusName>
+                  <cit:CI_Citation>
+                     <cit:title>
+                        <gco:CharacterString>CAAB - Codes for Australian Aquatic Biota v2</gco:CharacterString>
+                     </cit:title>
+                     <cit:date>
+                        <cit:CI_Date>
+                           <cit:date>
+                              <gco:DateTime>1999-09-01T00:00:00</gco:DateTime>
+                           </cit:date>
+                           <cit:dateType>
+                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
+                           </cit:dateType>
+                        </cit:CI_Date>
+                     </cit:date>
+                     <cit:citedResponsibleParty>
+                        <cit:CI_Responsibility>
+                           <cit:role>
+                              <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                               codeListValue="owner"/>
+                           </cit:role>
+                           <cit:party>
+                              <cit:CI_Organisation>
+                                 <cit:name>
+                                    <gco:CharacterString>CSIRO Marine and Atmospheric Research</gco:CharacterString>
+                                 </cit:name>
+                                 <cit:contactInfo>
+                                    <cit:CI_Contact>
+                                       <cit:onlineResource>
+                                          <cit:CI_OnlineResource>
+                                             <cit:linkage>
+                                                <gco:CharacterString>http://www.marine.csiro.au/caab/</gco:CharacterString>
+                                             </cit:linkage>
+                                             <cit:protocol>
+                                                <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+                                             </cit:protocol>
+                                          </cit:CI_OnlineResource>
+                                       </cit:onlineResource>
+                                    </cit:CI_Contact>
+                                 </cit:contactInfo>
+                              </cit:CI_Organisation>
+                           </cit:party>
+                        </cit:CI_Responsibility>
+                     </cit:citedResponsibleParty>
+                  </cit:CI_Citation>
+               </mri:thesaurusName>
+            </mri:MD_Keywords>
+         </mri:descriptiveKeywords>
+         <mri:resourceConstraints>
+            <mco:MD_LegalConstraints>
+               <mco:accessConstraints>
+                  <mco:MD_RestrictionCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_RestrictionCode"
+                                          codeListValue="copyright"/>
+               </mco:accessConstraints>
+               <mco:useConstraints>
+                  <mco:MD_RestrictionCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_RestrictionCode"
+                                          codeListValue="copyright"/>
+               </mco:useConstraints>
+            </mco:MD_LegalConstraints>
+         </mri:resourceConstraints>
+         <mri:resourceConstraints>
+            <mco:MD_SecurityConstraints>
+               <mco:classification>
+                  <mco:MD_ClassificationCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ClassificationCode"
+                                             codeListValue="unclassified"/>
+               </mco:classification>
+            </mco:MD_SecurityConstraints>
+         </mri:resourceConstraints>
+         <mri:defaultLocale>
+            <lan:PT_Locale>
+               <lan:language>
+                  <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
+               </lan:language>
+               <lan:characterEncoding>
+                  <lan:MD_CharacterSetCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_CharacterSetCode"
+                                           codeListValue="utf8"/>
+               </lan:characterEncoding>
+            </lan:PT_Locale>
+         </mri:defaultLocale>
+         <mri:supplementalInformation>
+            <gco:CharacterString>[start publication thesis]Chapter 4 - Pendoley, Kellie (2005) Sea Turtles and the Environmental Management of Industrial Activities in North West Western Australia. Unpublished Doctor of Philosophy thesis, Murdoch University. 310pp.[end publication thesis]</gco:CharacterString>
+         </mri:supplementalInformation>
+      </mri:MD_DataIdentification>
+   </mdb:identificationInfo>
+   <mdb:distributionInfo>
+      <mrd:MD_Distribution>
+         <mrd:distributor>
+            <mrd:MD_Distributor>
+               <mrd:distributorContact>
+                  <cit:CI_Responsibility>
+                     <cit:role>
+                        <cit:CI_RoleCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#CI_RoleCode"
+                                         codeListValue="author"/>
+                     </cit:role>
+                     <cit:party>
+                        <cit:CI_Organisation>
+                           <cit:name>
+                              <gco:CharacterString>Pendoley Environmental Pty Ltd</gco:CharacterString>
+                           </cit:name>
+                           <cit:individual>
+                              <cit:CI_Individual>
+                                 <cit:name>
+                                    <gco:CharacterString>Pendoley, Kellie, Dr</gco:CharacterString>
+                                 </cit:name>
+                                 <cit:contactInfo>
+                                    <cit:CI_Contact>
+                                       <cit:address>
+                                          <cit:CI_Address>
+                                             <cit:electronicMailAddress>
+                                                <gco:CharacterString>kellie.pendoley@penv.com.au</gco:CharacterString>
+                                             </cit:electronicMailAddress>
+                                          </cit:CI_Address>
+                                       </cit:address>
+                                    </cit:CI_Contact>
+                                 </cit:contactInfo>
+                                 <cit:positionName>
+                                    <gco:CharacterString>Principal Scientist</gco:CharacterString>
+                                 </cit:positionName>
+                              </cit:CI_Individual>
+                           </cit:individual>
+                        </cit:CI_Organisation>
+                     </cit:party>
+                  </cit:CI_Responsibility>
+               </mrd:distributorContact>
+            </mrd:MD_Distributor>
+         </mrd:distributor>
+         <mrd:transferOptions>
+            <mrd:MD_DigitalTransferOptions>
+               <mrd:onLine>
+                  <cit:CI_OnlineResource>
+                     <cit:linkage>
+                        <gco:CharacterString>http://wwwlib.murdoch.edu.au/adt/browse/view/adt-MU20060612.120104</gco:CharacterString>
+                     </cit:linkage>
+                     <cit:protocol>
+                        <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+                     </cit:protocol>
+                     <cit:name>
+                        <gco:CharacterString>PhD thesis</gco:CharacterString>
+                     </cit:name>
+                  </cit:CI_OnlineResource>
+               </mrd:onLine>
+            </mrd:MD_DigitalTransferOptions>
+         </mrd:transferOptions>
+      </mrd:MD_Distribution>
+   </mdb:distributionInfo>
+   <mdb:resourceLineage>
+      <mrl:LI_Lineage>
+         <mrl:statement>
+            <gco:CharacterString>- Animal collection and treatment -
+
+The timing for the light experiments was determined by assessing nesting activity over each of the three summers 2000, 2001 and 2002.  Where possible, trips to the islands were then scheduled 6-8 weeks after the peak of the nesting effort for each species each summer.  Hatchlings were found by a combination of searching the beaches for emerging or partially emerged nests and monitoring terrestrial predator behaviour.
+
+Wavelengths tested: 450, 480, 500, 550, 570, 600, 630, 650, 670, 700 nm.
+
+For details of testing and test equipment see section 4.3.3 of the thesis.</gco:CharacterString>
+         </mrl:statement>
+         <mrl:scope>
+            <mcc:MD_Scope>
+               <mcc:level>
+                  <mcc:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml#MD_ScopeCode"
+                                    codeListValue="fieldSession"/>
+               </mcc:level>
+            </mcc:MD_Scope>
+         </mrl:scope>
+      </mrl:LI_Lineage>
+   </mdb:resourceLineage>
+</mdb:MD_Metadata>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info version="1.1">
+  <general>
+    <createDate>2017-11-20T16:16:09</createDate>
+    <changeDate>2019-05-21T11:17:46</changeDate>
+    <schema>iso19139.mcp-2.0</schema>
+    <isTemplate>false</isTemplate>
+    <localId>25136</localId>
+    <format>full</format>
+    <rating>0</rating>
+    <popularity>672</popularity>
+    <uuid>19da2ce7-138f-4427-89de-a50c724f5f54</uuid>
+    <siteId>5c6d6b45-1659-435c-91a7-4147caeed8a4</siteId>
+    <siteName>Catalogue for the 123 Portal</siteName>
+  </general>
+  <categories />
+  <privileges>
+    <group name="all">
+      <operation name="view" />
+      <operation name="download" />
+      <operation name="dynamic" />
+      <operation name="featured" />
+    </group>
+    <group name="IMOS Records">
+      <operation name="view" />
+      <operation name="download" />
+      <operation name="dynamic" />
+      <operation name="featured" />
+      <operation name="editing" />
+      <operation name="notify" />
+    </group>
+  </privileges>
+  <public />
+  <private />
+  <owner name="atkinsn" />
+</info>
+
