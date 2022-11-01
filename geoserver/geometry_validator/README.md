@@ -6,6 +6,6 @@ Running It
 ==========
 
 ```
-$ ./geometry_validator.rb -H dbprod.emii.org.au -p 5432 -d harvest -u USERNAME -P PASSWORD
+$ ./geometry_validator.rb -H db-harvest-prod.aodn.org.au -p 5432 -d harvest -u USERNAME -P PASSWORD
 ```
 
