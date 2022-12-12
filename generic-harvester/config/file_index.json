@@ -1,0 +1,11 @@
+{
+    "db_params": {
+        "driver": "postgresql+psycopg2",
+        "database": "test_harvest",
+        "host": "localhost",
+        "port": "5432",
+        "schema": "file_index",
+        "user": "file_index",
+        "password": "file_index"
+    }
+}

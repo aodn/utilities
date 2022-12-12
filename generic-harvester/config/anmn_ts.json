@@ -1,0 +1,119 @@
+{
+    "db_params": {
+        "driver": "postgresql+psycopg2",
+        "database": "test_harvest",
+        "host": "localhost",
+        "port": "5432",
+        "schema": "anmn_ts",
+        "user": "anmn_ts",
+        "password": "anmn_ts"
+    },
+    "value_mappings": [{
+        "table": "measurement",
+        "dimensions": ["TIME"],
+        "fields": {
+            "TIME": {},
+            "TEMP": {},
+            "TEMP_quality_control": {},
+            "DEPTH": {},
+            "DEPTH_quality_control": {},
+            "CNDC": {},
+            "CNDC_quality_control": {},
+            "PSAL": {},
+            "PSAL_quality_control": {},
+            "PRES": {},
+            "PRES_quality_control": {},
+            "PRES_REL": {},
+            "PRES_REL_quality_control": {}
+        }
+    }],
+    "file_metadata": {
+        "fields": {
+            "site_code": {},
+            "platform_code": {},
+            "deployment_code": {},
+            "LATITUDE": {"value": "dataset['LATITUDE'].getValue().item()"},
+            "LATITUDE_quality_control": {
+                "value": "dataset['LATITUDE_quality_control'].getValue().item() if 'LATITUDE_quality_control' in dataset.variables else None"
+            },
+            "LONGITUDE": {"value": "dataset['LONGITUDE'].getValue().item()"},
+            "LONGITUDE_quality_control": {
+                "value": "dataset['LONGITUDE_quality_control'].getValue().item() if 'LONGITUDE_quality_control' in dataset.variables else None"
+            },
+            "geom": {
+                "value": "point(dataset['LONGITUDE'].getValue().item(), dataset['LATITUDE'].getValue().item())"
+            },
+            "instrument_nominal_depth": {},
+            "site_nominal_depth": {},
+            "site_depth_at_deployment": {},
+            "instrument": {},
+            "instrument_serial_number": {},
+            "time_coverage_start": {"type": "datetime"},
+            "time_coverage_end": {"type": "datetime"},
+            "time_deployment_start": {"type": "datetime"},
+            "time_deployment_end": {"type": "datetime"},
+            "comment": {},
+            "history": {},
+            "toolbox_version": {}
+        }
+    },
+    "aggregations": [{
+        "table": "feature_metadata",
+        "key": [
+            "file_id"
+        ],
+        "query": [
+            "  WITH aggregates as (",
+            "     SELECT file_id,",
+            "            count(m.\"DEPTH\") > 0 as depth_b,",
+            "            count(m.\"TEMP\") > 0 as temp_b,",
+            "            count(m.\"CNDC\") > 0 as cndc_b,",
+            "            count(m.\"PSAL\") > 0 as psal_b,",
+            "            count(m.\"PRES\") > 0 as pres_b,",
+            "            count(m.\"PRES_REL\") > 0 as pres_rel_b",
+            "       FROM measurement m",
+            "      WHERE file_id = :file_id",
+            "      GROUP BY file_id",
+            "  )",
+            "INSERT INTO feature_metadata",
+            "  (file_id, site_code, platform_code, deployment_code, \"LATITUDE\", \"LATITUDE_quality_control\",",
+            "   \"LONGITUDE\", \"LONGITUDE_quality_control\", geom, instrument_nominal_depth, site_nominal_depth,",
+            "   site_depth_at_deployment, instrument, instrument_serial_number, time_coverage_start, time_coverage_end,",
+            "   time_deployment_start, time_deployment_end, comment, history, toolbox_version, depth_b,",
+            "   sea_water_temperature_b, sea_water_electrical_conductivity_b, sea_water_salinity_b,",
+            "   sea_water_pressure_b, sea_water_pressure_due_to_sea_water_b)",
+            "SELECT fm.file_id, site_code, platform_code, deployment_code, \"LATITUDE\", \"LATITUDE_quality_control\",",
+            "   \"LONGITUDE\", \"LONGITUDE_quality_control\", geom, instrument_nominal_depth, site_nominal_depth,",
+            "   site_depth_at_deployment, instrument, instrument_serial_number, time_coverage_start, time_coverage_end,",
+            "   time_deployment_start, time_deployment_end, comment, history, toolbox_version, depth_b,",
+            "   temp_b, cndc_b, psal_b, pres_b, pres_rel_b",
+            "  FROM file_metadata fm",
+            "  JOIN aggregates ON fm.file_id = aggregates.file_id",
+            " WHERE fm.file_id = :file_id"
+        ]
+    }],
+    "geonetwork_params": {
+        "url": "http://localhost:8885/geonetwork/",
+        "username": "admin",
+        "password": "admin"
+    },
+    "metadata_updates": [
+        {
+            "uuid": "7e13b5f3-4a70-4e31-9e95-335efa491c5c",
+            "spatial": {
+                "table": "feature_metadata",
+                "column": "geom",
+                "resolution": 3
+            },
+            "temporal": {
+                "table":  "measurement",
+                "column": "TIME"
+            },
+            "vertical": {
+                "relation": ["measurement"],
+                "min_column": "DEPTH",
+                "max_column": "DEPTH"
+            }
+        }
+    ]
+}
