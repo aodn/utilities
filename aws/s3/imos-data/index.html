@@ -345,10 +345,10 @@ const copyToClipboard = (url) => {
     }
     else {
       // text area method
-      let textArea = $("<input/>")
-        .attr({type: 'hidden', id: 'dummy-hidden'})
+      const textArea = $("<input/>")
+        .attr({type: 'text', id: 'dummy-hidden'})
         .val(txt)
-        .appendTo($("body"));
+        .appendTo(document.body);
 
       textArea.focus();
       textArea.select();
@@ -370,6 +370,7 @@ const copyToClipboard = (url) => {
       }
     });
   }
+
   c(url)
     .then(() => showLinkCopyDialog('#link-copy-success'))
     .catch(()=>  showLinkCopyDialog('#link-copy-fail'));
@@ -383,7 +384,7 @@ const copyToClipboard = (url) => {
  */
 const displayIcon = (data, type, full) => {
   let url = object2href(s3exp_config.Bucket, data);
-  return `<button onclick="copyToClipboard('${url}')" class="bi-share-fill"/>`;
+  return '<button onclick="copyToClipboard(\'' + url + '\')" class="bi-share-fill"/>';
 }
 
 $(document).ready(() => {
@@ -406,11 +407,11 @@ $(document).ready(() => {
         iDisplayLength: 50,
         order: [[1, 'asc'], [0, 'asc']],
         aoColumnDefs: [
-          { targets: 0, data: "Key", "mRender": function (data, type, full) { return (type == 'display') ? renderKey(data, type, full) : data; }, "sType": "key" },
-          { targets: 1, data: "Key", "mRender": function (data, type, full) { return isfolder(data) ? "" : fullpath2pathname(data); } },
-          { targets: 2, data: "LastModified", "mRender": function (data, type, full) { return data ? moment(data).format("YYYY-MM-DD HH:mm:ss") : ""; } },
+          { targets: 0, data: "Key", render: function (data, type, full) { return (type == 'display') ? renderKey(data, type, full) : data; }, "sType": "key" },
+          { targets: 1, data: "Key", render: function (data, type, full) { return isfolder(data) ? "" : fullpath2pathname(data); } },
+          { targets: 2, data: "LastModified", render: function (data, type, full) { return data ? moment(data).format("YYYY-MM-DD HH:mm:ss") : ""; } },
           { targets: 3, data: function (source, type, val) { return source.Size ? ((type == 'display') ? bytesToSize(source.Size) : source.Size) : "" } },
-          { targets: 4, orderable: false, render: displayIcon }
+          { targets: 4, orderable: false, data: "Key", render: (data, type, full) => displayIcon(data, type, full) }
         ]
     });
 
