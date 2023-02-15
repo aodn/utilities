@@ -20,10 +20,12 @@
         <title>Open Data Archive Demo</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="http:/aws.amazon.com/favicon.ico">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.css">
+        <link rel="shortcut icon" href="//aws.amazon.com/favicon.ico">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <style type="text/css"> #tb-s3objects { width: 100% !Important; } </style>
     </head>
 
@@ -31,6 +33,12 @@
     <style media="screen" type="text/css">/** { outline: 1px red solid; }*/</style>
 
     <body>
+        <div id="link-copy-success" style="display:none">
+            Link copy success
+        </div>
+        <div id="link-copy-fail" style="display:none">
+            Link copy fail
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -66,6 +74,7 @@
                                         <th>Folder</th>
                                         <th>Last Modified</th>
                                         <th>Size</th>
+                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-s3objects"></tbody>
@@ -78,65 +87,67 @@
     </body>
 </html>
 
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.2.0/bootbox.min.js"></script>
-<script src="http://sdk.amazonaws.com/js/aws-sdk-2.0.13.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
-<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-<script src="http://cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.2.0/bootbox.min.js"></script>
+<script src="//sdk.amazonaws.com/js/aws-sdk-2.0.13.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
+<script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 
 // In the line below, replace BUCKET-NAME with the name of the CORS-enabled Amazon S3 Bucket that you would like this JavaScript to display. Note that Amazon S3 bucket names are case sensitive. If you simply delete BUCKET-NAME, the page will present you with a dialog asking for a bucket name upon loading.
-var s3exp_config = { Bucket: 'imos-data', Prefix: '', Delimiter: '/' };
+let s3exp_config = { Bucket: 'imos-data', Prefix: '', Delimiter: '/' };
 
-var s3exp_lister = null;
-var s3exp_columns = { key:1, folder:2, date:3, size:4 };
+let s3exp_lister = null;
+let s3exp_columns = { key:1, folder:2, date:3, size:4 };
 
 AWS.config.region = 'ap-southeast-2';
 //console.log('Region: ' + AWS.config.region);
 
 // Initialize S3 SDK and the moment library (for time formatting utilities)
-var s3 = new AWS.S3();
+let s3 = new AWS.S3();
 moment().format();
 
 function bytesToSize(bytes) {
-    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    if (bytes == 0) return '0 Bytes';
-    var ii = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-    return Math.round(bytes / Math.pow(1024, ii), 2) + ' ' + sizes[ii];
+  let sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  if (bytes === 0) return '0 Bytes';
+
+  let ii = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+  return Math.round(bytes / Math.pow(1024, ii), 2) + ' ' + sizes[ii];
 };
 
 // Custom endsWith function for String prototype
 if (typeof String.prototype.endsWith != 'function') {
-    String.prototype.endsWith = function (str){
-        return this.slice(-str.length) == str;
-    };
+  String.prototype.endsWith = (str) => {
+    return this.slice(-str.length) == str;
+  };
 }
 
 function object2href(bucket, object) {
-    return "https://s3-ap-southeast-2.amazonaws.com/" + bucket + "/" + object;
+  return "https://s3-ap-southeast-2.amazonaws.com/" + bucket + "/" + object;
 }
 
 function isfolder(path) {
-    return path.endsWith('/');
+  return path.endsWith('/');
 }
 
 // Convert cars/vw/golf.png to golf.png
 function fullpath2filename(path) {
-    return path.replace(/^.*[\\\/]/, '');
+  return path.replace(/^.*[\\\/]/, '');
 }
 
 // Convert cars/vw/golf.png to cars/vw
 function fullpath2pathname(path) {
-    return path.substring(0, path.lastIndexOf("/"));
+  return path.substring(0, path.lastIndexOf("/"));
 }
 
 // Convert cars/vw/ to vw/
 function prefix2folder(prefix) {
-    var parts = prefix.split('/');
-    return parts[parts.length-2] + '/';
+  let parts = prefix.split('/');
+  return parts[parts.length-2] + '/';
 }
 
 // We are going to generate bucket/folder breadcrumbs. The resulting HTML will
@@ -149,104 +160,95 @@ function prefix2folder(prefix) {
 // Note: this code is a little complex right now so it would be good to find
 // a simpler way to create the breadcrumbs.
 function folder2breadcrumbs(data) {
-    //console.log('Bucket: ' + data.params.Bucket);
-    //console.log('Prefix: ' + data.params.Prefix);
 
-    // The parts array will contain the bucket name followed by all the
-    // segments of the prefix, exploded out as separate strings.
-    var parts = [data.params.Bucket];
+  // The parts array will contain the bucket name followed by all the
+  // segments of the prefix, exploded out as separate strings.
+  let parts = [data.params.Bucket];
 
-    if (data.params.Prefix) {
-        parts.push.apply(parts,
-                         data.params.Prefix.endsWith('/') ?
-                         data.params.Prefix.slice(0, -1).split('/') :
-                         data.params.Prefix.split('/'));
-    }
+  if (data.params.Prefix) {
+    parts.push.apply(parts,
+                    data.params.Prefix.endsWith('/') ?
+                    data.params.Prefix.slice(0, -1).split('/') :
+                    data.params.Prefix.split('/'));
+  }
 
-    //console.log('Parts: ' + parts + ' (length=' + parts.length + ')');
+  // Empty the current breadcrumb list
+  $('#breadcrumb li').remove();
 
-    // Empty the current breadcrumb list
-    $('#breadcrumb li').remove();
-
-    // Now build the new breadcrumb list
-    var buildprefix = '';
-    $.each(parts, function(ii, part) {
-        var ipart;
-
-        // Add the bucket (the bucket is always first)
-        if (ii == 0) {
-            var a = $('<a>').attr('href', '#').text(part);
-            ipart = $('<li>').append(a);
-            a.click(function(e) {
-                e.preventDefault();
-                //console.log('Breadcrumb click bucket: ' + data.params.Bucket);
-                s3exp_config = {Bucket: data.params.Bucket, Prefix: '', Delimiter: data.params.Delimiter};
-                (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-            });
+  // Now build the new breadcrumb list
+  let buildprefix = '';
+  $.each(parts, function(ii, part) {
+    let ipart;
+    // Add the bucket (the bucket is always first)
+    if (ii === 0) {
+      let a = $('<a>').attr('href', '#').text(part);
+      ipart = $('<li>').append(a);
+      a.click((e) => {
+          e.preventDefault();
+          s3exp_config = {Bucket: data.params.Bucket, Prefix: '', Delimiter: data.params.Delimiter};
+          (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+      });
         // Else add the folders within the bucket
-        } else {
-            buildprefix += part + '/';
+    }
+    else {
+      buildprefix += part + '/';
+      if (ii === parts.length - 1) {
+        ipart = $('<li>').addClass('active').text(part);
+      }
+      else {
+        let a = $('<a>').attr('href', '#').append(part);
+        ipart = $('<li>').append(a);
 
-            if (ii == parts.length - 1) {
-                ipart = $('<li>').addClass('active').text(part);
-            } else {
-                var a = $('<a>').attr('href', '#').append(part);
-                ipart = $('<li>').append(a);
-
-                // Closure needed to enclose the saved S3 prefix
-                (function() {
-                    var saveprefix = buildprefix;
-                    // //console.log('Part: ' + part + ' has buildprefix: ' + saveprefix);
-                    a.click(function(e) {
-                        e.preventDefault();
-                        //console.log('Breadcrumb click object prefix: ' + saveprefix);
-                        s3exp_config = {Bucket: data.params.Bucket, Prefix: saveprefix, Delimiter: data.params.Delimiter};
-                        (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-                        location.search = "?prefix=" + s3exp_config.Prefix + "";
-                    });
-                })();
-            }
-        }
-        $('#breadcrumb').append(ipart);
-    });
+        // Closure needed to enclose the saved S3 prefix
+        (function() {
+          let saveprefix = buildprefix;
+          // //console.log('Part: ' + part + ' has buildprefix: ' + saveprefix);
+          a.click(function(e) {
+                e.preventDefault();
+                //console.log('Breadcrumb click object prefix: ' + saveprefix);
+                s3exp_config = {Bucket: data.params.Bucket, Prefix: saveprefix, Delimiter: data.params.Delimiter};
+                (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+                location.search = "?prefix=" + s3exp_config.Prefix + "";
+          });
+        })();
+      }
+    }
+    $('#breadcrumb').append(ipart);
+  });
 }
 
 function s3draw(data, complete) {
-    $('li.li-bucket').remove();
-    folder2breadcrumbs(data);
+  $('li.li-bucket').remove();
+  folder2breadcrumbs(data);
 
-    // Add each part of current path (S3 bucket plus folder hierarchy) into the breadcrumbs
-    $.each(data.CommonPrefixes, function(i, prefix) {
-        // //console.log("Add folder: " + JSON.stringify(prefix));
-        $('#tb-s3objects').DataTable().rows.add([{Key: prefix.Prefix}]).draw();
-    });
+  // Add each part of current path (S3 bucket plus folder hierarchy) into the breadcrumbs
+  $.each(data.CommonPrefixes, function(i, prefix) {
+    // //console.log("Add folder: " + JSON.stringify(prefix));
+    $('#tb-s3objects').DataTable().rows.add([{Key: prefix.Prefix}]).draw();
+  });
 
-    // Add S3 objects to DataTable
-    // clean data.Contents
-    var data = cleanData(data.Contents);
-    $('#tb-s3objects').DataTable().rows.add(data).draw().columns.adjust();
+  // Add S3 objects to DataTable
+  // clean data.Contents
+  let d = cleanData(data.Contents);
+  $('#tb-s3objects').DataTable().rows.add(d).draw().columns.adjust();
 }
 
 function cleanData(data) {
-
-    var unwanted = ['list.js', 'index.html', 'error.html'];
-    var cleanData = [];
-    $.each(data, function(i, item) {
-        var index = unwanted.indexOf(item.Key);
-        if (index < 0) {
-            cleanData.push(item);
-        }
-    });
-    return cleanData;
+  let unwanted = ['list.js', 'index.html', 'error.html'];
+  let cleanData = [];
+  $.each(data, function(i, item) {
+    let index = unwanted.indexOf(item.Key);
+    if (index < 0) {
+      cleanData.push(item);
+    }
+  });
+  return cleanData;
 }
 
-function s3list(params, completecb) {
-    //console.log('s3list: ' + JSON.stringify(params));
-    var scope = {
-        Contents: [], CommonPrefixes:[], params: params, stop: false, completecb: completecb
-    };    
+const s3list = (params, completecb) => {
+  let scope = {Contents: [], CommonPrefixes:[], params: params, stop: false, completecb: completecb};
 
-    return {
+  return {
         // This is the callback that the S3 API makes when an S3 listObjects
         // request completes (successfully or in error). Note that a single call
         // to listObjects may not be enough to get all objects so we need to
@@ -254,13 +256,10 @@ function s3list(params, completecb) {
         // requests with a 'next marker' until we have all the objects.
         cb: function (err, data) {
             if (err) {
-                //console.log('Error: ' + JSON.stringify(err));
-                //console.log('Error: ' + err.stack);
                 scope.stop = true;
                 bootbox.alert("Error accessing S3 bucket " + scope.params.Bucket + ". Error: " + err);
-            } else {
-                // //console.log('Data: ' + JSON.stringify(data));
-
+            }
+            else {
                 // Store marker before filtering data
                 if (data.IsTruncated) {
                     if (data.NextMarker) {
@@ -314,38 +313,92 @@ function s3list(params, completecb) {
 }
 
 function promptForBucketInput() {
-    bootbox.prompt("Please enter the S3 bucket name", function(result) {
-        if (result !== null) {
-            s3exp_config = { Bucket: result, Delimiter: '/' };
-            (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+  bootbox.prompt("Please enter the S3 bucket name", function(result) {
+    if (result !== null) {
+      s3exp_config = { Bucket: result, Delimiter: '/' };
+      (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+    }
+  });
+}
+
+$.urlParam = (name) => {
+  let results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  if (results === null){
+    return null;
+  }
+  else{
+    return results[1] || 0;
+  }
+}
+/**
+ * The copy to clipboard using navigator only works if user init https connection.
+ * If not then you need to use an obsolete command execCommand('copy')
+ * @param txt
+ * @returns {Promise<unknown>|Promise<void>}
+ */
+const copyToClipboard = (url) => {
+  // navigator clipboard api needs a secure context (https)
+  const c = (txt) => {
+    if (navigator.clipboard && window.isSecureContext) {
+      // navigator clipboard api method'
+      return navigator.clipboard.writeText(txt);
+    }
+    else {
+      // text area method
+      let textArea = $("<input/>")
+        .attr({type: 'hidden', id: 'dummy-hidden'})
+        .val(txt)
+        .appendTo($("body"));
+
+      textArea.focus();
+      textArea.select();
+
+      return new Promise((res, rej) => {
+        // here the magic happens
+        document.execCommand('copy') ? res() : rej();
+        textArea.remove();
+      });
+    }
+  };
+
+  const showLinkCopyDialog = (selector) => {
+    $(selector).dialog({
+      buttons: {
+        Ok: function() {
+          $(this).dialog("close");
         }
+      }
     });
+  }
+  c(url)
+    .then(() => showLinkCopyDialog('#link-copy-success'))
+    .catch(()=>  showLinkCopyDialog('#link-copy-fail'));
+}
+/**
+ * Return an HTML that represent the icons for a particular row.
+ * @param data
+ * @param type
+ * @param full
+ * @returns {string}
+ */
+const displayIcon = (data, type, full) => {
+  let url = object2href(s3exp_config.Bucket, data);
+  return `<button onclick="copyToClipboard('${url}')" class="bi-share-fill"/>`;
 }
 
-$.urlParam = function(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
-       return null;
-    }
-    else{
-       return results[1] || 0;
-    }
-}
-
-$(document).ready(function(){
-    //console.log('ready');
-
+$(document).ready(() => {
     // Click handler for bucket button (to allow user to change bucket)
-    $('#bucket-chooser').click(function(e) {
+    $('#bucket-chooser').click(() => {
         promptForBucketInput();
     });
 
-    function renderKey(data, type, full) {
-        if (isfolder(data)) {
-            return '<a data-s3="folder" data-prefix="' + data + '" href="' + object2href(s3exp_config.Bucket, data) + '">' + prefix2folder(data) + '</a>';
-        } else {
-            return '<a data-s3="object" href="' + object2href(s3exp_config.Bucket, data) + '">' + fullpath2filename(data) + '</a>';
-        }
+    const renderKey = (data, type, full) => {
+      if (isfolder(data)) {
+        return '<a data-s3="folder" data-prefix="' + data + '" href="' + object2href(s3exp_config.Bucket, data) + '">' + prefix2folder(data) + '</a>';
+      }
+      else {
+        return '<a data-s3="object" href="' + object2href(s3exp_config.Bucket, data) + '">' + fullpath2filename(data) + '</a>';
+      }
     }
 
     // Initial DataTable settings
@@ -353,57 +406,55 @@ $(document).ready(function(){
         iDisplayLength: 50,
         order: [[1, 'asc'], [0, 'asc']],
         aoColumnDefs: [
-            { "aTargets": [ 0 ], "mData": "Key", "mRender": function (data, type, full) { return (type == 'display') ? renderKey(data, type, full) : data; }, "sType": "key" },
-            { "aTargets": [ 1 ], "mData": "Key", "mRender": function (data, type, full) { return isfolder(data) ? "" : fullpath2pathname(data); } },
-            { "aTargets": [ 2 ], "mData": "LastModified", "mRender": function (data, type, full) { return data ? moment(data).format("YYYY-MM-DD HH:mm:ss") : ""; } },
-            { "aTargets": [ 3 ], "mData": function (source, type, val) { return source.Size ? ((type == 'display') ? bytesToSize(source.Size) : source.Size) : "" } },
+          { targets: 0, data: "Key", "mRender": function (data, type, full) { return (type == 'display') ? renderKey(data, type, full) : data; }, "sType": "key" },
+          { targets: 1, data: "Key", "mRender": function (data, type, full) { return isfolder(data) ? "" : fullpath2pathname(data); } },
+          { targets: 2, data: "LastModified", "mRender": function (data, type, full) { return data ? moment(data).format("YYYY-MM-DD HH:mm:ss") : ""; } },
+          { targets: 3, data: function (source, type, val) { return source.Size ? ((type == 'display') ? bytesToSize(source.Size) : source.Size) : "" } },
+          { targets: 4, orderable: false, render: displayIcon }
         ]
     });
 
     $('#tb-s3objects').DataTable().column(s3exp_columns.key).visible(false);
-    //console.log("jQuery version=" + $.fn.jquery);
 
     // Custom sort for the Key column so that folders appear before objects
     $.fn.dataTableExt.oSort['key-asc']  = function(a,b) {
-        var x = (isfolder(a) ? "0-" + a : "1-" + a).toLowerCase();
-        var y = (isfolder(b) ? "0-" + b : "1-" + b).toLowerCase();
-        return ((x < y) ? -1 : ((x > y) ?  1 : 0));
+      let x = (isfolder(a) ? "0-" + a : "1-" + a).toLowerCase();
+      let y = (isfolder(b) ? "0-" + b : "1-" + b).toLowerCase();
+      return ((x < y) ? -1 : ((x > y) ?  1 : 0));
     };
 
     // Custom sort for the Key column so that folders appear before objects
     $.fn.dataTableExt.oSort['key-desc'] = function(a,b) {
-        var x = (isfolder(a) ? "1-" + a : "0-" + a).toLowerCase();
-        var y = (isfolder(b) ? "1-" + b : "0-" + b).toLowerCase();
-        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+      let x = (isfolder(a) ? "1-" + a : "0-" + a).toLowerCase();
+      let y = (isfolder(b) ? "1-" + b : "0-" + b).toLowerCase();
+      return ((x < y) ? 1 : ((x > y) ? -1 : 0));
     }
 
     // Delegated event handler for S3 object/folder clicks. This is delegated
     // because the object/folder rows are added dynamically and we do not want
     // to have to assign click handlers to each and every row.
-    $('#tb-s3objects').on('click', 'a', function(event) {
-        event.preventDefault();
-        var target = event.target;
-        //console.log("target href=" + target.href);
-        //console.log("target dataset=" + JSON.stringify(target.dataset));
+    $('#tb-s3objects').on('click', 'a', (event) => {
+      event.preventDefault();
+      let target = event.target;
 
-        // If the user has clicked on a folder then navigate into that folder
-        if (target.dataset.s3 === "folder") {
-            delete s3exp_config.Marker;
-            s3exp_config.Prefix = target.dataset.prefix;
-            location.search = "?prefix=" + s3exp_config.Prefix + "";	    
-            s3exp_config.Delimiter = "/";
-            (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+      // If the user has clicked on a folder then navigate into that folder
+      if (target.dataset.s3 === "folder") {
+        delete s3exp_config.Marker;
+        s3exp_config.Prefix = target.dataset.prefix;
+        location.search = "?prefix=" + s3exp_config.Prefix + "";
+        s3exp_config.Delimiter = "/";
+        (s3exp_lister = s3list(s3exp_config, s3draw)).go();
         // Else user has clicked on an object so download it in new window/tab
-        } else {
-            window.open(target.href, '_blank');
-        }
+      }
+      else {
+        window.open(target.href, '_blank');
+      }
     });
 
     // Document URL looks like: http://s3.amazonaws.com/mybucket/index.html
     // If we're launched from a bucket then let's try to determine the bucket
     // name so we can query it immediately.
-    var urls = document.URL.split('/');
-
+    let urls = document.URL.split('/');
 
     // If initial bucket has been hard-coded above then use it, else try to
     // derive the initial bucket from the document URL (useful if index.html was
@@ -411,19 +462,17 @@ $(document).ready(function(){
     if (s3exp_config.Bucket) {
 	
         // Setting up config for prefix to work
-	if ($.urlParam('prefix')) {
-	    s3exp_config.Prefix = $.urlParam('prefix'); 
-	}
-
+    	if ($.urlParam('prefix')) {
+	        s3exp_config.Prefix = $.urlParam('prefix');
+	    }
         (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-    } else if (urls[urls.length - 3] == 's3-ap-southeast-2.amazonaws.com') {
-        //console.log("Found s3.amazonaws.com, bucket: " + urls[urls.length - 2]);
+    }
+    else if (urls[urls.length - 3] === 's3-ap-southeast-2.amazonaws.com') {
         s3exp_config = { Bucket: urls[urls.length - 2], Delimiter: '/' };
         (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-    } else {
+    }
+    else {
         promptForBucketInput();
     }
 });
-
--->
 </script>
