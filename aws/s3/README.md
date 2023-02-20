@@ -12,8 +12,8 @@ is configurate to host static page.
 You can find the full list in the aodn.js
 
 > You can find the aws-s3-explorer in the github but that version changed too much that it do
-> not work with the existing html that sore here. Major issue is that user will give link to 
-> external user where the link of format xxx?prefix=yyy. This not longer works if you update the 
-> html that store in github.
+> not work with the existing html that store here. Major issue is that user will give link to 
+> external user where the link is of format xxx?prefix=yyy. This no longer works if you update the 
+> html with the latest version of aws-s3-explorer.
 > 
 > More details can be found here -> https://github.com/aodn/backlog/issues/650
