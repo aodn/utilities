@@ -94,12 +94,13 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
 <script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="aodn.js"></script>
 <script type="text/javascript">
 
 // In the line below, replace BUCKET-NAME with the name of the CORS-enabled Amazon S3 Bucket that you would like this JavaScript to display. Note that Amazon S3 bucket names are case sensitive. If you simply delete BUCKET-NAME, the page will present you with a dialog asking for a bucket name upon loading.
-let s3exp_config = { Bucket: 'imos-data', Prefix: '', Delimiter: '/' };
+let params = getParams(window.location.href);
+let s3exp_config = { Bucket: getS3BucketByUrl(window.location.hostname), Prefix: params['prefix'] === undefined ? '' : params['prefix'], Delimiter: '/' };
 
 let s3exp_lister = null;
 let s3exp_columns = { key:1, folder:2, date:3, size:4 };
@@ -234,7 +235,7 @@ function s3draw(data, complete) {
 }
 
 function cleanData(data) {
-  let unwanted = ['list.js', 'index.html', 'error.html'];
+  let unwanted = ['list.js', 'index.html', 'error.html', 'aodn.js', 'robots.txt'];
   let cleanData = [];
   $.each(data, function(i, item) {
     let index = unwanted.indexOf(item.Key);
@@ -329,62 +330,6 @@ $.urlParam = (name) => {
   else{
     return results[1] || 0;
   }
-}
-/**
- * The copy to clipboard using navigator only works if user init https connection.
- * If not then you need to use an obsolete command execCommand('copy')
- * @param txt
- * @returns {Promise<unknown>|Promise<void>}
- */
-const copyToClipboard = (url) => {
-  // navigator clipboard api needs a secure context (https)
-  const c = (txt) => {
-    if (navigator.clipboard && window.isSecureContext) {
-      // navigator clipboard api method'
-      return navigator.clipboard.writeText(txt);
-    }
-    else {
-      // text area method
-      const textArea = $("<input/>")
-        .attr({type: 'text', id: 'dummy-hidden'})
-        .val(txt)
-        .appendTo(document.body);
-
-      textArea.focus();
-      textArea.select();
-
-      return new Promise((res, rej) => {
-        // here the magic happens
-        document.execCommand('copy') ? res() : rej();
-        textArea.remove();
-      });
-    }
-  };
-
-  const showLinkCopyDialog = (selector) => {
-    $(selector).dialog({
-      buttons: {
-        Ok: function() {
-          $(this).dialog("close");
-        }
-      }
-    });
-  }
-
-  c(url)
-    .then(() => showLinkCopyDialog('#link-copy-success'))
-    .catch(()=>  showLinkCopyDialog('#link-copy-fail'));
-}
-/**
- * Return an HTML that represent the icons for a particular row.
- * @param data
- * @param type
- * @param full
- * @returns {string}
- */
-const displayIcon = (data, type, full) => {
-  let url = object2href(s3exp_config.Bucket, data);
-  return '<button onclick="copyToClipboard(\'' + url + '\')" class="bi-share-fill"/>';
 }
 
 $(document).ready(() => {
