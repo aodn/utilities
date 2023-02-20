@@ -5,10 +5,12 @@
  */
 const getS3BucketByUrl = (url) => {
   const mapping = {
+    "imos-data.s3-website.ap-southeast-2.amazonaws.com": "imos-data",
     "imos-data.s3-website-ap-southeast-2.amazonaws.com": "imos-data",
     "data.aodn.org.au": "imos-data",
     "imos-data.prod.aodn.org.au": "imos-data",
     "imos-data.aodn.org.au": "imos-data",
+    "imos-test-data.s3-website.ap-southeast-2.amazonaws.com": "imos-test-data",
     "imos-test-data.s3-website-ap-southeast-2.amazonaws.com": "imos-test-data",
     "data-test.aodn.org.au": "imos-test-data",
     "imos-test-data.prod.aodn.org.au": "imos-test-data",
