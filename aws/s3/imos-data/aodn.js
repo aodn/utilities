@@ -17,7 +17,11 @@ const getS3BucketByUrl = (url) => {
     "imos-test-data.aodn.org.au": "imos-test-data",
     "binary.aodn.org.au": "imos-binary",
     "binary.prod.aodn.org.au": "imos-binary",
+    "imos-binary.s3-website-ap-southeast-2.amazonaws.com": "imos-binary",
+    "imos-binary.s3-website.ap-southeast-2.amazonaws.com": "imos-binary",
     "content.aodn.org.au": "content.aodn.org.au",
+    "content.aodn.org.au.s3-website-ap-southeast-2.amazonaws.com": "content.aodn.org.au",
+    "content.aodn.org.au.s3-website.ap-southeast-2.amazonaws.com": "content.aodn.org.au",
     "localhost": "imos-test-data",
     "raymond-playground.s3-website-ap-southeast-2.amazonaws.com": "imos-test-data"
   };
