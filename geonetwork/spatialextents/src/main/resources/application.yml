@@ -1,0 +1,10 @@
+spring:
+  database:
+    url: 'jdbc:postgresql://localhost:5432/harvest'
+    username: postgres
+    password: postgres
+
+geonetwork:
+  gnServiceUrl: https://localhost/geonetwork
+  gnUsername: imos_admin
+  gnPassword: YwZhfNLquAkCHPyuPTfPDADQ

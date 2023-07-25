@@ -1,0 +1,10 @@
+geonetwork:
+  gnServiceUrl: https://catalogue-imos.aodn.org.au/geonetwork
+  gnUsername: imos_admin
+  gnPassword: YwZhfNLquAkCHPyuPTfPDADQ
+
+spring:
+  database:
+    url: 'jdbc:postgresql://db-harvest-prod.aodn.org.au:5432/harvest?loginTimeout=1000&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory'
+    username: auv_viewer_track
+    password: sOpqJZhdaSBCsDMb9nTzI2uh
