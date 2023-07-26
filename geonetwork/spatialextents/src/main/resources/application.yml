@@ -1,10 +1,10 @@
 spring:
-  database:
-    url: 'jdbc:postgresql://localhost:5432/harvest'
-    username: postgres
-    password: postgres
+  datasource:
+    url: "jdbc:postgresql://db-read2-harvest-prod.aodn.org.au:5432/harvest"
+    username: geoserver_portal
+    password: NlUVfKy0Fipe9yUd9KF2XBiq
 
 geonetwork:
-  gnServiceUrl: https://localhost/geonetwork
-  gnUsername: imos_admin
-  gnPassword: YwZhfNLquAkCHPyuPTfPDADQ
+  gnServiceUrl: "http://localhost:8080/geonetwork"
+  gnUsername: admin
+  gnPassword: admin

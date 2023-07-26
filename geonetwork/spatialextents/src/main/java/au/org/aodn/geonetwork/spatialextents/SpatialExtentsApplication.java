@@ -18,11 +18,20 @@ public class SpatialExtentsApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		updateSpatialExtents.update(
-				args.getOptionValues("uuid").get(0),
-				args.getOptionValues("schema").get(0),
-				args.getOptionValues("dbtable").get(0),
-				Integer.parseInt(args.getOptionValues("resolution").get(0))
-		);
+		if(args.getOptionNames().size() == 0) {
+			System.out.println("Usage java -jar SpatialExtentsApplication.jar --uuid=x --schema=y --dbtable=z --resolution=1");
+			System.out.println("uuid - The uuid found in geonetwork of the record to update");
+			System.out.println("schema - The schema name in database harvest");
+			System.out.println("dbtable - The table that hold the geom column to generate the bound box");
+			System.out.println("resolution - The resolution for the bound box");
+		}
+		else {
+			updateSpatialExtents.update(
+					args.getOptionValues("uuid").get(0),
+					args.getOptionValues("schema").get(0),
+					args.getOptionValues("dbtable").get(0),
+					Integer.parseInt(args.getOptionValues("resolution").get(0))
+			);
+		}
 	}
 }

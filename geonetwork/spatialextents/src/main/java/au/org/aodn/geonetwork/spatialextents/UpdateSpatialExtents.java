@@ -2,6 +2,7 @@ package au.org.aodn.geonetwork.spatialextents;
 
 import it.geosolutions.geonetwork.GNClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -171,7 +172,13 @@ public class UpdateSpatialExtents {
                 resolution
         );
         
-        List<String> result = jdbcTemplate.query(query, (rs, rowNum) -> rs.getString(0));
+        List<String> result = jdbcTemplate.query(query, (rs, rowNum) -> rs.getString(1));
+        if(result.size() != 1) {
+            throw new DataRetrievalFailureException("Must return 1 item after BoundingPolygonsAsGml3 call");
+        }
+        else {
+            boundingPolygon = result.get(0);
+        }
         org.jdom.Document metadata = new org.jdom.Document(geonetworkClient.get(uuid));
 
         org.jdom.Namespace gmdNs = org.jdom.Namespace.getNamespace("gmd", "http://www.isotc211.org/2005/gmd");
@@ -237,7 +244,7 @@ public class UpdateSpatialExtents {
 
             MetadataUpdater metadataUpdater = new MetadataUpdater();
 
-            List<org.jdom.Namespace> namespaces = new java.util.ArrayList<org.jdom.Namespace>();
+            List<org.jdom.Namespace> namespaces = new java.util.ArrayList<>();
             namespaces.add(gmdNs);
 
             metadataUpdater.removeNodes(metadata, namespaces, "//"+gmdNs.getPrefix()+":EX_Extent", "geographicElement", gmdNs);
