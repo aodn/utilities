@@ -19,18 +19,22 @@ public class SpatialExtentsApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		if(args.getOptionNames().size() == 0) {
-			System.out.println("Usage java -jar SpatialExtentsApplication.jar --uuid=x --schema=y --dbtable=z --resolution=1");
+			System.out.println("Usage java -jar SpatialExtentsApplication.jar --uuid=x --schema=y --dbtable=z --resolution=1 --printOnly=[y|n]");
 			System.out.println("uuid - The uuid found in geonetwork of the record to update");
 			System.out.println("schema - The schema name in database harvest");
 			System.out.println("dbtable - The table that hold the geom column to generate the bound box");
 			System.out.println("resolution - The resolution for the bound box");
+			System.out.println("printOnly - Show the XML on screen but not update geonetwork, good for debug");
 		}
 		else {
+			System.out.println(args.getOptionValues("printOnly"));
 			updateSpatialExtents.update(
 					args.getOptionValues("uuid").get(0),
 					args.getOptionValues("schema").get(0),
 					args.getOptionValues("dbtable").get(0),
-					Integer.parseInt(args.getOptionValues("resolution").get(0))
+					Integer.parseInt(args.getOptionValues("resolution").get(0)),
+					// Only explicit say "n" else always print only
+					args.getOptionValues("printOnly") == null || !"n".equalsIgnoreCase(args.getOptionValues("printOnly").get(0))
 			);
 		}
 	}

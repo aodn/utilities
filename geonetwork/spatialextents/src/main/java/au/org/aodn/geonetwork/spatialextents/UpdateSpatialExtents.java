@@ -1,6 +1,8 @@
 package au.org.aodn.geonetwork.spatialextents;
 
 import it.geosolutions.geonetwork.GNClient;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -155,7 +157,7 @@ public class UpdateSpatialExtents {
             e.printStackTrace();
         }
      */
-    public void update(String uuid, String schema, String dbtable, int resolution) throws Exception {
+    public void update(String uuid, String schema, String dbtable, int resolution, boolean printOnly) throws Exception {
         String boundingPolygon = null;
         // * iUpdateSpatialExtent - updating uuid '35234913-aa3c-48ec-b9a4-77f822f66ef8' from soop_xbt_nrt.soop_xbt_nrt_profiles_map.geom using 2 degree resolution
         //
@@ -252,8 +254,15 @@ public class UpdateSpatialExtents {
 
             // Post updated record back to Geonetwork
 
-            System.out.format( "* iUpdateSpatialExtent - updating metadata: %s\n", uuid);
-            geonetworkClient.updateMetadata(uuid, metadata.getRootElement());
+            if(printOnly) {
+                System.out.format( "* iUpdateSpatialExtent - print metadata only: %s\n", uuid);
+                XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+                xmlOutputter.output(metadata, System.out);
+            }
+            else {
+                System.out.format( "* iUpdateSpatialExtent - updating metadata: %s\n", uuid);
+                geonetworkClient.updateMetadata(uuid, metadata.getRootElement());
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ public class Config {
 
     @Bean
     public GNClient createGNClient() {
+        System.out.println(String.format("Connect to %s", gnServiceUrl));
         return new GNClient(gnServiceUrl,gnUsername,gnPassword);
     }
 }

@@ -1,3 +1,4 @@
+# Connect to production read only replica.
 spring:
   datasource:
     url: "jdbc:postgresql://db-read2-harvest-prod.aodn.org.au:5432/harvest"
