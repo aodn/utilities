@@ -15,15 +15,17 @@ java -jar target/spatialextents-0.0.1-SNAPSHOT.jar --uuid=7e13b5f3-4a70-4e31-9e9
 | ----- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | --uuid | The uuid of the geonetwork record, for example  7e13b5f3-4a70-4e31-9e95-335efa491c5c refers to "IMOS - Australian National Mooring Network (ANMN) Facility - Temperature and salinity time-series"                          |
 | --schema | The database schema store in havestor db, in this case - anms_ts store the geospatial info of "IMOS - Australian National Mooring Network (ANMN) Facility - Temperature and salinity time-series", PO should know the value |
-| --dtable | The name of the table in the schema that store the geosptail record | 
-| -- resolution | Usually 1 but can be 2 depends on PO preference | 
-| --printOnly | default is y, which means you only want to print the record in console for debug without update geonetwork, use --printOnly=n if you want update |
+| --dtable | The name of the table in the schema that store the geosptail record                                                                                                                                                         | 
+| -- resolution | Usually 1 but can be 2 depends on PO preference                                                                                                                                                                             | 
+| --printOnly | default is y, which means you only want to print the record in console for debug and save xml to file output.xml without update geonetwork, use --printOnly=n if you want update                                            |
 
 
 > :exclamation:
-> You need to add this argument if you want to connect and update catalog-systest,
+> You need to add this argument if you want to connect and update,
 > 
-> -Dspring.profiles.active=systest
+> catalog-rc  ->    -Dspring.profiles.active=rc
+> 
+>  catalog-systest ->   -Dspring.profiles.active=systest  
 > 
 > if You want to update production geonetwork
 > 
