@@ -8,6 +8,8 @@ import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 @Component
@@ -255,9 +257,14 @@ public class UpdateSpatialExtents {
             // Post updated record back to Geonetwork
 
             if(printOnly) {
-                System.out.format( "* iUpdateSpatialExtent - print metadata only: %s\n", uuid);
-                XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
-                xmlOutputter.output(metadata, System.out);
+                try(FileOutputStream outputStream = new FileOutputStream(new File("output.xml"))) {
+                    System.out.format("* iUpdateSpatialExtent - print metadata only: %s\n", uuid);
+                    XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+                    xmlOutputter.output(metadata, System.out);
+                    xmlOutputter.output(metadata, outputStream);
+
+                    System.out.println("Output xml saved in file output.xml, the XML can be import into geonetwork");
+                }
             }
             else {
                 System.out.format( "* iUpdateSpatialExtent - updating metadata: %s\n", uuid);
