@@ -27,7 +27,8 @@ public class SpatialExtentsApplication implements ApplicationRunner {
 			System.out.println("printOnly - Show the XML on screen but not update geonetwork, good for debug");
 		}
 		else {
-			System.out.println(args.getOptionValues("printOnly"));
+			System.out.println(String.format("PrintOnly = %s", args.getOptionValues("printOnly")));
+			System.out.println("Depends on dataset, it may take few mins to run");
 			updateSpatialExtents.update(
 					args.getOptionValues("uuid").get(0),
 					args.getOptionValues("schema").get(0),

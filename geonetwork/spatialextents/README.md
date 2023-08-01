@@ -8,7 +8,7 @@ to re-create the spatial extents by extract the code in talend.
 # Argument
 You can run the tools by using the following command
 ```shell
-java -jar target/spatialextents-0.0.1-SNAPSHOT.jar --uuid=7e13b5f3-4a70-4e31-9e95-335efa491c5c --schema=anmn_ts --dbtable=timeseries --resolution=1 --printOnly=n
+java -jar target/spatialextents-0.0.1-SNAPSHOT.jar --uuid=7e13b5f3-4a70-4e31-9e95-335efa491c5c --schema=anmn_ts --dbtable=timeseries --resolution=1 --printOnly=y
 ```
 
 | argument | description                                                                                                                                                                                                                 |
