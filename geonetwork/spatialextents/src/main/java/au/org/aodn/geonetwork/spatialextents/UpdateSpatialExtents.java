@@ -159,14 +159,14 @@ public class UpdateSpatialExtents {
             e.printStackTrace();
         }
      */
-    public void update(String uuid, String schema, String dbtable, int resolution, boolean printOnly) throws Exception {
+    public void update(String uuid, String schema, String dbtable, String geom, int resolution, boolean printOnly) throws Exception {
         String boundingPolygon = null;
         // * iUpdateSpatialExtent - updating uuid '35234913-aa3c-48ec-b9a4-77f822f66ef8' from soop_xbt_nrt.soop_xbt_nrt_profiles_map.geom using 2 degree resolution
         //
         // System.out.format(
         //         "* iUpdateSpatialExtent - updating uuid '%s' from %s.%s.%s using %s degree resolution\n",
         //         <%= uuid %>, <%=dbschema%>, <%=dbtable%>, <%=dbcol%>, <%=resolution%>
-        String dbCol = "geom";
+        String dbCol = geom == null ?  "geom" : geom;
 
         String query = String.format(
                 "select BoundingPolygonAsGml3('%s','%s','%s',%d)",
