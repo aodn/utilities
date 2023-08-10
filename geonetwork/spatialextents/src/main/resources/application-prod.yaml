@@ -1,0 +1,3 @@
+geonetwork:
+  gnServiceUrl: https://catalogue-imos.aodn.org.au/geonetwork
+  gnUsername: imos_admin
