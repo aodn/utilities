@@ -3,9 +3,7 @@ spring:
   datasource:
     url: "jdbc:postgresql://db-read2-harvest-prod.aodn.org.au:5432/harvest"
     username: geoserver_portal
-    password: NlUVfKy0Fipe9yUd9KF2XBiq
+    password: ${havesterPwd}
 
 geonetwork:
-  gnServiceUrl: "http://localhost:8080/geonetwork"
-  gnUsername: admin
-  gnPassword: admin
+  gnPassword: ${geonetworkPwd}
