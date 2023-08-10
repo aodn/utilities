@@ -34,7 +34,7 @@ public class SpatialExtentsApplication implements ApplicationRunner {
 					args.getOptionValues("uuid").get(0),
 					args.getOptionValues("schema").get(0),
 					args.getOptionValues("dbtable").get(0),
-					args.getOptionValues("dbfield").get(0),
+					args.getOptionValues("dbfield") == null ? "geom" : args.getOptionValues("dbfield").get(0),
 					Integer.parseInt(args.getOptionValues("resolution").get(0)),
 					// Only explicit say "n" else always print only
 					args.getOptionValues("printOnly") == null || !"n".equalsIgnoreCase(args.getOptionValues("printOnly").get(0))
