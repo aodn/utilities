@@ -40,6 +40,7 @@ public class SpatialExtentsApplication implements ApplicationRunner {
 		values
 				.entrySet()
 				.stream()
+				.filter(i -> !i.getKey().contains("Pwd"))
 				.forEach(action -> {
 					System.out.format("%25s %40s", action.getKey(), action.getValue());
 					System.out.println();
