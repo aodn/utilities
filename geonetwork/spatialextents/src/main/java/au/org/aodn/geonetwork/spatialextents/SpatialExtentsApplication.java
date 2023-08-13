@@ -7,6 +7,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+import java.io.Console;
 import java.util.*;
 
 @SpringBootApplication
@@ -33,7 +34,7 @@ public class SpatialExtentsApplication implements ApplicationRunner {
 	@Value("${printOnly:}")
 	protected String printOnly;
 
-	protected static Scanner scanner = new Scanner(System.in);
+	protected static Console console = System.console();
 
 	protected static void printTable(Map<String, Object> values) {
 		System.out.println("=================================================================");
@@ -48,7 +49,7 @@ public class SpatialExtentsApplication implements ApplicationRunner {
 		System.out.println("=================================================================");
 	}
 
-	protected static String question(String q, String defaultValue, Set<String> options) {
+	protected static String question(String q, String defaultValue, Set<String> options, boolean mask) {
 		String question = q;
 
 		if(options != null && options.size() != 0) {
@@ -58,8 +59,10 @@ public class SpatialExtentsApplication implements ApplicationRunner {
 		if(defaultValue != null) {
 			question = question + " (default " + defaultValue + ")";
 		}
-		System.out.print(question + " ?");
-		String ans = scanner.nextLine();
+
+		String ans = mask ?
+				String.valueOf(console.readPassword(question + " ?", null)) :
+				console.readLine(question + " ?", null);
 
 		if(options != null && !options.contains(ans)) {
 			ans = defaultValue;
@@ -74,20 +77,20 @@ public class SpatialExtentsApplication implements ApplicationRunner {
 	public static void main(String[] args) {
 		Map<String, Object> values = new HashMap<>();
 
-		values.put("env", question("GeoNetwork Environment", "local", new HashSet<>(Arrays.asList("rc","systest","prod"))));
-		values.put("uuid", question("UUID of GeoNetwork record", null, null));
-		values.put("schema", question("Schema name in harvest", null, null));
-		values.put("dbtable", question("Table name in harvest", null, null));
-		values.put("dbfield", question("Field name in harvest", "geom", null));
-		values.put("resolution", question("Resolution for bound box", "2", null));
-		values.put("printOnly", question("Output XML without update GeoNetwork", "y", new HashSet<>(Arrays.asList("y","n"))));
-		values.put("havesterPwd", question("Password for Harvest DB", null, null));
-		values.put("geonetworkPwd", question("Password for GeoNetwork", null, null));
+		values.put("env", question("GeoNetwork Environment", "local", new HashSet<>(Arrays.asList("rc","systest","prod")), false));
+		values.put("uuid", question("UUID of GeoNetwork record", null, null, false));
+		values.put("schema", question("Schema name in harvest", null, null, false));
+		values.put("dbtable", question("Table name in harvest", null, null, false));
+		values.put("dbfield", question("Field name in harvest", "geom", null, false));
+		values.put("resolution", question("Resolution for bound box", "2", null, false));
+		values.put("printOnly", question("Output XML without update GeoNetwork", "y", new HashSet<>(Arrays.asList("y","n")), false));
+		values.put("havesterPwd", question("Password for Harvest DB", null, null, true));
+		values.put("geonetworkPwd", question("Password for GeoNetwork", null, null, true));
 
 		printTable(values);
 
-		System.out.print("Proceed [y|n] ?");
-		String a = scanner.nextLine();
+		String a = console.readLine("Proceed [y|n] ?", null);
+
 		if("y".equalsIgnoreCase(a)) {
 			SpringApplicationBuilder build = new SpringApplicationBuilder();
 
